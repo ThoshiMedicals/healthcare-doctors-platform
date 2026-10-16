@@ -1,0 +1,54 @@
+{
+  "version": "1.0",
+  "status": "production-standard",
+  "objective": "One healthcare team. One photography language.",
+  "ratio": "4:5",
+  "masterMinimumPixels": "2000x2500",
+  "webWorkingPixels": "1200x1500",
+  "colourProfile": "sRGB",
+  "crop": {
+    "framing": "head and upper torso; approximately mid-chest",
+    "eyeLine": "38-42% from top",
+    "headroom": "7-10%",
+    "headScale": "consistent across all practitioner cards"
+  },
+  "capture": {
+    "cameraAngle": "eye level",
+    "bodyAngle": "10-20 degrees off camera; face toward lens",
+    "lens": "70-105mm full-frame equivalent; 85mm preferred",
+    "aperture": "approximately f/4-f/5.6",
+    "lighting": "large diffused key 30-45 degrees, slightly above eye level; gentle fill",
+    "background": "consistent warm off-white, stone or pale warm grey clinic-neutral background"
+  },
+  "postProduction": {
+    "colour": "natural skin tones, neutral white balance, restrained saturation, subtle contrast",
+    "sharpness": "eyes are the sharpest point; modest output sharpening",
+    "retouchingAllowed": [
+      "temporary blemishes",
+      "minor stray hairs",
+      "mild under-eye balancing",
+      "exposure and colour correction"
+    ],
+    "retouchingProhibited": [
+      "facial reshaping",
+      "age alteration",
+      "body reshaping",
+      "ethnicity alteration",
+      "heavy skin smoothing"
+    ]
+  },
+  "authenticityPriority": [
+    "new professional portrait to specification",
+    "existing authentic clinic portrait normalised",
+    "other verified authentic practitioner image",
+    "generic internal AI reference only; never presented as a named practitioner"
+  ],
+  "cardRule": "Photography adapts to the approved card. Card dimensions and website architecture do not change.",
+  "professionalPhotographyDay": [
+    "lock tripod and camera height",
+    "lock background and light positions",
+    "use 4:5 crop overlay while tethered",
+    "capture neutral and natural warm-smile variants",
+    "retain verified file naming by practitioner"
+  ]
+}

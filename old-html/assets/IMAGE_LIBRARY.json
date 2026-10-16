@@ -1,0 +1,1307 @@
+{
+  "schema": "wmc.institutional-image-governance.v2",
+  "name": "Woolloongabba Medical Centre — Institutional Image Library",
+  "source": "Practitioner portraits supplied by website owner; historical URLs preserved only for audit.",
+  "policy": "Only human-verified authentic, rights-cleared original photography can enter the approved institutional image library. Production-use history is NOT proof of authenticity or licence.",
+  "legacyCategories": {
+    "hero_exterior": [
+      "assets/hero-final-desktop.webp",
+      "assets/hero-final-tablet.webp",
+      "assets/hero-final-mobile.webp"
+    ],
+    "clinic_exterior": [
+      "assets/location-storefront-polished.webp",
+      "assets/institutional-exterior-consistent.webp"
+    ],
+    "community_image": [
+      "assets/community-editorial.webp"
+    ],
+    "team_photography": "assets/team/",
+    "service_imagery": []
+  },
+  "legacyMissingAuthenticCategories": [
+    "reception",
+    "waiting_area",
+    "treatment_room",
+    "entrance_detail"
+  ],
+  "categories": {
+    "hero": {
+      "displayName": "Hero Images",
+      "folder": "assets/hero/",
+      "cropStandards": [
+        "16:9 desktop",
+        "3:2 tablet",
+        "7:8 mobile crop compatible with locked homepage"
+      ],
+      "cropRule": "Protect identifiable signage and essential clinic façade; subject remains legible beneath approved text overlay. Use only approved existing responsive sizes.",
+      "styleRule": "Natural local morning/afternoon light; avoid added architectural details or misleading signage.",
+      "currentGap": "No independently verified original provenance or raw source file supplied for existing hero imagery."
+    },
+    "community": {
+      "displayName": "Community Images",
+      "folder": "assets/community/",
+      "cropStandards": [
+        "16:9 editorial",
+        "3:2 contextual"
+      ],
+      "cropRule": "Establish genuine neighbourhood context with geographic recognisability; avoid using the clinic exterior as a substitute for neighbourhood photography.",
+      "styleRule": "Documentary local streetscape; natural Brisbane daylight, no manufactured crowds.",
+      "currentGap": "No source-controlled local original of the currently referenced Wikimedia Gabba streetscape."
+    },
+    "clinic-exterior": {
+      "displayName": "Clinic Exterior",
+      "folder": "assets/clinic-exterior/",
+      "cropStandards": [
+        "3:2 documentary",
+        "16:9 banner"
+      ],
+      "cropRule": "Show factual entrance, signage, step-free routes, landmarks and access; never crop to imply parking or access not actually present.",
+      "styleRule": "Truthful architectural documentary photography with moderate tonal correction.",
+      "currentGap": "Existing polished exterior derivatives have no embedded primary-source provenance or signed approval records in the archive."
+    },
+    "team": {
+      "displayName": "Team Photography",
+      "folder": "assets/team/",
+      "cropStandards": [
+        "4:5 portraits",
+        "3:2 true group photograph"
+      ],
+      "cropRule": "Follow existing practitioner standard: 4:5, eye line 38–42% of frame; unchanged identity, same head scale and safe card crop.",
+      "styleRule": "Neutral background, diffused light, natural skin tones; no face generation, swapping, restoration, reshaping or AI portrait enhancement.",
+      "currentGap": "11 portrait originals remain external; two team members have no verified public photograph. No authenticated group photograph provided."
+    },
+    "services": {
+      "displayName": "Service Images",
+      "folder": "assets/services/",
+      "cropStandards": [
+        "4:3 editorial",
+        "3:2 feature",
+        "16:9 landing context"
+      ],
+      "cropRule": "Show the truthful procedure, environment or equipment without implying unavailable services or real-clinic interiors.",
+      "styleRule": "Authentic on-site patient-consented photography or clearly licensed general editorial imagery only where context is honest.",
+      "currentGap": "No authentic locally supplied service or procedure photography verified. Existing HotDoc screenshots/posters are collateral, not genuine clinic photographs."
+    },
+    "governance": {
+      "displayName": "Governance Images",
+      "folder": "assets/governance/",
+      "cropStandards": [
+        "4:3 documentary",
+        "3:2 reportage"
+      ],
+      "cropRule": "Show true clinical safety, processes, teams or premises with no identifiable patient documents.",
+      "styleRule": "Discreet process documentary imagery, not staged accreditation symbolism or false compliance claims.",
+      "currentGap": "No authenticated clinic governance photography provided; AGPAL marks remain governed brand assets, not governance photography."
+    }
+  },
+  "colourGrading": {
+    "intent": "consistent natural Brisbane daylight; premium, factual healthcare editorial; human warmth without artificial stylisation",
+    "colourSpace": "sRGB for production derivative; archive untouched original/master with embedded metadata",
+    "whiteBalance": "neutral whites and natural skin tones; adjust only from reliable neutral references; no universal Kelvin preset",
+    "exposure": "recover detail without losing realistic highlights and shadows; retain faithful sign, wall and medical equipment colours",
+    "saturation": "restrained; no global LUT mandatory or fixed percentage applied to every photograph",
+    "contrast": "mild to moderate, no crushed shadows or artificial halos; preserve patient-facing legibility under overlay",
+    "retouchAllowed": [
+      "exposure/white-balance correction",
+      "subtle crop and straightening",
+      "mild sharpening/noise reduction",
+      "licence-approved anonymisation of incidental people or documents"
+    ],
+    "retouchForbidden": [
+      "synthetic/rebuilt real clinic interiors",
+      "new windows, signs, facilities, doors or equipment",
+      "face synthesis, swapping or morphing",
+      "changing practitioner identity or clinically material equipment",
+      "misleading composite community scene",
+      "falsifying accessibility or AGPAL evidence"
+    ],
+    "derivativeRule": "Keep source bytes unmodified; all crops/grades require separate derivation with parentSourceSha256, recipe record and visual approval."
+  },
+  "publicationWorkflow": {
+    "states": [
+      "discovered",
+      "pending_original",
+      "pending_authenticity",
+      "pending_rights",
+      "pending_consent",
+      "ready_for_approval",
+      "approved",
+      "published",
+      "archived"
+    ],
+    "requiredForApproved": [
+      "original_file_and_sha256",
+      "source_location_and_capture_date_or_attested_provenance",
+      "identity/authenticity review",
+      "licensed_usage_rights",
+      "model/patient consent where applicable",
+      "clinical/brand owner approval",
+      "crop and colour review"
+    ],
+    "notApprovedUntil": "All mandatory evidence is recorded by a human reviewer; no script or existing site reference automatically upgrades an asset."
+  },
+  "cmsReadiness": {
+    "visibleImageRule": "Only show approved images for NEW or REPLACED placements. If no approved image exists, omit the image block; never auto-fill with AI or unrelated clinic photos.",
+    "legacyFreeze": "Existing public website imagery and DOM remain unchanged until explicitly approved for replacement; legacy artwork may not be repurposed into a new clinic.",
+    "missingPractitionerPolicy": "Do not create likenesses; follow existing neutral no-photo state."
+  },
+  "records": [
+    {
+      "id": "agpal-accredited-general-practice",
+      "path": "assets/agpal-accredited-general-practice.webp",
+      "categories": [],
+      "kind": "existing_collateral_or_brand_graphic",
+      "format": "webp",
+      "width": 694,
+      "height": 262,
+      "sha256": "c21955045fc739ac2aee7d10a0fdb9453438576c74d95bca3dd13cc488622f7d",
+      "sourceOriginal": null,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "outside_institutional_photography_approval",
+      "existingUsage": [],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": null,
+      "notes": "Graphic, screenshot, poster, QR or brand resource; not approved as authentic institutional photography."
+    },
+    {
+      "id": "agpal-mark",
+      "path": "assets/agpal-mark.webp",
+      "categories": [],
+      "kind": "existing_collateral_or_brand_graphic",
+      "format": "webp",
+      "width": 400,
+      "height": 400,
+      "sha256": "5f0d184767285222f577b2d7304dd8d395350239d24ebcd0f998f00c2be0ab6d",
+      "sourceOriginal": null,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "outside_institutional_photography_approval",
+      "existingUsage": [],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": null,
+      "notes": "Graphic, screenshot, poster, QR or brand resource; not approved as authentic institutional photography."
+    },
+    {
+      "id": "app-store-badge",
+      "path": "assets/app-store-badge.png",
+      "categories": [],
+      "kind": "existing_collateral_or_brand_graphic",
+      "format": "png",
+      "width": 736,
+      "height": 300,
+      "sha256": "f600305ccf705ee0a874dc08e6a7aa79cfcc9c41815e5044cf6f0dd0cc8d446d",
+      "sourceOriginal": null,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "outside_institutional_photography_approval",
+      "existingUsage": [],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": null,
+      "notes": "Graphic, screenshot, poster, QR or brand resource; not approved as authentic institutional photography."
+    },
+    {
+      "id": "bulk-billing-practice",
+      "path": "assets/bulk-billing-practice.png",
+      "categories": [],
+      "kind": "existing_collateral_or_brand_graphic",
+      "format": "png",
+      "width": 1080,
+      "height": 1080,
+      "sha256": "bb04050a7bcb9a361e6589b80e567e6e26d97a6642742e3b77bfa7df431208cf",
+      "sourceOriginal": null,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "outside_institutional_photography_approval",
+      "existingUsage": [],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": null,
+      "notes": "Graphic, screenshot, poster, QR or brand resource; not approved as authentic institutional photography."
+    },
+    {
+      "id": "careers-editorial",
+      "path": "assets/careers-editorial.webp",
+      "categories": [
+        "clinic-exterior"
+      ],
+      "kind": "existing_photo_unverified",
+      "format": "webp",
+      "width": 1600,
+      "height": 900,
+      "sha256": "b0b1126eba81b28c0ba4f506b9004f4e444e516cd1db3eeb8d5f3c4702e7f82c",
+      "sourceOriginal": false,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "legacy_frozen_production_use_provenance_pending",
+      "existingUsage": [],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": false,
+      "notes": "Existing production visual preserved as-is; not approved for new clinic rollout until source and rights are verified."
+    },
+    {
+      "id": "community-editorial",
+      "path": "assets/community-editorial.webp",
+      "categories": [
+        "community",
+        "clinic-exterior"
+      ],
+      "kind": "existing_photo_unverified",
+      "format": "webp",
+      "width": 1600,
+      "height": 900,
+      "sha256": "cada9c93d23ba21fe36975685e7d34d9f86874cc8c0743bc6f30b309e711ab68",
+      "sourceOriginal": false,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "legacy_frozen_production_use_provenance_pending",
+      "existingUsage": [],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": false,
+      "notes": "Existing production visual preserved as-is; not approved for new clinic rollout until source and rights are verified."
+    },
+    {
+      "id": "google-play-badge",
+      "path": "assets/google-play-badge.png",
+      "categories": [],
+      "kind": "existing_collateral_or_brand_graphic",
+      "format": "png",
+      "width": 736,
+      "height": 295,
+      "sha256": "19b6325eacfb73e3a5154fecda2f9ffd4022cdf5cb47e9c93818f276e84b9c4b",
+      "sourceOriginal": null,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "outside_institutional_photography_approval",
+      "existingUsage": [],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": null,
+      "notes": "Graphic, screenshot, poster, QR or brand resource; not approved as authentic institutional photography."
+    },
+    {
+      "id": "healthcare-doctors-woolloongabba-logo",
+      "path": "assets/healthcare-doctors-woolloongabba-logo.png",
+      "categories": [],
+      "kind": "existing_collateral_or_brand_graphic",
+      "format": "png",
+      "width": 475,
+      "height": 71,
+      "sha256": "866621be81f15eddba01106833086d5b11ec54e60cbc87a325e41b5edfe04fb8",
+      "sourceOriginal": null,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "outside_institutional_photography_approval",
+      "existingUsage": [],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": null,
+      "notes": "Graphic, screenshot, poster, QR or brand resource; not approved as authentic institutional photography."
+    },
+    {
+      "id": "hero-final-desktop",
+      "path": "assets/hero-final-desktop.webp",
+      "categories": [
+        "hero"
+      ],
+      "kind": "existing_photo_unverified",
+      "format": "webp",
+      "width": 1672,
+      "height": 941,
+      "sha256": "ebcc3a7e3fedaeab5c3f46b2b1673ad510cf8702c0de8cc0bd95420d6b89ce33",
+      "sourceOriginal": false,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "legacy_frozen_production_use_provenance_pending",
+      "existingUsage": [
+        "index.html"
+      ],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": false,
+      "notes": "Existing production visual preserved as-is; not approved for new clinic rollout until source and rights are verified."
+    },
+    {
+      "id": "hero-final-mobile",
+      "path": "assets/hero-final-mobile.webp",
+      "categories": [
+        "hero"
+      ],
+      "kind": "existing_photo_unverified",
+      "format": "webp",
+      "width": 820,
+      "height": 941,
+      "sha256": "1936be517d120fad8690464a0925cb5c3ee4cfbc5ca861113355a81fccc2ae31",
+      "sourceOriginal": false,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "legacy_frozen_production_use_provenance_pending",
+      "existingUsage": [
+        "index.html"
+      ],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": false,
+      "notes": "Existing production visual preserved as-is; not approved for new clinic rollout until source and rights are verified."
+    },
+    {
+      "id": "hero-final-tablet",
+      "path": "assets/hero-final-tablet.webp",
+      "categories": [
+        "hero"
+      ],
+      "kind": "existing_photo_unverified",
+      "format": "webp",
+      "width": 1380,
+      "height": 941,
+      "sha256": "3cc2df4ed6bab3be80e22e960b17331688e260ea2d88bd02c00903af7084f5bf",
+      "sourceOriginal": false,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "legacy_frozen_production_use_provenance_pending",
+      "existingUsage": [
+        "index.html"
+      ],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": false,
+      "notes": "Existing production visual preserved as-is; not approved for new clinic rollout until source and rights are verified."
+    },
+    {
+      "id": "hotdoc-app-booking",
+      "path": "assets/hotdoc-app-booking.webp",
+      "categories": [
+        "services"
+      ],
+      "kind": "existing_collateral_or_brand_graphic",
+      "format": "webp",
+      "width": 1280,
+      "height": 566,
+      "sha256": "b9d14d5ea127279ab78588accc2bff13a00b939999fd2263d6791ccdf0fbaef2",
+      "sourceOriginal": null,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "outside_institutional_photography_approval",
+      "existingUsage": [
+        "index.html",
+        "updates/index.html",
+        "updates/telehealth-appointments.html"
+      ],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": null,
+      "notes": "Graphic, screenshot, poster, QR or brand resource; not approved as authentic institutional photography."
+    },
+    {
+      "id": "hotdoc-app-poster",
+      "path": "assets/hotdoc-app-poster.webp",
+      "categories": [
+        "services"
+      ],
+      "kind": "existing_collateral_or_brand_graphic",
+      "format": "webp",
+      "width": 3836,
+      "height": 5391,
+      "sha256": "052502847af67e9211d3428259d6c1865c3fb90a0ee9142423dc4226d49df0a9",
+      "sourceOriginal": null,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "outside_institutional_photography_approval",
+      "existingUsage": [],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": null,
+      "notes": "Graphic, screenshot, poster, QR or brand resource; not approved as authentic institutional photography."
+    },
+    {
+      "id": "hotdoc-booking-interface",
+      "path": "assets/hotdoc-booking-interface.webp",
+      "categories": [
+        "services"
+      ],
+      "kind": "existing_collateral_or_brand_graphic",
+      "format": "webp",
+      "width": 650,
+      "height": 1349,
+      "sha256": "52d816522f9855dbcaa11a4a4c8929468d9163b7a841ae97555347bbff7e3ac0",
+      "sourceOriginal": null,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "outside_institutional_photography_approval",
+      "existingUsage": [],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": null,
+      "notes": "Graphic, screenshot, poster, QR or brand resource; not approved as authentic institutional photography."
+    },
+    {
+      "id": "hotdoc-booking-lifestyle",
+      "path": "assets/hotdoc-booking-lifestyle.webp",
+      "categories": [
+        "services"
+      ],
+      "kind": "existing_photo_unverified",
+      "format": "webp",
+      "width": 1200,
+      "height": 1657,
+      "sha256": "fdf76c5d270502a1a4445bd6ddc6b0ac8b06067360766f04d6e19507e36e741b",
+      "sourceOriginal": false,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "legacy_frozen_production_use_provenance_pending",
+      "existingUsage": [
+        "index.html"
+      ],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": false,
+      "notes": "Existing production visual preserved as-is; not approved for new clinic rollout until source and rights are verified."
+    },
+    {
+      "id": "hotdoc-bookings-poster",
+      "path": "assets/hotdoc-bookings-poster.webp",
+      "categories": [
+        "services"
+      ],
+      "kind": "existing_collateral_or_brand_graphic",
+      "format": "webp",
+      "width": 1400,
+      "height": 1968,
+      "sha256": "3c16c67fe4c44623de0221fb843e3cad7ca082a4c1855c0f48688d9b70b578b3",
+      "sourceOriginal": null,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "outside_institutional_photography_approval",
+      "existingUsage": [
+        "index.html"
+      ],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": null,
+      "notes": "Graphic, screenshot, poster, QR or brand resource; not approved as authentic institutional photography."
+    },
+    {
+      "id": "hotdoc-download-qr",
+      "path": "assets/hotdoc-download-qr.png",
+      "categories": [
+        "services"
+      ],
+      "kind": "existing_collateral_or_brand_graphic",
+      "format": "png",
+      "width": 806,
+      "height": 917,
+      "sha256": "ee77b88c9182fcfb18c065a4019a8ede4673ab0baa42e60c111480bc3afddd82",
+      "sourceOriginal": null,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "outside_institutional_photography_approval",
+      "existingUsage": [],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": null,
+      "notes": "Graphic, screenshot, poster, QR or brand resource; not approved as authentic institutional photography."
+    },
+    {
+      "id": "institutional-exterior-consistent",
+      "path": "assets/institutional-exterior-consistent.webp",
+      "categories": [
+        "clinic-exterior"
+      ],
+      "kind": "existing_photo_unverified",
+      "format": "webp",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "5cf435c812db40a54e17ce78b37b9ec3755848279d4962dd191a9598d90ae7fb",
+      "sourceOriginal": false,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "legacy_frozen_production_use_provenance_pending",
+      "existingUsage": [
+        "access-parking.html",
+        "community.html",
+        "join-our-team.html",
+        "local-healthcare-access.html",
+        "medical-centre-network.html",
+        "story.html"
+      ],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": false,
+      "notes": "Existing production visual preserved as-is; not approved for new clinic rollout until source and rights are verified."
+    },
+    {
+      "id": "local-access-editorial",
+      "path": "assets/local-access-editorial.webp",
+      "categories": [
+        "community",
+        "clinic-exterior"
+      ],
+      "kind": "existing_photo_unverified",
+      "format": "webp",
+      "width": 1600,
+      "height": 900,
+      "sha256": "3529fe6b06f41237adb2f6991c7cbac361d4e30ac2c605081777bed66a95fb5c",
+      "sourceOriginal": false,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "legacy_frozen_production_use_provenance_pending",
+      "existingUsage": [],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": false,
+      "notes": "Existing production visual preserved as-is; not approved for new clinic rollout until source and rights are verified."
+    },
+    {
+      "id": "location-storefront-polished",
+      "path": "assets/location-storefront-polished.webp",
+      "categories": [
+        "clinic-exterior"
+      ],
+      "kind": "existing_photo_unverified",
+      "format": "webp",
+      "width": 1800,
+      "height": 1013,
+      "sha256": "f03d34c6cad7f6cea90bbabe80b45cda51f619499af1b43709ed2b8da038f155",
+      "sourceOriginal": false,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "legacy_frozen_production_use_provenance_pending",
+      "existingUsage": [
+        "index.html",
+        "styles.css",
+        "updates-ui.js",
+        "updates/after-hours-care-options.html",
+        "updates/current-billing-information.html",
+        "updates/index.html",
+        "updates/open-seven-days.html"
+      ],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": false,
+      "notes": "Existing production visual preserved as-is; not approved for new clinic rollout until source and rights are verified."
+    },
+    {
+      "id": "network-editorial",
+      "path": "assets/network-editorial.webp",
+      "categories": [
+        "clinic-exterior"
+      ],
+      "kind": "existing_photo_unverified",
+      "format": "webp",
+      "width": 1600,
+      "height": 900,
+      "sha256": "9fed858b3cffef132124447f3add56f67368d3a42a0ffe808de8107b0855715f",
+      "sourceOriginal": false,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "legacy_frozen_production_use_provenance_pending",
+      "existingUsage": [],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": false,
+      "notes": "Existing production visual preserved as-is; not approved for new clinic rollout until source and rights are verified."
+    },
+    {
+      "id": "new-patients-welcome",
+      "path": "assets/new-patients-welcome.webp",
+      "categories": [
+        "services"
+      ],
+      "kind": "existing_photo_unverified",
+      "format": "webp",
+      "width": 1200,
+      "height": 900,
+      "sha256": "7ef5ac8a1f29411a3c04cfcdeba60ff68ce61ac162bdc80bde096bc47c63765e",
+      "sourceOriginal": false,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "legacy_frozen_production_use_provenance_pending",
+      "existingUsage": [
+        "index.html",
+        "updates/index.html",
+        "updates/new-patients-welcome.html"
+      ],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": false,
+      "notes": "Existing production visual preserved as-is; not approved for new clinic rollout until source and rights are verified."
+    },
+    {
+      "id": "story-editorial",
+      "path": "assets/story-editorial.webp",
+      "categories": [
+        "clinic-exterior"
+      ],
+      "kind": "existing_photo_unverified",
+      "format": "webp",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "e7b05c16f7aff2d693b1220484416a35e4392abd6fa23514b47dcce9172de45f",
+      "sourceOriginal": false,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "legacy_frozen_production_use_provenance_pending",
+      "existingUsage": [],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": false,
+      "notes": "Existing production visual preserved as-is; not approved for new clinic rollout until source and rights are verified."
+    },
+    {
+      "id": "wmc-brand-mark",
+      "path": "assets/wmc-brand-mark.webp",
+      "categories": [],
+      "kind": "existing_collateral_or_brand_graphic",
+      "format": "webp",
+      "width": 512,
+      "height": 512,
+      "sha256": "29b397d384564e53dd6bddbf199385489270b45709338978998a152422460915",
+      "sourceOriginal": null,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "outside_institutional_photography_approval",
+      "existingUsage": [],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": null,
+      "notes": "Graphic, screenshot, poster, QR or brand resource; not approved as authentic institutional photography."
+    },
+    {
+      "id": "woolloongabba-premium-hero",
+      "path": "assets/woolloongabba-premium-hero.webp",
+      "categories": [
+        "hero",
+        "clinic-exterior"
+      ],
+      "kind": "existing_photo_unverified",
+      "format": "webp",
+      "width": 1672,
+      "height": 941,
+      "sha256": "dbcefaac025412549791215e9a1021a35209011e899503702abe2257f39ed3e2",
+      "sourceOriginal": false,
+      "provenance": {
+        "capture_location": null,
+        "photographer": null,
+        "source_master_path": null,
+        "ownership_permission_record": null,
+        "consent_record": null,
+        "authenticity_review_record": null,
+        "retouch_history": null
+      },
+      "publicationStatus": "legacy_frozen_production_use_provenance_pending",
+      "existingUsage": [
+        "index.html",
+        "styles.css"
+      ],
+      "newLibraryEligible": false,
+      "authenticClinicInterior": false,
+      "rightsVerified": false,
+      "notes": "Existing production visual preserved as-is; not approved for new clinic rollout until source and rights are verified."
+    },
+    {
+      "id": "practitioner-dr-anand-singh",
+      "path": "assets/team/dr-anand-singh.webp",
+      "expectedLocalPath": "assets/team/dr-anand-singh.webp",
+      "categories": [
+        "team"
+      ],
+      "kind": "practitioner_portrait_user_supplied_lossless_local",
+      "width": 1122,
+      "height": 1402,
+      "sha256": "37c8b4db12c14beb0f6aa772f3d9d2198c90ca0eab9ec2953ac5df76504ccefc",
+      "provenance": {
+        "identity_check": null,
+        "usage_rights": null,
+        "consent_record": null,
+        "source_claim": "Supplied by website owner under practitioner filename; lossless WebP pixel-checked against uploaded file.",
+        "source_upload_sha256": "dc7c6e6dd24eafa4c806fb99d613309bf1bcf26a65ddcf2d17e92c660c1d92d6"
+      },
+      "publicationStatus": "integrated_user_supplied_identity_confirmation_pending",
+      "newLibraryEligible": false,
+      "existingUsage": [
+        "doctors/dr-anand-singh.html",
+        "team-general-practitioners.html"
+      ],
+      "notes": "Local lossless full-resolution original plus responsive derivative. The supplied filename maps to practitioner profile. Independent approval/identity confirmation not asserted.",
+      "previousExternalSourceUrl": "https://gabbamedicalcentre.com.au/wp-content/uploads/2025/02/17.jpg",
+      "sourceUrl": "user_upload:Dr Anand Singh.png",
+      "responsivePath": "assets/team/dr-anand-singh-640.webp"
+    },
+    {
+      "id": "practitioner-dr-debra-larkins",
+      "path": "assets/team/dr-debra-larkins.webp",
+      "expectedLocalPath": "assets/team/dr-debra-larkins.webp",
+      "categories": [
+        "team"
+      ],
+      "kind": "practitioner_portrait_user_supplied_lossless_local",
+      "width": 1122,
+      "height": 1402,
+      "sha256": "27fc0ac9862e1213c1a15fabdc2870d138925240269e76a49be6623c6bc83732",
+      "provenance": {
+        "identity_check": null,
+        "usage_rights": null,
+        "consent_record": null,
+        "source_claim": "Supplied by website owner under practitioner filename; lossless WebP pixel-checked against uploaded file.",
+        "source_upload_sha256": "0007b618c75c3f4601804ed557a9850782c8139b01959bc6d145ad48b5104600"
+      },
+      "publicationStatus": "integrated_user_supplied_identity_confirmation_pending",
+      "newLibraryEligible": false,
+      "existingUsage": [
+        "doctors/dr-debra-larkins.html",
+        "team-general-practitioners.html"
+      ],
+      "notes": "Local lossless full-resolution original plus responsive derivative. The supplied filename maps to practitioner profile. Independent approval/identity confirmation not asserted.",
+      "previousExternalSourceUrl": "https://gabbamedicalcentre.com.au/wp-content/uploads/2025/02/1.jpg",
+      "sourceUrl": "user_upload:Dr Debra larkins.png",
+      "responsivePath": "assets/team/dr-debra-larkins-640.webp"
+    },
+    {
+      "id": "practitioner-dr-gemunu-suresh-ranawake",
+      "path": "assets/team/dr-gemunu-suresh-ranawake.webp",
+      "expectedLocalPath": "assets/team/dr-gemunu-suresh-ranawake.webp",
+      "categories": [
+        "team"
+      ],
+      "kind": "practitioner_portrait_user_supplied_lossless_local",
+      "width": 1122,
+      "height": 1402,
+      "sha256": "51149dc48754bc3dd05c4a46d578b2d7cab3eaac8f4eae19b048a8eddf14bbaf",
+      "provenance": {
+        "identity_check": null,
+        "usage_rights": null,
+        "consent_record": null,
+        "source_claim": "Supplied by website owner under practitioner filename; lossless WebP pixel-checked against uploaded file.",
+        "source_upload_sha256": "789198ea357625d47f9bb1477af2028530594ecce0a9b49ea130633cb843863d"
+      },
+      "publicationStatus": "integrated_user_supplied_identity_confirmation_pending",
+      "newLibraryEligible": false,
+      "existingUsage": [
+        "doctors/dr-gemunu-suresh-ranawake.html",
+        "index.html",
+        "team-general-practitioners.html",
+        "team.html"
+      ],
+      "notes": "Local lossless full-resolution original plus responsive derivative. The supplied filename maps to practitioner profile. Independent approval/identity confirmation not asserted.",
+      "previousExternalSourceUrl": "https://gabbamedicalcentre.com.au/wp-content/uploads/2025/02/2.jpg",
+      "sourceUrl": "user_upload:Dr Gemunu Ranawake.png",
+      "responsivePath": "assets/team/dr-gemunu-suresh-ranawake-640.webp"
+    },
+    {
+      "id": "practitioner-dr-kooshyar-karimi",
+      "path": "assets/team/dr-kooshyar-karimi.webp",
+      "expectedLocalPath": "assets/team/dr-kooshyar-karimi.webp",
+      "categories": [
+        "team"
+      ],
+      "kind": "practitioner_portrait_user_supplied_lossless_local",
+      "width": 1122,
+      "height": 1402,
+      "sha256": "de8c13530a3a92fe2ffd82ef5e3877e2cb0abc7a8d72b10823678339bb9378f6",
+      "provenance": {
+        "identity_check": null,
+        "usage_rights": null,
+        "consent_record": null,
+        "source_claim": "Supplied by website owner under practitioner filename; lossless WebP pixel-checked against uploaded file.",
+        "source_upload_sha256": "b8152726dd2e4beaf9ba77eb5685438a4bbff7bd2cb67544aa2e89ab06144363"
+      },
+      "publicationStatus": "integrated_user_supplied_identity_confirmation_pending",
+      "newLibraryEligible": false,
+      "existingUsage": [
+        "doctors/dr-kooshyar-karimi.html",
+        "team-general-practitioners.html"
+      ],
+      "notes": "Local lossless full-resolution original plus responsive derivative. The supplied filename maps to practitioner profile. Independent approval/identity confirmation not asserted.",
+      "previousExternalSourceUrl": "https://gabbamedicalcentre.com.au/wp-content/uploads/2025/02/4.jpg",
+      "sourceUrl": "user_upload:Dr Kooshyar Karimi.png",
+      "responsivePath": "assets/team/dr-kooshyar-karimi-640.webp"
+    },
+    {
+      "id": "practitioner-dr-mary-abadir",
+      "path": "assets/team/dr-mary-abadir.webp",
+      "expectedLocalPath": "assets/team/dr-mary-abadir.webp",
+      "categories": [
+        "team"
+      ],
+      "kind": "practitioner_portrait_user_supplied_lossless_local",
+      "width": 1122,
+      "height": 1402,
+      "sha256": "6aee6f5124e48e3760117579c92c911d9830f7c7474d3f357070448bffc82a3b",
+      "provenance": {
+        "identity_check": null,
+        "usage_rights": null,
+        "consent_record": null,
+        "source_claim": "Supplied by website owner under practitioner filename; lossless WebP pixel-checked against uploaded file.",
+        "source_upload_sha256": "c47ad9ada298a75ae2a57d94d462a9e63631778fdf210344fbeb1ad0f95b3e89"
+      },
+      "publicationStatus": "integrated_user_supplied_identity_confirmation_pending",
+      "newLibraryEligible": false,
+      "existingUsage": [
+        "doctors/dr-mary-abadir.html",
+        "team.html"
+      ],
+      "notes": "Local lossless full-resolution original plus responsive derivative. The supplied filename maps to practitioner profile. Independent approval/identity confirmation not asserted.",
+      "previousExternalSourceUrl": "https://gabbamedicalcentre.com.au/wp-content/uploads/2025/02/13.jpg",
+      "sourceUrl": "user_upload:Dr Mary Abadir.png",
+      "responsivePath": "assets/team/dr-mary-abadir-640.webp"
+    },
+    {
+      "id": "practitioner-dr-sambo-luon",
+      "path": "assets/team/dr-sambo-luon.webp",
+      "expectedLocalPath": "assets/team/dr-sambo-luon.webp",
+      "categories": [
+        "team"
+      ],
+      "kind": "practitioner_portrait_user_supplied_lossless_local",
+      "width": 1122,
+      "height": 1402,
+      "sha256": "367190ba4dfa3e46d2f624deb53202e1372a374339ecd24276fbb9e0a5421c08",
+      "provenance": {
+        "identity_check": null,
+        "usage_rights": null,
+        "consent_record": null,
+        "source_claim": "Supplied by website owner under practitioner filename; lossless WebP pixel-checked against uploaded file.",
+        "source_upload_sha256": "6a406c858df76c61a58762eb2d3752e3f61d816cd09103350607acc093d4d823"
+      },
+      "publicationStatus": "integrated_user_supplied_identity_confirmation_pending",
+      "newLibraryEligible": false,
+      "existingUsage": [
+        "doctors/dr-sambo-luon.html",
+        "team-general-practitioners.html"
+      ],
+      "notes": "Local lossless full-resolution original plus responsive derivative. The supplied filename maps to practitioner profile. Independent approval/identity confirmation not asserted.",
+      "previousExternalSourceUrl": "https://gabbamedicalcentre.com.au/wp-content/uploads/2025/02/3.jpg",
+      "sourceUrl": "user_upload:Dr Sambo Luon.png",
+      "responsivePath": "assets/team/dr-sambo-luon-640.webp"
+    },
+    {
+      "id": "practitioner-dr-steven-chang",
+      "path": "assets/team/dr-steven-chang.webp",
+      "expectedLocalPath": "assets/team/dr-steven-chang.webp",
+      "categories": [
+        "team"
+      ],
+      "kind": "practitioner_portrait_user_supplied_lossless_local",
+      "width": 1122,
+      "height": 1402,
+      "sha256": "17307f54c39858a05a5cacfd07910e6fcdcb6e787866aedfecd661ac7c828e6d",
+      "provenance": {
+        "identity_check": null,
+        "usage_rights": null,
+        "consent_record": null,
+        "source_claim": "Supplied by website owner under practitioner filename; lossless WebP pixel-checked against uploaded file.",
+        "source_upload_sha256": "71cc3def45cc36f4e45dd02484be330075ef24878f4b8a427fa65013b5f40817"
+      },
+      "publicationStatus": "integrated_user_supplied_identity_confirmation_pending",
+      "newLibraryEligible": false,
+      "existingUsage": [
+        "doctors/dr-steven-chang.html",
+        "team.html"
+      ],
+      "notes": "Local lossless full-resolution original plus responsive derivative. The supplied filename maps to practitioner profile. Independent approval/identity confirmation not asserted.",
+      "previousExternalSourceUrl": "https://gabbamedicalcentre.com.au/wp-content/uploads/2025/02/5.jpg",
+      "sourceUrl": "user_upload:Dr steven Chang.png",
+      "responsivePath": "assets/team/dr-steven-chang-640.webp"
+    },
+    {
+      "id": "practitioner-dr-sumita-singh",
+      "path": "assets/team/dr-sumita-singh.webp",
+      "expectedLocalPath": "assets/team/dr-sumita-singh.webp",
+      "categories": [
+        "team"
+      ],
+      "kind": "practitioner_portrait_user_supplied_lossless_local",
+      "width": 1122,
+      "height": 1402,
+      "sha256": "260fb8aa88f67e208058a70436b98c04487b1de7bce46ec36bedd04b21a81a2a",
+      "provenance": {
+        "identity_check": null,
+        "usage_rights": null,
+        "consent_record": null,
+        "source_claim": "Supplied by website owner under practitioner filename; lossless WebP pixel-checked against uploaded file.",
+        "source_upload_sha256": "cee428e92f8f5afef08a49e5664ea13c59b14ed81f5ecb19d5b89bf5061b7c3f"
+      },
+      "publicationStatus": "integrated_user_supplied_identity_confirmation_pending",
+      "newLibraryEligible": false,
+      "existingUsage": [
+        "doctors/dr-sumita-singh.html",
+        "index.html",
+        "team-general-practitioners.html",
+        "team.html"
+      ],
+      "notes": "Local lossless full-resolution original plus responsive derivative. The supplied filename maps to practitioner profile. Independent approval/identity confirmation not asserted.",
+      "previousExternalSourceUrl": "https://gabbamedicalcentre.com.au/wp-content/uploads/2025/02/9.jpg",
+      "sourceUrl": "user_upload:Dr Sumita Singh.png",
+      "responsivePath": "assets/team/dr-sumita-singh-640.webp"
+    },
+    {
+      "id": "practitioner-dr-tanya-goodwill",
+      "path": "assets/team/dr-tanya-goodwill.webp",
+      "expectedLocalPath": "assets/team/dr-tanya-goodwill.webp",
+      "categories": [
+        "team"
+      ],
+      "kind": "practitioner_portrait_user_supplied_lossless_local",
+      "width": 1122,
+      "height": 1402,
+      "sha256": "903449cda1bd9dda2036f3183e12fb8747869ffceab53d0f59c30811eb1bf68e",
+      "provenance": {
+        "identity_check": null,
+        "usage_rights": null,
+        "consent_record": null,
+        "source_claim": "Supplied by website owner under practitioner filename; lossless WebP pixel-checked against uploaded file.",
+        "source_upload_sha256": "3073589140e70e569ec696edaea7052075839e619a411e705566c1350350bc08"
+      },
+      "publicationStatus": "integrated_user_supplied_identity_confirmation_pending",
+      "newLibraryEligible": false,
+      "existingUsage": [
+        "doctors/dr-tanya-goodwill.html",
+        "index.html",
+        "team-general-practitioners.html",
+        "team.html"
+      ],
+      "notes": "Local lossless full-resolution original plus responsive derivative. The supplied filename maps to practitioner profile. Independent approval/identity confirmation not asserted.",
+      "previousExternalSourceUrl": "https://gabbamedicalcentre.com.au/wp-content/uploads/2025/02/6.jpg",
+      "sourceUrl": "user_upload:Dr Tanya Goodwil.png",
+      "responsivePath": "assets/team/dr-tanya-goodwill-640.webp"
+    },
+    {
+      "id": "practitioner-dr-usman-gul",
+      "path": "assets/team/dr-usman-gul.webp",
+      "expectedLocalPath": "assets/team/dr-usman-gul.webp",
+      "categories": [
+        "team"
+      ],
+      "kind": "practitioner_portrait_user_supplied_lossless_local",
+      "width": 1122,
+      "height": 1402,
+      "sha256": "ed01f0a006f14801f56d8b833d41e8d8eac9569558f6507861023438021a5cc6",
+      "provenance": {
+        "identity_check": null,
+        "usage_rights": null,
+        "consent_record": null,
+        "source_claim": "Supplied by website owner under practitioner filename; lossless WebP pixel-checked against uploaded file.",
+        "source_upload_sha256": "a59e2a5f6d4a9201d3785ddd9d7adb7019b01398448e1fb4f35e083769860ffd"
+      },
+      "publicationStatus": "integrated_user_supplied_identity_confirmation_pending",
+      "newLibraryEligible": false,
+      "existingUsage": [
+        "doctors/dr-usman-gul.html",
+        "team-general-practitioners.html"
+      ],
+      "notes": "Local lossless full-resolution original plus responsive derivative. The supplied filename maps to practitioner profile. Independent approval/identity confirmation not asserted.",
+      "previousExternalSourceUrl": "https://gabbamedicalcentre.com.au/wp-content/uploads/2025/02/11.jpg",
+      "sourceUrl": "user_upload:Dr Usman Gul.png",
+      "responsivePath": "assets/team/dr-usman-gul-640.webp"
+    },
+    {
+      "id": "practitioner-dr-wasantha-hettiarchchi",
+      "path": "assets/team/dr-wasantha-hettiarchchi.webp",
+      "expectedLocalPath": "assets/team/dr-wasantha-hettiarchchi.webp",
+      "categories": [
+        "team"
+      ],
+      "kind": "practitioner_portrait_user_supplied_lossless_local",
+      "width": 1122,
+      "height": 1402,
+      "sha256": "a131d42928bdacf0f76ca81c9c3add31706d9d1b43f7c139eb48987b5a2b2041",
+      "provenance": {
+        "identity_check": null,
+        "usage_rights": null,
+        "consent_record": null,
+        "source_claim": "Supplied by website owner under practitioner filename; lossless WebP pixel-checked against uploaded file.",
+        "source_upload_sha256": "b191855dc822746db83fc16619d2c0ae8ea1deb023f678a63ea2a4f86731117c"
+      },
+      "publicationStatus": "integrated_user_supplied_identity_confirmation_pending",
+      "newLibraryEligible": false,
+      "existingUsage": [
+        "doctors/dr-wasantha-hettiarchchi.html",
+        "index.html",
+        "team-general-practitioners.html"
+      ],
+      "notes": "Local lossless full-resolution original plus responsive derivative. The supplied filename maps to practitioner profile. Independent approval/identity confirmation not asserted.",
+      "previousExternalSourceUrl": "https://gabbamedicalcentre.com.au/wp-content/uploads/2025/02/8-1.jpg",
+      "sourceUrl": "user_upload:Dr Wasantha Hettiarachchi.png",
+      "responsivePath": "assets/team/dr-wasantha-hettiarchchi-640.webp"
+    },
+    {
+      "id": "reception-original",
+      "path": null,
+      "sourceUrl": "https://gabbamedicalcentre.com.au/wp-content/uploads/2025/05/img2.png",
+      "categories": [],
+      "kind": "external_clinic_interior_original_missing_unclassified",
+      "width": null,
+      "height": null,
+      "sha256": null,
+      "provenance": {
+        "sourceUrl": "https://gabbamedicalcentre.com.au/wp-content/uploads/2025/05/img2.png",
+        "sourceMasterPath": null,
+        "rightsRecord": null,
+        "authenticityRecord": null
+      },
+      "publicationStatus": "pending_source_file_and_approval",
+      "newLibraryEligible": false,
+      "existingUsage": [
+        "index.html",
+        "styles.css",
+        "updates/open-seven-days.html"
+      ],
+      "notes": "First-party clinic reception source URL in existing production, but original authenticity and use rights have not been independently verified. This is an UNFILLED AUTHENTIC CLINIC INTERIOR need, outside the six requested category folders until a verified original is supplied."
+    },
+    {
+      "id": "gabba-precinct",
+      "path": null,
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3d/The_Gabba_from_Ipswich_Road_2026.jpg",
+      "categories": [
+        "community"
+      ],
+      "kind": "external_source_pending_original_and_rights_verification",
+      "width": null,
+      "height": null,
+      "sha256": null,
+      "provenance": {
+        "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3d/The_Gabba_from_Ipswich_Road_2026.jpg",
+        "sourceMasterPath": null,
+        "rightsRecord": null,
+        "authenticityRecord": null
+      },
+      "publicationStatus": "pending_source_file_and_approval",
+      "newLibraryEligible": false,
+      "existingUsage": [
+        "index.html"
+      ],
+      "notes": "Attribution CC0 appears in existing HTML; source bytes and licence should be checked before any local import."
+    }
+  ],
+  "nonPhotographicBrandAssets": [
+    {
+      "path": "assets/brand/agpal-accredited-general-practice.webp",
+      "sha256": "c21955045fc739ac2aee7d10a0fdb9453438576c74d95bca3dd13cc488622f7d",
+      "size": [
+        694,
+        262
+      ],
+      "class": "brand_or_accreditation_graphic_not_photography"
+    },
+    {
+      "path": "assets/brand/agpal-mark.webp",
+      "sha256": "5f0d184767285222f577b2d7304dd8d395350239d24ebcd0f998f00c2be0ab6d",
+      "size": [
+        400,
+        400
+      ],
+      "class": "brand_or_accreditation_graphic_not_photography"
+    },
+    {
+      "path": "assets/brand/bulk-billing-practice.png",
+      "sha256": "bb04050a7bcb9a361e6589b80e567e6e26d97a6642742e3b77bfa7df431208cf",
+      "size": [
+        1080,
+        1080
+      ],
+      "class": "brand_or_accreditation_graphic_not_photography"
+    },
+    {
+      "path": "assets/brand/healthcare-doctors-woolloongabba-logo.png",
+      "sha256": "866621be81f15eddba01106833086d5b11ec54e60cbc87a325e41b5edfe04fb8",
+      "size": [
+        475,
+        71
+      ],
+      "class": "brand_or_accreditation_graphic_not_photography"
+    },
+    {
+      "path": "assets/brand/wmc-brand-mark.webp",
+      "sha256": "29b397d384564e53dd6bddbf199385489270b45709338978998a152422460915",
+      "size": [
+        512,
+        512
+      ],
+      "class": "brand_or_accreditation_graphic_not_photography"
+    }
+  ],
+  "unfilledAuthenticPhotographyNeeds": [
+    "real reception",
+    "real waiting area",
+    "real consultation room",
+    "real treatment room",
+    "real exterior source originals",
+    "real team portraits",
+    "real community photography source masters",
+    "real governance/process photography"
+  ]
+}

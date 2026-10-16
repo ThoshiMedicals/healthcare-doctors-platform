@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gabbamedicalcentre.com.au/sitemap.xml

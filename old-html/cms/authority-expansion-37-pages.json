@@ -1,0 +1,1150 @@
+{
+  "version": "2026-10-09",
+  "status": "editorial_draft_pending_clinical_approval",
+  "originalArticles": 42,
+  "newArticles": 37,
+  "totalArticles": 79,
+  "clusters": [
+    {
+      "name": "Headache & Migraine",
+      "url": "knowledge/headache.html",
+      "primaryService": "services/family-health.html",
+      "relatedDoctors": [
+        "Dr Tanya Goodwill",
+        "Dr Kooshyar Karimi"
+      ],
+      "trustedSources": [
+        {
+          "label": "Healthdirect — Headaches",
+          "url": "https://www.healthdirect.gov.au/headaches"
+        }
+      ],
+      "articleUrls": [
+        "knowledge/articles/when-should-i-see-a-gp-about-headaches.html",
+        "knowledge/articles/migraine-or-headache-how-do-i-tell-the-difference.html",
+        "knowledge/articles/what-causes-frequent-headaches.html",
+        "knowledge/articles/when-is-a-headache-an-emergency.html"
+      ]
+    },
+    {
+      "name": "Cough & Sore Throat",
+      "url": "knowledge/cough.html",
+      "primaryService": "services/family-health.html",
+      "relatedDoctors": [
+        "Dr Tanya Goodwill",
+        "Dr Anand Singh"
+      ],
+      "trustedSources": [
+        {
+          "label": "Healthdirect — Cough",
+          "url": "https://www.healthdirect.gov.au/amp/article/cough"
+        },
+        {
+          "label": "Healthdirect — Sore throat",
+          "url": "https://www.healthdirect.gov.au/sore-throat"
+        }
+      ],
+      "articleUrls": [
+        "knowledge/articles/why-won-t-my-cough-go-away.html",
+        "knowledge/articles/what-causes-a-persistent-cough.html",
+        "knowledge/articles/sore-throat-when-should-i-see-a-doctor.html",
+        "knowledge/articles/is-my-sore-throat-viral-or-bacterial.html",
+        "knowledge/articles/when-should-a-child-with-a-cough-see-a-gp.html"
+      ]
+    },
+    {
+      "name": "Pain & Musculoskeletal Health",
+      "url": "knowledge/pain.html",
+      "primaryService": "services/family-health.html",
+      "relatedDoctors": [
+        "Dr Tanya Goodwill",
+        "Dr Kooshyar Karimi"
+      ],
+      "trustedSources": [
+        {
+          "label": "Healthdirect — Chronic pain",
+          "url": "https://www.healthdirect.gov.au/chronic-pain"
+        },
+        {
+          "label": "Healthdirect — Back pain",
+          "url": "https://www.healthdirect.gov.au/back-pain?f=contentCategory%3AClinical+Guideline"
+        }
+      ],
+      "articleUrls": [
+        "knowledge/articles/when-should-i-be-concerned-about-pain.html",
+        "knowledge/articles/understanding-muscle-and-joint-pain.html",
+        "knowledge/articles/chronic-pain-when-should-i-seek-help.html",
+        "knowledge/articles/back-pain-when-should-i-see-a-gp.html"
+      ]
+    },
+    {
+      "name": "Diabetes & Ongoing Care",
+      "url": "knowledge/diabetes.html",
+      "primaryService": "services/chronic-disease-care.html",
+      "relatedDoctors": [
+        "Dr Wasantha Hettiarchchi",
+        "Dr Tanya Goodwill"
+      ],
+      "trustedSources": [
+        {
+          "label": "RACGP — Type 2 diabetes care recommendations",
+          "url": "https://www.racgp.org.au/clinical-resources/clinical-guidelines/key-racgp-guidelines/view-all-racgp-guidelines/management-of-type-2-diabetes/summary-of-recommendations"
+        },
+        {
+          "label": "Services Australia — GP chronic condition management plans",
+          "url": "https://www.servicesaustralia.gov.au/gp-chronic-condition-management-plan?context=20"
+        }
+      ],
+      "articleUrls": [
+        "knowledge/articles/understanding-type-2-diabetes.html",
+        "knowledge/articles/living-with-diabetes.html",
+        "knowledge/articles/diabetes-monitoring-explained.html",
+        "knowledge/articles/preventing-diabetes-complications.html",
+        "knowledge/articles/diabetes-care-plans-explained.html"
+      ]
+    },
+    {
+      "name": "Blood Pressure & Heart Health",
+      "url": "knowledge/heart.html",
+      "primaryService": "services/preventive-healthcare.html",
+      "relatedDoctors": [
+        "Dr Sambo Luon",
+        "Dr Tanya Goodwill"
+      ],
+      "trustedSources": [
+        {
+          "label": "Healthdirect — High blood pressure",
+          "url": "https://www.healthdirect.gov.au/amp/article/high-blood-pressure-hypertension"
+        },
+        {
+          "label": "Heart Foundation — Heart Health Checks",
+          "url": "https://www.heartfoundation.org.au/your-heart/heart-health-checks"
+        }
+      ],
+      "articleUrls": [
+        "knowledge/articles/high-blood-pressure-explained.html",
+        "knowledge/articles/when-should-i-be-concerned-about-blood-pressure.html",
+        "knowledge/articles/heart-health-checks.html",
+        "knowledge/articles/cholesterol-explained.html"
+      ]
+    },
+    {
+      "name": "Pregnancy & Antenatal Care",
+      "url": "knowledge/pregnancy.html",
+      "primaryService": "services/antenatal-postnatal-care.html",
+      "relatedDoctors": [
+        "Dr Tanya Goodwill",
+        "Dr Debra Larkins"
+      ],
+      "trustedSources": [
+        {
+          "label": "Healthdirect — Planning a pregnancy",
+          "url": "https://www.healthdirect.gov.au/amp/article/planning-for-your-pregnancy"
+        },
+        {
+          "label": "Healthdirect — Maternity care in Australia",
+          "url": "https://www.healthdirect.gov.au/maternity-care-in-australia"
+        }
+      ],
+      "articleUrls": [
+        "knowledge/articles/planning-a-pregnancy.html",
+        "knowledge/articles/what-happens-during-antenatal-care.html",
+        "knowledge/articles/your-first-pregnancy-gp-appointment.html"
+      ]
+    },
+    {
+      "name": "Weight & Healthy Lifestyle",
+      "url": "knowledge/weight.html",
+      "primaryService": "services/preventive-healthcare.html",
+      "relatedDoctors": [
+        "Dr Tanya Goodwill",
+        "Dr Sambo Luon"
+      ],
+      "trustedSources": [
+        {
+          "label": "Healthdirect — Weight loss and dieting",
+          "url": "https://www.healthdirect.gov.au/weight-loss-and-dieting"
+        },
+        {
+          "label": "Healthdirect — Weight management medicines",
+          "url": "https://www.healthdirect.gov.au/weight-loss-medicine"
+        }
+      ],
+      "articleUrls": [
+        "knowledge/articles/healthy-weight-management.html",
+        "knowledge/articles/when-should-i-speak-to-a-gp-about-weight.html",
+        "knowledge/articles/understanding-healthy-lifestyle-changes.html"
+      ]
+    },
+    {
+      "name": "Sleep & Fatigue",
+      "url": "knowledge/sleep.html",
+      "primaryService": "services/family-health.html",
+      "relatedDoctors": [
+        "Dr Nirupa Sivathasan",
+        "Dr Tanya Goodwill"
+      ],
+      "trustedSources": [
+        {
+          "label": "Healthdirect — Fatigue",
+          "url": "https://www.healthdirect.gov.au/fatigue"
+        },
+        {
+          "label": "Healthdirect — Sleep apnoea",
+          "url": "https://www.healthdirect.gov.au/obstructive-sleep-apnoea"
+        }
+      ],
+      "articleUrls": [
+        "knowledge/articles/why-am-i-always-tired.html",
+        "knowledge/articles/sleep-problems-explained.html",
+        "knowledge/articles/when-should-i-speak-to-a-gp-about-sleep.html"
+      ]
+    },
+    {
+      "name": "ADHD & Neurodiversity",
+      "url": "knowledge/adhd.html",
+      "primaryService": "services/mental-health.html",
+      "relatedDoctors": [
+        "Dr Sumita Singh",
+        "Dr Tanya Goodwill"
+      ],
+      "trustedSources": [
+        {
+          "label": "Healthdirect — ADHD",
+          "url": "https://www.healthdirect.gov.au/attention-deficit-disorder-add-or-adhd"
+        },
+        {
+          "label": "Australian ADHD guideline — Assessment and diagnosis",
+          "url": "https://adhdguideline.aadpa.com.au/diagnosis/"
+        }
+      ],
+      "articleUrls": [
+        "knowledge/articles/adhd-assessment-pathways.html",
+        "knowledge/articles/when-should-i-seek-adhd-assessment.html",
+        "knowledge/articles/understanding-adhd-referrals.html"
+      ]
+    },
+    {
+      "name": "Menopause & Midlife Health",
+      "url": "knowledge/menopause.html",
+      "primaryService": "services/womens-health.html",
+      "relatedDoctors": [
+        "Dr Sumita Singh",
+        "Dr Tanya Goodwill"
+      ],
+      "trustedSources": [
+        {
+          "label": "Healthdirect — Menopausal hormone therapy",
+          "url": "https://www.healthdirect.gov.au/hormone-replacement-therapy"
+        },
+        {
+          "label": "Australian Government — Menopause treatment options",
+          "url": "https://www.health.gov.au/perimenopause/management-and-support/treatment-options"
+        }
+      ],
+      "articleUrls": [
+        "knowledge/articles/menopause-symptoms-explained.html",
+        "knowledge/articles/hrt-discussions-with-your-gp.html",
+        "knowledge/articles/mental-health-and-menopause.html"
+      ]
+    }
+  ],
+  "articles": [
+    {
+      "title": "When Should I See A GP About Headaches?",
+      "url": "knowledge/articles/when-should-i-see-a-gp-about-headaches.html",
+      "seoTitle": "When Should I See A GP About Headaches? | GP Guide",
+      "metaDescription": "Headaches are common, but their pattern matters.",
+      "symptomIndex": [
+        "headache",
+        "head pain",
+        "migraine",
+        "aura",
+        "severe headache",
+        "headache emergency",
+        "frequent headaches",
+        "When Should I See A GP About Headaches?"
+      ],
+      "service": "services/family-health.html",
+      "practitioners": [
+        "doctors/dr-tanya-goodwill.html",
+        "doctors/dr-kooshyar-karimi.html"
+      ],
+      "faqCount": 2,
+      "words": 666,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "Migraine Or Headache: How Do I Tell The Difference?",
+      "url": "knowledge/articles/migraine-or-headache-how-do-i-tell-the-difference.html",
+      "seoTitle": "Migraine Or Headache: How Do I Tell The Difference? | GP Guide",
+      "metaDescription": "People often use the word “headache” for any head pain, but migraine has characteristic features and may need a different management approach.",
+      "symptomIndex": [
+        "headache",
+        "head pain",
+        "migraine",
+        "aura",
+        "severe headache",
+        "headache emergency",
+        "frequent headaches",
+        "Migraine Or Headache: How Do I Tell The Difference?"
+      ],
+      "service": "services/family-health.html",
+      "practitioners": [
+        "doctors/dr-tanya-goodwill.html",
+        "doctors/dr-kooshyar-karimi.html"
+      ],
+      "faqCount": 2,
+      "words": 658,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "What Causes Frequent Headaches?",
+      "url": "knowledge/articles/what-causes-frequent-headaches.html",
+      "seoTitle": "What Causes Frequent Headaches? | Woolloongabba Medical Centre",
+      "metaDescription": "Frequent headaches can have several contributing factors. Identifying a pattern is often more helpful than focusing on one suspected trigger.",
+      "symptomIndex": [
+        "headache",
+        "head pain",
+        "migraine",
+        "aura",
+        "severe headache",
+        "headache emergency",
+        "frequent headaches",
+        "What Causes Frequent Headaches?"
+      ],
+      "service": "services/family-health.html",
+      "practitioners": [
+        "doctors/dr-tanya-goodwill.html",
+        "doctors/dr-kooshyar-karimi.html"
+      ],
+      "faqCount": 2,
+      "words": 626,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "When Is A Headache An Emergency?",
+      "url": "knowledge/articles/when-is-a-headache-an-emergency.html",
+      "seoTitle": "When Is A Headache An Emergency? | Woolloongabba Medical Centre",
+      "metaDescription": "Most headaches are not life-threatening. A small number have warning features that should change what you do next.",
+      "symptomIndex": [
+        "headache",
+        "head pain",
+        "migraine",
+        "aura",
+        "severe headache",
+        "headache emergency",
+        "frequent headaches",
+        "When Is A Headache An Emergency?"
+      ],
+      "service": "services/family-health.html",
+      "practitioners": [
+        "doctors/dr-tanya-goodwill.html",
+        "doctors/dr-kooshyar-karimi.html"
+      ],
+      "faqCount": 2,
+      "words": 634,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "Why Won’t My Cough Go Away?",
+      "url": "knowledge/articles/why-won-t-my-cough-go-away.html",
+      "seoTitle": "Why Won’t My Cough Go Away? | Woolloongabba Medical Centre",
+      "metaDescription": "Coughing can continue for some time after a respiratory infection.",
+      "symptomIndex": [
+        "cough",
+        "sore throat",
+        "strep throat",
+        "chronic cough",
+        "child cough",
+        "virus",
+        "antibiotics",
+        "Why Won’t My Cough Go Away?"
+      ],
+      "service": "services/family-health.html",
+      "practitioners": [
+        "doctors/dr-tanya-goodwill.html",
+        "doctors/dr-anand-singh.html"
+      ],
+      "faqCount": 2,
+      "words": 654,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "What Causes A Persistent Cough?",
+      "url": "knowledge/articles/what-causes-a-persistent-cough.html",
+      "seoTitle": "What Causes A Persistent Cough? | Woolloongabba Medical Centre",
+      "metaDescription": "A persistent cough is a symptom, not a diagnosis. Looking at possible causes helps a GP select useful tests and avoid unnecessary treatment.",
+      "symptomIndex": [
+        "cough",
+        "sore throat",
+        "strep throat",
+        "chronic cough",
+        "child cough",
+        "virus",
+        "antibiotics",
+        "What Causes A Persistent Cough?"
+      ],
+      "service": "services/family-health.html",
+      "practitioners": [
+        "doctors/dr-tanya-goodwill.html",
+        "doctors/dr-anand-singh.html"
+      ],
+      "faqCount": 2,
+      "words": 641,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "Sore Throat: When Should I See A Doctor?",
+      "url": "knowledge/articles/sore-throat-when-should-i-see-a-doctor.html",
+      "seoTitle": "Sore Throat: When Should I See A Doctor? | GP Guide",
+      "metaDescription": "A sore throat is often short-lived, but severe symptoms and difficulties swallowing or breathing need attention.",
+      "symptomIndex": [
+        "cough",
+        "sore throat",
+        "strep throat",
+        "chronic cough",
+        "child cough",
+        "virus",
+        "antibiotics",
+        "Sore Throat: When Should I See A Doctor?"
+      ],
+      "service": "services/family-health.html",
+      "practitioners": [
+        "doctors/dr-tanya-goodwill.html",
+        "doctors/dr-anand-singh.html"
+      ],
+      "faqCount": 2,
+      "words": 629,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "Is My Sore Throat Viral Or Bacterial?",
+      "url": "knowledge/articles/is-my-sore-throat-viral-or-bacterial.html",
+      "seoTitle": "Is My Sore Throat Viral Or Bacterial? | Woolloongabba Medical Centre",
+      "metaDescription": "Many people hope one symptom will tell them whether a sore throat needs antibiotics.",
+      "symptomIndex": [
+        "cough",
+        "sore throat",
+        "strep throat",
+        "chronic cough",
+        "child cough",
+        "virus",
+        "antibiotics",
+        "Is My Sore Throat Viral Or Bacterial?"
+      ],
+      "service": "services/family-health.html",
+      "practitioners": [
+        "doctors/dr-tanya-goodwill.html",
+        "doctors/dr-anand-singh.html"
+      ],
+      "faqCount": 2,
+      "words": 644,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "When Should A Child With A Cough See A GP?",
+      "url": "knowledge/articles/when-should-a-child-with-a-cough-see-a-gp.html",
+      "seoTitle": "When Should A Child With A Cough See A GP? | GP Guide",
+      "metaDescription": "Children develop coughs frequently, particularly during school and childcare years.",
+      "symptomIndex": [
+        "cough",
+        "sore throat",
+        "strep throat",
+        "chronic cough",
+        "child cough",
+        "virus",
+        "antibiotics",
+        "When Should A Child With A Cough See A GP?"
+      ],
+      "service": "services/family-health.html",
+      "practitioners": [
+        "doctors/dr-tanya-goodwill.html",
+        "doctors/dr-anand-singh.html"
+      ],
+      "faqCount": 2,
+      "words": 656,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "When Should I Be Concerned About Pain?",
+      "url": "knowledge/articles/when-should-i-be-concerned-about-pain.html",
+      "seoTitle": "When Should I Be Concerned About Pain? | GP Guide",
+      "metaDescription": "Pain is common and has many causes. A useful assessment considers where it is, when it started, how it is changing and whether it affects normal activities.",
+      "symptomIndex": [
+        "pain",
+        "joint",
+        "muscle",
+        "back pain",
+        "chronic pain",
+        "sciatica",
+        "stiffness",
+        "injury",
+        "When Should I Be Concerned About Pain?"
+      ],
+      "service": "services/family-health.html",
+      "practitioners": [
+        "doctors/dr-tanya-goodwill.html",
+        "doctors/dr-kooshyar-karimi.html"
+      ],
+      "faqCount": 2,
+      "words": 647,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "Understanding Muscle And Joint Pain",
+      "url": "knowledge/articles/understanding-muscle-and-joint-pain.html",
+      "seoTitle": "Understanding Muscle And Joint Pain | Woolloongabba Medical Centre",
+      "metaDescription": "Aching muscles and joints can make ordinary tasks difficult. The location, pattern and presence of swelling or stiffness help guide assessment.",
+      "symptomIndex": [
+        "pain",
+        "joint",
+        "muscle",
+        "back pain",
+        "chronic pain",
+        "sciatica",
+        "stiffness",
+        "injury",
+        "Understanding Muscle And Joint Pain"
+      ],
+      "service": "services/family-health.html",
+      "practitioners": [
+        "doctors/dr-tanya-goodwill.html",
+        "doctors/dr-kooshyar-karimi.html"
+      ],
+      "faqCount": 2,
+      "words": 629,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "Chronic Pain: When Should I Seek Help?",
+      "url": "knowledge/articles/chronic-pain-when-should-i-seek-help.html",
+      "seoTitle": "Chronic Pain: When Should I Seek Help? | GP Guide",
+      "metaDescription": "Living with pain for months can affect more than the part of the body that hurts.",
+      "symptomIndex": [
+        "pain",
+        "joint",
+        "muscle",
+        "back pain",
+        "chronic pain",
+        "sciatica",
+        "stiffness",
+        "injury",
+        "Chronic Pain: When Should I Seek Help?"
+      ],
+      "service": "services/family-health.html",
+      "practitioners": [
+        "doctors/dr-tanya-goodwill.html",
+        "doctors/dr-kooshyar-karimi.html"
+      ],
+      "faqCount": 2,
+      "words": 656,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "Back Pain: When Should I See A GP?",
+      "url": "knowledge/articles/back-pain-when-should-i-see-a-gp.html",
+      "seoTitle": "Back Pain: When Should I See A GP? | Woolloongabba Medical Centre",
+      "metaDescription": "Most episodes of back pain improve, but some need medical assessment.",
+      "symptomIndex": [
+        "pain",
+        "joint",
+        "muscle",
+        "back pain",
+        "chronic pain",
+        "sciatica",
+        "stiffness",
+        "injury",
+        "Back Pain: When Should I See A GP?"
+      ],
+      "service": "services/family-health.html",
+      "practitioners": [
+        "doctors/dr-tanya-goodwill.html",
+        "doctors/dr-kooshyar-karimi.html"
+      ],
+      "faqCount": 2,
+      "words": 638,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "Understanding Type 2 Diabetes",
+      "url": "knowledge/articles/understanding-type-2-diabetes.html",
+      "seoTitle": "Understanding Type 2 Diabetes | Woolloongabba Medical Centre",
+      "metaDescription": "A diagnosis of type 2 diabetes can raise many questions.",
+      "symptomIndex": [
+        "diabetes",
+        "type 2 diabetes",
+        "glucose",
+        "HBA1c",
+        "diabetes foot care",
+        "GPCCMP",
+        "diabetes plan",
+        "Understanding Type 2 Diabetes"
+      ],
+      "service": "services/chronic-disease-care.html",
+      "practitioners": [
+        "doctors/dr-wasantha-hettiarchchi.html",
+        "doctors/dr-tanya-goodwill.html"
+      ],
+      "faqCount": 2,
+      "words": 648,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "Living With Diabetes",
+      "url": "knowledge/articles/living-with-diabetes.html",
+      "seoTitle": "Living With Diabetes | Woolloongabba Medical Centre",
+      "metaDescription": "Living with diabetes involves ordinary routines as well as medical appointments.",
+      "symptomIndex": [
+        "diabetes",
+        "type 2 diabetes",
+        "glucose",
+        "HBA1c",
+        "diabetes foot care",
+        "GPCCMP",
+        "diabetes plan",
+        "Living With Diabetes"
+      ],
+      "service": "services/chronic-disease-care.html",
+      "practitioners": [
+        "doctors/dr-wasantha-hettiarchchi.html",
+        "doctors/dr-tanya-goodwill.html"
+      ],
+      "faqCount": 2,
+      "words": 659,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "Diabetes Monitoring Explained",
+      "url": "knowledge/articles/diabetes-monitoring-explained.html",
+      "seoTitle": "Diabetes Monitoring Explained | Woolloongabba Medical Centre",
+      "metaDescription": "Diabetes monitoring is about protecting health over time, not simply recording one glucose number.",
+      "symptomIndex": [
+        "diabetes",
+        "type 2 diabetes",
+        "glucose",
+        "HBA1c",
+        "diabetes foot care",
+        "GPCCMP",
+        "diabetes plan",
+        "Diabetes Monitoring Explained"
+      ],
+      "service": "services/chronic-disease-care.html",
+      "practitioners": [
+        "doctors/dr-wasantha-hettiarchchi.html",
+        "doctors/dr-tanya-goodwill.html"
+      ],
+      "faqCount": 2,
+      "words": 624,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "Preventing Diabetes Complications",
+      "url": "knowledge/articles/preventing-diabetes-complications.html",
+      "seoTitle": "Preventing Diabetes Complications | Woolloongabba Medical Centre",
+      "metaDescription": "The purpose of long-term diabetes care is to reduce avoidable complications while supporting quality of life.",
+      "symptomIndex": [
+        "diabetes",
+        "type 2 diabetes",
+        "glucose",
+        "HBA1c",
+        "diabetes foot care",
+        "GPCCMP",
+        "diabetes plan",
+        "Preventing Diabetes Complications"
+      ],
+      "service": "services/chronic-disease-care.html",
+      "practitioners": [
+        "doctors/dr-wasantha-hettiarchchi.html",
+        "doctors/dr-tanya-goodwill.html"
+      ],
+      "faqCount": 2,
+      "words": 631,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "Diabetes Care Plans Explained",
+      "url": "knowledge/articles/diabetes-care-plans-explained.html",
+      "seoTitle": "Diabetes Care Plans Explained | Woolloongabba Medical Centre",
+      "metaDescription": "For some people, coordinating diabetes care is as important as choosing medicines.",
+      "symptomIndex": [
+        "diabetes",
+        "type 2 diabetes",
+        "glucose",
+        "HBA1c",
+        "diabetes foot care",
+        "GPCCMP",
+        "diabetes plan",
+        "Diabetes Care Plans Explained"
+      ],
+      "service": "services/chronic-disease-care.html",
+      "practitioners": [
+        "doctors/dr-wasantha-hettiarchchi.html",
+        "doctors/dr-tanya-goodwill.html"
+      ],
+      "faqCount": 2,
+      "words": 642,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "High Blood Pressure Explained",
+      "url": "knowledge/articles/high-blood-pressure-explained.html",
+      "seoTitle": "High Blood Pressure Explained | Woolloongabba Medical Centre",
+      "metaDescription": "High blood pressure often causes no symptoms. Understanding what the readings mean is more useful than waiting to feel unwell.",
+      "symptomIndex": [
+        "blood pressure",
+        "high blood pressure",
+        "hypertension",
+        "heart health",
+        "heart check",
+        "cholesterol",
+        "lipids",
+        "High Blood Pressure Explained"
+      ],
+      "service": "services/preventive-healthcare.html",
+      "practitioners": [
+        "doctors/dr-sambo-luon.html",
+        "doctors/dr-tanya-goodwill.html"
+      ],
+      "faqCount": 2,
+      "words": 596,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "When Should I Be Concerned About Blood Pressure?",
+      "url": "knowledge/articles/when-should-i-be-concerned-about-blood-pressure.html",
+      "seoTitle": "When Should I Be Concerned About Blood Pressure? | GP Guide",
+      "metaDescription": "One unusual blood-pressure reading can be unsettling.",
+      "symptomIndex": [
+        "blood pressure",
+        "high blood pressure",
+        "hypertension",
+        "heart health",
+        "heart check",
+        "cholesterol",
+        "lipids",
+        "When Should I Be Concerned About Blood Pressure?"
+      ],
+      "service": "services/preventive-healthcare.html",
+      "practitioners": [
+        "doctors/dr-sambo-luon.html",
+        "doctors/dr-tanya-goodwill.html"
+      ],
+      "faqCount": 2,
+      "words": 616,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "Heart Health Checks",
+      "url": "knowledge/articles/heart-health-checks.html",
+      "seoTitle": "Heart Health Checks | Woolloongabba Medical Centre",
+      "metaDescription": "Heart health involves more than an ECG or cholesterol number. A preventive GP assessment considers multiple risk factors together.",
+      "symptomIndex": [
+        "blood pressure",
+        "high blood pressure",
+        "hypertension",
+        "heart health",
+        "heart check",
+        "cholesterol",
+        "lipids",
+        "Heart Health Checks"
+      ],
+      "service": "services/preventive-healthcare.html",
+      "practitioners": [
+        "doctors/dr-sambo-luon.html",
+        "doctors/dr-tanya-goodwill.html"
+      ],
+      "faqCount": 2,
+      "words": 615,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "Cholesterol Explained",
+      "url": "knowledge/articles/cholesterol-explained.html",
+      "seoTitle": "Cholesterol Explained | Woolloongabba Medical Centre",
+      "metaDescription": "Cholesterol results can be confusing because the report contains several numbers.",
+      "symptomIndex": [
+        "blood pressure",
+        "high blood pressure",
+        "hypertension",
+        "heart health",
+        "heart check",
+        "cholesterol",
+        "lipids",
+        "Cholesterol Explained"
+      ],
+      "service": "services/preventive-healthcare.html",
+      "practitioners": [
+        "doctors/dr-sambo-luon.html",
+        "doctors/dr-tanya-goodwill.html"
+      ],
+      "faqCount": 2,
+      "words": 610,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "Planning A Pregnancy",
+      "url": "knowledge/articles/planning-a-pregnancy.html",
+      "seoTitle": "Planning A Pregnancy | Woolloongabba Medical Centre",
+      "metaDescription": "A pre-pregnancy appointment can identify health needs before conception.",
+      "symptomIndex": [
+        "pregnancy",
+        "antenatal",
+        "pregnant",
+        "first trimester",
+        "preconception",
+        "pregnancy appointment",
+        "maternity",
+        "Planning A Pregnancy"
+      ],
+      "service": "services/antenatal-postnatal-care.html",
+      "practitioners": [
+        "doctors/dr-tanya-goodwill.html",
+        "doctors/dr-debra-larkins.html"
+      ],
+      "faqCount": 2,
+      "words": 615,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "What Happens During Antenatal Care?",
+      "url": "knowledge/articles/what-happens-during-antenatal-care.html",
+      "seoTitle": "What Happens During Antenatal Care? | Woolloongabba Medical Centre",
+      "metaDescription": "Antenatal care is a series of appointments designed to monitor the health of the pregnant person and baby, answer questions and identify concerns early.",
+      "symptomIndex": [
+        "pregnancy",
+        "antenatal",
+        "pregnant",
+        "first trimester",
+        "preconception",
+        "pregnancy appointment",
+        "maternity",
+        "What Happens During Antenatal Care?"
+      ],
+      "service": "services/antenatal-postnatal-care.html",
+      "practitioners": [
+        "doctors/dr-tanya-goodwill.html",
+        "doctors/dr-debra-larkins.html"
+      ],
+      "faqCount": 2,
+      "words": 607,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "Your First Pregnancy GP Appointment",
+      "url": "knowledge/articles/your-first-pregnancy-gp-appointment.html",
+      "seoTitle": "Your First Pregnancy GP Appointment | Woolloongabba Medical Centre",
+      "metaDescription": "A first pregnancy visit is an opportunity to confirm next steps and ask questions.",
+      "symptomIndex": [
+        "pregnancy",
+        "antenatal",
+        "pregnant",
+        "first trimester",
+        "preconception",
+        "pregnancy appointment",
+        "maternity",
+        "Your First Pregnancy GP Appointment"
+      ],
+      "service": "services/antenatal-postnatal-care.html",
+      "practitioners": [
+        "doctors/dr-tanya-goodwill.html",
+        "doctors/dr-debra-larkins.html"
+      ],
+      "faqCount": 2,
+      "words": 603,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "Healthy Weight Management",
+      "url": "knowledge/articles/healthy-weight-management.html",
+      "seoTitle": "Healthy Weight Management | Woolloongabba Medical Centre",
+      "metaDescription": "Weight and health are connected, but a number on the scale does not describe the whole person.",
+      "symptomIndex": [
+        "weight",
+        "weight management",
+        "healthy habits",
+        "lifestyle",
+        "obesity",
+        "exercise",
+        "healthy eating",
+        "Healthy Weight Management"
+      ],
+      "service": "services/preventive-healthcare.html",
+      "practitioners": [
+        "doctors/dr-tanya-goodwill.html",
+        "doctors/dr-sambo-luon.html"
+      ],
+      "faqCount": 2,
+      "words": 590,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "When Should I Speak To A GP About Weight?",
+      "url": "knowledge/articles/when-should-i-speak-to-a-gp-about-weight.html",
+      "seoTitle": "When Should I Speak To A GP About Weight? | GP Guide",
+      "metaDescription": "You can raise weight concerns with a GP without waiting for a crisis or a particular body-mass-index result.",
+      "symptomIndex": [
+        "weight",
+        "weight management",
+        "healthy habits",
+        "lifestyle",
+        "obesity",
+        "exercise",
+        "healthy eating",
+        "When Should I Speak To A GP About Weight?"
+      ],
+      "service": "services/preventive-healthcare.html",
+      "practitioners": [
+        "doctors/dr-tanya-goodwill.html",
+        "doctors/dr-sambo-luon.html"
+      ],
+      "faqCount": 2,
+      "words": 567,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "Understanding Healthy Lifestyle Changes",
+      "url": "knowledge/articles/understanding-healthy-lifestyle-changes.html",
+      "seoTitle": "Understanding Healthy Lifestyle Changes | GP Guide",
+      "metaDescription": "Health advice can feel overwhelming when it is presented as a long list of rules. The most useful changes are specific, achievable and revisited over time.",
+      "symptomIndex": [
+        "weight",
+        "weight management",
+        "healthy habits",
+        "lifestyle",
+        "obesity",
+        "exercise",
+        "healthy eating",
+        "Understanding Healthy Lifestyle Changes"
+      ],
+      "service": "services/preventive-healthcare.html",
+      "practitioners": [
+        "doctors/dr-tanya-goodwill.html",
+        "doctors/dr-sambo-luon.html"
+      ],
+      "faqCount": 2,
+      "words": 577,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "Why Am I Always Tired?",
+      "url": "knowledge/articles/why-am-i-always-tired.html",
+      "seoTitle": "Why Am I Always Tired? | Woolloongabba Medical Centre",
+      "metaDescription": "Feeling tired from time to time is common, but ongoing fatigue that does not improve with rest can be frustrating and may deserve assessment.",
+      "symptomIndex": [
+        "sleep",
+        "fatigue",
+        "tired",
+        "insomnia",
+        "snoring",
+        "sleep apnoea",
+        "sleep problem",
+        "Why Am I Always Tired?"
+      ],
+      "service": "services/family-health.html",
+      "practitioners": [
+        "doctors/dr-nirupa-sivathasan.html",
+        "doctors/dr-tanya-goodwill.html"
+      ],
+      "faqCount": 2,
+      "words": 570,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "Sleep Problems Explained",
+      "url": "knowledge/articles/sleep-problems-explained.html",
+      "seoTitle": "Sleep Problems Explained | Woolloongabba Medical Centre",
+      "metaDescription": "Sleep difficulties include more than not falling asleep.",
+      "symptomIndex": [
+        "sleep",
+        "fatigue",
+        "tired",
+        "insomnia",
+        "snoring",
+        "sleep apnoea",
+        "sleep problem",
+        "Sleep Problems Explained"
+      ],
+      "service": "services/family-health.html",
+      "practitioners": [
+        "doctors/dr-nirupa-sivathasan.html",
+        "doctors/dr-tanya-goodwill.html"
+      ],
+      "faqCount": 2,
+      "words": 558,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "When Should I Speak To A GP About Sleep?",
+      "url": "knowledge/articles/when-should-i-speak-to-a-gp-about-sleep.html",
+      "seoTitle": "When Should I Speak To A GP About Sleep? | GP Guide",
+      "metaDescription": "Not every restless night needs an appointment.",
+      "symptomIndex": [
+        "sleep",
+        "fatigue",
+        "tired",
+        "insomnia",
+        "snoring",
+        "sleep apnoea",
+        "sleep problem",
+        "When Should I Speak To A GP About Sleep?"
+      ],
+      "service": "services/family-health.html",
+      "practitioners": [
+        "doctors/dr-nirupa-sivathasan.html",
+        "doctors/dr-tanya-goodwill.html"
+      ],
+      "faqCount": 2,
+      "words": 555,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "ADHD Assessment Pathways",
+      "url": "knowledge/articles/adhd-assessment-pathways.html",
+      "seoTitle": "ADHD Assessment Pathways | Woolloongabba Medical Centre",
+      "metaDescription": "Questions about ADHD may begin with difficulties at school, work or home.",
+      "symptomIndex": [
+        "ADHD",
+        "attention deficit",
+        "neurodiversity",
+        "referral",
+        "assessment",
+        "inattention",
+        "impulsivity",
+        "ADHD Assessment Pathways"
+      ],
+      "service": "services/mental-health.html",
+      "practitioners": [
+        "doctors/dr-sumita-singh.html",
+        "doctors/dr-tanya-goodwill.html"
+      ],
+      "faqCount": 2,
+      "words": 585,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "When Should I Seek ADHD Assessment?",
+      "url": "knowledge/articles/when-should-i-seek-adhd-assessment.html",
+      "seoTitle": "When Should I Seek ADHD Assessment? | Woolloongabba Medical Centre",
+      "metaDescription": "Many people experience distraction or restlessness.",
+      "symptomIndex": [
+        "ADHD",
+        "attention deficit",
+        "neurodiversity",
+        "referral",
+        "assessment",
+        "inattention",
+        "impulsivity",
+        "When Should I Seek ADHD Assessment?"
+      ],
+      "service": "services/mental-health.html",
+      "practitioners": [
+        "doctors/dr-sumita-singh.html",
+        "doctors/dr-tanya-goodwill.html"
+      ],
+      "faqCount": 2,
+      "words": 553,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "Understanding ADHD Referrals",
+      "url": "knowledge/articles/understanding-adhd-referrals.html",
+      "seoTitle": "Understanding ADHD Referrals | Woolloongabba Medical Centre",
+      "metaDescription": "A referral is a practical step towards assessment, not a confirmation that someone has ADHD.",
+      "symptomIndex": [
+        "ADHD",
+        "attention deficit",
+        "neurodiversity",
+        "referral",
+        "assessment",
+        "inattention",
+        "impulsivity",
+        "Understanding ADHD Referrals"
+      ],
+      "service": "services/mental-health.html",
+      "practitioners": [
+        "doctors/dr-sumita-singh.html",
+        "doctors/dr-tanya-goodwill.html"
+      ],
+      "faqCount": 2,
+      "words": 583,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "Menopause Symptoms Explained",
+      "url": "knowledge/articles/menopause-symptoms-explained.html",
+      "seoTitle": "Menopause Symptoms Explained | Woolloongabba Medical Centre",
+      "metaDescription": "Menopause is a natural stage of life, but symptoms can interfere with sleep, work and wellbeing.",
+      "symptomIndex": [
+        "menopause",
+        "perimenopause",
+        "HRT",
+        "MHT",
+        "hormone therapy",
+        "hot flushes",
+        "night sweats",
+        "Menopause Symptoms Explained"
+      ],
+      "service": "services/womens-health.html",
+      "practitioners": [
+        "doctors/dr-sumita-singh.html",
+        "doctors/dr-tanya-goodwill.html"
+      ],
+      "faqCount": 2,
+      "words": 575,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "HRT Discussions With Your GP",
+      "url": "knowledge/articles/hrt-discussions-with-your-gp.html",
+      "seoTitle": "HRT Discussions With Your GP | Woolloongabba Medical Centre",
+      "metaDescription": "Menopausal hormone therapy, sometimes called HRT, may help with troublesome menopausal symptoms.",
+      "symptomIndex": [
+        "menopause",
+        "perimenopause",
+        "HRT",
+        "MHT",
+        "hormone therapy",
+        "hot flushes",
+        "night sweats",
+        "HRT Discussions With Your GP"
+      ],
+      "service": "services/womens-health.html",
+      "practitioners": [
+        "doctors/dr-sumita-singh.html",
+        "doctors/dr-tanya-goodwill.html"
+      ],
+      "faqCount": 2,
+      "words": 572,
+      "clinicalApproval": "pending"
+    },
+    {
+      "title": "Mental Health & Menopause",
+      "url": "knowledge/articles/mental-health-and-menopause.html",
+      "seoTitle": "Mental Health & Menopause | Woolloongabba Medical Centre",
+      "metaDescription": "Mood changes during midlife can be confusing, particularly when they happen alongside disrupted sleep and physical menopausal symptoms.",
+      "symptomIndex": [
+        "menopause",
+        "perimenopause",
+        "HRT",
+        "MHT",
+        "hormone therapy",
+        "hot flushes",
+        "night sweats",
+        "Mental Health & Menopause"
+      ],
+      "service": "services/womens-health.html",
+      "practitioners": [
+        "doctors/dr-sumita-singh.html",
+        "doctors/dr-tanya-goodwill.html"
+      ],
+      "faqCount": 2,
+      "words": 570,
+      "clinicalApproval": "pending"
+    }
+  ],
+  "removedHubElements": [
+    ".knowledge-trust-strip",
+    "#from-information-to-care"
+  ]
+}

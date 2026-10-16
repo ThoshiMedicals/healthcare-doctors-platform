@@ -1,0 +1,39 @@
+# Example only. The file Nginx should include is generated on the VPS:
+#   sh deployment/cloudflare-origin-firewall.sh
+# That writes deployment/nginx/cloudflare-allow.conf from Cloudflare's current
+# address list. Do not commit that generated file. It goes stale.
+#
+# Include the generated file inside each public server { } block:
+#
+#   include /etc/nginx/cloudflare-allow.conf;
+#
+# Mount it beside the TLS file in deployment/docker-compose.production.yml:
+#
+#   - ./nginx/cloudflare-allow.conf:/etc/nginx/cloudflare-allow.conf:ro
+#
+# After real_ip_header CF-Connecting-IP is active, the visitor address is
+# $remote_addr. Use that instead of the incoming X-Forwarded-For chain:
+#
+#   proxy_set_header X-Forwarded-For $remote_addr;
+#
+# Nginx allow and deny work only when the container sees the original source
+# address. Set Docker "userland-proxy": false. If the access log shows
+# 172.16.0.0/12 for every request, leave the Nginx deny rule out and keep the
+# host firewall. The firewall is what blocks direct IP access.
+#
+# Authenticated Origin Pulls, optional and only after the Cloudflare zone
+# setting is on. Install Cloudflare's origin-pull CA, then:
+#
+#   ssl_client_certificate /etc/ssl/cloudflare-origin-pull-ca.pem;
+#   ssl_verify_client on;
+#
+# Turn the zone setting on before ssl_verify_client on. The reverse order
+# rejects Cloudflare.
+#
+# Certificate compatibility with SSL/TLS mode Full (strict):
+# - A Let's Encrypt certificate for the apex and www is publicly trusted.
+#   Cloudflare accepts it. A browser that still reaches the origin by name
+#   also trusts it, which is why the firewall must block that path.
+# - A Cloudflare Origin Certificate is trusted by Cloudflare and not by a
+#   normal browser. Full (strict) still accepts it. Direct browser access
+#   fails the certificate check, and the firewall must still drop the connection.

@@ -1,0 +1,42 @@
+{
+  "schema": "wmc.institutional-image-category.v1",
+  "name": "Hero Images",
+  "category": "hero",
+  "publicationPolicy": "Original verified authentic imagery only. Do not copy legacy visuals into this folder without manual sign-off.",
+  "status": "catalogue_only_no_new_approved_photographs",
+  "cropStandards": [
+    "16:9 desktop",
+    "3:2 tablet",
+    "7:8 mobile crop compatible with locked homepage"
+  ],
+  "cropRule": "Protect identifiable signage and essential clinic façade; subject remains legible beneath approved text overlay. Use only approved existing responsive sizes.",
+  "styleRule": "Natural local morning/afternoon light; avoid added architectural details or misleading signage.",
+  "existingProductionReferences": [
+    {
+      "id": "hero-final-desktop",
+      "path": "assets/hero-final-desktop.webp",
+      "sourceUrl": null,
+      "status": "legacy_frozen_production_use_provenance_pending"
+    },
+    {
+      "id": "hero-final-mobile",
+      "path": "assets/hero-final-mobile.webp",
+      "sourceUrl": null,
+      "status": "legacy_frozen_production_use_provenance_pending"
+    },
+    {
+      "id": "hero-final-tablet",
+      "path": "assets/hero-final-tablet.webp",
+      "sourceUrl": null,
+      "status": "legacy_frozen_production_use_provenance_pending"
+    },
+    {
+      "id": "woolloongabba-premium-hero",
+      "path": "assets/woolloongabba-premium-hero.webp",
+      "sourceUrl": null,
+      "status": "legacy_frozen_production_use_provenance_pending"
+    }
+  ],
+  "approvedNewLibraryFiles": [],
+  "missingOrUnverified": "No independently verified original provenance or raw source file supplied for existing hero imagery."
+}

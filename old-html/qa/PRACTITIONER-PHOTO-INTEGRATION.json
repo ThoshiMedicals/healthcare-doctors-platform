@@ -1,0 +1,145 @@
+{
+  "policy": "User-supplied, file-name matched; full resolution re-encoded losslessly and pixel-verified; no facial alteration; clinical owner to confirm before publishing",
+  "portraits": [
+    {
+      "slug": "dr-anand-singh",
+      "name": "Dr Anand Singh",
+      "source_filename": "Dr Anand Singh.png",
+      "full_size_bytes": 1315772,
+      "thumbnail_bytes": 86882
+    },
+    {
+      "slug": "dr-debra-larkins",
+      "name": "Dr Debra Larkins",
+      "source_filename": "Dr Debra larkins.png",
+      "full_size_bytes": 1366400,
+      "thumbnail_bytes": 90456
+    },
+    {
+      "slug": "dr-gemunu-suresh-ranawake",
+      "name": "Dr Gemunu Suresh Ranawake",
+      "source_filename": "Dr Gemunu Ranawake.png",
+      "full_size_bytes": 1296014,
+      "thumbnail_bytes": 78898
+    },
+    {
+      "slug": "dr-kooshyar-karimi",
+      "name": "Dr Kooshyar Karimi",
+      "source_filename": "Dr Kooshyar Karimi.png",
+      "full_size_bytes": 1471216,
+      "thumbnail_bytes": 133204
+    },
+    {
+      "slug": "dr-mary-abadir",
+      "name": "Dr Mary Abadir",
+      "source_filename": "Dr Mary Abadir.png",
+      "full_size_bytes": 1317270,
+      "thumbnail_bytes": 73440
+    },
+    {
+      "slug": "dr-sambo-luon",
+      "name": "Dr Sambo Luon",
+      "source_filename": "Dr Sambo Luon.png",
+      "full_size_bytes": 1469114,
+      "thumbnail_bytes": 135050
+    },
+    {
+      "slug": "dr-steven-chang",
+      "name": "Dr Steven Chang",
+      "source_filename": "Dr steven Chang.png",
+      "full_size_bytes": 1323180,
+      "thumbnail_bytes": 79200
+    },
+    {
+      "slug": "dr-sumita-singh",
+      "name": "Dr Sumita Singh",
+      "source_filename": "Dr Sumita Singh.png",
+      "full_size_bytes": 1353510,
+      "thumbnail_bytes": 79396
+    },
+    {
+      "slug": "dr-tanya-goodwill",
+      "name": "Dr Tanya Goodwill",
+      "source_filename": "Dr Tanya Goodwil.png",
+      "full_size_bytes": 1336734,
+      "thumbnail_bytes": 83394
+    },
+    {
+      "slug": "dr-usman-gul",
+      "name": "Dr Usman Gul",
+      "source_filename": "Dr Usman Gul.png",
+      "full_size_bytes": 1326890,
+      "thumbnail_bytes": 79320
+    },
+    {
+      "slug": "dr-wasantha-hettiarchchi",
+      "name": "Dr Wasantha Hettiarchchi",
+      "source_filename": "Dr Wasantha Hettiarachchi.png",
+      "full_size_bytes": 1433208,
+      "thumbnail_bytes": 106672
+    }
+  ],
+  "without_provided_photo": [
+    "Dr Nirupa Sivathasan",
+    "Mr Samuel Stafford"
+  ],
+  "pages_modified": [
+    [
+      "team-general-practitioners.html",
+      9
+    ],
+    [
+      "index.html",
+      4
+    ],
+    [
+      "team.html",
+      5
+    ],
+    [
+      "doctors/dr-gemunu-suresh-ranawake.html",
+      1
+    ],
+    [
+      "doctors/dr-usman-gul.html",
+      1
+    ],
+    [
+      "doctors/dr-anand-singh.html",
+      1
+    ],
+    [
+      "doctors/dr-mary-abadir.html",
+      1
+    ],
+    [
+      "doctors/dr-kooshyar-karimi.html",
+      1
+    ],
+    [
+      "doctors/dr-sambo-luon.html",
+      1
+    ],
+    [
+      "doctors/dr-tanya-goodwill.html",
+      1
+    ],
+    [
+      "doctors/dr-debra-larkins.html",
+      1
+    ],
+    [
+      "doctors/dr-wasantha-hettiarchchi.html",
+      1
+    ],
+    [
+      "doctors/dr-sumita-singh.html",
+      1
+    ],
+    [
+      "doctors/dr-steven-chang.html",
+      1
+    ]
+  ],
+  "image_tag_count": 29
+}

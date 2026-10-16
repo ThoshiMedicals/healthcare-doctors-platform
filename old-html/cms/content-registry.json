@@ -1,0 +1,207 @@
+{
+  "team": {
+    "hub": "team.html",
+    "departments": [
+      "team-general-practitioners.html",
+      "team.html#specialist-care",
+      "team-allied-health.html",
+      "team-nursing.html",
+      "team-practice-management.html",
+      "team-reception.html"
+    ],
+    "authority": "why-team-based-care-matters.html",
+    "join": "join-our-team.html"
+  },
+  "practiceInformation": {
+    "hub": "practice-information.html",
+    "pages": [
+      "access-parking.html",
+      "accessibility.html",
+      "privacy-confidentiality.html",
+      "reminder-recall.html",
+      "feedback-concerns.html",
+      "medical-students.html",
+      "patient-rights-responsibilities.html",
+      "practice-policies.html",
+      "infection-prevention-control.html",
+      "quality-safety.html",
+      "agpal-accreditation.html"
+    ]
+  },
+  "community": {
+    "hub": "community.html",
+    "accessAuthority": "local-healthcare-access.html"
+  },
+  "content": {
+    "updates": "updates/index.html",
+    "data": "updates-data.js"
+  },
+  "services": {
+    "skinCancerCare": "services/skin-cancer-care.html",
+    "hub": "services.html",
+    "procedureAuthorityPages": [
+      "services/iron-infusions.html",
+      "services/implanon-insertion-removal.html",
+      "services/iud-insertion-removal.html",
+      "services/pap-smear-cervical-screening.html",
+      "services/breast-check.html",
+      "services/prostate-care.html",
+      "services/ear-care-ear-syringing.html",
+      "services/wound-dressings.html",
+      "services/ecg.html",
+      "services/spirometry.html",
+      "services/nebulising.html",
+      "services/antenatal-postnatal-care.html",
+      "services/pre-pregnancy-care.html"
+    ],
+    "independentOnSiteServices": {
+      "disclaimer": "Third-party providers; not owned or operated by Woolloongabba Medical Centre",
+      "pages": [
+        "services/pathology.html",
+        "services/radiology.html",
+        "services/pharmacy.html"
+      ]
+    }
+  },
+  "governance": {
+    "photography": "cms/practitioner-photography-spec.json",
+    "assets": "cms/asset-register.json",
+    "googleBusinessProfile": "cms/google-business-profile-readiness.json",
+    "workflow": "cms/governance-workflow.json",
+    "reviewRegistry": "cms/governance-records.json",
+    "reviewPublishedAsset": "governance-published.js",
+    "reviewBuildTool": "cms/tools/build_clinical_governance.py"
+  },
+  "network": {
+    "authorityPage": "medical-centre-network.html",
+    "locations": [
+      "Woolloongabba Medical Centre",
+      "Forest Lake Doctors",
+      "Eight Mile Plains Doctors",
+      "Indooroopilly Doctors",
+      "Chapel Hill Family Doctors",
+      "Cannon Hill Doctors",
+      "Bald Hills Doctors"
+    ]
+  },
+  "knowledgeCentre": {
+    "hub": "knowledge/index.html",
+    "categories": [
+      "knowledge/mental-health.html",
+      "knowledge/womens-health.html",
+      "knowledge/mens-health.html",
+      "knowledge/childrens-health.html",
+      "knowledge/preventive-healthcare.html",
+      "knowledge/vaccinations.html",
+      "knowledge/healthy-ageing.html",
+      "knowledge/chronic-disease-management.html",
+      "knowledge/skin-health-skin-cancer.html",
+      "knowledge/telehealth-access-to-care.html"
+    ],
+    "articles": [
+      "knowledge/articles/when-should-i-speak-to-a-gp-about-anxiety.html",
+      "knowledge/articles/anxiety-vs-stress-what-is-the-difference.html",
+      "knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+      "knowledge/articles/how-can-a-gp-support-depression.html",
+      "knowledge/articles/when-should-i-seek-help-for-burnout.html",
+      "knowledge/articles/understanding-menopause.html",
+      "knowledge/articles/when-should-i-have-a-cervical-screening-test.html",
+      "knowledge/articles/womens-health-checks-at-different-stages-of-life.html",
+      "knowledge/articles/understanding-perimenopause.html",
+      "knowledge/articles/preventive-womens-healthcare.html",
+      "knowledge/articles/health-checks-every-man-should-consider.html",
+      "knowledge/articles/understanding-prostate-health.html",
+      "knowledge/articles/why-preventive-healthcare-matters.html",
+      "knowledge/articles/heart-health-for-men.html",
+      "knowledge/articles/healthy-ageing-for-men.html",
+      "knowledge/articles/childhood-vaccinations-explained.html",
+      "knowledge/articles/when-should-i-be-concerned-about-a-fever.html",
+      "knowledge/articles/preparing-for-your-childs-first-gp-appointment.html",
+      "knowledge/articles/common-childhood-illnesses.html",
+      "knowledge/articles/childrens-preventive-healthcare.html",
+      "knowledge/articles/what-is-preventive-healthcare.html",
+      "knowledge/articles/health-assessments-explained.html",
+      "knowledge/articles/why-regular-check-ups-matter.html",
+      "knowledge/articles/vaccinations-for-adults.html",
+      "knowledge/articles/staying-healthy-as-you-age.html",
+      "knowledge/articles/why-skin-checks-matter-in-australia.html",
+      "knowledge/articles/understanding-skin-cancer-risks.html",
+      "knowledge/articles/when-should-i-book-a-skin-check.html",
+      "knowledge/articles/protecting-your-skin-from-the-queensland-sun.html",
+      "knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html",
+      "knowledge/articles/understanding-gp-chronic-disease-care-plans.html",
+      "knowledge/articles/blood-pressure-explained.html",
+      "knowledge/articles/managing-asthma.html",
+      "knowledge/articles/understanding-cholesterol.html",
+      "knowledge/articles/when-can-i-use-telehealth.html",
+      "knowledge/articles/how-telehealth-works.html",
+      "knowledge/articles/telehealth-vs-face-to-face-appointments.html",
+      "knowledge/articles/influenza-vaccination-who-should-consider-it.html",
+      "knowledge/articles/travel-vaccinations-before-overseas-travel.html",
+      "knowledge/articles/managing-winter-respiratory-illness.html",
+      "knowledge/articles/breast-health-changes-screening-when-to-see-a-gp.html",
+      "knowledge/articles/healthy-ageing-prevention-falls-vaccination-reviews.html"
+    ],
+    "architecture": "cms/knowledge-centre-content-architecture.json",
+    "editorialCalendar": "cms/editorial-calendar.json",
+    "internalLinking": "cms/knowledge-centre-internal-linking.json",
+    "seoStructure": "cms/knowledge-centre-seo-structure.json",
+    "publishingWorkflow": "cms/publishing-workflow.json",
+    "clinicalReviewRequired": true,
+    "authorityExpansion": {
+      "clusters": [
+        "knowledge/headache.html",
+        "knowledge/cough.html",
+        "knowledge/pain.html",
+        "knowledge/diabetes.html",
+        "knowledge/heart.html",
+        "knowledge/pregnancy.html",
+        "knowledge/weight.html",
+        "knowledge/sleep.html",
+        "knowledge/adhd.html",
+        "knowledge/menopause.html"
+      ],
+      "articles": [
+        "knowledge/articles/when-should-i-see-a-gp-about-headaches.html",
+        "knowledge/articles/migraine-or-headache-how-do-i-tell-the-difference.html",
+        "knowledge/articles/what-causes-frequent-headaches.html",
+        "knowledge/articles/when-is-a-headache-an-emergency.html",
+        "knowledge/articles/why-won-t-my-cough-go-away.html",
+        "knowledge/articles/what-causes-a-persistent-cough.html",
+        "knowledge/articles/sore-throat-when-should-i-see-a-doctor.html",
+        "knowledge/articles/is-my-sore-throat-viral-or-bacterial.html",
+        "knowledge/articles/when-should-a-child-with-a-cough-see-a-gp.html",
+        "knowledge/articles/when-should-i-be-concerned-about-pain.html",
+        "knowledge/articles/understanding-muscle-and-joint-pain.html",
+        "knowledge/articles/chronic-pain-when-should-i-seek-help.html",
+        "knowledge/articles/back-pain-when-should-i-see-a-gp.html",
+        "knowledge/articles/understanding-type-2-diabetes.html",
+        "knowledge/articles/living-with-diabetes.html",
+        "knowledge/articles/diabetes-monitoring-explained.html",
+        "knowledge/articles/preventing-diabetes-complications.html",
+        "knowledge/articles/diabetes-care-plans-explained.html",
+        "knowledge/articles/high-blood-pressure-explained.html",
+        "knowledge/articles/when-should-i-be-concerned-about-blood-pressure.html",
+        "knowledge/articles/heart-health-checks.html",
+        "knowledge/articles/cholesterol-explained.html",
+        "knowledge/articles/planning-a-pregnancy.html",
+        "knowledge/articles/what-happens-during-antenatal-care.html",
+        "knowledge/articles/your-first-pregnancy-gp-appointment.html",
+        "knowledge/articles/healthy-weight-management.html",
+        "knowledge/articles/when-should-i-speak-to-a-gp-about-weight.html",
+        "knowledge/articles/understanding-healthy-lifestyle-changes.html",
+        "knowledge/articles/why-am-i-always-tired.html",
+        "knowledge/articles/sleep-problems-explained.html",
+        "knowledge/articles/when-should-i-speak-to-a-gp-about-sleep.html",
+        "knowledge/articles/adhd-assessment-pathways.html",
+        "knowledge/articles/when-should-i-seek-adhd-assessment.html",
+        "knowledge/articles/understanding-adhd-referrals.html",
+        "knowledge/articles/menopause-symptoms-explained.html",
+        "knowledge/articles/hrt-discussions-with-your-gp.html",
+        "knowledge/articles/mental-health-and-menopause.html",
+        "knowledge/articles/understanding-your-cardiovascular-risk.html",
+        "knowledge/articles/understanding-neck-pain.html"
+      ]
+    }
+  }
+}

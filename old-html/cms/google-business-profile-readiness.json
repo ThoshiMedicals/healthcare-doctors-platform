@@ -1,0 +1,54 @@
+{
+  "version": "1.0",
+  "status": "prelaunch-content-ready",
+  "requiresPortalConfirmation": true,
+  "name": "Woolloongabba Medical Centre",
+  "address": "468 Vulture Street, Woolloongabba QLD 4102",
+  "phone": "(07) 3217 3344",
+  "website": "https://gabbamedicalcentre.com.au/",
+  "hours": {
+    "Monday": "07:00-19:00",
+    "Tuesday": "07:00-19:00",
+    "Wednesday": "07:00-19:00",
+    "Thursday": "07:00-19:00",
+    "Friday": "08:00-17:00",
+    "Saturday": "09:00-17:00",
+    "Sunday": "09:00-15:00"
+  },
+  "businessDescription": "Woolloongabba Medical Centre provides general practice healthcare for individuals and families in Woolloongabba and Brisbane’s inner south. The practice supports everyday health needs, preventive healthcare, women’s and men’s health, children’s health, chronic disease care, mental health, vaccinations, skin checks, selected medical procedures and telehealth where clinically appropriate. Patients can access care seven days a week, with online booking and clear patient information about fees, access, quality and after-hours options.",
+  "categoryRecommendations": [
+    {
+      "category": "Medical Center",
+      "use": "Primary candidate — confirm availability in Google Business Profile"
+    },
+    {
+      "category": "General Practitioner",
+      "use": "Secondary candidate — confirm availability in Google Business Profile"
+    }
+  ],
+  "services": [
+    "General practice",
+    "Family health",
+    "Women's health",
+    "Men's health",
+    "Children's health",
+    "Mental health",
+    "Chronic disease care",
+    "Preventive healthcare",
+    "Vaccinations",
+    "Skin checks",
+    "Skin cancer care",
+    "Medical procedures",
+    "Telehealth"
+  ],
+  "faqSource": "faqs.html",
+  "updatesSource": "updates/index.html",
+  "photoPriorities": [
+    "practice exterior",
+    "reception and waiting areas",
+    "consultation/treatment areas",
+    "authentic practitioner portraits",
+    "team photography"
+  ],
+  "alignmentRule": "Google Business Profile facts must match the approved website for name, address, phone, hours, services and booking links. Do not publish unverified claims or categories."
+}

@@ -1,0 +1,354 @@
+{
+  "program": "Healthcare Knowledge Centre Authority Expansion 2.0",
+  "basedOnArticleCount": 79,
+  "newDistinctArticles": 2,
+  "totalArticlesAfter": 81,
+  "decision": "Create no pages that duplicate substantially covered patient questions. Preserve existing articles and homepage.",
+  "additions": [
+    {
+      "title": "Understanding Your Cardiovascular Risk",
+      "url": "knowledge/articles/understanding-your-cardiovascular-risk.html",
+      "clinicalApproval": "pending",
+      "distinctIntent": "Interpreting combined five-year risk; not a duplicate of the Heart Health Check process or standalone blood pressure and cholesterol guides.",
+      "searchTerms": [
+        "cardiovascular risk",
+        "cvd risk",
+        "5 year cardiovascular risk",
+        "five year heart risk",
+        "heart attack risk",
+        "stroke risk",
+        "heart disease prevention",
+        "aus cvd risk calculator",
+        "heart health check",
+        "cholesterol blood pressure diabetes"
+      ]
+    },
+    {
+      "title": "Understanding Neck Pain",
+      "url": "knowledge/articles/understanding-neck-pain.html",
+      "clinicalApproval": "pending",
+      "distinctIntent": "Neck-specific pain, post-trauma safety and neurological warning signs; not duplicate generic back or muscle-and-joint information.",
+      "searchTerms": [
+        "neck pain",
+        "neck stiffness",
+        "stiff neck",
+        "neck strain",
+        "cervical pain",
+        "pinched nerve neck",
+        "neck pain headaches",
+        "shoulder and neck pain",
+        "when to see gp for neck pain",
+        "neck after injury"
+      ]
+    }
+  ],
+  "existingCoverage": [
+    [
+      "Diabetes",
+      5,
+      "Existing authority pages"
+    ],
+    [
+      "Heart Health",
+      4,
+      "Existing pages; cardiovascular risk added separately"
+    ],
+    [
+      "Pregnancy & Antenatal Care",
+      4,
+      "Preconception health planning already addressed by Planning A Pregnancy"
+    ],
+    [
+      "Weight Management",
+      3,
+      "Weight and long-term health already addressed by Healthy Weight Management"
+    ],
+    [
+      "Sleep",
+      4,
+      "Sleep quality concepts already addressed by Sleep Problems Explained and fatigue guide"
+    ],
+    [
+      "ADHD & Neurodiversity",
+      4,
+      "Existing pathway guidance; new additional ADHD assessment page would overlap and imply expanded service scope"
+    ],
+    [
+      "Menopause",
+      3,
+      "Existing menopause expansion pages"
+    ],
+    [
+      "High-intent symptoms",
+      14,
+      "All requested variants mapped to existing pages except Neck Pain"
+    ]
+  ],
+  "disposition": "Editorial draft for clinical review; no medical reviewer names or dates assigned.",
+  "bidirectionalLinks": [
+    "knowledge/articles/heart-health-checks.html",
+    "knowledge/articles/high-blood-pressure-explained.html",
+    "knowledge/articles/back-pain-when-should-i-see-a-gp.html",
+    "knowledge/articles/understanding-muscle-and-joint-pain.html"
+  ],
+  "unchangedHighLevel": [
+    "index.html",
+    "styles.css",
+    "site.js",
+    "knowledge/articles/* excluding four inbound related-guide updates"
+  ],
+  "requestedTopicReconciliation": [
+    {
+      "cluster": "Diabetes",
+      "requestedTitle": "Understanding Type 2 Diabetes",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/understanding-type-2-diabetes.html"
+    },
+    {
+      "cluster": "Diabetes",
+      "requestedTitle": "Living With Diabetes",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/living-with-diabetes.html"
+    },
+    {
+      "cluster": "Diabetes",
+      "requestedTitle": "Diabetes Monitoring Explained",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/diabetes-monitoring-explained.html"
+    },
+    {
+      "cluster": "Diabetes",
+      "requestedTitle": "Preventing Diabetes Complications",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/preventing-diabetes-complications.html"
+    },
+    {
+      "cluster": "Diabetes",
+      "requestedTitle": "Understanding GP Diabetes Care Plans",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/diabetes-care-plans-explained.html"
+    },
+    {
+      "cluster": "Heart Health",
+      "requestedTitle": "High Blood Pressure Explained",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/high-blood-pressure-explained.html"
+    },
+    {
+      "cluster": "Heart Health",
+      "requestedTitle": "When Should I Be Concerned About Blood Pressure?",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/when-should-i-be-concerned-about-blood-pressure.html"
+    },
+    {
+      "cluster": "Heart Health",
+      "requestedTitle": "Understanding Cholesterol",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/understanding-cholesterol.html"
+    },
+    {
+      "cluster": "Heart Health",
+      "requestedTitle": "Heart Health Checks Explained",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/heart-health-checks.html"
+    },
+    {
+      "cluster": "Heart Health",
+      "requestedTitle": "Understanding Your Cardiovascular Risk",
+      "disposition": "new distinct guide",
+      "resolvedUrl": "knowledge/articles/understanding-your-cardiovascular-risk.html"
+    },
+    {
+      "cluster": "Pregnancy & Antenatal Care",
+      "requestedTitle": "Planning A Pregnancy",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/planning-a-pregnancy.html"
+    },
+    {
+      "cluster": "Pregnancy & Antenatal Care",
+      "requestedTitle": "What Happens During Antenatal Care?",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/what-happens-during-antenatal-care.html"
+    },
+    {
+      "cluster": "Pregnancy & Antenatal Care",
+      "requestedTitle": "Your First Pregnancy GP Appointment",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/your-first-pregnancy-gp-appointment.html"
+    },
+    {
+      "cluster": "Pregnancy & Antenatal Care",
+      "requestedTitle": "Pre-Conception Health Planning",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/planning-a-pregnancy.html"
+    },
+    {
+      "cluster": "Weight Management",
+      "requestedTitle": "Healthy Weight Management",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/healthy-weight-management.html"
+    },
+    {
+      "cluster": "Weight Management",
+      "requestedTitle": "When Should I Speak To A GP About Weight?",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/when-should-i-speak-to-a-gp-about-weight.html"
+    },
+    {
+      "cluster": "Weight Management",
+      "requestedTitle": "Understanding Weight & Long-Term Health",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/healthy-weight-management.html"
+    },
+    {
+      "cluster": "Sleep",
+      "requestedTitle": "Why Am I Always Tired?",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/why-am-i-always-tired.html"
+    },
+    {
+      "cluster": "Sleep",
+      "requestedTitle": "Sleep Problems Explained",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/sleep-problems-explained.html"
+    },
+    {
+      "cluster": "Sleep",
+      "requestedTitle": "When Should I Speak To A GP About Sleep?",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/when-should-i-speak-to-a-gp-about-sleep.html"
+    },
+    {
+      "cluster": "Sleep",
+      "requestedTitle": "Understanding Sleep Quality",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/sleep-problems-explained.html"
+    },
+    {
+      "cluster": "ADHD & Neurodiversity",
+      "requestedTitle": "ADHD Assessment Pathways",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/adhd-assessment-pathways.html"
+    },
+    {
+      "cluster": "ADHD & Neurodiversity",
+      "requestedTitle": "When Should I Seek ADHD Assessment?",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/when-should-i-seek-adhd-assessment.html"
+    },
+    {
+      "cluster": "ADHD & Neurodiversity",
+      "requestedTitle": "Understanding ADHD Referrals",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/understanding-adhd-referrals.html"
+    },
+    {
+      "cluster": "ADHD & Neurodiversity",
+      "requestedTitle": "What To Expect During ADHD Assessment Pathways",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/adhd-assessment-pathways.html"
+    },
+    {
+      "cluster": "Menopause",
+      "requestedTitle": "Menopause Symptoms Explained",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/menopause-symptoms-explained.html"
+    },
+    {
+      "cluster": "Menopause",
+      "requestedTitle": "HRT Discussions With Your GP",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/hrt-discussions-with-your-gp.html"
+    },
+    {
+      "cluster": "Menopause",
+      "requestedTitle": "Mental Health & Menopause",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/mental-health-and-menopause.html"
+    },
+    {
+      "cluster": "High-intent symptoms",
+      "requestedTitle": "When Should I Be Concerned About A Headache?",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/when-should-i-see-a-gp-about-headaches.html"
+    },
+    {
+      "cluster": "High-intent symptoms",
+      "requestedTitle": "Migraine vs Headache",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/migraine-or-headache-how-do-i-tell-the-difference.html"
+    },
+    {
+      "cluster": "High-intent symptoms",
+      "requestedTitle": "Why Do I Keep Getting Headaches?",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/what-causes-frequent-headaches.html"
+    },
+    {
+      "cluster": "High-intent symptoms",
+      "requestedTitle": "When Does A Headache Become An Emergency?",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/when-is-a-headache-an-emergency.html"
+    },
+    {
+      "cluster": "High-intent symptoms",
+      "requestedTitle": "When Should I See A GP About Pain?",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/when-should-i-be-concerned-about-pain.html"
+    },
+    {
+      "cluster": "High-intent symptoms",
+      "requestedTitle": "Understanding Muscle & Joint Pain",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/understanding-muscle-and-joint-pain.html"
+    },
+    {
+      "cluster": "High-intent symptoms",
+      "requestedTitle": "Chronic Pain Explained",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/chronic-pain-when-should-i-seek-help.html"
+    },
+    {
+      "cluster": "High-intent symptoms",
+      "requestedTitle": "Understanding Back Pain",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/back-pain-when-should-i-see-a-gp.html"
+    },
+    {
+      "cluster": "High-intent symptoms",
+      "requestedTitle": "Understanding Neck Pain",
+      "disposition": "new distinct guide",
+      "resolvedUrl": "knowledge/articles/understanding-neck-pain.html"
+    },
+    {
+      "cluster": "High-intent symptoms",
+      "requestedTitle": "Why Won't My Cough Go Away?",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/why-won-t-my-cough-go-away.html"
+    },
+    {
+      "cluster": "High-intent symptoms",
+      "requestedTitle": "Understanding A Persistent Cough",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/what-causes-a-persistent-cough.html"
+    },
+    {
+      "cluster": "High-intent symptoms",
+      "requestedTitle": "Sore Throat: When Should I See A Doctor?",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/sore-throat-when-should-i-see-a-doctor.html"
+    },
+    {
+      "cluster": "High-intent symptoms",
+      "requestedTitle": "Viral vs Bacterial Sore Throat",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/is-my-sore-throat-viral-or-bacterial.html"
+    },
+    {
+      "cluster": "High-intent symptoms",
+      "requestedTitle": "When Should A Child With A Cough See A Doctor?",
+      "disposition": "covered by existing guide - no duplicate",
+      "resolvedUrl": "knowledge/articles/when-should-a-child-with-a-cough-see-a-gp.html"
+    }
+  ]
+}

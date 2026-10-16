@@ -1,0 +1,735 @@
+// Infrastructure schema for the clinic platform.
+// The approved HTML package is not imported by this schema.
+// Public page HTML is stored only after a later, explicit content migration.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ClinicStatus {
+  live
+  external
+  draft
+}
+
+enum MembershipRole {
+  network_admin
+  clinic_admin
+  editor
+  clinical_reviewer
+  practice_approver
+  publisher
+  super_admin
+  content_editor
+}
+
+enum DayOfWeek {
+  monday
+  tuesday
+  wednesday
+  thursday
+  friday
+  saturday
+  sunday
+}
+
+enum PageTemplate {
+  home
+  section_hub
+  service
+  practitioner
+  team_hub
+  knowledge_topic
+  knowledge_article
+  update
+  practice_page
+  contact
+  network
+  not_found
+}
+
+enum ContentCollection {
+  practitioner
+  service
+  practice_information
+  update
+  faq
+  knowledge_topic
+  knowledge_article
+  network_location
+  media
+  navigation
+}
+
+enum PageStatus {
+  draft
+  in_review
+  published
+  archived
+}
+
+enum PublicationStatus {
+  planned
+  assigned
+  drafting
+  clinical_review
+  approved
+  scheduled
+  published
+  review_due
+  on_hold
+}
+
+enum ReviewType {
+  clinical
+  operational
+  institutional
+}
+
+enum ReviewStatus {
+  draft
+  under_review
+  approved
+  published
+  review_due
+}
+
+enum UpdateCategory {
+  practice_updates
+  patient_education
+  service_information
+  clinical_governance
+  community_health_information
+}
+
+enum MediaAuthenticity {
+  unverified
+  verified
+  legacy_production
+}
+
+model Network {
+  id          String             @id @default(cuid())
+  name        String
+  positioning String             @db.Text
+  clinics     Clinic[]
+  locations   NetworkLocation[]
+  createdAt   DateTime           @default(now()) @map("created_at")
+  updatedAt   DateTime           @updatedAt @map("updated_at")
+
+  @@map("networks")
+}
+
+model Clinic {
+  id               String             @id @default(cuid())
+  networkId        String             @map("network_id")
+  slug             String             @unique
+  practiceName     String             @map("practice_name")
+  legalName        String?            @map("legal_name")
+  status           ClinicStatus       @default(draft)
+  network          Network            @relation(fields: [networkId], references: [id], onDelete: Restrict)
+  domains          ClinicDomain[]
+  profile          ClinicProfile?
+  openingHours     OpeningHours[]
+  memberships      ClinicMembership[]
+  pages            Page[]
+  navigationItems  NavigationItem[]
+  practitioners    Practitioner[]
+  services         Service[]
+  knowledgeTopics  KnowledgeTopic[]
+  knowledgeArticles KnowledgeArticle[]
+  practiceUpdates  PracticeUpdate[]
+  faqs             Faq[]
+  practicePages    PracticePage[]
+  mediaAssets      MediaAsset[]
+  editorialItems   EditorialItem[]
+  searchDocuments  SearchDocument[]
+  formRequests     FormRequest[]
+  auditLogs        AuditLog[]
+  clinicalReviews  ClinicalReview[]
+  contentRevisions ContentRevision[]
+  linkedLocations  NetworkLocation[]  @relation("LinkedClinic")
+  createdAt        DateTime           @default(now()) @map("created_at")
+  updatedAt        DateTime           @updatedAt @map("updated_at")
+
+  @@index([networkId])
+  @@map("clinics")
+}
+
+model ClinicDomain {
+  id        String   @id @default(cuid())
+  clinicId  String   @map("clinic_id")
+  hostname  String   @unique
+  isPrimary Boolean  @default(false) @map("is_primary")
+  clinic    Clinic   @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([clinicId])
+  @@map("clinic_domains")
+}
+
+model ClinicProfile {
+  id                   String   @id @default(cuid())
+  clinicId             String   @unique @map("clinic_id")
+  phoneDisplay         String   @map("phone_display")
+  phoneTel             String   @map("phone_tel")
+  faxDisplay           String?  @map("fax_display")
+  email                String
+  streetAddress        String   @map("street_address")
+  suburb               String
+  state                String
+  postcode             String
+  country              String   @default("AU")
+  localitiesServed     String[] @map("localities_served")
+  afterHoursProvider   String?  @map("after_hours_provider")
+  afterHoursPhone      String?  @map("after_hours_phone")
+  afterHoursPagePath   String?  @map("after_hours_page_path")
+  bookingPagePath      String?  @map("booking_page_path")
+  hotdocUrl            String?  @map("hotdoc_url")
+  billingPolicy        String?  @map("billing_policy") @db.Text
+  agpalStatus          String?  @map("agpal_status")
+  contentStatus        PublicationStatus @default(published) @map("content_status")
+  publishedPayload     Json?    @map("published_payload")
+  logoPath             String?  @map("logo_path")
+  ogImagePath          String?  @map("og_image_path")
+  seoTitleSuffix       String?  @map("seo_title_suffix")
+  locale               String   @default("en-AU")
+  canonicalBaseUrl     String   @map("canonical_base_url")
+  clinic               Clinic   @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  createdAt            DateTime @default(now()) @map("created_at")
+  updatedAt            DateTime @updatedAt @map("updated_at")
+
+  @@map("clinic_profiles")
+}
+
+model OpeningHours {
+  id        String    @id @default(cuid())
+  clinicId  String    @map("clinic_id")
+  dayOfWeek DayOfWeek @map("day_of_week")
+  opens     String
+  closes    String
+  clinic    Clinic    @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+
+  @@unique([clinicId, dayOfWeek])
+  @@map("opening_hours")
+}
+
+model User {
+  id            String             @id @default(cuid())
+  name          String?
+  username      String?            @unique
+  email         String?            @unique
+  emailVerified DateTime?          @map("email_verified")
+  image         String?
+  passwordHash  String?            @map("password_hash")
+  accounts      Account[]
+  sessions      Session[]
+  memberships   ClinicMembership[]
+  revisions     PageRevision[]
+  contentRevisions ContentRevision[]
+  auditLogs     AuditLog[]
+  createdAt     DateTime           @default(now()) @map("created_at")
+  updatedAt     DateTime           @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model LoginThrottle {
+  id           String    @id @default(cuid())
+  subject      String    @unique
+  failures     Int       @default(0)
+  lockedUntil  DateTime? @map("locked_until")
+  lastFailedAt DateTime  @default(now()) @map("last_failed_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  @@map("login_throttles")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+model ClinicMembership {
+  id        String         @id @default(cuid())
+  userId    String         @map("user_id")
+  clinicId  String         @map("clinic_id")
+  role      MembershipRole
+  user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  clinic    Clinic         @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  createdAt DateTime       @default(now()) @map("created_at")
+
+  @@unique([userId, clinicId])
+  @@index([clinicId])
+  @@map("clinic_memberships")
+}
+
+model Page {
+  id                   String              @id @default(cuid())
+  clinicId             String              @map("clinic_id")
+  path                 String
+  template             PageTemplate
+  collection           ContentCollection?
+  indexable            Boolean             @default(true)
+  title                String
+  description          String              @db.Text
+  canonicalPath        String              @map("canonical_path")
+  robots               String              @default("index,follow,max-image-preview:large")
+  openGraph            Json?               @map("open_graph")
+  breadcrumb           Json?
+  status               PageStatus          @default(draft)
+  publishedRevisionId  String?             @unique @map("published_revision_id")
+  clinic               Clinic              @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  publishedRevision    PageRevision?       @relation("PublishedRevision", fields: [publishedRevisionId], references: [id], onDelete: SetNull)
+  revisions            PageRevision[]      @relation("PageRevisions")
+  navigationOwnership  NavigationOwnership?
+  clinicalReview       ClinicalReview?
+  searchDocument       SearchDocument?
+  practitioner         Practitioner?
+  service              Service?
+  knowledgeTopic       KnowledgeTopic?
+  knowledgeArticle     KnowledgeArticle?
+  practiceUpdate       PracticeUpdate?
+  practicePage         PracticePage?
+  editorialItems       EditorialItem[]
+  createdAt            DateTime            @default(now()) @map("created_at")
+  updatedAt            DateTime            @updatedAt @map("updated_at")
+
+  @@unique([clinicId, path])
+  @@index([clinicId, status])
+  @@map("pages")
+}
+
+model PageRevision {
+  id             String   @id @default(cuid())
+  pageId         String   @map("page_id")
+  html           String   @default("") @db.Text
+  body           Json
+  contentSha256  String   @map("content_sha256")
+  authorId       String?  @map("author_id")
+  immutable      Boolean  @default(false)
+  page           Page     @relation("PageRevisions", fields: [pageId], references: [id], onDelete: Cascade)
+  author         User?    @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  publishedFor   Page?    @relation("PublishedRevision")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  @@index([pageId])
+  @@map("page_revisions")
+}
+
+model NavigationItem {
+  id         String   @id @default(cuid())
+  clinicId   String   @map("clinic_id")
+  sectionKey String   @map("section_key")
+  label      String
+  href       String
+  sortOrder  Int      @default(0) @map("sort_order")
+  clinic     Clinic   @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  @@unique([clinicId, sectionKey])
+  @@map("navigation_items")
+}
+
+model NavigationOwnership {
+  id         String  @id @default(cuid())
+  pageId     String  @unique @map("page_id")
+  sectionKey String  @map("section_key")
+  isHub      Boolean @default(false) @map("is_hub")
+  breadcrumb Json
+  page       Page    @relation(fields: [pageId], references: [id], onDelete: Cascade)
+
+  @@map("navigation_ownership")
+}
+
+model Practitioner {
+  id                    String            @id @default(cuid())
+  clinicId              String            @map("clinic_id")
+  pageId                String?           @unique @map("page_id")
+  slug                  String
+  name                  String
+  role                  String
+  biography             String            @default("") @db.Text
+  qualifications        String[]          @default([])
+  languages             String[]          @default([])
+  areasOfCare           String[]          @default([]) @map("areas_of_care")
+  professionalInterests String[]          @default([]) @map("professional_interests")
+  relatedServices       String[]          @default([]) @map("related_services")
+  bookingUrl            String?           @map("booking_url")
+  portraitPath          String?           @map("portrait_path")
+  publishedPayload      Json?             @map("published_payload")
+  status                PublicationStatus @default(planned)
+  clinic                Clinic            @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  page                  Page?             @relation(fields: [pageId], references: [id], onDelete: SetNull)
+  createdAt             DateTime          @default(now()) @map("created_at")
+  updatedAt             DateTime          @updatedAt @map("updated_at")
+
+  @@unique([clinicId, slug])
+  @@index([clinicId, status])
+  @@map("practitioners")
+}
+
+model Service {
+  id                   String            @id @default(cuid())
+  clinicId             String            @map("clinic_id")
+  pageId               String?           @unique @map("page_id")
+  slug                 String
+  title                String
+  summary              String            @default("") @db.Text
+  patientEducation     Json?             @map("patient_education")
+  whyItMatters         Json?             @map("why_it_matters")
+  howWeHelp            Json?             @map("how_we_help")
+  nextStep             Json?             @map("next_step")
+  faqs                 Json?
+  relatedPractitioners String[]          @default([]) @map("related_practitioners")
+  relatedServices      String[]          @default([]) @map("related_services")
+  publishedPayload     Json?             @map("published_payload")
+  status               PublicationStatus @default(planned)
+  contentOwner         String?           @map("content_owner")
+  clinic               Clinic            @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  page                 Page?             @relation(fields: [pageId], references: [id], onDelete: SetNull)
+  createdAt            DateTime          @default(now()) @map("created_at")
+  updatedAt            DateTime          @updatedAt @map("updated_at")
+
+  @@unique([clinicId, slug])
+  @@index([clinicId, status])
+  @@map("services")
+}
+
+model KnowledgeTopic {
+  id        String            @id @default(cuid())
+  clinicId  String            @map("clinic_id")
+  pageId    String?           @unique @map("page_id")
+  slug      String
+  title            String
+  summary          String            @default("") @db.Text
+  publishedPayload Json?             @map("published_payload")
+  status           PublicationStatus @default(planned)
+  clinic           Clinic            @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  page      Page?             @relation(fields: [pageId], references: [id], onDelete: SetNull)
+  articles  KnowledgeArticle[]
+  createdAt DateTime          @default(now()) @map("created_at")
+  updatedAt DateTime          @updatedAt @map("updated_at")
+
+  @@unique([clinicId, slug])
+  @@map("knowledge_topics")
+}
+
+model KnowledgeArticle {
+  id                          String            @id @default(cuid())
+  clinicId                    String            @map("clinic_id")
+  pageId                      String?           @unique @map("page_id")
+  topicId                     String?           @map("topic_id")
+  slug                        String
+  title                       String
+  category                    String?
+  summary                     String            @default("") @db.Text
+  educationalContent          Json?             @map("educational_content")
+  whenToSeekMedicalAdvice     Json?             @map("when_to_seek_medical_advice")
+  howGpCanHelp                Json?             @map("how_gp_can_help")
+  relatedServices             String[]          @default([]) @map("related_services")
+  relatedPractitioners        String[]          @default([]) @map("related_practitioners")
+  faqs                        Json?
+  trustedSources              Json?             @map("trusted_sources")
+  bookingCta                  Json?             @map("booking_cta")
+  seo                         Json?
+  publishedPayload            Json?             @map("published_payload")
+  status                      PublicationStatus @default(planned)
+  contentOwner                String?           @map("content_owner")
+  dueDate                     DateTime?         @map("due_date")
+  plannedPublicationDate      DateTime?         @map("planned_publication_date")
+  publicationDate             DateTime?         @map("publication_date")
+  nextReviewDate              DateTime?         @map("next_review_date")
+  articlePath                 String?           @map("article_path")
+  seoReviewComplete           Boolean           @default(false) @map("seo_review_complete")
+  sourceVerificationComplete  Boolean           @default(false) @map("source_verification_complete")
+  internalLinksVerified       Boolean           @default(false) @map("internal_links_verified")
+  accessibilityReviewComplete Boolean           @default(false) @map("accessibility_review_complete")
+  clinic                      Clinic            @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  page                        Page?             @relation(fields: [pageId], references: [id], onDelete: SetNull)
+  topic                       KnowledgeTopic?   @relation(fields: [topicId], references: [id], onDelete: SetNull)
+  createdAt                   DateTime          @default(now()) @map("created_at")
+  updatedAt                   DateTime          @updatedAt @map("updated_at")
+
+  @@unique([clinicId, slug])
+  @@index([clinicId, status])
+  @@map("knowledge_articles")
+}
+
+model PracticeUpdate {
+  id           String            @id @default(cuid())
+  clinicId     String            @map("clinic_id")
+  pageId       String?           @unique @map("page_id")
+  slug         String
+  title        String
+  category     UpdateCategory
+  summary      String            @default("") @db.Text
+  imagePath    String?           @map("image_path")
+  imageAlt     String?           @map("image_alt")
+  author       String?
+  sections     Json?
+  audience     String?
+  publishedPayload Json?         @map("published_payload")
+  status       PublicationStatus @default(planned)
+  reviewStatus ReviewStatus      @default(draft) @map("review_status")
+  clinic       Clinic            @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  page         Page?             @relation(fields: [pageId], references: [id], onDelete: SetNull)
+  publishedAt  DateTime?         @map("published_at")
+  createdAt    DateTime          @default(now()) @map("created_at")
+  updatedAt    DateTime          @updatedAt @map("updated_at")
+
+  @@unique([clinicId, slug])
+  @@index([clinicId, status])
+  @@map("practice_updates")
+}
+
+model Faq {
+  id          String            @id @default(cuid())
+  clinicId    String            @map("clinic_id")
+  category    String
+  question    String            @db.Text
+  answer      String            @db.Text
+  relatedPage String?           @map("related_page")
+  sortOrder   Int               @default(0) @map("sort_order")
+  status      PublicationStatus @default(planned)
+  clinic      Clinic            @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  createdAt   DateTime          @default(now()) @map("created_at")
+  updatedAt   DateTime          @updatedAt @map("updated_at")
+
+  @@index([clinicId, category])
+  @@map("faqs")
+}
+
+model PracticePage {
+  id           String            @id @default(cuid())
+  clinicId     String            @map("clinic_id")
+  pageId       String?           @unique @map("page_id")
+  slug         String
+  title        String
+  summary      String            @default("") @db.Text
+  sections     Json?
+  relatedPages String[]          @default([]) @map("related_pages")
+  publishedPayload Json?         @map("published_payload")
+  status       PublicationStatus @default(planned)
+  contentOwner String?           @map("content_owner")
+  clinic       Clinic            @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  page         Page?             @relation(fields: [pageId], references: [id], onDelete: SetNull)
+  createdAt    DateTime          @default(now()) @map("created_at")
+  updatedAt    DateTime          @updatedAt @map("updated_at")
+
+  @@unique([clinicId, slug])
+  @@map("practice_pages")
+}
+
+model MediaAsset {
+  id                  String             @id @default(cuid())
+  clinicId            String             @map("clinic_id")
+  filename            String
+  storagePath         String             @map("storage_path")
+  assetType           String             @map("asset_type")
+  altText             String             @default("") @map("alt_text")
+  uploadedBy          String?            @map("uploaded_by")
+  approvedAt          DateTime?          @map("approved_at")
+  photographer        String?
+  copyrightOwner      String?            @map("copyright_owner")
+  expiresAt           DateTime?          @map("expires_at")
+  replacementStatus   PublicationStatus? @map("replacement_status")
+  subject             String?
+  source              String?
+  authenticityStatus  MediaAuthenticity  @default(unverified) @map("authenticity_status")
+  usage               String[]           @default([])
+  contentSha256       String?            @map("content_sha256")
+  clinic              Clinic             @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  createdAt           DateTime           @default(now()) @map("created_at")
+  updatedAt           DateTime           @updatedAt @map("updated_at")
+
+  @@unique([clinicId, storagePath])
+  @@map("media_assets")
+}
+
+model NetworkLocation {
+  id             String       @id @default(cuid())
+  networkId      String       @map("network_id")
+  linkedClinicId String?      @map("linked_clinic_id")
+  clinicName     String       @map("clinic_name")
+  suburb         String
+  description    String       @default("") @db.Text
+  website        String?
+  bookingUrl     String?      @map("booking_url")
+  sortOrder      Int          @default(0) @map("sort_order")
+  status         ClinicStatus @default(external)
+  network        Network      @relation(fields: [networkId], references: [id], onDelete: Cascade)
+  linkedClinic   Clinic?      @relation("LinkedClinic", fields: [linkedClinicId], references: [id], onDelete: SetNull)
+  createdAt      DateTime     @default(now()) @map("created_at")
+  updatedAt      DateTime     @updatedAt @map("updated_at")
+
+  @@index([networkId])
+  @@map("network_locations")
+}
+
+model ClinicalReview {
+  id                      String       @id @default(cuid())
+  clinicId                String       @map("clinic_id")
+  pageId                  String       @unique @map("page_id")
+  collection              ContentCollection?
+  reviewType              ReviewType   @map("review_type")
+  status                  ReviewStatus @default(draft)
+  reviewedBy              String?      @map("reviewed_by")
+  contentOwner            String?      @map("content_owner")
+  lastReviewed            DateTime?    @map("last_reviewed")
+  nextReview              DateTime?    @map("next_review")
+  contentOwnerSubmittedBy String?      @map("content_owner_submitted_by")
+  contentOwnerSubmittedAt DateTime?    @map("content_owner_submitted_at")
+  reviewerSignedBy        String?      @map("reviewer_signed_by")
+  reviewerSignedAt        DateTime?    @map("reviewer_signed_at")
+  approvedBy              String?      @map("approved_by")
+  approvedAt              DateTime?    @map("approved_at")
+  approvalReference       String?      @map("approval_reference")
+  evidenceReference       String?      @map("evidence_reference")
+  reviewedContentSha256   String?      @map("reviewed_content_sha256")
+  clinic                  Clinic       @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  page                    Page         @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  createdAt               DateTime     @default(now()) @map("created_at")
+  updatedAt               DateTime     @updatedAt @map("updated_at")
+
+  @@index([clinicId, status])
+  @@map("clinical_reviews")
+}
+
+model EditorialItem {
+  id                          String            @id @default(cuid())
+  clinicId                    String            @map("clinic_id")
+  pageId                      String?           @map("page_id")
+  year                        Int
+  month                       Int
+  theme                       String
+  primaryCategory             String            @map("primary_category")
+  contentOwner                String?           @map("content_owner")
+  dueDate                     DateTime?         @map("due_date")
+  status                      PublicationStatus @default(planned)
+  plannedPublicationDate      DateTime?         @map("planned_publication_date")
+  publicationDate             DateTime?         @map("publication_date")
+  nextReviewDate              DateTime?         @map("next_review_date")
+  articlePath                 String?           @map("article_path")
+  sourceVerificationComplete  Boolean           @default(false) @map("source_verification_complete")
+  seoReviewComplete           Boolean           @default(false) @map("seo_review_complete")
+  accessibilityReviewComplete Boolean           @default(false) @map("accessibility_review_complete")
+  internalLinksVerified       Boolean           @default(false) @map("internal_links_verified")
+  liveVerifiedBy              String?           @map("live_verified_by")
+  liveVerifiedAt              DateTime?         @map("live_verified_at")
+  history                     Json              @default("[]")
+  clinic                      Clinic            @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  page                        Page?             @relation(fields: [pageId], references: [id], onDelete: SetNull)
+  createdAt                   DateTime          @default(now()) @map("created_at")
+  updatedAt                   DateTime          @updatedAt @map("updated_at")
+
+  @@index([clinicId, year, month])
+  @@map("editorial_items")
+}
+
+model SearchDocument {
+  id          String   @id @default(cuid())
+  clinicId    String   @map("clinic_id")
+  pageId      String   @unique @map("page_id")
+  path        String
+  title       String
+  description String   @default("") @db.Text
+  headings    Json     @default("[]")
+  section     String
+  related     Json     @default("[]")
+  bodyText    String   @default("") @map("body_text") @db.Text
+  shard       String
+  clinic      Clinic   @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  page        Page     @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@index([clinicId, shard])
+  @@map("search_documents")
+}
+
+model FormRequest {
+  id                 String   @id @default(cuid())
+  clinicId           String   @map("clinic_id")
+  name               String
+  email              String?
+  phone              String?
+  formType           String   @map("form_type")
+  delivery           String?
+  privacyConfirmedAt DateTime @map("privacy_confirmed_at")
+  clinic             Clinic   @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  createdAt          DateTime @default(now()) @map("created_at")
+
+  @@index([clinicId, createdAt])
+  @@map("form_requests")
+}
+
+model ContentRevision {
+  id         String   @id @default(cuid())
+  clinicId   String   @map("clinic_id")
+  entityType String   @map("entity_type")
+  entityId   String   @map("entity_id")
+  authorId   String?  @map("author_id")
+  previous   Json
+  next       Json
+  clinic     Clinic   @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  author     User?    @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@index([clinicId, entityType, entityId, createdAt])
+  @@map("content_revisions")
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  clinicId   String?  @map("clinic_id")
+  actorId    String?  @map("actor_id")
+  action     String
+  entityType String   @map("entity_type")
+  entityId   String?  @map("entity_id")
+  metadata   Json?
+  clinic     Clinic?  @relation(fields: [clinicId], references: [id], onDelete: SetNull)
+  actor      User?    @relation(fields: [actorId], references: [id], onDelete: SetNull)
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@index([clinicId, createdAt])
+  @@map("audit_logs")
+}

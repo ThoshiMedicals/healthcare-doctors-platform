@@ -1,0 +1,48 @@
+{
+  "schema": "wmc.brand-asset-governance.v1",
+  "origin": "approved production ZIP",
+  "transformation": "none; unmodified copies of source asset bytes",
+  "retained_legacy_copies": true,
+  "assets": [
+    {
+      "name": "wmc-brand-mark.webp",
+      "sha256": "29b397d384564e53dd6bddbf199385489270b45709338978998a152422460915",
+      "bytes": 39650,
+      "original_legacy_path": "assets/wmc-brand-mark.webp",
+      "new_path": "assets/brand/wmc-brand-mark.webp",
+      "byte_identical": true
+    },
+    {
+      "name": "healthcare-doctors-woolloongabba-logo.png",
+      "sha256": "866621be81f15eddba01106833086d5b11ec54e60cbc87a325e41b5edfe04fb8",
+      "bytes": 16257,
+      "original_legacy_path": "assets/healthcare-doctors-woolloongabba-logo.png",
+      "new_path": "assets/brand/healthcare-doctors-woolloongabba-logo.png",
+      "byte_identical": true
+    },
+    {
+      "name": "agpal-mark.webp",
+      "sha256": "5f0d184767285222f577b2d7304dd8d395350239d24ebcd0f998f00c2be0ab6d",
+      "bytes": 26704,
+      "original_legacy_path": "assets/agpal-mark.webp",
+      "new_path": "assets/brand/agpal-mark.webp",
+      "byte_identical": true
+    },
+    {
+      "name": "agpal-accredited-general-practice.webp",
+      "sha256": "c21955045fc739ac2aee7d10a0fdb9453438576c74d95bca3dd13cc488622f7d",
+      "bytes": 10056,
+      "original_legacy_path": "assets/agpal-accredited-general-practice.webp",
+      "new_path": "assets/brand/agpal-accredited-general-practice.webp",
+      "byte_identical": true
+    },
+    {
+      "name": "bulk-billing-practice.png",
+      "sha256": "bb04050a7bcb9a361e6589b80e567e6e26d97a6642742e3b77bfa7df431208cf",
+      "bytes": 48497,
+      "original_legacy_path": "assets/bulk-billing-practice.png",
+      "new_path": "assets/brand/bulk-billing-practice.png",
+      "byte_identical": true
+    }
+  ]
+}

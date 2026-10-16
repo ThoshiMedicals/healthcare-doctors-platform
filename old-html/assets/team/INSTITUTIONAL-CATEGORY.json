@@ -1,0 +1,83 @@
+{
+  "schema": "wmc.institutional-image-category.v1",
+  "name": "Team Photography",
+  "category": "team",
+  "publicationPolicy": "Practitioner photos supplied by website owner; maintain exact facial appearance, no AI transformations, independently verify identity before public go-live.",
+  "status": "eleven_user_supplied_photographs_locally_integrated",
+  "cropStandards": [
+    "4:5 portraits",
+    "3:2 true group photograph"
+  ],
+  "cropRule": "Follow existing practitioner standard: 4:5, eye line 38–42% of frame; unchanged identity, same head scale and safe card crop.",
+  "styleRule": "Neutral background, diffused light, natural skin tones; no face generation, swapping, restoration, reshaping or AI portrait enhancement.",
+  "existingProductionReferences": [
+    {
+      "id": "practitioner-dr-anand-singh",
+      "path": "assets/team/dr-anand-singh.webp",
+      "sourceUrl": "user_upload:Dr Anand Singh.png",
+      "status": "integrated_user_supplied_image_identity_confirmation_pending"
+    },
+    {
+      "id": "practitioner-dr-debra-larkins",
+      "path": "assets/team/dr-debra-larkins.webp",
+      "sourceUrl": "user_upload:Dr Debra larkins.png",
+      "status": "integrated_user_supplied_image_identity_confirmation_pending"
+    },
+    {
+      "id": "practitioner-dr-gemunu-suresh-ranawake",
+      "path": "assets/team/dr-gemunu-suresh-ranawake.webp",
+      "sourceUrl": "user_upload:Dr Gemunu Ranawake.png",
+      "status": "integrated_user_supplied_image_identity_confirmation_pending"
+    },
+    {
+      "id": "practitioner-dr-kooshyar-karimi",
+      "path": "assets/team/dr-kooshyar-karimi.webp",
+      "sourceUrl": "user_upload:Dr Kooshyar Karimi.png",
+      "status": "integrated_user_supplied_image_identity_confirmation_pending"
+    },
+    {
+      "id": "practitioner-dr-mary-abadir",
+      "path": "assets/team/dr-mary-abadir.webp",
+      "sourceUrl": "user_upload:Dr Mary Abadir.png",
+      "status": "integrated_user_supplied_image_identity_confirmation_pending"
+    },
+    {
+      "id": "practitioner-dr-sambo-luon",
+      "path": "assets/team/dr-sambo-luon.webp",
+      "sourceUrl": "user_upload:Dr Sambo Luon.png",
+      "status": "integrated_user_supplied_image_identity_confirmation_pending"
+    },
+    {
+      "id": "practitioner-dr-steven-chang",
+      "path": "assets/team/dr-steven-chang.webp",
+      "sourceUrl": "user_upload:Dr steven Chang.png",
+      "status": "integrated_user_supplied_image_identity_confirmation_pending"
+    },
+    {
+      "id": "practitioner-dr-sumita-singh",
+      "path": "assets/team/dr-sumita-singh.webp",
+      "sourceUrl": "user_upload:Dr Sumita Singh.png",
+      "status": "integrated_user_supplied_image_identity_confirmation_pending"
+    },
+    {
+      "id": "practitioner-dr-tanya-goodwill",
+      "path": "assets/team/dr-tanya-goodwill.webp",
+      "sourceUrl": "user_upload:Dr Tanya Goodwil.png",
+      "status": "integrated_user_supplied_image_identity_confirmation_pending"
+    },
+    {
+      "id": "practitioner-dr-usman-gul",
+      "path": "assets/team/dr-usman-gul.webp",
+      "sourceUrl": "user_upload:Dr Usman Gul.png",
+      "status": "integrated_user_supplied_image_identity_confirmation_pending"
+    },
+    {
+      "id": "practitioner-dr-wasantha-hettiarchchi",
+      "path": "assets/team/dr-wasantha-hettiarchchi.webp",
+      "sourceUrl": "user_upload:Dr Wasantha Hettiarachchi.png",
+      "status": "integrated_user_supplied_image_identity_confirmation_pending"
+    }
+  ],
+  "approvedNewLibraryFiles": [],
+  "missingOrUnverified": "User did not supply photographs for Dr Nirupa Sivathasan or Mr Samuel Stafford; those two profiles remain without portraits."
+}

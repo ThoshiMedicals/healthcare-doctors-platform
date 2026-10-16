@@ -1,0 +1,1791 @@
+{
+  "publishedAt": "2026-10-15T06:05:23.749Z",
+  "entityType": "clinic_settings",
+  "entityId": "cmv4iwlii0001vyuspwemc2yq",
+  "cssUnchanged": true,
+  "javascriptUnchanged": true,
+  "pages": [
+    {
+      "path": "404.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "about-us.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "access-parking.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "accessibility.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "after-hours-care.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "agpal-accreditation.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "doctors/dr-steven-chang.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "ai-transcription-consent.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "book-appointment.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "bulk-billing.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "community.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "contact.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "doctors/dr-anand-singh.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "doctors/dr-debra-larkins.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "doctors/dr-gemunu-suresh-ranawake.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "doctors/dr-kooshyar-karimi.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "doctors/dr-mary-abadir.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "doctors/dr-nirupa-sivathasan.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "doctors/dr-sambo-luon.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "doctors/dr-sumita-singh.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "doctors/dr-tanya-goodwill.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "doctors/dr-usman-gul.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "faqs.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "doctors/dr-wasantha-hettiarchchi.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "doctors/mr-samuel-stafford.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "feedback-concerns.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "fees-billing.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "index.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/mental-health.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "infection-prevention-control.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "join-our-team.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/adhd.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/adhd-assessment-pathways.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/anxiety-vs-stress-what-is-the-difference.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/back-pain-when-should-i-see-a-gp.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/blood-pressure-explained.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/breast-health-changes-screening-when-to-see-a-gp.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/childhood-vaccinations-explained.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/childrens-preventive-healthcare.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/cholesterol-explained.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/chronic-pain-when-should-i-seek-help.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/common-childhood-illnesses.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/diabetes-care-plans-explained.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/diabetes-monitoring-explained.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/health-assessments-explained.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/health-checks-every-man-should-consider.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/healthy-ageing-for-men.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/healthy-ageing-prevention-falls-vaccination-reviews.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/healthy-weight-management.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/heart-health-checks.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/heart-health-for-men.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/high-blood-pressure-explained.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/how-can-a-gp-support-depression.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/how-telehealth-works.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/hrt-discussions-with-your-gp.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/influenza-vaccination-who-should-consider-it.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/is-my-sore-throat-viral-or-bacterial.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/living-with-diabetes.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/managing-asthma.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/managing-winter-respiratory-illness.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/menopause-symptoms-explained.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/mental-health-and-menopause.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/migraine-or-headache-how-do-i-tell-the-difference.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/planning-a-pregnancy.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/preparing-for-your-childs-first-gp-appointment.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/preventing-diabetes-complications.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/preventive-womens-healthcare.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/protecting-your-skin-from-the-queensland-sun.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/sleep-problems-explained.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/sore-throat-when-should-i-see-a-doctor.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/staying-healthy-as-you-age.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/telehealth-vs-face-to-face-appointments.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/travel-vaccinations-before-overseas-travel.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/understanding-adhd-referrals.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/understanding-cholesterol.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/understanding-gp-chronic-disease-care-plans.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/understanding-healthy-lifestyle-changes.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/understanding-menopause.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/understanding-muscle-and-joint-pain.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/understanding-neck-pain.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/understanding-perimenopause.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/understanding-prostate-health.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/understanding-skin-cancer-risks.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/understanding-type-2-diabetes.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/understanding-your-cardiovascular-risk.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/vaccinations-for-adults.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/what-causes-a-persistent-cough.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/what-causes-frequent-headaches.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/what-happens-during-antenatal-care.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/what-is-preventive-healthcare.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/when-can-i-use-telehealth.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/when-is-a-headache-an-emergency.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/when-should-a-child-with-a-cough-see-a-gp.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/when-should-i-be-concerned-about-a-fever.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/when-should-i-be-concerned-about-blood-pressure.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/when-should-i-be-concerned-about-pain.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/when-should-i-book-a-skin-check.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/when-should-i-have-a-cervical-screening-test.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/when-should-i-see-a-gp-about-headaches.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/when-should-i-seek-adhd-assessment.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/when-should-i-seek-help-for-burnout.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/when-should-i-speak-to-a-gp-about-anxiety.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/when-should-i-speak-to-a-gp-about-sleep.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/when-should-i-speak-to-a-gp-about-weight.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/why-am-i-always-tired.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/why-preventive-healthcare-matters.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/why-regular-check-ups-matter.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/why-skin-checks-matter-in-australia.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/why-won-t-my-cough-go-away.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/womens-health-checks-at-different-stages-of-life.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/articles/your-first-pregnancy-gp-appointment.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/childrens-health.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/chronic-disease-management.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/cough.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/diabetes.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/headache.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/healthy-ageing.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/heart.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/index.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/menopause.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/mens-health.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "medicare.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/pain.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/pregnancy.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/preventive-healthcare.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/skin-health-skin-cancer.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/sleep.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/telehealth-access-to-care.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/vaccinations.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "patient-information.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/weight.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "knowledge/womens-health.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "local-healthcare-access.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "medical-centre-network.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "medical-students.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "medicare-exclusions.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "new-patient-prescribing-policy.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "new-patients.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "patient-code-of-conduct.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "patient-forms.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "patient-rights-responsibilities.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "philosophy-of-care.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "practice-information.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "practice-policies.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "privacy-confidentiality.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "quality-safety.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "referrals.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "reminder-recall.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "repeat-scripts.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/allied-health.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/antenatal-postnatal-care.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/breast-check.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/childrens-health.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/chronic-disease-care.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/ear-care-ear-syringing.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/ecg.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/family-health.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/implanon-insertion-removal.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/iron-infusions.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/iud-insertion-removal.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/medical-procedures.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/mens-health.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/mental-health.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/nebulising.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/pap-smear-cervical-screening.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/pathology.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/pharmacy.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "team-nursing.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "team-practice-management.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/pre-pregnancy-care.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/preventive-healthcare.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/prostate-care.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/radiology.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/skin-cancer-care.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/skin-checks.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/spirometry.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/telehealth.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/vaccinations.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/womens-health.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "services/wound-dressings.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "story.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "team-allied-health.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "team-general-practitioners.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "team-reception.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "team.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "telehealth.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "test-results.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "updates/after-hours-care-options.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "updates/article.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "updates/current-billing-information.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "updates/index.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "updates/new-patients-welcome.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "updates/open-seven-days.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "updates/telehealth-appointments.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    },
+    {
+      "path": "why-team-based-care-matters.html",
+      "contentChanged": false,
+      "navigationUnchanged": true,
+      "layoutUnchanged": true,
+      "schemaUnchanged": true,
+      "accessibilityUnchanged": true,
+      "reasons": []
+    }
+  ]
+}

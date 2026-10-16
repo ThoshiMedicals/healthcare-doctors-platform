@@ -1,0 +1,85 @@
+{
+  "version": "3.1",
+  "principles": [
+    "Patient-first language",
+    "Verified facts only",
+    "No invented practitioner credentials, languages or interests",
+    "Clinical claims require appropriate review",
+    "Approved visual design is not altered by routine content updates"
+  ],
+  "workflow": [
+    "draft",
+    "content_owner_submission",
+    "appropriate_clinical_or_operational_review",
+    "practice_approval",
+    "published",
+    "review_due",
+    "superseded_or_archived"
+  ],
+  "roles": {
+    "contentEditor": "Maintains copy, links, non-clinical factual information and media metadata.",
+    "clinicalReviewer": "A real authorised clinician signs substantive clinical content after checking patient safety, accuracy, sources and restrictions; operational/institutional items go to an appropriately authorised reviewer, not a fabricated clinician.",
+    "practiceManager": "Approves operational information, policies, hours and governance content for publication.",
+    "webPublisher": "Publishes approved content into the existing templates without redesigning them.",
+    "contentOwner": "Accountable person/department identifies the page, validates proposed content and submits it for review with their real identity and submission date.",
+    "practiceApprover": "A separate authorised practice approver signs off after review; no publication before approval."
+  },
+  "clinicalReview": {
+    "displayRule": "Only records from generated registry (status approved, actual complete evidence, reviewer, dates, department) are displayed. Pending content is silent.",
+    "defaultStatus": "pending",
+    "visibleReviewer": "Woolloongabba Medical Centre Clinical Team",
+    "requiredFor": [
+      "clinical service authority content",
+      "clinical patient education",
+      "clinical governance content where clinical review is appropriate"
+    ],
+    "notRequiredFor": [
+      "contact details",
+      "opening hours",
+      "parking directions",
+      "non-clinical practice updates"
+    ]
+  },
+  "reviewCadence": "Review on material clinical or policy change and at the organisation's formally adopted review interval. Never publish a review date that did not arise from a genuine review.",
+  "designChangeControl": "Homepage, hero, visual identity, community section, services overview and patient-information hub require explicit design-governance approval before structural change.",
+  "reviewPublication": {
+    "registeredPages": 163,
+    "registry": "cms/governance-records.json (eligibility ONLY)",
+    "builder": "cms/tools/build_clinical_governance.py",
+    "generatedPublicData": "governance-published.js",
+    "states": [
+      "awaiting_review",
+      "owner_submitted",
+      "in_review",
+      "approval_pending",
+      "approved",
+      "review_due",
+      "superseded"
+    ],
+    "approvalSequence": [
+      "Content Owner submits the final content and records their real identity and submission date.",
+      "Correct reviewer category is identified; an appropriate clinical, operational or institutional reviewer completes a genuine review and signs with date.",
+      "Authorised approver signs AFTER review and approves the next review due date.",
+      "Private evidence and actual staff identities are recorded outside webroot with approval reference and exact reviewed content fingerprint.",
+      "Publish only the approved four-field public subset using the builder and verify --check before release.",
+      "Material page edits or review expiry require a new cycle; mark private status in_review/review_due and rebuild to suppress outdated public metadata."
+    ],
+    "rules": [
+      "A page must not show review metadata without an approved record containing complete actual evidence.",
+      "Only public fields (reviewedBy, lastReviewed, nextReview, contentOwner) are emitted. Approval and evidence references remain unpublished.",
+      "No automatic review-date values, default reviewer attribution, or publication-date fallback.",
+      "For a substantive clinical/policy edit, set review status in_review and remove public review metadata until a new review is approved.",
+      "Practice manager must validate the accountable department for each page.",
+      "Operational and third-party provider pages must not imply clinical endorsement without clinical review.",
+      "Never publish the private clinical approval evidence; only the generated approved public JS subset is deployed.",
+      "Review signoff date must match Last Reviewed; owner submission, review, approval and next due must be in chronological order.",
+      "The public Reviewed by field must represent the real approving review body; it is never prefilled from a suggested default.",
+      "Every clinical record must have a real appropriately authorised clinician who reviewed the page, retained privately.",
+      "Production release must re-run --check with the external private evidence source; hashes ensure that approved content has not changed."
+    ],
+    "privateApprovals": "Pass with --approvals from a secure file OUTSIDE the deployed public site root",
+    "coverageGate": "cms/tools/check_governance_framework.py --check (Knowledge Centre, service authority, patient information and governance pages)",
+    "expiryRule": "A missed Next Review due date invalidates current public review attribution: renewal needs a fresh signed evidence record and matching content fingerprint. Review due today stays valid through the local day.",
+    "deploymentGate": "The release builder checks both scope and published approval evidence; with approved records the matching PRIVATE approvals file must be passed via --governance-approvals outside webroot."
+  }
+}

@@ -1,0 +1,4832 @@
+{
+  "count": 81,
+  "articles": [
+    {
+      "title": "When Should I Speak To A GP About Anxiety?",
+      "slug": "when-should-i-speak-to-a-gp-about-anxiety",
+      "url": "knowledge/articles/when-should-i-speak-to-a-gp-about-anxiety.html",
+      "category": "Mental Health",
+      "metaDescription": "Learn when anxiety may be worth discussing with a GP, what an appointment may cover and how general practice can connect you with appropriate support.",
+      "outline": [
+        "Introduction",
+        "Recognising when anxiety is affecting daily life",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Mental Health",
+          "url": "services/mental-health.html"
+        },
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        },
+        {
+          "label": "Telehealth",
+          "url": "services/telehealth.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Sumita Singh",
+          "url": "doctors/dr-sumita-singh.html"
+        },
+        {
+          "name": "Dr Gemunu Suresh Ranawake",
+          "url": "doctors/dr-gemunu-suresh-ranawake.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Anxiety",
+          "url": "https://www.healthdirect.gov.au/anxiety"
+        },
+        {
+          "label": "Services Australia — Mental health care and Medicare",
+          "url": "https://www.servicesaustralia.gov.au/mental-health-care-and-medicare?context=60092"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "Anxiety vs Stress: What Is The Difference?",
+      "slug": "anxiety-vs-stress-what-is-the-difference",
+      "url": "knowledge/articles/anxiety-vs-stress-what-is-the-difference.html",
+      "category": "Mental Health",
+      "metaDescription": "Understand common differences between stress and anxiety, where they overlap and when a GP review may help.",
+      "outline": [
+        "Introduction",
+        "Stress often has a trigger; anxiety can continue beyond it",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Mental Health",
+          "url": "services/mental-health.html"
+        },
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Sumita Singh",
+          "url": "doctors/dr-sumita-singh.html"
+        },
+        {
+          "name": "Dr Gemunu Suresh Ranawake",
+          "url": "doctors/dr-gemunu-suresh-ranawake.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Stress",
+          "url": "https://www.healthdirect.gov.au/stress"
+        },
+        {
+          "label": "Services Australia — Mental health care and Medicare",
+          "url": "https://www.servicesaustralia.gov.au/mental-health-care-and-medicare?context=60092"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "What Happens During A Mental Health Care Plan?",
+      "slug": "what-happens-during-a-mental-health-care-plan",
+      "url": "knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+      "category": "Mental Health",
+      "metaDescription": "A practical guide to what a GP mental health assessment and treatment planning appointment may involve in Australia.",
+      "outline": [
+        "Introduction",
+        "A structured conversation about your health and support needs",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Mental Health",
+          "url": "services/mental-health.html"
+        },
+        {
+          "label": "Telehealth",
+          "url": "services/telehealth.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Sumita Singh",
+          "url": "doctors/dr-sumita-singh.html"
+        },
+        {
+          "name": "Dr Gemunu Suresh Ranawake",
+          "url": "doctors/dr-gemunu-suresh-ranawake.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Anxiety",
+          "url": "https://www.healthdirect.gov.au/anxiety"
+        },
+        {
+          "label": "Services Australia — Mental health care and Medicare",
+          "url": "https://www.servicesaustralia.gov.au/mental-health-care-and-medicare?context=60092"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "How Can A GP Help With Depression?",
+      "slug": "how-can-a-gp-support-depression",
+      "url": "knowledge/articles/how-can-a-gp-support-depression.html",
+      "category": "Mental Health",
+      "metaDescription": "Learn how a GP can assess low mood and depression, discuss treatment options, coordinate referrals and provide ongoing follow-up.",
+      "outline": [
+        "Introduction",
+        "Depression care is individual and often involves follow-up",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Mental Health",
+          "url": "services/mental-health.html"
+        },
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Sumita Singh",
+          "url": "doctors/dr-sumita-singh.html"
+        },
+        {
+          "name": "Dr Gemunu Suresh Ranawake",
+          "url": "doctors/dr-gemunu-suresh-ranawake.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Depression",
+          "url": "https://www.healthdirect.gov.au/depression"
+        },
+        {
+          "label": "Services Australia — Mental health care and Medicare",
+          "url": "https://www.servicesaustralia.gov.au/mental-health-care-and-medicare?context=60092"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "When Should I Seek Help For Burnout?",
+      "slug": "when-should-i-seek-help-for-burnout",
+      "url": "knowledge/articles/when-should-i-seek-help-for-burnout.html",
+      "category": "Mental Health",
+      "metaDescription": "Recognise when prolonged stress and burnout symptoms may benefit from a GP review and what support general practice can provide.",
+      "outline": [
+        "Introduction",
+        "Persistent exhaustion deserves more than pushing through",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Mental Health",
+          "url": "services/mental-health.html"
+        },
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        },
+        {
+          "label": "Telehealth",
+          "url": "services/telehealth.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Sumita Singh",
+          "url": "doctors/dr-sumita-singh.html"
+        },
+        {
+          "name": "Dr Gemunu Suresh Ranawake",
+          "url": "doctors/dr-gemunu-suresh-ranawake.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Stress",
+          "url": "https://www.healthdirect.gov.au/stress"
+        },
+        {
+          "label": "Services Australia — Mental health care and Medicare",
+          "url": "https://www.servicesaustralia.gov.au/mental-health-care-and-medicare?context=60092"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "Understanding Menopause",
+      "slug": "understanding-menopause",
+      "url": "knowledge/articles/understanding-menopause.html",
+      "category": "Women's Health",
+      "metaDescription": "Understand menopause, common symptoms, when to seek medical advice and how a GP can help you review treatment and long-term health.",
+      "outline": [
+        "Introduction",
+        "Menopause is more than the final menstrual period",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Women’s Health",
+          "url": "services/womens-health.html"
+        },
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        },
+        {
+          "label": "Mental Health",
+          "url": "services/mental-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Sumita Singh",
+          "url": "doctors/dr-sumita-singh.html"
+        },
+        {
+          "name": "Dr Wasantha Hettiarchchi",
+          "url": "doctors/dr-wasantha-hettiarchchi.html"
+        },
+        {
+          "name": "Dr Mary Abadir",
+          "url": "doctors/dr-mary-abadir.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Stress",
+          "url": "https://www.healthdirect.gov.au/stress"
+        },
+        {
+          "label": "Services Australia — Mental health care and Medicare",
+          "url": "https://www.servicesaustralia.gov.au/mental-health-care-and-medicare?context=60092"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "When Should I Have A Cervical Screening Test?",
+      "slug": "when-should-i-have-a-cervical-screening-test",
+      "url": "knowledge/articles/when-should-i-have-a-cervical-screening-test.html",
+      "category": "Women's Health",
+      "metaDescription": "Understand current Australian cervical screening intervals, self-collection options and when symptoms need assessment rather than routine screening.",
+      "outline": [
+        "Introduction",
+        "Routine screening and symptom assessment are not the same thing",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Pap Smear & Cervical Screening",
+          "url": "services/pap-smear-cervical-screening.html"
+        },
+        {
+          "label": "Women’s Health",
+          "url": "services/womens-health.html"
+        },
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Sumita Singh",
+          "url": "doctors/dr-sumita-singh.html"
+        },
+        {
+          "name": "Dr Wasantha Hettiarchchi",
+          "url": "doctors/dr-wasantha-hettiarchchi.html"
+        },
+        {
+          "name": "Dr Mary Abadir",
+          "url": "doctors/dr-mary-abadir.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Australian Government — National Cervical Screening Program",
+          "url": "https://www.health.gov.au/our-work/national-cervical-screening-program"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "Women's Health Checks At Different Stages Of Life",
+      "slug": "womens-health-checks-at-different-stages-of-life",
+      "url": "knowledge/articles/womens-health-checks-at-different-stages-of-life.html",
+      "category": "Women's Health",
+      "metaDescription": "A stage-by-stage guide to preventive women’s healthcare, including screening, reproductive health, vaccination and midlife health discussions.",
+      "outline": [
+        "Introduction",
+        "Preventive care changes as your priorities change",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Women’s Health",
+          "url": "services/womens-health.html"
+        },
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        },
+        {
+          "label": "Breast Check",
+          "url": "services/breast-check.html"
+        },
+        {
+          "label": "Implanon Insertion & Removal",
+          "url": "services/implanon-insertion-removal.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Sumita Singh",
+          "url": "doctors/dr-sumita-singh.html"
+        },
+        {
+          "name": "Dr Anand Singh",
+          "url": "doctors/dr-anand-singh.html"
+        },
+        {
+          "name": "Dr Wasantha Hettiarchchi",
+          "url": "doctors/dr-wasantha-hettiarchchi.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Health checks, screenings and tests",
+          "url": "https://www.healthdirect.gov.au/health-screening-tests"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "Understanding Perimenopause",
+      "slug": "understanding-perimenopause",
+      "url": "knowledge/articles/understanding-perimenopause.html",
+      "category": "Women's Health",
+      "metaDescription": "Learn what perimenopause is, common symptoms, when to see a GP and how treatment and contraception can be discussed.",
+      "outline": [
+        "Introduction",
+        "Perimenopause can affect periods, sleep, mood and wellbeing",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Women’s Health",
+          "url": "services/womens-health.html"
+        },
+        {
+          "label": "Mental Health",
+          "url": "services/mental-health.html"
+        },
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Sumita Singh",
+          "url": "doctors/dr-sumita-singh.html"
+        },
+        {
+          "name": "Dr Wasantha Hettiarchchi",
+          "url": "doctors/dr-wasantha-hettiarchchi.html"
+        },
+        {
+          "name": "Dr Mary Abadir",
+          "url": "doctors/dr-mary-abadir.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Perimenopause",
+          "url": "https://www.healthdirect.gov.au/perimenopause"
+        },
+        {
+          "label": "Healthdirect — Post menopause",
+          "url": "https://www.healthdirect.gov.au/post-menopause"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "Preventive Women's Healthcare",
+      "slug": "preventive-womens-healthcare",
+      "url": "knowledge/articles/preventive-womens-healthcare.html",
+      "category": "Women's Health",
+      "metaDescription": "Understand how preventive women’s healthcare brings together screening, vaccination, cardiovascular health, reproductive care and mental wellbeing.",
+      "outline": [
+        "Introduction",
+        "Prevention works best when care is connected",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        },
+        {
+          "label": "Women’s Health",
+          "url": "services/womens-health.html"
+        },
+        {
+          "label": "Vaccinations",
+          "url": "services/vaccinations.html"
+        },
+        {
+          "label": "Implanon Insertion & Removal",
+          "url": "services/implanon-insertion-removal.html"
+        },
+        {
+          "label": "IUD Insertion & Removal",
+          "url": "services/iud-insertion-removal.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Sumita Singh",
+          "url": "doctors/dr-sumita-singh.html"
+        },
+        {
+          "name": "Dr Sambo Luon",
+          "url": "doctors/dr-sambo-luon.html"
+        },
+        {
+          "name": "Dr Wasantha Hettiarchchi",
+          "url": "doctors/dr-wasantha-hettiarchchi.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Health checks, screenings and tests",
+          "url": "https://www.healthdirect.gov.au/health-screening-tests"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "Health Checks Every Man Should Consider",
+      "slug": "health-checks-every-man-should-consider",
+      "url": "knowledge/articles/health-checks-every-man-should-consider.html",
+      "category": "Men's Health",
+      "metaDescription": "A practical guide to men’s preventive health checks, risk assessment and why screening should be tailored to age and personal history.",
+      "outline": [
+        "Introduction",
+        "Start with risk, not a generic test panel",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Men’s Health",
+          "url": "services/mens-health.html"
+        },
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        },
+        {
+          "label": "Prostate Care",
+          "url": "services/prostate-care.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Usman Gul",
+          "url": "doctors/dr-usman-gul.html"
+        },
+        {
+          "name": "Dr Gemunu Suresh Ranawake",
+          "url": "doctors/dr-gemunu-suresh-ranawake.html"
+        },
+        {
+          "name": "Dr Wasantha Hettiarchchi",
+          "url": "doctors/dr-wasantha-hettiarchchi.html"
+        },
+        {
+          "name": "Dr Sambo Luon",
+          "url": "doctors/dr-sambo-luon.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Health checks, screenings and tests",
+          "url": "https://www.healthdirect.gov.au/health-screening-tests"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "Understanding Prostate Health",
+      "slug": "understanding-prostate-health",
+      "url": "knowledge/articles/understanding-prostate-health.html",
+      "category": "Men's Health",
+      "metaDescription": "Learn about prostate health, urinary symptoms, PSA discussions and when to seek medical advice.",
+      "outline": [
+        "Introduction",
+        "Prostate assessment depends on symptoms, age and individual risk",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Prostate Care",
+          "url": "services/prostate-care.html"
+        },
+        {
+          "label": "Men’s Health",
+          "url": "services/mens-health.html"
+        },
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Usman Gul",
+          "url": "doctors/dr-usman-gul.html"
+        },
+        {
+          "name": "Dr Gemunu Suresh Ranawake",
+          "url": "doctors/dr-gemunu-suresh-ranawake.html"
+        },
+        {
+          "name": "Dr Wasantha Hettiarchchi",
+          "url": "doctors/dr-wasantha-hettiarchchi.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Prostate cancer",
+          "url": "https://www.healthdirect.gov.au/prostate-cancer"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "Why Preventive Healthcare Matters",
+      "slug": "why-preventive-healthcare-matters",
+      "url": "knowledge/articles/why-preventive-healthcare-matters.html",
+      "category": "Men's Health",
+      "metaDescription": "Why preventive healthcare matters for men and how risk-based GP care can support earlier detection and healthier long-term decisions.",
+      "outline": [
+        "Introduction",
+        "Prevention is about informed action, not unnecessary testing",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        },
+        {
+          "label": "Men’s Health",
+          "url": "services/mens-health.html"
+        },
+        {
+          "label": "Vaccinations",
+          "url": "services/vaccinations.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Sambo Luon",
+          "url": "doctors/dr-sambo-luon.html"
+        },
+        {
+          "name": "Dr Usman Gul",
+          "url": "doctors/dr-usman-gul.html"
+        },
+        {
+          "name": "Dr Gemunu Suresh Ranawake",
+          "url": "doctors/dr-gemunu-suresh-ranawake.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Health checks, screenings and tests",
+          "url": "https://www.healthdirect.gov.au/health-screening-tests"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "Heart Health For Men",
+      "slug": "heart-health-for-men",
+      "url": "knowledge/articles/heart-health-for-men.html",
+      "category": "Men's Health",
+      "metaDescription": "Understand major heart health risk factors, warning symptoms and how a GP can help assess cardiovascular risk.",
+      "outline": [
+        "Introduction",
+        "Cardiovascular risk can often be identified before symptoms appear",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Men’s Health",
+          "url": "services/mens-health.html"
+        },
+        {
+          "label": "Chronic Disease Care",
+          "url": "services/chronic-disease-care.html"
+        },
+        {
+          "label": "ECG",
+          "url": "services/ecg.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Gemunu Suresh Ranawake",
+          "url": "doctors/dr-gemunu-suresh-ranawake.html"
+        },
+        {
+          "name": "Dr Usman Gul",
+          "url": "doctors/dr-usman-gul.html"
+        },
+        {
+          "name": "Dr Wasantha Hettiarchchi",
+          "url": "doctors/dr-wasantha-hettiarchchi.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Heart health",
+          "url": "https://www.healthdirect.gov.au/heart"
+        },
+        {
+          "label": "Healthdirect — Health checks, screenings and tests",
+          "url": "https://www.healthdirect.gov.au/health-screening-tests"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "Healthy Ageing For Men",
+      "slug": "healthy-ageing-for-men",
+      "url": "knowledge/articles/healthy-ageing-for-men.html",
+      "category": "Men's Health",
+      "metaDescription": "Healthy ageing guidance for men, including preventive care, strength, medicines, chronic disease management and maintaining independence.",
+      "outline": [
+        "Introduction",
+        "Ageing well depends on function as well as test results",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        },
+        {
+          "label": "Men’s Health",
+          "url": "services/mens-health.html"
+        },
+        {
+          "label": "Chronic Disease Care",
+          "url": "services/chronic-disease-care.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Anand Singh",
+          "url": "doctors/dr-anand-singh.html"
+        },
+        {
+          "name": "Dr Sambo Luon",
+          "url": "doctors/dr-sambo-luon.html"
+        },
+        {
+          "name": "Dr Gemunu Suresh Ranawake",
+          "url": "doctors/dr-gemunu-suresh-ranawake.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Health checks, screenings and tests",
+          "url": "https://www.healthdirect.gov.au/health-screening-tests"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "Childhood Vaccinations Explained",
+      "slug": "childhood-vaccinations-explained",
+      "url": "knowledge/articles/childhood-vaccinations-explained.html",
+      "category": "Children's Health",
+      "metaDescription": "Understand Australia’s childhood vaccination schedule, catch-up vaccination and how a GP can help keep immunisation records current.",
+      "outline": [
+        "Introduction",
+        "Use the current Australian schedule, not an old checklist",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Vaccinations",
+          "url": "services/vaccinations.html"
+        },
+        {
+          "label": "Children’s Health",
+          "url": "services/childrens-health.html"
+        },
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Gemunu Suresh Ranawake",
+          "url": "doctors/dr-gemunu-suresh-ranawake.html"
+        },
+        {
+          "name": "Dr Anand Singh",
+          "url": "doctors/dr-anand-singh.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Australian Government — National Immunisation Program Schedule",
+          "url": "https://www.health.gov.au/topics/immunisation/when-to-get-vaccinated/national-immunisation-program-schedule"
+        },
+        {
+          "label": "Australian Immunisation Handbook",
+          "url": "https://immunisationhandbook.health.gov.au/"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "When Should I Be Concerned About A Fever?",
+      "slug": "when-should-i-be-concerned-about-a-fever",
+      "url": "knowledge/articles/when-should-i-be-concerned-about-a-fever.html",
+      "category": "Children's Health",
+      "metaDescription": "Understand fever in children, warning signs that need urgent assessment and when a GP review may be appropriate.",
+      "outline": [
+        "Introduction",
+        "Look at the child, not only the thermometer",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Children’s Health",
+          "url": "services/childrens-health.html"
+        },
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        },
+        {
+          "label": "After Hours Care",
+          "url": "after-hours-care.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Gemunu Suresh Ranawake",
+          "url": "doctors/dr-gemunu-suresh-ranawake.html"
+        },
+        {
+          "name": "Dr Anand Singh",
+          "url": "doctors/dr-anand-singh.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Fever in children",
+          "url": "https://www.healthdirect.gov.au/fever-and-high-temperature-in-children"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "Preparing For Your Child's First GP Appointment",
+      "slug": "preparing-for-your-childs-first-gp-appointment",
+      "url": "knowledge/articles/preparing-for-your-childs-first-gp-appointment.html",
+      "category": "Children's Health",
+      "metaDescription": "Practical preparation for a child’s first GP appointment, including records, medicines, symptoms and questions for the doctor.",
+      "outline": [
+        "Introduction",
+        "Bring the information that helps build continuity",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Children’s Health",
+          "url": "services/childrens-health.html"
+        },
+        {
+          "label": "New Patients",
+          "url": "new-patients.html"
+        },
+        {
+          "label": "Vaccinations",
+          "url": "services/vaccinations.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Gemunu Suresh Ranawake",
+          "url": "doctors/dr-gemunu-suresh-ranawake.html"
+        },
+        {
+          "name": "Dr Anand Singh",
+          "url": "doctors/dr-anand-singh.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Health checks, screenings and tests",
+          "url": "https://www.healthdirect.gov.au/health-screening-tests"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "Common Childhood Illnesses",
+      "slug": "common-childhood-illnesses",
+      "url": "knowledge/articles/common-childhood-illnesses.html",
+      "category": "Children's Health",
+      "metaDescription": "An overview of common childhood illnesses, what parents can monitor at home and warning signs that need medical assessment.",
+      "outline": [
+        "Introduction",
+        "The child’s overall condition helps guide urgency",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Children’s Health",
+          "url": "services/childrens-health.html"
+        },
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        },
+        {
+          "label": "After Hours Care",
+          "url": "after-hours-care.html"
+        },
+        {
+          "label": "Ear Care & Ear Syringing",
+          "url": "services/ear-care-ear-syringing.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Gemunu Suresh Ranawake",
+          "url": "doctors/dr-gemunu-suresh-ranawake.html"
+        },
+        {
+          "name": "Dr Anand Singh",
+          "url": "doctors/dr-anand-singh.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Fever in children",
+          "url": "https://www.healthdirect.gov.au/fever-and-high-temperature-in-children"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "Children's Preventive Healthcare",
+      "slug": "childrens-preventive-healthcare",
+      "url": "knowledge/articles/childrens-preventive-healthcare.html",
+      "category": "Children's Health",
+      "metaDescription": "Understand preventive healthcare for children, including vaccination, growth, development, family risk and healthy routines.",
+      "outline": [
+        "Introduction",
+        "Prevention follows development over time",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Children’s Health",
+          "url": "services/childrens-health.html"
+        },
+        {
+          "label": "Vaccinations",
+          "url": "services/vaccinations.html"
+        },
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Gemunu Suresh Ranawake",
+          "url": "doctors/dr-gemunu-suresh-ranawake.html"
+        },
+        {
+          "name": "Dr Anand Singh",
+          "url": "doctors/dr-anand-singh.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Australian Government — National Immunisation Program Schedule",
+          "url": "https://www.health.gov.au/topics/immunisation/when-to-get-vaccinated/national-immunisation-program-schedule"
+        },
+        {
+          "label": "Australian Immunisation Handbook",
+          "url": "https://immunisationhandbook.health.gov.au/"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "What Is Preventive Healthcare?",
+      "slug": "what-is-preventive-healthcare",
+      "url": "knowledge/articles/what-is-preventive-healthcare.html",
+      "category": "Preventive Healthcare",
+      "metaDescription": "Understand preventive healthcare, how screening and risk assessment work and why prevention should be personalised rather than based on a generic checklist.",
+      "outline": [
+        "Introduction",
+        "Prevention is planned care before problems become urgent",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        },
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        },
+        {
+          "label": "Vaccinations",
+          "url": "services/vaccinations.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Sambo Luon",
+          "url": "doctors/dr-sambo-luon.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Anand Singh",
+          "url": "doctors/dr-anand-singh.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Health checks, screenings and tests",
+          "url": "https://www.healthdirect.gov.au/health-screening-tests"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "Health Assessments Explained",
+      "slug": "health-assessments-explained",
+      "url": "knowledge/articles/health-assessments-explained.html",
+      "category": "Preventive Healthcare",
+      "metaDescription": "Learn what a GP health assessment may involve, why the content varies and how age, risk and Medicare eligibility can affect the appointment.",
+      "outline": [
+        "Introduction",
+        "A useful health assessment connects history, examination and prevention",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        },
+        {
+          "label": "Chronic Disease Care",
+          "url": "services/chronic-disease-care.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Sambo Luon",
+          "url": "doctors/dr-sambo-luon.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Anand Singh",
+          "url": "doctors/dr-anand-singh.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Health checks, screenings and tests",
+          "url": "https://www.healthdirect.gov.au/health-screening-tests"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "Why Regular Check-Ups Matter",
+      "slug": "why-regular-check-ups-matter",
+      "url": "knowledge/articles/why-regular-check-ups-matter.html",
+      "category": "Preventive Healthcare",
+      "metaDescription": "Why periodic GP check-ups can support continuity, preventive care and early recognition of changing health risks.",
+      "outline": [
+        "Introduction",
+        "Continuity makes small changes easier to notice",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        },
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        },
+        {
+          "label": "Chronic Disease Care",
+          "url": "services/chronic-disease-care.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Sambo Luon",
+          "url": "doctors/dr-sambo-luon.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Gemunu Suresh Ranawake",
+          "url": "doctors/dr-gemunu-suresh-ranawake.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Health checks, screenings and tests",
+          "url": "https://www.healthdirect.gov.au/health-screening-tests"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "Vaccinations For Adults",
+      "slug": "vaccinations-for-adults",
+      "url": "knowledge/articles/vaccinations-for-adults.html",
+      "category": "Preventive Healthcare",
+      "metaDescription": "A guide to adult vaccination in Australia, including age, medical risk, occupation, travel and catch-up considerations.",
+      "outline": [
+        "Introduction",
+        "Adult vaccination depends on age, health and exposure risk",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Vaccinations",
+          "url": "services/vaccinations.html"
+        },
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        },
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Sambo Luon",
+          "url": "doctors/dr-sambo-luon.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Anand Singh",
+          "url": "doctors/dr-anand-singh.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Australian Government — National Immunisation Program Schedule",
+          "url": "https://www.health.gov.au/topics/immunisation/when-to-get-vaccinated/national-immunisation-program-schedule"
+        },
+        {
+          "label": "Australian Immunisation Handbook",
+          "url": "https://immunisationhandbook.health.gov.au/"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "Staying Healthy As You Age",
+      "slug": "staying-healthy-as-you-age",
+      "url": "knowledge/articles/staying-healthy-as-you-age.html",
+      "category": "Preventive Healthcare",
+      "metaDescription": "Practical healthy ageing guidance covering preventive care, mobility, medicines, vaccination, chronic disease and maintaining independence.",
+      "outline": [
+        "Introduction",
+        "Healthy ageing combines prevention with day-to-day function",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        },
+        {
+          "label": "Chronic Disease Care",
+          "url": "services/chronic-disease-care.html"
+        },
+        {
+          "label": "Vaccinations",
+          "url": "services/vaccinations.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Anand Singh",
+          "url": "doctors/dr-anand-singh.html"
+        },
+        {
+          "name": "Dr Sambo Luon",
+          "url": "doctors/dr-sambo-luon.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Health checks, screenings and tests",
+          "url": "https://www.healthdirect.gov.au/health-screening-tests"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "Why Skin Checks Matter In Australia",
+      "slug": "why-skin-checks-matter-in-australia",
+      "url": "knowledge/articles/why-skin-checks-matter-in-australia.html",
+      "category": "Skin Health & Skin Cancer",
+      "metaDescription": "Why skin awareness and risk-based skin checks matter in Australia, what to watch for and how a GP can assess concerning spots.",
+      "outline": [
+        "Introduction",
+        "Early attention to change is more useful than waiting for symptoms",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Skin Checks",
+          "url": "services/skin-checks.html"
+        },
+        {
+          "label": "Skin Cancer Care",
+          "url": "services/skin-cancer-care.html"
+        },
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        },
+        {
+          "label": "Medical Procedures",
+          "url": "services/medical-procedures.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Wasantha Hettiarchchi",
+          "url": "doctors/dr-wasantha-hettiarchchi.html"
+        },
+        {
+          "name": "Dr Anand Singh",
+          "url": "doctors/dr-anand-singh.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Cancer Council Australia — Skin cancer",
+          "url": "https://www.cancer.org.au/types-of-cancer/skin-cancer"
+        },
+        {
+          "label": "Cancer Council Australia — Check for signs of skin cancer",
+          "url": "https://www.cancer.org.au/cancer-information/causes-and-prevention/sun-safety/check-for-signs-of-skin-cancer"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "Understanding Skin Cancer Risks",
+      "slug": "understanding-skin-cancer-risks",
+      "url": "knowledge/articles/understanding-skin-cancer-risks.html",
+      "category": "Skin Health & Skin Cancer",
+      "metaDescription": "Understand major skin cancer risk factors in Australia and how personal risk can guide prevention and medical review.",
+      "outline": [
+        "Introduction",
+        "Risk accumulates, and it is not limited to obvious sunburn",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Skin Checks",
+          "url": "services/skin-checks.html"
+        },
+        {
+          "label": "Skin Cancer Care",
+          "url": "services/skin-cancer-care.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Wasantha Hettiarchchi",
+          "url": "doctors/dr-wasantha-hettiarchchi.html"
+        },
+        {
+          "name": "Dr Anand Singh",
+          "url": "doctors/dr-anand-singh.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Cancer Council Australia — Skin cancer",
+          "url": "https://www.cancer.org.au/types-of-cancer/skin-cancer"
+        },
+        {
+          "label": "Cancer Council Australia — Check for signs of skin cancer",
+          "url": "https://www.cancer.org.au/cancer-information/causes-and-prevention/sun-safety/check-for-signs-of-skin-cancer"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "When Should I Book A Skin Check?",
+      "slug": "when-should-i-book-a-skin-check",
+      "url": "knowledge/articles/when-should-i-book-a-skin-check.html",
+      "category": "Skin Health & Skin Cancer",
+      "metaDescription": "Know when a new or changing skin spot should be assessed and how a risk-based skin check differs from a fixed annual rule.",
+      "outline": [
+        "Introduction",
+        "Book because of change or risk, not only because a year has passed",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Skin Checks",
+          "url": "services/skin-checks.html"
+        },
+        {
+          "label": "Skin Cancer Care",
+          "url": "services/skin-cancer-care.html"
+        },
+        {
+          "label": "Medical Procedures",
+          "url": "services/medical-procedures.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Wasantha Hettiarchchi",
+          "url": "doctors/dr-wasantha-hettiarchchi.html"
+        },
+        {
+          "name": "Dr Anand Singh",
+          "url": "doctors/dr-anand-singh.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Cancer Council Australia — Skin cancer",
+          "url": "https://www.cancer.org.au/types-of-cancer/skin-cancer"
+        },
+        {
+          "label": "Cancer Council Australia — Check for signs of skin cancer",
+          "url": "https://www.cancer.org.au/cancer-information/causes-and-prevention/sun-safety/check-for-signs-of-skin-cancer"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "Protecting Your Skin From The Queensland Sun",
+      "slug": "protecting-your-skin-from-the-queensland-sun",
+      "url": "knowledge/articles/protecting-your-skin-from-the-queensland-sun.html",
+      "category": "Skin Health & Skin Cancer",
+      "metaDescription": "Practical sun protection guidance for Queensland, including UV awareness, clothing, shade, sunscreen and skin monitoring.",
+      "outline": [
+        "Introduction",
+        "Use several forms of sun protection together",
+        "When should I seek medical advice?",
+        "How can a GP help?",
+        "Related Services",
+        "Related Practitioners",
+        "Frequently Asked Questions",
+        "Trusted Australian information",
+        "Related Knowledge Centre guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Skin Checks",
+          "url": "services/skin-checks.html"
+        },
+        {
+          "label": "Skin Cancer Care",
+          "url": "services/skin-cancer-care.html"
+        },
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Wasantha Hettiarchchi",
+          "url": "doctors/dr-wasantha-hettiarchchi.html"
+        },
+        {
+          "name": "Dr Anand Singh",
+          "url": "doctors/dr-anand-singh.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Cancer Council Australia — Sun safety",
+          "url": "https://www.cancer.org.au/cancer-information/causes-and-prevention/sun-safety"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Enhanced editorial draft — clinical approval required before deployment; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null
+    },
+    {
+      "title": "Living With Diabetes: GP Monitoring & Long-Term Management",
+      "slug": "living-with-diabetes-gp-monitoring-long-term-management",
+      "url": "knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html",
+      "category": "Chronic Disease Management",
+      "metaDescription": "Understand diabetes check-ups, HbA1c, kidneys, feet and eye care, and how GP follow-up supports long-term health in Woolloongabba.",
+      "relatedServices": [
+        {
+          "label": "Chronic Disease Care",
+          "url": "services/chronic-disease-care.html"
+        },
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Wasantha Hettiarchchi",
+          "url": "doctors/dr-wasantha-hettiarchchi.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Gemunu Suresh Ranawake",
+          "url": "doctors/dr-gemunu-suresh-ranawake.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Diabetes",
+          "url": "https://www.healthdirect.gov.au/diabetes"
+        },
+        {
+          "label": "Diabetes Australia",
+          "url": "https://www.diabetesaustralia.com.au/"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "New article draft — clinical approval required before publication; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "contentOwner": null,
+      "publicationDate": null,
+      "nextReviewDate": null
+    },
+    {
+      "title": "Understanding GP Chronic Disease Care Plans",
+      "slug": "understanding-gp-chronic-disease-care-plans",
+      "url": "knowledge/articles/understanding-gp-chronic-disease-care-plans.html",
+      "category": "Chronic Disease Management",
+      "metaDescription": "Learn how GP chronic condition management plans work in Australia, when they may help and what coordinated long-term care involves.",
+      "relatedServices": [
+        {
+          "label": "Chronic Disease Care",
+          "url": "services/chronic-disease-care.html"
+        },
+        {
+          "label": "Allied Health",
+          "url": "services/allied-health.html"
+        },
+        {
+          "label": "Pharmacy",
+          "url": "services/pharmacy.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Gemunu Suresh Ranawake",
+          "url": "doctors/dr-gemunu-suresh-ranawake.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Wasantha Hettiarchchi",
+          "url": "doctors/dr-wasantha-hettiarchchi.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Medicare Benefits Schedule — Chronic condition plans",
+          "url": "https://www9.health.gov.au/mbs/fullDisplay.cfm?q=AN.0.47&qt=NoteID&type=note"
+        },
+        {
+          "label": "Healthdirect — Chronic disease management",
+          "url": "https://www.healthdirect.gov.au/management-of-chronic-conditions"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "New article draft — clinical approval required before publication; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "contentOwner": null,
+      "publicationDate": null,
+      "nextReviewDate": null
+    },
+    {
+      "title": "Blood Pressure Explained",
+      "slug": "blood-pressure-explained",
+      "url": "knowledge/articles/blood-pressure-explained.html",
+      "category": "Chronic Disease Management",
+      "metaDescription": "What do blood pressure numbers mean? Learn about high blood pressure, home readings and when to seek GP advice in Brisbane.",
+      "relatedServices": [
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        },
+        {
+          "label": "Chronic Disease Care",
+          "url": "services/chronic-disease-care.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Sambo Luon",
+          "url": "doctors/dr-sambo-luon.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Gemunu Suresh Ranawake",
+          "url": "doctors/dr-gemunu-suresh-ranawake.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — High blood pressure",
+          "url": "https://www.healthdirect.gov.au/high-blood-pressure-hypertension"
+        },
+        {
+          "label": "Heart Foundation — Blood pressure",
+          "url": "https://www.heartfoundation.org.au/your-heart/blood-pressure-and-your-heart"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "New article draft — clinical approval required before publication; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "contentOwner": null,
+      "publicationDate": null,
+      "nextReviewDate": null
+    },
+    {
+      "title": "Managing Asthma",
+      "slug": "managing-asthma",
+      "url": "knowledge/articles/managing-asthma.html",
+      "category": "Chronic Disease Management",
+      "metaDescription": "Understand asthma symptoms, preventer and reliever medicines, action plans and when to arrange a GP asthma review.",
+      "relatedServices": [
+        {
+          "label": "Chronic Disease Care",
+          "url": "services/chronic-disease-care.html"
+        },
+        {
+          "label": "Spirometry",
+          "url": "services/spirometry.html"
+        },
+        {
+          "label": "Nebulising",
+          "url": "services/nebulising.html"
+        },
+        {
+          "label": "Pharmacy",
+          "url": "services/pharmacy.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Gemunu Suresh Ranawake",
+          "url": "doctors/dr-gemunu-suresh-ranawake.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "National Asthma Council Australia",
+          "url": "https://www.nationalasthma.org.au/"
+        },
+        {
+          "label": "Healthdirect — Asthma",
+          "url": "https://www.healthdirect.gov.au/asthma"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "New article draft — clinical approval required before publication; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "contentOwner": null,
+      "publicationDate": null,
+      "nextReviewDate": null
+    },
+    {
+      "title": "Understanding Cholesterol",
+      "slug": "understanding-cholesterol",
+      "url": "knowledge/articles/understanding-cholesterol.html",
+      "category": "Chronic Disease Management",
+      "metaDescription": "Learn what cholesterol results mean, how LDL and HDL relate to heart risk and how your GP may recommend prevention or treatment.",
+      "relatedServices": [
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        },
+        {
+          "label": "Chronic Disease Care",
+          "url": "services/chronic-disease-care.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Sambo Luon",
+          "url": "doctors/dr-sambo-luon.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Gemunu Suresh Ranawake",
+          "url": "doctors/dr-gemunu-suresh-ranawake.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Cholesterol",
+          "url": "https://www.healthdirect.gov.au/cholesterol"
+        },
+        {
+          "label": "Heart Foundation — Cholesterol",
+          "url": "https://www.heartfoundation.org.au/your-heart/high-blood-cholesterol"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "New article draft — clinical approval required before publication; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "contentOwner": null,
+      "publicationDate": null,
+      "nextReviewDate": null
+    },
+    {
+      "title": "When Can I Use Telehealth?",
+      "slug": "when-can-i-use-telehealth",
+      "url": "knowledge/articles/when-can-i-use-telehealth.html",
+      "category": "Telehealth & Access To Care",
+      "metaDescription": "Find out when GP telehealth may be suitable, when in-person examination is necessary and what Medicare eligibility questions to ask.",
+      "relatedServices": [
+        {
+          "label": "Telehealth",
+          "url": "services/telehealth.html"
+        },
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Nirupa Sivathasan",
+          "url": "doctors/dr-nirupa-sivathasan.html"
+        },
+        {
+          "name": "Dr Sumita Singh",
+          "url": "doctors/dr-sumita-singh.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Telehealth",
+          "url": "https://www.health.gov.au/topics/health-technologies-and-digital-health/about/telehealth"
+        },
+        {
+          "label": "MBS Online — Telehealth",
+          "url": "https://www.health.gov.au/topics/health-technologies-and-digital-health/about/telehealth"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "New article draft — clinical approval required before publication; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "contentOwner": null,
+      "publicationDate": null,
+      "nextReviewDate": null
+    },
+    {
+      "title": "How Telehealth Works",
+      "slug": "how-telehealth-works",
+      "url": "knowledge/articles/how-telehealth-works.html",
+      "category": "Telehealth & Access To Care",
+      "metaDescription": "A step-by-step guide to booking a GP telehealth appointment, preparing for your call and understanding when follow-up may be needed.",
+      "relatedServices": [
+        {
+          "label": "Telehealth",
+          "url": "services/telehealth.html"
+        },
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Nirupa Sivathasan",
+          "url": "doctors/dr-nirupa-sivathasan.html"
+        },
+        {
+          "name": "Dr Debra Larkins",
+          "url": "doctors/dr-debra-larkins.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Telehealth",
+          "url": "https://www.health.gov.au/topics/health-technologies-and-digital-health/about/telehealth"
+        },
+        {
+          "label": "Australian Government — Telehealth",
+          "url": "https://www.health.gov.au/topics/health-technologies-and-digital-health/about/telehealth"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "New article draft — clinical approval required before publication; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "contentOwner": null,
+      "publicationDate": null,
+      "nextReviewDate": null
+    },
+    {
+      "title": "Telehealth vs Face-To-Face Appointments",
+      "slug": "telehealth-vs-face-to-face-appointments",
+      "url": "knowledge/articles/telehealth-vs-face-to-face-appointments.html",
+      "category": "Telehealth & Access To Care",
+      "metaDescription": "Compare GP telehealth and in-person appointments, including when an examination, test or urgent care makes face-to-face safer.",
+      "relatedServices": [
+        {
+          "label": "Telehealth",
+          "url": "services/telehealth.html"
+        },
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        },
+        {
+          "label": "Skin Checks",
+          "url": "services/skin-checks.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Nirupa Sivathasan",
+          "url": "doctors/dr-nirupa-sivathasan.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Telehealth",
+          "url": "https://www.health.gov.au/topics/health-technologies-and-digital-health/about/telehealth"
+        },
+        {
+          "label": "Healthdirect — When to seek urgent care",
+          "url": "https://www.healthdirect.gov.au/after-hours-health-services"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "New article draft — clinical approval required before publication; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "contentOwner": null,
+      "publicationDate": null,
+      "nextReviewDate": null
+    },
+    {
+      "title": "Influenza Vaccination: Who Should Consider It?",
+      "slug": "influenza-vaccination-who-should-consider-it",
+      "url": "knowledge/articles/influenza-vaccination-who-should-consider-it.html",
+      "category": "Vaccinations",
+      "metaDescription": "Learn who should consider annual influenza vaccination in Australia, who may receive funded vaccines and when to ask your GP.",
+      "relatedServices": [
+        {
+          "label": "Vaccinations",
+          "url": "services/vaccinations.html"
+        },
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Sambo Luon",
+          "url": "doctors/dr-sambo-luon.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Australian Immunisation Handbook — Influenza",
+          "url": "https://immunisationhandbook.health.gov.au/contents/vaccine-preventable-diseases/influenza-flu"
+        },
+        {
+          "label": "National Immunisation Program Schedule",
+          "url": "https://www.health.gov.au/topics/immunisation/when-to-get-vaccinated/national-immunisation-program-schedule"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "New article draft — clinical approval required before publication; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "contentOwner": null,
+      "publicationDate": null,
+      "nextReviewDate": null
+    },
+    {
+      "title": "Travel Vaccinations Before Overseas Travel",
+      "slug": "travel-vaccinations-before-overseas-travel",
+      "url": "knowledge/articles/travel-vaccinations-before-overseas-travel.html",
+      "category": "Vaccinations",
+      "metaDescription": "Planning overseas travel? Learn why travel vaccination advice depends on destination, itinerary and health history.",
+      "relatedServices": [
+        {
+          "label": "Vaccinations",
+          "url": "services/vaccinations.html"
+        },
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Wasantha Hettiarchchi",
+          "url": "doctors/dr-wasantha-hettiarchchi.html"
+        },
+        {
+          "name": "Dr Sambo Luon",
+          "url": "doctors/dr-sambo-luon.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Smartraveller — Health",
+          "url": "https://www.smartraveller.gov.au/travel-essentials/travel-health"
+        },
+        {
+          "label": "Australian Immunisation Handbook — Travellers",
+          "url": "https://immunisationhandbook.health.gov.au/contents/vaccination-for-special-risk-groups/vaccination-for-international-travellers"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "New article draft — clinical approval required before publication; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "contentOwner": null,
+      "publicationDate": null,
+      "nextReviewDate": null
+    },
+    {
+      "title": "Managing Winter Respiratory Illness",
+      "slug": "managing-winter-respiratory-illness",
+      "url": "knowledge/articles/managing-winter-respiratory-illness.html",
+      "category": "Children's Health",
+      "metaDescription": "Understand common winter coughs, colds and flu, when home care may help and which symptoms require GP or urgent review.",
+      "relatedServices": [
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        },
+        {
+          "label": "Children's Health",
+          "url": "services/childrens-health.html"
+        },
+        {
+          "label": "Vaccinations",
+          "url": "services/vaccinations.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Gemunu Suresh Ranawake",
+          "url": "doctors/dr-gemunu-suresh-ranawake.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Cold and flu",
+          "url": "https://www.healthdirect.gov.au/colds-and-flu"
+        },
+        {
+          "label": "Australian Immunisation Handbook — Influenza",
+          "url": "https://immunisationhandbook.health.gov.au/contents/vaccine-preventable-diseases/influenza-flu"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "New article draft — clinical approval required before publication; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "contentOwner": null,
+      "publicationDate": null,
+      "nextReviewDate": null
+    },
+    {
+      "title": "Breast Health: Changes, Screening & When To See A GP",
+      "slug": "breast-health-changes-screening-when-to-see-a-gp",
+      "url": "knowledge/articles/breast-health-changes-screening-when-to-see-a-gp.html",
+      "category": "Women's Health",
+      "metaDescription": "Learn which breast changes need assessment, how BreastScreen Australia works and why symptoms need diagnostic review.",
+      "relatedServices": [
+        {
+          "label": "Breast Checks",
+          "url": "services/breast-check.html"
+        },
+        {
+          "label": "Women's Health",
+          "url": "services/womens-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Sumita Singh",
+          "url": "doctors/dr-sumita-singh.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Australian Government — BreastScreen Australia",
+          "url": "https://www.health.gov.au/our-work/breastscreen-australia-program/about-the-breastscreen-australia-program"
+        },
+        {
+          "label": "Healthdirect — Breast changes",
+          "url": "https://www.healthdirect.gov.au/breast-cancer"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "New article draft — clinical approval required before publication; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "contentOwner": null,
+      "publicationDate": null,
+      "nextReviewDate": null
+    },
+    {
+      "title": "Healthy Ageing: Prevention, Falls, Vaccination & Reviews",
+      "slug": "healthy-ageing-prevention-falls-vaccination-reviews",
+      "url": "knowledge/articles/healthy-ageing-prevention-falls-vaccination-reviews.html",
+      "category": "Healthy Ageing",
+      "metaDescription": "Practical healthy-ageing advice about fall prevention, vaccination, medicines and GP health reviews for older adults.",
+      "relatedServices": [
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        },
+        {
+          "label": "Chronic Disease Care",
+          "url": "services/chronic-disease-care.html"
+        },
+        {
+          "label": "Vaccinations",
+          "url": "services/vaccinations.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Anand Singh",
+          "url": "doctors/dr-anand-singh.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Sambo Luon",
+          "url": "doctors/dr-sambo-luon.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Falls in older people",
+          "url": "https://www.healthdirect.gov.au/falls"
+        },
+        {
+          "label": "Australian Government — National Immunisation Program",
+          "url": "https://www.health.gov.au/topics/immunisation/when-to-get-vaccinated/national-immunisation-program-schedule"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "New article draft — clinical approval required before publication; no named reviewer asserted.",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "contentOwner": null,
+      "publicationDate": null,
+      "nextReviewDate": null
+    },
+    {
+      "title": "When Should I See A GP About Headaches?",
+      "slug": "when-should-i-see-a-gp-about-headaches",
+      "url": "knowledge/articles/when-should-i-see-a-gp-about-headaches.html",
+      "category": "Headache & Migraine",
+      "metaDescription": "Headaches are common, but their pattern matters.",
+      "seoTitle": "When Should I See A GP About Headaches? | GP Guide",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Kooshyar Karimi",
+          "url": "doctors/dr-kooshyar-karimi.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Headaches",
+          "url": "https://www.healthdirect.gov.au/headaches"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "headache",
+        "head pain",
+        "migraine",
+        "aura",
+        "severe headache",
+        "headache emergency",
+        "frequent headaches",
+        "When Should I See A GP About Headaches?"
+      ],
+      "clusterHub": "knowledge/headache.html"
+    },
+    {
+      "title": "Migraine Or Headache: How Do I Tell The Difference?",
+      "slug": "migraine-or-headache-how-do-i-tell-the-difference",
+      "url": "knowledge/articles/migraine-or-headache-how-do-i-tell-the-difference.html",
+      "category": "Headache & Migraine",
+      "metaDescription": "People often use the word “headache” for any head pain, but migraine has characteristic features and may need a different management approach.",
+      "seoTitle": "Migraine Or Headache: How Do I Tell The Difference? | GP Guide",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Kooshyar Karimi",
+          "url": "doctors/dr-kooshyar-karimi.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Headaches",
+          "url": "https://www.healthdirect.gov.au/headaches"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "headache",
+        "head pain",
+        "migraine",
+        "aura",
+        "severe headache",
+        "headache emergency",
+        "frequent headaches",
+        "Migraine Or Headache: How Do I Tell The Difference?"
+      ],
+      "clusterHub": "knowledge/headache.html"
+    },
+    {
+      "title": "What Causes Frequent Headaches?",
+      "slug": "what-causes-frequent-headaches",
+      "url": "knowledge/articles/what-causes-frequent-headaches.html",
+      "category": "Headache & Migraine",
+      "metaDescription": "Frequent headaches can have several contributing factors. Identifying a pattern is often more helpful than focusing on one suspected trigger.",
+      "seoTitle": "What Causes Frequent Headaches? | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Kooshyar Karimi",
+          "url": "doctors/dr-kooshyar-karimi.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Headaches",
+          "url": "https://www.healthdirect.gov.au/headaches"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "headache",
+        "head pain",
+        "migraine",
+        "aura",
+        "severe headache",
+        "headache emergency",
+        "frequent headaches",
+        "What Causes Frequent Headaches?"
+      ],
+      "clusterHub": "knowledge/headache.html"
+    },
+    {
+      "title": "When Is A Headache An Emergency?",
+      "slug": "when-is-a-headache-an-emergency",
+      "url": "knowledge/articles/when-is-a-headache-an-emergency.html",
+      "category": "Headache & Migraine",
+      "metaDescription": "Most headaches are not life-threatening. A small number have warning features that should change what you do next.",
+      "seoTitle": "When Is A Headache An Emergency? | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Kooshyar Karimi",
+          "url": "doctors/dr-kooshyar-karimi.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Headaches",
+          "url": "https://www.healthdirect.gov.au/headaches"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "headache",
+        "head pain",
+        "migraine",
+        "aura",
+        "severe headache",
+        "headache emergency",
+        "frequent headaches",
+        "When Is A Headache An Emergency?"
+      ],
+      "clusterHub": "knowledge/headache.html"
+    },
+    {
+      "title": "Why Won’t My Cough Go Away?",
+      "slug": "why-won-t-my-cough-go-away",
+      "url": "knowledge/articles/why-won-t-my-cough-go-away.html",
+      "category": "Cough & Sore Throat",
+      "metaDescription": "Coughing can continue for some time after a respiratory infection.",
+      "seoTitle": "Why Won’t My Cough Go Away? | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Anand Singh",
+          "url": "doctors/dr-anand-singh.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Cough",
+          "url": "https://www.healthdirect.gov.au/amp/article/cough"
+        },
+        {
+          "label": "Healthdirect — Sore throat",
+          "url": "https://www.healthdirect.gov.au/sore-throat"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "cough",
+        "sore throat",
+        "strep throat",
+        "chronic cough",
+        "child cough",
+        "virus",
+        "antibiotics",
+        "Why Won’t My Cough Go Away?"
+      ],
+      "clusterHub": "knowledge/cough.html"
+    },
+    {
+      "title": "What Causes A Persistent Cough?",
+      "slug": "what-causes-a-persistent-cough",
+      "url": "knowledge/articles/what-causes-a-persistent-cough.html",
+      "category": "Cough & Sore Throat",
+      "metaDescription": "A persistent cough is a symptom, not a diagnosis. Looking at possible causes helps a GP select useful tests and avoid unnecessary treatment.",
+      "seoTitle": "What Causes A Persistent Cough? | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        },
+        {
+          "label": "Spirometry",
+          "url": "services/spirometry.html"
+        },
+        {
+          "label": "Nebulising",
+          "url": "services/nebulising.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Anand Singh",
+          "url": "doctors/dr-anand-singh.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Cough",
+          "url": "https://www.healthdirect.gov.au/amp/article/cough"
+        },
+        {
+          "label": "Healthdirect — Sore throat",
+          "url": "https://www.healthdirect.gov.au/sore-throat"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "cough",
+        "sore throat",
+        "strep throat",
+        "chronic cough",
+        "child cough",
+        "virus",
+        "antibiotics",
+        "What Causes A Persistent Cough?"
+      ],
+      "clusterHub": "knowledge/cough.html"
+    },
+    {
+      "title": "Sore Throat: When Should I See A Doctor?",
+      "slug": "sore-throat-when-should-i-see-a-doctor",
+      "url": "knowledge/articles/sore-throat-when-should-i-see-a-doctor.html",
+      "category": "Cough & Sore Throat",
+      "metaDescription": "A sore throat is often short-lived, but severe symptoms and difficulties swallowing or breathing need attention.",
+      "seoTitle": "Sore Throat: When Should I See A Doctor? | GP Guide",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Anand Singh",
+          "url": "doctors/dr-anand-singh.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Cough",
+          "url": "https://www.healthdirect.gov.au/amp/article/cough"
+        },
+        {
+          "label": "Healthdirect — Sore throat",
+          "url": "https://www.healthdirect.gov.au/sore-throat"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "cough",
+        "sore throat",
+        "strep throat",
+        "chronic cough",
+        "child cough",
+        "virus",
+        "antibiotics",
+        "Sore Throat: When Should I See A Doctor?"
+      ],
+      "clusterHub": "knowledge/cough.html"
+    },
+    {
+      "title": "Is My Sore Throat Viral Or Bacterial?",
+      "slug": "is-my-sore-throat-viral-or-bacterial",
+      "url": "knowledge/articles/is-my-sore-throat-viral-or-bacterial.html",
+      "category": "Cough & Sore Throat",
+      "metaDescription": "Many people hope one symptom will tell them whether a sore throat needs antibiotics.",
+      "seoTitle": "Is My Sore Throat Viral Or Bacterial? | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Anand Singh",
+          "url": "doctors/dr-anand-singh.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Cough",
+          "url": "https://www.healthdirect.gov.au/amp/article/cough"
+        },
+        {
+          "label": "Healthdirect — Sore throat",
+          "url": "https://www.healthdirect.gov.au/sore-throat"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "cough",
+        "sore throat",
+        "strep throat",
+        "chronic cough",
+        "child cough",
+        "virus",
+        "antibiotics",
+        "Is My Sore Throat Viral Or Bacterial?"
+      ],
+      "clusterHub": "knowledge/cough.html"
+    },
+    {
+      "title": "When Should A Child With A Cough See A GP?",
+      "slug": "when-should-a-child-with-a-cough-see-a-gp",
+      "url": "knowledge/articles/when-should-a-child-with-a-cough-see-a-gp.html",
+      "category": "Cough & Sore Throat",
+      "metaDescription": "Children develop coughs frequently, particularly during school and childcare years.",
+      "seoTitle": "When Should A Child With A Cough See A GP? | GP Guide",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Anand Singh",
+          "url": "doctors/dr-anand-singh.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Cough",
+          "url": "https://www.healthdirect.gov.au/amp/article/cough"
+        },
+        {
+          "label": "Healthdirect — Sore throat",
+          "url": "https://www.healthdirect.gov.au/sore-throat"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "cough",
+        "sore throat",
+        "strep throat",
+        "chronic cough",
+        "child cough",
+        "virus",
+        "antibiotics",
+        "When Should A Child With A Cough See A GP?"
+      ],
+      "clusterHub": "knowledge/cough.html"
+    },
+    {
+      "title": "When Should I Be Concerned About Pain?",
+      "slug": "when-should-i-be-concerned-about-pain",
+      "url": "knowledge/articles/when-should-i-be-concerned-about-pain.html",
+      "category": "Pain & Musculoskeletal Health",
+      "metaDescription": "Pain is common and has many causes. A useful assessment considers where it is, when it started, how it is changing and whether it affects normal activities.",
+      "seoTitle": "When Should I Be Concerned About Pain? | GP Guide",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Kooshyar Karimi",
+          "url": "doctors/dr-kooshyar-karimi.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Chronic pain",
+          "url": "https://www.healthdirect.gov.au/chronic-pain"
+        },
+        {
+          "label": "Healthdirect — Back pain",
+          "url": "https://www.healthdirect.gov.au/back-pain?f=contentCategory%3AClinical+Guideline"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "pain",
+        "joint",
+        "muscle",
+        "back pain",
+        "chronic pain",
+        "sciatica",
+        "stiffness",
+        "injury",
+        "When Should I Be Concerned About Pain?"
+      ],
+      "clusterHub": "knowledge/pain.html"
+    },
+    {
+      "title": "Understanding Muscle And Joint Pain",
+      "slug": "understanding-muscle-and-joint-pain",
+      "url": "knowledge/articles/understanding-muscle-and-joint-pain.html",
+      "category": "Pain & Musculoskeletal Health",
+      "metaDescription": "Aching muscles and joints can make ordinary tasks difficult. The location, pattern and presence of swelling or stiffness help guide assessment.",
+      "seoTitle": "Understanding Muscle And Joint Pain | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        },
+        {
+          "label": "Allied Health",
+          "url": "services/allied-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Kooshyar Karimi",
+          "url": "doctors/dr-kooshyar-karimi.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Chronic pain",
+          "url": "https://www.healthdirect.gov.au/chronic-pain"
+        },
+        {
+          "label": "Healthdirect — Back pain",
+          "url": "https://www.healthdirect.gov.au/back-pain?f=contentCategory%3AClinical+Guideline"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "pain",
+        "joint",
+        "muscle",
+        "back pain",
+        "chronic pain",
+        "sciatica",
+        "stiffness",
+        "injury",
+        "Understanding Muscle And Joint Pain"
+      ],
+      "clusterHub": "knowledge/pain.html"
+    },
+    {
+      "title": "Chronic Pain: When Should I Seek Help?",
+      "slug": "chronic-pain-when-should-i-seek-help",
+      "url": "knowledge/articles/chronic-pain-when-should-i-seek-help.html",
+      "category": "Pain & Musculoskeletal Health",
+      "metaDescription": "Living with pain for months can affect more than the part of the body that hurts.",
+      "seoTitle": "Chronic Pain: When Should I Seek Help? | GP Guide",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Kooshyar Karimi",
+          "url": "doctors/dr-kooshyar-karimi.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Chronic pain",
+          "url": "https://www.healthdirect.gov.au/chronic-pain"
+        },
+        {
+          "label": "Healthdirect — Back pain",
+          "url": "https://www.healthdirect.gov.au/back-pain?f=contentCategory%3AClinical+Guideline"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "pain",
+        "joint",
+        "muscle",
+        "back pain",
+        "chronic pain",
+        "sciatica",
+        "stiffness",
+        "injury",
+        "Chronic Pain: When Should I Seek Help?"
+      ],
+      "clusterHub": "knowledge/pain.html"
+    },
+    {
+      "title": "Back Pain: When Should I See A GP?",
+      "slug": "back-pain-when-should-i-see-a-gp",
+      "url": "knowledge/articles/back-pain-when-should-i-see-a-gp.html",
+      "category": "Pain & Musculoskeletal Health",
+      "metaDescription": "Most episodes of back pain improve, but some need medical assessment.",
+      "seoTitle": "Back Pain: When Should I See A GP? | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        },
+        {
+          "label": "Allied Health",
+          "url": "services/allied-health.html"
+        },
+        {
+          "label": "Radiology",
+          "url": "services/radiology.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Kooshyar Karimi",
+          "url": "doctors/dr-kooshyar-karimi.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Chronic pain",
+          "url": "https://www.healthdirect.gov.au/chronic-pain"
+        },
+        {
+          "label": "Healthdirect — Back pain",
+          "url": "https://www.healthdirect.gov.au/back-pain?f=contentCategory%3AClinical+Guideline"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "pain",
+        "joint",
+        "muscle",
+        "back pain",
+        "chronic pain",
+        "sciatica",
+        "stiffness",
+        "injury",
+        "Back Pain: When Should I See A GP?"
+      ],
+      "clusterHub": "knowledge/pain.html"
+    },
+    {
+      "title": "Understanding Type 2 Diabetes",
+      "slug": "understanding-type-2-diabetes",
+      "url": "knowledge/articles/understanding-type-2-diabetes.html",
+      "category": "Diabetes & Ongoing Care",
+      "metaDescription": "A diagnosis of type 2 diabetes can raise many questions.",
+      "seoTitle": "Understanding Type 2 Diabetes | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Chronic Disease Care",
+          "url": "services/chronic-disease-care.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Wasantha Hettiarchchi",
+          "url": "doctors/dr-wasantha-hettiarchchi.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "RACGP — Type 2 diabetes care recommendations",
+          "url": "https://www.racgp.org.au/clinical-resources/clinical-guidelines/key-racgp-guidelines/view-all-racgp-guidelines/management-of-type-2-diabetes/summary-of-recommendations"
+        },
+        {
+          "label": "Services Australia — GP chronic condition management plans",
+          "url": "https://www.servicesaustralia.gov.au/gp-chronic-condition-management-plan?context=20"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "diabetes",
+        "type 2 diabetes",
+        "glucose",
+        "HBA1c",
+        "diabetes foot care",
+        "GPCCMP",
+        "diabetes plan",
+        "Understanding Type 2 Diabetes"
+      ],
+      "clusterHub": "knowledge/diabetes.html"
+    },
+    {
+      "title": "Living With Diabetes",
+      "slug": "living-with-diabetes",
+      "url": "knowledge/articles/living-with-diabetes.html",
+      "category": "Diabetes & Ongoing Care",
+      "metaDescription": "Living with diabetes involves ordinary routines as well as medical appointments.",
+      "seoTitle": "Living With Diabetes | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Chronic Disease Care",
+          "url": "services/chronic-disease-care.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Wasantha Hettiarchchi",
+          "url": "doctors/dr-wasantha-hettiarchchi.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "RACGP — Type 2 diabetes care recommendations",
+          "url": "https://www.racgp.org.au/clinical-resources/clinical-guidelines/key-racgp-guidelines/view-all-racgp-guidelines/management-of-type-2-diabetes/summary-of-recommendations"
+        },
+        {
+          "label": "Services Australia — GP chronic condition management plans",
+          "url": "https://www.servicesaustralia.gov.au/gp-chronic-condition-management-plan?context=20"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "diabetes",
+        "type 2 diabetes",
+        "glucose",
+        "HBA1c",
+        "diabetes foot care",
+        "GPCCMP",
+        "diabetes plan",
+        "Living With Diabetes"
+      ],
+      "clusterHub": "knowledge/diabetes.html"
+    },
+    {
+      "title": "Diabetes Monitoring Explained",
+      "slug": "diabetes-monitoring-explained",
+      "url": "knowledge/articles/diabetes-monitoring-explained.html",
+      "category": "Diabetes & Ongoing Care",
+      "metaDescription": "Diabetes monitoring is about protecting health over time, not simply recording one glucose number.",
+      "seoTitle": "Diabetes Monitoring Explained | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Chronic Disease Care",
+          "url": "services/chronic-disease-care.html"
+        },
+        {
+          "label": "Pathology",
+          "url": "services/pathology.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Wasantha Hettiarchchi",
+          "url": "doctors/dr-wasantha-hettiarchchi.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "RACGP — Type 2 diabetes care recommendations",
+          "url": "https://www.racgp.org.au/clinical-resources/clinical-guidelines/key-racgp-guidelines/view-all-racgp-guidelines/management-of-type-2-diabetes/summary-of-recommendations"
+        },
+        {
+          "label": "Services Australia — GP chronic condition management plans",
+          "url": "https://www.servicesaustralia.gov.au/gp-chronic-condition-management-plan?context=20"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "diabetes",
+        "type 2 diabetes",
+        "glucose",
+        "HBA1c",
+        "diabetes foot care",
+        "GPCCMP",
+        "diabetes plan",
+        "Diabetes Monitoring Explained"
+      ],
+      "clusterHub": "knowledge/diabetes.html"
+    },
+    {
+      "title": "Preventing Diabetes Complications",
+      "slug": "preventing-diabetes-complications",
+      "url": "knowledge/articles/preventing-diabetes-complications.html",
+      "category": "Diabetes & Ongoing Care",
+      "metaDescription": "The purpose of long-term diabetes care is to reduce avoidable complications while supporting quality of life.",
+      "seoTitle": "Preventing Diabetes Complications | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Chronic Disease Care",
+          "url": "services/chronic-disease-care.html"
+        },
+        {
+          "label": "Wound Dressings",
+          "url": "services/wound-dressings.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Wasantha Hettiarchchi",
+          "url": "doctors/dr-wasantha-hettiarchchi.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "RACGP — Type 2 diabetes care recommendations",
+          "url": "https://www.racgp.org.au/clinical-resources/clinical-guidelines/key-racgp-guidelines/view-all-racgp-guidelines/management-of-type-2-diabetes/summary-of-recommendations"
+        },
+        {
+          "label": "Services Australia — GP chronic condition management plans",
+          "url": "https://www.servicesaustralia.gov.au/gp-chronic-condition-management-plan?context=20"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "diabetes",
+        "type 2 diabetes",
+        "glucose",
+        "HBA1c",
+        "diabetes foot care",
+        "GPCCMP",
+        "diabetes plan",
+        "Preventing Diabetes Complications"
+      ],
+      "clusterHub": "knowledge/diabetes.html"
+    },
+    {
+      "title": "Diabetes Care Plans Explained",
+      "slug": "diabetes-care-plans-explained",
+      "url": "knowledge/articles/diabetes-care-plans-explained.html",
+      "category": "Diabetes & Ongoing Care",
+      "metaDescription": "For some people, coordinating diabetes care is as important as choosing medicines.",
+      "seoTitle": "Diabetes Care Plans Explained | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Chronic Disease Care",
+          "url": "services/chronic-disease-care.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Wasantha Hettiarchchi",
+          "url": "doctors/dr-wasantha-hettiarchchi.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "RACGP — Type 2 diabetes care recommendations",
+          "url": "https://www.racgp.org.au/clinical-resources/clinical-guidelines/key-racgp-guidelines/view-all-racgp-guidelines/management-of-type-2-diabetes/summary-of-recommendations"
+        },
+        {
+          "label": "Services Australia — GP chronic condition management plans",
+          "url": "https://www.servicesaustralia.gov.au/gp-chronic-condition-management-plan?context=20"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "diabetes",
+        "type 2 diabetes",
+        "glucose",
+        "HBA1c",
+        "diabetes foot care",
+        "GPCCMP",
+        "diabetes plan",
+        "Diabetes Care Plans Explained"
+      ],
+      "clusterHub": "knowledge/diabetes.html"
+    },
+    {
+      "title": "High Blood Pressure Explained",
+      "slug": "high-blood-pressure-explained",
+      "url": "knowledge/articles/high-blood-pressure-explained.html",
+      "category": "Blood Pressure & Heart Health",
+      "metaDescription": "High blood pressure often causes no symptoms. Understanding what the readings mean is more useful than waiting to feel unwell.",
+      "seoTitle": "High Blood Pressure Explained | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Sambo Luon",
+          "url": "doctors/dr-sambo-luon.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — High blood pressure",
+          "url": "https://www.healthdirect.gov.au/amp/article/high-blood-pressure-hypertension"
+        },
+        {
+          "label": "Heart Foundation — Heart Health Checks",
+          "url": "https://www.heartfoundation.org.au/your-heart/heart-health-checks"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "blood pressure",
+        "high blood pressure",
+        "hypertension",
+        "heart health",
+        "heart check",
+        "cholesterol",
+        "lipids",
+        "High Blood Pressure Explained"
+      ],
+      "clusterHub": "knowledge/heart.html"
+    },
+    {
+      "title": "When Should I Be Concerned About Blood Pressure?",
+      "slug": "when-should-i-be-concerned-about-blood-pressure",
+      "url": "knowledge/articles/when-should-i-be-concerned-about-blood-pressure.html",
+      "category": "Blood Pressure & Heart Health",
+      "metaDescription": "One unusual blood-pressure reading can be unsettling.",
+      "seoTitle": "When Should I Be Concerned About Blood Pressure? | GP Guide",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Sambo Luon",
+          "url": "doctors/dr-sambo-luon.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — High blood pressure",
+          "url": "https://www.healthdirect.gov.au/amp/article/high-blood-pressure-hypertension"
+        },
+        {
+          "label": "Heart Foundation — Heart Health Checks",
+          "url": "https://www.heartfoundation.org.au/your-heart/heart-health-checks"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "blood pressure",
+        "high blood pressure",
+        "hypertension",
+        "heart health",
+        "heart check",
+        "cholesterol",
+        "lipids",
+        "When Should I Be Concerned About Blood Pressure?"
+      ],
+      "clusterHub": "knowledge/heart.html"
+    },
+    {
+      "title": "Heart Health Checks",
+      "slug": "heart-health-checks",
+      "url": "knowledge/articles/heart-health-checks.html",
+      "category": "Blood Pressure & Heart Health",
+      "metaDescription": "Heart health involves more than an ECG or cholesterol number. A preventive GP assessment considers multiple risk factors together.",
+      "seoTitle": "Heart Health Checks | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        },
+        {
+          "label": "ECG (Electrocardiogram)",
+          "url": "services/ecg.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Sambo Luon",
+          "url": "doctors/dr-sambo-luon.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — High blood pressure",
+          "url": "https://www.healthdirect.gov.au/amp/article/high-blood-pressure-hypertension"
+        },
+        {
+          "label": "Heart Foundation — Heart Health Checks",
+          "url": "https://www.heartfoundation.org.au/your-heart/heart-health-checks"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "blood pressure",
+        "high blood pressure",
+        "hypertension",
+        "heart health",
+        "heart check",
+        "cholesterol",
+        "lipids",
+        "Heart Health Checks"
+      ],
+      "clusterHub": "knowledge/heart.html"
+    },
+    {
+      "title": "Cholesterol Explained",
+      "slug": "cholesterol-explained",
+      "url": "knowledge/articles/cholesterol-explained.html",
+      "category": "Blood Pressure & Heart Health",
+      "metaDescription": "Cholesterol results can be confusing because the report contains several numbers.",
+      "seoTitle": "Cholesterol Explained | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        },
+        {
+          "label": "Pathology",
+          "url": "services/pathology.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Sambo Luon",
+          "url": "doctors/dr-sambo-luon.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — High blood pressure",
+          "url": "https://www.healthdirect.gov.au/amp/article/high-blood-pressure-hypertension"
+        },
+        {
+          "label": "Heart Foundation — Heart Health Checks",
+          "url": "https://www.heartfoundation.org.au/your-heart/heart-health-checks"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "blood pressure",
+        "high blood pressure",
+        "hypertension",
+        "heart health",
+        "heart check",
+        "cholesterol",
+        "lipids",
+        "Cholesterol Explained"
+      ],
+      "clusterHub": "knowledge/heart.html"
+    },
+    {
+      "title": "Planning A Pregnancy",
+      "slug": "planning-a-pregnancy",
+      "url": "knowledge/articles/planning-a-pregnancy.html",
+      "category": "Pregnancy & Antenatal Care",
+      "metaDescription": "A pre-pregnancy appointment can identify health needs before conception.",
+      "seoTitle": "Planning A Pregnancy | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Antenatal & Postnatal Care",
+          "url": "services/antenatal-postnatal-care.html"
+        },
+        {
+          "label": "Pre-Pregnancy Care",
+          "url": "services/pre-pregnancy-care.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Debra Larkins",
+          "url": "doctors/dr-debra-larkins.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Planning a pregnancy",
+          "url": "https://www.healthdirect.gov.au/amp/article/planning-for-your-pregnancy"
+        },
+        {
+          "label": "Healthdirect — Maternity care in Australia",
+          "url": "https://www.healthdirect.gov.au/maternity-care-in-australia"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "pregnancy",
+        "antenatal",
+        "pregnant",
+        "first trimester",
+        "preconception",
+        "pregnancy appointment",
+        "maternity",
+        "Planning A Pregnancy"
+      ],
+      "clusterHub": "knowledge/pregnancy.html"
+    },
+    {
+      "title": "What Happens During Antenatal Care?",
+      "slug": "what-happens-during-antenatal-care",
+      "url": "knowledge/articles/what-happens-during-antenatal-care.html",
+      "category": "Pregnancy & Antenatal Care",
+      "metaDescription": "Antenatal care is a series of appointments designed to monitor the health of the pregnant person and baby, answer questions and identify concerns early.",
+      "seoTitle": "What Happens During Antenatal Care? | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Antenatal & Postnatal Care",
+          "url": "services/antenatal-postnatal-care.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Debra Larkins",
+          "url": "doctors/dr-debra-larkins.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Planning a pregnancy",
+          "url": "https://www.healthdirect.gov.au/amp/article/planning-for-your-pregnancy"
+        },
+        {
+          "label": "Healthdirect — Maternity care in Australia",
+          "url": "https://www.healthdirect.gov.au/maternity-care-in-australia"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "pregnancy",
+        "antenatal",
+        "pregnant",
+        "first trimester",
+        "preconception",
+        "pregnancy appointment",
+        "maternity",
+        "What Happens During Antenatal Care?"
+      ],
+      "clusterHub": "knowledge/pregnancy.html"
+    },
+    {
+      "title": "Your First Pregnancy GP Appointment",
+      "slug": "your-first-pregnancy-gp-appointment",
+      "url": "knowledge/articles/your-first-pregnancy-gp-appointment.html",
+      "category": "Pregnancy & Antenatal Care",
+      "metaDescription": "A first pregnancy visit is an opportunity to confirm next steps and ask questions.",
+      "seoTitle": "Your First Pregnancy GP Appointment | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Antenatal & Postnatal Care",
+          "url": "services/antenatal-postnatal-care.html"
+        },
+        {
+          "label": "Pre-Pregnancy Care",
+          "url": "services/pre-pregnancy-care.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Debra Larkins",
+          "url": "doctors/dr-debra-larkins.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Planning a pregnancy",
+          "url": "https://www.healthdirect.gov.au/amp/article/planning-for-your-pregnancy"
+        },
+        {
+          "label": "Healthdirect — Maternity care in Australia",
+          "url": "https://www.healthdirect.gov.au/maternity-care-in-australia"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "pregnancy",
+        "antenatal",
+        "pregnant",
+        "first trimester",
+        "preconception",
+        "pregnancy appointment",
+        "maternity",
+        "Your First Pregnancy GP Appointment"
+      ],
+      "clusterHub": "knowledge/pregnancy.html"
+    },
+    {
+      "title": "Healthy Weight Management",
+      "slug": "healthy-weight-management",
+      "url": "knowledge/articles/healthy-weight-management.html",
+      "category": "Weight & Healthy Lifestyle",
+      "metaDescription": "Weight and health are connected, but a number on the scale does not describe the whole person.",
+      "seoTitle": "Healthy Weight Management | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Sambo Luon",
+          "url": "doctors/dr-sambo-luon.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Weight loss and dieting",
+          "url": "https://www.healthdirect.gov.au/weight-loss-and-dieting"
+        },
+        {
+          "label": "Healthdirect — Weight management medicines",
+          "url": "https://www.healthdirect.gov.au/weight-loss-medicine"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "weight",
+        "weight management",
+        "healthy habits",
+        "lifestyle",
+        "obesity",
+        "exercise",
+        "healthy eating",
+        "Healthy Weight Management"
+      ],
+      "clusterHub": "knowledge/weight.html"
+    },
+    {
+      "title": "When Should I Speak To A GP About Weight?",
+      "slug": "when-should-i-speak-to-a-gp-about-weight",
+      "url": "knowledge/articles/when-should-i-speak-to-a-gp-about-weight.html",
+      "category": "Weight & Healthy Lifestyle",
+      "metaDescription": "You can raise weight concerns with a GP without waiting for a crisis or a particular body-mass-index result.",
+      "seoTitle": "When Should I Speak To A GP About Weight? | GP Guide",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Sambo Luon",
+          "url": "doctors/dr-sambo-luon.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Weight loss and dieting",
+          "url": "https://www.healthdirect.gov.au/weight-loss-and-dieting"
+        },
+        {
+          "label": "Healthdirect — Weight management medicines",
+          "url": "https://www.healthdirect.gov.au/weight-loss-medicine"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "weight",
+        "weight management",
+        "healthy habits",
+        "lifestyle",
+        "obesity",
+        "exercise",
+        "healthy eating",
+        "When Should I Speak To A GP About Weight?"
+      ],
+      "clusterHub": "knowledge/weight.html"
+    },
+    {
+      "title": "Understanding Healthy Lifestyle Changes",
+      "slug": "understanding-healthy-lifestyle-changes",
+      "url": "knowledge/articles/understanding-healthy-lifestyle-changes.html",
+      "category": "Weight & Healthy Lifestyle",
+      "metaDescription": "Health advice can feel overwhelming when it is presented as a long list of rules. The most useful changes are specific, achievable and revisited over time.",
+      "seoTitle": "Understanding Healthy Lifestyle Changes | GP Guide",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Sambo Luon",
+          "url": "doctors/dr-sambo-luon.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Weight loss and dieting",
+          "url": "https://www.healthdirect.gov.au/weight-loss-and-dieting"
+        },
+        {
+          "label": "Healthdirect — Weight management medicines",
+          "url": "https://www.healthdirect.gov.au/weight-loss-medicine"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "weight",
+        "weight management",
+        "healthy habits",
+        "lifestyle",
+        "obesity",
+        "exercise",
+        "healthy eating",
+        "Understanding Healthy Lifestyle Changes"
+      ],
+      "clusterHub": "knowledge/weight.html"
+    },
+    {
+      "title": "Why Am I Always Tired?",
+      "slug": "why-am-i-always-tired",
+      "url": "knowledge/articles/why-am-i-always-tired.html",
+      "category": "Sleep & Fatigue",
+      "metaDescription": "Feeling tired from time to time is common, but ongoing fatigue that does not improve with rest can be frustrating and may deserve assessment.",
+      "seoTitle": "Why Am I Always Tired? | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        },
+        {
+          "label": "Iron Infusions",
+          "url": "services/iron-infusions.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Nirupa Sivathasan",
+          "url": "doctors/dr-nirupa-sivathasan.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Fatigue",
+          "url": "https://www.healthdirect.gov.au/fatigue"
+        },
+        {
+          "label": "Healthdirect — Sleep apnoea",
+          "url": "https://www.healthdirect.gov.au/obstructive-sleep-apnoea"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "sleep",
+        "fatigue",
+        "tired",
+        "insomnia",
+        "snoring",
+        "sleep apnoea",
+        "sleep problem",
+        "Why Am I Always Tired?"
+      ],
+      "clusterHub": "knowledge/sleep.html"
+    },
+    {
+      "title": "Sleep Problems Explained",
+      "slug": "sleep-problems-explained",
+      "url": "knowledge/articles/sleep-problems-explained.html",
+      "category": "Sleep & Fatigue",
+      "metaDescription": "Sleep difficulties include more than not falling asleep.",
+      "seoTitle": "Sleep Problems Explained | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Nirupa Sivathasan",
+          "url": "doctors/dr-nirupa-sivathasan.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Fatigue",
+          "url": "https://www.healthdirect.gov.au/fatigue"
+        },
+        {
+          "label": "Healthdirect — Sleep apnoea",
+          "url": "https://www.healthdirect.gov.au/obstructive-sleep-apnoea"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "sleep",
+        "fatigue",
+        "tired",
+        "insomnia",
+        "snoring",
+        "sleep apnoea",
+        "sleep problem",
+        "Sleep Problems Explained"
+      ],
+      "clusterHub": "knowledge/sleep.html"
+    },
+    {
+      "title": "When Should I Speak To A GP About Sleep?",
+      "slug": "when-should-i-speak-to-a-gp-about-sleep",
+      "url": "knowledge/articles/when-should-i-speak-to-a-gp-about-sleep.html",
+      "category": "Sleep & Fatigue",
+      "metaDescription": "Not every restless night needs an appointment.",
+      "seoTitle": "When Should I Speak To A GP About Sleep? | GP Guide",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Nirupa Sivathasan",
+          "url": "doctors/dr-nirupa-sivathasan.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Fatigue",
+          "url": "https://www.healthdirect.gov.au/fatigue"
+        },
+        {
+          "label": "Healthdirect — Sleep apnoea",
+          "url": "https://www.healthdirect.gov.au/obstructive-sleep-apnoea"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "sleep",
+        "fatigue",
+        "tired",
+        "insomnia",
+        "snoring",
+        "sleep apnoea",
+        "sleep problem",
+        "When Should I Speak To A GP About Sleep?"
+      ],
+      "clusterHub": "knowledge/sleep.html"
+    },
+    {
+      "title": "ADHD Assessment Pathways",
+      "slug": "adhd-assessment-pathways",
+      "url": "knowledge/articles/adhd-assessment-pathways.html",
+      "category": "ADHD & Neurodiversity",
+      "metaDescription": "Questions about ADHD may begin with difficulties at school, work or home.",
+      "seoTitle": "ADHD Assessment Pathways | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Mental Health",
+          "url": "services/mental-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Sumita Singh",
+          "url": "doctors/dr-sumita-singh.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — ADHD",
+          "url": "https://www.healthdirect.gov.au/attention-deficit-disorder-add-or-adhd"
+        },
+        {
+          "label": "Australian ADHD guideline — Assessment and diagnosis",
+          "url": "https://adhdguideline.aadpa.com.au/diagnosis/"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "ADHD",
+        "attention deficit",
+        "neurodiversity",
+        "referral",
+        "assessment",
+        "inattention",
+        "impulsivity",
+        "ADHD Assessment Pathways"
+      ],
+      "clusterHub": "knowledge/adhd.html"
+    },
+    {
+      "title": "When Should I Seek ADHD Assessment?",
+      "slug": "when-should-i-seek-adhd-assessment",
+      "url": "knowledge/articles/when-should-i-seek-adhd-assessment.html",
+      "category": "ADHD & Neurodiversity",
+      "metaDescription": "Many people experience distraction or restlessness.",
+      "seoTitle": "When Should I Seek ADHD Assessment? | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Mental Health",
+          "url": "services/mental-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Sumita Singh",
+          "url": "doctors/dr-sumita-singh.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — ADHD",
+          "url": "https://www.healthdirect.gov.au/attention-deficit-disorder-add-or-adhd"
+        },
+        {
+          "label": "Australian ADHD guideline — Assessment and diagnosis",
+          "url": "https://adhdguideline.aadpa.com.au/diagnosis/"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "ADHD",
+        "attention deficit",
+        "neurodiversity",
+        "referral",
+        "assessment",
+        "inattention",
+        "impulsivity",
+        "When Should I Seek ADHD Assessment?"
+      ],
+      "clusterHub": "knowledge/adhd.html"
+    },
+    {
+      "title": "Understanding ADHD Referrals",
+      "slug": "understanding-adhd-referrals",
+      "url": "knowledge/articles/understanding-adhd-referrals.html",
+      "category": "ADHD & Neurodiversity",
+      "metaDescription": "A referral is a practical step towards assessment, not a confirmation that someone has ADHD.",
+      "seoTitle": "Understanding ADHD Referrals | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Mental Health",
+          "url": "services/mental-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Sumita Singh",
+          "url": "doctors/dr-sumita-singh.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — ADHD",
+          "url": "https://www.healthdirect.gov.au/attention-deficit-disorder-add-or-adhd"
+        },
+        {
+          "label": "Australian ADHD guideline — Assessment and diagnosis",
+          "url": "https://adhdguideline.aadpa.com.au/diagnosis/"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "ADHD",
+        "attention deficit",
+        "neurodiversity",
+        "referral",
+        "assessment",
+        "inattention",
+        "impulsivity",
+        "Understanding ADHD Referrals"
+      ],
+      "clusterHub": "knowledge/adhd.html"
+    },
+    {
+      "title": "Menopause Symptoms Explained",
+      "slug": "menopause-symptoms-explained",
+      "url": "knowledge/articles/menopause-symptoms-explained.html",
+      "category": "Menopause & Midlife Health",
+      "metaDescription": "Menopause is a natural stage of life, but symptoms can interfere with sleep, work and wellbeing.",
+      "seoTitle": "Menopause Symptoms Explained | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Women's Health",
+          "url": "services/womens-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Sumita Singh",
+          "url": "doctors/dr-sumita-singh.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Menopausal hormone therapy",
+          "url": "https://www.healthdirect.gov.au/hormone-replacement-therapy"
+        },
+        {
+          "label": "Australian Government — Menopause treatment options",
+          "url": "https://www.health.gov.au/perimenopause/management-and-support/treatment-options"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "menopause",
+        "perimenopause",
+        "HRT",
+        "MHT",
+        "hormone therapy",
+        "hot flushes",
+        "night sweats",
+        "Menopause Symptoms Explained"
+      ],
+      "clusterHub": "knowledge/menopause.html"
+    },
+    {
+      "title": "HRT Discussions With Your GP",
+      "slug": "hrt-discussions-with-your-gp",
+      "url": "knowledge/articles/hrt-discussions-with-your-gp.html",
+      "category": "Menopause & Midlife Health",
+      "metaDescription": "Menopausal hormone therapy, sometimes called HRT, may help with troublesome menopausal symptoms.",
+      "seoTitle": "HRT Discussions With Your GP | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Women's Health",
+          "url": "services/womens-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Sumita Singh",
+          "url": "doctors/dr-sumita-singh.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Menopausal hormone therapy",
+          "url": "https://www.healthdirect.gov.au/hormone-replacement-therapy"
+        },
+        {
+          "label": "Australian Government — Menopause treatment options",
+          "url": "https://www.health.gov.au/perimenopause/management-and-support/treatment-options"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "menopause",
+        "perimenopause",
+        "HRT",
+        "MHT",
+        "hormone therapy",
+        "hot flushes",
+        "night sweats",
+        "HRT Discussions With Your GP"
+      ],
+      "clusterHub": "knowledge/menopause.html"
+    },
+    {
+      "title": "Mental Health & Menopause",
+      "slug": "mental-health-and-menopause",
+      "url": "knowledge/articles/mental-health-and-menopause.html",
+      "category": "Menopause & Midlife Health",
+      "metaDescription": "Mood changes during midlife can be confusing, particularly when they happen alongside disrupted sleep and physical menopausal symptoms.",
+      "seoTitle": "Mental Health & Menopause | Woolloongabba Medical Centre",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Women's Health",
+          "url": "services/womens-health.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Sumita Singh",
+          "url": "doctors/dr-sumita-singh.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect — Menopausal hormone therapy",
+          "url": "https://www.healthdirect.gov.au/hormone-replacement-therapy"
+        },
+        {
+          "label": "Australian Government — Menopause treatment options",
+          "url": "https://www.health.gov.au/perimenopause/management-and-support/treatment-options"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft — independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "menopause",
+        "perimenopause",
+        "HRT",
+        "MHT",
+        "hormone therapy",
+        "hot flushes",
+        "night sweats",
+        "Mental Health & Menopause"
+      ],
+      "clusterHub": "knowledge/menopause.html"
+    },
+    {
+      "title": "Understanding Your Cardiovascular Risk",
+      "slug": "understanding-your-cardiovascular-risk",
+      "url": "knowledge/articles/understanding-your-cardiovascular-risk.html",
+      "category": "Blood Pressure & Heart Health",
+      "metaDescription": "What does your five-year heart attack or stroke risk mean? Learn how Australian GPs assess cardiovascular risk and when to arrange a heart health review.",
+      "seoTitle": "Understanding Cardiovascular Risk | Woolloongabba GP",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "Common Symptoms and Situations",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "What Happens at the Appointment?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Preventive Healthcare",
+          "url": "services/preventive-healthcare.html"
+        },
+        {
+          "label": "ECG (Electrocardiogram)",
+          "url": "services/ecg.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Sambo Luon",
+          "url": "doctors/dr-sambo-luon.html"
+        },
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Heart Foundation - Australian CVD risk guideline",
+          "url": "https://www.heartfoundation.org.au/for-professionals/guideline-for-managing-cvd"
+        },
+        {
+          "label": "Healthdirect - Should I be tested for heart disease?",
+          "url": "https://www.healthdirect.gov.au/amp/article/should-i-be-tested-for-heart-disease"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft - independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "cardiovascular risk",
+        "cvd risk",
+        "5 year cardiovascular risk",
+        "five year heart risk",
+        "heart attack risk",
+        "stroke risk",
+        "heart disease prevention",
+        "aus cvd risk calculator",
+        "heart health check",
+        "cholesterol blood pressure diabetes",
+        "Understanding Your Cardiovascular Risk"
+      ],
+      "clusterHub": "knowledge/heart.html"
+    },
+    {
+      "title": "Understanding Neck Pain",
+      "slug": "understanding-neck-pain",
+      "url": "knowledge/articles/understanding-neck-pain.html",
+      "category": "Pain & Musculoskeletal Health",
+      "metaDescription": "Neck pain and stiffness are common. Understand possible causes, when to see a GP and which warning signs need urgent assessment in Brisbane.",
+      "seoTitle": "Neck Pain: When to See a GP | Woolloongabba",
+      "outline": [
+        "Introduction",
+        "What Is It?",
+        "Should I Be Concerned?",
+        "Common Symptoms and Situations",
+        "When Should I Seek Medical Advice?",
+        "How Can a GP Help?",
+        "What Happens at the Appointment?",
+        "Frequently Asked Questions",
+        "Related Services",
+        "Related Practitioners",
+        "Trusted Australian Resources",
+        "Related Knowledge Centre Guides",
+        "Book Appointment CTA"
+      ],
+      "relatedServices": [
+        {
+          "label": "Family Health",
+          "url": "services/family-health.html"
+        },
+        {
+          "label": "Allied Health",
+          "url": "services/allied-health.html"
+        },
+        {
+          "label": "Radiology",
+          "url": "services/radiology.html"
+        }
+      ],
+      "relatedPractitioners": [
+        {
+          "name": "Dr Tanya Goodwill",
+          "url": "doctors/dr-tanya-goodwill.html"
+        },
+        {
+          "name": "Dr Kooshyar Karimi",
+          "url": "doctors/dr-kooshyar-karimi.html"
+        }
+      ],
+      "authoritativeSources": [
+        {
+          "label": "Healthdirect - Neck pain",
+          "url": "https://www.healthdirect.gov.au/neck-pain"
+        },
+        {
+          "label": "Healthdirect - Back pain",
+          "url": "https://www.healthdirect.gov.au/back-pain"
+        }
+      ],
+      "status": "clinical_review",
+      "clinicalReviewStatus": "Editorial draft - independent clinical review required before deployment",
+      "editorialRevisionDate": "2026-10-09",
+      "clinicalApprovedBy": null,
+      "indexedTerms": [
+        "neck pain",
+        "neck stiffness",
+        "stiff neck",
+        "neck strain",
+        "cervical pain",
+        "pinched nerve neck",
+        "neck pain headaches",
+        "shoulder and neck pain",
+        "when to see gp for neck pain",
+        "neck after injury",
+        "Understanding Neck Pain"
+      ],
+      "clusterHub": "knowledge/pain.html"
+    }
+  ],
+  "releaseStatus": "clinical_review_required",
+  "editorialReleaseDate": "2026-10-09"
+}

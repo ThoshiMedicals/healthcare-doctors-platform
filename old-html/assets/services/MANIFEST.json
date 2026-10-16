@@ -1,0 +1,60 @@
+{
+  "schema": "wmc.institutional-image-category.v1",
+  "name": "Service Images",
+  "category": "services",
+  "publicationPolicy": "Original verified authentic imagery only. Do not copy legacy visuals into this folder without manual sign-off.",
+  "status": "catalogue_only_no_new_approved_photographs",
+  "cropStandards": [
+    "4:3 editorial",
+    "3:2 feature",
+    "16:9 landing context"
+  ],
+  "cropRule": "Show the truthful procedure, environment or equipment without implying unavailable services or real-clinic interiors.",
+  "styleRule": "Authentic on-site patient-consented photography or clearly licensed general editorial imagery only where context is honest.",
+  "existingProductionReferences": [
+    {
+      "id": "hotdoc-app-booking",
+      "path": "assets/hotdoc-app-booking.webp",
+      "sourceUrl": null,
+      "status": "outside_institutional_photography_approval"
+    },
+    {
+      "id": "hotdoc-app-poster",
+      "path": "assets/hotdoc-app-poster.webp",
+      "sourceUrl": null,
+      "status": "outside_institutional_photography_approval"
+    },
+    {
+      "id": "hotdoc-booking-interface",
+      "path": "assets/hotdoc-booking-interface.webp",
+      "sourceUrl": null,
+      "status": "outside_institutional_photography_approval"
+    },
+    {
+      "id": "hotdoc-booking-lifestyle",
+      "path": "assets/hotdoc-booking-lifestyle.webp",
+      "sourceUrl": null,
+      "status": "legacy_frozen_production_use_provenance_pending"
+    },
+    {
+      "id": "hotdoc-bookings-poster",
+      "path": "assets/hotdoc-bookings-poster.webp",
+      "sourceUrl": null,
+      "status": "outside_institutional_photography_approval"
+    },
+    {
+      "id": "hotdoc-download-qr",
+      "path": "assets/hotdoc-download-qr.png",
+      "sourceUrl": null,
+      "status": "outside_institutional_photography_approval"
+    },
+    {
+      "id": "new-patients-welcome",
+      "path": "assets/new-patients-welcome.webp",
+      "sourceUrl": null,
+      "status": "legacy_frozen_production_use_provenance_pending"
+    }
+  ],
+  "approvedNewLibraryFiles": [],
+  "missingOrUnverified": "No authentic locally supplied service or procedure photography verified. Existing HotDoc screenshots/posters are collateral, not genuine clinic photographs."
+}

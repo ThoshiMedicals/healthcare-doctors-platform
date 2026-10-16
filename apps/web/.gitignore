@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Build artifacts and caches
+.next/
+dist/
+out/
+coverage/
+.cache/
+.turbo/
+.parcel-cache/
+*.tsbuildinfo
+
+# Logs and temporary uploads
+logs/
+tmp/
+uploads/
+*.log
+
+# Secrets and local environment files
+.env
+.env.*
+!.env.example
+.env.local
+.env.production
+.env.development
+.env.test
+
+# Local database and generated image files
+.pgdata/
+storage/
+backups/

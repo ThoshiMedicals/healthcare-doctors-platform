@@ -1,0 +1,47 @@
+{
+  "requiredJourney": "Article → Relevant Service → Relevant Practitioner → Book Appointment",
+  "articleRules": [
+    "Every article links to at least one relevant service",
+    "Every article links to verified practitioner profiles with relevant publicly stated interests",
+    "Every article has an in-site HotDoc lightbox booking CTA",
+    "Every article links to related Knowledge Centre guides",
+    "Every article includes trusted external Australian information where relevant"
+  ],
+  "networkInboundFrom": [
+    "footer",
+    "join-our-team.html",
+    "story.html",
+    "patient-information.html",
+    "contact.html",
+    "community.html"
+  ],
+  "knowledgeCentrePrimaryNavigation": [
+    "services.html",
+    "team.html",
+    "patient-information.html",
+    "knowledge/index.html",
+    "updates/index.html",
+    "contact.html"
+  ],
+  "authorityClusterRule": {
+    "newStandaloneArticlesAllowed": false,
+    "clusterMinimumArticles": 2,
+    "bidirectionalClusterLinks": "Each article must link to every other guide in its topical cluster and to its existing category hub.",
+    "serviceReturnPath": "Each service page must offer relevant links back into the Knowledge Centre.",
+    "practitionerReturnPath": "Each practitioner page must offer verified, scope-relevant patient guide links.",
+    "longFormContent": "Preserve clinical detail; use existing On This Page navigation, clear headings, FAQ sections and section anchors.",
+    "approvalGate": "Show reviewedBy, lastReviewed and contentOwner only after actual owner submission, signed review and practice approval recorded outside the public website.",
+    "highIntentPages": [
+      "knowledge/articles/when-should-i-see-a-gp-about-headaches.html",
+      "knowledge/articles/migraine-or-headache-how-do-i-tell-the-difference.html",
+      "knowledge/articles/what-causes-frequent-headaches.html",
+      "knowledge/articles/when-should-i-be-concerned-about-pain.html",
+      "knowledge/articles/back-pain-when-should-i-see-a-gp.html",
+      "knowledge/articles/understanding-neck-pain.html",
+      "knowledge/articles/why-won-t-my-cough-go-away.html",
+      "knowledge/articles/what-causes-a-persistent-cough.html",
+      "knowledge/articles/sore-throat-when-should-i-see-a-doctor.html",
+      "knowledge/articles/is-my-sore-throat-viral-or-bacterial.html"
+    ]
+  }
+}

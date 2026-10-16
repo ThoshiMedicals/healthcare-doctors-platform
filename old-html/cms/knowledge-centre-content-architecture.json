@@ -1,0 +1,151 @@
+{
+  "title": "Healthcare Knowledge Centre",
+  "purpose": [
+    "Search visibility",
+    "Patient trust",
+    "Healthcare education",
+    "Service discovery",
+    "Practitioner discovery",
+    "Appointment conversion",
+    "Institutional authority"
+  ],
+  "journey": [
+    "Search",
+    "Trust",
+    "Service",
+    "Doctor",
+    "Booking"
+  ],
+  "hub": "knowledge/index.html",
+  "categories": [
+    {
+      "name": "Mental Health",
+      "slug": "mental-health",
+      "url": "knowledge/mental-health.html",
+      "primaryService": "services/mental-health.html",
+      "articleCount": 5
+    },
+    {
+      "name": "Women's Health",
+      "slug": "womens-health",
+      "url": "knowledge/womens-health.html",
+      "primaryService": "services/womens-health.html",
+      "articleCount": 6
+    },
+    {
+      "name": "Men's Health",
+      "slug": "mens-health",
+      "url": "knowledge/mens-health.html",
+      "primaryService": "services/mens-health.html",
+      "articleCount": 5
+    },
+    {
+      "name": "Children's Health",
+      "slug": "childrens-health",
+      "url": "knowledge/childrens-health.html",
+      "primaryService": "services/childrens-health.html",
+      "articleCount": 6
+    },
+    {
+      "name": "Preventive Healthcare",
+      "slug": "preventive-healthcare",
+      "url": "knowledge/preventive-healthcare.html",
+      "primaryService": "services/preventive-healthcare.html",
+      "articleCount": 5
+    },
+    {
+      "name": "Vaccinations",
+      "slug": "vaccinations",
+      "url": "knowledge/vaccinations.html",
+      "primaryService": "services/vaccinations.html",
+      "articleCount": 2
+    },
+    {
+      "name": "Healthy Ageing",
+      "slug": "healthy-ageing",
+      "url": "knowledge/healthy-ageing.html",
+      "primaryService": "services/preventive-healthcare.html",
+      "articleCount": 1
+    },
+    {
+      "name": "Chronic Disease Management",
+      "slug": "chronic-disease-management",
+      "url": "knowledge/chronic-disease-management.html",
+      "primaryService": "services/chronic-disease-care.html",
+      "articleCount": 5
+    },
+    {
+      "name": "Skin Health & Skin Cancer",
+      "slug": "skin-health-skin-cancer",
+      "url": "knowledge/skin-health-skin-cancer.html",
+      "primaryService": "services/skin-checks.html",
+      "articleCount": 4
+    },
+    {
+      "name": "Telehealth & Access To Care",
+      "slug": "telehealth-access-to-care",
+      "url": "knowledge/telehealth-access-to-care.html",
+      "primaryService": "services/telehealth.html",
+      "articleCount": 3
+    }
+  ],
+  "articleCount": 81,
+  "networkAuthorityPage": "medical-centre-network.html",
+  "homepageRule": "No Knowledge Centre section added to homepage; access is through primary navigation and institutional internal linking.",
+  "authorityExpansion": {
+    "count": 39,
+    "newClusters": [
+      {
+        "name": "Headache & Migraine",
+        "url": "knowledge/headache.html",
+        "articleCount": 4
+      },
+      {
+        "name": "Cough & Sore Throat",
+        "url": "knowledge/cough.html",
+        "articleCount": 5
+      },
+      {
+        "name": "Pain & Musculoskeletal Health",
+        "url": "knowledge/pain.html",
+        "articleCount": 5
+      },
+      {
+        "name": "Diabetes & Ongoing Care",
+        "url": "knowledge/diabetes.html",
+        "articleCount": 5
+      },
+      {
+        "name": "Blood Pressure & Heart Health",
+        "url": "knowledge/heart.html",
+        "articleCount": 5
+      },
+      {
+        "name": "Pregnancy & Antenatal Care",
+        "url": "knowledge/pregnancy.html",
+        "articleCount": 3
+      },
+      {
+        "name": "Weight & Healthy Lifestyle",
+        "url": "knowledge/weight.html",
+        "articleCount": 3
+      },
+      {
+        "name": "Sleep & Fatigue",
+        "url": "knowledge/sleep.html",
+        "articleCount": 3
+      },
+      {
+        "name": "ADHD & Neurodiversity",
+        "url": "knowledge/adhd.html",
+        "articleCount": 3
+      },
+      {
+        "name": "Menopause & Midlife Health",
+        "url": "knowledge/menopause.html",
+        "articleCount": 3
+      }
+    ],
+    "status": "clinical_approval_pending"
+  }
+}

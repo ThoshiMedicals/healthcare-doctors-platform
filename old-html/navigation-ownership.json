@@ -1,0 +1,3743 @@
+{
+  "version": "1.0.0",
+  "baseUrl": "https://gabbamedicalcentre.com.au/",
+  "sections": [
+    {
+      "key": "services",
+      "label": "Services",
+      "hub": "services.html"
+    },
+    {
+      "key": "team",
+      "label": "Our Team",
+      "hub": "team.html"
+    },
+    {
+      "key": "about",
+      "label": "About Us",
+      "hub": "about-us.html"
+    },
+    {
+      "key": "patient-info",
+      "label": "Patient Information",
+      "hub": "patient-information.html"
+    },
+    {
+      "key": "knowledge",
+      "label": "Knowledge Centre",
+      "hub": "knowledge/index.html"
+    },
+    {
+      "key": "updates",
+      "label": "Updates",
+      "hub": "updates/index.html"
+    },
+    {
+      "key": "contact",
+      "label": "Contact",
+      "hub": "contact.html"
+    }
+  ],
+  "pages": {
+    "404.html": {
+      "section": null,
+      "breadcrumbs": []
+    },
+    "about-us.html": {
+      "section": "about",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "About Us",
+          "path": "about-us.html"
+        }
+      ]
+    },
+    "access-parking.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Access & Parking",
+          "path": "access-parking.html"
+        }
+      ]
+    },
+    "accessibility.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Accessibility",
+          "path": "accessibility.html"
+        }
+      ]
+    },
+    "after-hours-care.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "After Hours Care",
+          "path": "after-hours-care.html"
+        }
+      ]
+    },
+    "agpal-accreditation.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Why AGPAL Accreditation Matters",
+          "path": "agpal-accreditation.html"
+        }
+      ]
+    },
+    "ai-transcription-consent.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Practice Information",
+          "path": "practice-information.html"
+        },
+        {
+          "label": "AI-Assisted Consultation Notes",
+          "path": "ai-transcription-consent.html"
+        }
+      ]
+    },
+    "book-appointment.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Book an Appointment",
+          "path": "book-appointment.html"
+        }
+      ]
+    },
+    "bulk-billing.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Bulk Billing",
+          "path": "bulk-billing.html"
+        }
+      ]
+    },
+    "community.html": {
+      "section": "about",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "About Us",
+          "path": "about-us.html"
+        },
+        {
+          "label": "Our Community",
+          "path": "community.html"
+        }
+      ]
+    },
+    "contact.html": {
+      "section": "contact",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Contact",
+          "path": "contact.html"
+        }
+      ]
+    },
+    "doctors/dr-anand-singh.html": {
+      "section": "team",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Meet Our Team",
+          "path": "team.html"
+        },
+        {
+          "label": "Dr Anand Singh",
+          "path": "doctors/dr-anand-singh.html"
+        }
+      ]
+    },
+    "doctors/dr-debra-larkins.html": {
+      "section": "team",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Meet Our Team",
+          "path": "team.html"
+        },
+        {
+          "label": "Dr Debra Larkins",
+          "path": "doctors/dr-debra-larkins.html"
+        }
+      ]
+    },
+    "doctors/dr-gemunu-suresh-ranawake.html": {
+      "section": "team",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Meet Our Team",
+          "path": "team.html"
+        },
+        {
+          "label": "Dr Gemunu Suresh Ranawake",
+          "path": "doctors/dr-gemunu-suresh-ranawake.html"
+        }
+      ]
+    },
+    "doctors/dr-kooshyar-karimi.html": {
+      "section": "team",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Meet Our Team",
+          "path": "team.html"
+        },
+        {
+          "label": "Dr Kooshyar Karimi",
+          "path": "doctors/dr-kooshyar-karimi.html"
+        }
+      ]
+    },
+    "doctors/dr-mary-abadir.html": {
+      "section": "team",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Meet Our Team",
+          "path": "team.html"
+        },
+        {
+          "label": "Dr Mary Abadir",
+          "path": "doctors/dr-mary-abadir.html"
+        }
+      ]
+    },
+    "doctors/dr-nirupa-sivathasan.html": {
+      "section": "team",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Meet Our Team",
+          "path": "team.html"
+        },
+        {
+          "label": "Dr Nirupa Sivathasan",
+          "path": "doctors/dr-nirupa-sivathasan.html"
+        }
+      ]
+    },
+    "doctors/dr-sambo-luon.html": {
+      "section": "team",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Meet Our Team",
+          "path": "team.html"
+        },
+        {
+          "label": "Dr Sambo Luon",
+          "path": "doctors/dr-sambo-luon.html"
+        }
+      ]
+    },
+    "doctors/dr-steven-chang.html": {
+      "section": "team",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Meet Our Team",
+          "path": "team.html"
+        },
+        {
+          "label": "Dr Steven Chang",
+          "path": "doctors/dr-steven-chang.html"
+        }
+      ]
+    },
+    "doctors/dr-sumita-singh.html": {
+      "section": "team",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Meet Our Team",
+          "path": "team.html"
+        },
+        {
+          "label": "Dr Sumita Singh",
+          "path": "doctors/dr-sumita-singh.html"
+        }
+      ]
+    },
+    "doctors/dr-tanya-goodwill.html": {
+      "section": "team",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Meet Our Team",
+          "path": "team.html"
+        },
+        {
+          "label": "Dr Tanya Goodwill",
+          "path": "doctors/dr-tanya-goodwill.html"
+        }
+      ]
+    },
+    "doctors/dr-usman-gul.html": {
+      "section": "team",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Meet Our Team",
+          "path": "team.html"
+        },
+        {
+          "label": "Dr Usman Gul",
+          "path": "doctors/dr-usman-gul.html"
+        }
+      ]
+    },
+    "doctors/dr-wasantha-hettiarchchi.html": {
+      "section": "team",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Meet Our Team",
+          "path": "team.html"
+        },
+        {
+          "label": "Dr Wasantha Hettiarchchi",
+          "path": "doctors/dr-wasantha-hettiarchchi.html"
+        }
+      ]
+    },
+    "doctors/mr-samuel-stafford.html": {
+      "section": "team",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Meet Our Team",
+          "path": "team.html"
+        },
+        {
+          "label": "Mr Samuel Stafford",
+          "path": "doctors/mr-samuel-stafford.html"
+        }
+      ]
+    },
+    "faqs.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Healthcare FAQ Hub",
+          "path": "faqs.html"
+        }
+      ]
+    },
+    "feedback-concerns.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Feedback & Complaints",
+          "path": "feedback-concerns.html"
+        }
+      ]
+    },
+    "fees-billing.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Fees & Billing",
+          "path": "fees-billing.html"
+        }
+      ]
+    },
+    "index.html": {
+      "section": null,
+      "breadcrumbs": []
+    },
+    "infection-prevention-control.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Infection Prevention & Control",
+          "path": "infection-prevention-control.html"
+        }
+      ]
+    },
+    "join-our-team.html": {
+      "section": "about",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "About Us",
+          "path": "about-us.html"
+        },
+        {
+          "label": "Careers",
+          "path": "join-our-team.html"
+        }
+      ]
+    },
+    "knowledge/adhd.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "ADHD & Neurodiversity",
+          "path": "knowledge/adhd.html"
+        }
+      ]
+    },
+    "knowledge/articles/adhd-assessment-pathways.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "ADHD & Neurodiversity",
+          "path": "knowledge/adhd.html"
+        },
+        {
+          "label": "ADHD Assessment Pathways",
+          "path": "knowledge/articles/adhd-assessment-pathways.html"
+        }
+      ]
+    },
+    "knowledge/articles/anxiety-vs-stress-what-is-the-difference.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Mental Health",
+          "path": "knowledge/mental-health.html"
+        },
+        {
+          "label": "Anxiety vs Stress: What Is The Difference?",
+          "path": "knowledge/articles/anxiety-vs-stress-what-is-the-difference.html"
+        }
+      ]
+    },
+    "knowledge/articles/back-pain-when-should-i-see-a-gp.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Pain & Musculoskeletal Health",
+          "path": "knowledge/pain.html"
+        },
+        {
+          "label": "Back Pain: When Should I See A GP?",
+          "path": "knowledge/articles/back-pain-when-should-i-see-a-gp.html"
+        }
+      ]
+    },
+    "knowledge/articles/blood-pressure-explained.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Chronic Disease Management",
+          "path": "knowledge/chronic-disease-management.html"
+        },
+        {
+          "label": "Blood Pressure Explained",
+          "path": "knowledge/articles/blood-pressure-explained.html"
+        }
+      ]
+    },
+    "knowledge/articles/breast-health-changes-screening-when-to-see-a-gp.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Women's Health",
+          "path": "knowledge/womens-health.html"
+        },
+        {
+          "label": "Breast Health: Changes, Screening & When To See A GP",
+          "path": "knowledge/articles/breast-health-changes-screening-when-to-see-a-gp.html"
+        }
+      ]
+    },
+    "knowledge/articles/childhood-vaccinations-explained.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Children's Health",
+          "path": "knowledge/childrens-health.html"
+        },
+        {
+          "label": "Childhood Vaccinations Explained",
+          "path": "knowledge/articles/childhood-vaccinations-explained.html"
+        }
+      ]
+    },
+    "knowledge/articles/childrens-preventive-healthcare.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Children's Health",
+          "path": "knowledge/childrens-health.html"
+        },
+        {
+          "label": "Children's Preventive Healthcare",
+          "path": "knowledge/articles/childrens-preventive-healthcare.html"
+        }
+      ]
+    },
+    "knowledge/articles/cholesterol-explained.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Blood Pressure & Heart Health",
+          "path": "knowledge/heart.html"
+        },
+        {
+          "label": "Cholesterol Explained",
+          "path": "knowledge/articles/cholesterol-explained.html"
+        }
+      ]
+    },
+    "knowledge/articles/chronic-pain-when-should-i-seek-help.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Pain & Musculoskeletal Health",
+          "path": "knowledge/pain.html"
+        },
+        {
+          "label": "Chronic Pain: When Should I Seek Help?",
+          "path": "knowledge/articles/chronic-pain-when-should-i-seek-help.html"
+        }
+      ]
+    },
+    "knowledge/articles/common-childhood-illnesses.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Children's Health",
+          "path": "knowledge/childrens-health.html"
+        },
+        {
+          "label": "Common Childhood Illnesses",
+          "path": "knowledge/articles/common-childhood-illnesses.html"
+        }
+      ]
+    },
+    "knowledge/articles/diabetes-care-plans-explained.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Diabetes & Ongoing Care",
+          "path": "knowledge/diabetes.html"
+        },
+        {
+          "label": "Diabetes Care Plans Explained",
+          "path": "knowledge/articles/diabetes-care-plans-explained.html"
+        }
+      ]
+    },
+    "knowledge/articles/diabetes-monitoring-explained.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Diabetes & Ongoing Care",
+          "path": "knowledge/diabetes.html"
+        },
+        {
+          "label": "Diabetes Monitoring Explained",
+          "path": "knowledge/articles/diabetes-monitoring-explained.html"
+        }
+      ]
+    },
+    "knowledge/articles/health-assessments-explained.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Preventive Healthcare",
+          "path": "knowledge/preventive-healthcare.html"
+        },
+        {
+          "label": "Health Assessments Explained",
+          "path": "knowledge/articles/health-assessments-explained.html"
+        }
+      ]
+    },
+    "knowledge/articles/health-checks-every-man-should-consider.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Men's Health",
+          "path": "knowledge/mens-health.html"
+        },
+        {
+          "label": "Health Checks Every Man Should Consider",
+          "path": "knowledge/articles/health-checks-every-man-should-consider.html"
+        }
+      ]
+    },
+    "knowledge/articles/healthy-ageing-for-men.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Men's Health",
+          "path": "knowledge/mens-health.html"
+        },
+        {
+          "label": "Healthy Ageing For Men",
+          "path": "knowledge/articles/healthy-ageing-for-men.html"
+        }
+      ]
+    },
+    "knowledge/articles/healthy-ageing-prevention-falls-vaccination-reviews.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Healthy Ageing",
+          "path": "knowledge/healthy-ageing.html"
+        },
+        {
+          "label": "Healthy Ageing: Prevention, Falls, Vaccination & Reviews",
+          "path": "knowledge/articles/healthy-ageing-prevention-falls-vaccination-reviews.html"
+        }
+      ]
+    },
+    "knowledge/articles/healthy-weight-management.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Weight & Healthy Lifestyle",
+          "path": "knowledge/weight.html"
+        },
+        {
+          "label": "Healthy Weight Management",
+          "path": "knowledge/articles/healthy-weight-management.html"
+        }
+      ]
+    },
+    "knowledge/articles/heart-health-checks.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Blood Pressure & Heart Health",
+          "path": "knowledge/heart.html"
+        },
+        {
+          "label": "Heart Health Checks",
+          "path": "knowledge/articles/heart-health-checks.html"
+        }
+      ]
+    },
+    "knowledge/articles/heart-health-for-men.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Men's Health",
+          "path": "knowledge/mens-health.html"
+        },
+        {
+          "label": "Heart Health For Men",
+          "path": "knowledge/articles/heart-health-for-men.html"
+        }
+      ]
+    },
+    "knowledge/articles/high-blood-pressure-explained.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Blood Pressure & Heart Health",
+          "path": "knowledge/heart.html"
+        },
+        {
+          "label": "High Blood Pressure Explained",
+          "path": "knowledge/articles/high-blood-pressure-explained.html"
+        }
+      ]
+    },
+    "knowledge/articles/how-can-a-gp-support-depression.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Mental Health",
+          "path": "knowledge/mental-health.html"
+        },
+        {
+          "label": "How Can A GP Help With Depression?",
+          "path": "knowledge/articles/how-can-a-gp-support-depression.html"
+        }
+      ]
+    },
+    "knowledge/articles/how-telehealth-works.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Telehealth & Access To Care",
+          "path": "knowledge/telehealth-access-to-care.html"
+        },
+        {
+          "label": "How Telehealth Works",
+          "path": "knowledge/articles/how-telehealth-works.html"
+        }
+      ]
+    },
+    "knowledge/articles/hrt-discussions-with-your-gp.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Menopause & Midlife Health",
+          "path": "knowledge/menopause.html"
+        },
+        {
+          "label": "HRT Discussions With Your GP",
+          "path": "knowledge/articles/hrt-discussions-with-your-gp.html"
+        }
+      ]
+    },
+    "knowledge/articles/influenza-vaccination-who-should-consider-it.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Vaccinations",
+          "path": "knowledge/vaccinations.html"
+        },
+        {
+          "label": "Influenza Vaccination: Who Should Consider It?",
+          "path": "knowledge/articles/influenza-vaccination-who-should-consider-it.html"
+        }
+      ]
+    },
+    "knowledge/articles/is-my-sore-throat-viral-or-bacterial.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Cough & Sore Throat",
+          "path": "knowledge/cough.html"
+        },
+        {
+          "label": "Is My Sore Throat Viral Or Bacterial?",
+          "path": "knowledge/articles/is-my-sore-throat-viral-or-bacterial.html"
+        }
+      ]
+    },
+    "knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Chronic Disease Management",
+          "path": "knowledge/chronic-disease-management.html"
+        },
+        {
+          "label": "Living With Diabetes: GP Monitoring & Long-Term Management",
+          "path": "knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html"
+        }
+      ]
+    },
+    "knowledge/articles/living-with-diabetes.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Diabetes & Ongoing Care",
+          "path": "knowledge/diabetes.html"
+        },
+        {
+          "label": "Living With Diabetes",
+          "path": "knowledge/articles/living-with-diabetes.html"
+        }
+      ]
+    },
+    "knowledge/articles/managing-asthma.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Chronic Disease Management",
+          "path": "knowledge/chronic-disease-management.html"
+        },
+        {
+          "label": "Managing Asthma",
+          "path": "knowledge/articles/managing-asthma.html"
+        }
+      ]
+    },
+    "knowledge/articles/managing-winter-respiratory-illness.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Children's Health",
+          "path": "knowledge/childrens-health.html"
+        },
+        {
+          "label": "Managing Winter Respiratory Illness",
+          "path": "knowledge/articles/managing-winter-respiratory-illness.html"
+        }
+      ]
+    },
+    "knowledge/articles/menopause-symptoms-explained.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Menopause & Midlife Health",
+          "path": "knowledge/menopause.html"
+        },
+        {
+          "label": "Menopause Symptoms Explained",
+          "path": "knowledge/articles/menopause-symptoms-explained.html"
+        }
+      ]
+    },
+    "knowledge/articles/mental-health-and-menopause.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Menopause & Midlife Health",
+          "path": "knowledge/menopause.html"
+        },
+        {
+          "label": "Mental Health & Menopause",
+          "path": "knowledge/articles/mental-health-and-menopause.html"
+        }
+      ]
+    },
+    "knowledge/articles/migraine-or-headache-how-do-i-tell-the-difference.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Headache & Migraine",
+          "path": "knowledge/headache.html"
+        },
+        {
+          "label": "Migraine Or Headache: How Do I Tell The Difference?",
+          "path": "knowledge/articles/migraine-or-headache-how-do-i-tell-the-difference.html"
+        }
+      ]
+    },
+    "knowledge/articles/planning-a-pregnancy.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Pregnancy & Antenatal Care",
+          "path": "knowledge/pregnancy.html"
+        },
+        {
+          "label": "Planning A Pregnancy",
+          "path": "knowledge/articles/planning-a-pregnancy.html"
+        }
+      ]
+    },
+    "knowledge/articles/preparing-for-your-childs-first-gp-appointment.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Children's Health",
+          "path": "knowledge/childrens-health.html"
+        },
+        {
+          "label": "Preparing For Your Child's First GP Appointment",
+          "path": "knowledge/articles/preparing-for-your-childs-first-gp-appointment.html"
+        }
+      ]
+    },
+    "knowledge/articles/preventing-diabetes-complications.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Diabetes & Ongoing Care",
+          "path": "knowledge/diabetes.html"
+        },
+        {
+          "label": "Preventing Diabetes Complications",
+          "path": "knowledge/articles/preventing-diabetes-complications.html"
+        }
+      ]
+    },
+    "knowledge/articles/preventive-womens-healthcare.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Women's Health",
+          "path": "knowledge/womens-health.html"
+        },
+        {
+          "label": "Preventive Women's Healthcare",
+          "path": "knowledge/articles/preventive-womens-healthcare.html"
+        }
+      ]
+    },
+    "knowledge/articles/protecting-your-skin-from-the-queensland-sun.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Skin Health & Skin Cancer",
+          "path": "knowledge/skin-health-skin-cancer.html"
+        },
+        {
+          "label": "Protecting Your Skin From The Queensland Sun",
+          "path": "knowledge/articles/protecting-your-skin-from-the-queensland-sun.html"
+        }
+      ]
+    },
+    "knowledge/articles/sleep-problems-explained.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Sleep & Fatigue",
+          "path": "knowledge/sleep.html"
+        },
+        {
+          "label": "Sleep Problems Explained",
+          "path": "knowledge/articles/sleep-problems-explained.html"
+        }
+      ]
+    },
+    "knowledge/articles/sore-throat-when-should-i-see-a-doctor.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Cough & Sore Throat",
+          "path": "knowledge/cough.html"
+        },
+        {
+          "label": "Sore Throat: When Should I See A Doctor?",
+          "path": "knowledge/articles/sore-throat-when-should-i-see-a-doctor.html"
+        }
+      ]
+    },
+    "knowledge/articles/staying-healthy-as-you-age.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Preventive Healthcare",
+          "path": "knowledge/preventive-healthcare.html"
+        },
+        {
+          "label": "Staying Healthy As You Age",
+          "path": "knowledge/articles/staying-healthy-as-you-age.html"
+        }
+      ]
+    },
+    "knowledge/articles/telehealth-vs-face-to-face-appointments.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Telehealth & Access To Care",
+          "path": "knowledge/telehealth-access-to-care.html"
+        },
+        {
+          "label": "Telehealth vs Face-To-Face Appointments",
+          "path": "knowledge/articles/telehealth-vs-face-to-face-appointments.html"
+        }
+      ]
+    },
+    "knowledge/articles/travel-vaccinations-before-overseas-travel.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Vaccinations",
+          "path": "knowledge/vaccinations.html"
+        },
+        {
+          "label": "Travel Vaccinations Before Overseas Travel",
+          "path": "knowledge/articles/travel-vaccinations-before-overseas-travel.html"
+        }
+      ]
+    },
+    "knowledge/articles/understanding-adhd-referrals.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "ADHD & Neurodiversity",
+          "path": "knowledge/adhd.html"
+        },
+        {
+          "label": "Understanding ADHD Referrals",
+          "path": "knowledge/articles/understanding-adhd-referrals.html"
+        }
+      ]
+    },
+    "knowledge/articles/understanding-cholesterol.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Chronic Disease Management",
+          "path": "knowledge/chronic-disease-management.html"
+        },
+        {
+          "label": "Understanding Cholesterol",
+          "path": "knowledge/articles/understanding-cholesterol.html"
+        }
+      ]
+    },
+    "knowledge/articles/understanding-gp-chronic-disease-care-plans.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Chronic Disease Management",
+          "path": "knowledge/chronic-disease-management.html"
+        },
+        {
+          "label": "Understanding GP Chronic Disease Care Plans",
+          "path": "knowledge/articles/understanding-gp-chronic-disease-care-plans.html"
+        }
+      ]
+    },
+    "knowledge/articles/understanding-healthy-lifestyle-changes.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Weight & Healthy Lifestyle",
+          "path": "knowledge/weight.html"
+        },
+        {
+          "label": "Understanding Healthy Lifestyle Changes",
+          "path": "knowledge/articles/understanding-healthy-lifestyle-changes.html"
+        }
+      ]
+    },
+    "knowledge/articles/understanding-menopause.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Women's Health",
+          "path": "knowledge/womens-health.html"
+        },
+        {
+          "label": "Understanding Menopause",
+          "path": "knowledge/articles/understanding-menopause.html"
+        }
+      ]
+    },
+    "knowledge/articles/understanding-muscle-and-joint-pain.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Pain & Musculoskeletal Health",
+          "path": "knowledge/pain.html"
+        },
+        {
+          "label": "Understanding Muscle And Joint Pain",
+          "path": "knowledge/articles/understanding-muscle-and-joint-pain.html"
+        }
+      ]
+    },
+    "knowledge/articles/understanding-neck-pain.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Pain & Musculoskeletal Health",
+          "path": "knowledge/pain.html"
+        },
+        {
+          "label": "Understanding Neck Pain",
+          "path": "knowledge/articles/understanding-neck-pain.html"
+        }
+      ]
+    },
+    "knowledge/articles/understanding-perimenopause.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Women's Health",
+          "path": "knowledge/womens-health.html"
+        },
+        {
+          "label": "Understanding Perimenopause",
+          "path": "knowledge/articles/understanding-perimenopause.html"
+        }
+      ]
+    },
+    "knowledge/articles/understanding-prostate-health.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Men's Health",
+          "path": "knowledge/mens-health.html"
+        },
+        {
+          "label": "Understanding Prostate Health",
+          "path": "knowledge/articles/understanding-prostate-health.html"
+        }
+      ]
+    },
+    "knowledge/articles/understanding-skin-cancer-risks.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Skin Health & Skin Cancer",
+          "path": "knowledge/skin-health-skin-cancer.html"
+        },
+        {
+          "label": "Understanding Skin Cancer Risks",
+          "path": "knowledge/articles/understanding-skin-cancer-risks.html"
+        }
+      ]
+    },
+    "knowledge/articles/understanding-type-2-diabetes.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Diabetes & Ongoing Care",
+          "path": "knowledge/diabetes.html"
+        },
+        {
+          "label": "Understanding Type 2 Diabetes",
+          "path": "knowledge/articles/understanding-type-2-diabetes.html"
+        }
+      ]
+    },
+    "knowledge/articles/understanding-your-cardiovascular-risk.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Blood Pressure & Heart Health",
+          "path": "knowledge/heart.html"
+        },
+        {
+          "label": "Understanding Your Cardiovascular Risk",
+          "path": "knowledge/articles/understanding-your-cardiovascular-risk.html"
+        }
+      ]
+    },
+    "knowledge/articles/vaccinations-for-adults.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Preventive Healthcare",
+          "path": "knowledge/preventive-healthcare.html"
+        },
+        {
+          "label": "Vaccinations For Adults",
+          "path": "knowledge/articles/vaccinations-for-adults.html"
+        }
+      ]
+    },
+    "knowledge/articles/what-causes-a-persistent-cough.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Cough & Sore Throat",
+          "path": "knowledge/cough.html"
+        },
+        {
+          "label": "What Causes A Persistent Cough?",
+          "path": "knowledge/articles/what-causes-a-persistent-cough.html"
+        }
+      ]
+    },
+    "knowledge/articles/what-causes-frequent-headaches.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Headache & Migraine",
+          "path": "knowledge/headache.html"
+        },
+        {
+          "label": "What Causes Frequent Headaches?",
+          "path": "knowledge/articles/what-causes-frequent-headaches.html"
+        }
+      ]
+    },
+    "knowledge/articles/what-happens-during-a-mental-health-care-plan.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Mental Health",
+          "path": "knowledge/mental-health.html"
+        },
+        {
+          "label": "What Happens During A Mental Health Care Plan?",
+          "path": "knowledge/articles/what-happens-during-a-mental-health-care-plan.html"
+        }
+      ]
+    },
+    "knowledge/articles/what-happens-during-antenatal-care.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Pregnancy & Antenatal Care",
+          "path": "knowledge/pregnancy.html"
+        },
+        {
+          "label": "What Happens During Antenatal Care?",
+          "path": "knowledge/articles/what-happens-during-antenatal-care.html"
+        }
+      ]
+    },
+    "knowledge/articles/what-is-preventive-healthcare.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Preventive Healthcare",
+          "path": "knowledge/preventive-healthcare.html"
+        },
+        {
+          "label": "What Is Preventive Healthcare?",
+          "path": "knowledge/articles/what-is-preventive-healthcare.html"
+        }
+      ]
+    },
+    "knowledge/articles/when-can-i-use-telehealth.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Telehealth & Access To Care",
+          "path": "knowledge/telehealth-access-to-care.html"
+        },
+        {
+          "label": "When Can I Use Telehealth?",
+          "path": "knowledge/articles/when-can-i-use-telehealth.html"
+        }
+      ]
+    },
+    "knowledge/articles/when-is-a-headache-an-emergency.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Headache & Migraine",
+          "path": "knowledge/headache.html"
+        },
+        {
+          "label": "When Is A Headache An Emergency?",
+          "path": "knowledge/articles/when-is-a-headache-an-emergency.html"
+        }
+      ]
+    },
+    "knowledge/articles/when-should-a-child-with-a-cough-see-a-gp.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Cough & Sore Throat",
+          "path": "knowledge/cough.html"
+        },
+        {
+          "label": "When Should A Child With A Cough See A GP?",
+          "path": "knowledge/articles/when-should-a-child-with-a-cough-see-a-gp.html"
+        }
+      ]
+    },
+    "knowledge/articles/when-should-i-be-concerned-about-a-fever.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Children's Health",
+          "path": "knowledge/childrens-health.html"
+        },
+        {
+          "label": "When Should I Be Concerned About A Fever?",
+          "path": "knowledge/articles/when-should-i-be-concerned-about-a-fever.html"
+        }
+      ]
+    },
+    "knowledge/articles/when-should-i-be-concerned-about-blood-pressure.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Blood Pressure & Heart Health",
+          "path": "knowledge/heart.html"
+        },
+        {
+          "label": "When Should I Be Concerned About Blood Pressure?",
+          "path": "knowledge/articles/when-should-i-be-concerned-about-blood-pressure.html"
+        }
+      ]
+    },
+    "knowledge/articles/when-should-i-be-concerned-about-pain.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Pain & Musculoskeletal Health",
+          "path": "knowledge/pain.html"
+        },
+        {
+          "label": "When Should I Be Concerned About Pain?",
+          "path": "knowledge/articles/when-should-i-be-concerned-about-pain.html"
+        }
+      ]
+    },
+    "knowledge/articles/when-should-i-book-a-skin-check.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Skin Health & Skin Cancer",
+          "path": "knowledge/skin-health-skin-cancer.html"
+        },
+        {
+          "label": "When Should I Book A Skin Check?",
+          "path": "knowledge/articles/when-should-i-book-a-skin-check.html"
+        }
+      ]
+    },
+    "knowledge/articles/when-should-i-have-a-cervical-screening-test.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Women's Health",
+          "path": "knowledge/womens-health.html"
+        },
+        {
+          "label": "When Should I Have A Cervical Screening Test?",
+          "path": "knowledge/articles/when-should-i-have-a-cervical-screening-test.html"
+        }
+      ]
+    },
+    "knowledge/articles/when-should-i-see-a-gp-about-headaches.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Headache & Migraine",
+          "path": "knowledge/headache.html"
+        },
+        {
+          "label": "When Should I See A GP About Headaches?",
+          "path": "knowledge/articles/when-should-i-see-a-gp-about-headaches.html"
+        }
+      ]
+    },
+    "knowledge/articles/when-should-i-seek-adhd-assessment.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "ADHD & Neurodiversity",
+          "path": "knowledge/adhd.html"
+        },
+        {
+          "label": "When Should I Seek ADHD Assessment?",
+          "path": "knowledge/articles/when-should-i-seek-adhd-assessment.html"
+        }
+      ]
+    },
+    "knowledge/articles/when-should-i-seek-help-for-burnout.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Mental Health",
+          "path": "knowledge/mental-health.html"
+        },
+        {
+          "label": "When Should I Seek Help For Burnout?",
+          "path": "knowledge/articles/when-should-i-seek-help-for-burnout.html"
+        }
+      ]
+    },
+    "knowledge/articles/when-should-i-speak-to-a-gp-about-anxiety.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Mental Health",
+          "path": "knowledge/mental-health.html"
+        },
+        {
+          "label": "When Should I Speak To A GP About Anxiety?",
+          "path": "knowledge/articles/when-should-i-speak-to-a-gp-about-anxiety.html"
+        }
+      ]
+    },
+    "knowledge/articles/when-should-i-speak-to-a-gp-about-sleep.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Sleep & Fatigue",
+          "path": "knowledge/sleep.html"
+        },
+        {
+          "label": "When Should I Speak To A GP About Sleep?",
+          "path": "knowledge/articles/when-should-i-speak-to-a-gp-about-sleep.html"
+        }
+      ]
+    },
+    "knowledge/articles/when-should-i-speak-to-a-gp-about-weight.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Weight & Healthy Lifestyle",
+          "path": "knowledge/weight.html"
+        },
+        {
+          "label": "When Should I Speak To A GP About Weight?",
+          "path": "knowledge/articles/when-should-i-speak-to-a-gp-about-weight.html"
+        }
+      ]
+    },
+    "knowledge/articles/why-am-i-always-tired.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Sleep & Fatigue",
+          "path": "knowledge/sleep.html"
+        },
+        {
+          "label": "Why Am I Always Tired?",
+          "path": "knowledge/articles/why-am-i-always-tired.html"
+        }
+      ]
+    },
+    "knowledge/articles/why-preventive-healthcare-matters.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Men's Health",
+          "path": "knowledge/mens-health.html"
+        },
+        {
+          "label": "Why Preventive Healthcare Matters",
+          "path": "knowledge/articles/why-preventive-healthcare-matters.html"
+        }
+      ]
+    },
+    "knowledge/articles/why-regular-check-ups-matter.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Preventive Healthcare",
+          "path": "knowledge/preventive-healthcare.html"
+        },
+        {
+          "label": "Why Regular Check-Ups Matter",
+          "path": "knowledge/articles/why-regular-check-ups-matter.html"
+        }
+      ]
+    },
+    "knowledge/articles/why-skin-checks-matter-in-australia.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Skin Health & Skin Cancer",
+          "path": "knowledge/skin-health-skin-cancer.html"
+        },
+        {
+          "label": "Why Skin Checks Matter In Australia",
+          "path": "knowledge/articles/why-skin-checks-matter-in-australia.html"
+        }
+      ]
+    },
+    "knowledge/articles/why-won-t-my-cough-go-away.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Cough & Sore Throat",
+          "path": "knowledge/cough.html"
+        },
+        {
+          "label": "Why Won’t My Cough Go Away?",
+          "path": "knowledge/articles/why-won-t-my-cough-go-away.html"
+        }
+      ]
+    },
+    "knowledge/articles/womens-health-checks-at-different-stages-of-life.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Women's Health",
+          "path": "knowledge/womens-health.html"
+        },
+        {
+          "label": "Women's Health Checks At Different Stages Of Life",
+          "path": "knowledge/articles/womens-health-checks-at-different-stages-of-life.html"
+        }
+      ]
+    },
+    "knowledge/articles/your-first-pregnancy-gp-appointment.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Pregnancy & Antenatal Care",
+          "path": "knowledge/pregnancy.html"
+        },
+        {
+          "label": "Your First Pregnancy GP Appointment",
+          "path": "knowledge/articles/your-first-pregnancy-gp-appointment.html"
+        }
+      ]
+    },
+    "knowledge/childrens-health.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Children's Health",
+          "path": "knowledge/childrens-health.html"
+        }
+      ]
+    },
+    "knowledge/chronic-disease-management.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Chronic Disease Management",
+          "path": "knowledge/chronic-disease-management.html"
+        }
+      ]
+    },
+    "knowledge/cough.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Cough & Sore Throat",
+          "path": "knowledge/cough.html"
+        }
+      ]
+    },
+    "knowledge/diabetes.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Diabetes & Ongoing Care",
+          "path": "knowledge/diabetes.html"
+        }
+      ]
+    },
+    "knowledge/headache.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Headache & Migraine",
+          "path": "knowledge/headache.html"
+        }
+      ]
+    },
+    "knowledge/healthy-ageing.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Healthy Ageing",
+          "path": "knowledge/healthy-ageing.html"
+        }
+      ]
+    },
+    "knowledge/heart.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Blood Pressure & Heart Health",
+          "path": "knowledge/heart.html"
+        }
+      ]
+    },
+    "knowledge/index.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        }
+      ]
+    },
+    "knowledge/menopause.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Menopause & Midlife Health",
+          "path": "knowledge/menopause.html"
+        }
+      ]
+    },
+    "knowledge/mens-health.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Men's Health",
+          "path": "knowledge/mens-health.html"
+        }
+      ]
+    },
+    "knowledge/mental-health.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Mental Health",
+          "path": "knowledge/mental-health.html"
+        }
+      ]
+    },
+    "knowledge/pain.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Pain & Musculoskeletal Health",
+          "path": "knowledge/pain.html"
+        }
+      ]
+    },
+    "knowledge/pregnancy.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Pregnancy & Antenatal Care",
+          "path": "knowledge/pregnancy.html"
+        }
+      ]
+    },
+    "knowledge/preventive-healthcare.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Preventive Healthcare",
+          "path": "knowledge/preventive-healthcare.html"
+        }
+      ]
+    },
+    "knowledge/skin-health-skin-cancer.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Skin Health & Skin Cancer",
+          "path": "knowledge/skin-health-skin-cancer.html"
+        }
+      ]
+    },
+    "knowledge/sleep.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Sleep & Fatigue",
+          "path": "knowledge/sleep.html"
+        }
+      ]
+    },
+    "knowledge/telehealth-access-to-care.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Telehealth & Access To Care",
+          "path": "knowledge/telehealth-access-to-care.html"
+        }
+      ]
+    },
+    "knowledge/vaccinations.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Vaccinations",
+          "path": "knowledge/vaccinations.html"
+        }
+      ]
+    },
+    "knowledge/weight.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Weight & Healthy Lifestyle",
+          "path": "knowledge/weight.html"
+        }
+      ]
+    },
+    "knowledge/womens-health.html": {
+      "section": "knowledge",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Knowledge Centre",
+          "path": "knowledge/index.html"
+        },
+        {
+          "label": "Women's Health",
+          "path": "knowledge/womens-health.html"
+        }
+      ]
+    },
+    "local-healthcare-access.html": {
+      "section": "about",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "About Us",
+          "path": "about-us.html"
+        },
+        {
+          "label": "Our Community",
+          "path": "community.html"
+        },
+        {
+          "label": "Local Healthcare Access",
+          "path": "local-healthcare-access.html"
+        }
+      ]
+    },
+    "medical-centre-network.html": {
+      "section": "about",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "About Us",
+          "path": "about-us.html"
+        },
+        {
+          "label": "Our Medical Centre Network",
+          "path": "medical-centre-network.html"
+        }
+      ]
+    },
+    "medical-students.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Medical Students",
+          "path": "medical-students.html"
+        }
+      ]
+    },
+    "medicare-exclusions.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Medicare Exclusions",
+          "path": "medicare-exclusions.html"
+        }
+      ]
+    },
+    "medicare.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Medicare",
+          "path": "medicare.html"
+        }
+      ]
+    },
+    "new-patient-prescribing-policy.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "New Patient Prescribing Policy",
+          "path": "new-patient-prescribing-policy.html"
+        }
+      ]
+    },
+    "new-patients.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "New Patients",
+          "path": "new-patients.html"
+        }
+      ]
+    },
+    "patient-code-of-conduct.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Practice Information",
+          "path": "practice-information.html"
+        },
+        {
+          "label": "Patient Code of Conduct",
+          "path": "patient-code-of-conduct.html"
+        }
+      ]
+    },
+    "patient-forms.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Patient Forms",
+          "path": "patient-forms.html"
+        }
+      ]
+    },
+    "patient-information.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        }
+      ]
+    },
+    "patient-rights-responsibilities.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Patient Rights & Responsibilities",
+          "path": "patient-rights-responsibilities.html"
+        }
+      ]
+    },
+    "philosophy-of-care.html": {
+      "section": "about",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "About Us",
+          "path": "about-us.html"
+        },
+        {
+          "label": "Our Philosophy",
+          "path": "philosophy-of-care.html"
+        }
+      ]
+    },
+    "practice-information.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Practice Information",
+          "path": "practice-information.html"
+        }
+      ]
+    },
+    "practice-policies.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Practice Policies",
+          "path": "practice-policies.html"
+        }
+      ]
+    },
+    "privacy-confidentiality.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Confidentiality & Privacy",
+          "path": "privacy-confidentiality.html"
+        }
+      ]
+    },
+    "quality-safety.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Healthcare Quality & Safety",
+          "path": "quality-safety.html"
+        }
+      ]
+    },
+    "referrals.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Referrals",
+          "path": "referrals.html"
+        }
+      ]
+    },
+    "reminder-recall.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Reminder & Recall Service",
+          "path": "reminder-recall.html"
+        }
+      ]
+    },
+    "repeat-scripts.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Repeat Scripts",
+          "path": "repeat-scripts.html"
+        }
+      ]
+    },
+    "services/allied-health.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Allied Health",
+          "path": "services/allied-health.html"
+        }
+      ]
+    },
+    "services/antenatal-postnatal-care.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Medical Procedures",
+          "path": "services/medical-procedures.html"
+        },
+        {
+          "label": "Antenatal & Postnatal Care",
+          "path": "services/antenatal-postnatal-care.html"
+        }
+      ]
+    },
+    "services/breast-check.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Medical Procedures",
+          "path": "services/medical-procedures.html"
+        },
+        {
+          "label": "Breast Check",
+          "path": "services/breast-check.html"
+        }
+      ]
+    },
+    "services/childrens-health.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Children's Health",
+          "path": "services/childrens-health.html"
+        }
+      ]
+    },
+    "services/chronic-disease-care.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Chronic Disease Care",
+          "path": "services/chronic-disease-care.html"
+        }
+      ]
+    },
+    "services/ear-care-ear-syringing.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Medical Procedures",
+          "path": "services/medical-procedures.html"
+        },
+        {
+          "label": "Ear Care & Ear Syringing",
+          "path": "services/ear-care-ear-syringing.html"
+        }
+      ]
+    },
+    "services/ecg.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Medical Procedures",
+          "path": "services/medical-procedures.html"
+        },
+        {
+          "label": "ECG (Electrocardiogram)",
+          "path": "services/ecg.html"
+        }
+      ]
+    },
+    "services/family-health.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Family Health",
+          "path": "services/family-health.html"
+        }
+      ]
+    },
+    "services/implanon-insertion-removal.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Medical Procedures",
+          "path": "services/medical-procedures.html"
+        },
+        {
+          "label": "Implanon Insertion & Removal",
+          "path": "services/implanon-insertion-removal.html"
+        }
+      ]
+    },
+    "services/iron-infusions.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Medical Procedures",
+          "path": "services/medical-procedures.html"
+        },
+        {
+          "label": "Iron Infusions",
+          "path": "services/iron-infusions.html"
+        }
+      ]
+    },
+    "services/iud-insertion-removal.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Medical Procedures",
+          "path": "services/medical-procedures.html"
+        },
+        {
+          "label": "IUD Insertion & Removal",
+          "path": "services/iud-insertion-removal.html"
+        }
+      ]
+    },
+    "services/medical-procedures.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Medical Procedures",
+          "path": "services/medical-procedures.html"
+        }
+      ]
+    },
+    "services/mens-health.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Men's Health",
+          "path": "services/mens-health.html"
+        }
+      ]
+    },
+    "services/mental-health.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Mental Health",
+          "path": "services/mental-health.html"
+        }
+      ]
+    },
+    "services/nebulising.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Medical Procedures",
+          "path": "services/medical-procedures.html"
+        },
+        {
+          "label": "Nebulising",
+          "path": "services/nebulising.html"
+        }
+      ]
+    },
+    "services/pap-smear-cervical-screening.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Medical Procedures",
+          "path": "services/medical-procedures.html"
+        },
+        {
+          "label": "Pap Smear & Cervical Screening",
+          "path": "services/pap-smear-cervical-screening.html"
+        }
+      ]
+    },
+    "services/pathology.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Pathology",
+          "path": "services/pathology.html"
+        }
+      ]
+    },
+    "services/pharmacy.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Pharmacy",
+          "path": "services/pharmacy.html"
+        }
+      ]
+    },
+    "services/pre-pregnancy-care.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Medical Procedures",
+          "path": "services/medical-procedures.html"
+        },
+        {
+          "label": "Pre-Pregnancy Care",
+          "path": "services/pre-pregnancy-care.html"
+        }
+      ]
+    },
+    "services/preventive-healthcare.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Preventive Healthcare",
+          "path": "services/preventive-healthcare.html"
+        }
+      ]
+    },
+    "services/prostate-care.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Medical Procedures",
+          "path": "services/medical-procedures.html"
+        },
+        {
+          "label": "Prostate Care",
+          "path": "services/prostate-care.html"
+        }
+      ]
+    },
+    "services/radiology.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Radiology",
+          "path": "services/radiology.html"
+        }
+      ]
+    },
+    "services/skin-cancer-care.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Our Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Skin Cancer Care",
+          "path": "services/skin-cancer-care.html"
+        }
+      ]
+    },
+    "services/skin-checks.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Our Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Skin Checks",
+          "path": "services/skin-checks.html"
+        }
+      ]
+    },
+    "services/spirometry.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Medical Procedures",
+          "path": "services/medical-procedures.html"
+        },
+        {
+          "label": "Spirometry",
+          "path": "services/spirometry.html"
+        }
+      ]
+    },
+    "services/telehealth.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Telehealth",
+          "path": "services/telehealth.html"
+        }
+      ]
+    },
+    "services/vaccinations.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Our Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Vaccinations",
+          "path": "services/vaccinations.html"
+        }
+      ]
+    },
+    "services/womens-health.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Women's Health",
+          "path": "services/womens-health.html"
+        }
+      ]
+    },
+    "services/wound-dressings.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        },
+        {
+          "label": "Medical Procedures",
+          "path": "services/medical-procedures.html"
+        },
+        {
+          "label": "Wound Dressings",
+          "path": "services/wound-dressings.html"
+        }
+      ]
+    },
+    "services.html": {
+      "section": "services",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Healthcare Services",
+          "path": "services.html"
+        }
+      ]
+    },
+    "story.html": {
+      "section": "about",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "About Us",
+          "path": "about-us.html"
+        },
+        {
+          "label": "Our Story",
+          "path": "story.html"
+        }
+      ]
+    },
+    "team-allied-health.html": {
+      "section": "team",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Our Team",
+          "path": "team.html"
+        },
+        {
+          "label": "Allied Health",
+          "path": "team-allied-health.html"
+        }
+      ]
+    },
+    "team-general-practitioners.html": {
+      "section": "team",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Our Team",
+          "path": "team.html"
+        },
+        {
+          "label": "General Practitioners",
+          "path": "team-general-practitioners.html"
+        }
+      ]
+    },
+    "team-nursing.html": {
+      "section": "team",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Our Team",
+          "path": "team.html"
+        },
+        {
+          "label": "Nursing Team",
+          "path": "team-nursing.html"
+        }
+      ]
+    },
+    "team-practice-management.html": {
+      "section": "team",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Our Team",
+          "path": "team.html"
+        },
+        {
+          "label": "Practice Management",
+          "path": "team-practice-management.html"
+        }
+      ]
+    },
+    "team-reception.html": {
+      "section": "team",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Our Team",
+          "path": "team.html"
+        },
+        {
+          "label": "Reception Team",
+          "path": "team-reception.html"
+        }
+      ]
+    },
+    "team.html": {
+      "section": "team",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Our Team",
+          "path": "team.html"
+        }
+      ]
+    },
+    "telehealth.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Telehealth",
+          "path": "telehealth.html"
+        }
+      ]
+    },
+    "test-results.html": {
+      "section": "patient-info",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Patient Information",
+          "path": "patient-information.html"
+        },
+        {
+          "label": "Test Results",
+          "path": "test-results.html"
+        }
+      ]
+    },
+    "updates/after-hours-care-options.html": {
+      "section": "updates",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Updates",
+          "path": "updates/index.html"
+        },
+        {
+          "label": "After-hours care when we are closed",
+          "path": "updates/after-hours-care-options.html"
+        }
+      ]
+    },
+    "updates/article.html": {
+      "section": "updates",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Updates",
+          "path": "updates/index.html"
+        },
+        {
+          "label": "Health Update",
+          "path": "updates/article.html"
+        }
+      ]
+    },
+    "updates/current-billing-information.html": {
+      "section": "updates",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Updates",
+          "path": "updates/index.html"
+        },
+        {
+          "label": "Current billing information",
+          "path": "updates/current-billing-information.html"
+        }
+      ]
+    },
+    "updates/index.html": {
+      "section": "updates",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Updates",
+          "path": "updates/index.html"
+        }
+      ]
+    },
+    "updates/new-patients-welcome.html": {
+      "section": "updates",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Updates",
+          "path": "updates/index.html"
+        },
+        {
+          "label": "New patients are welcome",
+          "path": "updates/new-patients-welcome.html"
+        }
+      ]
+    },
+    "updates/open-seven-days.html": {
+      "section": "updates",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Updates",
+          "path": "updates/index.html"
+        },
+        {
+          "label": "Appointments available seven days a week",
+          "path": "updates/open-seven-days.html"
+        }
+      ]
+    },
+    "updates/telehealth-appointments.html": {
+      "section": "updates",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Updates",
+          "path": "updates/index.html"
+        },
+        {
+          "label": "Telehealth appointments",
+          "path": "updates/telehealth-appointments.html"
+        }
+      ]
+    },
+    "why-team-based-care-matters.html": {
+      "section": "team",
+      "breadcrumbs": [
+        {
+          "label": "Home",
+          "path": "index.html"
+        },
+        {
+          "label": "Our Team",
+          "path": "team.html"
+        },
+        {
+          "label": "Why Team-Based Care Matters",
+          "path": "why-team-based-care-matters.html"
+        }
+      ]
+    }
+  }
+}

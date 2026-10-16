@@ -1,0 +1,9 @@
+/* Staff shell only. Public clinic pages are HTML documents and do not use this file. */
+:root {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, "Segoe UI", sans-serif;
+}

@@ -1,0 +1,51 @@
+{
+  "name": "@wmc/web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Next.js infrastructure for the approved Woolloongabba Medical Centre website. Does not migrate or redesign pages.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate deploy",
+    "db:migrate:dev": "prisma migrate dev",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:local": "tsx scripts/start-local-postgres.ts",
+    "import:golden": "tsx scripts/import-golden-html.ts",
+    "test": "tsx --test src/regression/golden-master.test.ts src/cms/publish-render.test.ts src/cms/usability.test.ts src/cms/image-governance.test.ts src/cms/image-replacement.test.ts src/seo/launch.test.ts src/security/admin-hardening.test.ts",
+    "test:regression": "tsx --test src/regression/golden-master.test.ts",
+    "db:studio": "prisma studio",
+    "postinstall": "prisma generate"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
+  "dependencies": {
+    "@auth/prisma-adapter": "^2.10.0",
+    "@prisma/client": "^6.16.2",
+    "bcryptjs": "^2.4.3",
+    "next": "^15.5.4",
+    "next-auth": "5.0.0-beta.29",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "sharp": "^0.35.5",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@tailwindcss/postcss": "^4.1.13",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^22.18.6",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "embedded-postgres": "^18.4.0-beta.17",
+    "eslint": "^9.36.0",
+    "eslint-config-next": "^15.5.4",
+    "prisma": "^6.16.2",
+    "tailwindcss": "^4.1.13",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "crawledAt": "2026-10-13",
+  "pages": 218,
+  "media": 89,
+  "importable": 45,
+  "manual": 172,
+  "counts": {
+    "homepage:exact": 1,
+    "page:exact": 3,
+    "post:manual": 12,
+    "page:proposed": 11,
+    "author:manual": 2,
+    "post:proposed": 7,
+    "category:manual": 3,
+    "system:manual": 3,
+    "page:manual": 7,
+    "practitioner:exact": 12,
+    "practitioner:proposed": 1,
+    "template:manual": 1,
+    "career:proposed": 1,
+    "career:manual": 2,
+    "location:manual": 29,
+    "portfolio:manual": 5,
+    "service:proposed": 18,
+    "service:manual": 8,
+    "service:exact": 1,
+    "tag:manual": 91
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "generatedAt": "2026-10-12T00:38:05.812Z",
+  "goldenRoot": "C:\\Users\\RoshanSamarawickrema\\Desktop\\WMC-Master-Project\\old-html",
+  "pageCount": {
+    "htmlFiles": 198,
+    "imported": 198,
+    "expected": 198,
+    "match": true
+  },
+  "collections": {
+    "pages": 198,
+    "navigationItems": 7,
+    "navigationOwnership": 198,
+    "practitioners": 13,
+    "services": 29,
+    "knowledgeTopics": 21,
+    "knowledgeArticles": 81,
+    "practiceUpdates": 5,
+    "practicePages": 37
+  },
+  "navigationOwnership": {
+    "missingInHtml": [],
+    "missingInOwnership": [],
+    "ownerMismatches": [],
+    "hubMismatches": [],
+    "routeMismatches": []
+  },
+  "breadcrumbs": {
+    "brokenPaths": []
+  },
+  "metadata": {
+    "missingTitle": [],
+    "missingDescription": [],
+    "missingCanonical": []
+  },
+  "jsonLd": {
+    "pagesWithSchema": 198,
+    "blocks": 581,
+    "invalid": []
+  },
+  "links": {
+    "missing": []
+  },
+  "images": {
+    "missing": []
+  },
+  "assets": {
+    "missingRuntimeCopies": [],
+    "hashMismatches": []
+  },
+  "hotDoc": {
+    "pagesWithWidget": 197,
+    "pagesWithScript": 198
+  },
+  "digitalReception": {
+    "pagesWithScript": 198,
+    "manifestCopied": true,
+    "manifestHashMatch": true
+  },
+  "passed": true
+}

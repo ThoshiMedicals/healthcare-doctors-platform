@@ -1,0 +1,43 @@
+{
+  "component": "governance-review",
+  "version": "3.1",
+  "source": "cms/governance-records.json (eligibility only) + private signed approvals file outside the document root",
+  "generatedRuntime": "governance-published.js",
+  "displayRule": "Only after documented content-owner submission, appropriate reviewer sign-off and approver authorisation. All other states invisible.",
+  "patientFacingFields": {
+    "reviewedBy": {
+      "required": true,
+      "suggestedValue": "Woolloongabba Medical Centre Clinical Team (only when they actually reviewed it)"
+    },
+    "lastReviewed": {
+      "required": true,
+      "format": "YYYY-MM-DD",
+      "meaning": "Actual clinical or governance content review date, not website update date"
+    },
+    "nextReview": {
+      "required": true,
+      "format": "YYYY-MM-DD",
+      "meaning": "Genuine approved next review due date (shown as Next Review Due); no automatic interval or inferred date."
+    },
+    "contentOwner": {
+      "required": true,
+      "meaning": "Actual accountable department, agreed by practice management"
+    }
+  },
+  "approvalEvidence": {
+    "approvedBy": "Required approver identity",
+    "approvedAt": "Required actual approval date",
+    "approvalReference": "Required internal unique approval or meeting/document ID",
+    "evidenceReference": "Required record location in restricted-access internal storage",
+    "storage": "Restricted-access file outside the website. Never deploy approvalReference, evidenceReference, approvedBy, approvedAt or fingerprint.",
+    "contentOwnerSubmittedBy": "Required accountable staff identity, in private approvals only",
+    "contentOwnerSubmittedAt": "Actual content owner handover date",
+    "reviewerSignedBy": "Actual accountable reviewer identity, private",
+    "reviewerSignedAt": "Real sign-off date; must equal Last Reviewed",
+    "reviewType": "Must match page eligibility clinical, operational or institutional"
+  },
+  "approvedRecordsAtLaunch": 0,
+  "approvalsCanBeImported": "After documented sign-off, run cms/tools/build_clinical_governance.py --approvals /secure/path/approvals.json --build. Never store approvals inside the public web root.",
+  "expirySafety": "The builder rejects expired approval records and the browser suppresses stale dates after Next Review Due; an expired review cannot remain marked currently approved.",
+  "scopeValidation": "cms/tools/check_governance_framework.py --check validates all 102 Knowledge Centre pages, all 29 service pages, patient information and governance entries, with no public placeholders."
+}

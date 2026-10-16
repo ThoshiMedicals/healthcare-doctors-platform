@@ -1,0 +1,309 @@
+{
+  "purpose": "Digital Reception information-first patient search coverage and safety acceptance checks",
+  "status": "technical acceptance only; no clinical review implied",
+  "baseline_articles": 81,
+  "new_articles": 0,
+  "topics_covered": 24,
+  "priority_patient_questions": 10,
+  "cases": [
+    {
+      "group": "symptom",
+      "query": "headache",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/when-should-i-see-a-gp-about-headaches.html"
+    },
+    {
+      "group": "symptom",
+      "query": "migraine",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/migraine-or-headache-how-do-i-tell-the-difference.html"
+    },
+    {
+      "group": "symptom",
+      "query": "cough",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/why-won-t-my-cough-go-away.html"
+    },
+    {
+      "group": "symptom",
+      "query": "sore throat",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/sore-throat-when-should-i-see-a-doctor.html"
+    },
+    {
+      "group": "symptom",
+      "query": "back pain",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/back-pain-when-should-i-see-a-gp.html"
+    },
+    {
+      "group": "symptom",
+      "query": "neck pain",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/understanding-neck-pain.html"
+    },
+    {
+      "group": "symptom",
+      "query": "fever",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/when-should-i-be-concerned-about-a-fever.html"
+    },
+    {
+      "group": "symptom",
+      "query": "rash",
+      "response": "no-direct-guide",
+      "expected_result_url": "knowledge/index.html"
+    },
+    {
+      "group": "symptom",
+      "query": "anxiety",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/when-should-i-speak-to-a-gp-about-anxiety.html"
+    },
+    {
+      "group": "symptom",
+      "query": "depression",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/how-can-a-gp-support-depression.html"
+    },
+    {
+      "group": "symptom",
+      "query": "stress",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/anxiety-vs-stress-what-is-the-difference.html"
+    },
+    {
+      "group": "symptom",
+      "query": "tiredness",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/why-am-i-always-tired.html"
+    },
+    {
+      "group": "symptom",
+      "query": "breathing issues",
+      "response": "no-direct-guide",
+      "expected_result_url": "knowledge/index.html"
+    },
+    {
+      "group": "condition",
+      "query": "diabetes",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/living-with-diabetes.html"
+    },
+    {
+      "group": "condition",
+      "query": "blood pressure",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/high-blood-pressure-explained.html"
+    },
+    {
+      "group": "condition",
+      "query": "cholesterol",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/cholesterol-explained.html"
+    },
+    {
+      "group": "condition",
+      "query": "asthma",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/managing-asthma.html"
+    },
+    {
+      "group": "condition",
+      "query": "menopause",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/menopause-symptoms-explained.html"
+    },
+    {
+      "group": "condition",
+      "query": "ADHD",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/adhd-assessment-pathways.html"
+    },
+    {
+      "group": "life stage",
+      "query": "pregnancy",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/planning-a-pregnancy.html"
+    },
+    {
+      "group": "life stage",
+      "query": "children's health",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/common-childhood-illnesses.html"
+    },
+    {
+      "group": "life stage",
+      "query": "men's health",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/health-checks-every-man-should-consider.html"
+    },
+    {
+      "group": "life stage",
+      "query": "women's health",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/womens-health-checks-at-different-stages-of-life.html"
+    },
+    {
+      "group": "life stage",
+      "query": "healthy ageing",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/healthy-ageing-prevention-falls-vaccination-reviews.html"
+    },
+    {
+      "group": "high intent",
+      "query": "When Should I Be Concerned About A Headache?",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/when-should-i-see-a-gp-about-headaches.html"
+    },
+    {
+      "group": "high intent",
+      "query": "Migraine vs Headache",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/migraine-or-headache-how-do-i-tell-the-difference.html"
+    },
+    {
+      "group": "high intent",
+      "query": "What Causes Frequent Headaches?",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/what-causes-frequent-headaches.html"
+    },
+    {
+      "group": "high intent",
+      "query": "Why Won't My Cough Go Away?",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/why-won-t-my-cough-go-away.html"
+    },
+    {
+      "group": "high intent",
+      "query": "Understanding A Persistent Cough",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/what-causes-a-persistent-cough.html"
+    },
+    {
+      "group": "high intent",
+      "query": "Sore Throat: When Should I See A GP?",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/sore-throat-when-should-i-see-a-doctor.html"
+    },
+    {
+      "group": "high intent",
+      "query": "Viral vs Bacterial Sore Throat",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/is-my-sore-throat-viral-or-bacterial.html"
+    },
+    {
+      "group": "high intent",
+      "query": "When Should I See A GP About Pain?",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/when-should-i-be-concerned-about-pain.html"
+    },
+    {
+      "group": "high intent",
+      "query": "Understanding Back Pain",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/back-pain-when-should-i-see-a-gp.html"
+    },
+    {
+      "group": "high intent",
+      "query": "Understanding Neck Pain",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/understanding-neck-pain.html"
+    },
+    {
+      "group": "question variants",
+      "query": "child with a rash",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/common-childhood-illnesses.html"
+    },
+    {
+      "group": "question variants",
+      "query": "I am always tired",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/why-am-i-always-tired.html"
+    },
+    {
+      "group": "question variants",
+      "query": "I keep getting headaches",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/what-causes-frequent-headaches.html"
+    },
+    {
+      "group": "question variants",
+      "query": "viral or bacterial sore throat",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/is-my-sore-throat-viral-or-bacterial.html"
+    },
+    {
+      "group": "question variants",
+      "query": "cough for weeks",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/what-causes-a-persistent-cough.html"
+    },
+    {
+      "group": "question variants",
+      "query": "stroke risk",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/understanding-your-cardiovascular-risk.html"
+    },
+    {
+      "group": "question variants",
+      "query": "I have anxiety",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/when-should-i-speak-to-a-gp-about-anxiety.html"
+    },
+    {
+      "group": "question variants",
+      "query": "my toddler has a cough",
+      "response": "guide-results",
+      "expected_result_url": "knowledge/articles/when-should-a-child-with-a-cough-see-a-gp.html"
+    },
+    {
+      "group": "question variants",
+      "query": "a new rash",
+      "response": "no-direct-guide",
+      "expected_result_url": "knowledge/index.html"
+    },
+    {
+      "group": "question variants",
+      "query": "short of breath",
+      "response": "no-direct-guide",
+      "expected_result_url": "knowledge/index.html"
+    },
+    {
+      "group": "emergency safety",
+      "query": "I have severe difficulty breathing",
+      "response": "emergency",
+      "expected_result_url": "after-hours-care.html"
+    },
+    {
+      "group": "emergency safety",
+      "query": "severe shortness of breath",
+      "response": "emergency",
+      "expected_result_url": "after-hours-care.html"
+    },
+    {
+      "group": "emergency safety",
+      "query": "worst headache of my life",
+      "response": "emergency",
+      "expected_result_url": "after-hours-care.html"
+    },
+    {
+      "group": "emergency safety",
+      "query": "struggling to breathe",
+      "response": "emergency",
+      "expected_result_url": "after-hours-care.html"
+    },
+    {
+      "group": "emergency safety",
+      "query": "chest pain",
+      "response": "emergency",
+      "expected_result_url": "after-hours-care.html"
+    }
+  ],
+  "cautions": {
+    "rash": "No general rash article; show an honest no-direct-guide state and the Knowledge Centre directory rather than an unrelated clinical guide.",
+    "breathing": "No generic breathing-symptom article; do not imply all symptoms are asthma. Severe breathing warning phrases must show emergency advice.",
+    "diagnosis": "Search is informational. Appointment and reception controls are separate from result rankings; no automatic doctor referrals."
+  }
+}

@@ -1,0 +1,521 @@
+{
+  "program": "Healthcare Knowledge Centre Authority Cluster & Reciprocal Flow",
+  "baselineArticleCount": 81,
+  "newArticleCount": 0,
+  "clusterCount": 19,
+  "priorityHighIntentUrls": [
+    "knowledge/articles/when-should-i-see-a-gp-about-headaches.html",
+    "knowledge/articles/migraine-or-headache-how-do-i-tell-the-difference.html",
+    "knowledge/articles/what-causes-frequent-headaches.html",
+    "knowledge/articles/when-should-i-be-concerned-about-pain.html",
+    "knowledge/articles/back-pain-when-should-i-see-a-gp.html",
+    "knowledge/articles/understanding-neck-pain.html",
+    "knowledge/articles/why-won-t-my-cough-go-away.html",
+    "knowledge/articles/what-causes-a-persistent-cough.html",
+    "knowledge/articles/sore-throat-when-should-i-see-a-doctor.html",
+    "knowledge/articles/is-my-sore-throat-viral-or-bacterial.html"
+  ],
+  "status": "editorial_link_structure_only_clinical_review_remains_pending",
+  "clusters": [
+    {
+      "name": "Mental Health",
+      "hub": "knowledge/mental-health.html",
+      "members": [
+        "knowledge/articles/when-should-i-speak-to-a-gp-about-anxiety.html",
+        "knowledge/articles/anxiety-vs-stress-what-is-the-difference.html",
+        "knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+        "knowledge/articles/how-can-a-gp-support-depression.html",
+        "knowledge/articles/when-should-i-seek-help-for-burnout.html"
+      ],
+      "bidirectionalAllToAll": true
+    },
+    {
+      "name": "Women's Health",
+      "hub": "knowledge/womens-health.html",
+      "members": [
+        "knowledge/articles/understanding-menopause.html",
+        "knowledge/articles/when-should-i-have-a-cervical-screening-test.html",
+        "knowledge/articles/womens-health-checks-at-different-stages-of-life.html",
+        "knowledge/articles/understanding-perimenopause.html",
+        "knowledge/articles/preventive-womens-healthcare.html",
+        "knowledge/articles/breast-health-changes-screening-when-to-see-a-gp.html"
+      ],
+      "bidirectionalAllToAll": true
+    },
+    {
+      "name": "Men's Health",
+      "hub": "knowledge/mens-health.html",
+      "members": [
+        "knowledge/articles/health-checks-every-man-should-consider.html",
+        "knowledge/articles/understanding-prostate-health.html",
+        "knowledge/articles/why-preventive-healthcare-matters.html",
+        "knowledge/articles/heart-health-for-men.html",
+        "knowledge/articles/healthy-ageing-for-men.html"
+      ],
+      "bidirectionalAllToAll": true
+    },
+    {
+      "name": "Children's Health",
+      "hub": "knowledge/childrens-health.html",
+      "members": [
+        "knowledge/articles/childhood-vaccinations-explained.html",
+        "knowledge/articles/when-should-i-be-concerned-about-a-fever.html",
+        "knowledge/articles/preparing-for-your-childs-first-gp-appointment.html",
+        "knowledge/articles/common-childhood-illnesses.html",
+        "knowledge/articles/childrens-preventive-healthcare.html",
+        "knowledge/articles/managing-winter-respiratory-illness.html"
+      ],
+      "bidirectionalAllToAll": true
+    },
+    {
+      "name": "Preventive Healthcare & Healthy Ageing",
+      "hub": "knowledge/preventive-healthcare.html",
+      "members": [
+        "knowledge/articles/what-is-preventive-healthcare.html",
+        "knowledge/articles/health-assessments-explained.html",
+        "knowledge/articles/why-regular-check-ups-matter.html",
+        "knowledge/articles/vaccinations-for-adults.html",
+        "knowledge/articles/staying-healthy-as-you-age.html",
+        "knowledge/articles/healthy-ageing-prevention-falls-vaccination-reviews.html"
+      ],
+      "bidirectionalAllToAll": true
+    },
+    {
+      "name": "Skin Health & Skin Cancer",
+      "hub": "knowledge/skin-health-skin-cancer.html",
+      "members": [
+        "knowledge/articles/why-skin-checks-matter-in-australia.html",
+        "knowledge/articles/understanding-skin-cancer-risks.html",
+        "knowledge/articles/when-should-i-book-a-skin-check.html",
+        "knowledge/articles/protecting-your-skin-from-the-queensland-sun.html"
+      ],
+      "bidirectionalAllToAll": true
+    },
+    {
+      "name": "Chronic Disease Management",
+      "hub": "knowledge/chronic-disease-management.html",
+      "members": [
+        "knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html",
+        "knowledge/articles/understanding-gp-chronic-disease-care-plans.html",
+        "knowledge/articles/blood-pressure-explained.html",
+        "knowledge/articles/managing-asthma.html",
+        "knowledge/articles/understanding-cholesterol.html"
+      ],
+      "bidirectionalAllToAll": true
+    },
+    {
+      "name": "Telehealth & Access To Care",
+      "hub": "knowledge/telehealth-access-to-care.html",
+      "members": [
+        "knowledge/articles/when-can-i-use-telehealth.html",
+        "knowledge/articles/how-telehealth-works.html",
+        "knowledge/articles/telehealth-vs-face-to-face-appointments.html"
+      ],
+      "bidirectionalAllToAll": true
+    },
+    {
+      "name": "Vaccinations",
+      "hub": "knowledge/vaccinations.html",
+      "members": [
+        "knowledge/articles/influenza-vaccination-who-should-consider-it.html",
+        "knowledge/articles/travel-vaccinations-before-overseas-travel.html"
+      ],
+      "bidirectionalAllToAll": true
+    },
+    {
+      "name": "Headache & Migraine",
+      "hub": "knowledge/headache.html",
+      "members": [
+        "knowledge/articles/when-should-i-see-a-gp-about-headaches.html",
+        "knowledge/articles/migraine-or-headache-how-do-i-tell-the-difference.html",
+        "knowledge/articles/what-causes-frequent-headaches.html",
+        "knowledge/articles/when-is-a-headache-an-emergency.html"
+      ],
+      "bidirectionalAllToAll": true
+    },
+    {
+      "name": "Cough & Sore Throat",
+      "hub": "knowledge/cough.html",
+      "members": [
+        "knowledge/articles/why-won-t-my-cough-go-away.html",
+        "knowledge/articles/what-causes-a-persistent-cough.html",
+        "knowledge/articles/sore-throat-when-should-i-see-a-doctor.html",
+        "knowledge/articles/is-my-sore-throat-viral-or-bacterial.html",
+        "knowledge/articles/when-should-a-child-with-a-cough-see-a-gp.html"
+      ],
+      "bidirectionalAllToAll": true
+    },
+    {
+      "name": "Pain & Musculoskeletal Health",
+      "hub": "knowledge/pain.html",
+      "members": [
+        "knowledge/articles/when-should-i-be-concerned-about-pain.html",
+        "knowledge/articles/understanding-muscle-and-joint-pain.html",
+        "knowledge/articles/chronic-pain-when-should-i-seek-help.html",
+        "knowledge/articles/back-pain-when-should-i-see-a-gp.html",
+        "knowledge/articles/understanding-neck-pain.html"
+      ],
+      "bidirectionalAllToAll": true
+    },
+    {
+      "name": "Diabetes & Ongoing Care",
+      "hub": "knowledge/diabetes.html",
+      "members": [
+        "knowledge/articles/understanding-type-2-diabetes.html",
+        "knowledge/articles/living-with-diabetes.html",
+        "knowledge/articles/diabetes-monitoring-explained.html",
+        "knowledge/articles/preventing-diabetes-complications.html",
+        "knowledge/articles/diabetes-care-plans-explained.html"
+      ],
+      "bidirectionalAllToAll": true
+    },
+    {
+      "name": "Blood Pressure & Heart Health",
+      "hub": "knowledge/heart.html",
+      "members": [
+        "knowledge/articles/high-blood-pressure-explained.html",
+        "knowledge/articles/when-should-i-be-concerned-about-blood-pressure.html",
+        "knowledge/articles/heart-health-checks.html",
+        "knowledge/articles/cholesterol-explained.html",
+        "knowledge/articles/understanding-your-cardiovascular-risk.html"
+      ],
+      "bidirectionalAllToAll": true
+    },
+    {
+      "name": "Pregnancy & Antenatal Care",
+      "hub": "knowledge/pregnancy.html",
+      "members": [
+        "knowledge/articles/planning-a-pregnancy.html",
+        "knowledge/articles/what-happens-during-antenatal-care.html",
+        "knowledge/articles/your-first-pregnancy-gp-appointment.html"
+      ],
+      "bidirectionalAllToAll": true
+    },
+    {
+      "name": "Weight & Healthy Lifestyle",
+      "hub": "knowledge/weight.html",
+      "members": [
+        "knowledge/articles/healthy-weight-management.html",
+        "knowledge/articles/when-should-i-speak-to-a-gp-about-weight.html",
+        "knowledge/articles/understanding-healthy-lifestyle-changes.html"
+      ],
+      "bidirectionalAllToAll": true
+    },
+    {
+      "name": "Sleep & Fatigue",
+      "hub": "knowledge/sleep.html",
+      "members": [
+        "knowledge/articles/why-am-i-always-tired.html",
+        "knowledge/articles/sleep-problems-explained.html",
+        "knowledge/articles/when-should-i-speak-to-a-gp-about-sleep.html"
+      ],
+      "bidirectionalAllToAll": true
+    },
+    {
+      "name": "ADHD & Neurodiversity",
+      "hub": "knowledge/adhd.html",
+      "members": [
+        "knowledge/articles/adhd-assessment-pathways.html",
+        "knowledge/articles/when-should-i-seek-adhd-assessment.html",
+        "knowledge/articles/understanding-adhd-referrals.html"
+      ],
+      "bidirectionalAllToAll": true
+    },
+    {
+      "name": "Menopause & Midlife Health",
+      "hub": "knowledge/menopause.html",
+      "members": [
+        "knowledge/articles/menopause-symptoms-explained.html",
+        "knowledge/articles/hrt-discussions-with-your-gp.html",
+        "knowledge/articles/mental-health-and-menopause.html"
+      ],
+      "bidirectionalAllToAll": true
+    }
+  ],
+  "serviceArticleReturnLinks": {
+    "services/mental-health.html": [
+      "knowledge/articles/anxiety-vs-stress-what-is-the-difference.html",
+      "knowledge/articles/how-can-a-gp-support-depression.html",
+      "knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+      "knowledge/articles/when-should-i-seek-help-for-burnout.html",
+      "knowledge/articles/when-should-i-speak-to-a-gp-about-anxiety.html",
+      "knowledge/articles/adhd-assessment-pathways.html",
+      "knowledge/articles/understanding-adhd-referrals.html",
+      "knowledge/articles/understanding-menopause.html"
+    ],
+    "services/family-health.html": [
+      "knowledge/articles/back-pain-when-should-i-see-a-gp.html",
+      "knowledge/articles/is-my-sore-throat-viral-or-bacterial.html",
+      "knowledge/articles/migraine-or-headache-how-do-i-tell-the-difference.html",
+      "knowledge/articles/sore-throat-when-should-i-see-a-doctor.html",
+      "knowledge/articles/understanding-neck-pain.html",
+      "knowledge/articles/what-causes-a-persistent-cough.html",
+      "knowledge/articles/what-causes-frequent-headaches.html",
+      "knowledge/articles/when-should-i-be-concerned-about-pain.html",
+      "knowledge/articles/when-should-i-see-a-gp-about-headaches.html",
+      "knowledge/articles/childhood-vaccinations-explained.html"
+    ],
+    "services/telehealth.html": [
+      "knowledge/articles/how-telehealth-works.html",
+      "knowledge/articles/telehealth-vs-face-to-face-appointments.html",
+      "knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+      "knowledge/articles/when-can-i-use-telehealth.html",
+      "knowledge/articles/when-should-i-seek-help-for-burnout.html",
+      "knowledge/articles/when-should-i-speak-to-a-gp-about-anxiety.html"
+    ],
+    "services/preventive-healthcare.html": [
+      "knowledge/articles/cholesterol-explained.html",
+      "knowledge/articles/health-assessments-explained.html",
+      "knowledge/articles/healthy-ageing-prevention-falls-vaccination-reviews.html",
+      "knowledge/articles/heart-health-checks.html",
+      "knowledge/articles/anxiety-vs-stress-what-is-the-difference.html",
+      "knowledge/articles/blood-pressure-explained.html",
+      "knowledge/articles/childrens-preventive-healthcare.html",
+      "knowledge/articles/health-checks-every-man-should-consider.html",
+      "knowledge/articles/healthy-ageing-for-men.html",
+      "knowledge/articles/healthy-weight-management.html"
+    ],
+    "services/womens-health.html": [
+      "knowledge/articles/breast-health-changes-screening-when-to-see-a-gp.html",
+      "knowledge/articles/hrt-discussions-with-your-gp.html",
+      "knowledge/articles/menopause-symptoms-explained.html",
+      "knowledge/articles/mental-health-and-menopause.html",
+      "knowledge/articles/preventive-womens-healthcare.html",
+      "knowledge/articles/understanding-menopause.html",
+      "knowledge/articles/understanding-perimenopause.html",
+      "knowledge/articles/when-should-i-have-a-cervical-screening-test.html"
+    ],
+    "services/pap-smear-cervical-screening.html": [
+      "knowledge/articles/when-should-i-have-a-cervical-screening-test.html"
+    ],
+    "services/breast-check.html": [
+      "knowledge/articles/breast-health-changes-screening-when-to-see-a-gp.html",
+      "knowledge/articles/womens-health-checks-at-different-stages-of-life.html"
+    ],
+    "services/vaccinations.html": [
+      "knowledge/articles/childhood-vaccinations-explained.html",
+      "knowledge/articles/childrens-preventive-healthcare.html",
+      "knowledge/articles/healthy-ageing-prevention-falls-vaccination-reviews.html",
+      "knowledge/articles/influenza-vaccination-who-should-consider-it.html",
+      "knowledge/articles/managing-winter-respiratory-illness.html",
+      "knowledge/articles/preparing-for-your-childs-first-gp-appointment.html",
+      "knowledge/articles/preventive-womens-healthcare.html",
+      "knowledge/articles/staying-healthy-as-you-age.html"
+    ],
+    "services/mens-health.html": [
+      "knowledge/articles/health-checks-every-man-should-consider.html",
+      "knowledge/articles/healthy-ageing-for-men.html",
+      "knowledge/articles/heart-health-for-men.html",
+      "knowledge/articles/understanding-prostate-health.html",
+      "knowledge/articles/why-preventive-healthcare-matters.html"
+    ],
+    "services/prostate-care.html": [
+      "knowledge/articles/health-checks-every-man-should-consider.html",
+      "knowledge/articles/understanding-prostate-health.html"
+    ],
+    "services/chronic-disease-care.html": [
+      "knowledge/articles/blood-pressure-explained.html",
+      "knowledge/articles/diabetes-care-plans-explained.html",
+      "knowledge/articles/diabetes-monitoring-explained.html",
+      "knowledge/articles/living-with-diabetes.html",
+      "knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html",
+      "knowledge/articles/managing-asthma.html",
+      "knowledge/articles/preventing-diabetes-complications.html",
+      "knowledge/articles/understanding-cholesterol.html",
+      "knowledge/articles/understanding-gp-chronic-disease-care-plans.html",
+      "knowledge/articles/understanding-type-2-diabetes.html",
+      "knowledge/articles/health-assessments-explained.html",
+      "knowledge/articles/healthy-ageing-for-men.html"
+    ],
+    "services/ecg.html": [
+      "knowledge/articles/heart-health-checks.html",
+      "knowledge/articles/heart-health-for-men.html",
+      "knowledge/articles/understanding-your-cardiovascular-risk.html"
+    ],
+    "services/childrens-health.html": [
+      "knowledge/articles/childhood-vaccinations-explained.html",
+      "knowledge/articles/childrens-preventive-healthcare.html",
+      "knowledge/articles/common-childhood-illnesses.html",
+      "knowledge/articles/managing-winter-respiratory-illness.html",
+      "knowledge/articles/preparing-for-your-childs-first-gp-appointment.html",
+      "knowledge/articles/when-should-i-be-concerned-about-a-fever.html"
+    ],
+    "services/skin-checks.html": [
+      "knowledge/articles/protecting-your-skin-from-the-queensland-sun.html",
+      "knowledge/articles/telehealth-vs-face-to-face-appointments.html",
+      "knowledge/articles/understanding-skin-cancer-risks.html",
+      "knowledge/articles/when-should-i-book-a-skin-check.html",
+      "knowledge/articles/why-skin-checks-matter-in-australia.html"
+    ],
+    "services/skin-cancer-care.html": [
+      "knowledge/articles/protecting-your-skin-from-the-queensland-sun.html",
+      "knowledge/articles/understanding-skin-cancer-risks.html",
+      "knowledge/articles/when-should-i-book-a-skin-check.html",
+      "knowledge/articles/why-skin-checks-matter-in-australia.html"
+    ],
+    "services/allied-health.html": [
+      "knowledge/articles/back-pain-when-should-i-see-a-gp.html",
+      "knowledge/articles/understanding-neck-pain.html",
+      "knowledge/articles/understanding-gp-chronic-disease-care-plans.html",
+      "knowledge/articles/understanding-muscle-and-joint-pain.html"
+    ],
+    "services/spirometry.html": [
+      "knowledge/articles/what-causes-a-persistent-cough.html",
+      "knowledge/articles/managing-asthma.html"
+    ],
+    "services/antenatal-postnatal-care.html": [
+      "knowledge/articles/planning-a-pregnancy.html",
+      "knowledge/articles/what-happens-during-antenatal-care.html",
+      "knowledge/articles/your-first-pregnancy-gp-appointment.html"
+    ],
+    "services/ear-care-ear-syringing.html": [
+      "knowledge/articles/common-childhood-illnesses.html"
+    ],
+    "services/implanon-insertion-removal.html": [
+      "knowledge/articles/preventive-womens-healthcare.html",
+      "knowledge/articles/womens-health-checks-at-different-stages-of-life.html"
+    ],
+    "services/iron-infusions.html": [
+      "knowledge/articles/why-am-i-always-tired.html"
+    ],
+    "services/iud-insertion-removal.html": [
+      "knowledge/articles/preventive-womens-healthcare.html"
+    ],
+    "services/medical-procedures.html": [
+      "knowledge/articles/when-should-i-book-a-skin-check.html",
+      "knowledge/articles/why-skin-checks-matter-in-australia.html"
+    ],
+    "services/nebulising.html": [
+      "knowledge/articles/what-causes-a-persistent-cough.html",
+      "knowledge/articles/managing-asthma.html"
+    ],
+    "services/pathology.html": [
+      "knowledge/articles/cholesterol-explained.html",
+      "knowledge/articles/diabetes-monitoring-explained.html"
+    ],
+    "services/pharmacy.html": [
+      "knowledge/articles/managing-asthma.html",
+      "knowledge/articles/understanding-gp-chronic-disease-care-plans.html"
+    ],
+    "services/radiology.html": [
+      "knowledge/articles/back-pain-when-should-i-see-a-gp.html",
+      "knowledge/articles/understanding-neck-pain.html"
+    ],
+    "services/wound-dressings.html": [
+      "knowledge/articles/preventing-diabetes-complications.html"
+    ],
+    "services/pre-pregnancy-care.html": [
+      "knowledge/articles/planning-a-pregnancy.html",
+      "knowledge/articles/your-first-pregnancy-gp-appointment.html"
+    ]
+  },
+  "practitionerArticleReturnLinks": {
+    "doctors/dr-tanya-goodwill.html": [
+      "knowledge/articles/back-pain-when-should-i-see-a-gp.html",
+      "knowledge/articles/is-my-sore-throat-viral-or-bacterial.html",
+      "knowledge/articles/migraine-or-headache-how-do-i-tell-the-difference.html",
+      "knowledge/articles/sore-throat-when-should-i-see-a-doctor.html",
+      "knowledge/articles/understanding-neck-pain.html",
+      "knowledge/articles/what-causes-frequent-headaches.html",
+      "knowledge/articles/adhd-assessment-pathways.html",
+      "knowledge/articles/anxiety-vs-stress-what-is-the-difference.html",
+      "knowledge/articles/blood-pressure-explained.html",
+      "knowledge/articles/breast-health-changes-screening-when-to-see-a-gp.html",
+      "knowledge/articles/childhood-vaccinations-explained.html"
+    ],
+    "doctors/dr-sumita-singh.html": [
+      "knowledge/articles/adhd-assessment-pathways.html",
+      "knowledge/articles/anxiety-vs-stress-what-is-the-difference.html",
+      "knowledge/articles/breast-health-changes-screening-when-to-see-a-gp.html",
+      "knowledge/articles/hrt-discussions-with-your-gp.html",
+      "knowledge/articles/how-can-a-gp-support-depression.html",
+      "knowledge/articles/menopause-symptoms-explained.html",
+      "knowledge/articles/mental-health-and-menopause.html"
+    ],
+    "doctors/dr-gemunu-suresh-ranawake.html": [
+      "knowledge/articles/anxiety-vs-stress-what-is-the-difference.html",
+      "knowledge/articles/blood-pressure-explained.html",
+      "knowledge/articles/childhood-vaccinations-explained.html",
+      "knowledge/articles/childrens-preventive-healthcare.html",
+      "knowledge/articles/common-childhood-illnesses.html",
+      "knowledge/articles/health-checks-every-man-should-consider.html",
+      "knowledge/articles/healthy-ageing-for-men.html"
+    ],
+    "doctors/dr-wasantha-hettiarchchi.html": [
+      "knowledge/articles/diabetes-care-plans-explained.html",
+      "knowledge/articles/diabetes-monitoring-explained.html",
+      "knowledge/articles/health-checks-every-man-should-consider.html",
+      "knowledge/articles/heart-health-for-men.html",
+      "knowledge/articles/living-with-diabetes.html",
+      "knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html",
+      "knowledge/articles/preventing-diabetes-complications.html"
+    ],
+    "doctors/dr-mary-abadir.html": [
+      "knowledge/articles/understanding-menopause.html",
+      "knowledge/articles/understanding-perimenopause.html",
+      "knowledge/articles/when-should-i-have-a-cervical-screening-test.html"
+    ],
+    "doctors/dr-anand-singh.html": [
+      "knowledge/articles/is-my-sore-throat-viral-or-bacterial.html",
+      "knowledge/articles/sore-throat-when-should-i-see-a-doctor.html",
+      "knowledge/articles/what-causes-a-persistent-cough.html",
+      "knowledge/articles/why-won-t-my-cough-go-away.html",
+      "knowledge/articles/childhood-vaccinations-explained.html",
+      "knowledge/articles/childrens-preventive-healthcare.html",
+      "knowledge/articles/common-childhood-illnesses.html"
+    ],
+    "doctors/dr-sambo-luon.html": [
+      "knowledge/articles/blood-pressure-explained.html",
+      "knowledge/articles/cholesterol-explained.html",
+      "knowledge/articles/health-assessments-explained.html",
+      "knowledge/articles/health-checks-every-man-should-consider.html",
+      "knowledge/articles/healthy-ageing-for-men.html",
+      "knowledge/articles/healthy-ageing-prevention-falls-vaccination-reviews.html",
+      "knowledge/articles/healthy-weight-management.html"
+    ],
+    "doctors/dr-usman-gul.html": [
+      "knowledge/articles/health-checks-every-man-should-consider.html",
+      "knowledge/articles/heart-health-for-men.html",
+      "knowledge/articles/understanding-prostate-health.html",
+      "knowledge/articles/why-preventive-healthcare-matters.html"
+    ],
+    "doctors/dr-nirupa-sivathasan.html": [
+      "knowledge/articles/how-telehealth-works.html",
+      "knowledge/articles/sleep-problems-explained.html",
+      "knowledge/articles/telehealth-vs-face-to-face-appointments.html",
+      "knowledge/articles/what-is-preventive-healthcare.html",
+      "knowledge/articles/when-can-i-use-telehealth.html",
+      "knowledge/articles/when-should-i-speak-to-a-gp-about-sleep.html",
+      "knowledge/articles/why-am-i-always-tired.html"
+    ],
+    "doctors/dr-debra-larkins.html": [
+      "knowledge/articles/how-telehealth-works.html",
+      "knowledge/articles/planning-a-pregnancy.html",
+      "knowledge/articles/what-happens-during-antenatal-care.html",
+      "knowledge/articles/what-is-preventive-healthcare.html",
+      "knowledge/articles/why-regular-check-ups-matter.html",
+      "knowledge/articles/your-first-pregnancy-gp-appointment.html"
+    ],
+    "doctors/dr-kooshyar-karimi.html": [
+      "knowledge/articles/back-pain-when-should-i-see-a-gp.html",
+      "knowledge/articles/migraine-or-headache-how-do-i-tell-the-difference.html",
+      "knowledge/articles/understanding-neck-pain.html",
+      "knowledge/articles/what-causes-frequent-headaches.html",
+      "knowledge/articles/when-should-i-be-concerned-about-pain.html",
+      "knowledge/articles/when-should-i-see-a-gp-about-headaches.html",
+      "knowledge/articles/chronic-pain-when-should-i-seek-help.html"
+    ],
+    "doctors/dr-steven-chang.html": [
+      "knowledge/articles/back-pain-when-should-i-see-a-gp.html",
+      "knowledge/articles/understanding-neck-pain.html",
+      "knowledge/articles/understanding-muscle-and-joint-pain.html"
+    ],
+    "doctors/mr-samuel-stafford.html": [
+      "knowledge/articles/back-pain-when-should-i-see-a-gp.html",
+      "knowledge/articles/understanding-neck-pain.html",
+      "knowledge/articles/understanding-muscle-and-joint-pain.html"
+    ]
+  },
+  "evidence": "Only existing article/service links and verified practitioner areas of care are used; no medical claim changes.",
+  "governance": "Private documented sign-off required; the patient-facing review label remains hidden until verified approval."
+}

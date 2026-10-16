@@ -1,0 +1,23 @@
+{
+  "static_stats": {
+    "pages": 198,
+    "header_links": 1386,
+    "breadcrumb_path_valid": 198,
+    "schema_entities": 1108,
+    "active_about": 7,
+    "breadcrumb_links": 482,
+    "active_patient-info": 29,
+    "corrected_patient_files": 4,
+    "active_contact": 1,
+    "active_team": 20,
+    "corrected_careers": 1,
+    "active_knowledge": 102,
+    "knowledge_children": 101,
+    "active_services": 30,
+    "active_updates": 7
+  },
+  "errors": [],
+  "all_local_missing": [],
+  "local_missing_count": 0,
+  "passed": true
+}

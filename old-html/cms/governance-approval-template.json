@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "3.0",
+  "instructions": [
+    "Copy this EMPTY template into restricted-access storage OUTSIDE the deployed website root. Do not edit the template itself with staff names, evidence or approval dates.",
+    "Content Owner verifies facts, proposed department ownership and submits the exact page for review; record contentOwnerSubmittedBy and contentOwnerSubmittedAt.",
+    "Appropriate clinical, operational or institutional reviewer examines the actual page content, signs the review and records reviewerSignedBy, reviewerSignedAt and reviewedBy as an accurate attribution; lastReviewed MUST equal reviewerSignedAt.",
+    "Practice approver records real approvedBy, approvedAt and approvalReference. Set nextReview as the approved next review due date, never an automated interval.",
+    "Create reviewedContentSha256 with the --fingerprint command for the exact approved page after all editorial changes. Retain internal evidenceReference in restricted storage.",
+    "Only approved entries are exposed after cms/tools/build_clinical_governance.py --approvals /secure/path/approvals.json --build; deploy only governance-published.js.",
+    "When a review becomes due or content changes materially, move the secure record to review_due or in_review and regenerate; no approval banner will be displayed."
+  ],
+  "records": [],
+  "fieldGuide": {
+    "path": "Existing review-eligible page path, e.g. services/womens-health.html",
+    "status": "approved (only after authorised sign-off)",
+    "reviewedBy": "Genuine reviewer attribution approved for public display; only say Woolloongabba Medical Centre Clinical Team when that team actually reviewed it",
+    "lastReviewed": "Actual date of clinical or governance review, YYYY-MM-DD",
+    "nextReview": "Actual approved Next Review Due, YYYY-MM-DD (later than final approval)",
+    "contentOwner": "Approved accountable department, not a guessed default",
+    "approvedBy": "Authorised approver identity (PRIVATE)",
+    "approvedAt": "Actual approval date, YYYY-MM-DD (PRIVATE)",
+    "approvalReference": "Traceable meeting/sign-off ticket or document reference (PRIVATE)",
+    "evidenceReference": "Restricted internal evidence location (PRIVATE)",
+    "reviewedContentSha256": "sha256 from cms/tools/build_clinical_governance.py --fingerprint <PAGE> (PRIVATE)",
+    "reviewType": "Must match the eligible page reviewType (clinical, operational or institutional)",
+    "contentOwnerSubmittedBy": "Real content owner staff name; never a placeholder (PRIVATE)",
+    "contentOwnerSubmittedAt": "Actual owner handover date in YYYY-MM-DD (PRIVATE)",
+    "reviewerSignedBy": "Real staff member who completed the relevant clinical/operational/institutional review (PRIVATE)",
+    "reviewerSignedAt": "Actual review signoff date, YYYY-MM-DD; must equal lastReviewed (PRIVATE)"
+  }
+}

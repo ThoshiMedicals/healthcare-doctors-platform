@@ -1,0 +1,28 @@
+{
+  "baseline_files": 352,
+  "modified_existing_files": [
+    "styles.css",
+    "index.html"
+  ],
+  "removed_existing_files": [],
+  "css_before_bytes": 351133,
+  "css_after_bytes": 337211,
+  "css_reduction_bytes": 13922,
+  "css_reduction_percent": 3.96,
+  "duplicate_declarations_removed": 397,
+  "duplicate_empty_rules_removed": 80,
+  "empty_media_blocks_removed": 5,
+  "important_before": 3980,
+  "important_after": 3637,
+  "visual_snapshot_viewports": 42,
+  "visual_snapshot_mismatches": 0,
+  "hotdoc_test_widths": [
+    320,
+    375,
+    768,
+    1024,
+    1440,
+    1920
+  ],
+  "hotdoc_zero_shift_verified": true
+}

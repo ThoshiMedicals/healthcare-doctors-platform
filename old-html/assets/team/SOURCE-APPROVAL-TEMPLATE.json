@@ -1,0 +1,14 @@
+{
+  "purpose": "Copy outside website root before entering genuine signed approvals; do not publish completed approvals",
+  "portraits": [
+    {
+      "filename": "",
+      "practitionerName": "",
+      "sourceUrl": "",
+      "sha256": "",
+      "identityVerifiedBy": "",
+      "originalSourceConfirmedBy": "",
+      "approvedForLocalHosting": false
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Internal user acceptance — Woolloongabba Medical Centre</title>
+  <style>
+    body { margin: 2rem auto; max-width: 46rem; color: #1a1a1a; font: 16px/1.45 Georgia, serif; }
+    h1 { font-size: 1.6rem; line-height: 1.2; margin-bottom: 0.3rem; }
+    h2 { font-size: 1.25rem; margin-top: 2rem; border-top: 1px solid #ccc; padding-top: 1rem; }
+    h3 { font-size: 1.05rem; margin-top: 1.4rem; }
+    p, li { margin: 0.4rem 0; }
+    table { width: 100%; border-collapse: collapse; margin: 0.8rem 0 1.2rem; }
+    th, td { border: 1px solid #ccc; padding: 0.4rem 0.5rem; vertical-align: top; text-align: left; }
+    th { background: #f4f4f4; }
+    .meta { color: #333; }
+    .warn { border: 1px solid #ccc; padding: 0.7rem 0.9rem; margin: 1rem 0; }
+    label { display: block; margin: 0.35rem 0; }
+    .line { display: inline-block; min-width: 14rem; border-bottom: 1px solid #999; }
+    @media print { body { margin: 1rem; } h2 { break-before: page; } }
+  </style>
+</head>
+<body>
+  <h1>Internal user acceptance</h1>
+  <p class="meta">Woolloongabba Medical Centre. 15 October 2026. Local network only. This pack does not add features or change the website.</p>
+  <div class="warn">
+    <p>Write today’s address here before anyone starts. It is the Ethernet address of the computer running the site, for example <span class="line">http://192.168.30.129:3000</span></p>
+    <p>Staff use their own computers. They do not use the computer that is running the site. Do not complete a HotDoc booking. Do not submit a real patient form. Do not press Publish.</p>
+  </div>
+
+  <h2>1. Reception checklist</h2>
+  <p>Reception uses the public website only. No CMS sign-in is required. Tester: <span class="line"></span> Date: <span class="line"></span></p>
+  <table>
+    <thead><tr><th>Pass</th><th>Check</th><th>Expected</th></tr></thead>
+    <tbody>
+      <tr><td>☐</td><td>Open the written address.</td><td>The homepage loads. The address is not localhost.</td></tr>
+      <tr><td>☐</td><td>Read the practice name.</td><td>Woolloongabba Medical Centre.</td></tr>
+      <tr><td>☐</td><td>Read the phone and use Call Clinic.</td><td>(07) 3217 3344. The link is tel:+61732173344.</td></tr>
+      <tr><td>☐</td><td>Read the homepage hours.</td><td>Mon–Thu 7:00 AM–7:00 PM, Friday 8:00 AM–5:00 PM, Saturday 9:00 AM–5:00 PM, Sunday 9:00 AM–3:00 PM.</td></tr>
+      <tr><td>☐</td><td>Open Book Appointment on the homepage, then close it.</td><td>HotDoc opens for Woolloongabba Medical Centre. The address stays on hotdoc.com.au and includes wp=w_lightbox.</td></tr>
+      <tr><td>☐</td><td>Repeat from the booking bar and from book-appointment.html.</td><td>Same clinic and the same style of HotDoc window.</td></tr>
+      <tr><td>☐</td><td>Open contact.html.</td><td>468 Vulture Street, Woolloongabba QLD 4102, and reception@gabbamedicalcentre.com.au.</td></tr>
+      <tr><td>☐</td><td>Open team.html and two doctor profiles.</td><td>Each card opens the matching profile. Names are spelled as the practice uses them.</td></tr>
+      <tr><td>☐</td><td>Open after-hours-care.html.</td><td>Hello Home Doctor is 134 100. Emergency care tells the reader to call 000.</td></tr>
+      <tr><td>☐</td><td>Use the main menu.</td><td>Services, Our Team, About Us, Patient Information, Knowledge Centre, Updates, and Contact are all present.</td></tr>
+      <tr><td>☐</td><td>Open one Knowledge Centre article and one service page.</td><td>Each page is the approved page, with no empty content area.</td></tr>
+      <tr><td>☐</td><td>Open a made-up address, such as /does-not-exist.html.</td><td>The page says it could not be found. It does not show another practice.</td></tr>
+      <tr><td>☐</td><td>Open /admin.</td><td>A sign-in page appears. Reception does not need to sign in.</td></tr>
+    </tbody>
+  </table>
+  <p>Reception result: ☐ Pass ☐ Fail. Signature: <span class="line"></span></p>
+
+  <h2>2. Practice Manager checklist</h2>
+  <p>Use a Clinic Admin account on a staff computer. A Super Admin sign-in does not count as the Practice Manager test. If no Clinic Admin account exists, stop and record that as High. Tester: <span class="line"></span> Date: <span class="line"></span></p>
+  <table>
+    <thead><tr><th>Pass</th><th>Check</th><th>Expected</th></tr></thead>
+    <tbody>
+      <tr><td>☐</td><td>Sign in at /admin/login.</td><td>The CMS opens. Sign-in stays on the written network address, not localhost.</td></tr>
+      <tr><td>☐</td><td>Read the menu.</td><td>Clinic Settings, Practitioners, Services, Knowledge Centre, Updates, Patient Information, About Us, Navigation Ownership, Governance Review, and Image governance.</td></tr>
+      <tr><td>☐</td><td>Open Clinic Settings and compare it with the public contact page. Do not save.</td><td>Phone (07) 3217 3344, reception@gabbamedicalcentre.com.au, 468 Vulture Street, the hours above, and the shared HotDoc address.</td></tr>
+      <tr><td>☐</td><td>Open one published practitioner and use View public page.</td><td>The public profile opens in the browser and shows that doctor’s approved name.</td></tr>
+      <tr><td>☐</td><td>If any record says Draft, open its public page.</td><td>The public page still shows the last published text. Draft, Under Review, and Approved stay off the website.</td></tr>
+      <tr><td>☐</td><td>Read the workflow labels. Do not press Submit, Approve, or Publish.</td><td>The labels are Draft, Under Review, Approved, and Published. There is no way to publish from Draft.</td></tr>
+      <tr><td>☐</td><td>Open Governance Review.</td><td>The review record is inside the CMS. The public page does not gain a new review line.</td></tr>
+      <tr><td>☐</td><td>Open Image governance and the logo record. Do not upload a file.</td><td>The logo can be proposed later. The current public logo is unchanged. Knowledge Centre and service pictures are not offered as replacements.</td></tr>
+      <tr><td>☐</td><td>Open revision history for Clinic Settings. Do not restore a revision.</td><td>Earlier revisions are listed. Restoring is available to Clinic Admin and is not required for this test.</td></tr>
+      <tr><td>☐</td><td>Search the CMS for “Goodwill”.</td><td>Dr Tanya Goodwill’s record is found.</td></tr>
+      <tr><td>☐</td><td>Sign out, then open the public homepage again.</td><td>Phone, address, and hours are unchanged from the start of the session.</td></tr>
+    </tbody>
+  </table>
+  <p>Practice Manager result: ☐ Pass ☐ Fail. Signature: <span class="line"></span></p>
+
+  <h2>3. Doctor checklist</h2>
+  <p>Each doctor checks only their own public profile from a staff computer. No CMS account is required. Do not complete a booking.</p>
+  <table>
+    <thead><tr><th>Profile</th><th>Name</th><th>Photograph</th><th>Biography</th><th>Booking</th><th>Initials</th></tr></thead>
+    <tbody>
+      <tr><td>doctors/dr-anand-singh.html</td><td>☐</td><td>☐</td><td>☐</td><td>☐ HotDoc lightbox</td><td></td></tr>
+      <tr><td>doctors/dr-debra-larkins.html</td><td>☐</td><td>☐</td><td>☐</td><td>☐ HotDoc lightbox</td><td></td></tr>
+      <tr><td>doctors/dr-gemunu-suresh-ranawake.html</td><td>☐</td><td>☐</td><td>☐</td><td>☐ HotDoc lightbox</td><td></td></tr>
+      <tr><td>doctors/dr-kooshyar-karimi.html</td><td>☐</td><td>☐</td><td>☐</td><td>☐ HotDoc lightbox</td><td></td></tr>
+      <tr><td>doctors/dr-mary-abadir.html</td><td>☐</td><td>☐</td><td>☐</td><td>☐ Call Reception, no HotDoc button</td><td></td></tr>
+      <tr><td>doctors/dr-nirupa-sivathasan.html</td><td>☐</td><td>☐ No portrait is expected</td><td>☐</td><td>☐ HotDoc lightbox</td><td></td></tr>
+      <tr><td>doctors/dr-sambo-luon.html</td><td>☐</td><td>☐</td><td>☐</td><td>☐ HotDoc lightbox</td><td></td></tr>
+      <tr><td>doctors/dr-steven-chang.html</td><td>☐</td><td>☐</td><td>☐</td><td>☐ HotDoc lightbox</td><td></td></tr>
+      <tr><td>doctors/dr-sumita-singh.html</td><td>☐</td><td>☐</td><td>☐</td><td>☐ HotDoc lightbox</td><td></td></tr>
+      <tr><td>doctors/dr-tanya-goodwill.html</td><td>☐</td><td>☐</td><td>☐</td><td>☐ HotDoc lightbox</td><td></td></tr>
+      <tr><td>doctors/dr-usman-gul.html</td><td>☐</td><td>☐</td><td>☐</td><td>☐ HotDoc lightbox</td><td></td></tr>
+      <tr><td>doctors/dr-wasantha-hettiarchchi.html</td><td>☐</td><td>☐</td><td>☐</td><td>☐ HotDoc lightbox</td><td></td></tr>
+      <tr><td>mr-samuel-stafford on team.html and his profile</td><td>☐</td><td>☐ No portrait is expected</td><td>☐</td><td>☐ HotDoc lightbox</td><td></td></tr>
+    </tbody>
+  </table>
+  <p>Also open team.html and confirm the doctor’s card uses the same name and opens their profile. A missing portrait for Dr Nirupa Sivathasan or Mr Samuel Stafford is not a defect.</p>
+
+  <h2>4. Feedback</h2>
+  <p>One row for each problem. Attach a screenshot when the screen is wrong.</p>
+  <table>
+    <thead><tr><th>No.</th><th>Name and role</th><th>Page</th><th>What I did</th><th>What I expected</th><th>What happened</th><th>Class</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>2</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>3</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>4</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>5</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <h2>5. How to class a defect</h2>
+  <table>
+    <thead><tr><th>Class</th><th>Use it when</th><th>Examples on this platform</th></tr></thead>
+    <tbody>
+      <tr><td>Critical</td><td>A staff computer cannot use the site, a patient could be sent to the wrong place, or unpublished clinic information is public.</td><td>The network address does not load. HotDoc shows another clinic. The phone, address, or hours are wrong. A draft is visible on the public page. Sign-in fails for Clinic Admin.</td></tr>
+      <tr><td>High</td><td>An approved fact about a doctor or the practice is wrong, or a required sign-off cannot be done.</td><td>A doctor’s name, photograph, or biography does not match the approved profile. The wrong doctor has Call Reception. No Clinic Admin account exists. Publish is offered on a draft.</td></tr>
+      <tr><td>Medium</td><td>The task can be finished, but a label, search result, or path is misleading.</td><td>Search does not find a doctor who is on the team page. A menu name does not match the page staff expected. The revision list is hard to understand.</td></tr>
+      <tr><td>Low</td><td>The fact and the task are correct. The note is a preference.</td><td>A sentence could be shorter. Spacing feels tight. A doctor would prefer a different photograph later.</td></tr>
+    </tbody>
+  </table>
+  <p>A missing portrait for Dr Nirupa Sivathasan or Mr Samuel Stafford is not a defect. A wish for a new page, a new image region, or a new CMS field is not a defect. Record it as out of scope and do not build it in this test.</p>
+
+  <h2>6. Sign-off</h2>
+  <table>
+    <thead><tr><th>Done</th><th>Item</th></tr></thead>
+    <tbody>
+      <tr><td>☐</td><td>The network address used for the test is written on this pack.</td></tr>
+      <tr><td>☐</td><td>Reception tested from a computer other than the one running the site, and signed.</td></tr>
+      <tr><td>☐</td><td>The Practice Manager tested as Clinic Admin, and signed.</td></tr>
+      <tr><td>☐</td><td>Every doctor signed their row, or a named exception is attached.</td></tr>
+      <tr><td>☐</td><td>No HotDoc booking was completed. No real patient form was submitted.</td></tr>
+      <tr><td>☐</td><td>Nothing was published or restored during the test.</td></tr>
+      <tr><td>☐</td><td>The public phone, email, address, and hours at the end match the start.</td></tr>
+      <tr><td>☐</td><td>The feedback table is attached, including empty confirmation if there were no defects.</td></tr>
+      <tr><td>☐</td><td>No Critical item is open. Every High item is fixed or written down as still blocking.</td></tr>
+    </tbody>
+  </table>
+  <p>Practice Manager sign-off: <span class="line"></span> Date: <span class="line"></span></p>
+
+  <h2>7. Go / No-Go</h2>
+  <h3>GitHub</h3>
+  <p><strong>No-Go today.</strong> User acceptance has not been signed, and <code>apps/web/ _rollback-check.mjs</code> is still in the project. That file would be committed. The live staff secret remains only in the ignored <code>apps/web/.env</code>.</p>
+  <p>GitHub becomes a Go only when all of these are true:</p>
+  <ul>
+    <li>The temporary script has been removed.</li>
+    <li>A fresh check still ignores <code>.env</code>, <code>node_modules</code>, <code>.next</code>, <code>.pgdata</code>, <code>storage</code>, and <code>deployment/backups</code>.</li>
+    <li>User acceptance has no open Critical defect in the software.</li>
+    <li>The local database and <code>C:\Users\RoshanSamarawickrema\WMC-Backups</code> are not part of the commit.</li>
+  </ul>
+  <h3>VPS staging</h3>
+  <p><strong>No-Go today.</strong> Staging waits for this pack to be signed and for the existing staging rules. Medium and Low notes can be deferred in writing. Critical and High cannot.</p>
+  <p>VPS staging becomes a Go only when all of these are true:</p>
+  <ul>
+    <li>Section 6 is signed.</li>
+    <li>No Critical or High item is open.</li>
+    <li>Public DNS stays on the current WordPress site. The certificate uses DNS-01. The stack is <code>deployment/docker-compose.production.yml</code>.</li>
+    <li>The VPS has a new <code>AUTH_SECRET</code>, a new database password, and <code>AUTH_URL</code> of <code>https://gabbamedicalcentre.com.au</code>. The local <code>.env</code> is not copied.</li>
+    <li>A Clinic Admin account exists before the Practice Manager signs in on the VPS.</li>
+    <li>A normal browser, without a special hosts setting, still shows the current public website.</li>
+  </ul>
+</body>
+</html>

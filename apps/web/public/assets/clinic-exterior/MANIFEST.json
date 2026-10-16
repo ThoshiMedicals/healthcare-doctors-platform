@@ -1,0 +1,65 @@
+{
+  "schema": "wmc.institutional-image-category.v1",
+  "name": "Clinic Exterior",
+  "category": "clinic-exterior",
+  "publicationPolicy": "Original verified authentic imagery only. Do not copy legacy visuals into this folder without manual sign-off.",
+  "status": "catalogue_only_no_new_approved_photographs",
+  "cropStandards": [
+    "3:2 documentary",
+    "16:9 banner"
+  ],
+  "cropRule": "Show factual entrance, signage, step-free routes, landmarks and access; never crop to imply parking or access not actually present.",
+  "styleRule": "Truthful architectural documentary photography with moderate tonal correction.",
+  "existingProductionReferences": [
+    {
+      "id": "careers-editorial",
+      "path": "assets/careers-editorial.webp",
+      "sourceUrl": null,
+      "status": "legacy_frozen_production_use_provenance_pending"
+    },
+    {
+      "id": "community-editorial",
+      "path": "assets/community-editorial.webp",
+      "sourceUrl": null,
+      "status": "legacy_frozen_production_use_provenance_pending"
+    },
+    {
+      "id": "institutional-exterior-consistent",
+      "path": "assets/institutional-exterior-consistent.webp",
+      "sourceUrl": null,
+      "status": "legacy_frozen_production_use_provenance_pending"
+    },
+    {
+      "id": "local-access-editorial",
+      "path": "assets/local-access-editorial.webp",
+      "sourceUrl": null,
+      "status": "legacy_frozen_production_use_provenance_pending"
+    },
+    {
+      "id": "location-storefront-polished",
+      "path": "assets/location-storefront-polished.webp",
+      "sourceUrl": null,
+      "status": "legacy_frozen_production_use_provenance_pending"
+    },
+    {
+      "id": "network-editorial",
+      "path": "assets/network-editorial.webp",
+      "sourceUrl": null,
+      "status": "legacy_frozen_production_use_provenance_pending"
+    },
+    {
+      "id": "story-editorial",
+      "path": "assets/story-editorial.webp",
+      "sourceUrl": null,
+      "status": "legacy_frozen_production_use_provenance_pending"
+    },
+    {
+      "id": "woolloongabba-premium-hero",
+      "path": "assets/woolloongabba-premium-hero.webp",
+      "sourceUrl": null,
+      "status": "legacy_frozen_production_use_provenance_pending"
+    }
+  ],
+  "approvedNewLibraryFiles": [],
+  "missingOrUnverified": "Existing polished exterior derivatives have no embedded primary-source provenance or signed approval records in the archive."
+}

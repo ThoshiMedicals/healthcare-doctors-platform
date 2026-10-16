@@ -1,0 +1,58 @@
+# Production stack for the VPS.
+# PostgreSQL is not published to the host. Nginx is the only public port.
+# backup-database.sh writes deployment/backups/<stamp>/database.sql, images.tar.gz, and backup-manifest.txt.
+# Ports 80 and 443 stay published for Cloudflare. Block every other source with
+# deployment/cloudflare-origin-firewall.sh before public cutover.
+# Copy apps/web/.env.example to apps/web/.env and set the production values first.
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-wmc}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-wmc}
+    volumes:
+      - wmc_pg:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-wmc} -d ${POSTGRES_DB:-wmc}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  web:
+    build:
+      context: ../apps/web
+      dockerfile: Dockerfile
+    env_file:
+      - ../apps/web/.env
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-wmc}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-wmc}?schema=public
+      AUTH_TRUST_HOST: "true"
+      IMAGE_STORE_DIR: /app/storage/images
+    volumes:
+      - wmc_images:/app/storage
+    depends_on:
+      postgres:
+        condition: service_healthy
+    expose:
+      - "3000"
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:1.27-alpine
+    volumes:
+      - ./nginx/gabbamedicalcentre.tls.conf.example:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx/redirects.conf:/etc/nginx/redirects.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - web
+    restart: unless-stopped
+
+volumes:
+  wmc_pg:
+  wmc_images:

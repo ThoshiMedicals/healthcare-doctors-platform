@@ -1,0 +1,89 @@
+{
+  "status": "cms_seed_not_runtime_source",
+  "practiceName": "Woolloongabba Medical Centre",
+  "address": {
+    "street": "468 Vulture Street",
+    "suburb": "Woolloongabba",
+    "state": "QLD",
+    "postcode": "4102"
+  },
+  "phone": "(07) 3217 3344",
+  "fax": "(07) 3189 4808",
+  "email": "reception@gabbamedicalcentre.com.au",
+  "openingHours": {
+    "monday": "07:00-19:00",
+    "tuesday": "07:00-19:00",
+    "wednesday": "07:00-19:00",
+    "thursday": "07:00-19:00",
+    "friday": "08:00-17:00",
+    "saturday": "09:00-17:00",
+    "sunday": "09:00-15:00"
+  },
+  "contentCollections": [
+    "Practice Updates",
+    "Patient Education",
+    "Service Information",
+    "Clinical Governance",
+    "Community Health Information"
+  ],
+  "localCommunities": [
+    "Woolloongabba",
+    "East Brisbane",
+    "South Brisbane",
+    "Kangaroo Point",
+    "Greenslopes",
+    "Stones Corner",
+    "Dutton Park"
+  ],
+  "afterHours": {
+    "provider": "Hello Home Doctor",
+    "phone": "134 100",
+    "page": "after-hours-care.html"
+  },
+  "booking": {
+    "general": "book-appointment.html",
+    "phone": "(07) 3217 3344",
+    "practitionerSpecific": "Use stable verified practitioner booking URL where present in practitioner profile."
+  },
+  "primaryNavigation": [
+    {
+      "label": "Services",
+      "url": "services.html"
+    },
+    {
+      "label": "Our Team",
+      "url": "team.html"
+    },
+    {
+      "label": "Patient Information",
+      "url": "patient-information.html"
+    },
+    {
+      "label": "Healthcare Knowledge Centre",
+      "url": "knowledge/index.html"
+    },
+    {
+      "label": "Updates",
+      "url": "updates/index.html"
+    },
+    {
+      "label": "Contact",
+      "url": "contact.html"
+    }
+  ],
+  "network": {
+    "authorityPage": "medical-centre-network.html",
+    "positioning": "Community-focused medical centre network across Brisbane; avoid corporate, franchise or chain language."
+  },
+  "knowledgeCentre": {
+    "hub": "knowledge/index.html",
+    "positioning": "Healthcare authority and patient education; not a blog or SEO content farm.",
+    "conversionJourney": [
+      "Search",
+      "Trust",
+      "Service",
+      "Doctor",
+      "Booking"
+    ]
+  }
+}

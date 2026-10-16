@@ -1,0 +1,46 @@
+# Example TLS server for the VPS after the origin certificate exists.
+# Replace the HTTP server in default.conf, or include this file from nginx.conf.
+# Certbot paths shown match a typical /etc/letsencrypt layout on the VPS.
+# Direct IP blocking is the host firewall in deployment/cloudflare-origin-firewall.sh.
+# The Nginx allow list is deployment/nginx/cloudflare-allow.conf.example.
+
+server {
+  listen 80;
+  server_name gabbamedicalcentre.com.au www.gabbamedicalcentre.com.au;
+  return 301 https://gabbamedicalcentre.com.au$request_uri;
+}
+
+server {
+  listen 443 ssl http2;
+  server_name www.gabbamedicalcentre.com.au;
+  ssl_certificate /etc/letsencrypt/live/gabbamedicalcentre.com.au/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/gabbamedicalcentre.com.au/privkey.pem;
+  return 301 https://gabbamedicalcentre.com.au$request_uri;
+}
+
+server {
+  listen 443 ssl http2;
+  server_name gabbamedicalcentre.com.au;
+
+  ssl_certificate /etc/letsencrypt/live/gabbamedicalcentre.com.au/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/gabbamedicalcentre.com.au/privkey.pem;
+  ssl_protocols TLSv1.2 TLSv1.3;
+  ssl_session_timeout 1d;
+  add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+  add_header X-Content-Type-Options nosniff always;
+
+  client_max_body_size 10m;
+
+  include /etc/nginx/redirects.conf;
+
+  location / {
+    proxy_pass http://web:3000;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-Host $host;
+    proxy_set_header X-Forwarded-Proto https;
+    # Until CF-Connecting-IP is trusted, this forwards the incoming chain.
+    # After the Cloudflare allow list is active, set X-Forwarded-For to $remote_addr.
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  }
+}

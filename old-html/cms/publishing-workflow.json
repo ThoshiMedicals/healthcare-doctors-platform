@@ -1,0 +1,68 @@
+{
+  "version": "1.0",
+  "purpose": "Private editorial operations linked to the existing Knowledge Centre and evidence-controlled clinical governance. No website layout changes.",
+  "statusTransitions": {
+    "planned": [
+      "assigned",
+      "on_hold"
+    ],
+    "assigned": [
+      "drafting",
+      "on_hold"
+    ],
+    "drafting": [
+      "clinical_review",
+      "on_hold"
+    ],
+    "clinical_review": [
+      "approved",
+      "drafting",
+      "on_hold"
+    ],
+    "approved": [
+      "scheduled",
+      "drafting",
+      "on_hold"
+    ],
+    "scheduled": [
+      "published",
+      "drafting",
+      "on_hold"
+    ],
+    "published": [
+      "review_due"
+    ],
+    "review_due": [
+      "drafting",
+      "on_hold"
+    ],
+    "on_hold": [
+      "planned",
+      "assigned",
+      "drafting"
+    ]
+  },
+  "dueDateMeaning": "Internal deadline for a complete content draft, not a publication claim.",
+  "plannedPublicationDateMeaning": "Desired date for a future release; not an actual publication claim.",
+  "publicationDateMeaning": "Actual date when site deployment was confirmed, after clinical/practice approval and technical QA.",
+  "nextReviewDateMeaning": "Specific approved future review date. Must follow approval and live publication; review sooner on guidance changes.",
+  "clinicalApprovalRule": "Clinical status approved requires reviewer name/date/reference, practice approver name/date/reference, evidence reference and matching page-content SHA256. Metadata alone cannot authenticate signatures; supporting evidence must be retained securely offline.",
+  "publishingGate": [
+    "contentOwner and dueDate set",
+    "safe articlePath exists in knowledge/articles/",
+    "reviewedContentSha256 matches current main content; obtain via build_clinical_governance.py --fingerprint",
+    "clinical reviewer and practice approver signed off in the correct order",
+    "source, SEO, accessibility and internal links verified",
+    "nextReviewDate is later than published date",
+    "website deployed and verified by a named operator before recording actual publicationDate"
+  ],
+  "existingGovernance": "For any new article added to live site, also register governance eligibility and follow cms/tools/build_clinical_governance.py approval process before showing patient-facing reviewed-by metadata.",
+  "privacy": "Admin dashboard and completed export must never be served publicly or committed with personal approval evidence.",
+  "constraints": [
+    "Do not backdate clinical reviews",
+    "Do not auto-create clinical approval",
+    "No publication from a content calendar record alone",
+    "Published pages cannot be silently modified without renewal of evidence",
+    "No changes to patient-facing design or approved brand voice"
+  ]
+}

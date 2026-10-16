@@ -1,0 +1,46 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: wmc
+      POSTGRES_PASSWORD: wmc
+      POSTGRES_DB: wmc
+    ports:
+      - "5432:5432"
+    volumes:
+      - wmc_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wmc -d wmc"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  web:
+    profiles: ["app"]
+    build:
+      context: ../apps/web
+      dockerfile: Dockerfile
+    env_file:
+      - ../apps/web/.env
+    environment:
+      DATABASE_URL: postgresql://wmc:wmc@postgres:5432/wmc?schema=public
+      AUTH_URL: http://localhost:8080
+      AUTH_TRUST_HOST: "true"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    expose:
+      - "3000"
+
+  nginx:
+    profiles: ["app"]
+    image: nginx:1.27-alpine
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "8080:80"
+    depends_on:
+      - web
+
+volumes:
+  wmc_pg:

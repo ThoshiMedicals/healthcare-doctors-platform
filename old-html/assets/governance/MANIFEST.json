@@ -1,0 +1,16 @@
+{
+  "schema": "wmc.institutional-image-category.v1",
+  "name": "Governance Images",
+  "category": "governance",
+  "publicationPolicy": "Original verified authentic imagery only. Do not copy legacy visuals into this folder without manual sign-off.",
+  "status": "catalogue_only_no_new_approved_photographs",
+  "cropStandards": [
+    "4:3 documentary",
+    "3:2 reportage"
+  ],
+  "cropRule": "Show true clinical safety, processes, teams or premises with no identifiable patient documents.",
+  "styleRule": "Discreet process documentary imagery, not staged accreditation symbolism or false compliance claims.",
+  "existingProductionReferences": [],
+  "approvedNewLibraryFiles": [],
+  "missingOrUnverified": "No authenticated clinic governance photography provided; AGPAL marks remain governed brand assets, not governance photography."
+}

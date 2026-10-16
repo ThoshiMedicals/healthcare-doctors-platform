@@ -1,0 +1,16 @@
+{
+  "generatedAt": "2026-10-12T00:38:05.812Z",
+  "compared": 198,
+  "exactMatches": 198,
+  "mismatches": [],
+  "accepted": true,
+  "http": {
+    "origin": "http://localhost:3000",
+    "compared": 198,
+    "exactMatches": 198,
+    "mismatches": [],
+    "indexHtmlAliasExact": true,
+    "stylesCssExact": true,
+    "digitalReceptionManifestExact": true
+  }
+}

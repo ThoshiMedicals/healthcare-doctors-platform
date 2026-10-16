@@ -1,0 +1,44 @@
+{
+  "version": "1.0",
+  "policy": "Use first-party/local assets where practical; never substitute an invented likeness for a named practitioner.",
+  "criticalAssets": {
+    "brandMark": "assets/wmc-brand-mark.webp",
+    "agpalMark": "assets/agpal-mark.webp",
+    "heroDesktop": "assets/hero-final-desktop.webp",
+    "heroTablet": "assets/hero-final-tablet.webp",
+    "heroMobile": "assets/hero-final-mobile.webp",
+    "clinicExterior": "assets/location-storefront-polished.webp",
+    "institutionLogoLockup": "assets/healthcare-doctors-woolloongabba-logo.png"
+  },
+  "practitionerMedia": {
+    "sourcePolicy": "Verified authentic source only",
+    "firstPartyLegacyPath": "/wp-content/uploads/2025/02/",
+    "thirdPartyTransformationServiceRemoved": true,
+    "noVerifiedPortraitAvailable": [
+      "Dr Nirupa Sivathasan",
+      "Mr Samuel Stafford"
+    ],
+    "fallbackBehaviour": "If a verified practitioner image cannot load, show a neutral unavailable-photo state rather than an illustrative likeness."
+  },
+  "communityMedia": {
+    "externalReference": "Logan Road community streetscape remains an editorial community reference; a local clinic-image fallback is configured."
+  },
+  "digitalReception": {
+    "mode": "website-only local content index",
+    "script": "digital-reception.js",
+    "privacy": "Does not access medical records or search the public internet; visitors are instructed not to enter personal or health information."
+  },
+  "institutionalImageGovernance": {
+    "registry": "assets/IMAGE_LIBRARY.json",
+    "standard": "cms/INSTITUTIONAL-IMAGE-GOVERNANCE.md",
+    "categoryFolders": {
+      "Hero Images": "assets/hero/",
+      "Community Images": "assets/community/",
+      "Clinic Exterior": "assets/clinic-exterior/",
+      "Team Photography": "assets/team/",
+      "Service Images": "assets/services/",
+      "Governance Images": "assets/governance/"
+    },
+    "policy": "No inferred authenticity. Do not fill absent clinic interior, team or governance images with generated or stock photos. Keep source masters, signed permission and derivative traceability. Existing production visuals remain unchanged until source verification."
+  }
+}

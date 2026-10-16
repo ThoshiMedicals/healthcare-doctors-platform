@@ -1,0 +1,17 @@
+{
+  "name": "wmc-platform",
+  "private": true,
+  "description": "Woolloongabba Medical Centre production platform. Infrastructure phase. The approved HTML package is frozen.",
+  "scripts": {
+    "dev": "npm run dev --prefix apps/web",
+    "build": "npm run build --prefix apps/web",
+    "start": "npm run start --prefix apps/web",
+    "lint": "npm run lint --prefix apps/web",
+    "db:generate": "npm run db:generate --prefix apps/web",
+    "db:migrate": "npm run db:migrate --prefix apps/web",
+    "db:migrate:dev": "npm run db:migrate:dev --prefix apps/web",
+    "db:seed": "npm run db:seed --prefix apps/web",
+    "test": "npm test --prefix apps/web",
+    "db:studio": "npm run db:studio --prefix apps/web"
+  }
+}

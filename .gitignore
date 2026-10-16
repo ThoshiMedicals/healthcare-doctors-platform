@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+
+# Build artifacts and caches
+.next/
+dist/
+out/
+coverage/
+.cache/
+.turbo/
+.parcel-cache/
+*.tsbuildinfo
+
+# Logs and temporary files
+logs/
+tmp/
+uploads/
+*.log
+
+# Secrets and local environment files
+.env
+.env.*
+!.env.example
+.env.local
+.env.production
+.env.development
+.env.test
+
+# Local database, generated uploads, and backup copies
+.pgdata/
+apps/web/.pgdata/
+storage/
+backups/
+
+# Operating system and bytecode
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+deployment/nginx/cloudflare-allow.conf

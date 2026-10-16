@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "home": {"label": "Knowledge Centre", "href": "index.html"},
+  "groups": [
+    {"title": "Symptoms & Everyday Concerns", "items": [
+      {"label": "Headache & Migraine", "href": "headache.html"},
+      {"label": "Cough & Sore Throat", "href": "cough.html"},
+      {"label": "Pain & Musculoskeletal Health", "href": "pain.html"},
+      {"label": "Sleep & Fatigue", "href": "sleep.html"}
+    ]},
+    {"title": "Health Conditions", "items": [
+      {"label": "Diabetes & Ongoing Care", "href": "diabetes.html"},
+      {"label": "Blood Pressure & Heart Health", "href": "heart.html"},
+      {"label": "Chronic Disease Management", "href": "chronic-disease-management.html"},
+      {"label": "Mental Health", "href": "mental-health.html"},
+      {"label": "ADHD & Neurodiversity", "href": "adhd.html"},
+      {"label": "Skin Health & Skin Cancer", "href": "skin-health-skin-cancer.html"}
+    ]},
+    {"title": "Life Stages & Wellbeing", "items": [
+      {"label": "Women's Health", "href": "womens-health.html"},
+      {"label": "Menopause & Midlife Health", "href": "menopause.html"},
+      {"label": "Pregnancy & Antenatal Care", "href": "pregnancy.html"},
+      {"label": "Men's Health", "href": "mens-health.html"},
+      {"label": "Children's Health", "href": "childrens-health.html"},
+      {"label": "Healthy Ageing", "href": "healthy-ageing.html"},
+      {"label": "Weight & Healthy Lifestyle", "href": "weight.html"}
+    ]},
+    {"title": "Prevention & Healthcare Access", "items": [
+      {"label": "Preventive Healthcare", "href": "preventive-healthcare.html"},
+      {"label": "Vaccinations", "href": "vaccinations.html"},
+      {"label": "Telehealth & Access To Care", "href": "telehealth-access-to-care.html"}
+    ]}
+  ]
+}

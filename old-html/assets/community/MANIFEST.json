@@ -1,0 +1,35 @@
+{
+  "schema": "wmc.institutional-image-category.v1",
+  "name": "Community Images",
+  "category": "community",
+  "publicationPolicy": "Original verified authentic imagery only. Do not copy legacy visuals into this folder without manual sign-off.",
+  "status": "catalogue_only_no_new_approved_photographs",
+  "cropStandards": [
+    "16:9 editorial",
+    "3:2 contextual"
+  ],
+  "cropRule": "Establish genuine neighbourhood context with geographic recognisability; avoid using the clinic exterior as a substitute for neighbourhood photography.",
+  "styleRule": "Documentary local streetscape; natural Brisbane daylight, no manufactured crowds.",
+  "existingProductionReferences": [
+    {
+      "id": "community-editorial",
+      "path": "assets/community-editorial.webp",
+      "sourceUrl": null,
+      "status": "legacy_frozen_production_use_provenance_pending"
+    },
+    {
+      "id": "local-access-editorial",
+      "path": "assets/local-access-editorial.webp",
+      "sourceUrl": null,
+      "status": "legacy_frozen_production_use_provenance_pending"
+    },
+    {
+      "id": "gabba-precinct",
+      "path": null,
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3d/The_Gabba_from_Ipswich_Road_2026.jpg",
+      "status": "pending_source_file_and_approval"
+    }
+  ],
+  "approvedNewLibraryFiles": [],
+  "missingOrUnverified": "No source-controlled local original of the currently referenced Wikimedia Gabba streetscape."
+}

@@ -1,0 +1,44 @@
+{
+  "pageRequirements": [
+    "Unique page title",
+    "Unique meta description",
+    "Canonical URL",
+    "Open Graph metadata",
+    "Twitter card metadata",
+    "Visible breadcrumbs",
+    "BreadcrumbList schema",
+    "Internal service links",
+    "Practitioner links",
+    "Book Appointment CTA"
+  ],
+  "articleStructuredData": [
+    "MedicalWebPage",
+    "Article",
+    "FAQPage",
+    "BreadcrumbList",
+    "MedicalClinic/MedicalOrganization inherited from site template"
+  ],
+  "localAuthorityLocations": [
+    "Woolloongabba",
+    "East Brisbane",
+    "South Brisbane",
+    "Kangaroo Point",
+    "Greenslopes",
+    "Stones Corner",
+    "Dutton Park"
+  ],
+  "networkKeywordThemes": [
+    "Medical Centres Brisbane",
+    "Doctors Brisbane",
+    "Family Doctors Brisbane",
+    "Medical Centres Inner Brisbane",
+    "Community Healthcare Brisbane"
+  ],
+  "principles": [
+    "Natural language only",
+    "No suburb stuffing",
+    "No keyword stuffing",
+    "Patient-first clinical language",
+    "Search content must connect to care rather than end at reading"
+  ]
+}
