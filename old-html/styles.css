@@ -9322,3 +9322,72 @@ a.portrait.practitioner-no-photo{
     font-size:11px!important;
   }
 }
+
+/* Knowledge Centre hub, 22 Oct 2026.
+   Topics come before the essay. Each topic card has its own wash.
+   On a phone the hero is shorter and the topic list follows the search. */
+.kc-ux-hub{display:flex;flex-direction:column}
+.kc-ux-hub .knowledge-guide-search{order:1}
+.kc-ux-hub #explore-healthcare-topics{order:2}
+.kc-ux-hub #a-healthcare-knowledge-centre-not-a-blog{order:3}
+.kc-ux-hub #healthcare-in-our-local-community{order:4}
+.kc-ux-hub #get-support{order:5}
+.kc-ux-hub .knowledge-disclaimer{order:6}
+.kc-ux-hub .knowledge-category-grid>.knowledge-category-card:nth-child(4n+1){
+  background:#e7f1f4!important;
+  border-color:#c5d8e0!important;
+  border-top:3px solid #3d6d86!important;
+}
+.kc-ux-hub .knowledge-category-grid>.knowledge-category-card:nth-child(4n+2){
+  background:#e7f3ea!important;
+  border-color:#c5ddcc!important;
+  border-top:3px solid #3d7a56!important;
+}
+.kc-ux-hub .knowledge-category-grid>.knowledge-category-card:nth-child(4n+3){
+  background:#f7f3ea!important;
+  border-color:#e4d8c4!important;
+  border-top:3px solid #8a6a3b!important;
+}
+.kc-ux-hub .knowledge-category-grid>.knowledge-category-card:nth-child(4n+4){
+  background:#eef0f6!important;
+  border-color:#d0d5e4!important;
+  border-top:3px solid #4d5d86!important;
+}
+@media(max-width:700px){
+  .kc-ux-shell:has(#explore-healthcare-topics)>.page-hero{
+    padding:20px 0 12px!important;
+  }
+  .kc-ux-shell:has(#explore-healthcare-topics)>.page-hero h1{
+    margin-bottom:8px!important;
+    font-size:30px!important;
+    line-height:1.12!important;
+  }
+  .kc-ux-shell:has(#explore-healthcare-topics)>.page-hero .lede{
+    font-size:15.5px!important;
+    line-height:1.45!important;
+  }
+  .kc-ux-shell:has(#explore-healthcare-topics)>.on-this-page-shell{display:none!important}
+  .kc-ux-shell:has(#explore-healthcare-topics) .breadcrumb-explore-link{display:none!important}
+  .kc-ux-shell:has(#explore-healthcare-topics) .breadcrumb-bar{padding-top:2px!important;padding-bottom:0!important}
+  .kc-ux-shell:has(#explore-healthcare-topics) .visible-breadcrumbs,
+  .kc-ux-shell:has(#explore-healthcare-topics) .visible-breadcrumbs a,
+  .kc-ux-shell:has(#explore-healthcare-topics) .visible-breadcrumbs li{
+    min-height:0!important;
+    line-height:1.3!important;
+  }
+  .kc-ux-shell:has(#explore-healthcare-topics)>.page-main{padding-top:8px!important}
+  .kc-ux-shell:has(#explore-healthcare-topics) .knowledge-guide-search{margin:0 0 10px!important}
+  .kc-ux-shell:has(#explore-healthcare-topics) #explore-healthcare-topics>p{
+    margin:0!important;
+    font-size:14px!important;
+    line-height:1.35!important;
+  }
+  .kc-ux-shell:has(#explore-healthcare-topics) .page-layout.knowledge-topics-ready>aside.page-nav{order:2!important}
+  .kc-ux-shell:has(#explore-healthcare-topics) .page-layout.knowledge-topics-ready>article{order:1!important}
+  .kc-ux-hub #explore-healthcare-topics>h2{margin-top:0!important}
+  .kc-ux-hub .knowledge-category-grid{gap:12px!important;margin-top:12px!important}
+  .kc-ux-hub .knowledge-category-card{
+    gap:8px!important;
+    padding:16px 16px 14px!important;
+  }
+}
