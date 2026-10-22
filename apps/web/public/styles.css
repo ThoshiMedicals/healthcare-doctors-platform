@@ -8820,3 +8820,153 @@ main.kc-ux-shell:has(.kc-ux-article)>.page-main{order:4}
    paragraph above, and the extra booking button stays in the source. */
 .home-page #hotdoc-app .hotdoc-benefits li:last-child{grid-column:auto!important}
 .home-page #hotdoc-app .hotdoc-book-action{display:none!important}
+
+/* Homepage notes from the 22 Oct review.
+   Logo, hero call, trust alignment, AGPAL marks, patient-information
+   layout, update cards, the map flash, and the mobile care dock. */
+@media(min-width:1320px){
+  header .header-inner>.brand .institution-logo-lockup{
+    width:440px!important;
+    max-width:440px!important;
+    height:auto!important;
+  }
+}
+.home-page #home .hero-actions-polished{display:none!important}
+.home-page #home>.hero-supporting-info{
+  position:absolute!important;
+  left:50%!important;
+  bottom:22px!important;
+  transform:translateX(-50%)!important;
+  z-index:6!important;
+  width:min(calc(100% - 64px),980px)!important;
+  max-width:980px!important;
+  margin:0!important;
+  padding:14px 18px!important;
+  border-radius:16px!important;
+  background:rgba(13,37,56,.72)!important;
+  color:#fff!important;
+}
+.home-page #home .hero-copy{
+  padding-bottom:168px!important;
+  box-sizing:border-box!important;
+}
+.home-page #home>.hero-supporting-info .hero-trust-text strong,
+.home-page #home>.hero-supporting-info .hero-hours-refined,
+.home-page #home>.hero-supporting-info .hero-hours-refined span,
+.home-page #home>.hero-supporting-info .hero-hours-refined>span strong,
+.home-page #home>.hero-supporting-info .hero-hours-refined>span em,
+.home-page #home>.hero-supporting-info .hero-hours-link{
+  color:#fff!important;
+}
+.home-page .hero-trust-logo img{
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  background:transparent!important;
+}
+.home-page #story .trust-line img,
+.home-page .footer-trust img,
+.home-page .info-trust-logos img{
+  width:84px!important;
+  height:84px!important;
+  max-width:84px!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  background:#fff!important;
+  display:block!important;
+}
+.home-page .footer-trust{display:flex!important}
+.home-page #story .trust-line img,
+.home-page .footer-trust img:first-child,
+.home-page .info-trust-logos img:first-child{
+  object-fit:cover!important;
+  object-position:left center!important;
+}
+.home-page #community .community-visual figcaption{display:none!important}
+.home-page #patient-information .information-copy{max-width:640px!important}
+.home-page #patient-information .information-note{
+  display:grid!important;
+  grid-template-columns:auto minmax(160px,1fr);
+  align-items:center;
+  gap:6px 18px;
+  margin-top:22px!important;
+  padding-top:0!important;
+  border-top:0!important;
+}
+.home-page #patient-information .info-trust-logos{
+  grid-row:1 / span 2;
+  gap:12px;
+}
+.home-page #patient-information .info-trust-logos img{
+  width:108px!important;
+  height:108px!important;
+  max-width:108px!important;
+}
+.home-page #patient-information .info-trust-logos img:first-child{
+  object-fit:cover!important;
+  object-position:left center!important;
+}
+.home-page #patient-information .after-hours-refined{
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  justify-content:flex-start;
+  gap:10px 14px;
+  flex-wrap:wrap;
+}
+.home-page .information-list a[href$="test-results.html"]::before,
+.home-page .information-list a[href$="referrals.html"]::before,
+.home-page .information-list a[href$="repeat-scripts.html"]::before,
+.home-page .information-list a[href$="telehealth.html"]::before{
+  position:static!important;
+  top:auto!important;
+  transform:none!important;
+  width:7px!important;
+  height:7px!important;
+  margin-right:12px!important;
+  border-radius:50%!important;
+  background:#2f7258!important;
+  box-shadow:0 0 0 5px rgba(47,114,88,.08)!important;
+  -webkit-mask:none!important;
+  mask:none!important;
+}
+.home-page .information-list a[href$="test-results.html"],
+.home-page .information-list a[href$="referrals.html"],
+.home-page .information-list a[href$="repeat-scripts.html"],
+.home-page .information-list a[href$="telehealth.html"]{padding-left:0!important}
+.home-page #practice-updates .latest-featured-column .health-update-image img{
+  object-position:right center!important;
+}
+.home-page #practice-updates .latest-featured-column .health-update-card{
+  background:#f7f4ee!important;
+  padding:16px!important;
+  border-radius:18px;
+}
+.home-page #practice-updates .latest-supporting-column .health-update-card:nth-child(1){
+  background:#e7f0f3!important;
+  padding:14px!important;
+  border-radius:14px;
+}
+.home-page #practice-updates .latest-supporting-column .health-update-card:nth-child(2){
+  background:#e7f3ea!important;
+  padding:14px!important;
+  border-radius:14px;
+}
+.home-page .map-final-polished{background-image:none!important;background:#e9eff2!important}
+@media(max-width:767px){
+  body.has-action-dock .persistent-care-actions-inner{
+    display:grid!important;
+    grid-template-columns:1.25fr .85fr 1fr!important;
+    align-items:stretch!important;
+  }
+  body.has-action-dock .persistent-care-book,
+  body.has-action-dock .persistent-care-call,
+  body.has-action-dock .digital-reception-launcher{
+    width:100%!important;
+    min-width:0!important;
+    white-space:normal!important;
+    line-height:1.15!important;
+  }
+}

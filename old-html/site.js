@@ -1,4 +1,16 @@
 (() => {
+  const homeLink = document.querySelector('header a.brand');
+  document.querySelectorAll('.footer-brand').forEach(brand => {
+    if (!homeLink || brand.querySelector('a')) return;
+    const image = brand.querySelector('img');
+    if (!image) return;
+    const link = document.createElement('a');
+    link.href = homeLink.getAttribute('href');
+    link.setAttribute('aria-label', 'Woolloongabba Medical Centre home');
+    brand.insertBefore(link, image);
+    link.append(image);
+  });
+
   const toggle = document.querySelector('.menu-toggle');
   const nav = document.getElementById('primary-nav');
   const header = document.querySelector('header');
@@ -526,6 +538,10 @@
       const keepKey = keep ? destination(keep) : '';
       controls().forEach(link => {
         if (link.classList.contains('persistent-care-book')) return;
+        if (link.closest('#book')) {
+          showControl(link);
+          return;
+        }
         if (!keep || link === keep) {
           if (link === keep) showControl(link);
           return;
