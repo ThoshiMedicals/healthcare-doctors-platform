@@ -8970,3 +8970,124 @@ main.kc-ux-shell:has(.kc-ux-article)>.page-main{order:4}
     line-height:1.15!important;
   }
 }
+
+/* Practitioner cards, 22 Oct 2026.
+   One pattern on the homepage and the team directory: portrait, name,
+   qualification, and the focus already published for that person. */
+.team-role-section .team-role-copy{
+  max-width:68ch!important;
+  margin-bottom:12px!important;
+  font-size:15px!important;
+  line-height:1.6!important;
+}
+.team-directory-grid{
+  gap:22px 16px!important;
+}
+.team-directory-grid .practitioner-meta,
+.home-page #team #home-practitioner-track .practitioner-meta{
+  min-height:0!important;
+  grid-template-rows:auto auto auto!important;
+  padding-top:10px!important;
+}
+.team-directory-grid .practitioner h3,
+.team-directory-grid .practitioner h3 a,
+.home-page #team #home-practitioner-track .practitioner h3{
+  min-height:0!important;
+  margin-bottom:4px!important;
+  font-size:22px!important;
+  line-height:1.25!important;
+}
+.team-directory-grid .credentials,
+.home-page #team #home-practitioner-track .practitioner .credentials{
+  display:block!important;
+  min-height:0!important;
+  margin-bottom:2px!important;
+  color:#5d7282!important;
+  font-size:12px!important;
+  font-weight:500!important;
+  letter-spacing:0!important;
+  line-height:1.4!important;
+}
+.team-directory-grid .focus,
+.home-page #team #home-practitioner-track .practitioner .focus{
+  color:#315f83!important;
+  font-size:15px!important;
+  font-weight:500!important;
+  line-height:1.4!important;
+}
+.team-grid .practitioner:hover .portrait img,
+.team-directory-grid .practitioner:hover .portrait img,
+.home-page #team .practitioner:hover .portrait img{
+  transform:none!important;
+  scale:1!important;
+}
+a.portrait.practitioner-no-photo{
+  display:flex!important;
+  align-items:flex-end!important;
+  justify-content:flex-start!important;
+  aspect-ratio:4/5!important;
+  border-radius:22px!important;
+  background:#e4ebe7!important;
+  text-decoration:none!important;
+}
+.practitioner-no-photo-text{
+  max-width:11rem!important;
+  padding:18px 16px 20px!important;
+  text-align:left!important;
+  font-family:"Libre Baskerville",serif!important;
+  font-size:22px!important;
+  font-weight:400!important;
+  line-height:1.25!important;
+  letter-spacing:-.02em!important;
+  color:#173044!important;
+}
+@media(min-width:1025px){
+  .home-page #team.team{
+    padding-top:72px!important;
+    padding-bottom:64px!important;
+  }
+  .practitioner-profile-page .doctor-profile-hero{
+    grid-template-columns:420px minmax(0,1fr)!important;
+    gap:40px!important;
+  }
+  .practitioner-profile-page .doctor-profile-photo{
+    width:420px!important;
+  }
+  .practitioner-profile-page .page-layout{
+    grid-template-columns:200px minmax(0,1fr)!important;
+    gap:40px!important;
+  }
+}
+.practitioner-profile-page .doctor-role{
+  margin:0 0 14px!important;
+  color:#315f83!important;
+  font-size:18px!important;
+  font-weight:500!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+}
+.practitioner-profile-page .practitioner-care-highlights li{
+  font-size:16px!important;
+  padding:8px 14px!important;
+}
+.practitioner-profile-page .doctor-authority-article .article-section>p{
+  max-width:70ch!important;
+  font-size:18px!important;
+  line-height:1.65!important;
+}
+.practitioner-profile-page #areas-of-care .service-care-list,
+.practitioner-profile-page #professional-interests .service-care-list{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:4px 18px!important;
+  margin-top:6px!important;
+  border-top:0!important;
+  max-width:70ch!important;
+}
+.practitioner-profile-page #areas-of-care .service-care-list li,
+.practitioner-profile-page #professional-interests .service-care-list li{
+  border:0!important;
+  padding:0!important;
+  font-size:17px!important;
+  line-height:1.55!important;
+}
