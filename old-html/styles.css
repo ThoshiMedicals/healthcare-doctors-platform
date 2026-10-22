@@ -9153,3 +9153,172 @@ a.portrait.practitioner-no-photo{
   font-weight:500!important;
   letter-spacing:.04em!important;
 }
+
+@media(max-width:1319px){
+  .menu-toggle{
+    border-radius:999px!important;
+    background:#173044!important;
+    color:#fff!important;
+    font-weight:600!important;
+  }
+}
+/* Mobile homepage notes, 22 Oct 2026.
+   Phone line, contact pair, hero call, shopfront crop, menu, trust card,
+   and the care dock. Desktop layout stays. */
+@media(max-width:767px){
+  .menu-toggle{
+    border-radius:999px!important;
+    background:#173044!important;
+    color:#fff!important;
+    font-weight:600!important;
+  }
+  .home-page #home .hero-copy .button-call-polished{display:none!important}
+  .home-page #home .shell.hero-grid{
+    display:flex!important;
+    flex-direction:column!important;
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    width:100%!important;
+    max-width:none!important;
+    padding-left:0!important;
+    padding-right:0!important;
+    overflow:visible!important;
+  }
+  .home-page #home .hero-visual{
+    position:relative!important;
+    inset:auto!important;
+    order:1!important;
+    width:100%!important;
+    height:230px!important;
+    min-height:230px!important;
+  }
+  .home-page #home .hero-picture,
+  .home-page #home .hero-picture .hero-photo{
+    width:100%!important;
+    height:230px!important;
+    object-fit:cover!important;
+    object-position:center 62%!important;
+  }
+  .home-page #home .hero-copy{
+    position:relative!important;
+    order:2!important;
+    height:auto!important;
+    min-height:0!important;
+    width:min(calc(100% - 28px),var(--max))!important;
+    margin:0 auto!important;
+    padding:22px 0 4px!important;
+    color:#173044!important;
+  }
+  .home-page #home .hero-copy h1{
+    color:#173044!important;
+    text-shadow:none!important;
+  }
+  .home-page #home .hero-copy>p{color:#3d5160!important}
+  .home-page #home>.hero-supporting-info{
+    position:relative!important;
+    left:auto!important;
+    bottom:auto!important;
+    transform:none!important;
+    display:grid!important;
+    gap:12px!important;
+    width:min(calc(100% - 28px),var(--max))!important;
+    margin:8px auto 0!important;
+    padding:14px 12px 12px!important;
+    border-radius:16px!important;
+    background:#f4f7f8!important;
+    color:#173044!important;
+  }
+  .home-page #home>.hero-supporting-info .hero-trust-refined{
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:8px!important;
+    width:100%!important;
+  }
+  .home-page #home>.hero-supporting-info .hero-trust-refined-item{
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    gap:6px!important;
+    min-width:0!important;
+    text-align:center!important;
+  }
+  .home-page #home>.hero-supporting-info .hero-trust-text strong{
+    color:#173044!important;
+    font-size:11px!important;
+    line-height:1.25!important;
+  }
+  .home-page #home>.hero-supporting-info .hero-hours-refined{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:6px 14px!important;
+    width:100%!important;
+    margin:0!important;
+    padding:10px 0 0!important;
+    border-top:1px solid rgba(23,48,68,.12)!important;
+    border-left:0!important;
+    color:#173044!important;
+  }
+  .home-page #home>.hero-supporting-info .hero-hours-refined>span{
+    display:flex!important;
+    justify-content:space-between!important;
+    gap:8px!important;
+    color:#173044!important;
+  }
+  .home-page #home>.hero-supporting-info .hero-hours-refined>span strong,
+  .home-page #home>.hero-supporting-info .hero-hours-refined>span em,
+  .home-page #home>.hero-supporting-info .hero-hours-link{
+    color:#173044!important;
+  }
+  .home-page #home>.hero-supporting-info .hero-hours-link{
+    grid-column:1 / -1!important;
+    justify-content:flex-end!important;
+  }
+  .home-page #book .book-actions{
+    align-items:center!important;
+    width:100%!important;
+  }
+  .home-page #book .book-phone{
+    justify-content:center!important;
+    width:100%!important;
+    text-align:center!important;
+  }
+  .home-page #contact .contact-details{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:14px 16px!important;
+  }
+  .home-page #contact .contact-details br{display:none!important}
+  .home-page #contact .contact-details strong::after{content:" "}
+  .home-page #contact .contact-details p:nth-child(1){order:1}
+  .home-page #contact .contact-details p:nth-child(3){order:2}
+  .home-page #contact .contact-details p:nth-child(2){order:3;grid-column:1 / -1}
+  .home-page #contact .contact-hours-detail{order:4;grid-column:1 / -1}
+  .home-page #story .story-image,
+  .home-page #story .story-image img{
+    height:220px!important;
+    min-height:0!important;
+    object-fit:cover!important;
+    object-position:center 40%!important;
+  }
+  body.has-action-dock .persistent-care-actions-inner{
+    display:grid!important;
+    grid-template-columns:1.55fr .72fr .95fr!important;
+  }
+  body.has-action-dock .persistent-care-book,
+  body.has-action-dock .persistent-care-call,
+  body.has-action-dock .digital-reception-launcher{
+    white-space:nowrap!important;
+    font-size:11.5px!important;
+    line-height:1!important;
+    padding:8px 4px!important;
+  }
+}
+@media(max-width:420px){
+  body.has-action-dock .persistent-care-book,
+  body.has-action-dock .persistent-care-call,
+  body.has-action-dock .digital-reception-launcher{
+    white-space:nowrap!important;
+    font-size:11px!important;
+  }
+}
