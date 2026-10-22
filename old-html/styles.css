@@ -8722,3 +8722,95 @@ body.has-action-dock .persistent-care-actions.has-restriction .persistent-care-a
   .home-page #continuity.stay{padding:72px 0!important}
   .home-page #healthcare-services.healthcare-services{padding:64px 0!important}
 }
+
+/* Knowledge Centre premium reading, 22 Oct 2026.
+   Visual only. Search, sidebar, hubs, related links, services, practitioners,
+   booking, and Digital Reception stay. The reading measure stays at 700px. */
+.kc-ux-article .article-section p,
+.kc-ux-article .article-section li{
+  font-size:18px!important;
+  line-height:1.65!important;
+  max-width:700px!important;
+}
+main.kc-ux-shell:has(.kc-ux-article){
+  display:flex;
+  flex-direction:column;
+}
+main.kc-ux-shell:has(.kc-ux-article)>.page-hero{order:1}
+main.kc-ux-shell:has(.kc-ux-article)>.on-this-page-shell{order:2}
+main.kc-ux-shell:has(.kc-ux-article)>.breadcrumb-bar{order:3}
+main.kc-ux-shell:has(.kc-ux-article)>.page-main{order:4}
+.kc-ux-shell .on-this-page{
+  gap:12px!important;
+  padding:0 0 8px!important;
+  border-bottom-color:rgba(23,48,68,.08)!important;
+}
+.kc-ux-shell .on-this-page-title{
+  min-height:28px!important;
+  color:#8a97a1!important;
+  font-size:10px!important;
+  letter-spacing:.08em!important;
+}
+.kc-ux-shell .on-this-page a{
+  min-height:28px!important;
+  color:#7d8d99!important;
+  font-size:12px!important;
+  font-weight:500!important;
+}
+.kc-ux-shell .breadcrumb-bar{
+  padding-top:8px!important;
+  padding-bottom:0!important;
+}
+.kc-ux-shell .visible-breadcrumbs,
+.kc-ux-shell .visible-breadcrumbs a,
+.kc-ux-shell .breadcrumb-explore-link{
+  color:#8a97a1!important;
+  font-size:12px!important;
+}
+.kc-ux-article .knowledge-byline{
+  margin:0 0 .85rem!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+}
+.kc-ux-shell .page-nav .nav-title,
+.kc-ux-shell .knowledge-nav-group summary{
+  color:#8a97a1!important;
+  font-size:11px!important;
+  letter-spacing:.06em!important;
+}
+.kc-ux-shell .page-nav a,
+.kc-ux-shell .knowledge-nav-links a,
+.kc-ux-shell .knowledge-nav-home{
+  color:#8b98a3!important;
+  font-size:12.5px!important;
+  font-weight:500!important;
+}
+.kc-ux-shell .page-nav a.active,
+.kc-ux-shell .knowledge-nav-links a.active{
+  color:#315f83!important;
+  font-weight:600!important;
+}
+.kc-ux-shell #patient-guides .knowledge-card-kicker{display:none!important}
+.kc-ux-shell .knowledge-article-card,
+.kc-ux-shell .knowledge-category-card{
+  box-shadow:none!important;
+  transition:border-color .18s ease!important;
+}
+.kc-ux-shell .knowledge-article-card:hover,
+.kc-ux-shell .knowledge-category-card:hover{
+  transform:none!important;
+  box-shadow:none!important;
+}
+.kc-ux-page #related-knowledge-centre-guides .knowledge-article-card{
+  padding:.15rem 0 .85rem!important;
+  border:0!important;
+  border-bottom:1px solid #e4ebef!important;
+  border-radius:0!important;
+  background:transparent!important;
+}
+.kc-ux-page #related-knowledge-centre-guides .knowledge-article-card strong{
+  font-size:1.05rem!important;
+}
+.kc-ux-page #related-knowledge-centre-guides .knowledge-card-kicker{display:none!important}
