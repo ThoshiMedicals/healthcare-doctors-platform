@@ -8492,3 +8492,216 @@ body.has-action-dock .persistent-care-actions.has-restriction .persistent-care-a
     line-height:1;
   }
 }
+
+/* Premium homepage remediation, 22 Oct 2026.
+   Visual only. Section order, copy, links, practitioner order, and booking
+   pathways stay. One 120px rhythm sits inside the approved 112–128px band. */
+.home-page #home.hero{
+  display:flex!important;
+  flex-direction:column!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:hidden!important;
+  padding:0!important;
+  background:#f4f1ea!important;
+}
+.home-page #home .shell.hero-grid{
+  position:relative!important;
+  display:block!important;
+  flex:none!important;
+  width:100%!important;
+  max-width:none!important;
+  height:min(640px,62vh)!important;
+  min-height:520px!important;
+  max-height:680px!important;
+  margin:0!important;
+  overflow:hidden!important;
+}
+.home-page #home .hero-visual{
+  position:absolute!important;
+  inset:0!important;
+  height:100%!important;
+  min-height:0!important;
+}
+.home-page #home .hero-copy{
+  height:100%!important;
+  min-height:0!important;
+  max-height:none!important;
+  justify-content:center!important;
+}
+.home-page #home>.hero-supporting-info{
+  position:relative!important;
+  z-index:5!important;
+  display:flex!important;
+  flex-wrap:wrap!important;
+  align-items:center!important;
+  gap:10px 22px!important;
+  width:min(calc(100% - 56px),var(--max))!important;
+  max-width:var(--max)!important;
+  margin:0 auto!important;
+  padding:18px 0 20px!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  color:#173044!important;
+}
+.home-page #home>.hero-supporting-info .hero-trust-refined{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  align-items:center!important;
+  gap:8px 20px!important;
+  width:auto!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+}
+.home-page #home>.hero-supporting-info .hero-trust-refined-item,
+.home-page #home>.hero-supporting-info .hero-trust-refined-item:first-child{
+  min-height:0!important;
+  padding:0!important;
+  gap:8px!important;
+  border:0!important;
+}
+.home-page #home>.hero-supporting-info .hero-trust-refined-item+.hero-trust-refined-item{
+  border-left:0!important;
+}
+.home-page #home>.hero-supporting-info .hero-trust-logo-agpal,
+.home-page #home>.hero-supporting-info .hero-trust-logo-bulk,
+.home-page #home>.hero-supporting-info .hero-trust-clock{
+  width:28px!important;
+  height:28px!important;
+  flex:0 0 28px!important;
+  padding:3px!important;
+  border:1px solid rgba(23,48,68,.16)!important;
+  border-radius:6px!important;
+  background:#fff!important;
+  box-shadow:none!important;
+}
+.home-page #home>.hero-supporting-info .hero-trust-clock svg{
+  width:16px!important;
+  height:16px!important;
+  stroke:#174a70!important;
+}
+.home-page #home>.hero-supporting-info .hero-trust-text strong,
+.home-page #home>.hero-supporting-info .hero-hours-refined,
+.home-page #home>.hero-supporting-info .hero-hours-refined>span strong,
+.home-page #home>.hero-supporting-info .hero-hours-refined>span em,
+.home-page #home>.hero-supporting-info .hero-hours-link{
+  color:#173044!important;
+  text-shadow:none!important;
+  font-size:13px!important;
+}
+.home-page #home>.hero-supporting-info .hero-hours-refined{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  align-items:center!important;
+  width:auto!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0 0 0 22px!important;
+  border:0!important;
+  border-left:1px solid rgba(23,48,68,.18)!important;
+  border-radius:0!important;
+  background:transparent!important;
+  gap:6px 16px!important;
+}
+.home-page #home>.hero-supporting-info .hero-hours-refined>span{
+  flex-direction:row!important;
+  align-items:baseline!important;
+  gap:5px!important;
+}
+.home-page #home>.hero-supporting-info .hero-hours-link{
+  border-bottom-color:rgba(23,48,68,.35)!important;
+  min-height:0!important;
+  padding:0!important;
+}
+.home-page #philosophy.philosophy{
+  padding:120px 0!important;
+  background:#f2eee6!important;
+  overflow:hidden!important;
+}
+.home-page #philosophy.philosophy::before,
+.home-page #philosophy.philosophy::after{
+  display:none!important;
+  content:none!important;
+  background:none!important;
+}
+.home-page #philosophy .philosophy-inner{
+  padding-right:0!important;
+  max-width:820px!important;
+}
+.home-page #story.story,
+.home-page #new-patients-welcome.new-patient-welcome,
+.home-page #team.team,
+.home-page #continuity.stay,
+.home-page #healthcare-services.healthcare-services,
+.home-page #hotdoc-app.hotdoc-app,
+.home-page #patient-information.information,
+.home-page #practice-updates.latest-health-updates,
+.home-page #book.book,
+.home-page #contact.contact{
+  padding-top:120px!important;
+  padding-bottom:120px!important;
+}
+.home-page #community.community{padding:0!important}
+.home-page #community .community-editorial{
+  padding-top:120px!important;
+  padding-bottom:120px!important;
+}
+.home-page #healthcare-services.healthcare-services::before,
+.home-page #healthcare-services.healthcare-services::after{
+  display:none!important;
+  content:none!important;
+  height:0!important;
+  background:none!important;
+}
+.home-page #team #home-practitioner-track>.practitioner{
+  flex:0 0 calc(42.55% - 18px)!important;
+  width:calc(42.55% - 18px)!important;
+  max-width:calc(42.55% - 18px)!important;
+}
+.home-page #team .practitioner h3{font-size:22px!important}
+.home-page #hotdoc-app .hotdoc-grid{
+  grid-template-columns:minmax(0,1.4fr) minmax(180px,260px)!important;
+  column-gap:48px!important;
+}
+.home-page #hotdoc-app .hotdoc-poster-card{
+  width:min(100%,240px)!important;
+  border-radius:16px!important;
+  box-shadow:none!important;
+}
+@media(max-width:1024px){
+  .home-page #team #home-practitioner-track>.practitioner{
+    flex-basis:calc(62% - 12px)!important;
+    width:calc(62% - 12px)!important;
+    max-width:calc(62% - 12px)!important;
+  }
+}
+@media(max-width:700px){
+  .home-page #home .shell.hero-grid{
+    height:460px!important;
+    min-height:420px!important;
+    max-height:none!important;
+  }
+  .home-page #home>.hero-supporting-info{
+    align-items:flex-start!important;
+    gap:12px!important;
+    width:min(calc(100% - 28px),var(--max))!important;
+    padding:16px 0 18px!important;
+  }
+  .home-page #home>.hero-supporting-info .hero-hours-refined{
+    border-left:0!important;
+    padding-left:0!important;
+  }
+  .home-page #team #home-practitioner-track>.practitioner{
+    flex-basis:86%!important;
+    width:86%!important;
+    max-width:86%!important;
+  }
+  .home-page #hotdoc-app .hotdoc-grid{grid-template-columns:1fr!important}
+  .home-page #hotdoc-app .hotdoc-poster-card{width:min(100%,220px)!important}
+}
