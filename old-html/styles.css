@@ -9091,3 +9091,65 @@ a.portrait.practitioner-no-photo{
   font-size:17px!important;
   line-height:1.55!important;
 }
+
+/* Homepage premium pass 3.
+   AGPAL, bulk billing, and open-7-days stay in the hero. Later marks and
+   the photo credit stay in the source and are not shown again. */
+.home-page #story .trust-line img{display:none!important}
+.home-page #story .trust-line{
+  display:inline!important;
+  gap:0!important;
+}
+.home-page #patient-information .info-trust-logos,
+.home-page #patient-information .information-note>span{display:none!important}
+.home-page #patient-information .information-note{
+  display:block!important;
+  margin-top:16px!important;
+  padding:0!important;
+  border:0!important;
+}
+.home-page .footer-trust{display:none!important}
+.home-page #community .community-visual{
+  overflow:visible!important;
+  min-height:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+.home-page #community .community-visual::after{height:560px!important;bottom:auto!important}
+.home-page #community .community-visual img{
+  border-radius:30px 0 0 30px!important;
+  box-shadow:0 30px 76px rgba(23,48,68,.12)!important;
+}
+.home-page #community .community-visual figcaption{
+  position:static!important;
+  display:flex!important;
+  justify-content:space-between!important;
+  gap:12px 20px!important;
+  margin-top:10px!important;
+  padding:0!important;
+  background:transparent!important;
+  color:#8a97a1!important;
+  font-size:11px!important;
+  line-height:1.4!important;
+  text-shadow:none!important;
+}
+.home-page #community .community-visual figcaption a{color:#8a97a1!important}
+@media(max-width:1024px){
+  .home-page #community .community-visual::after{height:340px!important}
+  .home-page #community .community-visual img{border-radius:22px!important}
+}
+.home-page .eyebrow,
+.home-page .philosophy .eyebrow,
+.home-page .community-story .eyebrow{
+  margin-bottom:12px!important;
+  color:#8a97a1!important;
+  font-size:10px!important;
+  font-weight:500!important;
+  letter-spacing:.14em!important;
+}
+.home-page .health-update-meta{
+  color:#8a97a1!important;
+  font-size:10px!important;
+  font-weight:500!important;
+  letter-spacing:.04em!important;
+}
