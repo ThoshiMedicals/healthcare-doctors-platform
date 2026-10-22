@@ -8471,3 +8471,10 @@ body.has-action-dock .persistent-care-actions.has-restriction .persistent-care-a
   .digital-reception-head{flex:0 0 auto!important}
   .digital-reception-body{flex:1 1 auto!important;min-height:0!important}
 }
+
+/* Knowledge Centre hub: guide-count labels removed. Spacing replaces the badge. */
+.kc-ux-hub #explore-healthcare-topics>p{margin-bottom:.5rem}
+.kc-ux-hub .knowledge-category-grid{gap:1.65rem;margin-top:2rem}
+.kc-ux-hub .knowledge-category-card{gap:1.05rem;padding:1.9rem 1.75rem 1.6rem}
+.kc-ux-hub .knowledge-category-card strong{padding-top:.15rem}
+.kc-ux-hub .knowledge-extension-heading{margin:3.25rem 0 .7rem}
