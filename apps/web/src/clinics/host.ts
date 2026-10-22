@@ -1,6 +1,7 @@
 export const CLINIC_HOST_HEADER = "x-clinic-host";
 
 const LOCAL_HOSTS = new Set(["localhost", "127.0.0.1", "::1"]);
+const QUICK_TUNNEL_HOST = /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.trycloudflare\.com$/;
 
 export function hostnameFromHostHeader(value: string | null | undefined): string {
   if (!value) return "";
@@ -21,6 +22,19 @@ function isPrivateIPv4(hostname: string): boolean {
 export function isLocalHost(hostname: string): boolean {
   if (LOCAL_HOSTS.has(hostname)) return true;
   return process.env.NODE_ENV !== "production" && isPrivateIPv4(hostname);
+}
+
+/** A Cloudflare Quick Tunnel name. Ignored unless the UAT process sets UAT_QUICK_TUNNEL=true. */
+export function isQuickTunnelHost(hostname: string): boolean {
+  if (process.env.UAT_QUICK_TUNNEL !== "true") return false;
+  return QUICK_TUNNEL_HOST.test(hostnameFromHostHeader(hostname));
+}
+
+/** Secure cookies when the browser is on HTTPS, including a tunnel that forwards proto https to local HTTP. */
+export function prefersSecureCookie(protocol: string, forwardedProto: string | null | undefined): boolean {
+  if (protocol === "https:") return true;
+  const forwarded = forwardedProto?.split(",")[0]?.trim().toLowerCase().replace(/:$/, "");
+  return forwarded === "https";
 }
 
 /** Origin of a local or LAN request. Production keeps the configured public origin. */

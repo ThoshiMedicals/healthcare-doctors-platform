@@ -39,10 +39,10 @@
       <h2 id="wmc-booking-recovery-title">Need help booking?</h2>
       <p id="wmc-booking-recovery-description">HotDoc booking did not open in this page. You can continue securely on HotDoc, or call our reception team.</p>
       <div class="wmc-booking-recovery-actions">
-        <a class="wmc-booking-recovery-online" href="#" target="_blank" rel="noopener noreferrer">Book Online</a>
+        <a class="wmc-booking-recovery-online" href="#" target="_blank" rel="noopener noreferrer">Book Appointment</a>
         <a class="wmc-booking-recovery-call" href="${CALL_HREF}">Call Clinic</a>
       </div>
-      <p class="wmc-booking-recovery-note">The Book Online option opens HotDoc in a separate tab only when the in-page booking cannot open.</p>
+      <p class="wmc-booking-recovery-note">The Book Appointment option opens HotDoc in a separate tab only when the in-page booking cannot open.</p>
     </div>`;
   document.body.appendChild(panel);
   const online = panel.querySelector('.wmc-booking-recovery-online');

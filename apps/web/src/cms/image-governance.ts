@@ -152,6 +152,9 @@ export function imageGovernanceSnapshot(row: {
   expiresAt: Date | null;
   altText: string;
   usage: string[];
+  reviewedBy: string | null;
+  evidenceReference: string | null;
+  contentSha256: string | null;
 }) {
   return {
     uploadedBy: row.uploadedBy,
@@ -161,5 +164,8 @@ export function imageGovernanceSnapshot(row: {
     expiresAt: recordDate(row.expiresAt) || null,
     altText: row.altText,
     usage: row.usage,
+    reviewedBy: row.reviewedBy,
+    evidenceReference: row.evidenceReference,
+    contentSha256: row.contentSha256,
   };
 }

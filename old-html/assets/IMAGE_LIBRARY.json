@@ -1200,27 +1200,28 @@
     },
     {
       "id": "reception-original",
-      "path": null,
-      "sourceUrl": "https://gabbamedicalcentre.com.au/wp-content/uploads/2025/05/img2.png",
+      "path": "assets/clinic-reception.png",
+      "sourceUrl": "assets/clinic-reception.png",
+      "previousExternalSourceUrl": "https://gabbamedicalcentre.com.au/wp-content/uploads/2025/05/img2.png",
       "categories": [],
-      "kind": "external_clinic_interior_original_missing_unclassified",
-      "width": null,
-      "height": null,
-      "sha256": null,
+      "kind": "local_copy_of_existing_production_photograph",
+      "width": 1080,
+      "height": 870,
+      "sha256": "12cb7e67cac63071d9dce33f20ce6c00c802abffa01a020d30e91851883e8f76",
       "provenance": {
         "sourceUrl": "https://gabbamedicalcentre.com.au/wp-content/uploads/2025/05/img2.png",
-        "sourceMasterPath": null,
+        "sourceMasterPath": "assets/clinic-reception.png",
         "rightsRecord": null,
         "authenticityRecord": null
       },
-      "publicationStatus": "pending_source_file_and_approval",
+      "publicationStatus": "local_byte_copy_rights_unverified",
       "newLibraryEligible": false,
       "existingUsage": [
         "index.html",
         "styles.css",
         "updates/open-seven-days.html"
       ],
-      "notes": "First-party clinic reception source URL in existing production, but original authenticity and use rights have not been independently verified. This is an UNFILLED AUTHENTIC CLINIC INTERIOR need, outside the six requested category folders until a verified original is supplied."
+      "notes": "Byte-for-byte local copy of the existing production reception photograph, saved 21 October 2026. The picture is unchanged. Independent authenticity and use-rights review is still outstanding."
     },
     {
       "id": "gabba-precinct",

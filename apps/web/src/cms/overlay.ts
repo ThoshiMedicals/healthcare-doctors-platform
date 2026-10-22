@@ -261,7 +261,9 @@ function applyClinic(html: string, content: ClinicContent): { html: string; erro
   if (goldenMap && goldenMap !== nextMap && next.includes(goldenMap)) next = next.split(goldenMap).join(nextMap);
 
   const sharedHotdoc = readSharedHotdoc(html);
-  if (content.hotdocUrl && sharedHotdoc && content.hotdocUrl !== sharedHotdoc) {
+  // Clinic settings update the shared clinic list only. A header that already
+  // names a practitioner must keep that practitioner's HotDoc address.
+  if (content.hotdocUrl && sharedHotdoc && content.hotdocUrl !== sharedHotdoc && !isPractitionerBookingUrl(sharedHotdoc)) {
     const problems = bookingUrlProblems(content.hotdocUrl);
     if (problems.length > 0) errors.push(...problems);
     else next = next.split(sharedHotdoc).join(content.hotdocUrl);
@@ -362,6 +364,15 @@ export function readGoldenContact(html: string): {
 export function readSharedHotdoc(html: string): string {
   const header = html.match(/<div class="header-cta">[\s\S]*?<\/div>/i)?.[0] ?? "";
   return header.match(/href="(https:\/\/www\.hotdoc\.com\.au[^"]+)"/i)?.[1] ?? "";
+}
+
+export function isPractitionerBookingUrl(url: string): boolean {
+  try {
+    const parsed = new URL(url);
+    return parsed.hostname === "www.hotdoc.com.au" && /\/doctors\/[^/]+\/?$/.test(parsed.pathname);
+  } catch {
+    return false;
+  }
 }
 
 export function readUpdateAuthor(html: string): string {

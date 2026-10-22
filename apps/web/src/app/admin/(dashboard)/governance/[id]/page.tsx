@@ -56,8 +56,9 @@ export default async function GovernanceEditPage({
           </select>
         </label>
         <p className="text-sm text-slate-600">
-          Approved and published require a reviewer, approver, approval date, evidence reference, and the content
-          fingerprint. Fingerprint: {row.reviewedContentSha256 ?? "not recorded"}.
+          Approved and published require a reviewer, approver, approval date, approval reference, evidence reference,
+          content owner, a later next review date, and a fingerprint of this page. Publication is refused until that
+          fingerprint matches the page being published. Fingerprint: {row.reviewedContentSha256 ?? "not recorded"}.
         </p>
         <SaveBar historyHref={`/admin/revisions/clinical_review/${row.id}`} />
       </form>

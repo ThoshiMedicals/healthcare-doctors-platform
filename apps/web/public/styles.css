@@ -11,6 +11,10 @@
   --green:#0f6b45;
   --max:1320px;
   --radius:26px;
+  --wash-paper-mist:linear-gradient(180deg,var(--warm) 0%,var(--mist) 100%);
+  --wash-white-paper:linear-gradient(180deg,#fff 0%,var(--warm) 100%);
+  --wash-mist-green:linear-gradient(135deg,var(--mist) 0%,#f3f8f5 100%);
+  --shadow-card:0 8px 24px rgba(23,48,68,.05);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -2604,6 +2608,47 @@ section[id]{scroll-margin-top:116px}
 .service-directory-row strong{font-family:"Libre Baskerville",serif;font-weight:400;font-size:20px;letter-spacing:-.025em}
 .service-directory-row>span:nth-child(2){color:var(--ink-soft);font-size:13.5px;line-height:1.72}
 .service-directory-row>span:last-child{color:#51728b;padding-top:3px}
+.service-directory-row{
+  background:linear-gradient(100deg,var(--mist) 0%,rgba(244,247,247,.72) 34%,rgba(255,255,255,0) 78%);
+}
+.service-directory-row strong::before{
+  content:"";
+  display:inline-block;
+  width:22px;
+  height:22px;
+  margin:0 10px 0 0;
+  vertical-align:-4px;
+  background:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='8'/%3E%3Cpath d='M12 8v8M8 12h8'/%3E%3C/svg%3E") center/22px 22px no-repeat;
+}
+.service-directory-row[href*="family-health"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M4 11.5 12 4l8 7.5'/%3E%3Cpath d='M6.5 10.5V20h11V10.5'/%3E%3Cpath d='M10 20v-5h4v5'/%3E%3C/svg%3E")}
+.service-directory-row[href*="womens-health"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='7.2'/%3E%3Cpath d='m8.3 12.2 2.6 2.6 5.1-5.3'/%3E%3C/svg%3E")}
+.service-directory-row[href$="/mens-health.html"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Crect x='6' y='4.5' width='12' height='15' rx='1.5'/%3E%3Cpath d='M9 4.2h6V7H9z'/%3E%3Cpath d='m9 13 2 2 4-4'/%3E%3C/svg%3E")}
+.service-directory-row[href*="childrens-health"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M12 19V8'/%3E%3Cpath d='m8 12 4-4 4 4'/%3E%3C/svg%3E")}
+.service-directory-row[href*="mental-health"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='8'/%3E%3Cpath d='M8 13c1.2-1.4 2.4-2 4-2s2.8.6 4 2'/%3E%3C/svg%3E")}
+.service-directory-row[href*="chronic-disease"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M12 19s-6.5-4.1-6.5-8.2A3.4 3.4 0 0 1 12 8a3.4 3.4 0 0 1 6.5 2.8C18.5 14.9 12 19 12 19z'/%3E%3C/svg%3E")}
+.service-directory-row[href*="preventive-healthcare"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M12 3.5 19 6.5v5.2c0 4.2-2.8 7.2-7 8.8-4.2-1.6-7-4.6-7-8.8V6.5L12 3.5z'/%3E%3Cpath d='m8.8 12 2.2 2.2 4.2-4.4'/%3E%3C/svg%3E")}
+.service-directory-row[href*="vaccinations"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M12 3.5 19 6.5v5.2c0 4.2-2.8 7.2-7 8.8-4.2-1.6-7-4.6-7-8.8V6.5L12 3.5z'/%3E%3C/svg%3E")}
+.service-directory-row[href*="skin-checks"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M8 4H5v3M16 4h3v3M8 20H5v-3M16 20h3v-3'/%3E%3Ccircle cx='12' cy='12' r='2.2'/%3E%3C/svg%3E")}
+.service-directory-row[href*="medical-procedures"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='8'/%3E%3Cpath d='M12 8v8M8 12h8'/%3E%3C/svg%3E")}
+.service-directory-row[href*="allied-health"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Ccircle cx='7' cy='12' r='2.2'/%3E%3Ccircle cx='17' cy='8' r='2.2'/%3E%3Ccircle cx='17' cy='16' r='2.2'/%3E%3Cpath d='M9.1 11.4 14.8 8.8M9.1 12.6 14.8 15.2'/%3E%3C/svg%3E")}
+.service-directory-row[href*="telehealth"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Crect x='3' y='6' width='12' height='12' rx='2'/%3E%3Cpath d='m15 10 6-3v10l-6-3'/%3E%3C/svg%3E")}
+.service-directory-row[href*="iron-infusions"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M12 3.5s5 5.4 5 9.2a5 5 0 0 1-10 0c0-3.8 5-9.2 5-9.2z'/%3E%3C/svg%3E")}
+.service-directory-row[href*="implanon"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Crect x='3' y='9' width='18' height='6' rx='3'/%3E%3Cpath d='M8 9v6'/%3E%3C/svg%3E")}
+.service-directory-row[href*="iud-insertion"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M8 7h8M12 7v8'/%3E%3Cpath d='M9.5 18.5c.6-1.6 1.4-2.4 2.5-2.4s1.9.8 2.5 2.4'/%3E%3C/svg%3E")}
+.service-directory-row[href*="cervical-screening"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Crect x='7' y='4' width='10' height='16' rx='1.5'/%3E%3Cpath d='M9.5 4.2h5V7h-5zM9 11.5h6M9 15h4'/%3E%3C/svg%3E")}
+.service-directory-row[href*="breast-check"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='7'/%3E%3Ccircle cx='12' cy='12' r='1.5'/%3E%3C/svg%3E")}
+.service-directory-row[href*="prostate-care"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Crect x='6' y='3.5' width='12' height='17' rx='1.5'/%3E%3Cpath d='m9 9 1.2 1.2L13 7.8M9 14h5'/%3E%3C/svg%3E")}
+.service-directory-row[href*="ear-care"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M7 10a5 5 0 0 1 10 0c0 3-2 4-2.6 6.2A2.2 2.2 0 0 1 12 18.5'/%3E%3C/svg%3E")}
+.service-directory-row[href*="wound-dressings"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Crect x='4' y='9' width='16' height='6' rx='2'/%3E%3Cpath d='M12 9v6M9 12h6'/%3E%3C/svg%3E")}
+.service-directory-row[href*="ecg"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M3 12h4l2.2-4.5L13 17l2.2-5H21'/%3E%3C/svg%3E")}
+.service-directory-row[href*="spirometry"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M12 4v6'/%3E%3Cpath d='M12 10c-1 0-4 1-5 3.2C6 16 7.2 20 10 20c1.6 0 2-.8 2-2V10z'/%3E%3Cpath d='M12 10c1 0 4 1 5 3.2C18 16 16.8 20 14 20c-1.6 0-2-.8-2-2'/%3E%3C/svg%3E")}
+.service-directory-row[href*="nebulising"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M7 17h9a3.2 3.2 0 0 0 .4-6.4 4.2 4.2 0 0 0-8-.6A3 3 0 0 0 7 17z'/%3E%3C/svg%3E")}
+.service-directory-row[href*="antenatal-postnatal"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Ccircle cx='9' cy='8' r='2'/%3E%3Ccircle cx='15.5' cy='10' r='1.5'/%3E%3Cpath d='M5.5 19c.6-2.6 2-3.8 3.6-3.8 1.2 0 2.2.6 2.8 1.6'/%3E%3Cpath d='M13 19c.4-1.8 1.3-2.7 2.5-2.7 1 0 1.8.6 2.2 1.6'/%3E%3C/svg%3E")}
+.service-directory-row[href*="pre-pregnancy"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Crect x='4' y='5' width='16' height='15' rx='2'/%3E%3Cpath d='M8 3.5V7M16 3.5V7M4 10h16'/%3E%3C/svg%3E")}
+.service-directory-row[href*="pathology"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M9 3h6'/%3E%3Cpath d='M10 3v6.2L7.2 16a3.2 3.2 0 0 0 2.8 4.8h4a3.2 3.2 0 0 0 2.8-4.8L14 9.2V3'/%3E%3Cpath d='M8.5 14h7'/%3E%3C/svg%3E")}
+.service-directory-row[href*="radiology"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Crect x='4' y='4' width='16' height='16' rx='2'/%3E%3Cpath d='m8 15.5 3-4.5 2.2 2.4L16 10'/%3E%3C/svg%3E")}
+.service-directory-row[href*="pharmacy"] strong::before{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2351728b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M10 4h4v4'/%3E%3Cpath d='M9 8h6l1 12H8L9 8z'/%3E%3Cpath d='M10.5 13h3M12 11.5v3'/%3E%3C/svg%3E")}
+@media(prefers-reduced-motion:reduce){.service-directory-row{transition:none}}
 .service-call-link{margin-left:14px}
 
 /* Team directory and verified practitioner profiles. */
@@ -2651,6 +2696,13 @@ section[id]{scroll-margin-top:116px}
   .doctor-profile-actions{align-items:flex-start;flex-direction:column;gap:14px}
   .doctor-profile-actions .button{width:100%}
   .service-call-link{margin-left:0}
+}
+@media(max-width:320px){
+  .team-directory-grid{grid-template-columns:1fr!important;gap:28px!important}
+  .team-directory-grid .practitioner h3{font-size:18px!important;line-height:1.3!important;min-height:0!important}
+  .team-directory-grid .practitioner-meta{min-height:0!important;grid-template-rows:auto auto auto!important}
+  .team-directory-grid .credentials{min-height:0!important;font-size:13px!important}
+  .team-directory-grid .practitioner-text-visual strong{font-size:22px!important}
 }
 
 
@@ -2954,7 +3006,7 @@ section[id]{scroll-margin-top:116px}
   height:230px;
   background:
     linear-gradient(180deg,rgba(244,241,234,.04),rgba(18,47,68,.16)),
-    url("https://gabbamedicalcentre.com.au/wp-content/uploads/2025/05/img2.png") center 46%/cover no-repeat;
+    url("assets/clinic-reception.png") center 46%/cover no-repeat;
   filter:saturate(.84) contrast(1.02) brightness(1.02);
 }
 .home-page .healthcare-services-layout{position:relative!important;z-index:1!important}
@@ -4982,6 +5034,10 @@ body.has-persistent-care-actions .digital-reception-launcher,body.has-persistent
 .digital-reception-head p,
 .digital-reception-disclosure,
 .digital-reception-result span,
+.digital-reception-emergency span,
+.digital-reception-journey a span,
+.digital-reception-practitioner p,
+.digital-reception-confirm,
 .digital-reception-status{font-size:13.5px!important;line-height:1.55!important;color:#405866!important}
 .digital-reception-label{font-size:13.5px!important;color:#263e4d!important}
 .digital-reception-search{min-height:48px!important;font-size:13.5px!important;padding-inline:16px!important}
@@ -5122,6 +5178,7 @@ a.button[data-hotdoc-button]:hover,.persistent-care-book:hover{background:#123d5
 .digital-reception-quick{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;overflow:visible!important;margin-top:13px!important;padding-bottom:0!important}
 .digital-reception-quick button{width:100%!important;min-width:0!important;min-height:46px!important;white-space:normal!important;text-align:center!important;line-height:1.25!important;padding:8px 9px!important}
 .digital-reception-actions{position:sticky!important;bottom:-14px!important;z-index:2!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important;margin:14px -14px -14px!important;padding:11px 14px 14px!important;background:linear-gradient(to bottom,rgba(255,255,255,.92),#fff 24%)!important;border-top:1px solid #e5ecef!important}
+.digital-reception-actions.is-single{grid-template-columns:1fr!important}
 .digital-reception-actions a{width:100%!important;min-width:0!important;text-align:center!important;white-space:normal!important}
 @media(max-width:380px){.digital-reception-quick{grid-template-columns:1fr!important}.digital-reception-actions{grid-template-columns:1fr!important}.digital-reception-panel{max-height:calc(100vh - 150px)!important}}
 
@@ -5802,6 +5859,9 @@ a.wmc-book-practitioner:focus-visible{
   display:flex;visibility:visible;opacity:1;transform:none;pointer-events:auto;
   transition:opacity .2s ease,transform .2s ease,visibility 0s linear 0s;
 }
+body.navigation-open .digital-reception-panel{
+  visibility:hidden!important;opacity:0!important;pointer-events:none!important;transition:none!important;
+}
 /* 6. One-time booking feedback is created only by an authenticated
    booking integration's explicit completion callback, never on click. */
 .wmc-booking-confirmation{
@@ -5823,7 +5883,7 @@ a.wmc-book-practitioner:focus-visible{
   .digital-reception-panel,.digital-reception-panel.is-open{
     transition:none!important;transform:none!important;
   }
-  .wmc-booking-confirmation,.faq details>p{animation:none!important}
+  .wmc-booking-confirmation,.faq details>p,.digital-reception-journey{animation:none!important}
   .faq details{transition:none!important}
   :where(.knowledge-article-card,.knowledge-category-card,.network-clinic-card,
     .health-update-card,.update-card,.practitioner,.team-authority-card,
@@ -5933,6 +5993,7 @@ body a.mobile-header-book[data-hotdoc-button],
 body a.persistent-care-book[data-hotdoc-button],
 body a.network-location-book[data-hotdoc-button],
 body .digital-reception-actions a[data-hotdoc-button],
+body a.digital-reception-journey-book[data-hotdoc-button],
 body .faq-link a[data-hotdoc-button],
 body a.resource-link[data-hotdoc-button]{
   background-color:#174a70!important;
@@ -7130,6 +7191,31 @@ body:not(.home-page) .page-hero .lede {
 .digital-reception-care-options li .digital-reception-care-book{background:#174a70;color:#fff;border-color:#174a70}
 @media(max-width:380px){.digital-reception-care-options li{grid-template-columns:71px minmax(0,1fr)}}
 
+/* Guided journey: one article, one service, one practitioner, one booking action. */
+.digital-reception-journey{list-style:none;display:grid;gap:10px;margin:16px 0 0;padding:0}
+.digital-reception-journey>li{display:grid;gap:6px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.digital-reception-step-kicker{color:#60717c;font:700 11px/1.3 "Inter",sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.digital-reception-step-title{color:var(--ink);font:600 14px/1.4 "Inter",sans-serif}
+.digital-reception-journey a{color:inherit;text-decoration:none;scroll-margin-bottom:96px}
+.digital-reception-journey a strong{display:block;color:var(--ink);font:700 14px/1.4 "Inter",sans-serif}
+.digital-reception-practitioner{display:grid;gap:4px;padding-top:4px}
+.digital-reception-practitioner+.digital-reception-practitioner{margin-top:8px;padding-top:10px;border-top:1px solid var(--line)}
+.digital-reception-practitioner p{margin:0}
+.digital-reception-restriction{font-weight:600}
+.digital-reception-confirm{margin:6px 0 0}
+.digital-reception-journey-book,.digital-reception-journey a.digital-reception-journey-book{display:flex;align-items:center;justify-content:center;min-height:48px;padding:10px 16px;border-radius:999px;background:#174a70;color:#fff;border:1px solid #174a70;font:700 13px/1.3 "Inter",sans-serif;text-align:center;text-decoration:none;scroll-margin-bottom:96px}
+.digital-reception-journey-book:hover,.digital-reception-journey a.digital-reception-journey-book:hover{background:#123d5e;border-color:#123d5e;color:#fff}
+.digital-reception-journey a:focus-visible,.digital-reception-journey-book:focus-visible,.digital-reception-more summary:focus-visible{outline:3px solid #174f75;outline-offset:3px}
+.digital-reception-more{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:4px 14px 8px}
+.digital-reception-more summary{cursor:pointer;min-height:44px;display:flex;align-items:center;color:var(--navy);font:700 13px/1.3 "Inter",sans-serif}
+.digital-reception-more-list{display:grid;gap:8px;padding-bottom:8px}
+.digital-reception-emergency{display:block;padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+.digital-reception-emergency strong{display:block}
+@media (prefers-reduced-motion:no-preference){
+  .digital-reception-journey{animation:digital-reception-in .2s ease}
+}
+@keyframes digital-reception-in{from{opacity:0}to{opacity:1}}
+
 
 /* HOMEPAGE TEAM — manual, accessible portrait browsing only. No autoplay. */
 .home-page .team .team-carousel-controls{
@@ -7869,4 +7955,519 @@ footer .footer-utility a:focus-visible{outline:3px solid #a5dced;outline-offset:
 header .institution-navigation-row>#primary-nav>a[aria-current="location"] {
   color:var(--navy)!important;
   font-weight:700!important;
+}
+
+/* Premium healthcare language. Tokens above. Sections, type, and navigation stay. */
+.page-hero{
+  background:linear-gradient(180deg,var(--warm) 0%,var(--warm) calc(100% - 48px),var(--mist) 100%);
+  border-bottom-color:transparent;
+}
+.stay{background:linear-gradient(180deg,var(--ink) 0%,var(--navy) 100%)}
+.hotdoc-app{background:var(--wash-mist-green)}
+.knowledge-article-card,.knowledge-category-card,.network-clinic-card,.digital-reception-result,.digital-reception-journey>li,.booking-embed-shell{
+  border-radius:16px;
+  box-shadow:var(--shadow-card);
+}
+.booking-embed-shell{border-radius:16px!important;box-shadow:var(--shadow-card)!important}
+.map,.map-final-polished,.doctor-profile-photo{border-radius:var(--radius)}
+.service-directory-row{background:transparent;transition:background .2s ease}
+.service-directory-row:hover{
+  padding-left:0;
+  background:linear-gradient(100deg,var(--mist) 0%,rgba(244,247,247,.9) 46%,rgba(255,255,255,0) 100%);
+}
+.practitioner-care-highlights{gap:8px}
+.practitioner-care-highlights li{
+  padding:7px 12px;
+  border:1px solid rgba(25,79,117,.14);
+  border-radius:999px;
+  background:#f5f9fb;
+  color:var(--navy);
+  font-size:13px;
+  font-weight:600;
+}
+.practitioner-care-highlights li::before{content:none}
+html{scroll-padding-bottom:120px}
+body.has-persistent-care-actions{padding-bottom:128px!important}
+body.has-persistent-care-actions .hotdoc-frame{height:min(860px,calc(100vh - 300px))!important}
+.map-final-polished,.booking-embed-shell,.network-clinic-card,.service-directory-row,.knowledge-article-card,.digital-reception-journey>li{
+  scroll-margin-bottom:120px;
+}
+body .header-cta a.button[data-hotdoc-button],
+body .persistent-care-book,
+body a.button[data-hotdoc-button],
+body .critical-action-primary,
+body .digital-reception-journey-book,
+body .digital-reception-actions a[data-hotdoc-button]{
+  background:var(--navy)!important;
+  color:#fff!important;
+  border:1px solid var(--navy)!important;
+  border-radius:999px!important;
+}
+body .header-cta a.button[data-hotdoc-button]:hover,
+body .persistent-care-book:hover,
+body a.button[data-hotdoc-button]:hover,
+body .critical-action-primary:hover,
+body .digital-reception-journey-book:hover{
+  background:#102f49!important;
+  border-color:#102f49!important;
+  color:#fff!important;
+  transform:translateY(-1px)!important;
+}
+@media (prefers-reduced-motion:no-preference){
+  .philosophy,.healthcare-services,.hotdoc-app,.stay,.booking-embed-section{
+    animation:wmc-band-in .2s ease both;
+  }
+}
+@keyframes wmc-band-in{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){
+  .philosophy,.healthcare-services,.hotdoc-app,.stay,.booking-embed-section,
+  .service-directory-row,.knowledge-article-card,.knowledge-category-card,.network-clinic-card,.digital-reception-result,.booking-embed-shell{
+    animation:none!important;
+    transition:none!important;
+  }
+  .knowledge-article-card:hover,.knowledge-category-card:hover,.network-clinic-card:hover,.digital-reception-result:hover,.booking-embed-shell:hover,
+  .image-active,.portrait img,.welcome-visual img,.hotdoc-visual img,.hero-visual img{
+    transform:none!important;
+  }
+  body :is(.persistent-care-book,a.button[data-hotdoc-button],.button):hover{transform:none!important}
+  .persistent-care-actions.is-suppressed{transform:none}
+}
+.persistent-care-actions.has-restriction{max-width:min(320px,calc(100vw - 44px))}
+.persistent-care-actions.has-restriction .persistent-care-actions-inner{
+  flex-direction:column;
+  align-items:stretch;
+  border-radius:16px;
+  padding:10px;
+}
+.persistent-care-restriction{
+  margin:0 0 8px;
+  color:var(--ink);
+  font-size:12px;
+  font-weight:600;
+  line-height:1.4;
+}
+.persistent-care-restriction a{color:var(--navy);font-weight:700}
+body.digital-reception-open .persistent-care-actions,
+body.booking-journey-held .persistent-care-actions,
+body.digital-reception-open .header-cta a.wmc-book-appointment,
+body.digital-reception-open .mobile-header-book,
+body.digital-reception-open .hero-actions-polished .button-call-polished,
+body.digital-reception-open main a[data-hotdoc-button],
+body.digital-reception-open main a.wmc-book-appointment,
+body.booking-journey-held a[data-hotdoc-button]:not(.digital-reception-journey-book),
+body.booking-journey-held a.wmc-book-appointment:not(.digital-reception-journey-book),
+.wmc-book-appointment[hidden],
+.persistent-care-book[hidden],
+.mobile-header-book[hidden],
+.digital-reception-actions[hidden],
+.persistent-care-actions[hidden]{
+  display:none!important;
+}
+
+/* One-time task icons. Decorative, so they stay out of the accessibility tree.
+   Motion is a single ease-out pass. Reduced motion leaves the mark still. */
+.header-cta a.wmc-book-appointment,
+.persistent-care-book,
+.booking-fallback a.wmc-book-appointment,
+.book-actions a.wmc-book-appointment,
+.digital-reception-actions a.wmc-book-appointment{
+  gap:8px;
+}
+.header-cta a.wmc-book-appointment::before,
+.persistent-care-book::before,
+.booking-fallback a.wmc-book-appointment::before,
+.book-actions a.wmc-book-appointment::before,
+.digital-reception-actions a.wmc-book-appointment::before,
+.information-list a[href$="test-results.html"]::before,
+.information-list a[href$="referrals.html"]::before,
+.information-list a[href$="repeat-scripts.html"]::before,
+.information-list a[href$="telehealth.html"]::before,
+.digital-reception-quick button:first-child::before,
+.digital-reception-quick button:nth-child(3)::before,
+.digital-reception-launcher::before,
+.journey-actions a[href^="tel:"]::before,
+.contact-details a[href^="tel:"]::before,
+.journey-actions a[href*="google.com/maps"]::before,
+.contact-copy>a[href*="google.com/maps"]::before,
+.contact-details a[href^="mailto:"]::before{
+  content:"";
+  display:inline-block;
+  flex:0 0 auto;
+  width:16px;
+  height:16px;
+  background:currentColor;
+  -webkit-mask:var(--wmc-icon) center/contain no-repeat;
+  mask:var(--wmc-icon) center/contain no-repeat;
+}
+.header-cta a.wmc-book-appointment,
+.persistent-care-book,
+.booking-fallback a.wmc-book-appointment,
+.book-actions a.wmc-book-appointment,
+.digital-reception-actions a.wmc-book-appointment,
+.digital-reception-launcher,
+.journey-actions a[href^="tel:"],
+.contact-details a[href^="tel:"],
+.journey-actions a[href*="google.com/maps"],
+.contact-copy>a[href*="google.com/maps"],
+.contact-details a[href^="mailto:"]{
+  --wmc-icon:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M8 4.5V7M16 4.5V7M5.5 9.5h13'/%3E%3Crect x='5.5' y='6.5' width='13' height='13' rx='2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E");
+}
+.information-list a[href$="test-results.html"],
+.digital-reception-quick button:nth-child(3){
+  --wmc-icon:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M7 3.5h7l4 4V20a1.5 1.5 0 0 1-1.5 1.5h-9.5A1.5 1.5 0 0 1 5.5 20V5A1.5 1.5 0 0 1 7 3.5z'/%3E%3Cpath d='M14 3.5V8h4.5M8.5 13h7M8.5 16.5h4'/%3E%3C/svg%3E");
+}
+.information-list a[href$="referrals.html"]{
+  --wmc-icon:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Crect x='4' y='5' width='11' height='14' rx='2'/%3E%3Cpath d='M15 9h4.5L16 12.5'/%3E%3C/svg%3E");
+}
+.information-list a[href$="repeat-scripts.html"]{
+  --wmc-icon:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M8 4.5h6l3 3V19a1.5 1.5 0 0 1-1.5 1.5H8A1.5 1.5 0 0 1 6.5 19V6A1.5 1.5 0 0 1 8 4.5z'/%3E%3Cpath d='M14 4.5V8h3M9 12.5a3 3 0 1 0 .8-2'/%3E%3Cpath d='M9.2 9.2V11H11'/%3E%3C/svg%3E");
+}
+.information-list a[href$="telehealth.html"]{
+  --wmc-icon:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Crect x='3' y='6' width='12' height='12' rx='2'/%3E%3Cpath d='m15 10 6-3v10l-6-3'/%3E%3C/svg%3E");
+}
+.digital-reception-quick button:first-child{--wmc-icon:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M8 4.5V7M16 4.5V7M5.5 9.5h13'/%3E%3Crect x='5.5' y='6.5' width='13' height='13' rx='2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E")}
+.digital-reception-launcher{--wmc-icon:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M6 16.5 4.5 20 8 17.5'/%3E%3Cpath d='M6 16.5A7 7 0 1 1 12 19H8'/%3E%3C/svg%3E")}
+.journey-actions a[href^="tel:"],
+.contact-details a[href^="tel:"]{--wmc-icon:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M8 4.5h2.2l1.2 3-1.6 1a11 11 0 0 0 5.5 5.5l1-1.6 3 1.2V16a2 2 0 0 1-2.2 2A14.5 14.5 0 0 1 6 7.7 2 2 0 0 1 8 4.5z'/%3E%3C/svg%3E")}
+.journey-actions a[href*="google.com/maps"],
+.contact-copy>a[href*="google.com/maps"]{--wmc-icon:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10z'/%3E%3Ccircle cx='12' cy='11' r='2'/%3E%3C/svg%3E")}
+.contact-details a[href^="mailto:"]{--wmc-icon:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Crect x='3.5' y='6' width='17' height='12' rx='2'/%3E%3Cpath d='m4 7 8 6 8-6'/%3E%3C/svg%3E")}
+.information-list a[href$="test-results.html"],
+.information-list a[href$="referrals.html"],
+.information-list a[href$="repeat-scripts.html"],
+.information-list a[href$="telehealth.html"]{
+  position:relative;
+  padding-left:28px;
+}
+.information-list a[href$="test-results.html"]::before,
+.information-list a[href$="referrals.html"]::before,
+.information-list a[href$="repeat-scripts.html"]::before,
+.information-list a[href$="telehealth.html"]::before{
+  position:absolute;
+  left:0;
+  top:50%;
+  transform:translateY(-50%);
+}
+.digital-reception-quick button,
+.digital-reception-launcher,
+.contact-details a[href^="tel:"],
+.contact-details a[href^="mailto:"],
+.contact-copy>a[href*="google.com/maps"]{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+@media (prefers-reduced-motion:no-preference){
+  .hero-trust-clock svg path{
+    transform-origin:12px 12px;
+    animation:wmc-clock-hand .4s ease-out both;
+  }
+  .header-cta a.wmc-book-appointment:hover::before,
+  .header-cta a.wmc-book-appointment:focus-visible::before,
+  .persistent-care-book:hover::before,
+  .persistent-care-book:focus-visible::before,
+  .booking-fallback a.wmc-book-appointment:hover::before,
+  .booking-fallback a.wmc-book-appointment:focus-visible::before,
+  .book-actions a.wmc-book-appointment:hover::before,
+  .book-actions a.wmc-book-appointment:focus-visible::before,
+  .digital-reception-actions a.wmc-book-appointment:hover::before,
+  .digital-reception-actions a.wmc-book-appointment:focus-visible::before,
+  .digital-reception-quick button:first-child:hover::before,
+  .digital-reception-quick button:first-child:focus-visible::before,
+  .information-list a[href$="test-results.html"]:hover::before,
+  .information-list a[href$="test-results.html"]:focus-visible::before,
+  .digital-reception-quick button:nth-child(3):hover::before,
+  .digital-reception-quick button:nth-child(3):focus-visible::before,
+  .service-directory-row[href$="/mens-health.html"] strong::before,
+  .service-directory-row[href$="/mens-health.html"]:hover strong::before,
+  .service-directory-row[href$="/mens-health.html"]:focus-visible strong::before{
+    animation:wmc-draw .18s ease-out both;
+  }
+  .information-list a[href$="referrals.html"]:hover::before,
+  .information-list a[href$="referrals.html"]:focus-visible::before{
+    animation:wmc-nudge .18s ease-out both;
+  }
+  .information-list a[href$="repeat-scripts.html"]:hover::before,
+  .information-list a[href$="repeat-scripts.html"]:focus-visible::before{
+    animation:wmc-turn .4s ease-out;
+  }
+  .information-list a[href$="telehealth.html"]:hover::before,
+  .information-list a[href$="telehealth.html"]:focus-visible::before,
+  .service-directory-row[href*="telehealth"]:hover strong::before,
+  .service-directory-row[href*="telehealth"]:focus-visible strong::before{
+    animation:wmc-ring .22s ease-out;
+  }
+  .digital-reception-launcher:hover::before,
+  .digital-reception-launcher:focus-visible::before{
+    animation:wmc-settle .18s ease-out;
+  }
+  .digital-reception-launcher[aria-expanded="true"]::before{animation:none}
+  .journey-actions a[href^="tel:"]:hover::before,
+  .journey-actions a[href^="tel:"]:focus-visible::before,
+  .contact-details a[href^="tel:"]:hover::before,
+  .contact-details a[href^="tel:"]:focus-visible::before{
+    animation:wmc-tilt .18s ease-out;
+  }
+  .service-directory-row[href*="vaccinations"] strong::before,
+  .service-directory-row[href*="vaccinations"]:hover strong::before,
+  .service-directory-row[href*="vaccinations"]:focus-visible strong::before{
+    animation:wmc-draw .25s ease-out both;
+  }
+  .service-directory-row[href*="womens-health"] strong::before,
+  .service-directory-row[href*="womens-health"]:hover strong::before,
+  .service-directory-row[href*="womens-health"]:focus-visible strong::before{
+    animation:wmc-fade .25s ease-out both;
+  }
+  .service-directory-row[href*="childrens-health"] strong::before,
+  .service-directory-row[href*="childrens-health"]:hover strong::before,
+  .service-directory-row[href*="childrens-health"]:focus-visible strong::before{
+    animation:wmc-rise .2s ease-out both;
+  }
+}
+@keyframes wmc-clock-hand{from{transform:rotate(-12deg)}to{transform:rotate(0)}}
+@keyframes wmc-draw{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0)}}
+@keyframes wmc-nudge{from{translate:0 0}to{translate:3px 0}}
+@keyframes wmc-turn{from{rotate:-360deg}to{rotate:0deg}}
+@keyframes wmc-ring{from{box-shadow:0 0 0 0 rgba(22,63,98,.28)}to{box-shadow:0 0 0 6px rgba(22,63,98,0)}}
+@keyframes wmc-settle{from{transform:translateY(2px)}to{transform:none}}
+@keyframes wmc-tilt{from{transform:rotate(-8deg)}to{transform:rotate(0)}}
+@keyframes wmc-icon-in{from{opacity:0}to{opacity:1}}
+@keyframes wmc-rise{from{transform:translateY(3px)}to{transform:none}}
+@keyframes wmc-fade{from{opacity:.35}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){
+  .hero-trust-clock svg path,
+  .header-cta a.wmc-book-appointment::before,
+  .persistent-care-book::before,
+  .booking-fallback a.wmc-book-appointment::before,
+  .book-actions a.wmc-book-appointment::before,
+  .digital-reception-actions a.wmc-book-appointment::before,
+  .information-list a::before,
+  .digital-reception-launcher::before,
+  .digital-reception-quick button:first-child::before,
+  .digital-reception-quick button:nth-child(3)::before,
+  .journey-actions a::before,
+  .contact-details a::before,
+  .contact-copy>a[href*="google.com/maps"]::before,
+  .service-directory-row strong::before{
+    animation:none!important;
+    transition:none!important;
+  }
+  .information-list a[href$="test-results.html"]::before,
+  .information-list a[href$="referrals.html"]::before,
+  .information-list a[href$="repeat-scripts.html"]::before,
+  .information-list a[href$="telehealth.html"]::before{
+    transform:translateY(-50%)!important;
+  }
+  body a.wmc-book-appointment:hover,
+  body .digital-reception-journey-book:hover,
+  .network-location-card:hover{transform:none!important}
+}
+
+/* Approved washes and one card. Layout, type, and navigation stay. */
+.home-page .philosophy{
+  background:linear-gradient(180deg,var(--warm) 0%,var(--warm) calc(100% - 48px),var(--mist) 100%)!important;
+}
+.home-page .stay{
+  background:linear-gradient(180deg,var(--ink) 0%,var(--navy) 100%)!important;
+}
+.booking-fallback{background:var(--wash-white-paper)}
+.digital-reception-result,
+.digital-reception-journey>li,
+.booking-embed-shell,
+.network-clinic-card,
+.network-location-card{
+  border:1px solid var(--line)!important;
+  border-radius:16px!important;
+  box-shadow:var(--shadow-card)!important;
+}
+body a.button.wmc-book-appointment[data-hotdoc-button],
+body .doctor-profile-actions a.button[data-hotdoc-button],
+body .booking-fallback a.button[data-hotdoc-button],
+body a.persistent-care-book[data-hotdoc-button],
+body a.digital-reception-journey-book[data-hotdoc-button],
+body .digital-reception-actions a[data-hotdoc-button]{
+  background:var(--navy)!important;
+  background-color:var(--navy)!important;
+  border-color:var(--navy)!important;
+  color:#fff!important;
+  border-radius:999px!important;
+}
+@media (prefers-reduced-motion:no-preference){
+  body a.button.wmc-book-appointment[data-hotdoc-button]:hover,
+  body .doctor-profile-actions a.button[data-hotdoc-button]:hover,
+  body .booking-fallback a.button[data-hotdoc-button]:hover,
+  body a.persistent-care-book[data-hotdoc-button]:hover,
+  body a.digital-reception-journey-book[data-hotdoc-button]:hover,
+  body .digital-reception-actions a[data-hotdoc-button]:hover{
+    background:#102f49!important;
+    background-color:#102f49!important;
+    border-color:#102f49!important;
+    color:#fff!important;
+    transform:translateY(-1px)!important;
+  }
+}
+
+/* Laptop windows: keep the whole homepage hero on the first screen.
+   The two-row header plus a fixed hero was taller than a short laptop
+   viewport, so the opening hours continued onto the next scroll. */
+@media (min-width:1025px) and (max-height:920px){
+  .home-page{--home-hero-header:153px}
+  .home-page .hero{
+    height:calc(100vh - var(--home-hero-header))!important;
+    height:calc(100dvh - var(--home-hero-header))!important;
+    min-height:0!important;
+    max-height:calc(100vh - var(--home-hero-header))!important;
+    max-height:calc(100dvh - var(--home-hero-header))!important;
+    border-bottom-width:clamp(14px,2vh,28px)!important;
+  }
+  .home-page .hero .shell.hero-grid,
+  .home-page .hero-copy{
+    height:100%!important;
+    min-height:0!important;
+    max-height:none!important;
+  }
+  .home-page .hero-copy{
+    justify-content:center!important;
+    padding-top:clamp(8px,1.6vh,18px)!important;
+    padding-bottom:clamp(6px,1.2vh,14px)!important;
+  }
+  .home-page .hero-copy h1{
+    margin-bottom:clamp(16px,2.2vh,24px)!important;
+    font-size:clamp(42px,6.6vh,64px)!important;
+  }
+  .home-page .hero-copy>p:not(.hero-community-refined){
+    margin-bottom:clamp(18px,2.6vh,26px)!important;
+    font-size:clamp(15px,2vh,17.5px)!important;
+    line-height:1.55!important;
+  }
+  .home-page .hero-copy>.hero-actions-polished{
+    margin-top:0!important;
+  }
+  .home-page .hero-actions-polished .button{
+    min-height:44px!important;
+  }
+  .home-page .hero-trust-refined{
+    margin-top:clamp(8px,1.4vh,14px)!important;
+    padding:clamp(6px,1vh,10px) 0!important;
+  }
+  .home-page .hero-hours-refined{
+    margin-top:clamp(6px,1vh,10px)!important;
+  }
+}
+@media (min-width:1025px) and (max-width:1199px) and (max-height:920px){
+  .home-page{--home-hero-header:145px}
+}
+@media (min-width:768px){
+  .critical-action-links{margin-right:188px}
+  .knowledge-category-grid,.services-directory-list{margin-right:80px}
+  body:has(.persistent-care-actions:not([hidden])) .booking-embed-shell{margin-right:312px}
+}
+
+/* Knowledge Centre guide finder. In the hub content column only. */
+.knowledge-guide-search{margin:0 0 28px;padding:22px 24px;border:1px solid var(--line);border-radius:16px;background:#fafcfc}
+.knowledge-guide-search label{display:block;margin:0 0 8px;color:var(--ink);font-size:16px;font-weight:600;line-height:1.3}
+.knowledge-guide-search input{width:100%;min-height:50px;padding:12px 15px;border:1px solid #cbd8df;border-radius:10px;background:#fff;color:var(--ink);font:inherit;outline:none}
+.knowledge-guide-search input:focus{border-color:#7f9eb4;box-shadow:0 0 0 3px rgba(49,95,131,.09)}
+.knowledge-guide-search-status{min-height:0;margin:8px 0 0;color:#5f707c;font-size:13px;line-height:1.45}
+.knowledge-guide-search-status:empty{display:none}
+.knowledge-guide-results{display:grid;gap:8px;margin-top:14px}
+.knowledge-guide-results:empty{display:none}
+.knowledge-guide-result{display:flex;flex-direction:column;gap:3px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);text-decoration:none}
+.knowledge-guide-result strong{font-weight:600;line-height:1.35}
+.knowledge-guide-result span{color:#5f707c;font-size:13px;line-height:1.4}
+.knowledge-guide-result:hover{border-color:#9db0bd}
+.knowledge-guide-result:focus-visible{outline:3px solid #174f75;outline-offset:3px}
+.knowledge-guide-search-empty{margin:14px 0 0;color:var(--ink);font-size:15px;line-height:1.45}
+.knowledge-guide-search-reception{display:inline-flex;margin-top:8px;color:#315f83;font-size:15px;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.knowledge-guide-search-reception:focus-visible{outline:3px solid #174f75;outline-offset:3px;border-radius:4px}
+@media(max-width:700px){.knowledge-guide-search{margin-bottom:22px;padding:18px}}
+
+/* Bottom care dock. Replaces the floating lower-right Digital Reception pill.
+   Book, Call, and Reception share one fixed band. Page padding keeps maps,
+   service rows, practitioner controls, footer links, and in-page actions above it. */
+body.has-action-dock{padding-bottom:96px!important}
+html:has(body.has-action-dock){scroll-padding-bottom:96px}
+body.has-action-dock .persistent-care-actions{
+  left:0!important;right:0!important;bottom:0!important;width:100%!important;max-width:none!important;
+  z-index:94!important;display:block!important;padding:8px 16px calc(8px + env(safe-area-inset-bottom))!important;
+  border:0!important;border-top:1px solid rgba(24,62,88,.14)!important;border-radius:0!important;
+  background:rgba(255,255,255,.98)!important;box-shadow:0 -8px 24px rgba(23,48,68,.08)!important;
+  transform:none!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important;
+}
+body.has-action-dock .persistent-care-actions-inner{
+  display:flex!important;flex-wrap:wrap!important;align-items:center!important;justify-content:center!important;
+  gap:8px!important;width:min(100%,760px)!important;max-width:760px!important;margin:0 auto!important;
+  padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;
+  grid-template-columns:none!important;
+}
+body.has-action-dock .persistent-care-book,
+body.has-action-dock .persistent-care-call,
+body.has-action-dock .digital-reception-launcher{
+  position:static!important;right:auto!important;bottom:auto!important;width:auto!important;min-width:0!important;
+  flex:0 1 auto!important;box-shadow:none!important;backdrop-filter:none!important;
+}
+body.has-action-dock .persistent-care-restriction{flex:1 0 100%!important;margin:0 0 4px!important;text-align:center!important}
+body.has-action-dock .persistent-care-actions.has-restriction{max-width:none!important}
+body.has-action-dock .persistent-care-actions.has-restriction .persistent-care-actions-inner{
+  flex-direction:row!important;align-items:center!important;
+}
+@media(min-width:768px){
+  .critical-action-links,.knowledge-category-grid,.services-directory-list,
+  body.has-action-dock .booking-embed-shell{margin-right:0!important}
+}
+@media(max-width:1024px){
+  body.has-action-dock .mobile-header-book{display:none!important}
+}
+@media(min-width:768px) and (max-width:1024px){
+  body.has-action-dock .header-cta a.wmc-book-appointment,
+  body.has-action-dock .header-cta a[data-hotdoc-button]{display:none!important}
+}
+@media(max-width:767px){
+  body.has-action-dock{padding-bottom:calc(88px + env(safe-area-inset-bottom))!important}
+  html:has(body.has-action-dock){scroll-padding-bottom:96px}
+  body.has-action-dock .mobile-header-actions{display:none!important}
+  body.has-action-dock .persistent-care-actions{padding:6px 8px calc(6px + env(safe-area-inset-bottom))!important}
+  body.has-action-dock .persistent-care-actions-inner{gap:6px!important;width:100%!important}
+  body.has-action-dock .persistent-care-book,
+  body.has-action-dock .persistent-care-call,
+  body.has-action-dock .digital-reception-launcher{
+    flex:1 1 0!important;min-height:48px!important;padding:8px 6px!important;font-size:12px!important;
+    white-space:nowrap!important;text-align:center!important;
+  }
+  body.has-action-dock .digital-reception-launcher-full{display:none!important}
+  body.has-action-dock .digital-reception-launcher-compact{display:inline!important}
+}
+@media(max-width:420px){
+  body.has-action-dock .persistent-care-book::before,
+  body.has-action-dock .digital-reception-launcher::before{display:none!important}
+  body.has-action-dock .persistent-care-book,
+  body.has-action-dock .persistent-care-call,
+  body.has-action-dock .digital-reception-launcher{
+    white-space:normal!important;line-height:1.15!important;font-size:12px!important;padding:6px 5px!important;
+  }
+}
+
+/* Practitioner cards at 320px. One column is already set above.
+   The name is the card action, so its tap row uses the full card width.
+   Pathway links beside the cards step up from 12.5px. Wider layouts are unchanged. */
+@media(max-width:320px){
+  .team-directory-grid .practitioner h3{min-height:0!important}
+  .team-directory-grid .practitioner h3 a{
+    display:flex!important;width:100%!important;min-height:48px!important;
+    align-items:center!important;font-size:18px!important;line-height:1.3!important;
+  }
+  .team-role-page-link a{font-size:16px!important;line-height:1.35!important;min-height:48px!important}
+  .home-page .team .team-practitioner-profile-link{font-size:16px!important;min-height:48px!important}
+}
+
+/* Digital Reception viewport fit. Above the care dock, inside the screen.
+   The open dialog sits above the sticky header so the title and Close stay visible.
+   Extra answers scroll inside the panel. Desktop, laptop, and tablet widths only. */
+@media(min-width:701px){
+  body.has-persistent-care-actions .digital-reception-panel.is-open{
+    z-index:110!important;
+    max-height:min(680px,calc(100dvh - 108px))!important;
+  }
+  .digital-reception-head{flex:0 0 auto!important}
+  .digital-reception-body{flex:1 1 auto!important;min-height:0!important}
 }

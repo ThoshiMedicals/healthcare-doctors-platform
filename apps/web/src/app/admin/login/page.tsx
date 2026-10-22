@@ -1,8 +1,11 @@
 import { cookies, headers } from "next/headers";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { AuthError } from "next-auth";
 import { auth, signIn } from "@/auth";
+import { staffDisabled } from "@/auth/session";
 import { clientIp, inspectLogin } from "@/auth/login-throttle";
+import { loginLockMessage } from "@/auth/login-guard";
 import { ACTIVITY_COOKIE, activityCookieOptions } from "@/auth/session-policy";
 import "../admin.css";
 
@@ -41,7 +44,10 @@ export default async function LoginPage({
   searchParams: Promise<{ error?: string }>;
 }) {
   const session = await auth();
-  if (session?.user) redirect("/admin");
+  if (session?.user?.id) {
+    if (await staffDisabled(session.user.id)) redirect("/admin/session-end");
+    redirect("/admin");
+  }
   const params = await searchParams;
 
   return (
@@ -53,7 +59,7 @@ export default async function LoginPage({
       </p>
       {params.error === "locked" ? (
         <p className="mt-4 rounded border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800">
-          Sign-in is temporarily unavailable. Try again shortly.
+          {loginLockMessage()}
         </p>
       ) : params.error ? (
         <p className="mt-4 rounded border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-800">
@@ -85,6 +91,9 @@ export default async function LoginPage({
           Sign in
         </button>
       </form>
+      <Link href="/admin/forgot-password" className="mt-4 text-sm text-slate-700 underline">
+        Forgot password?
+      </Link>
     </main>
   );
 }

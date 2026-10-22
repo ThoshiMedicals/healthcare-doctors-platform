@@ -2,19 +2,18 @@
 
 import { redirect } from "next/navigation";
 import { Prisma, type DayOfWeek, type MembershipRole, type PublicationStatus } from "@prisma/client";
-import { hashPassword } from "@/auth/password";
-import { ASSIGNABLE_ROLES } from "@/auth/permissions";
+import { hashPassword, passwordProblems, verifyPassword } from "@/auth/password";
 import { writeAuditLog } from "@/cms/audit";
-import { requireAction } from "@/cms/context";
+import { editorContext, requireAction } from "@/cms/context";
+import { createStaffAccount, grantSuperAdminAccount, resetOtherStaffPassword, setOtherStaffEnabled, setOtherStaffRole } from "@/cms/staff-accounts";
 import { applyArticleDocument, articleDocumentFrom, articleFromForm, readArticleDocument } from "@/cms/article-document";
 import { applyServiceDocument, readServiceDocument, serviceDocumentFrom, serviceFromForm } from "@/cms/service-document";
 import { applyPracticeDocument, practiceDocumentFrom, practiceFromForm, readPracticeDocument } from "@/cms/practice-document";
 import { bookingUrlProblems, matchVerifiedUpload, portraitBasename, portraitProblems, readPractitionerBookingUrl, readPractitionerPortraitFile } from "@/cms/practitioner-media";
 import { recordRevision } from "@/cms/revisions";
 import { applyImageFiles, assetRevisionSnapshot } from "@/cms/image-replacement";
-import { ImageArchiveError } from "@/cms/image-store";
+import { ImageArchiveError, readPending, sha256 } from "@/cms/image-store";
 import { alignRestoredSnapshot, snapshotStatus } from "@/cms/restore-sync";
-import { fingerprintContent } from "@/governance/fingerprint";
 import {
   governanceCompletionGaps,
   governanceStatusForRestore,
@@ -22,7 +21,7 @@ import {
   parseGovernanceStatus,
   type GovernanceStatus,
 } from "@/governance/status";
-import { moveWorkflow, publishEntity, type ReleaseEntity } from "@/cms/release";
+import { moveWorkflow, publishEntity, renderedContentFingerprint, type ReleaseEntity } from "@/cms/release";
 import { prisma } from "@/db/prisma";
 
 function text(formData: FormData, key: string): string {
@@ -366,6 +365,7 @@ export async function saveImageGovernance(formData: FormData) {
   const id = text(formData, "id");
   const current = await prisma.mediaAsset.findFirst({ where: { id, clinicId: clinic.id } });
   if (!current) redirect("/admin/image-governance");
+  const proposal = readPending(id, "full");
   const nextFields = {
     uploadedBy: text(formData, "uploadedBy") || null,
     approvedAt: dateOrNull(text(formData, "approvedAt")),
@@ -373,6 +373,9 @@ export async function saveImageGovernance(formData: FormData) {
     copyrightOwner: text(formData, "copyrightOwner") || null,
     expiresAt: dateOrNull(text(formData, "expiresAt")),
     altText: text(formData, "altText"),
+    reviewedBy: text(formData, "reviewedBy") || null,
+    evidenceReference: text(formData, "evidenceReference") || null,
+    contentSha256: proposal ? sha256(proposal) : current.contentSha256,
   };
   const previous = assetRevisionSnapshot(current);
   const next = assetRevisionSnapshot({ ...current, ...nextFields });
@@ -410,7 +413,7 @@ export async function saveGovernance(formData: FormData) {
   const evidenceReference = text(formData, "evidenceReference") || null;
   const approvalDate = text(formData, "lastReviewed");
   const approvedAt = approvalDate ? new Date(`${approvalDate}T00:00:00.000Z`) : null;
-  const fingerprint = fingerprintContent(current.page.publishedRevision?.html ?? current.page.path);
+  const fingerprint = await renderedContentFingerprint(clinic.id, current.pageId);
   if (isGovernanceCompleteStatus(status)) {
     const gaps = governanceCompletionGaps({
       reviewedBy,
@@ -536,34 +539,97 @@ export async function rollbackRevision(formData: FormData) {
 
 export async function createStaffUser(formData: FormData) {
   const { user, clinic } = await requireAction("create_users");
-  const username = text(formData, "username").toLowerCase();
-  const password = String(formData.get("password") ?? "");
-  const role = text(formData, "role") as (typeof ASSIGNABLE_ROLES)[number];
-  if (!ASSIGNABLE_ROLES.includes(role) || username.length < 2 || password.length < 8) {
-    redirect("/admin/users?error=1");
-  }
-  let created;
-  try {
-    created = await prisma.user.create({
-      data: {
-        username,
-        name: text(formData, "name") || username,
-        passwordHash: await hashPassword(password),
-        memberships: { create: { clinicId: clinic.id, role: role as MembershipRole } },
-      },
-    });
-  } catch {
-    redirect("/admin/users?error=1");
-  }
-  await writeAuditLog({
-    clinicId: clinic.id,
+  const created = await createStaffAccount({
     actorId: user.id,
-    action: "user.created",
-    entityType: "user",
-    entityId: created.id,
-    metadata: { username, role },
+    clinicId: clinic.id,
+    name: text(formData, "name"),
+    username: text(formData, "username"),
+    password: String(formData.get("password") ?? ""),
+    confirmation: String(formData.get("confirm") ?? ""),
+    role: text(formData, "role"),
   });
-  redirect("/admin/users?saved=1");
+  if (!created.ok) redirect(`/admin/users?error=${created.issue === "failed" ? "1" : created.issue}`);
+  redirect("/admin/users?saved=created");
+}
+
+export async function grantSuperAdmin(formData: FormData) {
+  const { user, clinic } = await requireAction("create_users");
+  const granted = await grantSuperAdminAccount({
+    actorId: user.id,
+    clinicId: clinic.id,
+    targetUserId: text(formData, "userId"),
+  });
+  if (!granted.ok) redirect("/admin/users?error=role");
+  redirect("/admin/users?saved=granted");
+}
+
+export async function changeOwnPassword(formData: FormData) {
+  const { user, clinic, role } = await editorContext();
+  if (!role) redirect("/admin/login");
+  const next = String(formData.get("password") ?? "");
+  const confirmation = String(formData.get("confirm") ?? "");
+  const row = await prisma.user.findUnique({
+    where: { id: user.id },
+    select: { passwordHash: true, username: true },
+  });
+  const currentAccepted = Boolean(
+    row?.passwordHash && (await verifyPassword(String(formData.get("current") ?? ""), row.passwordHash)),
+  );
+  const reused = Boolean(row?.passwordHash && currentAccepted && (await verifyPassword(next, row.passwordHash)));
+  if (!row?.passwordHash || !currentAccepted || reused || passwordProblems(next, confirmation)) {
+    redirect("/admin/account?error=password");
+  }
+  await prisma.user.update({
+    where: { id: user.id },
+    data: { passwordHash: await hashPassword(next) },
+  });
+  await writeAuditLog({
+    clinicId: clinic?.id,
+    actorId: user.id,
+    action: "user.password_changed",
+    entityType: "user",
+    entityId: user.id,
+    metadata: { username: row.username },
+  });
+  redirect("/admin/account?saved=1");
+}
+
+export async function resetStaffPassword(formData: FormData) {
+  const { user, clinic } = await requireAction("create_users");
+  const result = await resetOtherStaffPassword({
+    actorId: user.id,
+    clinicId: clinic.id,
+    targetUserId: text(formData, "userId"),
+    password: String(formData.get("password") ?? ""),
+    confirmation: String(formData.get("confirm") ?? ""),
+  });
+  if (result !== "ok") redirect("/admin/users?error=password");
+  redirect("/admin/users?saved=reset");
+}
+
+export async function setStaffEnabled(formData: FormData) {
+  const { user, clinic } = await requireAction("create_users");
+  const enable = text(formData, "enabled") === "1";
+  const result = await setOtherStaffEnabled({
+    actorId: user.id,
+    clinicId: clinic.id,
+    targetUserId: text(formData, "userId"),
+    enabled: enable,
+  });
+  if (result === "lifecycle") redirect("/admin/users?error=lifecycle");
+  redirect(result === "enabled" ? "/admin/users?saved=enabled" : "/admin/users?saved=disabled");
+}
+
+export async function setStaffRole(formData: FormData) {
+  const { user, clinic } = await requireAction("create_users");
+  const result = await setOtherStaffRole({
+    actorId: user.id,
+    clinicId: clinic.id,
+    targetUserId: text(formData, "userId"),
+    nextRole: text(formData, "role") as MembershipRole,
+  });
+  if (result !== "ok") redirect("/admin/users?error=role");
+  redirect("/admin/users?saved=role");
 }
 
 function practitionerSnapshot(current: {
@@ -801,6 +867,9 @@ async function applySnapshot(entityType: string, entityId: string, snapshot: Pri
         ...("copyrightOwner" in data ? { copyrightOwner: stringOrNull(data.copyrightOwner) } : {}),
         ...("expiresAt" in data ? { expiresAt: dateOrNull(data.expiresAt) } : {}),
         ...("usage" in data ? { usage: asStringList(data.usage) } : {}),
+        ...("reviewedBy" in data ? { reviewedBy: stringOrNull(data.reviewedBy) } : {}),
+        ...("evidenceReference" in data ? { evidenceReference: stringOrNull(data.evidenceReference) } : {}),
+        ...("contentSha256" in data ? { contentSha256: stringOrNull(data.contentSha256) } : {}),
         ...("replacementStatus" in data
           ? { replacementStatus: data.replacementStatus ? (String(data.replacementStatus) as PublicationStatus) : null }
           : {}),

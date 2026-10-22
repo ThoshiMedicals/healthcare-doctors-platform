@@ -47,6 +47,12 @@ export async function clearLoginFailures(username: string, ip: string) {
   });
 }
 
+export async function clearAccountLock(username: string) {
+  await prisma.loginThrottle.deleteMany({
+    where: { subject: subjectKey("user", username) },
+  });
+}
+
 async function writeFailure(subject: string, now: number, lockAfter: number) {
   const current = await prisma.loginThrottle.findUnique({ where: { subject } });
   const next = nextFailureState(snapshot(current), now, lockAfter);

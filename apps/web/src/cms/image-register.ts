@@ -14,6 +14,9 @@ export type RegisteredImage = {
   copyrightOwner: string | null;
   expiresAt: Date | null;
   replacementStatus: string | null;
+  reviewedBy: string | null;
+  evidenceReference: string | null;
+  contentSha256: string | null;
   usage: string[];
   observedAlts: string[];
 };
@@ -86,6 +89,9 @@ export async function imageRegister(clinicId: string): Promise<RegisteredImage[]
       copyrightOwner: row.copyrightOwner,
       expiresAt: row.expiresAt,
       replacementStatus: row.replacementStatus,
+      reviewedBy: row.reviewedBy,
+      evidenceReference: row.evidenceReference,
+      contentSha256: row.contentSha256,
       usage: [...(grouped.get(row.storagePath)?.pages ?? [])].sort(),
       observedAlts: [...(grouped.get(row.storagePath)?.alts ?? [])],
     }));

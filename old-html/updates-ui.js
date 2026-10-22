@@ -11,7 +11,7 @@
     if (!image) return "";
     if (/^https?:\/\//i.test(image)) return image;
     if (image === "clinic-exterior") return `${base}assets/location-storefront-polished.webp`;
-    if (image === "clinic-reception") return `${base}assets/location-storefront-polished.webp`;
+    if (image === "clinic-reception") return `${base}assets/clinic-reception.png`;
     return `${base}assets/${image}`;
   };
 

@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
+const uatQuickTunnel = process.env.UAT_QUICK_TUNNEL === "true";
+
 const nextConfig: NextConfig = {
+  distDir: uatQuickTunnel ? ".next-uat" : ".next",
   output: "standalone",
   poweredByHeader: false,
   reactStrictMode: true,
@@ -25,6 +28,15 @@ const nextConfig: NextConfig = {
   },
   images: {
     unoptimized: true,
+  },
+  async headers() {
+    if (!uatQuickTunnel) return [];
+    return [
+      {
+        source: "/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+    ];
   },
 };
 

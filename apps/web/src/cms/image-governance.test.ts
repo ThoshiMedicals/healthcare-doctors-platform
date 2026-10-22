@@ -56,6 +56,9 @@ describe("image governance records", () => {
       expiresAt: new Date("2027-10-15T00:00:00.000Z"),
       altText: "Dr Tanya Goodwill",
       usage: ["doctors/dr-tanya-goodwill.html"],
+      reviewedBy: "Dr Lee",
+      evidenceReference: "EV-100",
+      contentSha256: "a".repeat(64),
     });
     assert.equal(snapshot.approvedAt, "2026-10-15");
     assert.equal(snapshot.expiresAt, "2027-10-15");

@@ -80,6 +80,48 @@ export function replacementProblems(target: ReplacementTarget, bytes: Buffer): s
   return [];
 }
 
+export function replacementInstruction(target: ReplacementTarget): string {
+  const type = target.format === "png" ? "PNG" : "WebP";
+  const cap = target.format === "png" ? "512 KB" : "4 MB";
+  const purpose =
+    target.kind === "logo"
+      ? "This file is the header logo."
+      : target.kind === "hero"
+        ? "This file is the homepage hero."
+        : target.kind === "exterior"
+          ? "This file is the clinic exterior photograph."
+          : "This file is the practitioner photograph on the profile, the team card, and the homepage card.";
+  let pixels = "the current pixel size";
+  let card = "";
+  try {
+    const current = target.format === "png" ? pngSize(readServedBytes(target.publicPath)) : webpSize(readServedBytes(target.publicPath));
+    if (current) pixels = `${current.width} by ${current.height} pixels, aspect ratio ${aspectRatio(current.width, current.height)}`;
+    if (target.thumbPath) {
+      const thumb = webpSize(readServedBytes(target.thumbPath));
+      if (thumb) card = ` The card image is generated at ${thumb.width} by ${thumb.height} pixels, aspect ratio ${aspectRatio(thumb.width, thumb.height)}.`;
+    }
+  } catch {
+    pixels = "the current pixel size";
+  }
+  return `${purpose} Upload a ${type} at ${pixels}. The largest file accepted is ${cap}. JPEG, GIF, and SVG are not accepted. The published filename stays as it is.${card}`;
+}
+
+function aspectRatio(width: number, height: number): string {
+  const divisor = greatestDivisor(width, height);
+  return `${width / divisor}:${height / divisor}`;
+}
+
+function greatestDivisor(width: number, height: number): number {
+  let a = Math.abs(width);
+  let b = Math.abs(height);
+  while (b) {
+    const next = a % b;
+    a = b;
+    b = next;
+  }
+  return a || 1;
+}
+
 function existingPortrait(name: string): boolean {
   if (!isPortraitName(name)) return false;
   const full = `assets/team/${name}`;
@@ -116,6 +158,9 @@ export function assetRevisionSnapshot(row: {
   expiresAt: Date | null;
   altText: string;
   usage: string[];
+  reviewedBy: string | null;
+  evidenceReference: string | null;
+  contentSha256: string | null;
 }) {
   return { ...imageGovernanceSnapshot(row), ...imageFileSnapshot(row) };
 }

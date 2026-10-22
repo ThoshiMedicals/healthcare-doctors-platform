@@ -8,6 +8,7 @@ import { practiceDocumentFrom, practiceLinkProblems, readPracticeDocument } from
 import { applyOverlay, phoneToTel, practitionerFromPayload, readLede, readTitle, readUpdateAuthor, readUpdateSummary, repeatFromPayload, type ClinicContent, type OverlayInput, type PractitionerContent, type TextContent } from "@/cms/overlay";
 import { bookingUrlProblems, portraitBasename, portraitProblems, readPractitionerBookingUrl, readPractitionerPortraitFile } from "@/cms/practitioner-media";
 import { comparePublishedPages } from "@/cms/publish-check";
+import { evaluateContentPublication } from "@/cms/publish-gates";
 import { recordRevision } from "@/cms/revisions";
 import { prisma } from "@/db/prisma";
 import { goldenHtmlRoot, webRoot } from "@/importer/golden-root";
@@ -49,18 +50,27 @@ export async function publishEntity(entry: {
   const knowledge = entry.entityType === "knowledge_article" ? await knowledgeProblems(entry.clinicId, preview.pages) : null;
   const service = entry.entityType === "service" ? await serviceProblems(entry.clinicId, preview.pages) : null;
   const practice = entry.entityType === "practice_page" ? await practiceProblems(entry.clinicId, preview.pages) : null;
-  if (
-    reasons.length > 0 ||
-    assetReasons.length > 0 ||
-    (knowledge && knowledge.problems.length > 0) ||
-    (service && service.problems.length > 0) ||
-    (practice && practice.problems.length > 0)
-  ) {
+  const releaseChecksAccepted = reasons.length === 0 && assetReasons.length === 0;
+  const linksVerified =
+    !(knowledge && knowledge.problems.length > 0) &&
+    !(service && service.problems.length > 0) &&
+    !(practice && practice.problems.length > 0);
+  if (!releaseChecksAccepted || !linksVerified) {
     return {
       ok: false,
       reasons: [...reasons, ...assetReasons, ...(knowledge?.problems ?? []), ...(service?.problems ?? []), ...(practice?.problems ?? [])],
     };
   }
+  const gate = await governancePublicationGate({
+    clinicId: entry.clinicId,
+    pageId: draft.pageId,
+    pages: preview.pages,
+    publisherName: entry.authorName,
+    releaseChecksAccepted,
+    linksVerified,
+  });
+  if (!gate.ok) return gate;
+
   await writePublishReport(entry, preview.pages, {
     ...(knowledge?.report ? { knowledge: knowledge.report } : {}),
     ...(service?.report ? { service: service.report } : {}),
@@ -70,7 +80,7 @@ export async function publishEntity(entry: {
   const previous = await workingSnapshot(entry.clinicId, entry.entityType, entry.entityId);
   await storePayload(entry.entityType, entry.entityId, entry.clinicId, draft.payload);
   if (draft.pageId) {
-    await recordGovernanceAfterPublish(entry.clinicId, draft.pageId, draft.payload);
+    await recordGovernanceAfterPublish(entry.clinicId, draft.pageId, gate.fingerprint);
   }
   const next = await workingSnapshot(entry.clinicId, entry.entityType, entry.entityId);
   if (previous && next) {
@@ -149,12 +159,71 @@ export async function moveWorkflow(entry: {
   return { ok: true };
 }
 
-async function recordGovernanceAfterPublish(clinicId: string, pageId: string, payload: Prisma.InputJsonValue) {
-  const page = await prisma.page.findUnique({
-    where: { id: pageId },
-    include: { publishedRevision: { select: { html: true } } },
+async function governancePublicationGate(input: {
+  clinicId: string;
+  pageId: string | null;
+  pages: Array<{ path: string; next: string }>;
+  publisherName: string;
+  releaseChecksAccepted: boolean;
+  linksVerified: boolean;
+}): Promise<{ ok: true; fingerprint: string } | { ok: false; reasons: string[] }> {
+  const page = input.pageId
+    ? await prisma.page.findFirst({ where: { id: input.pageId, clinicId: input.clinicId }, select: { path: true } })
+    : null;
+  const review = input.pageId ? await prisma.clinicalReview.findUnique({ where: { pageId: input.pageId } }) : null;
+  const rendered = page ? input.pages.find((item) => item.path === page.path) : undefined;
+  const contentSha256 = rendered?.next ? fingerprintContent(rendered.next) : null;
+  const decision = evaluateContentPublication({
+    reviewedBy: review?.reviewedBy ?? null,
+    reviewerSignedAt: review?.reviewerSignedAt ?? null,
+    approvedBy: review?.approvedBy ?? null,
+    approvedAt: review?.approvedAt ?? null,
+    approvalReference: review?.approvalReference ?? null,
+    evidenceReference: review?.evidenceReference ?? null,
+    contentOwner: review?.contentOwner ?? null,
+    reviewedContentSha256: review?.reviewedContentSha256 ?? null,
+    contentSha256,
+    pagePath: page?.path ?? null,
+    nextReview: review?.nextReview ?? null,
+    publisherName: input.publisherName,
+    releaseChecksAccepted: input.releaseChecksAccepted,
+    linksVerified: input.linksVerified,
   });
-  const fingerprint = fingerprintContent(page?.publishedRevision?.html ?? JSON.stringify(payload));
+  if (!decision.ok || !contentSha256) return decision.ok ? { ok: false, reasons: ["Content fingerprint and reviewed fingerprint are required."] } : decision;
+  return { ok: true, fingerprint: contentSha256 };
+}
+
+export async function renderedContentFingerprint(clinicId: string, pageId: string): Promise<string | null> {
+  const page = await prisma.page.findFirst({
+    where: { id: pageId, clinicId },
+    select: {
+      path: true,
+      practitioner: { select: { id: true } },
+      service: { select: { id: true } },
+      knowledgeArticle: { select: { id: true } },
+      practiceUpdate: { select: { id: true } },
+      practicePage: { select: { id: true } },
+      knowledgeTopic: { select: { id: true } },
+    },
+  });
+  if (!page) return null;
+  const owner =
+    page.practitioner ? { entityType: "practitioner" as const, entityId: page.practitioner.id }
+    : page.service ? { entityType: "service" as const, entityId: page.service.id }
+    : page.knowledgeArticle ? { entityType: "knowledge_article" as const, entityId: page.knowledgeArticle.id }
+    : page.practiceUpdate ? { entityType: "practice_update" as const, entityId: page.practiceUpdate.id }
+    : page.practicePage ? { entityType: "practice_page" as const, entityId: page.practicePage.id }
+    : page.knowledgeTopic ? { entityType: "knowledge_topic" as const, entityId: page.knowledgeTopic.id }
+    : null;
+  if (!owner) return null;
+  const draft = await loadDraft(clinicId, owner.entityType, owner.entityId);
+  if (!draft) return null;
+  const preview = await renderPair(clinicId, owner.entityType, owner.entityId, draft.overlay);
+  const rendered = preview.pages.find((item) => item.path === page.path);
+  return rendered?.next ? fingerprintContent(rendered.next) : null;
+}
+
+async function recordGovernanceAfterPublish(clinicId: string, pageId: string, fingerprint: string) {
   const existing = await prisma.clinicalReview.findUnique({ where: { pageId } });
   const gaps = governanceCompletionGaps({
     reviewedBy: existing?.reviewedBy ?? null,

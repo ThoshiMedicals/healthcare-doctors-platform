@@ -78,3 +78,9 @@ export const ROLE_LABEL: Record<MembershipRole, string> = {
 };
 
 export const ASSIGNABLE_ROLES = ["clinic_admin", "content_editor"] as const;
+
+export const CREATABLE_STAFF_ROLES = ["super_admin", "clinic_admin", "content_editor"] as const;
+
+export function isCreatableStaffRole(role: string): role is (typeof CREATABLE_STAFF_ROLES)[number] {
+  return (CREATABLE_STAFF_ROLES as readonly string[]).includes(role);
+}

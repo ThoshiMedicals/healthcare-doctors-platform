@@ -38,6 +38,9 @@ const FIELD_LABELS: Record<string, string> = {
   replacementStatus: "Image workflow",
   liveSha256: "Published image",
   proposalSha256: "Proposed image",
+  reviewedBy: "Reviewer",
+  evidenceReference: "Evidence reference",
+  contentSha256: "Image fingerprint",
 };
 
 const SKIP = new Set([
@@ -156,6 +159,7 @@ function linesFor(key: string, before: unknown, after: unknown): string[] {
   }
   if (key === "liveSha256") return ["Published image file changed."];
   if (key === "proposalSha256") return ["Proposed image file changed."];
+  if (key === "contentSha256") return ["Reviewed image fingerprint changed."];
   if (key === "usage") {
     const names = (value: unknown) => (Array.isArray(value) ? value.map((item) => publicPageName(String(item))) : []);
     const left = names(before).join(", ");

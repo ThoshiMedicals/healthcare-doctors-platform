@@ -10,6 +10,7 @@
 
   const setMenuState = (open, restoreFocus = false) => {
     if (!toggle || !nav) return;
+    if (open && isCompactNavigation() && window.WMCDigitalReception) window.WMCDigitalReception.close();
     nav.classList.toggle('open', open);
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
@@ -53,6 +54,12 @@
     window.addEventListener('resize', () => {
       if (!isCompactNavigation() && nav.classList.contains('open')) setMenuState(false);
     }, { passive: true });
+
+    window.WMCNavigation = {
+      closeCompact() {
+        if (isCompactNavigation() && nav.classList.contains('open')) setMenuState(false);
+      },
+    };
   }
 
   // Progressive enhancement only. The build-time navigation-ownership.json
@@ -150,19 +157,8 @@
   }
 
 
-  // HEALTHCARE INSTITUTION PRODUCTION HARDENING
-  // Keep persistent appointment access available without duplicating the contextual CTA or covering the footer.
-  const persistentCare = document.querySelector('.persistent-care-actions');
-  if (persistentCare && 'IntersectionObserver' in window) {
-    const suppressTargets = [...document.querySelectorAll('.service-booking-cta, footer')];
-    const states = new Map(suppressTargets.map(el => [el, false]));
-    const updatePersistent = () => persistentCare.classList.toggle('is-suppressed', [...states.values()].some(Boolean));
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => states.set(entry.target, entry.isIntersecting));
-      updatePersistent();
-    }, { threshold: 0.08 });
-    suppressTargets.forEach(el => observer.observe(el));
-  }
+  // The bottom care dock stays visible. Page padding keeps the footer and
+  // in-page actions above it, so the dock is not hidden as those regions scroll in.
 
   // Static-site form requests collect administrative contact details only and open the patient's email client.
   // Clinical information is deliberately excluded from this workflow.
@@ -444,4 +440,117 @@
     adjust();
     if (mobile.addEventListener) mobile.addEventListener('change', adjust);
     else if (mobile.addListener) mobile.addListener(adjust);
+  })();
+
+  // One booking destination at a time. Practitioner links stay on that
+  // practitioner. Clinic links share one label. The bottom dock stays on
+  // screen, and steps aside only while Digital Reception or HotDoc is open.
+  (() => {
+    const CLINIC_LABELS = new Set(['Book Online', 'Book Now', 'Book an Appointment']);
+    const compact = window.matchMedia('(max-width: 767px)');
+
+    const destination = link => {
+      const raw = link.getAttribute('href') || '';
+      if (raw.startsWith('tel:')) return raw.split('?')[0];
+      try {
+        const url = new URL(link.href);
+        if (url.hostname === 'www.hotdoc.com.au') {
+          url.searchParams.delete('wp');
+          url.hash = '';
+          return url.origin + url.pathname.replace(/\/$/, '');
+        }
+        return url.href;
+      } catch (_) {
+        return raw;
+      }
+    };
+
+    const isClinicList = link => {
+      try {
+        const url = new URL(link.href);
+        return url.hostname === 'www.hotdoc.com.au' && /\/doctors\/?$/.test(url.pathname);
+      } catch (_) {
+        return false;
+      }
+    };
+
+    const controls = () => [...document.querySelectorAll('a.wmc-book-appointment, a.persistent-care-book, a[data-hotdoc-button]')];
+
+    const standardise = () => {
+      controls().forEach(link => {
+        if (!isClinicList(link)) return;
+        const label = link.textContent.replace(/\s+/g, ' ').trim();
+        if (CLINIC_LABELS.has(label)) link.textContent = 'Book Appointment';
+      });
+    };
+
+    const isChromePair = link => link.closest('.header-cta') || link.classList.contains('mobile-header-book');
+
+    const keeper = () => {
+      const profile = document.querySelector('.doctor-profile-actions a.wmc-book-appointment');
+      if (profile) return profile;
+      const card = document.querySelector('.booking-fallback a.wmc-book-appointment, .booking-fallback a[data-hotdoc-button]');
+      if (card) return card;
+      if (compact.matches) return document.querySelector('.mobile-header-book');
+      return document.querySelector('.header-cta a.wmc-book-appointment, .header-cta a[data-hotdoc-button]');
+    };
+
+    const hideControl = link => {
+      link.hidden = true;
+      link.setAttribute('tabindex', '-1');
+      link.setAttribute('aria-hidden', 'true');
+      link.style.setProperty('display', 'none', 'important');
+    };
+
+    const showControl = link => {
+      link.hidden = false;
+      link.removeAttribute('aria-hidden');
+      if (link.getAttribute('tabindex') === '-1') link.removeAttribute('tabindex');
+      link.style.removeProperty('display');
+    };
+
+    const placeRestriction = () => {
+      const notice = document.querySelector('.practitioner-booking-notice');
+      const bar = document.querySelector('.persistent-care-actions');
+      const inner = document.querySelector('.persistent-care-actions-inner');
+      if (!notice || !bar || !inner || inner.querySelector('.persistent-care-restriction')) return;
+      const copy = notice.cloneNode(true);
+      copy.classList.add('persistent-care-restriction');
+      inner.prepend(copy);
+      bar.classList.add('has-restriction');
+    };
+
+    const applyDuplicates = () => {
+      standardise();
+      const keep = keeper();
+      const keepKey = keep ? destination(keep) : '';
+      controls().forEach(link => {
+        if (link.classList.contains('persistent-care-book')) return;
+        if (!keep || link === keep) {
+          if (link === keep) showControl(link);
+          return;
+        }
+        if (isChromePair(keep) && isChromePair(link)) return;
+        if (destination(link) === keepKey) hideControl(link);
+      });
+    };
+
+    const sync = () => {
+      applyDuplicates();
+      const bar = document.querySelector('.persistent-care-actions');
+      if (!bar) return;
+      const journey = document.body.classList.contains('digital-reception-open') || document.body.classList.contains('booking-journey-held');
+      const suppress = journey;
+      bar.hidden = suppress;
+      if (suppress) bar.style.setProperty('display', 'none', 'important');
+      else bar.style.removeProperty('display');
+    };
+
+    placeRestriction();
+    applyDuplicates();
+    sync();
+    document.addEventListener('scroll', sync, { passive: true, capture: true });
+    window.addEventListener('resize', sync, { passive: true });
+    if (compact.addEventListener) compact.addEventListener('change', sync);
+    window.WMCBookingArchitecture = Object.freeze({ sync });
   })();

@@ -101,6 +101,8 @@ export function Field({
   defaultValue,
   type = "text",
   required = false,
+  minLength,
+  autoComplete,
   impact,
 }: {
   label: string;
@@ -108,6 +110,8 @@ export function Field({
   defaultValue?: string | null;
   type?: string;
   required?: boolean;
+  minLength?: number;
+  autoComplete?: string;
   impact: readonly string[];
 }) {
   return (
@@ -120,6 +124,8 @@ export function Field({
         type={type}
         defaultValue={defaultValue ?? ""}
         required={required}
+        minLength={minLength}
+        autoComplete={autoComplete}
       />
     </label>
   );

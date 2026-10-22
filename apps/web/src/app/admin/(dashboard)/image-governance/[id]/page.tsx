@@ -51,6 +51,8 @@ export default async function ImageGovernanceEditPage({
       <form action={saveImageGovernance} className="mt-6 grid max-w-2xl gap-4">
         <input type="hidden" name="id" value={stored.id} />
         <Field label="Uploaded by" name="uploadedBy" defaultValue={stored.uploadedBy} impact={[]} />
+        <Field label="Reviewer" name="reviewedBy" defaultValue={stored.reviewedBy} impact={[]} />
+        <Field label="Evidence reference" name="evidenceReference" defaultValue={stored.evidenceReference} impact={[]} />
         <Field label="Approval date" name="approvedAt" type="date" defaultValue={recordDate(stored.approvedAt)} impact={[]} />
         <Field label="Photographer" name="photographer" defaultValue={stored.photographer} impact={[]} />
         <Field label="Copyright owner" name="copyrightOwner" defaultValue={stored.copyrightOwner} impact={[]} />
@@ -96,7 +98,9 @@ export default async function ImageGovernanceEditPage({
         <SaveBar historyHref={`/admin/revisions/media_asset/${stored.id}`} historyLabel="Image version history" />
         <p className="text-sm text-slate-600">
           Version history marks the current image and the previous image. Choosing another version replaces the
-          published file. This save does not.
+          published file. This save does not. Publication is refused until a reviewer, evidence reference, approval
+          date, and the proposed file fingerprint are recorded. Saving this form records the fingerprint of the
+          current proposal. Fingerprint: {stored.contentSha256 ?? "not recorded"}.
         </p>
       </form>
       {stored.storagePath.endsWith("-640.webp") ? (

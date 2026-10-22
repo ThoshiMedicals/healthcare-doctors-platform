@@ -2,7 +2,7 @@ import { getToken } from "next-auth/jwt";
 import { NextResponse, type NextRequest } from "next/server";
 import { foreignOrigin } from "@/auth/same-origin";
 import { ACTIVITY_COOKIE, activityCookieOptions, idleExpired } from "@/auth/session-policy";
-import { CLINIC_HOST_HEADER, developmentRequestOrigin, hostnameFromHostHeader } from "@/clinics/host";
+import { CLINIC_HOST_HEADER, developmentRequestOrigin, hostnameFromHostHeader, prefersSecureCookie } from "@/clinics/host";
 
 function clearAdminSession(response: NextResponse) {
   for (const name of ["authjs.session-token", "__Secure-authjs.session-token", ACTIVITY_COOKIE]) {
@@ -19,8 +19,12 @@ function keepOutOfIndex(response: NextResponse, pathname: string) {
   return response;
 }
 
+function secureRequest(request: NextRequest): boolean {
+  return prefersSecureCookie(request.nextUrl.protocol, request.headers.get("x-forwarded-proto"));
+}
+
 async function sessionToken(request: NextRequest) {
-  const secure = request.nextUrl.protocol === "https:";
+  const secure = secureRequest(request);
   return getToken({
     req: request,
     secret: process.env.AUTH_SECRET,
@@ -43,13 +47,14 @@ export async function middleware(request: NextRequest) {
   }
   const isAdmin = pathname.startsWith("/admin");
   const isLogin = pathname === "/admin/login";
+  const isPublicAdmin = isLogin || pathname === "/admin/forgot-password" || pathname === "/admin/session-end";
   const token = isAdmin ? await sessionToken(request) : null;
   const signedIn = Boolean(token?.sub);
   const origin =
     developmentRequestOrigin(host, request.headers.get("x-forwarded-proto") ?? request.nextUrl.protocol) ??
     request.nextUrl.origin;
 
-  if (isAdmin && !isLogin && !signedIn) {
+  if (isAdmin && !isPublicAdmin && !signedIn) {
     return keepOutOfIndex(NextResponse.redirect(new URL("/admin/login", origin)), pathname);
   }
 
@@ -69,7 +74,7 @@ export async function middleware(request: NextRequest) {
     if (lastActivity == null ? !freshSignIn : idleExpired(lastActivity, now)) {
       return keepOutOfIndex(clearAdminSession(NextResponse.redirect(new URL("/admin/login", origin))), pathname);
     }
-    response.cookies.set(ACTIVITY_COOKIE, String(now), activityCookieOptions(request.nextUrl.protocol === "https:"));
+    response.cookies.set(ACTIVITY_COOKIE, String(now), activityCookieOptions(secureRequest(request)));
   }
 
   return keepOutOfIndex(response, pathname);

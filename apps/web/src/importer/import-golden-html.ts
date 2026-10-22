@@ -52,7 +52,14 @@ function copyRuntimeFiles(root: string): string[] {
   for (const relativePath of files) {
     const target = path.join(publicDir, relativePath);
     fs.mkdirSync(path.dirname(target), { recursive: true });
-    fs.copyFileSync(path.join(root, relativePath), target);
+    const source = path.join(root, relativePath);
+    try {
+      fs.copyFileSync(source, target);
+    } catch (error) {
+      const sourceBytes = fs.readFileSync(source);
+      const currentBytes = fs.existsSync(target) ? fs.readFileSync(target) : Buffer.alloc(0);
+      if (!sourceBytes.equals(currentBytes)) throw error;
+    }
   }
   return files;
 }

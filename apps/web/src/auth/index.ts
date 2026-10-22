@@ -7,6 +7,7 @@ import { prisma } from "@/db/prisma";
 import { authConfig } from "@/auth/auth.config";
 import { clearLoginFailures, clientIp, inspectLogin, recordLoginFailure } from "@/auth/login-throttle";
 import { verifyPassword } from "@/auth/password";
+import { usernameDisabled } from "@/auth/staff-status";
 import { developmentRequestOrigin } from "@/clinics/host";
 
 const credentialsSchema = z.object({
@@ -46,6 +47,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           await recordLoginFailure(username, ip);
           return null;
         }
+        if (await usernameDisabled(username)) return null;
 
         await clearLoginFailures(username, ip);
         return {

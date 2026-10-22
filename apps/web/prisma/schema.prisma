@@ -227,6 +227,7 @@ model User {
   emailVerified DateTime?          @map("email_verified")
   image         String?
   passwordHash  String?            @map("password_hash")
+  disabledAt    DateTime?          @map("disabled_at")
   accounts      Account[]
   sessions      Session[]
   memberships   ClinicMembership[]
@@ -573,6 +574,8 @@ model MediaAsset {
   copyrightOwner      String?            @map("copyright_owner")
   expiresAt           DateTime?          @map("expires_at")
   replacementStatus   PublicationStatus? @map("replacement_status")
+  reviewedBy          String?            @map("reviewed_by")
+  evidenceReference   String?            @map("evidence_reference")
   subject             String?
   source              String?
   authenticityStatus  MediaAuthenticity  @default(unverified) @map("authenticity_status")

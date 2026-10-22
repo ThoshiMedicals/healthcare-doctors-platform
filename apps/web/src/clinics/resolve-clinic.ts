@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
 import type { Clinic, ClinicProfile, ClinicStatus } from "@prisma/client";
 import { prisma } from "@/db/prisma";
-import { CLINIC_HOST_HEADER, hostnameFromHostHeader, isLocalHost } from "@/clinics/host";
+import { CLINIC_HOST_HEADER, hostnameFromHostHeader, isLocalHost, isQuickTunnelHost } from "@/clinics/host";
 
 export { CLINIC_HOST_HEADER, hostnameFromHostHeader };
 
@@ -13,7 +13,7 @@ export async function resolveClinicByHost(hostname: string): Promise<ResolvedCli
   const host = hostnameFromHostHeader(hostname);
   if (!host) return null;
 
-  if (isLocalHost(host)) {
+  if (isLocalHost(host) || isQuickTunnelHost(host)) {
     const slug = process.env.DEFAULT_CLINIC_SLUG || "woolloongabba";
     return prisma.clinic.findUnique({
       where: { slug },

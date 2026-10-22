@@ -41,6 +41,11 @@ export default async function DashboardLayout({ children }: { children: React.Re
               {module.label}
             </Link>
           ))}
+          {role ? (
+            <Link href="/admin/account" className="rounded px-3 py-2 hover:bg-white">
+              Change password
+            </Link>
+          ) : null}
           {role && isSuperAdmin(role) ? (
             <Link href="/admin/users" className="rounded px-3 py-2 hover:bg-white">
               Staff users

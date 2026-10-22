@@ -92,7 +92,7 @@ test("a published photo and HotDoc URL update the profile and card without chang
   const slots = readPractitionerSlots(doctorHtml);
   const teamHtml = fs.readFileSync(path.join(goldenHtmlRoot(), "team-general-practitioners.html"), "utf8");
   const nextBooking =
-    "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-debra-larkins-2?wp=w_lightbox";
+    "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-debra-larkins-does-not-bulk-bill-for-insurance-patients?wp=w_lightbox";
   const content = {
     ...slots,
     qualifications: ["MBBS", "FRACGP"],
@@ -101,7 +101,7 @@ test("a published photo and HotDoc URL update the profile and card without chang
     sourcePortraitFile: "dr-anand-singh.webp",
     bookingUrl: nextBooking,
     sourceBookingUrl:
-      "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-anand-singh-3?wp=w_lightbox",
+      "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-anand-singh-does-not-bulk-bill-for-insurance-patients?wp=w_lightbox",
   };
   const profile = applyOverlay(doctorHtml, { practitioner: content });
   const card = applyOverlay(teamHtml, { practitioner: { ...content, profileText: false } });
@@ -121,7 +121,7 @@ test("a published photo and HotDoc URL update the profile and card without chang
   assert.equal(anandCard.includes('width="800"'), true);
   assert.equal(anandCard.includes('height="1000"'), true);
   assert.equal(card.html.includes("doctors?wp=w_lightbox"), true);
-  assert.equal(card.html.includes("dr-debra-larkins-2?wp=w_lightbox"), true);
+  assert.equal(card.html.includes("dr-debra-larkins-does-not-bulk-bill-for-insurance-patients?wp=w_lightbox"), true);
   const profileComparison = comparePublishedPages(doctorHtml, profile.html);
   const cardComparison = comparePublishedPages(teamHtml, card.html);
   assert.equal(profileComparison.ok, true, profileComparison.reasons.join(" "));
@@ -146,7 +146,7 @@ test("an unverified photo or a non-lightbox booking link is refused", () => {
       ...slots,
       bookingUrl: "https://example.com/book",
       sourceBookingUrl:
-        "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-anand-singh-3?wp=w_lightbox",
+        "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-anand-singh-does-not-bulk-bill-for-insurance-patients?wp=w_lightbox",
     },
   });
   assert.equal(booking.errors.length > 0, true);
@@ -357,8 +357,8 @@ test("clinic settings update the shared booking link and schema without moving a
     },
   });
   assert.deepEqual(result.errors, []);
-  assert.equal(result.html.includes(nextHotdoc), true);
-  assert.equal(result.html.includes(shared), false);
+  assert.equal(result.html.includes(shared), true);
+  assert.equal(result.html.includes(nextHotdoc), false);
   assert.equal(result.html.includes(doctorBooking), true);
   assert.equal(result.html.includes('"telephone":"+61 7 3000 0000"'), true);
   assert.equal(result.html.includes('"addressLocality":"East Brisbane"'), true);
@@ -379,6 +379,25 @@ test("clinic settings update the shared booking link and schema without moving a
   });
   assert.deepEqual(homeResult.errors, []);
   assert.equal(homeResult.html.includes('"dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"08:00","closes":"18:00"'), true);
+  const homeShared = readSharedHotdoc(home);
+  const homeBooking = applyOverlay(home, {
+    clinic: {
+      ...readGoldenContact(home),
+      hotdocUrl: nextHotdoc,
+      openingHours: [
+        { dayOfWeek: "monday", opens: "08:00", closes: "18:00" },
+        { dayOfWeek: "tuesday", opens: "08:00", closes: "18:00" },
+        { dayOfWeek: "wednesday", opens: "08:00", closes: "18:00" },
+        { dayOfWeek: "thursday", opens: "08:00", closes: "18:00" },
+        { dayOfWeek: "friday", opens: "08:00", closes: "17:00" },
+        { dayOfWeek: "saturday", opens: "09:00", closes: "17:00" },
+        { dayOfWeek: "sunday", opens: "09:00", closes: "15:00" },
+      ],
+    },
+  });
+  assert.deepEqual(homeBooking.errors, []);
+  assert.equal(homeBooking.html.includes(`href="${nextHotdoc}"`), true);
+  assert.equal(homeBooking.html.includes(`href="${homeShared}"`), false);
   const comparison = comparePublishedPages(doctorHtml, result.html);
   assert.equal(comparison.ok, true, comparison.reasons.join(" "));
   assert.equal(comparePublishedPages(home, homeResult.html).ok, true);

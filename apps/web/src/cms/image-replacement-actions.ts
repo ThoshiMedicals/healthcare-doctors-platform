@@ -1,11 +1,11 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import type { PublicationStatus } from "@prisma/client";
 import { requireAction } from "@/cms/context";
 import { recordRevision } from "@/cms/revisions";
 import { assetRevisionSnapshot, prepareReplacement, replacementTarget, replacementTransition } from "@/cms/image-replacement";
-import { clearPending, readPending, writeLive, writePending } from "@/cms/image-store";
+import { evaluateImagePublication } from "@/cms/publish-gates";
+import { clearPending, readPending, sha256, writeLive, writePending } from "@/cms/image-store";
 import { prisma } from "@/db/prisma";
 
 function text(formData: FormData, key: string): string {
@@ -55,6 +55,64 @@ export async function publishImageReplacement(formData: FormData) {
   await moveImage(formData, "publish");
 }
 
+export async function publishImageRecord(input: {
+  clinicId: string;
+  assetId: string;
+  authorId: string;
+  publisherName: string;
+}): Promise<{ ok: true } | { ok: false; reasons: string[] }> {
+  const current = await prisma.mediaAsset.findFirst({ where: { id: input.assetId, clinicId: input.clinicId } });
+  if (!current) return { ok: false, reasons: ["That image could not be found."] };
+  const target = replacementTarget(current.storagePath);
+  if (!target) return { ok: false, reasons: ["This image cannot be replaced."] };
+  if (!replacementTransition(current.replacementStatus, "publish")) {
+    return { ok: false, reasons: ["Approve the image before publishing it."] };
+  }
+  const proposal = readPending(current.id, "full");
+  const thumb = target.thumbPath ? readPending(current.id, "thumb") : null;
+  if (!proposal || (target.thumbPath && !thumb)) {
+    return { ok: false, reasons: ["The proposed image is missing, so the website was left unchanged."] };
+  }
+  const prepared = await prepareReplacement(target, proposal);
+  if (prepared.problems.length > 0) return { ok: false, reasons: prepared.problems };
+  const decision = evaluateImagePublication({
+    reviewedBy: current.reviewedBy,
+    evidenceReference: current.evidenceReference,
+    approvedAt: current.approvedAt,
+    proposalSha256: sha256(proposal),
+    reviewedSha256: current.contentSha256,
+    storagePath: current.storagePath,
+    publisherName: input.publisherName,
+    fileChecksAccepted: true,
+  });
+  if (!decision.ok) return decision;
+
+  const previous = assetRevisionSnapshot(current);
+  writeLive(target.publicPath, prepared.full);
+  if (target.thumbPath && prepared.thumb) writeLive(target.thumbPath, prepared.thumb);
+  clearPending(current.id);
+  const uploadedBy = current.uploadedBy || input.publisherName;
+  await prisma.mediaAsset.update({
+    where: { id: current.id },
+    data: { replacementStatus: "published", uploadedBy, approvedAt: current.approvedAt },
+  });
+  const next = assetRevisionSnapshot({
+    ...current,
+    replacementStatus: "published",
+    uploadedBy,
+    approvedAt: current.approvedAt,
+  });
+  await recordRevision({
+    clinicId: input.clinicId,
+    authorId: input.authorId,
+    entityType: "media_asset",
+    entityId: current.id,
+    previous,
+    next,
+  });
+  return { ok: true };
+}
+
 async function moveImage(formData: FormData, action: "submit" | "approve" | "publish") {
   const permission = action === "submit" ? "submit_for_review" : action === "approve" ? "practice_approve" : "publish";
   const { user, clinic } = await requireAction(permission);
@@ -79,31 +137,17 @@ async function moveImage(formData: FormData, action: "submit" | "approve" | "pub
   if (!proposal || (target.thumbPath && !readPending(current.id, "thumb"))) {
     fail(returnTo, "The proposed image is missing, so the website was left unchanged.");
   }
-  const previous = assetRevisionSnapshot(current);
   if (action === "publish") {
-    const prepared = await prepareReplacement(target, proposal);
-    if (prepared.problems.length > 0) fail(returnTo, prepared.problems.join(" "));
-    writeLive(target.publicPath, prepared.full);
-    if (target.thumbPath && prepared.thumb) writeLive(target.thumbPath, prepared.thumb);
-    clearPending(current.id);
-    const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Australia/Brisbane" }).format(new Date());
-    const uploadedBy = current.uploadedBy || user.name || "Staff";
-    const approvedAt = current.approvedAt ?? new Date(`${today}T00:00:00.000Z`);
-    await prisma.mediaAsset.update({
-      where: { id: current.id },
-      data: { replacementStatus: "published", uploadedBy, approvedAt },
-    });
-    const next = assetRevisionSnapshot({ ...current, replacementStatus: "published", uploadedBy, approvedAt });
-    await recordRevision({
+    const result = await publishImageRecord({
       clinicId: clinic.id,
+      assetId: current.id,
       authorId: user.id,
-      entityType: "media_asset",
-      entityId: current.id,
-      previous,
-      next,
+      publisherName: user.name || user.email || "Staff",
     });
+    if (!result.ok) fail(returnTo, result.reasons.join(" "));
     redirect(`${returnTo}?published=1`);
   }
+  const previous = assetRevisionSnapshot(current);
   await prisma.mediaAsset.update({ where: { id: current.id }, data: { replacementStatus: nextStatus } });
   const next = assetRevisionSnapshot({ ...current, replacementStatus: nextStatus });
   await recordRevision({

@@ -1,6 +1,11 @@
 export const ACCOUNT_LOCK_AFTER = 5;
 export const IP_LOCK_AFTER = 20;
 export const LOCK_MS = 15 * 60 * 1000;
+export const LOCK_MINUTES = LOCK_MS / 60_000;
+
+export function loginLockMessage(): string {
+  return `Sign-in is locked for ${LOCK_MINUTES} minutes after too many unsuccessful attempts. Wait, then try again.`;
+}
 export const FAILURE_WINDOW_MS = 15 * 60 * 1000;
 
 export type ThrottleSnapshot = {

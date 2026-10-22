@@ -79,6 +79,7 @@ export default async function PractitionerEditPage({
         <p className="text-sm text-slate-600">
           Saving keeps this as a draft. The interest lists must keep the same number of items as the public page.
           Choosing another existing portrait keeps the same dimensions and the same card layout.
+          A new photograph is a separate proposal. It must be a WebP at the current portrait size, and it stays off the website until a Clinic Admin approves and publishes it.
           The HotDoc link must stay on hotdoc.com.au and keep the lightbox booking workflow.
         </p>
         <SaveBar historyHref={`/admin/revisions/practitioner/${row.id}`} />

@@ -6,7 +6,7 @@
       "profile": "doctors/dr-anand-singh.html",
       "name": "Dr Anand Singh",
       "booking_mode": "existing_practitioner_hotdoc_lightbox",
-      "booking_url": "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-anand-singh-3?wp=w_lightbox",
+      "booking_url": "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-anand-singh-does-not-bulk-bill-for-insurance-patients?wp=w_lightbox",
       "practitioner_ctas": 3,
       "clinical_source": "existing production website; confirm in HotDoc Dashboard before release"
     },
@@ -14,7 +14,7 @@
       "profile": "doctors/dr-debra-larkins.html",
       "name": "Dr Debra Larkins",
       "booking_mode": "existing_practitioner_hotdoc_lightbox",
-      "booking_url": "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-debra-larkins-2?wp=w_lightbox",
+      "booking_url": "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-debra-larkins-does-not-bulk-bill-for-insurance-patients?wp=w_lightbox",
       "practitioner_ctas": 3,
       "clinical_source": "existing production website; confirm in HotDoc Dashboard before release"
     },
@@ -54,7 +54,7 @@
       "profile": "doctors/dr-sambo-luon.html",
       "name": "Dr Sambo Luon",
       "booking_mode": "existing_practitioner_hotdoc_lightbox",
-      "booking_url": "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-sambo-luon-1?wp=w_lightbox",
+      "booking_url": "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-sambo-luon-does-not-bulk-bill-for-insurance-patients?wp=w_lightbox",
       "practitioner_ctas": 3,
       "clinical_source": "existing production website; confirm in HotDoc Dashboard before release"
     },
@@ -70,7 +70,7 @@
       "profile": "doctors/dr-sumita-singh.html",
       "name": "Dr Sumita Singh",
       "booking_mode": "existing_practitioner_hotdoc_lightbox",
-      "booking_url": "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-sumita-singh-1?wp=w_lightbox",
+      "booking_url": "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-sumita-singh-does-not-bulk-bill-for-insurance-patients?wp=w_lightbox",
       "practitioner_ctas": 3,
       "clinical_source": "existing production website; confirm in HotDoc Dashboard before release"
     },
@@ -78,7 +78,7 @@
       "profile": "doctors/dr-tanya-goodwill.html",
       "name": "Dr Tanya Goodwill",
       "booking_mode": "existing_practitioner_hotdoc_lightbox",
-      "booking_url": "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-tanya-goodwill-1?wp=w_lightbox",
+      "booking_url": "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-tanya-goodwill-does-not-bulk-bill-for-insurance-patients?wp=w_lightbox",
       "practitioner_ctas": 3,
       "clinical_source": "existing production website; confirm in HotDoc Dashboard before release"
     },
@@ -102,7 +102,7 @@
       "profile": "doctors/mr-samuel-stafford.html",
       "name": "Mr Samuel Stafford",
       "booking_mode": "existing_practitioner_hotdoc_lightbox",
-      "booking_url": "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/samuel-stafford-physiotherpist?wp=w_lightbox",
+      "booking_url": "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/samuel-stafford-physiotherapist?wp=w_lightbox",
       "practitioner_ctas": 3,
       "clinical_source": "existing production website; confirm in HotDoc Dashboard before release"
     }

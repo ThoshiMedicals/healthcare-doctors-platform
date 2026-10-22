@@ -15,7 +15,7 @@ export default async function ImageGovernancePage() {
     <main>
       <SearchableRecords
         title="Image governance"
-        intro="Each record follows an image the website already shows. Saving a record keeps the photographer, copyright, dates, and alt text in the CMS. It does not replace the file or change the page layout."
+        intro="Each record follows an image the website already shows. Saving a record keeps the photographer, copyright, dates, and alt text in the CMS. It does not replace the file or change the page layout. A file replacement is offered only for the header logo, the homepage hero, the exterior photograph, and a practitioner portrait. Each replacement must match the current pixel size and file type."
         rows={rows.map((row) => {
           const expiry = recordDateStatus(row.expiresAt);
           const expiryText =

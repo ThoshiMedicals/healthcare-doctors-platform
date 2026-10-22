@@ -6,6 +6,8 @@
     "dev": "npm run dev --prefix apps/web",
     "build": "npm run build --prefix apps/web",
     "start": "npm run start --prefix apps/web",
+    "uat:build": "npm run uat:build --prefix apps/web",
+    "uat": "npm run uat --prefix apps/web",
     "lint": "npm run lint --prefix apps/web",
     "db:generate": "npm run db:generate --prefix apps/web",
     "db:migrate": "npm run db:migrate --prefix apps/web",

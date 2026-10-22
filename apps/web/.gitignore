@@ -3,6 +3,7 @@ node_modules/
 
 # Build artifacts and caches
 .next/
+.next-uat/
 dist/
 out/
 coverage/

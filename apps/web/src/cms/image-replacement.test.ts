@@ -4,7 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import { after, before, describe, it } from "node:test";
 import { revisionChanges } from "./revision-summary";
-import { pngSize, prepareReplacement, replacementProblems, replacementTarget, replacementTransition, webpSize } from "./image-replacement";
+import { pngSize, prepareReplacement, replacementInstruction, replacementProblems, replacementTarget, replacementTransition, webpSize } from "./image-replacement";
 import { readServedBytes, restoreServed, servedSha, writeLive } from "./image-store";
 
 const logo = "assets/brand/healthcare-doctors-woolloongabba-logo.png";
@@ -43,6 +43,10 @@ describe("replaceable images", () => {
     const wrong = Buffer.from(current);
     wrong.writeUInt32BE(10, 16);
     assert.equal(replacementProblems(target, wrong)[0]?.includes("475 by 71"), true);
+    const instruction = replacementInstruction(target);
+    assert.equal(instruction.includes("475 by 71 pixels"), true);
+    assert.equal(instruction.includes("PNG"), true);
+    assert.equal(instruction.includes("512 KB"), true);
     assert.equal(pngSize(current)?.width, 475);
   });
 
@@ -53,6 +57,10 @@ describe("replaceable images", () => {
     assert.deepEqual(replacementProblems(target, current), []);
     assert.equal(replacementProblems(target, fs.readFileSync(path.join(publicRoot, logo))).length > 0, true);
     assert.equal(webpSize(current)?.width, 1672);
+    assert.equal(replacementInstruction(target).includes("1672 by 941 pixels"), true);
+    const exteriorTarget = replacementTarget(exterior);
+    assert.ok(exteriorTarget);
+    assert.equal(replacementInstruction(exteriorTarget).includes("1448 by 1086 pixels, aspect ratio 4:3"), true);
   });
 
   it("keeps the published file off the original until publish, then rollback restores it", () => {
@@ -79,6 +87,8 @@ describe("replaceable images", () => {
     assert.deepEqual(prepared.problems, []);
     assert.equal(webpSize(prepared.thumb ?? Buffer.alloc(0))?.width, 640);
     assert.equal(webpSize(prepared.thumb ?? Buffer.alloc(0))?.height, 800);
+    assert.equal(replacementInstruction(target).includes("1122 by 1402 pixels"), true);
+    assert.equal(replacementInstruction(target).includes("640 by 800 pixels, aspect ratio 4:5"), true);
     assert.equal(fs.readFileSync(path.join(publicRoot, "assets/team/dr-tanya-goodwill-640.webp")).equals(prepared.thumb ?? Buffer.alloc(0)), false);
   });
 

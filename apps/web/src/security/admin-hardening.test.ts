@@ -4,6 +4,7 @@ import { acceptedImage } from "../cms/image-signature";
 import {
   ACCOUNT_LOCK_AFTER,
   backoffMs,
+  loginLockMessage,
   nextFailureState,
   throttleDecision,
 } from "../auth/login-guard";
@@ -126,6 +127,7 @@ describe("login throttle", () => {
     assert.ok(state);
     const decision = throttleDecision({ now: now + ACCOUNT_LOCK_AFTER, account: state, network: null });
     assert.equal(decision.allowed, false);
+    assert.match(loginLockMessage(), /15 minutes/);
   });
 });
 

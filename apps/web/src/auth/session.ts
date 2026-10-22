@@ -1,12 +1,16 @@
 import { redirect } from "next/navigation";
 import type { MembershipRole } from "@prisma/client";
 import { auth } from "@/auth";
+import { staffDisabled } from "@/auth/staff-status";
 import { prisma } from "@/db/prisma";
 import { canAccessClinic, highestRoleForClinic, type CmsAction, assertRole } from "@/auth/permissions";
+
+export { staffDisabled };
 
 export async function requireUser() {
   const session = await auth();
   if (!session?.user?.id) redirect("/admin/login");
+  if (await staffDisabled(session.user.id)) redirect("/admin/session-end");
   return session.user;
 }
 

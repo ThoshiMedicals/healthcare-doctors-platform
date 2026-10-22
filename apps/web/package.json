@@ -7,6 +7,8 @@
     "dev": "next dev",
     "build": "prisma generate && next build",
     "start": "next start",
+    "uat:build": "node scripts/uat.mjs build",
+    "uat": "node scripts/uat.mjs start",
     "lint": "next lint",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate deploy",
@@ -14,7 +16,7 @@
     "db:seed": "tsx prisma/seed.ts",
     "db:local": "tsx scripts/start-local-postgres.ts",
     "import:golden": "tsx scripts/import-golden-html.ts",
-    "test": "tsx --test src/regression/golden-master.test.ts src/cms/publish-render.test.ts src/cms/usability.test.ts src/cms/image-governance.test.ts src/cms/image-replacement.test.ts src/seo/launch.test.ts src/security/admin-hardening.test.ts",
+    "test": "tsx --test src/regression/golden-master.test.ts src/cms/publish-render.test.ts src/cms/publish-gates.test.ts src/cms/usability.test.ts src/cms/image-governance.test.ts src/cms/image-replacement.test.ts src/seo/launch.test.ts src/security/admin-hardening.test.ts src/auth/password.test.ts src/cms/user-lifecycle.test.ts src/cms/staff-create.test.ts src/cms/super-admin-grant.test.ts src/clinics/host.test.ts",
     "test:regression": "tsx --test src/regression/golden-master.test.ts",
     "db:studio": "prisma studio",
     "postinstall": "prisma generate"

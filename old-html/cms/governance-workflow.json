@@ -43,7 +43,7 @@
   "reviewCadence": "Review on material clinical or policy change and at the organisation's formally adopted review interval. Never publish a review date that did not arise from a genuine review.",
   "designChangeControl": "Homepage, hero, visual identity, community section, services overview and patient-information hub require explicit design-governance approval before structural change.",
   "reviewPublication": {
-    "registeredPages": 163,
+    "registeredPages": 169,
     "registry": "cms/governance-records.json (eligibility ONLY)",
     "builder": "cms/tools/build_clinical_governance.py",
     "generatedPublicData": "governance-published.js",
