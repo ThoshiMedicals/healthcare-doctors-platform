@@ -8814,3 +8814,9 @@ main.kc-ux-shell:has(.kc-ux-article)>.page-main{order:4}
   font-size:1.05rem!important;
 }
 .kc-ux-page #related-knowledge-centre-guides .knowledge-card-kicker{display:none!important}
+
+/* Homepage message consolidation, 22 Oct 2026.
+   Three HotDoc benefits remain. The repeated booking lines stay in the
+   paragraph above, and the extra booking button stays in the source. */
+.home-page #hotdoc-app .hotdoc-benefits li:last-child{grid-column:auto!important}
+.home-page #hotdoc-app .hotdoc-book-action{display:none!important}
