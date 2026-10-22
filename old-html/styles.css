@@ -8667,11 +8667,15 @@ body.has-action-dock .persistent-care-actions.has-restriction .persistent-care-a
 }
 .home-page #team .practitioner h3{font-size:22px!important}
 .home-page #hotdoc-app .hotdoc-grid{
-  grid-template-columns:minmax(0,1.4fr) minmax(180px,260px)!important;
-  column-gap:48px!important;
+  grid-template-columns:minmax(0,720px) 280px!important;
+  justify-content:start!important;
+  column-gap:40px!important;
 }
+.home-page #hotdoc-app .hotdoc-intro,
+.home-page #hotdoc-app .hotdoc-benefit-panel{max-width:none!important}
+.home-page #hotdoc-app .hotdoc-poster-visual{justify-content:flex-start!important}
 .home-page #hotdoc-app .hotdoc-poster-card{
-  width:min(100%,240px)!important;
+  width:min(100%,280px)!important;
   border-radius:16px!important;
   box-shadow:none!important;
 }
@@ -9411,4 +9415,21 @@ a.portrait.practitioner-no-photo{
     object-fit:cover!important;
     object-position:center top!important;
   }
+}
+
+img[data-local-asset="agpal-mark"]{
+  object-fit:contain!important;
+  object-position:center!important;
+  background:transparent!important;
+}
+.home-page #patient-information .info-trust-logos{
+  display:flex!important;
+}
+.home-page #patient-information .info-trust-logos img[data-local-asset="agpal-mark"]{
+  display:block!important;
+  width:108px!important;
+  height:108px!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  background:transparent!important;
 }
