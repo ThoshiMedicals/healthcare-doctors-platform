@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import type { MembershipRole } from "@prisma/client";
 import { describe, it } from "node:test";
 import { acceptedImage } from "../cms/image-signature";
 import {
@@ -10,7 +11,8 @@ import {
 } from "../auth/login-guard";
 import { foreignOrigin } from "../auth/same-origin";
 import { SESSION_IDLE_MS, SESSION_MAX_AGE_SECONDS, idleExpired } from "../auth/session-policy";
-import { visibleModules, visibleNavGroups } from "../cms/modules";
+import { CMS_MODULES, visibleModules, visibleNavGroups, type CmsModule } from "../cms/modules";
+import { roleAllows, type CmsAction } from "../auth/permissions";
 import { fingerprintContent } from "../governance/fingerprint";
 import {
   governanceCompletionGaps,
@@ -131,54 +133,107 @@ describe("login throttle", () => {
   });
 });
 
+/** Approved navigation contract: literal expectations independent of CMS_MODULES. */
+const APPROVED_MODULES = [
+  { href: "/admin/pages", label: "Pages", action: "edit", group: "content" },
+  { href: "/admin/practitioners", label: "Practitioners", action: "edit", group: "content" },
+  { href: "/admin/services", label: "Services", action: "edit", group: "content" },
+  { href: "/admin", label: "Practice briefing", action: "manage_settings", group: "insights" },
+  { href: "/admin/executive", label: "Website overview", action: "manage_settings", group: "insights" },
+  { href: "/admin/digital-reception", label: "Online search", action: "manage_settings", group: "insights" },
+  { href: "/admin/practitioner-authority", label: "Doctor profiles", action: "manage_settings", group: "insights" },
+  { href: "/admin/service-authority", label: "Service pages", action: "manage_settings", group: "insights" },
+  { href: "/admin/conversion-intelligence", label: "Booking journey", action: "manage_settings", group: "insights" },
+  { href: "/admin/governance", label: "Content reviews", action: "clinical_signoff", group: "governance" },
+  { href: "/admin/governance/management", label: "Review board", action: "clinical_signoff", group: "governance" },
+  { href: "/admin/governance/expiry", label: "Review due dates", action: "clinical_signoff", group: "governance" },
+  { href: "/admin/image-governance", label: "Image reviews", action: "clinical_signoff", group: "governance" },
+] as const satisfies readonly CmsModule[];
+
+const CONTENT_MODULES = APPROVED_MODULES.filter((item) => item.group === "content");
+const INSIGHTS_MODULES = APPROVED_MODULES.filter((item) => item.group === "insights");
+const GOVERNANCE_MODULES = APPROVED_MODULES.filter((item) => item.group === "governance");
+
+const ALL_ACTIONS: readonly CmsAction[] = [
+  "edit", "submit_for_review", "clinical_signoff", "practice_approve",
+  "publish", "manage_settings", "create_users", "rollback", "switch_clinic",
+];
+const EDITOR_ACTIONS: readonly CmsAction[] = ["edit", "submit_for_review"];
+const CLINIC_ADMIN_ACTIONS: readonly CmsAction[] = [
+  "edit", "submit_for_review", "clinical_signoff", "practice_approve",
+  "publish", "manage_settings", "rollback",
+];
+
 describe("role menus", () => {
-  it("hides settings, governance, and staff-only links from a content editor", () => {
-    const labels = visibleModules("content_editor").map((module) => module.label);
-    assert.equal(labels.includes("Pages"), true);
-    assert.equal(labels.includes("Practitioners"), true);
-    assert.equal(labels.includes("Services"), true);
-    assert.equal(labels.includes("Media Library"), false);
-    assert.equal(labels.includes("Clinic Settings"), false);
-    assert.equal(labels.includes("Governance Review"), false);
-    assert.equal(labels.includes("Image governance"), false);
-    assert.equal(labels.includes("Executive"), false);
-    assert.equal(visibleModules("clinic_admin").some((module) => module.label === "Image governance"), true);
-    assert.equal(visibleModules(null).length, 0);
-    assert.equal(visibleModules("clinic_admin").some((module) => module.label === "Governance Review"), true);
-    assert.equal(visibleModules("clinic_admin").some((module) => module.label === "Governance Expiry"), true);
-    assert.equal(visibleModules("clinic_admin").some((module) => module.label === "Executive"), true);
-    assert.equal(visibleModules("clinic_admin").some((module) => module.label === "Clinic Settings"), false);
+  it("pins the approved labels, hrefs, required actions, and navigation groups", () => {
+    assert.deepEqual(CMS_MODULES, APPROVED_MODULES);
+    assert.equal(new Set(CMS_MODULES.map((item) => item.href)).size, APPROVED_MODULES.length);
+    assert.equal(new Set(CMS_MODULES.map((item) => item.label)).size, APPROVED_MODULES.length);
+    assert.equal(CMS_MODULES.every((item) => item.href.startsWith("/admin")), true);
+    assert.equal(CMS_MODULES.some((item) => item.href === "/admin/settings"), false);
   });
 
-  it("groups analytics and governance away from content editing", () => {
-    const groups = visibleNavGroups("clinic_admin");
-    assert.deepEqual(
-      groups.map((group) => group.id),
-      ["content", "insights", "governance"],
-    );
-    assert.deepEqual(
-      groups.find((group) => group.id === "content")?.modules.map((module) => module.label),
-      ["Pages", "Practitioners", "Services"],
-    );
-    assert.deepEqual(
-      groups.find((group) => group.id === "insights")?.modules.map((module) => module.label),
-      [
-        "Command Centre",
-        "Executive",
-        "Digital Reception",
-        "Practitioner Authority",
-        "Service Authority",
-        "Conversion Intelligence",
-      ],
-    );
-    assert.deepEqual(
-      groups.find((group) => group.id === "governance")?.modules.map((module) => module.label),
-      ["Governance Review", "Governance Management", "Governance Expiry", "Image governance"],
-    );
-    assert.equal(
-      visibleNavGroups("content_editor").every((group) => group.id === "content"),
-      true,
-    );
+  it("verifies the roleAllows action matrix independently of module labels", () => {
+    const cases: ReadonlyArray<{ role: MembershipRole; allowed: readonly CmsAction[] }> = [
+      { role: "super_admin", allowed: ALL_ACTIONS },
+      { role: "network_admin", allowed: ALL_ACTIONS },
+      { role: "clinic_admin", allowed: CLINIC_ADMIN_ACTIONS },
+      { role: "content_editor", allowed: EDITOR_ACTIONS },
+      { role: "editor", allowed: EDITOR_ACTIONS },
+      { role: "clinical_reviewer", allowed: [] },
+      { role: "practice_approver", allowed: [] },
+      { role: "publisher", allowed: [] },
+    ];
+    for (const item of cases) {
+      for (const action of ALL_ACTIONS) {
+        assert.equal(roleAllows(item.role, action), item.allowed.includes(action), item.role + ": " + action);
+      }
+    }
+    assert.equal(roleAllows("content_editor", "clinical_signoff"), false);
+    assert.equal(roleAllows("content_editor", "manage_settings"), false);
+    assert.equal(roleAllows("clinic_admin", "create_users"), false);
+    assert.equal(roleAllows("super_admin", "create_users"), true);
+  });
+
+  it("verifies exact visible href/action contracts for every supported role", () => {
+    const cases: ReadonlyArray<{ role: MembershipRole | null; expected: readonly CmsModule[] }> = [
+      { role: "super_admin", expected: APPROVED_MODULES },
+      { role: "network_admin", expected: APPROVED_MODULES },
+      { role: "clinic_admin", expected: APPROVED_MODULES },
+      { role: "content_editor", expected: CONTENT_MODULES },
+      { role: "editor", expected: CONTENT_MODULES },
+      { role: "clinical_reviewer", expected: [] },
+      { role: "practice_approver", expected: [] },
+      { role: "publisher", expected: [] },
+      { role: null, expected: [] },
+    ];
+    for (const item of cases) {
+      const visible = visibleModules(item.role);
+      assert.deepEqual(visible, item.expected, "visibleModules(" + item.role + ")");
+      if (item.role !== null) {
+        for (const module of visible) {
+          assert.equal(roleAllows(item.role, module.action), true, item.role + ": " + module.href);
+        }
+      }
+    }
+    assert.equal(visibleModules("content_editor").every((item) => item.group === "content"), true);
+    assert.equal(visibleModules("clinic_admin").some((item) => item.href === "/admin/image-governance"), true);
+  });
+
+  it("preserves content, insights, and governance grouping and restrictions", () => {
+    assert.deepEqual(visibleNavGroups("clinic_admin"), [
+      { id: "content", label: "Content", modules: CONTENT_MODULES },
+      { id: "insights", label: "Insights", modules: INSIGHTS_MODULES },
+      { id: "governance", label: "Governance", modules: GOVERNANCE_MODULES },
+    ]);
+    assert.deepEqual(visibleNavGroups("content_editor"), [
+      { id: "content", label: "Content", modules: CONTENT_MODULES },
+    ]);
+    assert.deepEqual(visibleNavGroups("editor"), visibleNavGroups("content_editor"));
+    assert.deepEqual(visibleNavGroups("super_admin"), visibleNavGroups("clinic_admin"));
+    assert.deepEqual(visibleNavGroups("network_admin"), visibleNavGroups("clinic_admin"));
+    assert.deepEqual(visibleNavGroups("clinical_reviewer"), []);
+    assert.deepEqual(visibleNavGroups(null), []);
   });
 });
 
