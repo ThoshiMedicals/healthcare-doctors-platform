@@ -73,7 +73,8 @@ function dashboardOverall(measures: Record<ActionabilityMeasureId, number>): num
   return mean(Object.values(measures));
 }
 
-const DASHBOARDS: InsightsDashboardActionability[] = [
+// Explicitly type source rows before mapping so dashboard IDs remain InsightsDashboardId.
+const DASHBOARD_ROWS: InsightsDashboardActionability[] = [
   {
     id: "command-centre",
     label: "Insights Home (Command Centre)",
@@ -270,7 +271,12 @@ const DASHBOARDS: InsightsDashboardActionability[] = [
       "Some chrome links open management without queue focus",
     ],
   },
-].map((row) => ({ ...row, overall: dashboardOverall(row.measures) }));
+];
+
+const DASHBOARDS: InsightsDashboardActionability[] = DASHBOARD_ROWS.map((row) => ({
+  ...row,
+  overall: dashboardOverall(row.measures),
+}));
 
 const REMAINING_NON_ACTIONABLE: RemainingNonActionableElement[] = [
   {
