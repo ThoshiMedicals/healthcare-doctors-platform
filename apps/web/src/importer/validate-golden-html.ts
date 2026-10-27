@@ -38,7 +38,7 @@ export type RenderingValidationReport = {
   accepted: boolean;
 };
 
-const EXPECTED_PAGES = 199;
+const EXPECTED_PAGES = 208;
 
 export async function validateGoldenImport(): Promise<{
   importReport: ImportValidationReport;

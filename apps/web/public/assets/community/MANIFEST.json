@@ -25,9 +25,10 @@
     },
     {
       "id": "gabba-precinct",
-      "path": null,
-      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3d/The_Gabba_from_Ipswich_Road_2026.jpg",
-      "status": "pending_source_file_and_approval"
+      "path": "assets/community/gabba-stadium-precinct-aerial.webp",
+      "sourceUrl": null,
+      "status": "generated_editorial_aerial_for_homepage_community_section",
+      "notes": "Sky-view Gabba stadium precinct used on homepage community visual; replace with approved photography when available."
     }
   ],
   "approvedNewLibraryFiles": [],

@@ -1,0 +1,111 @@
+{
+  "promptId": "4H",
+  "title": "Post-implementation Visual, UX & Brand Maturity Audit",
+  "assessedOn": "2026-10-26",
+  "timezone": "Australia/Brisbane",
+  "environment": "http://127.0.0.1:3100",
+  "baselinePrompt": "3I",
+  "scores": {
+    "visualMaturity": 85,
+    "brandMaturity": 81,
+    "uxMaturity": 88,
+    "conversionMaturity": 90,
+    "overallWebsiteMaturity": 87
+  },
+  "baselineScores3I": {
+    "visualMaturity": 78,
+    "brandMaturity": 76,
+    "uxMaturity": 82,
+    "conversionMaturity": 84,
+    "overallWebsiteMaturity": 80
+  },
+  "deltasVs3I": {
+    "visualMaturity": 7,
+    "brandMaturity": 5,
+    "uxMaturity": 6,
+    "conversionMaturity": 6,
+    "overallWebsiteMaturity": 7
+  },
+  "scoreWeights": {
+    "visual": 0.2,
+    "brand": 0.2,
+    "ux": 0.3,
+    "conversion": 0.3
+  },
+  "targetsFrom3I": {
+    "overallWebsiteMaturity": 88,
+    "visualMaturity": 85,
+    "brandMaturity": 84
+  },
+  "targetsMet": {
+    "visualMaturity": true,
+    "brandMaturity": false,
+    "overallWebsiteMaturity": false
+  },
+  "visualExcellenceAchieved": "partial",
+  "visualExcellenceSummary": "Stage A conversion/clarity objectives met. Premium brand ceiling not met: Brand 81 vs target 84; Overall 87 vs 88. Governance publish and type migration remain open.",
+  "recommendation": "CONDITIONAL_GO_SHIP_UX_COMPLETE_BRAND_POLISH",
+  "recommendationSummary": "Ship patient-facing visual/UX as strong institutional GP. Do not claim premium brand complete until 4G P0–P2 (trust strip, token migration, clinical governance publish).",
+  "benchmarks": {
+    "wmcMaturityGoals": "met_exceeded_authority_conversion_hubs",
+    "hawthorneClinic": "wmc_ahead_story_dr_authority_hawthorne_quieter_chrome",
+    "premiumAuHealthcare": "competitive_motion_mid_cta_hubs_trails_type_trust_reuse_clinical_currency"
+  },
+  "areas": [
+    { "id": 1, "label": "Homepage", "status": "strong", "score": 86, "was3I": 82 },
+    { "id": 2, "label": "Practitioner Profiles", "status": "excellent", "score": 90, "was3I": 84 },
+    { "id": 3, "label": "Service Pages", "status": "excellent", "score": 90, "was3I": 80 },
+    { "id": 4, "label": "Health Advice", "status": "strong", "score": 85, "was3I": 83 },
+    { "id": 5, "label": "Digital Reception", "status": "strong", "score": 88, "was3I": 85 },
+    { "id": 6, "label": "Mobile Experience", "status": "good_plus", "score": 84, "was3I": 80 },
+    { "id": 7, "label": "Trust Signals", "status": "good", "score": 78 },
+    { "id": 8, "label": "Conversion Design", "status": "excellent", "score": 90, "was3I": 84 },
+    { "id": 9, "label": "Motion Design", "status": "strong", "score": 82, "was3I": 62 },
+    { "id": 10, "label": "Accessibility", "status": "good_plus", "score": 84, "was3I": 82 },
+    { "id": 11, "label": "Brand Consistency", "status": "good", "score": 80, "was3I": 76 }
+  ],
+  "issueCounts": {
+    "critical": 0,
+    "high": 4,
+    "medium": 6,
+    "low": 4
+  },
+  "issues": {
+    "critical": [],
+    "high": [
+      { "id": "H1", "summary": "Clinical governance never visible (empty approved payload)" },
+      { "id": "H2", "summary": "Brand type/spacing tokens scaffolded but not migrated" },
+      { "id": "H3", "summary": "Mobile header Call/Book still compete with dock" },
+      { "id": "H4", "summary": "Trust marks footer-primary; no reusable mid-journey trust strip" }
+    ],
+    "medium": [
+      { "id": "M1", "summary": "Home vs inner hero art direction split" },
+      { "id": "M2", "summary": "HotDoc education still home-heavy" },
+      { "id": "M3", "summary": "Eyebrow / button / card-radius dialects" },
+      { "id": "M4", "summary": "CSS important debt (~4984)" },
+      { "id": "M5", "summary": "Profile aside is ops nav not peers" },
+      { "id": "M6", "summary": "Qualification string formatting inconsistent" }
+    ],
+    "low": [
+      { "id": "L1", "summary": "Homepage Book CTA count still high" },
+      { "id": "L2", "summary": "Knowledge trust pills dormant" },
+      { "id": "L3", "summary": "Pathway vs knowledge card dialects" },
+      { "id": "L4", "summary": "Formal contrast audit not re-run" }
+    ]
+  },
+  "closedFrom3I": ["H1_find_information", "H3_mid_page_bands", "H4_motion", "M6_peers"],
+  "partialFrom3I": ["H2_mobile_cta"],
+  "openFrom3I": ["M2_clinical_review", "M4_typography"],
+  "liveEvidence": {
+    "findInformationDesktop": true,
+    "profileMidConversionBand": true,
+    "serviceHubPathways": true,
+    "serviceTier": true,
+    "practitionerPeers": true,
+    "motionTokens": true,
+    "mobileDockBookPrimaryIconSecondary": true,
+    "clinicalReviewVisible": false,
+    "governancePayloadEmpty": true
+  },
+  "reportPath": "old-html/qa/VISUAL_UX_BRAND_MATURITY_AUDIT_4H.md"
+}

@@ -1,0 +1,132 @@
+{
+  "promptId": "3H",
+  "title": "Platform Readiness Audit",
+  "assessedOn": "2026-10-26",
+  "timezone": "Australia/Brisbane",
+  "productionReadinessScore": 72,
+  "scoreScale": 100,
+  "domainAverageOutOf10": 8.0,
+  "goLiveRecommendation": "CONDITIONAL_NOT_CLEAR_TO_SHIP",
+  "goLiveSummary": "Do not cut over until Critical and High issues are closed: live HotDoc practitioner verification, search-index manifest sync (3 missing patient routes), and navigation ownership for 6 articles. Re-run golden-master and Digital Reception Playwright coverage before production.",
+  "issueCounts": {
+    "critical": 1,
+    "high": 2,
+    "medium": 5,
+    "low": 4
+  },
+  "domains": [
+    { "id": "digital_reception", "label": "Digital Reception", "status": "partial", "score": 8 },
+    { "id": "search", "label": "Search", "status": "partial", "score": 7 },
+    { "id": "authority_graph", "label": "Authority Graph", "status": "ready", "score": 8 },
+    { "id": "booking_paths", "label": "Booking Paths", "status": "partial", "score": 7 },
+    { "id": "analytics", "label": "Analytics", "status": "partial", "score": 8 },
+    { "id": "governance", "label": "Governance", "status": "ready", "score": 9 },
+    { "id": "mobile_ux", "label": "Mobile UX", "status": "ready", "score": 9 },
+    { "id": "accessibility", "label": "Accessibility", "status": "ready", "score": 8 },
+    { "id": "page_performance", "label": "Page Performance", "status": "partial", "score": 7 },
+    { "id": "internal_links", "label": "Internal Links", "status": "partial", "score": 8 },
+    { "id": "structured_data", "label": "Structured Data", "status": "ready", "score": 9 }
+  ],
+  "issues": [
+    {
+      "id": "C1",
+      "severity": "critical",
+      "domain": "booking_paths",
+      "summary": "Practitioner HotDoc deep-links not live-verified before public deployment",
+      "evidence": "old-html/qa/PRACTITIONER-HOTDOC-ROUTES.json"
+    },
+    {
+      "id": "H1",
+      "severity": "high",
+      "domain": "search",
+      "summary": "Public search-index manifest missing 3 patient page routes vs golden (203 vs 206)",
+      "evidence": "apps/web/public/search-index/manifest.json; golden-master.test.ts"
+    },
+    {
+      "id": "H2",
+      "severity": "high",
+      "domain": "internal_links",
+      "summary": "Six knowledge articles missing navigation ownership; import validation failed",
+      "evidence": "apps/web/reports/import-validation.json"
+    },
+    {
+      "id": "M1",
+      "severity": "medium",
+      "domain": "digital_reception",
+      "summary": "Playwright 49-case Digital Reception coverage not re-run this audit",
+      "evidence": "old-html/cms/tools/check_digital_reception_coverage.py"
+    },
+    {
+      "id": "M2",
+      "severity": "medium",
+      "domain": "analytics",
+      "summary": "Measurement warehouse file absent; dashboards use fixtures",
+      "evidence": "apps/web/src/measurement/event-source.ts"
+    },
+    {
+      "id": "M3",
+      "severity": "medium",
+      "domain": "accessibility",
+      "summary": "No formal WCAG contrast scorecard in QA set",
+      "evidence": "old-html/qa/"
+    },
+    {
+      "id": "M4",
+      "severity": "medium",
+      "domain": "page_performance",
+      "summary": "Large PNG poster sources remain beside WebP",
+      "evidence": "apps/web/public/assets/patient-information/"
+    },
+    {
+      "id": "M5",
+      "severity": "medium",
+      "domain": "digital_reception",
+      "summary": "Some intent phrases still unmatched (mode=none)",
+      "evidence": ".tmp-pdf-convert/intent-audit.txt"
+    },
+    {
+      "id": "L1",
+      "severity": "low",
+      "domain": "authority_graph",
+      "summary": "Doctor to knowledge related edges not fully reciprocal",
+      "evidence": "apps/web/public/search-index/"
+    },
+    {
+      "id": "L2",
+      "severity": "low",
+      "domain": "governance",
+      "summary": "Public governance stamps empty until approval (by design)",
+      "evidence": "apps/web/public/governance-published.js"
+    },
+    {
+      "id": "L3",
+      "severity": "low",
+      "domain": "page_performance",
+      "summary": "Large digital-reception-index.js compatibility corpus",
+      "evidence": "apps/web/public/digital-reception-index.js"
+    },
+    {
+      "id": "L4",
+      "severity": "low",
+      "domain": "analytics",
+      "summary": "Untracked public/index.html diverges from golden script tags",
+      "evidence": "apps/web/public/index.html"
+    }
+  ],
+  "gatesBeforeGoLive": [
+    "Verify each practitioner HotDoc lightbox live (C1)",
+    "Resync search-index/manifest.json from golden; golden-master green (H1)",
+    "Fix 6 navigation ownership gaps; import-validation passed true (H2)",
+    "Re-run Digital Reception Playwright coverage at 1440/390/320 (M1)",
+    "Target score >= 85 with 0 Critical and 0 High"
+  ],
+  "checksThisAudit": {
+    "seoLaunch": "pass",
+    "measurement3Ato3F": "pass",
+    "governanceExpiryAndManagement": "pass",
+    "renderingValidation": "pass",
+    "importValidation": "fail",
+    "goldenMasterSearchIndex": "fail"
+  },
+  "reportPath": "old-html/qa/PLATFORM_READINESS_AUDIT_3H.md"
+}

@@ -1,0 +1,70 @@
+{
+  "promptId": "L8",
+  "title": "First 90-day post-launch roadmap",
+  "preparedOn": "2026-10-26",
+  "timezone": "Australia/Brisbane",
+  "launchBaseline": { "promptId": "L7", "recommendation": "GO_CLEAR_TO_SHIP", "score": 86 },
+  "horizonDays": 90,
+  "workstreams": [
+    "analytics_reviews",
+    "content_reviews",
+    "digital_reception_optimisation",
+    "conversion_optimisation",
+    "governance_milestones",
+    "practitioner_authority_growth",
+    "service_authority_growth"
+  ],
+  "phases": [
+    {
+      "id": "month_1",
+      "days": "0-30",
+      "theme": "Stabilise & observe",
+      "exitCriteria": [
+        "warehouse_volume_growth",
+        "m5_unmatched_le_3",
+        "governance_strips_ge_5",
+        "hotdoc_spot_reverify",
+        "authority_dashboards_reviewed"
+      ]
+    },
+    {
+      "id": "month_2",
+      "days": "31-60",
+      "theme": "Optimise & publish",
+      "exitCriteria": [
+        "month_2_analytics_brief",
+        "m4_top5_png_cleanup",
+        "patient_info_hubs_published",
+        "practitioner_reciprocity_ge_80pct",
+        "services_authority_complete_ge_8"
+      ]
+    },
+    {
+      "id": "month_3",
+      "days": "61-90",
+      "theme": "Grow & institutionalise",
+      "exitCriteria": [
+        "90_day_analytics_pack",
+        "m4_closed_or_residual_le_2",
+        "m5_effectively_closed",
+        "governance_expiry_cycle_green",
+        "l1_reciprocity_closed_or_owned",
+        "days_91_180_roadmap_seeded"
+      ]
+    }
+  ],
+  "carryInFromL7": [
+    { "id": "M5", "severity": "medium", "closeBy": "month_1_hard_month_3_final" },
+    { "id": "M4", "severity": "medium", "closeBy": "month_2_3" },
+    { "id": "L1", "severity": "low", "closeBy": "month_2_3" },
+    { "id": "L2", "severity": "low", "closeBy": "month_1_2" },
+    { "id": "L3", "severity": "low", "closeBy": "month_2_plan_month_3_if_needed" }
+  ],
+  "cadence": {
+    "weekly": "analytics_conversion_huddle",
+    "fortnightly": "content_dr_optimisation",
+    "monthly": "governance_authority_review",
+    "each_30_days": "steering_checkpoint"
+  },
+  "reportPath": "apps/web/reports/POST_LAUNCH_90_DAY_ROADMAP_L8.md"
+}

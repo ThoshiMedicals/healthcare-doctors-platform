@@ -1,0 +1,179 @@
+{
+  "measurement_version": "2G",
+  "generated_at": "2026-10-26T03:06:18.406Z",
+  "source": "warehouse_file",
+  "event_count": 16,
+  "core_event_coverage": {
+    "present": [
+      "page_view",
+      "book_appointment_click",
+      "call_clinic_click",
+      "digital_reception_open",
+      "digital_reception_search",
+      "digital_reception_result_click",
+      "task_shortcut_click"
+    ],
+    "missing": [],
+    "counts": {
+      "page_view": 6,
+      "book_appointment_click": 3,
+      "call_clinic_click": 2,
+      "digital_reception_open": 1,
+      "digital_reception_search": 2,
+      "digital_reception_result_click": 1,
+      "task_shortcut_click": 1
+    }
+  },
+  "privacy": {
+    "dashboard_stores_raw_query": false,
+    "query_keys_stripped": true
+  },
+  "events": [
+    {
+      "event": "page_view",
+      "measurement_version": "2G",
+      "ts": "2026-10-26T03:03:33.344Z",
+      "page_path": "index.html",
+      "page_group": "home",
+      "session_id": "s_z9i7cwlqvwdmvnos13s"
+    },
+    {
+      "event": "book_appointment_click",
+      "measurement_version": "2G",
+      "ts": "2026-10-26T03:03:42.162Z",
+      "page_path": "index.html",
+      "page_group": "home",
+      "session_id": "s_z9i7cwlqvwdmvnos13s",
+      "placement": "hero",
+      "destination": "clinic_list"
+    },
+    {
+      "event": "call_clinic_click",
+      "measurement_version": "2G",
+      "ts": "2026-10-26T03:03:42.163Z",
+      "page_path": "index.html",
+      "page_group": "home",
+      "session_id": "s_z9i7cwlqvwdmvnos13s",
+      "placement": "hero"
+    },
+    {
+      "event": "digital_reception_open",
+      "measurement_version": "2G",
+      "ts": "2026-10-26T03:03:42.164Z",
+      "page_path": "index.html",
+      "page_group": "home",
+      "session_id": "s_z9i7cwlqvwdmvnos13s"
+    },
+    {
+      "event": "digital_reception_search",
+      "measurement_version": "2G",
+      "ts": "2026-10-26T03:03:54.800Z",
+      "page_path": "index.html",
+      "page_group": "home",
+      "session_id": "s_z9i7cwlqvwdmvnos13s",
+      "intent_bucket": "diabetes",
+      "result_type": "care_journey",
+      "result_count": 6
+    },
+    {
+      "event": "digital_reception_result_click",
+      "measurement_version": "2G",
+      "ts": "2026-10-26T03:03:55.478Z",
+      "page_path": "index.html",
+      "page_group": "home",
+      "session_id": "s_z9i7cwlqvwdmvnos13s",
+      "intent_bucket": "diabetes",
+      "step": "article"
+    },
+    {
+      "event": "digital_reception_search",
+      "measurement_version": "2G",
+      "ts": "2026-10-26T03:03:55.481Z",
+      "page_path": "index.html",
+      "page_group": "home",
+      "session_id": "s_z9i7cwlqvwdmvnos13s",
+      "intent_bucket": "fees_billing",
+      "result_type": "direct_page",
+      "result_count": 1
+    },
+    {
+      "event": "task_shortcut_click",
+      "measurement_version": "2G",
+      "ts": "2026-10-26T03:04:08.403Z",
+      "page_path": "index.html",
+      "page_group": "home",
+      "session_id": "s_z9i7cwlqvwdmvnos13s",
+      "task": "new_patient",
+      "surface": "patient_hub"
+    },
+    {
+      "event": "page_view",
+      "measurement_version": "2G",
+      "ts": "2026-10-26T03:04:14.948Z",
+      "page_path": "services/skin-checks.html",
+      "page_group": "service",
+      "session_id": "s_z9i7cwlqvwdmvnos13s"
+    },
+    {
+      "event": "book_appointment_click",
+      "measurement_version": "2G",
+      "ts": "2026-10-26T03:04:21.339Z",
+      "page_path": "services/skin-checks.html",
+      "page_group": "service",
+      "session_id": "s_z9i7cwlqvwdmvnos13s",
+      "placement": "dock",
+      "destination": "clinic_list"
+    },
+    {
+      "event": "call_clinic_click",
+      "measurement_version": "2G",
+      "ts": "2026-10-26T03:04:21.341Z",
+      "page_path": "services/skin-checks.html",
+      "page_group": "service",
+      "session_id": "s_z9i7cwlqvwdmvnos13s",
+      "placement": "dock"
+    },
+    {
+      "event": "page_view",
+      "measurement_version": "2G",
+      "ts": "2026-10-26T03:04:24.444Z",
+      "page_path": "doctors/dr-tanya-goodwill.html",
+      "page_group": "practitioner",
+      "session_id": "s_z9i7cwlqvwdmvnos13s"
+    },
+    {
+      "event": "page_view",
+      "measurement_version": "2G",
+      "ts": "2026-10-26T03:04:38.978Z",
+      "page_path": "new-patients.html",
+      "page_group": "patient_information",
+      "session_id": "s_z9i7cwlqvwdmvnos13s"
+    },
+    {
+      "event": "page_view",
+      "measurement_version": "2G",
+      "ts": "2026-10-26T03:04:43.259Z",
+      "page_path": "new-patients.html",
+      "page_group": "patient_information",
+      "session_id": "s_z9i7cwlqvwdmvnos13s"
+    },
+    {
+      "event": "book_appointment_click",
+      "measurement_version": "2G",
+      "ts": "2026-10-26T03:04:48.609Z",
+      "page_path": "new-patients.html",
+      "page_group": "patient_information",
+      "session_id": "s_z9i7cwlqvwdmvnos13s",
+      "placement": "dock",
+      "destination": "clinic_list"
+    },
+    {
+      "event": "page_view",
+      "measurement_version": "2G",
+      "ts": "2026-10-26T03:04:58.121Z",
+      "page_path": "fees-billing.html",
+      "page_group": "patient_information",
+      "session_id": "s_z9i7cwlqvwdmvnos13s"
+    }
+  ]
+}

@@ -15,17 +15,58 @@
   --wash-white-paper:linear-gradient(180deg,#fff 0%,var(--warm) 100%);
   --wash-mist-green:linear-gradient(135deg,var(--mist) 0%,#f3f8f5 100%);
   --shadow-card:0 8px 24px rgba(23,48,68,.05);
+  /* 4D motion tokens — healthcare-restrained; no bounce/pulse/loop */
+  --motion-fast:160ms;
+  --motion-base:220ms;
+  --motion-enter:280ms;
+  --motion-ease:cubic-bezier(.22,1,.36,1);
+  --motion-lift:-2px;
+  --motion-shadow:0 10px 22px rgba(23,48,68,.09);
+  /* 4G brand-polish tokens — scaffold for Stage P1; map existing rhythm before migrating selectors */
+  --font-display:"Libre Baskerville",Georgia,"Times New Roman",serif;
+  --font-ui:"Inter",system-ui,-apple-system,sans-serif;
+  --fs-eyebrow:12px;
+  --fs-body:16px;
+  --fs-lede:17.5px;
+  --fs-h3:15px;
+  --fs-h2:clamp(28px,3.2vw,34px);
+  --fs-h1:clamp(40px,4vw,60px);
+  --fs-display:clamp(48px,5.1vw,82px);
+  --fs-card-title:18px;
+  --fs-card-meta:12px;
+  --lh-tight:1.08;
+  --lh-display:.98;
+  --lh-body:1.7;
+  --lh-lede:1.85;
+  --ls-eyebrow:.14em;
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-5:24px;
+  --space-6:32px;
+  --space-7:48px;
+  --space-8:64px;
+  --space-9:96px;
+  --radius-sm:8px;
+  --radius-md:16px;
+  --radius-pill:999px;
+  --trust-chip-bg:#fff;
+  --trust-chip-border:rgba(22,63,98,.14);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:"Inter",sans-serif;-webkit-font-smoothing:antialiased}
-body,button,input{font-size:16px}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-ui);font-size:var(--fs-body);line-height:var(--lh-body);-webkit-font-smoothing:antialiased}
+body,button,input{font-size:var(--fs-body)}
 img{display:block;max-width:100%}
 a{color:inherit}
 h1,h2,h3,p{margin-top:0}
-h1,h2,h3{font-family:"Libre Baskerville",serif;font-weight:400;letter-spacing:-.035em}
+h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:-.035em}
 .shell{width:min(calc(100% - 56px),var(--max));margin:0 auto}
-.eyebrow{margin:0 0 20px;color:#72828d;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
+.eyebrow{margin:0 0 var(--space-5);color:var(--ink-soft);font-family:var(--font-ui);font-size:var(--fs-eyebrow);font-weight:600;letter-spacing:var(--ls-eyebrow);text-transform:uppercase}
 .button{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:14px 24px;border-radius:999px;background:var(--navy);color:#fff;text-decoration:none;font-size:13px;font-weight:600;transition:transform .2s ease,background .2s ease}
 .button:hover{transform:translateY(-1px);background:#102f49}
 .button-light{background:#fff;color:var(--navy)}
@@ -41,7 +82,7 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);border
 .brand-copy strong{display:block;font-family:"Libre Baskerville",serif;font-size:18px;line-height:1.15;letter-spacing:-.02em}
 .brand-copy span{display:block;margin-top:4px;color:#7a8994;font-size:9px;letter-spacing:.12em;text-transform:uppercase}
 #primary-nav{display:flex;justify-content:center;gap:7px}
-#primary-nav a{padding:10px 8px;color:#4c5c68;text-decoration:none;font-size:12.5px;font-weight:500;white-space:nowrap}
+#primary-nav a{padding:10px 8px;color:var(--institutional-slate,#2F4858);text-decoration:none;font-size:12.5px;font-weight:600;white-space:nowrap}
 .header-cta{display:flex;align-items:center;gap:14px}
 .header-phone{color:#5b6b77;text-decoration:none;font-size:12px;font-weight:600}
 .menu-toggle{display:none;border:0;background:none;color:var(--ink);font:600 13px "Inter",sans-serif;padding:10px 0;cursor:pointer}
@@ -75,28 +116,28 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);border
 .community-grid,.stay-grid,.information-grid,.contact-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:126px;align-items:start}
 .community-copy{max-width:700px}
 .team-intro{max-width:760px;margin-bottom:66px}
-.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:34px}.portrait{display:block;overflow:hidden;border-radius:22px;background:#edf1f3;box-shadow:0 14px 38px rgba(23,48,68,.07)}.portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 28%;filter:saturate(.90) contrast(1.035) brightness(1.01);transition:transform .45s ease}.practitioner-meta{padding-top:20px}.practitioner h3{margin-bottom:7px;font-size:18px;line-height:1.3}.credentials{margin-bottom:6px;color:#4f6c82;font-size:11px;font-weight:600;letter-spacing:.035em}.focus{margin-bottom:0;color:#7a8791;font-size:12px;line-height:1.55}.team-link{margin-top:48px;text-align:center}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-5)}.portrait{display:block;overflow:hidden;border-radius:var(--radius-md);background:#edf1f3;box-shadow:var(--shadow-card)}.portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 28%;filter:saturate(.90) contrast(1.035) brightness(1.01);transition:transform .45s ease}.practitioner-meta{padding-top:var(--space-5)}.practitioner h3{margin-bottom:var(--space-2);font-family:var(--font-display);font-size:var(--fs-card-title);line-height:1.3}.credentials{margin-bottom:var(--space-2);color:#4f6c82;font-size:var(--fs-card-meta);font-weight:600;letter-spacing:.035em}.focus{margin-bottom:0;color:var(--ink-soft);font-size:var(--fs-card-meta);line-height:1.55}.team-link{margin-top:var(--space-7);text-align:center}
 .stay{padding:184px 0;background:var(--ink);color:#fff}.stay .eyebrow{color:#aebbc5}.stay h2{color:#fff}.stay-copy{max-width:740px}.stay-copy p{margin:0;color:#dfe7ec;font-family:"Libre Baskerville",serif;font-size:23px;line-height:1.82;letter-spacing:-.02em}
 .information-grid{grid-template-columns:.64fr 1.36fr;gap:118px}.information-copy{max-width:500px}.information-list{border-top:1px solid var(--line)}.information-list a{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:14px;transition:padding-left .2s ease}.information-list a span:last-child{color:#51728b}.information-note{margin-top:30px;padding-top:22px;border-top:1px solid var(--line);display:grid;gap:16px;color:#667681;font-size:11px;line-height:1.75}.info-trust-logos{display:flex;align-items:center;gap:14px}.info-trust-logos img:first-child{width:76px}.info-trust-logos img:last-child{width:110px}
 .book{padding:108px 0;background:#234f70;color:#fff}.book-inner{display:grid;grid-template-columns:1fr auto;align-items:center;gap:78px}.book h2{margin-bottom:11px;color:#fff;font-size:40px;line-height:1.1}.book p{margin-bottom:0;color:#dce6ec;font-size:14.5px;line-height:1.75}.book-actions{display:flex;align-items:center;gap:20px}.book-phone{color:#fff;text-decoration:none;font-size:13px;font-weight:600}
 .contact-grid{grid-template-columns:.68fr 1.32fr;gap:102px}.contact-copy{padding-top:16px}.contact-details{display:grid;gap:18px;margin:34px 0 28px}.contact-details p{margin:0;color:var(--ink-soft);font-size:13.5px;line-height:1.7}.contact-details strong{color:var(--ink);font-size:12px}.contact-details a{color:inherit;text-decoration:none}.map{min-height:610px;overflow:hidden;border-radius:26px;background:#e9eff2}.map iframe{width:100%;height:610px;border:0}
 
-/* Internal patient information pages */
-.page-hero{padding:96px 0 86px;background:var(--warm);border-bottom:1px solid var(--line)}
+/* Internal patient information pages — L4 token-backed type/space */
+.page-hero{padding:var(--space-8) 0 var(--space-7);background:var(--warm);border-bottom:1px solid var(--line)}
 .page-hero-inner{max-width:900px}
-.page-hero h1{margin-bottom:26px;font-size:58px;line-height:1.08}
-.page-hero .lede{max-width:760px;margin:0;color:var(--ink-soft);font-size:18px;line-height:1.9}
-.page-main{padding:92px 0 130px}
-.page-layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:84px;align-items:start}
+.page-hero h1{margin-bottom:var(--space-5);font-family:var(--font-display);font-size:var(--fs-h1);line-height:var(--lh-tight)}
+.page-hero .lede{max-width:760px;margin:0;color:var(--ink-soft);font-family:var(--font-ui);font-size:var(--fs-lede);line-height:var(--lh-lede)}
+.page-main{padding:var(--space-8) 0 var(--space-9)}
+.page-layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:var(--space-8);align-items:start}
 .page-nav{position:sticky;top:126px;border-top:1px solid var(--line)}
-.page-nav .nav-title{padding:20px 0 12px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6a7b87}
+.page-nav .nav-title{padding:var(--space-5) 0 var(--space-3);font-size:var(--fs-eyebrow);font-weight:700;letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:#6a7b87}
 .page-nav a{display:block;padding:10px 0;border-bottom:1px solid #edf1f3;text-decoration:none;color:#657580;font-size:12.5px}.page-nav a.active{color:var(--navy);font-weight:700}
 .article{max-width:820px}
-.article-section{padding:0 0 56px;margin-bottom:56px;border-bottom:1px solid var(--line)}
+.article-section{padding:0 0 var(--space-7);margin-bottom:var(--space-7);border-bottom:1px solid var(--line)}
 .article-section:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
-.article h2{margin-bottom:22px;font-size:34px;line-height:1.2}
-.article h3{margin:30px 0 12px;font-family:"Inter",sans-serif;font-size:15px;font-weight:700;letter-spacing:-.01em}
-.article p,.article li{color:var(--ink-soft);font-size:15px;line-height:1.85}
+.article h2{margin-bottom:var(--space-5);font-family:var(--font-display);font-size:var(--fs-h2);line-height:1.2}
+.article h3{margin:var(--space-6) 0 var(--space-3);font-family:var(--font-ui);font-size:var(--fs-h3);font-weight:700;letter-spacing:-.01em}
+.article p,.article li{color:var(--ink-soft);font-size:var(--fs-body);line-height:var(--lh-body)}
 .article ul,.article ol{padding-left:20px}
 .article li+li{margin-top:8px}
 .callout{margin:28px 0;padding:26px 28px;border-left:3px solid var(--blue);background:var(--mist)}
@@ -138,7 +179,7 @@ footer h3{margin-bottom:15px;color:#fff;font-size:14px}footer p,footer a{color:#
   .shell{width:min(calc(100% - 28px),var(--max))}.section{padding:92px 0}.header-inner{min-height:76px;gap:14px}.brand{min-width:0}.brand img{width:42px;height:42px}.header-cta .button{display:none}#primary-nav{top:76px}
   .hero{padding:24px 0 84px}.hero-grid{min-height:auto;gap:38px}.hero-copy{padding:0}.hero h1{font-size:47px}.hero-copy>p{line-height:1.8}.hero-visual{min-height:410px}.hero-visual>img.hero-photo{height:410px}.bulk-art-hero{left:16px;bottom:16px;width:128px}
   .philosophy{padding:108px 0}.philosophy h2,.story h2,.community h2,.team h2,.stay h2,.information h2,.contact h2{font-size:34px}.philosophy p:not(.eyebrow),.story-copy p:not(.eyebrow),.community-copy p,.team-intro p:last-child,.contact-intro{font-size:16.5px}.story-image,.story-image img{min-height:390px;height:390px}.community{padding:104px 0}.team-grid{grid-template-columns:1fr;gap:42px}.stay{padding:108px 0}.stay-copy p{font-size:20px}.book{padding:82px 0}.book-inner{grid-template-columns:1fr;gap:28px}.book-actions{align-items:flex-start;flex-direction:column}.map,.map iframe{min-height:430px;height:430px}
-  .page-hero{padding:68px 0 62px}.page-hero h1{font-size:39px}.page-main{padding:62px 0 90px}.page-nav{grid-template-columns:repeat(2,1fr)}.article h2{font-size:29px}.resource-links{grid-template-columns:1fr}.billing-brand{align-items:flex-start;flex-direction:column}.billing-brand img{width:155px}.fee-table{display:block;overflow-x:auto;white-space:nowrap}
+  .page-hero{padding:var(--space-7) 0}.page-hero h1{font-size:var(--fs-h1)}.page-main{padding:var(--space-7) 0 var(--space-8)}.page-nav{grid-template-columns:repeat(2,1fr)}.article h2{font-size:var(--fs-h2)}.resource-links{grid-template-columns:1fr}.billing-brand{align-items:flex-start;flex-direction:column}.billing-brand img{width:155px}.fee-table{display:block;overflow-x:auto;white-space:nowrap}
   .footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column}
 }
 
@@ -503,9 +544,9 @@ footer h3{margin-bottom:15px;color:#fff;font-size:14px}footer p,footer a{color:#
 .faq details>p{animation:faqFade .24s ease both}
 @keyframes faqFade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 
-.page-hero h1{font-size:clamp(40px,4vw,60px)!important;line-height:1.08!important}
-.page-hero .lede{font-size:17.5px!important;line-height:1.85!important}
-.article p,.article li{line-height:1.9!important}
+.page-hero h1{font-size:var(--fs-h1);line-height:var(--lh-tight)}
+.page-hero .lede{font-size:var(--fs-lede);line-height:var(--lh-lede)}
+.article p,.article li{line-height:var(--lh-body)}
 .article-section{scroll-margin-top:150px}
 
 @media(max-width:1024px){
@@ -533,23 +574,72 @@ footer h3{margin-bottom:15px;color:#fff;font-size:14px}footer p,footer a{color:#
   #primary-nav a{display:flex!important;align-items:center!important}
   .page-layout{gap:36px!important}
   .page-nav{grid-template-columns:1fr 1fr!important}
-  .article h2{font-size:28px!important}
-  .article p,.article li{font-size:15.5px!important;line-height:1.82!important}
+  .article h2{font-size:var(--fs-h2)}
+  .article p,.article li{font-size:var(--fs-body);line-height:var(--lh-body)}
   .fee-table{font-size:12.5px!important}
 }
 
 
 /* Final Trust & Accessibility Refinement */
+.hero-supporting-info{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:22px;
+  width:min(760px,100%);
+}
+.hero-supporting-info .hero-hours-refined{
+  margin-top:0;
+  padding-bottom:12px;
+  border-bottom:1px solid rgba(255,255,255,.24);
+}
 .hero-trust-refined{
   width:min(760px,100%);
-  margin-top:28px;
-  padding:15px 0;
+  margin-top:0;
+  padding:10px 0 0;
   display:grid;
   grid-template-columns:1fr 1.18fr .86fr;
   gap:0;
-  border-top:1px solid rgba(255,255,255,.30);
-  border-bottom:1px solid rgba(255,255,255,.24);
+  border-top:0;
+  border-bottom:0;
   color:#fff;
+}
+.hero-trust-icons{
+  grid-template-columns:repeat(3,minmax(0,auto));
+  justify-content:start;
+  column-gap:8px;
+  width:auto;
+  max-width:100%;
+}
+.hero-trust-icons .hero-trust-refined-item{
+  padding:0 12px 0 0!important;
+  border-left:0!important;
+  gap:8px!important;
+  min-height:0!important;
+}
+.hero-trust-icons .hero-trust-refined-item+.hero-trust-refined-item{
+  padding-left:12px!important;
+  border-left:1px solid rgba(255,255,255,.22)!important;
+}
+.hero-trust-icons .hero-trust-text span{display:none!important}
+.hero-trust-icons .hero-trust-text strong{
+  font-size:11px!important;
+  letter-spacing:.01em!important;
+  white-space:nowrap;
+}
+.hero-trust-icons .hero-trust-logo-agpal{
+  width:40px!important;
+  height:32px!important;
+  padding:4px!important;
+}
+.hero-trust-icons .hero-trust-logo-bulk{
+  width:48px!important;
+  height:32px!important;
+  padding:3px 4px!important;
+}
+.hero-trust-icons .hero-trust-clock{
+  width:32px!important;
+  height:32px!important;
 }
 .hero-trust-refined-item{
   min-width:0;
@@ -649,6 +739,12 @@ footer h3{margin-bottom:15px;color:#fff;font-size:14px}footer p,footer a{color:#
   line-height:1.55!important;
   letter-spacing:.005em;
 }
+.information-side{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+}
+.information-after-hours,
 .after-hours-refined{
   margin-top:22px;
   padding-top:19px;
@@ -659,6 +755,10 @@ footer h3{margin-bottom:15px;color:#fff;font-size:14px}footer p,footer a{color:#
   gap:18px;
   color:#687984;
   font-size:12.5px;
+}
+.home-page #patient-information .information-after-hours{
+  margin-top:8px;
+  padding-top:22px;
 }
 .after-hours-refined>a{
   flex:0 0 auto;
@@ -829,7 +929,7 @@ footer h3{margin-bottom:15px;color:#fff;font-size:14px}footer p,footer a{color:#
 }
 .practitioner:hover .portrait img{transform:scale(1.018)!important}
 .practitioner-meta{padding-top:18px!important}
-.practitioner h3{font-size:17px!important}
+.practitioner h3{font-size:var(--fs-card-title)}
 .credentials{font-size:10.5px!important}
 .focus{font-size:11.5px!important}
 
@@ -908,7 +1008,7 @@ footer h3{margin-bottom:15px;color:#fff;font-size:14px}footer p,footer a{color:#
   .hero-community-refined{max-width:420px!important;margin-top:7px!important;font-size:9.8px!important}
 
   .team-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:22px 14px!important}
-  .practitioner h3{font-size:14px!important}
+  .practitioner h3{font-size:var(--fs-card-title)}
   .credentials{font-size:9.5px!important}
   .focus{font-size:10px!important}
   .team-link{margin-top:34px!important}
@@ -919,8 +1019,8 @@ footer h3{margin-bottom:15px;color:#fff;font-size:14px}footer p,footer a{color:#
   .location-overlay-polished strong{font-size:18px!important}
   .location-directions-polished{justify-self:start!important;min-height:44px!important}
 
-  .page-hero h1{font-size:36px!important;line-height:1.1!important}
-  .page-main{padding-top:54px!important}
+  .page-hero h1{font-size:var(--fs-h1);line-height:var(--lh-tight)}
+  .page-main{padding-top:var(--space-7)}
   .page-nav{display:flex!important;overflow-x:auto!important;gap:8px!important;padding-bottom:8px!important;scrollbar-width:none}
   .page-nav::-webkit-scrollbar{display:none}
   .page-nav .nav-title{display:none!important}
@@ -1038,9 +1138,9 @@ footer h3{margin-bottom:15px;color:#fff;font-size:14px}footer p,footer a{color:#
   .location-visual-polished{min-height:300px!important;border-radius:18px!important}
   .location-overlay-polished{left:16px!important;right:16px!important;bottom:16px!important}
   .contact-grid{gap:30px!important}
-  .page-hero{padding-top:54px!important;padding-bottom:48px!important}
-  .page-main{padding-top:44px!important;padding-bottom:76px!important}
-  .article-section{padding-bottom:42px!important;margin-bottom:42px!important}
+  .page-hero{padding-top:var(--space-7);padding-bottom:var(--space-6)}
+  .page-main{padding-top:var(--space-6);padding-bottom:var(--space-8)}
+  .article-section{padding-bottom:var(--space-6);margin-bottom:var(--space-6)}
 }
 
 /* HOTFIX: stronger left-side hero readability overlay requested by user */
@@ -1175,17 +1275,17 @@ footer h3{margin-bottom:15px;color:#fff;font-size:14px}footer p,footer a{color:#
 .practitioner-dr-gemunu-suresh-ranawake .portrait img{object-position:center 19%!important}
 .practitioner-dr-wasantha-hettiarchchi .portrait img{object-position:center 19%!important}
 .practitioner-meta{
-  min-height:86px!important;
-  padding-top:15px!important;
+  min-height:0;
+  padding-top:var(--space-5);
 }
 .practitioner h3{
-  min-height:44px!important;
-  margin-bottom:5px!important;
-  font-size:16px!important;
-  line-height:1.28!important;
+  min-height:0;
+  margin-bottom:var(--space-2);
+  font-size:var(--fs-card-title);
+  line-height:1.3;
 }
-.credentials{font-size:10.2px!important}
-.focus{font-size:11.2px!important}
+.credentials{font-size:var(--fs-card-meta)}
+.focus{font-size:var(--fs-card-meta)}
 .brand{
   gap:16px!important;
   min-width:300px!important;
@@ -1328,9 +1428,9 @@ body{
   letter-spacing:-.005em;
 }
 .eyebrow{
-  font-size:10px!important;
-  letter-spacing:.17em!important;
-  color:#6e7d88!important;
+  font-size:var(--fs-eyebrow);
+  letter-spacing:var(--ls-eyebrow);
+  color:var(--ink-soft);
 }
 .philosophy h2,.story h2,.community h2,.team h2,.stay h2,.information h2,.contact h2,
 .welcome-copy h2,.hotdoc-copy h2,.latest-updates-heading h2{
@@ -1425,7 +1525,8 @@ body{
 }
 #primary-nav a{
   font-size:12px!important;
-  color:#54636e!important;
+  color:var(--institutional-slate, #2F4858)!important;
+  opacity:1!important;
 }
 
 /* Photography direction: consistent portraits and quieter treatment. */
@@ -1446,20 +1547,20 @@ body{
   filter:saturate(.88) contrast(1.02) brightness(1.025)!important;
 }
 .practitioner-meta{
-  padding-top:14px!important;
+  padding-top:var(--space-5);
 }
 .practitioner h3{
-  font-size:15.5px!important;
-  line-height:1.3!important;
-  letter-spacing:-.025em!important;
+  font-size:var(--fs-card-title);
+  line-height:1.3;
+  letter-spacing:-.02em;
 }
 .credentials{
-  color:#60798d!important;
-  font-size:9.8px!important;
+  color:#4f6c82;
+  font-size:var(--fs-card-meta);
 }
 .focus{
-  color:#768590!important;
-  font-size:10.8px!important;
+  color:var(--ink-soft);
+  font-size:var(--fs-card-meta);
 }
 
 /* Editorial elegance: remove duplicate visual noise without removing content. */
@@ -1579,7 +1680,7 @@ body{
 #primary-nav{gap:2px!important}
 #primary-nav a{
   font-size:11.45px!important;
-  color:#65727c!important;
+  color:var(--institutional-slate, #2F4858)!important;
 }
 .header-phone{
   font-size:10.5px!important;
@@ -1637,18 +1738,18 @@ body{
   filter:saturate(.875) contrast(1.018) brightness(1.022)!important;
 }
 .practitioner-meta{
-  padding-top:12px!important;
+  padding-top:var(--space-5);
 }
 .practitioner h3{
-  font-size:15.1px!important;
+  font-size:var(--fs-card-title);
 }
 .credentials{
-  font-size:9.4px!important;
-  letter-spacing:.035em!important;
+  font-size:var(--fs-card-meta);
+  letter-spacing:.03em;
 }
 .focus{
-  font-size:10.35px!important;
-  line-height:1.45!important;
+  font-size:var(--fs-card-meta);
+  line-height:1.55;
 }
 
 /* Updates — editorial hierarchy: one lead story plus two supporting stories. */
@@ -1987,9 +2088,10 @@ header{
 }
 #primary-nav a{
   padding:10px 7px!important;
-  color:#5d6d78!important;
+  color:var(--institutional-slate, #2F4858)!important;
   font-size:11.3px!important;
   letter-spacing:-.005em!important;
+  font-weight:600!important;
 }
 .header-cta{gap:10px!important}
 .header-phone{
@@ -2048,23 +2150,23 @@ header{
   filter:saturate(.875) contrast(1.02) brightness(1.02)!important;
 }
 .practitioner-meta{
-  min-height:78px!important;
-  padding-top:13px!important;
+  min-height:0;
+  padding-top:var(--space-5);
 }
 .practitioner h3{
-  min-height:38px!important;
-  margin-bottom:4px!important;
-  font-size:15.4px!important;
-  line-height:1.27!important;
+  min-height:0;
+  margin-bottom:var(--space-2);
+  font-size:var(--fs-card-title);
+  line-height:1.3;
 }
 .credentials{
-  margin-bottom:4px!important;
-  font-size:9.5px!important;
-  line-height:1.35!important;
+  margin-bottom:var(--space-2);
+  font-size:var(--fs-card-meta);
+  line-height:1.35;
 }
 .focus{
-  font-size:10.5px!important;
-  line-height:1.48!important;
+  font-size:var(--fs-card-meta);
+  line-height:1.55;
 }
 
 /* 3. COMMUNITY — preserve the copy; introduce quiet local visual context. */
@@ -2699,7 +2801,7 @@ section[id]{scroll-margin-top:116px}
 }
 @media(max-width:320px){
   .team-directory-grid{grid-template-columns:1fr!important;gap:28px!important}
-  .team-directory-grid .practitioner h3{font-size:18px!important;line-height:1.3!important;min-height:0!important}
+  .team-directory-grid .practitioner h3{font-size:var(--fs-card-title);line-height:1.3;min-height:0}
   .team-directory-grid .practitioner-meta{min-height:0!important;grid-template-rows:auto auto auto!important}
   .team-directory-grid .credentials{min-height:0!important;font-size:13px!important}
   .team-directory-grid .practitioner-text-visual strong{font-size:22px!important}
@@ -3006,7 +3108,7 @@ section[id]{scroll-margin-top:116px}
   height:230px;
   background:
     linear-gradient(180deg,rgba(244,241,234,.04),rgba(18,47,68,.16)),
-    url("assets/clinic-reception.png") center 46%/cover no-repeat;
+    url("assets/location-storefront-polished.webp") center 46%/cover no-repeat;
   filter:saturate(.84) contrast(1.02) brightness(1.02);
 }
 .home-page .healthcare-services-layout{position:relative!important;z-index:1!important}
@@ -3655,7 +3757,7 @@ footer :where(a,button):focus-visible{
 .home-page .practitioner-dr-gemunu-suresh-ranawake .portrait img{object-position:50% 19%!important}
 .home-page .practitioner-dr-wasantha-hettiarchchi .portrait img{object-position:50% 19%!important}
 .home-page .practitioner-meta{padding-top:15px!important;min-height:84px!important}
-.home-page .practitioner h3{font-size:16px!important;min-height:40px!important}
+.home-page .practitioner h3{font-size:var(--fs-card-title);min-height:0}
 .home-page .team-link{margin-top:54px!important}
 
 /* 5. UPDATES — preserve functionality, strengthen publication hierarchy. */
@@ -4269,15 +4371,33 @@ footer :where(a,button):focus-visible{
 }
 
 
-/* HotDoc poster correction - use the supplied HotDoc artwork as one authentic visual. */
+/* HotDoc visual — landscape booking artwork aligns with intro + benefits copy. */
 .home-page .hotdoc-grid{
-  grid-template-columns:minmax(0,44fr) minmax(0,56fr)!important;
-  grid-template-areas:
-    "intro visual"
-    "benefits visual"!important;
-  column-gap:76px!important;
-  row-gap:28px!important;
-  align-items:center!important;
+  grid-template-columns:minmax(0,1fr) minmax(360px,1.15fr)!important;
+  grid-template-areas:"intro visual" "benefits visual"!important;
+  column-gap:56px!important;
+  row-gap:22px!important;
+  align-items:start!important;
+}
+.home-page .hotdoc-intro{align-self:start!important}
+.home-page .hotdoc-visual{
+  grid-area:visual!important;
+  align-self:center!important;
+  width:100%!important;
+  max-width:none!important;
+  margin-left:0!important;
+  overflow:hidden!important;
+  border-radius:24px!important;
+  background:#eef4f0!important;
+  box-shadow:0 22px 58px rgba(23,48,68,.09)!important;
+}
+.home-page .hotdoc-visual img{
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:16/9!important;
+  object-fit:contain!important;
+  object-position:center!important;
 }
 .home-page .hotdoc-poster-visual{
   grid-area:visual!important;
@@ -4341,6 +4461,73 @@ footer :where(a,button):focus-visible{
   width:18.5%;
   height:4.5%;
 }
+
+/* Landscape HotDoc day–night artwork: fill the visual column; badge hotspots stay on the printed stores. */
+.home-page #hotdoc-app .hotdoc-daynight-visual{
+  width:100%!important;
+  max-width:none!important;
+  margin-left:0!important;
+  overflow:visible!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  border-radius:0!important;
+  display:block!important;
+  justify-content:initial!important;
+  align-self:center!important;
+}
+.home-page #hotdoc-app .hotdoc-daynight-card{
+  position:relative;
+  width:100%!important;
+  max-width:none!important;
+  aspect-ratio:16 / 9!important;
+  height:auto!important;
+  overflow:hidden;
+  border-radius:24px;
+  background:#eef4f0;
+  box-shadow:0 22px 58px rgba(23,48,68,.09);
+}
+.home-page #hotdoc-app .hotdoc-daynight-card .hotdoc-poster-image{
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  max-height:none!important;
+  aspect-ratio:16 / 9!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  transform:none!important;
+}
+/* Day–night artwork prints Google Play (left) and App Store (right) side by side. */
+.home-page #hotdoc-app .hotdoc-daynight-card .hotdoc-poster-hotspot{
+  z-index:5;
+  pointer-events:auto;
+  cursor:pointer;
+}
+.home-page #hotdoc-app .hotdoc-daynight-card .hotdoc-poster-googleplay{
+  left:6.2%!important;
+  top:79.5%!important;
+  width:20%!important;
+  height:11%!important;
+  min-height:44px;
+  border-radius:8px;
+}
+.home-page #hotdoc-app .hotdoc-daynight-card .hotdoc-poster-appstore{
+  left:27%!important;
+  top:79.5%!important;
+  width:19%!important;
+  height:11%!important;
+  min-height:44px;
+  border-radius:8px;
+}
+@media(min-width:1025px){
+  .home-page #hotdoc-app .hotdoc-store-actions{display:none!important}
+}
+@media(max-width:1024px){
+  .home-page #hotdoc-app .hotdoc-daynight-visual{
+    width:100%!important;
+    max-width:720px!important;
+    margin-inline:auto!important;
+  }
+}
 @media(max-width:1180px){
   .home-page .hotdoc-grid{column-gap:52px!important}
   .home-page .hotdoc-poster-card{width:min(100%,540px)}
@@ -4348,12 +4535,14 @@ footer :where(a,button):focus-visible{
 @media(max-width:1024px){
   .home-page .hotdoc-grid{
     grid-template-columns:1fr!important;
-    grid-template-areas:
-      "intro"
-      "visual"
-      "benefits"!important;
-    gap:34px!important;
+    grid-template-areas:"intro" "visual" "benefits"!important;
+    gap:28px!important;
     align-items:start!important;
+  }
+  .home-page .hotdoc-visual{
+    max-width:640px!important;
+    margin-left:0!important;
+    justify-self:start!important;
   }
   .home-page .hotdoc-poster-visual{
     justify-content:center!important;
@@ -4435,9 +4624,9 @@ footer :where(a,button):focus-visible{
   .visible-breadcrumbs a{min-height:36px}
   .breadcrumb-separator{margin:0 7px}
   .page-nav a{display:flex;align-items:center;min-height:44px;font-size:13px}
-  .eyebrow{font-size:12px!important}
-  .credentials{font-size:12px!important}
-  .focus{font-size:13px!important;color:#596b78!important}
+  .eyebrow{font-size:var(--fs-eyebrow)}
+  .credentials{font-size:var(--fs-card-meta)}
+  .focus{font-size:13px;color:var(--ink-soft)}
   .home-page .hero-trust-text strong{line-height:1.32!important}
   .home-page .hero-hours-refined{font-size:12.5px!important;line-height:1.5!important}
   .footer-bottom,.footer-badges{font-size:12px!important}
@@ -4505,7 +4694,7 @@ footer :where(a,button):focus-visible{
 
 /* INSTITUTIONAL TRUST & CAREERS AUTHORITY LAYER */
 .accreditation-page-hero .accreditation-hero-inner{
-  grid-template-columns:minmax(0,1fr) minmax(300px,430px)!important;
+  grid-template-columns:minmax(0,1fr) 120px!important;
   gap:clamp(36px,5vw,72px)!important;
 }
 .accreditation-page-hero .accreditation-mark{
@@ -4514,13 +4703,14 @@ footer :where(a,button):focus-visible{
   border-radius:18px!important;
 }
 .accreditation-page-hero .accreditation-mark img{
-  width:100%!important;
-  max-width:410px!important;
-  height:auto!important;
+  width:84px!important;
+  max-width:84px!important;
+  height:84px!important;
+  object-fit:contain!important;
 }
 .agpal-authority-lockup{
   display:grid;
-  grid-template-columns:minmax(260px,360px) minmax(0,1fr);
+  grid-template-columns:84px minmax(0,1fr);
   gap:clamp(26px,4vw,48px);
   align-items:center;
   margin:24px 0 30px;
@@ -4530,9 +4720,10 @@ footer :where(a,button):focus-visible{
 }
 .agpal-authority-lockup img{
   display:block;
-  width:100%;
-  max-width:360px;
-  height:auto;
+  width:84px;
+  max-width:84px;
+  height:84px;
+  object-fit:contain;
 }
 .agpal-authority-lockup .eyebrow{margin-bottom:10px}
 .agpal-authority-lockup h2{margin-bottom:14px}
@@ -4555,14 +4746,14 @@ footer :where(a,button):focus-visible{
 .careers-opportunities h2{max-width:720px}
 .careers-expression .service-cta-actions{margin-top:28px}
 @media(max-width:900px){
-  .accreditation-page-hero .accreditation-hero-inner{grid-template-columns:minmax(0,1fr) minmax(260px,330px)!important}
-  .agpal-authority-lockup{grid-template-columns:minmax(220px,300px) minmax(0,1fr)}
+  .accreditation-page-hero .accreditation-hero-inner{grid-template-columns:minmax(0,1fr) 120px!important}
+  .agpal-authority-lockup{grid-template-columns:84px minmax(0,1fr)}
 }
 @media(max-width:700px){
   .accreditation-page-hero .accreditation-hero-inner{grid-template-columns:1fr!important}
-  .accreditation-page-hero .accreditation-mark{width:100%!important;max-width:390px!important;padding:12px!important}
+  .accreditation-page-hero .accreditation-mark{width:120px!important;max-width:120px!important;padding:12px!important}
   .agpal-authority-lockup{grid-template-columns:1fr;gap:20px;padding:22px 0}
-  .agpal-authority-lockup img{max-width:330px}
+  .agpal-authority-lockup img{width:84px;max-width:84px;height:84px}
   .careers-principles{grid-template-columns:1fr;gap:0}
   .careers-expression .service-cta-actions{align-items:stretch}
   .careers-expression .button{width:100%;justify-content:center;text-align:center}
@@ -4631,9 +4822,9 @@ footer :where(a,button):focus-visible{
    ================================================================ */
 #primary-nav a[aria-current="page"]{color:var(--navy);font-weight:700}
 .page-nav a[aria-current="page"]{color:var(--navy);font-weight:700}
-.eyebrow{color:#5f707c!important;font-size:12px!important}
-.credentials{font-size:12px!important}
-.focus{color:#5f707c!important;font-size:13px!important}
+.eyebrow{color:var(--ink-soft);font-size:var(--fs-eyebrow)}
+.credentials{font-size:var(--fs-card-meta)}
+.focus{color:var(--ink-soft);font-size:13px}
 .health-update-meta,.update-author,.update-count{color:#5f707c!important;font-size:12px!important}
 .resource-link{min-height:48px}
 .visible-breadcrumbs [aria-current="page"]{color:var(--ink)!important;font-weight:600}
@@ -4852,6 +5043,11 @@ main[tabindex="-1"]:focus{outline:none}
    Additive refinements only. Approved architecture and visual identity preserved. */
 .brand img,.footer-brand img{object-fit:contain!important;filter:none!important}
 .contact-details a{overflow-wrap:anywhere;word-break:normal}
+.contact-details a[href^="mailto:"]{
+  overflow-wrap:normal;
+  word-break:keep-all;
+  white-space:nowrap;
+}
 #primary-nav a{min-height:44px;display:flex;align-items:center}
 .form-consent{min-height:44px;padding:7px 0;cursor:pointer}
 .form-consent input{margin-top:4px}
@@ -4877,6 +5073,13 @@ main[tabindex="-1"]:focus{outline:none}
     padding-bottom:5px;
   }
   .contact-details a{max-width:100%;overflow-wrap:anywhere}
+  .contact-details a[href^="mailto:"]{
+    max-width:none;
+    overflow-wrap:normal;
+    white-space:nowrap;
+    font-size:12px;
+    letter-spacing:-0.01em;
+  }
   .health-update-copy h3 a,.featured-update-copy h2 a{display:inline-flex;align-items:center;min-height:44px}
 }
 
@@ -5015,8 +5218,9 @@ body.has-persistent-care-actions .digital-reception-launcher,body.has-persistent
 
 /* Internal-page visual depth — restrained, brand-compatible, no homepage changes */
 .institutional-editorial-visual{margin:0 0 48px;overflow:hidden;border-radius:24px;background:#edf2f4;box-shadow:0 14px 34px rgba(23,48,68,.06)}
-.institutional-editorial-visual img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center 52%;filter:saturate(.92) contrast(1.025) brightness(1.01)}
+.institutional-editorial-visual img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:center 52%;filter:saturate(.92) contrast(1.025) brightness(1.01)}
 .institutional-editorial-visual.tall-crop img{aspect-ratio:4/3}
+.institutional-editorial-visual.poster-crop img{aspect-ratio:3/4;object-position:center top}
 .service-why-it-matters,.patient-education{padding:32px 34px!important;border:1px solid var(--line)!important;border-radius:18px;background:linear-gradient(145deg,#fbfaf6,#f5f8f7)}
 .service-why-it-matters>p:last-child,.patient-education>p:last-child{margin-bottom:0}
 @media(max-width:700px){
@@ -5260,11 +5464,53 @@ body.has-persistent-care-actions .digital-reception-panel{bottom:92px!important}
 /* Header logo is also a usable target, especially on compact screens. */
 .brand{display:flex!important;align-items:center!important;min-height:44px!important}
 
-/* Desktop authority navigation remains a left panel but never traps lower links
-   below a short laptop viewport. */
+/* Desktop authority navigation remains a left panel but never traps links
+   above/below a short laptop viewport. Higher specificity than the earlier
+   overflow:visible rule so Patient Information (and sibling hubs) can scroll. */
 @media(min-width:1025px){
-  .page-nav{max-height:calc(100vh - 154px)!important;overflow-y:auto!important;overflow-x:hidden!important;padding-right:10px!important;scrollbar-width:thin;scrollbar-color:#c7d4dc transparent}
-  .page-nav::-webkit-scrollbar{width:6px}.page-nav::-webkit-scrollbar-thumb{background:#c7d4dc;border-radius:99px}
+  .page-layout > aside.page-nav,
+  .page-layout > .page-nav{
+    position:sticky!important;
+    top:168px!important;
+    max-height:calc(100vh - 188px)!important;
+    max-height:calc(100dvh - 188px)!important;
+    min-height:0!important;
+    overflow-x:hidden!important;
+    overflow-y:auto!important;
+    overscroll-behavior:contain;
+    align-self:start!important;
+    padding-right:4px!important;
+    scrollbar-width:none!important; /* Firefox: keep scroll, hide bar */
+    -ms-overflow-style:none!important; /* legacy Edge */
+  }
+  .page-layout > aside.page-nav::-webkit-scrollbar,
+  .page-layout > .page-nav::-webkit-scrollbar{
+    width:0!important;
+    height:0!important;
+    display:none!important; /* Chrome/Safari: keep scroll, hide bar */
+  }
+}
+@media(min-width:1025px) and (max-width:1199px){
+  .page-layout > aside.page-nav,
+  .page-layout > .page-nav{
+    top:156px!important;
+    max-height:calc(100vh - 176px)!important;
+    max-height:calc(100dvh - 176px)!important;
+  }
+}
+@media(min-width:1025px){
+  body.has-persistent-care-actions .page-layout > aside.page-nav,
+  body.has-persistent-care-actions .page-layout > .page-nav{
+    max-height:calc(100vh - 268px)!important;
+    max-height:calc(100dvh - 268px)!important;
+  }
+}
+@media(min-width:1025px) and (max-width:1199px){
+  body.has-persistent-care-actions .page-layout > aside.page-nav,
+  body.has-persistent-care-actions .page-layout > .page-nav{
+    max-height:calc(100vh - 252px)!important;
+    max-height:calc(100dvh - 252px)!important;
+  }
 }
 
 /* Content first on tablet/mobile. The related-page/Patient Information panel
@@ -6284,11 +6530,12 @@ body a.hotdoc-poster-hotspot[data-hotdoc-button]{
     min-height:54px!important;
     padding:13px 0!important;
     border:0!important;
-    color:#4c5c68;
+    color:var(--institutional-slate, #2F4858)!important;
     font-size:13px!important;
-    font-weight:500;
+    font-weight:600;
     line-height:1.4;
     white-space:nowrap;
+    opacity:1!important;
   }
   .institution-navigation-row>#primary-nav>a[aria-current="page"] {color:var(--navy)!important;font-weight:700!important}
   .institution-navigation-row>#primary-nav>a:focus-visible {
@@ -6325,16 +6572,202 @@ body a.hotdoc-poster-hotspot[data-hotdoc-button]{
 :root {
   --institutional-blue: #174A70;
   --institutional-slate: #2F4858;
-  --institutional-mint: #E8F4F0;
+  --institutional-mint: #DDFBEF;
   --institutional-text: #1F2937;
   --institutional-canvas: #FAFBFC;
   --institutional-teal: #0C6D62;
   --institutional-success: #2E8B57;
 }
-/* Quiet off-white on inside-page introductions; homepage hero is frozen. */
+/* Brand-led animated wash on inside-page introductions; homepage hero is frozen. */
 body:not(.home-page) .page-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   background-color: var(--institutional-canvas);
+  background-image:
+    radial-gradient(ellipse 78% 62% at 8% 18%, rgba(221, 251, 239, 0.95) 0%, transparent 58%),
+    radial-gradient(ellipse 64% 54% at 92% 22%, rgba(12, 109, 98, 0.14) 0%, transparent 52%),
+    radial-gradient(ellipse 70% 48% at 74% 96%, rgba(47, 72, 88, 0.10) 0%, transparent 50%),
+    linear-gradient(168deg, #FAFBFC 0%, #DDFBEF 38%, #F3F8F7 72%, #FAFBFC 100%);
+  background-size: 120% 120%, 130% 130%, 120% 120%, 100% 100%;
+  background-position: 0% 40%, 100% 0%, 80% 100%, 50% 50%;
+  border-bottom: 1px solid rgba(47, 72, 88, 0.08);
+  animation: page-hero-wash 22s ease-in-out infinite alternate;
 }
+body:not(.home-page) .page-hero::before,
+body:not(.home-page) .page-hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(2px);
+}
+body:not(.home-page) .page-hero::before {
+  width: min(46vw, 520px);
+  height: min(46vw, 520px);
+  top: -18%;
+  right: -8%;
+  background: radial-gradient(circle at 35% 40%, rgba(221, 251, 239, 0.9) 0%, rgba(12, 109, 98, 0.16) 42%, transparent 70%);
+  animation: page-hero-orb-a 18s ease-in-out infinite alternate;
+}
+body:not(.home-page) .page-hero::after {
+  width: min(38vw, 420px);
+  height: min(38vw, 420px);
+  bottom: -22%;
+  left: -6%;
+  background: radial-gradient(circle at 60% 40%, rgba(46, 139, 87, 0.14) 0%, rgba(47, 72, 88, 0.10) 48%, transparent 72%);
+  animation: page-hero-orb-b 24s ease-in-out infinite alternate;
+}
+body:not(.home-page) .page-hero > .shell {
+  position: relative;
+  z-index: 1;
+}
+body:not(.home-page) .page-hero .eyebrow {
+  color: var(--institutional-teal);
+}
+body:not(.home-page) .page-hero h1 {
+  color: var(--institutional-slate);
+  font-size: var(--fs-h1);
+  line-height: var(--lh-tight);
+}
+body:not(.home-page) .page-hero .lede {
+  color: var(--institutional-text);
+  max-width: 42rem;
+  font-size: var(--fs-lede);
+  line-height: var(--lh-lede);
+}
+@keyframes page-hero-wash {
+  0% { background-position: 0% 40%, 100% 0%, 80% 100%, 50% 50%; }
+  100% { background-position: 18% 55%, 82% 18%, 62% 88%, 50% 50%; }
+}
+@keyframes page-hero-orb-a {
+  0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.85; }
+  100% { transform: translate3d(-4%, 8%, 0) scale(1.08); opacity: 1; }
+}
+@keyframes page-hero-orb-b {
+  0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.75; }
+  100% { transform: translate3d(6%, -6%, 0) scale(1.1); opacity: 0.95; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body:not(.home-page) .page-hero,
+  body:not(.home-page) .page-hero::before,
+  body:not(.home-page) .page-hero::after {
+    animation: none !important;
+  }
+}
+
+/* Per–main-tab hero atmospheres (keyed to #primary-nav[data-nav-owner]). */
+body:has(#primary-nav[data-nav-owner="services"]) .page-hero{
+  background-image:
+    radial-gradient(ellipse 78% 62% at 8% 18%, rgba(221,251,239,.95) 0%, transparent 58%),
+    radial-gradient(ellipse 64% 54% at 92% 22%, rgba(12,109,98,.16) 0%, transparent 52%),
+    radial-gradient(ellipse 70% 48% at 74% 96%, rgba(47,72,88,.08) 0%, transparent 50%),
+    linear-gradient(168deg,#FAFBFC 0%,#DDFBEF 40%,#F4F9F8 100%);
+}
+body:has(#primary-nav[data-nav-owner="services"]) .page-hero::before{
+  background:radial-gradient(circle at 35% 40%, rgba(221,251,239,.95) 0%, rgba(12,109,98,.18) 42%, transparent 70%);
+}
+body:has(#primary-nav[data-nav-owner="services"]) .page-hero::after{
+  background:radial-gradient(circle at 60% 40%, rgba(46,139,87,.12) 0%, rgba(12,109,98,.10) 48%, transparent 72%);
+}
+
+body:has(#primary-nav[data-nav-owner="team"]) .page-hero{
+  background-image:
+    radial-gradient(ellipse 70% 55% at 88% 12%, rgba(47,72,88,.14) 0%, transparent 55%),
+    radial-gradient(ellipse 72% 58% at 10% 78%, rgba(221,251,239,.88) 0%, transparent 58%),
+    radial-gradient(ellipse 50% 40% at 48% 0%, rgba(12,109,98,.10) 0%, transparent 50%),
+    linear-gradient(155deg,#FAFBFC 0%,#E8F1F0 45%,#DDFBEF 100%);
+}
+body:has(#primary-nav[data-nav-owner="team"]) .page-hero::before{
+  top:-12%; right:auto; left:-10%;
+  background:radial-gradient(circle at 55% 45%, rgba(47,72,88,.16) 0%, rgba(12,109,98,.12) 45%, transparent 70%);
+}
+body:has(#primary-nav[data-nav-owner="team"]) .page-hero::after{
+  left:auto; right:-8%; bottom:-18%;
+  background:radial-gradient(circle at 40% 40%, rgba(221,251,239,.9) 0%, rgba(46,139,87,.14) 50%, transparent 72%);
+}
+
+body:has(#primary-nav[data-nav-owner="about"]) .page-hero{
+  background-image:
+    radial-gradient(ellipse 80% 60% at 0% 50%, rgba(47,72,88,.12) 0%, transparent 55%),
+    radial-gradient(ellipse 65% 50% at 100% 80%, rgba(12,109,98,.12) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 45% at 60% 10%, rgba(221,251,239,.7) 0%, transparent 50%),
+    linear-gradient(180deg,#F3F6F7 0%,#FAFBFC 48%,#E7F5F0 100%);
+}
+body:has(#primary-nav[data-nav-owner="about"]) .page-hero::before{
+  width:min(52vw,560px); height:min(52vw,560px); top:-24%; right:-14%;
+  background:radial-gradient(circle at 40% 50%, rgba(47,72,88,.18) 0%, rgba(12,109,98,.08) 48%, transparent 70%);
+}
+body:has(#primary-nav[data-nav-owner="about"]) .page-hero::after{
+  background:radial-gradient(circle at 50% 40%, rgba(221,251,239,.75) 0%, rgba(47,72,88,.10) 55%, transparent 72%);
+}
+
+body:has(#primary-nav[data-nav-owner="patient-info"]) .page-hero{
+  background-image:
+    radial-gradient(ellipse 68% 58% at 15% 0%, rgba(221,251,239,.98) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 95% 55%, rgba(12,109,98,.13) 0%, transparent 52%),
+    radial-gradient(ellipse 48% 42% at 40% 100%, rgba(46,139,87,.10) 0%, transparent 50%),
+    linear-gradient(172deg,#FAFBFC 0%,#DDFBEF 32%,#F0F7F5 70%,#FAFBFC 100%);
+}
+body:has(#primary-nav[data-nav-owner="patient-info"]) .page-hero::before{
+  top:-8%; right:5%;
+  background:radial-gradient(circle at 30% 40%, rgba(221,251,239,1) 0%, rgba(12,109,98,.14) 40%, transparent 68%);
+}
+body:has(#primary-nav[data-nav-owner="patient-info"]) .page-hero::after{
+  width:min(42vw,460px); bottom:-26%; left:8%;
+  background:radial-gradient(circle at 50% 35%, rgba(46,139,87,.16) 0%, rgba(47,72,88,.08) 50%, transparent 72%);
+}
+
+body:has(#primary-nav[data-nav-owner="knowledge"]) .page-hero{
+  background-image:
+    radial-gradient(ellipse 75% 55% at 20% 30%, rgba(46,139,87,.14) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 60% at 90% 10%, rgba(221,251,239,.92) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 45% at 70% 95%, rgba(12,109,98,.12) 0%, transparent 50%),
+    linear-gradient(160deg,#FAFBFC 0%,#E5F6EE 42%,#DDFBEF 100%);
+}
+body:has(#primary-nav[data-nav-owner="knowledge"]) .page-hero::before{
+  right:-6%; top:-10%;
+  background:radial-gradient(circle at 40% 40%, rgba(46,139,87,.20) 0%, rgba(221,251,239,.7) 45%, transparent 70%);
+}
+body:has(#primary-nav[data-nav-owner="knowledge"]) .page-hero::after{
+  left:-4%; bottom:-20%;
+  background:radial-gradient(circle at 55% 40%, rgba(12,109,98,.16) 0%, rgba(47,72,88,.08) 50%, transparent 72%);
+}
+
+body:has(#primary-nav[data-nav-owner="updates"]) .page-hero{
+  background-image:
+    radial-gradient(ellipse 72% 58% at 5% 85%, rgba(12,109,98,.14) 0%, transparent 55%),
+    radial-gradient(ellipse 66% 52% at 85% 15%, rgba(47,72,88,.12) 0%, transparent 52%),
+    radial-gradient(ellipse 50% 40% at 50% 40%, rgba(221,251,239,.85) 0%, transparent 55%),
+    linear-gradient(145deg,#FAFBFC 0%,#EAF4F1 35%,#DDFBEF 65%,#F7FAFA 100%);
+}
+body:has(#primary-nav[data-nav-owner="updates"]) .page-hero::before{
+  top:auto; bottom:-16%; right:-10%;
+  background:radial-gradient(circle at 35% 40%, rgba(12,109,98,.18) 0%, rgba(221,251,239,.75) 48%, transparent 70%);
+  animation-duration:20s;
+}
+body:has(#primary-nav[data-nav-owner="updates"]) .page-hero::after{
+  top:-14%; left:-8%; bottom:auto;
+  background:radial-gradient(circle at 60% 50%, rgba(47,72,88,.14) 0%, rgba(46,139,87,.10) 50%, transparent 72%);
+}
+
+body:has(#primary-nav[data-nav-owner="contact"]) .page-hero{
+  background-image:
+    radial-gradient(ellipse 80% 65% at 100% 0%, rgba(12,109,98,.18) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 55% at 0% 100%, rgba(221,251,239,.95) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 40% at 45% 20%, rgba(47,72,88,.08) 0%, transparent 50%),
+    linear-gradient(185deg,#DDFBEF 0%,#FAFBFC 40%,#E8F4F1 78%,#FAFBFC 100%);
+}
+body:has(#primary-nav[data-nav-owner="contact"]) .page-hero::before{
+  top:-20%; right:-4%;
+  background:radial-gradient(circle at 30% 45%, rgba(12,109,98,.22) 0%, rgba(221,251,239,.65) 42%, transparent 68%);
+}
+body:has(#primary-nav[data-nav-owner="contact"]) .page-hero::after{
+  left:-10%; bottom:-24%;
+  background:radial-gradient(circle at 55% 35%, rgba(46,139,87,.14) 0%, rgba(47,72,88,.10) 52%, transparent 72%);
+}
+
 /* Headings remain in the approved typeface, scale, and hierarchy. */
 body:not(.home-page) .page-hero h1,
 .page-main .article h2,
@@ -6368,10 +6801,16 @@ body:not(.home-page) .page-hero .lede {
 }
 @media (min-width:768px) {
   .institution-navigation-row > #primary-nav > a:not([aria-current="page"]) {
-    color: var(--institutional-slate);
+    color: var(--institutional-slate, #2F4858) !important;
+    font-weight: 600 !important;
   }
   .institution-navigation-row > #primary-nav > a:hover {
-    color: var(--institutional-teal);
+    color: var(--institutional-teal, #0C6D62) !important;
+  }
+  header .institution-navigation-row > #primary-nav > a {
+    color: var(--institutional-slate, #2F4858) !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
@@ -6397,7 +6836,7 @@ body:not(.home-page) .page-hero .lede {
     padding:0!important;
   }
   header .header-inner>.brand .institution-logo-lockup {
-    width:clamp(440px,33.1vw,475px)!important;
+    width:clamp(400px,30vw,430px)!important;
   }
   /* Keep the verified phone/booking actions together but visually distinct. */
   header .header-inner>.header-cta {
@@ -6638,12 +7077,15 @@ body:not(.home-page) .page-hero .lede {
     overflow-y:auto !important;
     overflow-x:hidden !important;
     align-self:start !important;
-    padding-right:12px !important;
-    scrollbar-width:thin;
-    scrollbar-color:#c7d4dc transparent;
+    padding-right:4px !important;
+    scrollbar-width:none !important;
+    -ms-overflow-style:none !important;
   }
-  .page-main .page-layout > aside.page-nav.knowledge-unified-nav::-webkit-scrollbar {width:7px;}
-  .page-main .page-layout > aside.page-nav.knowledge-unified-nav::-webkit-scrollbar-thumb {background:#c7d4dc;border-radius:12px;}
+  .page-main .page-layout > aside.page-nav.knowledge-unified-nav::-webkit-scrollbar{
+    width:0 !important;
+    height:0 !important;
+    display:none !important;
+  }
 }
 @media (min-width:1025px) and (max-width:1199px) {
   .page-main .page-layout > aside.page-nav.knowledge-unified-nav {
@@ -7657,7 +8099,8 @@ body:not(.home-page) .page-hero .lede {
      to a more readable page composition rather than cropped. */
   .home-page #hotdoc-app.hotdoc-app{padding-block:60px!important}
   .home-page #hotdoc-app .hotdoc-grid{column-gap:52px!important;row-gap:18px!important}
-  .home-page #hotdoc-app .hotdoc-poster-card{width:min(100%,452px)!important}
+  .home-page #hotdoc-app .hotdoc-poster-card:not(.hotdoc-daynight-card){width:min(100%,452px)!important}
+  .home-page #hotdoc-app .hotdoc-daynight-card{width:100%!important}
   .home-page #hotdoc-app .hotdoc-intro h2{margin-bottom:16px!important}
   .home-page #hotdoc-app .hotdoc-benefits{margin-bottom:16px!important}
   .home-page #hotdoc-app .hotdoc-benefits li{padding-block:10px!important}
@@ -7767,9 +8210,8 @@ body:not(.home-page) .page-hero .lede {
     margin-block:20px 16px!important;
     gap:14px 22px!important;
   }
-  /* Keep the complete reception email on a readable line, not clipped
-     midway through a two-column contact block. */
-  .home-page #contact .contact-details>p:nth-child(2){grid-column:1/-1}
+  /* Keep the complete reception email on a readable line (Email is first). */
+  .home-page #contact .contact-details>p:nth-child(1){grid-column:1/-1}
   .home-page #contact .map,
   .home-page #contact .map iframe{
     min-height:520px!important;
@@ -7805,12 +8247,21 @@ body:not(.home-page) .page-hero .lede {
   display:inline-flex;align-items:center;justify-content:center;
   min-width:44px;min-height:44px;box-sizing:border-box;
 }
-.home-page .hotdoc-store-actions{display:none}
-.home-page .hotdoc-poster-appstore.hotdoc-store-link,
-.home-page .hotdoc-poster-googleplay.hotdoc-store-link{height:max(44px,4.5%)}
+.home-page .hotdoc-store-actions{
+  display:flex;flex-wrap:wrap;gap:12px;margin-top:18px;
+}
+.home-page .hotdoc-store-actions .hotdoc-store-link{
+  padding:10px 15px;border:1px solid #c7d7e1;border-radius:10px;
+  color:#174a70;background:#fff;
+  font:600 13px/1.35 Inter,sans-serif;text-decoration:none;
+}
+.home-page .hotdoc-poster-card:not(.hotdoc-daynight-card) .hotdoc-poster-appstore.hotdoc-store-link,
+.home-page .hotdoc-poster-card:not(.hotdoc-daynight-card) .hotdoc-poster-googleplay.hotdoc-store-link{height:max(44px,4.5%)}
 @media(max-width:1024px){
-  .home-page .hotdoc-poster-appstore.hotdoc-store-link,
-  .home-page .hotdoc-poster-googleplay.hotdoc-store-link{display:none!important}
+  .home-page .hotdoc-poster-card:not(.hotdoc-daynight-card) .hotdoc-poster-appstore.hotdoc-store-link,
+  .home-page .hotdoc-poster-card:not(.hotdoc-daynight-card) .hotdoc-poster-googleplay.hotdoc-store-link{display:none!important}
+  /* Keep day–night image badges clickable on tablet/mobile too. */
+  .home-page #hotdoc-app .hotdoc-daynight-card .hotdoc-poster-hotspot{display:block!important}
   .home-page .hotdoc-poster-visual{flex-direction:column}
   .home-page .hotdoc-store-actions{
     display:flex;flex-wrap:wrap;justify-content:center;gap:12px;
@@ -7878,8 +8329,8 @@ body:not(.home-page) .page-hero .lede {
 
 /* 2026-10-11 Footer IA release: existing institutional visual design retained. */
 footer .footer-grid{
-  grid-template-columns:minmax(0,1.35fr) minmax(0,.92fr) minmax(0,1.1fr) minmax(0,.77fr)!important;
-  gap:24px!important;
+  grid-template-columns:minmax(0,1.25fr) repeat(3,minmax(0,1fr))!important;
+  gap:28px 36px!important;
 }
 footer .footer-grid > .footer-identity,
 footer .footer-grid > .footer-nav{min-width:0}
@@ -7890,11 +8341,41 @@ footer .footer-grid > .footer-nav{
 }
 footer .footer-nav > h3{display:block}
 footer .footer-accordion-native > .footer-accordion-content{display:block}
-footer .footer-contact{margin-top:12px;color:#cfdae2;font-size:12.5px;line-height:1.5}
+footer .footer-contact{
+  margin-top:12px;
+  color:#cfdae2;
+  font-size:12.5px;
+  line-height:1.5;
+  display:grid;
+  gap:4px;
+}
 footer .footer-contact address{font-style:normal;overflow-wrap:anywhere}
-footer .footer-contact-links{display:flex;flex-wrap:wrap;column-gap:14px;align-items:center}
+footer .footer-contact > span{color:#cfdae2}
+footer .footer-contact > a[href^="mailto:"],
+footer .footer-contact > a[href^="tel:"],
+footer .footer-contact > span{
+  min-height:0!important;
+  height:auto!important;
+  padding:0!important;
+  margin:0!important;
+  line-height:1.45!important;
+  display:block!important;
+  align-items:unset!important;
+}
+footer .footer-contact > a[href^="mailto:"]{
+  white-space:nowrap;
+  overflow-wrap:normal;
+  word-break:keep-all;
+}
+footer .footer-contact-links{display:flex;flex-wrap:wrap;column-gap:14px;align-items:center;margin-top:4px}
 footer .footer-contact a,
 footer .footer-utility a{min-height:34px!important;display:inline-flex!important;align-items:center!important;padding:2px 0!important}
+footer .footer-contact > a[href^="mailto:"],
+footer .footer-contact > a[href^="tel:"]{
+  min-height:0!important;
+  display:block!important;
+  padding:0!important;
+}
 footer .footer-utility{display:flex;flex-wrap:wrap;gap:4px 20px;align-items:center}
 footer .footer-grid a:hover,
 footer .footer-utility a:hover{text-decoration:underline;text-underline-offset:3px}
@@ -7921,13 +8402,28 @@ footer .footer-utility a:focus-visible{outline:3px solid #a5dced;outline-offset:
   footer .footer-grid > .footer-nav > h3{display:none}
   footer .footer-accordion-native > .footer-accordion-content{padding:0 6px 15px}
   footer .footer-accordion-native > .footer-accordion-content a,
-  footer .footer-contact a,
   footer .footer-utility a{
     min-height:44px!important;
     display:flex!important;
     align-items:center!important;
     padding:7px 0!important;
     margin:0!important;
+  }
+  footer .footer-contact > a[href^="mailto:"],
+  footer .footer-contact > a[href^="tel:"],
+  footer .footer-contact > span{
+    min-height:0!important;
+    height:auto!important;
+    display:block!important;
+    padding:0!important;
+    margin:0!important;
+    line-height:1.45!important;
+  }
+  footer .footer-contact-links a{
+    min-height:44px!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    padding:7px 0!important;
   }
   footer .footer-accordion-native > summary{min-height:54px!important}
   footer .footer-contact-links{column-gap:16px}
@@ -7957,10 +8453,14 @@ header .institution-navigation-row>#primary-nav>a[aria-current="location"] {
   font-weight:700!important;
 }
 
-/* Premium healthcare language. Tokens above. Sections, type, and navigation stay. */
-.page-hero{
+/* Premium healthcare language. Tokens above. Sections, type, and navigation stay.
+   Inner-page heroes use the institutional animated wash; keep this wash for homepage-only legacy pages that still share .page-hero without body.home-page. */
+body.home-page .page-hero{
   background:linear-gradient(180deg,var(--warm) 0%,var(--warm) calc(100% - 48px),var(--mist) 100%);
   border-bottom-color:transparent;
+}
+body:not(.home-page) .page-hero{
+  border-bottom-color:rgba(47, 72, 88, 0.08);
 }
 .stay{background:linear-gradient(180deg,var(--ink) 0%,var(--navy) 100%)}
 .hotdoc-app{background:var(--wash-mist-green)}
@@ -8077,11 +8577,8 @@ body.booking-journey-held a.wmc-book-appointment:not(.digital-reception-journey-
 .persistent-care-book::before,
 .booking-fallback a.wmc-book-appointment::before,
 .book-actions a.wmc-book-appointment::before,
+.journey-actions a.wmc-book-appointment::before,
 .digital-reception-actions a.wmc-book-appointment::before,
-.information-list a[href$="test-results.html"]::before,
-.information-list a[href$="referrals.html"]::before,
-.information-list a[href$="repeat-scripts.html"]::before,
-.information-list a[href$="telehealth.html"]::before,
 .digital-reception-quick button:first-child::before,
 .digital-reception-quick button:nth-child(3)::before,
 .digital-reception-launcher::before,
@@ -8103,6 +8600,7 @@ body.booking-journey-held a.wmc-book-appointment:not(.digital-reception-journey-
 .persistent-care-book,
 .booking-fallback a.wmc-book-appointment,
 .book-actions a.wmc-book-appointment,
+.journey-actions a.wmc-book-appointment,
 .digital-reception-actions a.wmc-book-appointment,
 .digital-reception-launcher,
 .journey-actions a[href^="tel:"],
@@ -8112,19 +8610,10 @@ body.booking-journey-held a.wmc-book-appointment:not(.digital-reception-journey-
 .contact-details a[href^="mailto:"]{
   --wmc-icon:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M8 4.5V7M16 4.5V7M5.5 9.5h13'/%3E%3Crect x='5.5' y='6.5' width='13' height='13' rx='2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E");
 }
-.information-list a[href$="test-results.html"],
 .digital-reception-quick button:nth-child(3){
   --wmc-icon:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M7 3.5h7l4 4V20a1.5 1.5 0 0 1-1.5 1.5h-9.5A1.5 1.5 0 0 1 5.5 20V5A1.5 1.5 0 0 1 7 3.5z'/%3E%3Cpath d='M14 3.5V8h4.5M8.5 13h7M8.5 16.5h4'/%3E%3C/svg%3E");
 }
-.information-list a[href$="referrals.html"]{
-  --wmc-icon:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Crect x='4' y='5' width='11' height='14' rx='2'/%3E%3Cpath d='M15 9h4.5L16 12.5'/%3E%3C/svg%3E");
-}
-.information-list a[href$="repeat-scripts.html"]{
-  --wmc-icon:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M8 4.5h6l3 3V19a1.5 1.5 0 0 1-1.5 1.5H8A1.5 1.5 0 0 1 6.5 19V6A1.5 1.5 0 0 1 8 4.5z'/%3E%3Cpath d='M14 4.5V8h3M9 12.5a3 3 0 1 0 .8-2'/%3E%3Cpath d='M9.2 9.2V11H11'/%3E%3C/svg%3E");
-}
-.information-list a[href$="telehealth.html"]{
-  --wmc-icon:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Crect x='3' y='6' width='12' height='12' rx='2'/%3E%3Cpath d='m15 10 6-3v10l-6-3'/%3E%3C/svg%3E");
-}
+
 .digital-reception-quick button:first-child{--wmc-icon:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M8 4.5V7M16 4.5V7M5.5 9.5h13'/%3E%3Crect x='5.5' y='6.5' width='13' height='13' rx='2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E")}
 .digital-reception-launcher{--wmc-icon:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M6 16.5 4.5 20 8 17.5'/%3E%3Cpath d='M6 16.5A7 7 0 1 1 12 19H8'/%3E%3C/svg%3E")}
 .journey-actions a[href^="tel:"],
@@ -8132,22 +8621,7 @@ body.booking-journey-held a.wmc-book-appointment:not(.digital-reception-journey-
 .journey-actions a[href*="google.com/maps"],
 .contact-copy>a[href*="google.com/maps"]{--wmc-icon:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10z'/%3E%3Ccircle cx='12' cy='11' r='2'/%3E%3C/svg%3E")}
 .contact-details a[href^="mailto:"]{--wmc-icon:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Crect x='3.5' y='6' width='17' height='12' rx='2'/%3E%3Cpath d='m4 7 8 6 8-6'/%3E%3C/svg%3E")}
-.information-list a[href$="test-results.html"],
-.information-list a[href$="referrals.html"],
-.information-list a[href$="repeat-scripts.html"],
-.information-list a[href$="telehealth.html"]{
-  position:relative;
-  padding-left:28px;
-}
-.information-list a[href$="test-results.html"]::before,
-.information-list a[href$="referrals.html"]::before,
-.information-list a[href$="repeat-scripts.html"]::before,
-.information-list a[href$="telehealth.html"]::before{
-  position:absolute;
-  left:0;
-  top:50%;
-  transform:translateY(-50%);
-}
+
 .digital-reception-quick button,
 .digital-reception-launcher,
 .contact-details a[href^="tel:"],
@@ -8252,12 +8726,7 @@ body.booking-journey-held a.wmc-book-appointment:not(.digital-reception-journey-
     animation:none!important;
     transition:none!important;
   }
-  .information-list a[href$="test-results.html"]::before,
-  .information-list a[href$="referrals.html"]::before,
-  .information-list a[href$="repeat-scripts.html"]::before,
-  .information-list a[href$="telehealth.html"]::before{
-    transform:translateY(-50%)!important;
-  }
+
   body a.wmc-book-appointment:hover,
   body .digital-reception-journey-book:hover,
   .network-location-card:hover{transform:none!important}
@@ -8385,8 +8854,8 @@ body .digital-reception-actions a[data-hotdoc-button]{
 /* Bottom care dock. Replaces the floating lower-right Digital Reception pill.
    Book, Call, and Reception share one fixed band. Page padding keeps maps,
    service rows, practitioner controls, footer links, and in-page actions above it. */
-body.has-action-dock{padding-bottom:96px!important}
-html:has(body.has-action-dock){scroll-padding-bottom:96px}
+body.has-action-dock{padding-bottom:var(--action-dock-clearance)!important}
+html:has(body.has-action-dock){scroll-padding-bottom:var(--action-dock-clearance)}
 body.has-action-dock .persistent-care-actions{
   left:0!important;right:0!important;bottom:0!important;width:100%!important;max-width:none!important;
   z-index:94!important;display:block!important;padding:8px 16px calc(8px + env(safe-area-inset-bottom))!important;
@@ -8415,17 +8884,30 @@ body.has-action-dock .persistent-care-actions.has-restriction .persistent-care-a
   .critical-action-links,.knowledge-category-grid,.services-directory-list,
   body.has-action-dock .booking-embed-shell{margin-right:0!important}
 }
+/* L5 — Dock owns Book/Call/Ask; suppress competing header CTAs (≤1024). */
 @media(max-width:1024px){
-  body.has-action-dock .mobile-header-book{display:none!important}
-}
-@media(min-width:768px) and (max-width:1024px){
+  body.has-action-dock .mobile-header-actions,
+  body.has-action-dock .mobile-header-book,
+  body.has-action-dock .mobile-header-call,
+  body.has-persistent-care-actions .mobile-header-actions,
+  body.has-persistent-care-actions .mobile-header-book,
+  body.has-persistent-care-actions .mobile-header-call{
+    display:none!important;
+  }
+  body.has-action-dock .header-cta,
   body.has-action-dock .header-cta a.wmc-book-appointment,
-  body.has-action-dock .header-cta a[data-hotdoc-button]{display:none!important}
+  body.has-action-dock .header-cta a[data-hotdoc-button],
+  body.has-action-dock .header-phone,
+  body.has-persistent-care-actions .header-cta,
+  body.has-persistent-care-actions .header-cta a.wmc-book-appointment,
+  body.has-persistent-care-actions .header-cta a[data-hotdoc-button],
+  body.has-persistent-care-actions .header-phone{
+    display:none!important;
+  }
 }
 @media(max-width:767px){
-  body.has-action-dock{padding-bottom:calc(88px + env(safe-area-inset-bottom))!important}
-  html:has(body.has-action-dock){scroll-padding-bottom:96px}
-  body.has-action-dock .mobile-header-actions{display:none!important}
+  body.has-action-dock{padding-bottom:var(--action-dock-clearance)!important}
+  html:has(body.has-action-dock){scroll-padding-bottom:var(--action-dock-clearance)}
   body.has-action-dock .persistent-care-actions{padding:6px 8px calc(6px + env(safe-area-inset-bottom))!important}
   body.has-action-dock .persistent-care-actions-inner{gap:6px!important;width:100%!important}
   body.has-action-dock .persistent-care-book,
@@ -8665,19 +9147,32 @@ body.has-action-dock .persistent-care-actions.has-restriction .persistent-care-a
   width:calc(42.55% - 18px)!important;
   max-width:calc(42.55% - 18px)!important;
 }
-.home-page #team .practitioner h3{font-size:22px!important}
+.home-page #team .practitioner h3{font-size:var(--fs-card-title)}
 .home-page #hotdoc-app .hotdoc-grid{
-  grid-template-columns:minmax(0,720px) 280px!important;
-  justify-content:start!important;
-  column-gap:40px!important;
+  grid-template-columns:minmax(0,1fr) minmax(360px,1.15fr)!important;
+  grid-template-areas:"intro visual" "benefits visual"!important;
+  justify-content:stretch!important;
+  column-gap:48px!important;
+  row-gap:18px!important;
+  align-items:start!important;
 }
 .home-page #hotdoc-app .hotdoc-intro,
 .home-page #hotdoc-app .hotdoc-benefit-panel{max-width:none!important}
+.home-page #hotdoc-app .hotdoc-visual{
+  max-width:none!important;
+  border-radius:20px!important;
+}
 .home-page #hotdoc-app .hotdoc-poster-visual{justify-content:flex-start!important}
-.home-page #hotdoc-app .hotdoc-poster-card{
+/* Portrait poster only — do not shrink the landscape day–night card. */
+.home-page #hotdoc-app .hotdoc-poster-card:not(.hotdoc-daynight-card){
   width:min(100%,280px)!important;
   border-radius:16px!important;
   box-shadow:none!important;
+}
+.home-page #hotdoc-app .hotdoc-daynight-card{
+  width:100%!important;
+  max-width:none!important;
+  border-radius:20px!important;
 }
 @media(max-width:1024px){
   .home-page #team #home-practitioner-track>.practitioner{
@@ -8707,8 +9202,13 @@ body.has-action-dock .persistent-care-actions.has-restriction .persistent-care-a
     width:86%!important;
     max-width:86%!important;
   }
-  .home-page #hotdoc-app .hotdoc-grid{grid-template-columns:1fr!important}
-  .home-page #hotdoc-app .hotdoc-poster-card{width:min(100%,220px)!important}
+  .home-page #hotdoc-app .hotdoc-grid{
+    grid-template-columns:1fr!important;
+    grid-template-areas:"intro" "visual" "benefits"!important;
+  }
+  .home-page #hotdoc-app .hotdoc-visual{max-width:100%!important}
+  .home-page #hotdoc-app .hotdoc-poster-card:not(.hotdoc-daynight-card){width:min(100%,220px)!important}
+  .home-page #hotdoc-app .hotdoc-daynight-card{width:100%!important}
 }
 
 /* Trust labels appear in the line under the hero. Repeated marks stay in the
@@ -8751,7 +9251,7 @@ main.kc-ux-shell:has(.kc-ux-article)>.page-main{order:4}
 }
 .kc-ux-shell .on-this-page-title{
   min-height:28px!important;
-  color:#8a97a1!important;
+  color:var(--ink-soft)!important;
   font-size:10px!important;
   letter-spacing:.08em!important;
 }
@@ -8780,7 +9280,7 @@ main.kc-ux-shell:has(.kc-ux-article)>.page-main{order:4}
 }
 .kc-ux-shell .page-nav .nav-title,
 .kc-ux-shell .knowledge-nav-group summary{
-  color:#8a97a1!important;
+  color:var(--ink-soft)!important;
   font-size:11px!important;
   letter-spacing:.06em!important;
 }
@@ -8830,36 +9330,69 @@ main.kc-ux-shell:has(.kc-ux-article)>.page-main{order:4}
    layout, update cards, the map flash, and the mobile care dock. */
 @media(min-width:1320px){
   header .header-inner>.brand .institution-logo-lockup{
-    width:440px!important;
-    max-width:440px!important;
+    width:400px!important;
+    max-width:400px!important;
     height:auto!important;
   }
 }
-.home-page #home .hero-actions-polished{display:none!important}
-.home-page #home>.hero-supporting-info{
-  position:absolute!important;
-  left:50%!important;
-  bottom:22px!important;
-  transform:translateX(-50%)!important;
+/* Trust bar sits under Book Appointment / Call Clinic and matches the
+   hero wording column width (h1 max-width), not the full shell. */
+.home-page #home .hero-copy{
+  padding-bottom:28px!important;
+  box-sizing:border-box!important;
+}
+.home-page #home .hero-copy>.hero-supporting-info{
+  position:relative!important;
+  left:auto!important;
+  bottom:auto!important;
+  transform:none!important;
   z-index:6!important;
-  width:min(calc(100% - 64px),980px)!important;
-  max-width:980px!important;
-  margin:0!important;
-  padding:14px 18px!important;
+  align-self:flex-start!important;
+  display:flex!important;
+  flex-direction:column!important;
+  gap:10px!important;
+  width:min(100%,590px)!important;
+  max-width:590px!important;
+  margin:14px 0 0!important;
+  padding:14px 16px!important;
   border-radius:16px!important;
   background:rgba(13,37,56,.72)!important;
   color:#fff!important;
+  box-shadow:none!important;
 }
-.home-page #home .hero-copy{
-  padding-bottom:168px!important;
-  box-sizing:border-box!important;
+.home-page #home .hero-copy>.hero-supporting-info .hero-trust-refined{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  align-items:center!important;
+  gap:8px 14px!important;
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
 }
-.home-page #home>.hero-supporting-info .hero-trust-text strong,
-.home-page #home>.hero-supporting-info .hero-hours-refined,
-.home-page #home>.hero-supporting-info .hero-hours-refined span,
-.home-page #home>.hero-supporting-info .hero-hours-refined>span strong,
-.home-page #home>.hero-supporting-info .hero-hours-refined>span em,
-.home-page #home>.hero-supporting-info .hero-hours-link{
+.home-page #home .hero-copy>.hero-supporting-info .hero-hours-refined{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  align-items:center!important;
+  gap:6px 12px!important;
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:8px 0 0!important;
+  border:0!important;
+  border-top:1px solid rgba(255,255,255,.22)!important;
+  border-left:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+}
+.home-page #home .hero-copy>.hero-supporting-info .hero-trust-text strong,
+.home-page #home .hero-copy>.hero-supporting-info .hero-hours-refined,
+.home-page #home .hero-copy>.hero-supporting-info .hero-hours-refined span,
+.home-page #home .hero-copy>.hero-supporting-info .hero-hours-refined>span strong,
+.home-page #home .hero-copy>.hero-supporting-info .hero-hours-refined>span em,
+.home-page #home .hero-copy>.hero-supporting-info .hero-hours-link{
   color:#fff!important;
 }
 .home-page .hero-trust-logo img{
@@ -8904,18 +9437,19 @@ main.kc-ux-shell:has(.kc-ux-article)>.page-main{order:4}
   gap:12px;
 }
 .home-page #patient-information .info-trust-logos img{
-  width:108px!important;
-  height:108px!important;
-  max-width:108px!important;
+  width:84px!important;
+  height:84px!important;
+  max-width:84px!important;
 }
 .home-page #patient-information .info-trust-logos img:first-child{
   object-fit:cover!important;
   object-position:left center!important;
 }
 .home-page #patient-information .after-hours-refined{
-  margin:0!important;
-  padding:0!important;
+  margin:18px 0 0!important;
+  padding:16px 0 0!important;
   border:0!important;
+  border-top:1px solid rgba(91,116,132,.22)!important;
   justify-content:flex-start;
   gap:10px 14px;
   flex-wrap:wrap;
@@ -9146,7 +9680,7 @@ a.portrait.practitioner-no-photo{
 .home-page .philosophy .eyebrow,
 .home-page .community-story .eyebrow{
   margin-bottom:12px!important;
-  color:#8a97a1!important;
+  color:var(--ink-soft)!important;
   font-size:10px!important;
   font-weight:500!important;
   letter-spacing:.14em!important;
@@ -9219,27 +9753,28 @@ a.portrait.practitioner-no-photo{
     text-shadow:none!important;
   }
   .home-page #home .hero-copy>p{color:#3d5160!important}
-  .home-page #home>.hero-supporting-info{
+  .home-page #home .hero-copy>.hero-supporting-info{
     position:relative!important;
     left:auto!important;
     bottom:auto!important;
     transform:none!important;
     display:grid!important;
     gap:12px!important;
-    width:min(calc(100% - 28px),var(--max))!important;
-    margin:8px auto 0!important;
+    width:min(100%,590px)!important;
+    max-width:590px!important;
+    margin:12px 0 0!important;
     padding:14px 12px 12px!important;
     border-radius:16px!important;
     background:#f4f7f8!important;
     color:#173044!important;
   }
-  .home-page #home>.hero-supporting-info .hero-trust-refined{
+  .home-page #home .hero-copy>.hero-supporting-info .hero-trust-refined{
     display:grid!important;
     grid-template-columns:repeat(3,minmax(0,1fr))!important;
     gap:8px!important;
     width:100%!important;
   }
-  .home-page #home>.hero-supporting-info .hero-trust-refined-item{
+  .home-page #home .hero-copy>.hero-supporting-info .hero-trust-refined-item{
     flex-direction:column!important;
     align-items:center!important;
     justify-content:flex-start!important;
@@ -9247,12 +9782,12 @@ a.portrait.practitioner-no-photo{
     min-width:0!important;
     text-align:center!important;
   }
-  .home-page #home>.hero-supporting-info .hero-trust-text strong{
+  .home-page #home .hero-copy>.hero-supporting-info .hero-trust-text strong{
     color:#173044!important;
     font-size:11px!important;
     line-height:1.25!important;
   }
-  .home-page #home>.hero-supporting-info .hero-hours-refined{
+  .home-page #home .hero-copy>.hero-supporting-info .hero-hours-refined{
     display:grid!important;
     grid-template-columns:1fr 1fr!important;
     gap:6px 14px!important;
@@ -9263,18 +9798,18 @@ a.portrait.practitioner-no-photo{
     border-left:0!important;
     color:#173044!important;
   }
-  .home-page #home>.hero-supporting-info .hero-hours-refined>span{
+  .home-page #home .hero-copy>.hero-supporting-info .hero-hours-refined>span{
     display:flex!important;
     justify-content:space-between!important;
     gap:8px!important;
     color:#173044!important;
   }
-  .home-page #home>.hero-supporting-info .hero-hours-refined>span strong,
-  .home-page #home>.hero-supporting-info .hero-hours-refined>span em,
-  .home-page #home>.hero-supporting-info .hero-hours-link{
+  .home-page #home .hero-copy>.hero-supporting-info .hero-hours-refined>span strong,
+  .home-page #home .hero-copy>.hero-supporting-info .hero-hours-refined>span em,
+  .home-page #home .hero-copy>.hero-supporting-info .hero-hours-link{
     color:#173044!important;
   }
-  .home-page #home>.hero-supporting-info .hero-hours-link{
+  .home-page #home .hero-copy>.hero-supporting-info .hero-hours-link{
     grid-column:1 / -1!important;
     justify-content:flex-end!important;
   }
@@ -9427,9 +9962,2231 @@ img[data-local-asset="agpal-mark"]{
 }
 .home-page #patient-information .info-trust-logos img[data-local-asset="agpal-mark"]{
   display:block!important;
-  width:108px!important;
-  height:108px!important;
+  width:84px!important;
+  height:84px!important;
   object-fit:contain!important;
   object-position:center!important;
   background:transparent!important;
+}
+
+/* Premium motion. One pass only: fade, an 8px rise, or a 2px hover lift.
+   No bounce, spin, pulse, or looping animation. The hero and faces stay still.
+   Knowledge Centre cards stay flat, as the reading audit required. */
+@keyframes wmc-section-rise{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+@keyframes wmc-step-in{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:no-preference){
+  .home-page main>section:not(#home){animation:wmc-section-rise .2s ease both}
+  .digital-reception-panel.is-open .digital-reception-journey>li{animation:wmc-step-in .18s ease both}
+  .digital-reception-panel.is-open .digital-reception-journey>li:nth-child(2){animation-delay:.08s}
+  .digital-reception-panel.is-open .digital-reception-journey>li:nth-child(3){animation-delay:.16s}
+  .digital-reception-panel.is-open .digital-reception-journey>li:nth-child(4){animation-delay:.24s}
+  .on-this-page a,
+  .kc-ux-shell .knowledge-nav-links a,
+  #primary-nav a{transition:color .18s ease,background-color .18s ease}
+}
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+  .home-page #team #home-practitioner-track>.practitioner{transition:transform .2s ease!important}
+  .home-page #team #home-practitioner-track>.practitioner:hover{transform:translateY(-2px)!important}
+  .practitioner:hover .portrait img,
+  .home-page #team #home-practitioner-track>.practitioner:hover .portrait img{transform:none!important}
+  .home-page .health-update-card{transition:transform .2s ease!important}
+  .home-page .health-update-card:hover{transform:translateY(-2px)!important}
+  .home-page .health-update-card:hover img{transform:none!important}
+}
+@media (prefers-reduced-motion:reduce){
+  .home-page main>section:not(#home),
+  .digital-reception-panel.is-open .digital-reception-journey>li{animation:none!important}
+  .home-page #team #home-practitioner-track>.practitioner,
+  .home-page #team #home-practitioner-track>.practitioner:hover,
+  .practitioner:hover .portrait img,
+  .home-page .health-update-card,
+  .home-page .health-update-card:hover,
+  .home-page .health-update-card:hover img{
+    transform:none!important;
+    transition:none!important;
+  }
+}
+
+/* Existing accreditation status, already published on the AGPAL page. */
+.home-page #home .hero-trust-refined-link[href="agpal-accreditation.html"] .hero-trust-text span{
+  display:block!important;
+  white-space:normal!important;
+  color:rgba(255,255,255,.88)!important;
+  font-size:11px!important;
+  line-height:1.3!important;
+  font-weight:500!important;
+}
+@media(max-width:767px){
+  .home-page #home .hero-trust-refined-link[href="agpal-accreditation.html"] .hero-trust-text span{
+    color:#3d5160!important;
+    font-size:10.5px!important;
+  }
+}
+
+
+/* Primary call actions share the white pill used beside Book Appointment. */
+.button.button-secondary,
+.service-cta-actions>a.text-link[href^="tel:"],
+.doctor-profile-actions>a[href^="tel:"]{
+  box-sizing:border-box!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-height:44px!important;
+  padding:0 18px!important;
+  border:1px solid #cfdae1!important;
+  border-radius:999px!important;
+  background:#fff!important;
+  color:var(--navy)!important;
+  font-family:"Inter",Arial,sans-serif!important;
+  font-size:12px!important;
+  font-weight:700!important;
+  line-height:1.25!important;
+  text-decoration:none!important;
+  box-shadow:none!important;
+  transform:none!important;
+}
+.button.button-secondary:hover,
+.service-cta-actions>a.text-link[href^="tel:"]:hover,
+.doctor-profile-actions>a[href^="tel:"]:hover{
+  background:#f7f9f8!important;
+  border-color:#cfdae1!important;
+  color:var(--navy)!important;
+  box-shadow:none!important;
+  transform:none!important;
+}
+
+/* Hero Book Appointment and Call Clinic must share one size.
+   Book was locked to the shared 46px booking pill; Call still used the
+   older 54px hero rule, so Call looked larger. */
+.home-page #home .hero-actions-polished>a.button,
+.home-page #home .hero-actions-polished>a.wmc-book-appointment,
+.home-page #home .hero-actions-polished>a.button-call-polished{
+  box-sizing:border-box!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-width:168px!important;
+  min-height:46px!important;
+  height:46px!important;
+  padding:0 18px!important;
+  font-size:12px!important;
+  font-weight:700!important;
+  line-height:1.25!important;
+  border-radius:999px!important;
+}
+
+/* =====================================================================
+   HOMEPAGE SCROLL ATMOSPHERES — Contact-style brand washes
+   Keeps photo hero, dark bands, layout and copy intact. Soft mint/slate/
+   teal gradients only on light content sections for scroll rhythm.
+   ===================================================================== */
+.home-page #team.team,
+.home-page #story.story,
+.home-page #new-patients-welcome.new-patient-welcome,
+.home-page #hotdoc-app.hotdoc-app,
+.home-page #patient-information.information,
+.home-page #practice-updates.latest-health-updates,
+.home-page #contact.contact,
+.home-page #healthcare-services.healthcare-services{
+  isolation:isolate;
+  background-color:var(--institutional-canvas,#FAFBFC)!important;
+  background-repeat:no-repeat!important;
+  background-size:140% 140%,130% 130%,120% 120%,100% 100%!important;
+  animation:home-atmosphere-drift 28s ease-in-out infinite alternate;
+}
+.home-page #team.team{
+  background-image:
+    radial-gradient(ellipse 70% 55% at 90% 8%, rgba(47,72,88,.11) 0%, transparent 55%),
+    radial-gradient(ellipse 72% 58% at 8% 85%, rgba(221,251,239,.9) 0%, transparent 58%),
+    radial-gradient(ellipse 48% 40% at 50% 40%, rgba(12,109,98,.08) 0%, transparent 55%),
+    linear-gradient(160deg,#FAFBFC 0%,#E8F1F0 48%,#DDFBEF 100%)!important;
+}
+.home-page #story.story{
+  background-image:
+    radial-gradient(ellipse 65% 50% at 12% 20%, rgba(221,251,239,.85) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 45% at 95% 70%, rgba(12,109,98,.10) 0%, transparent 52%),
+    radial-gradient(ellipse 40% 35% at 60% 0%, rgba(47,72,88,.06) 0%, transparent 50%),
+    linear-gradient(180deg,#FAFBFC 0%,#F4F9F8 55%,#FAFBFC 100%)!important;
+}
+.home-page #new-patients-welcome.new-patient-welcome{
+  background-image:
+    radial-gradient(ellipse 68% 58% at 100% 30%, rgba(12,109,98,.12) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 0% 80%, rgba(221,251,239,.95) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 40% at 40% 10%, rgba(46,139,87,.08) 0%, transparent 50%),
+    linear-gradient(168deg,#FAFBFC 0%,#DDFBEF 38%,#F3F8F7 100%)!important;
+}
+.home-page #healthcare-services.healthcare-services{
+  background-image:
+    radial-gradient(ellipse 75% 50% at 20% 0%, rgba(221,251,239,.7) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 45% at 90% 40%, rgba(47,72,88,.07) 0%, transparent 52%),
+    radial-gradient(ellipse 50% 35% at 50% 70%, rgba(12,109,98,.06) 0%, transparent 50%),
+    linear-gradient(180deg,#FAFBFC 0%,#F0F6F4 60%,#FAFBFC 100%)!important;
+}
+.home-page #hotdoc-app.hotdoc-app{
+  background-image:
+    radial-gradient(ellipse 70% 55% at 5% 40%, rgba(46,139,87,.10) 0%, transparent 55%),
+    radial-gradient(ellipse 65% 50% at 95% 15%, rgba(221,251,239,.9) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 70% 95%, rgba(12,109,98,.10) 0%, transparent 50%),
+    linear-gradient(155deg,#FAFBFC 0%,#E5F6EE 42%,#DDFBEF 100%)!important;
+}
+.home-page #patient-information.information{
+  background-image:
+    radial-gradient(ellipse 68% 58% at 15% 0%, rgba(221,251,239,.98) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 95% 55%, rgba(12,109,98,.12) 0%, transparent 52%),
+    radial-gradient(ellipse 48% 42% at 40% 100%, rgba(46,139,87,.09) 0%, transparent 50%),
+    linear-gradient(172deg,#FAFBFC 0%,#DDFBEF 34%,#F0F7F5 100%)!important;
+}
+.home-page #practice-updates.latest-health-updates{
+  background-image:
+    radial-gradient(ellipse 72% 58% at 8% 90%, rgba(12,109,98,.12) 0%, transparent 55%),
+    radial-gradient(ellipse 66% 52% at 88% 12%, rgba(47,72,88,.10) 0%, transparent 52%),
+    radial-gradient(ellipse 50% 40% at 50% 45%, rgba(221,251,239,.8) 0%, transparent 55%),
+    linear-gradient(145deg,#FAFBFC 0%,#EAF4F1 40%,#DDFBEF 100%)!important;
+}
+.home-page #contact.contact{
+  background-image:
+    radial-gradient(ellipse 80% 65% at 100% 0%, rgba(12,109,98,.16) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 55% at 0% 100%, rgba(221,251,239,.95) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 40% at 45% 25%, rgba(47,72,88,.07) 0%, transparent 50%),
+    linear-gradient(185deg,#DDFBEF 0%,#FAFBFC 42%,#E8F4F1 100%)!important;
+}
+/* Soften philosophy base toward brand mint without removing the exterior crop. */
+.home-page #philosophy.philosophy{
+  background:
+    radial-gradient(ellipse 55% 50% at 8% 30%, rgba(221,251,239,.55) 0%, transparent 55%),
+    linear-gradient(90deg,#F7F5F0 0%,#F2EEE6 55%,#EAF4F0 100%)!important;
+}
+@keyframes home-atmosphere-drift{
+  0%{background-position:0% 40%,100% 0%,50% 50%,50% 50%}
+  100%{background-position:14% 55%,86% 16%,45% 60%,50% 50%}
+}
+@media(prefers-reduced-motion:reduce){
+  .home-page #team.team,
+  .home-page #story.story,
+  .home-page #new-patients-welcome.new-patient-welcome,
+  .home-page #hotdoc-app.hotdoc-app,
+  .home-page #patient-information.information,
+  .home-page #practice-updates.latest-health-updates,
+  .home-page #contact.contact,
+  .home-page #healthcare-services.healthcare-services{
+    animation:none!important;
+  }
+}
+
+/* Shared premium surfaces.
+   Glass blur is 16px. Light rims are white at .72. Nested lines are ink at .08.
+   Wells are ink at .16. Radii for these surfaces are 12px.
+   Elevation: card 8/20, bar 12/28, overlay 24/48. Shadow colour is the ink. */
+:root{
+  --surface-blur:blur(16px) saturate(1.2);
+  --surface-rim:rgba(255,255,255,.72);
+  --surface-line:rgba(23,48,68,.08);
+  --surface-well:rgba(23,48,68,.16);
+  --surface-highlight:rgba(255,255,255,.92);
+  --elevate-card:0 8px 20px rgba(23,48,68,.06);
+  --elevate-bar:0 12px 28px rgba(23,48,68,.1);
+  --elevate-overlay:0 24px 48px rgba(23,48,68,.16);
+  --elevate-control:0 8px 16px rgba(23,48,68,.1);
+  --radius-surface:var(--radius-md);
+  --action-dock-gap:32px;
+  --action-dock-height:72px;
+  --action-dock-clearance:calc(var(--action-dock-height) + var(--action-dock-gap));
+}
+
+/* Homepage premium glass trust bar.
+   The AGPAL strip and the trust-badge row only. Hero copy, CTAs, hours
+   type, spacing, and section order stay. No motion. */
+.home-page #home .hero-copy>.hero-supporting-info{
+  border:1px solid var(--surface-rim)!important;
+  background:rgba(13,37,56,.64)!important;
+  -webkit-backdrop-filter:var(--surface-blur)!important;
+  backdrop-filter:var(--surface-blur)!important;
+  box-shadow:
+    var(--elevate-bar),
+    inset 0 1px 0 rgba(255,255,255,.32)!important;
+}
+.home-page #home .hero-copy>.hero-supporting-info .hero-trust-refined{
+  border-radius:var(--radius-surface)!important;
+  background:rgba(255,255,255,.08)!important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.2)!important;
+}
+@media(max-width:767px){
+  .home-page #home .hero-copy>.hero-supporting-info{
+    border:1px solid var(--surface-line)!important;
+    background:rgba(255,255,255,.82)!important;
+    -webkit-backdrop-filter:var(--surface-blur)!important;
+    backdrop-filter:var(--surface-blur)!important;
+    box-shadow:
+      var(--elevate-bar),
+      inset 0 1px 0 var(--surface-highlight)!important;
+  }
+  .home-page #home .hero-copy>.hero-supporting-info .hero-trust-refined{
+    border-radius:var(--radius-surface)!important;
+    background:rgba(255,255,255,.62)!important;
+    box-shadow:inset 0 0 0 1px var(--surface-line)!important;
+  }
+  .home-page #home .hero-copy>.hero-supporting-info a:focus-visible{
+    outline:3px solid #173044!important;
+    outline-offset:3px!important;
+  }
+}
+@media(prefers-reduced-transparency:reduce){
+  .home-page #home .hero-copy>.hero-supporting-info{
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+    background:rgba(13,37,56,.94)!important;
+  }
+  .home-page #home .hero-copy>.hero-supporting-info .hero-trust-refined{
+    background:rgba(255,255,255,.06)!important;
+  }
+}
+@media(max-width:767px) and (prefers-reduced-transparency:reduce){
+  .home-page #home .hero-copy>.hero-supporting-info{
+    background:#f4f7f8!important;
+  }
+  .home-page #home .hero-copy>.hero-supporting-info .hero-trust-refined{
+    background:rgba(255,255,255,.9)!important;
+  }
+}
+
+/* Premium glass booking dock.
+   The sticky bar and the mobile header booking controls only.
+   Labels, destinations, sizes, and button fills stay. */
+body.has-action-dock .persistent-care-actions{
+  border:0!important;
+  border-top:1px solid var(--surface-rim)!important;
+  background:rgba(255,255,255,.78)!important;
+  -webkit-backdrop-filter:var(--surface-blur)!important;
+  backdrop-filter:var(--surface-blur)!important;
+  box-shadow:
+    0 -12px 28px rgba(23,48,68,.1),
+    inset 0 1px 0 var(--surface-highlight),
+    inset 0 -1px 0 rgba(23,48,68,.06)!important;
+}
+@media(max-width:1024px){
+  .mobile-header-call{
+    border:1px solid var(--surface-line)!important;
+    background:rgba(234,243,248,.78)!important;
+    -webkit-backdrop-filter:var(--surface-blur)!important;
+    backdrop-filter:var(--surface-blur)!important;
+    box-shadow:
+      var(--elevate-control),
+      inset 0 1px 0 var(--surface-highlight)!important;
+  }
+  .mobile-header-book{
+    border-color:rgba(255,255,255,.24)!important;
+    box-shadow:
+      var(--elevate-control),
+      inset 0 1px 0 rgba(255,255,255,.24)!important;
+  }
+}
+@media(prefers-reduced-transparency:reduce){
+  body.has-action-dock .persistent-care-actions{
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+    background:#fff!important;
+  }
+  .mobile-header-call{
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+    background:#eaf3f8!important;
+  }
+}
+
+/* Premium Digital Reception glass.
+   Panel, search tray, recommendation cards, and guided steps only.
+   Search, matching, booking actions, and emergency pathways stay. */
+.digital-reception-panel{
+  border:1px solid var(--surface-rim)!important;
+  background:rgba(248,251,252,.9)!important;
+  -webkit-backdrop-filter:var(--surface-blur)!important;
+  backdrop-filter:var(--surface-blur)!important;
+  box-shadow:
+    var(--elevate-overlay),
+    inset 0 1px 0 var(--surface-highlight)!important;
+}
+.digital-reception-head{
+  border-bottom:1px solid var(--surface-line)!important;
+  background:rgba(255,255,255,.35)!important;
+}
+.digital-reception-search-row{
+  gap:8px!important;
+  padding:0!important;
+  border:1px solid var(--surface-rim)!important;
+  border-radius:var(--radius-surface)!important;
+  background:rgba(255,255,255,.62)!important;
+  box-shadow:
+    var(--elevate-card),
+    inset 0 1px 0 var(--surface-highlight)!important;
+}
+.digital-reception-results{
+  gap:12px!important;
+  margin-top:18px!important;
+}
+.digital-reception-result,
+.digital-reception-journey>li,
+.digital-reception-more{
+  padding:15px 16px!important;
+  border:1px solid var(--surface-line)!important;
+  border-radius:var(--radius-surface)!important;
+  background:rgba(255,255,255,.74)!important;
+  box-shadow:
+    var(--elevate-card),
+    inset 0 1px 0 var(--surface-highlight)!important;
+}
+.digital-reception-result:hover{
+  border-color:rgba(23,74,112,.28)!important;
+  background:rgba(255,255,255,.94)!important;
+}
+.digital-reception-journey{
+  gap:12px!important;
+  margin-top:18px!important;
+}
+.digital-reception-journey>li .digital-reception-practitioner{
+  margin-top:6px!important;
+  padding:12px!important;
+  border:1px solid var(--surface-line)!important;
+  border-radius:var(--radius-surface)!important;
+  background:rgba(255,255,255,.7)!important;
+  box-shadow:inset 0 1px 0 var(--surface-highlight)!important;
+}
+.digital-reception-journey>li .digital-reception-practitioner+.digital-reception-practitioner{
+  margin-top:8px!important;
+  padding-top:12px!important;
+  border-top:1px solid var(--surface-line)!important;
+}
+.digital-reception-emergency{
+  padding:15px 16px!important;
+  border:1px solid var(--surface-well)!important;
+  border-left:3px solid #174a70!important;
+  border-radius:var(--radius-surface)!important;
+  background:rgba(255,255,255,.94)!important;
+  box-shadow:var(--elevate-card)!important;
+}
+.digital-reception-journey-book,
+.digital-reception-journey a.digital-reception-journey-book,
+.digital-reception-actions a:first-child,
+.digital-reception-care-options li .digital-reception-care-book{
+  background:#174a70!important;
+  color:#fff!important;
+  border-color:#174a70!important;
+}
+@media(prefers-reduced-transparency:reduce){
+  .digital-reception-panel,
+  .digital-reception-search-row,
+  .digital-reception-result,
+  .digital-reception-journey>li,
+  .digital-reception-more,
+  .digital-reception-journey>li .digital-reception-practitioner,
+  .digital-reception-emergency{
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+    background:#fff!important;
+  }
+}
+@media(forced-colors:active){
+  .digital-reception-panel,
+  .digital-reception-result,
+  .digital-reception-journey>li,
+  .digital-reception-emergency,
+  .digital-reception-more{
+    border:2px solid CanvasText!important;
+    background:Canvas!important;
+    box-shadow:none!important;
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+  }
+}
+
+/* Homepage practitioner cards use the shared card surface.
+   Radius, elevation, and hairline only. No blur. The 2px hover lift stays. */
+.home-page #team #home-practitioner-track{
+  padding-top:16px!important;
+  padding-bottom:10px!important;
+}
+.home-page #team #home-practitioner-track>.practitioner .portrait{
+  border:1px solid var(--surface-line)!important;
+  border-radius:var(--radius-surface)!important;
+  background:#edf3f4!important;
+  box-shadow:
+    var(--elevate-card),
+    inset 0 1px 0 var(--surface-highlight)!important;
+}
+@media(forced-colors:active){
+  .home-page #team #home-practitioner-track>.practitioner .portrait{
+    border:1px solid CanvasText!important;
+    box-shadow:none!important;
+  }
+}
+
+/* Premium search surfaces.
+   Knowledge Centre guide field and Digital Reception field only.
+   Search, ranking, and the index stay. */
+.knowledge-guide-search input,
+.digital-reception-input{
+  border:1px solid var(--surface-well)!important;
+  border-radius:var(--radius-surface)!important;
+  background:#f4f8f9!important;
+  color:#173044!important;
+  box-shadow:
+    inset 0 1px 2px rgba(23,48,68,.1),
+    inset 0 0 0 1px var(--surface-rim)!important;
+}
+.knowledge-guide-search input::placeholder,
+.digital-reception-input::placeholder{
+  color:#526774!important;
+  opacity:1!important;
+}
+.knowledge-guide-search input:focus,
+.digital-reception-input:focus{
+  border-color:#174a70!important;
+  background:#fff!important;
+}
+.knowledge-guide-search input:focus-visible,
+.digital-reception-input:focus-visible{
+  outline:3px solid #174f75!important;
+  outline-offset:3px!important;
+  border-color:#174a70!important;
+  background:#fff!important;
+  box-shadow:
+    inset 0 1px 2px rgba(23,48,68,.05),
+    0 0 0 2px #fff!important;
+}
+@media(forced-colors:active){
+  .knowledge-guide-search input,
+  .digital-reception-input{
+    border:1px solid CanvasText!important;
+    background:Field!important;
+    color:FieldText!important;
+    box-shadow:none!important;
+  }
+  .knowledge-guide-search input:focus,
+  .knowledge-guide-search input:focus-visible,
+  .digital-reception-input:focus,
+  .digital-reception-input:focus-visible{
+    outline:3px solid Highlight!important;
+    outline-offset:3px!important;
+    background:Field!important;
+    color:FieldText!important;
+    box-shadow:none!important;
+  }
+}
+
+/* Dock safe area.
+   Clearance is the measured dock height plus a 32px gap.
+   Page padding, anchor scrolling, and focus scrolling use that value
+   so the last line of a page can sit above the bar. */
+body.has-action-dock{
+  padding-bottom:var(--action-dock-clearance)!important;
+}
+html:has(body.has-action-dock){
+  scroll-padding-bottom:var(--action-dock-clearance);
+}
+body.has-action-dock :where(
+  main a,
+  main button,
+  footer a,
+  .critical-action-band,
+  .doctor-profile-actions,
+  .doctor-profile-photo,
+  .hotdoc-poster-card,
+  .hotdoc-store-actions,
+  .institutional-editorial-visual,
+  .knowledge-category-card,
+  .knowledge-article-card,
+  .on-this-page a,
+  .service-directory-row,
+  .breadcrumb-bar
+){
+  scroll-margin-bottom:var(--action-dock-clearance);
+}
+@media(min-width:1025px){
+  body.has-action-dock .page-layout>aside.page-nav,
+  body.has-action-dock .page-layout>.page-nav{
+    max-height:calc(100dvh - 168px - var(--action-dock-clearance))!important;
+  }
+  body.has-action-dock.practitioner-profile-page .doctor-profile-photo{
+    max-height:calc(100dvh - var(--action-dock-clearance) - 260px)!important;
+    align-self:start!important;
+  }
+  body.has-action-dock.practitioner-profile-page .doctor-profile-photo img{
+    object-position:center 18%!important;
+  }
+}
+@media(max-width:767px){
+  body.has-action-dock.practitioner-profile-page .doctor-profile-photo{
+    width:min(176px, 52vw)!important;
+    max-height:220px!important;
+  }
+}
+@media(max-height:820px){
+  body.has-action-dock:not(.home-page) .page-hero{
+    padding-top:var(--space-6);
+    padding-bottom:var(--space-5);
+  }
+}
+body.has-action-dock.home-page #hotdoc-app .hotdoc-daynight-card{
+  width:min(100%, calc((100svh - var(--action-dock-clearance) - 220px) * 16 / 9))!important;
+  max-height:calc(100svh - var(--action-dock-clearance) - 220px)!important;
+  margin-inline:auto;
+}
+body.has-action-dock .institutional-editorial-visual img{
+  width:auto;
+  max-width:100%;
+  max-height:calc(100svh - var(--action-dock-clearance) - 180px);
+  margin-inline:auto;
+}
+
+/* Team cards and Knowledge Centre topic cards share one surface.
+   Radius is 12px, elevation is the card shadow, and the edge is the hairline.
+   Topic washes stay. No blur is added. */
+.team-grid .portrait,
+.team-directory-grid .portrait,
+.practitioner-text-visual,
+.team-authority-subpage .gp-discovery-card{
+  border:1px solid var(--surface-line)!important;
+  border-radius:var(--radius-surface)!important;
+  box-shadow:
+    var(--elevate-card),
+    inset 0 1px 0 var(--surface-highlight)!important;
+}
+.team-authority-subpage .gp-discovery-card .team-authority-photo{
+  border-radius:var(--radius-surface)!important;
+}
+.knowledge-category-card,
+.kc-ux-shell .knowledge-category-card,
+.kc-ux-shell .knowledge-category-card:hover,
+.kc-ux-hub .knowledge-category-grid>.knowledge-category-card:nth-child(n){
+  border:1px solid var(--surface-line)!important;
+  border-radius:var(--radius-surface)!important;
+  box-shadow:
+    var(--elevate-card),
+    inset 0 1px 0 var(--surface-highlight)!important;
+}
+@media(forced-colors:active){
+  .team-grid .portrait,
+  .team-directory-grid .portrait,
+  .home-page #team #home-practitioner-track>.practitioner .portrait,
+  .practitioner-text-visual,
+  .team-authority-subpage .gp-discovery-card,
+  .knowledge-category-card{
+    border:1px solid CanvasText!important;
+    box-shadow:none!important;
+  }
+}
+
+/* Homepage HotDoc benefits, patient-information rows, trust marks, and the booking dock.
+   Each control eases on hover. Destinations, labels, and layout stay. */
+.hotdoc-benefits li,
+.home-page #hotdoc-app .hotdoc-benefits li{padding:0!important}
+.hotdoc-benefits li::before{top:50%!important;margin-top:-3px}
+.hotdoc-benefits a{
+  display:flex;
+  align-items:center;
+  min-height:44px;
+  padding:12px 10px 12px 22px;
+  border-radius:8px;
+  color:#596b78;
+  text-decoration:none;
+  transition:color .22s ease,background-color .22s ease,transform .22s ease;
+}
+.hotdoc-benefits a:hover,
+.hotdoc-benefits a:focus-visible{
+  color:#173044;
+  background:rgba(255,255,255,.7);
+  transform:translateX(4px);
+}
+.home-page #patient-information .information-list a,
+.information-list a{
+  transition:padding-left .22s ease,color .22s ease,background-color .22s ease!important;
+}
+.home-page #patient-information .information-list a span:last-child{
+  display:inline-block;
+  transition:transform .22s ease;
+}
+.home-page #patient-information .information-list a:hover,
+.home-page #patient-information .information-list a:focus-visible{
+  padding-left:8px!important;
+  color:#244f6f!important;
+  background:rgba(255,255,255,.55);
+}
+.home-page #patient-information .information-list a:hover span:last-child,
+.home-page #patient-information .information-list a:focus-visible span:last-child{
+  transform:translateX(5px);
+}
+.home-page #patient-information .info-trust-logos a{
+  display:block;
+  line-height:0;
+  border-radius:10px;
+  transition:transform .22s ease,box-shadow .22s ease;
+}
+.home-page #patient-information .info-trust-logos a:hover,
+.home-page #patient-information .info-trust-logos a:focus-visible{
+  transform:translateY(-3px);
+  box-shadow:0 10px 18px rgba(23,48,68,.12);
+}
+body.has-action-dock .persistent-care-book,
+body.has-action-dock .persistent-care-call,
+body.has-action-dock .digital-reception-launcher{
+  transition:transform .2s ease,background-color .2s ease,border-color .2s ease,box-shadow .2s ease!important;
+}
+body.has-action-dock a.persistent-care-book[data-hotdoc-button]:hover,
+body.has-action-dock a.persistent-care-book[data-hotdoc-button]:focus-visible,
+body.has-action-dock .persistent-care-call:hover,
+body.has-action-dock .persistent-care-call:focus-visible,
+body.has-action-dock .digital-reception-launcher:hover,
+body.has-action-dock .digital-reception-launcher:focus-visible{
+  transform:translateY(-2px)!important;
+}
+body.has-action-dock .persistent-care-call:hover,
+body.has-action-dock .persistent-care-call:focus-visible,
+body.has-action-dock .digital-reception-launcher:hover,
+body.has-action-dock .digital-reception-launcher:focus-visible{
+  border-color:#8ca5b5!important;
+  box-shadow:0 8px 16px rgba(23,48,68,.12)!important;
+}
+@media(prefers-reduced-motion:reduce){
+  .hotdoc-benefits a,
+  .home-page #patient-information .information-list a,
+  .home-page #patient-information .information-list a span:last-child,
+  .home-page #patient-information .info-trust-logos a,
+  body.has-action-dock .persistent-care-book,
+  body.has-action-dock .persistent-care-call,
+  body.has-action-dock .digital-reception-launcher{
+    transition:none!important;
+  }
+  .hotdoc-benefits a:hover,
+  .hotdoc-benefits a:focus-visible,
+  .home-page #patient-information .information-list a:hover span:last-child,
+  .home-page #patient-information .info-trust-logos a:hover,
+  .home-page #patient-information .info-trust-logos a:focus-visible,
+  body.has-action-dock a.persistent-care-book[data-hotdoc-button]:hover,
+  body.has-action-dock .persistent-care-call:hover,
+  body.has-action-dock .digital-reception-launcher:hover{
+    transform:none!important;
+  }
+}
+
+/* Header Find Information strip removed from markup.
+   Keep rules inert / hidden if any legacy fragment remains. */
+header .patient-tasks,
+#primary-nav > .patient-tasks{
+  display:none!important;
+}
+.patient-tasks{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:2px 12px;
+}
+.patient-tasks-label{
+  color:#0c6d62;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.08em;
+  line-height:1.3;
+  text-transform:uppercase;
+}
+@media (min-width:768px){
+  .institution-navigation-row>#primary-nav{
+    flex-wrap:wrap!important;
+    align-items:center!important;
+    row-gap:0!important;
+  }
+  header .institution-navigation-row>#primary-nav>.patient-tasks{
+    display:flex!important;
+    flex:1 0 100%!important;
+    flex-wrap:wrap!important;
+    align-items:center!important;
+    gap:8px 8px!important;
+    margin:0!important;
+    padding:9px 0 8px!important;
+    border-bottom:1px solid #e3ece9!important;
+    background:transparent!important;
+  }
+  #primary-nav>.patient-tasks>.patient-tasks-label{
+    flex:0 0 auto;
+    margin:0 4px 0 0;
+    padding:0;
+    color:#0c6d62;
+    font-size:10.5px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+  #primary-nav>.patient-tasks>a{
+    display:inline-flex!important;
+    align-items:center!important;
+    min-height:32px!important;
+    padding:5px 12px!important;
+    border:1px solid #c5ddd7!important;
+    border-radius:999px!important;
+    background:#f3faf8!important;
+    color:#0c6d62!important;
+    font-size:12px!important;
+    font-weight:650!important;
+    line-height:1.2!important;
+    white-space:nowrap!important;
+    text-decoration:none!important;
+  }
+  #primary-nav>.patient-tasks>a:hover,
+  #primary-nav>.patient-tasks>a:focus-visible{
+    border-color:#0c6d62!important;
+    background:#e6f4f0!important;
+    color:#085549!important;
+  }
+  #primary-nav>.patient-tasks>a:focus-visible{
+    outline:3px solid #174f75!important;
+    outline-offset:2px!important;
+  }
+  #primary-nav>.patient-tasks>a[aria-current="page"]{
+    border-color:#0c6d62!important;
+    background:#0c6d62!important;
+    color:#fff!important;
+    font-weight:700!important;
+  }
+  html{scroll-padding-top:214px}
+}
+@media (min-width:768px) and (max-width:1199px){
+  #primary-nav>.patient-tasks>a{
+    padding:5px 10px!important;
+    font-size:11.5px!important;
+  }
+}
+@media (max-width:767px){
+  #primary-nav>.patient-tasks{
+    display:grid!important;
+    grid-template-columns:1fr 1fr;
+    gap:6px;
+    margin:0 0 10px;
+    padding:8px 8px 12px;
+    border:1px solid #d5e8e3;
+    border-radius:14px;
+    background:#f3faf8;
+  }
+  #primary-nav>.patient-tasks>.patient-tasks-label{
+    grid-column:1 / -1;
+    padding:2px 4px 4px;
+    color:#0c6d62;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+  #primary-nav>.patient-tasks>a{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    min-height:48px!important;
+    padding:8px 10px!important;
+    border:1px solid #c5ddd7!important;
+    border-bottom:1px solid #c5ddd7!important;
+    border-radius:10px!important;
+    background:#fff!important;
+    color:#0c6d62!important;
+    font-size:13.5px!important;
+    font-weight:650!important;
+    line-height:1.3!important;
+    text-align:center!important;
+    text-decoration:none!important;
+  }
+  #primary-nav>.patient-tasks>a:focus-visible{
+    outline:3px solid #174f75!important;
+    outline-offset:2px!important;
+  }
+  #primary-nav>.patient-tasks>a[aria-current="page"]{
+    background:#0c6d62!important;
+    border-color:#0c6d62!important;
+    color:#fff!important;
+    font-weight:700!important;
+  }
+  #primary-nav.open>a{
+    border-bottom-color:#edf1f3!important;
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  #primary-nav>.patient-tasks>a{
+    transition:none!important;
+  }
+}
+@media (forced-colors:active){
+  #primary-nav>.patient-tasks>a{
+    border:1px solid CanvasText!important;
+  }
+  #primary-nav>.patient-tasks>a[aria-current="page"]{
+    outline:2px solid CanvasText;
+  }
+}
+
+/* Digital Reception: primary assistance cue in the care dock.
+   Book = navy CTA · Call = outline · Digital Reception = teal assist. */
+body.has-action-dock .digital-reception-launcher{
+  background:#0c6d62!important;
+  border:1px solid #0c6d62!important;
+  color:#fff!important;
+  font-weight:700!important;
+  box-shadow:0 6px 16px rgba(12,109,98,.22)!important;
+}
+body.has-action-dock .digital-reception-launcher:hover,
+body.has-action-dock .digital-reception-launcher:focus-visible{
+  background:#085549!important;
+  border-color:#085549!important;
+  color:#fff!important;
+  box-shadow:0 8px 18px rgba(12,109,98,.28)!important;
+}
+body.has-action-dock .persistent-care-call:hover,
+body.has-action-dock .persistent-care-call:focus-visible{
+  border-color:#8ca5b5!important;
+  box-shadow:0 8px 16px rgba(23,48,68,.12)!important;
+}
+
+/* Patient Information hub: common tasks on the first screen.
+   The full sidebar and page list stay in place. */
+.patient-hub-hero{padding-top:56px!important;padding-bottom:16px!important}
+.patient-hub-tasks{
+  padding:4px 0 34px;
+  background:linear-gradient(180deg,#f3faf8 0%,#fafbfc 72%);
+  border-bottom:1px solid #d5e8e3;
+}
+.patient-hub-tasks h2{
+  margin:0 0 6px;
+  color:#173044;
+  font-size:26px;
+  line-height:1.25;
+}
+.patient-hub-tasks h2::before{
+  content:"Find Information";
+  display:block;
+  margin:0 0 6px;
+  color:#0c6d62;
+  font-family:"Inter",sans-serif;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.08em;
+  line-height:1.3;
+  text-transform:uppercase;
+}
+.patient-hub-tasks>.shell>p{
+  margin:0 0 16px;
+  max-width:640px;
+  color:#596b78;
+  font-size:15.5px;
+  line-height:1.5;
+}
+.patient-hub-task-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+.patient-hub-task-grid a{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:4px;
+  min-height:92px;
+  padding:16px 18px;
+  border:1px solid #d5e0e6;
+  border-radius:14px;
+  background:#fff;
+  color:#173044;
+  text-decoration:none;
+}
+.patient-hub-task-grid a strong{
+  font-size:16px;
+  font-weight:700;
+  line-height:1.3;
+}
+.patient-hub-task-grid a span{
+  color:#596b78;
+  font-size:13.5px;
+  line-height:1.4;
+}
+.patient-hub-task-grid a:hover{
+  border-color:#0c6d62;
+  background:#f4faf8;
+}
+.patient-hub-task-grid a:focus-visible{
+  outline:3px solid #174f75;
+  outline-offset:3px;
+}
+@media (max-width:900px){
+  .patient-hub-task-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){
+  .patient-hub-hero{padding-top:28px!important;padding-bottom:12px!important}
+  .patient-hub-tasks{padding-bottom:16px}
+  .patient-hub-tasks h2{font-size:22px}
+  .patient-hub-tasks>.shell>p{margin-bottom:10px}
+  .patient-hub-task-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .patient-hub-task-grid a{min-height:76px;padding:12px 12px}
+}
+@media (prefers-reduced-motion:reduce){
+  .patient-hub-task-grid a{transition:none}
+}
+@media (forced-colors:active){
+  .patient-hub-task-grid a{border:1px solid CanvasText}
+}
+
+/* Short cross-links between duplicate topic pages. No new URLs. */
+.topic-wayfinding{
+  background:#fff;
+  border-bottom:1px solid #e5e7eb;
+}
+.topic-wayfinding .shell{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:4px 22px;
+  min-height:52px;
+  padding-top:4px;
+  padding-bottom:4px;
+}
+.topic-wayfinding a{
+  display:inline-flex;
+  align-items:center;
+  min-height:44px;
+  color:#0c6d62;
+  font-size:15px;
+  font-weight:650;
+  line-height:1.35;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.topic-wayfinding a:hover{color:#174a70}
+.topic-wayfinding a:focus-visible{
+  outline:3px solid #174f75;
+  outline-offset:3px;
+  border-radius:4px;
+}
+@media (prefers-reduced-motion:reduce){
+  .topic-wayfinding a{transition:none}
+}
+@media (forced-colors:active){
+  .topic-wayfinding a{color:LinkText}
+}
+
+/* Practitioner care rows share one baseline, including links without service-title-link. */
+.practitioner-profile-page #areas-of-care .service-care-list,
+.practitioner-profile-page #professional-interests .service-care-list{
+  align-items:center!important;
+  padding-left:0!important;
+}
+.practitioner-profile-page #areas-of-care .service-care-list li.service-care-pair,
+.practitioner-profile-page #professional-interests .service-care-list li.service-care-pair{
+  gap:18px!important;
+  flex-wrap:wrap!important;
+  max-width:100%!important;
+}
+.practitioner-profile-page #areas-of-care .service-care-list li.service-care-pair>a,
+.practitioner-profile-page #professional-interests .service-care-list li.service-care-pair>a{
+  flex:0 0 auto!important;
+  white-space:nowrap!important;
+}
+.practitioner-profile-page #areas-of-care .service-care-list li,
+.practitioner-profile-page #professional-interests .service-care-list li{
+  display:flex!important;
+  align-items:center!important;
+  margin:0!important;
+}
+.practitioner-profile-page #areas-of-care .service-care-list li>a,
+.practitioner-profile-page #professional-interests .service-care-list li>a{
+  display:inline-flex!important;
+  align-items:center!important;
+  min-height:40px!important;
+  padding:3px 0!important;
+  color:inherit;
+  text-decoration:none!important;
+  border-bottom:1px solid rgba(49,95,131,.24);
+}
+.practitioner-profile-page #areas-of-care .service-care-list li>a:hover,
+.practitioner-profile-page #professional-interests .service-care-list li>a:hover{
+  color:#315f83;
+  border-bottom-color:#315f83;
+}
+@media(max-width:700px){
+  .practitioner-profile-page #areas-of-care .service-care-list li>a,
+  .practitioner-profile-page #professional-interests .service-care-list li>a{
+    min-height:44px!important;
+  }
+}
+
+/* Pull the page body up toward the breadcrumb on interior pages. */
+.page-main{padding-top:18px!important}
+.page-nav .nav-title{padding-top:4px!important}
+
+/* Mobile trust marks: the 28px boxes were too small above the labels. */
+@media(max-width:767px){
+  .home-page #home>.hero-supporting-info .hero-trust-logo-agpal,
+  .home-page #home>.hero-supporting-info .hero-trust-logo-bulk,
+  .home-page #home>.hero-supporting-info .hero-trust-clock,
+  .home-page #home .hero-copy>.hero-supporting-info .hero-trust-logo-agpal,
+  .home-page #home .hero-copy>.hero-supporting-info .hero-trust-logo-bulk,
+  .home-page #home .hero-copy>.hero-supporting-info .hero-trust-clock{
+    width:52px!important;
+    height:52px!important;
+    flex:0 0 52px!important;
+    padding:5px!important;
+  }
+  .home-page #home>.hero-supporting-info .hero-trust-clock svg,
+  .home-page #home .hero-copy>.hero-supporting-info .hero-trust-clock svg{
+    width:28px!important;
+    height:28px!important;
+  }
+}
+
+/* Intelligent service booking pathways */
+.service-intelligent-booking{
+  display:grid;
+  gap:22px;
+  margin-top:22px;
+}
+.service-booking-kicker{
+  margin:0 0 10px;
+  color:#315f83;
+  font-size:12.5px;
+  font-weight:700;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.service-lead-booking .service-cta-actions,
+.service-clinic-booking .service-cta-actions{
+  margin-top:0;
+  flex-wrap:wrap;
+}
+.service-lead-booking .practitioner-booking-notice{
+  margin-top:12px!important;
+  max-width:42rem;
+}
+@media(max-width:700px){
+  .service-intelligent-booking{gap:18px}
+  .service-lead-booking .service-cta-actions,
+  .service-clinic-booking .service-cta-actions{width:100%}
+}
+
+/* Homepage patient-information shortcuts: elevate common tasks
+   without changing the section architecture or link order. */
+.home-page #patient-information .information-list a[href$="new-patients.html"],
+.home-page #patient-information .information-list a[href$="repeat-scripts.html"],
+.home-page #patient-information .information-list a[href$="test-results.html"],
+.home-page #patient-information .information-list a[href$="referrals.html"]{
+  border-color:#c5ddd7;
+  background:#f3faf8;
+}
+.home-page #patient-information .information-list a[href$="new-patients.html"]:hover,
+.home-page #patient-information .information-list a[href$="repeat-scripts.html"]:hover,
+.home-page #patient-information .information-list a[href$="test-results.html"]:hover,
+.home-page #patient-information .information-list a[href$="referrals.html"]:hover,
+.home-page #patient-information .information-list a[href$="new-patients.html"]:focus-visible,
+.home-page #patient-information .information-list a[href$="repeat-scripts.html"]:focus-visible,
+.home-page #patient-information .information-list a[href$="test-results.html"]:focus-visible,
+.home-page #patient-information .information-list a[href$="referrals.html"]:focus-visible{
+  border-color:#0c6d62;
+  background:#e6f4f0;
+}
+
+/* =====================================================================
+   4B — Mobile CTA hierarchy
+   Book = primary labelled action · Call + Digital Reception = icon-only
+   dock controls (aria-label retained). Desktop dock unchanged.
+   ===================================================================== */
+body.has-action-dock .persistent-care-call{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  --wmc-icon:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='M8 4.5h2.2l1.2 3-1.6 1a11 11 0 0 0 5.5 5.5l1-1.6 3 1.2V16a2 2 0 0 1-2.2 2A14.5 14.5 0 0 1 6 7.7 2 2 0 0 1 8 4.5z'/%3E%3C/svg%3E");
+}
+body.has-action-dock .persistent-care-call::before{
+  content:"";
+  display:inline-block;
+  flex:0 0 auto;
+  width:16px;
+  height:16px;
+  background:currentColor;
+  -webkit-mask:var(--wmc-icon) center/contain no-repeat;
+  mask:var(--wmc-icon) center/contain no-repeat;
+}
+
+@media (max-width:767px){
+  /* Dock: one labelled primary + two icon assists */
+  body.has-action-dock .persistent-care-actions{
+    padding:8px 12px calc(8px + env(safe-area-inset-bottom))!important;
+  }
+  body.has-action-dock .persistent-care-actions-inner{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) 48px 48px!important;
+    gap:8px!important;
+    width:100%!important;
+    max-width:none!important;
+    align-items:center!important;
+    justify-content:stretch!important;
+  }
+  body.has-action-dock .persistent-care-restriction{
+    grid-column:1 / -1!important;
+    flex:none!important;
+    margin:0 0 2px!important;
+  }
+  body.has-action-dock .persistent-care-actions.has-restriction .persistent-care-actions-inner{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) 48px 48px!important;
+    flex-direction:unset!important;
+  }
+  body.has-action-dock .persistent-care-book,
+  body.has-action-dock .persistent-care-call,
+  body.has-action-dock .digital-reception-launcher{
+    flex:none!important;
+    white-space:nowrap!important;
+    text-align:center!important;
+  }
+  body.has-action-dock .persistent-care-book{
+    width:100%!important;
+    min-width:0!important;
+    min-height:48px!important;
+    padding:10px 14px!important;
+    font-size:14px!important;
+    line-height:1.2!important;
+    justify-content:center!important;
+    box-shadow:0 4px 12px rgba(23,48,68,.16)!important;
+  }
+  body.has-action-dock .persistent-care-book::before{
+    display:inline-block!important;
+    width:16px!important;
+    height:16px!important;
+  }
+  body.has-action-dock .persistent-care-call,
+  body.has-action-dock .digital-reception-launcher{
+    width:48px!important;
+    min-width:48px!important;
+    max-width:48px!important;
+    height:48px!important;
+    min-height:48px!important;
+    padding:0!important;
+    gap:0!important;
+    border-radius:999px!important;
+    font-size:0!important;
+    line-height:0!important;
+    overflow:hidden!important;
+  }
+  body.has-action-dock .persistent-care-call{
+    border:1px solid #cfdbe2!important;
+    background:#fff!important;
+    color:var(--navy)!important;
+    box-shadow:none!important;
+  }
+  body.has-action-dock .digital-reception-launcher{
+    background:#0c6d62!important;
+    border:1px solid #0c6d62!important;
+    color:#fff!important;
+    box-shadow:none!important;
+  }
+  body.has-action-dock .persistent-care-call::before,
+  body.has-action-dock .digital-reception-launcher::before{
+    display:inline-block!important;
+    width:20px!important;
+    height:20px!important;
+    margin:0!important;
+  }
+  body.has-action-dock .digital-reception-launcher-full,
+  body.has-action-dock .digital-reception-launcher-compact{
+    position:absolute!important;
+    width:1px!important;
+    height:1px!important;
+    padding:0!important;
+    margin:-1px!important;
+    overflow:hidden!important;
+    clip:rect(0,0,0,0)!important;
+    white-space:nowrap!important;
+    border:0!important;
+  }
+  body.has-action-dock .persistent-care-call:hover,
+  body.has-action-dock .persistent-care-call:focus-visible{
+    border-color:#8ca5b5!important;
+    background:#f7f9fb!important;
+    box-shadow:none!important;
+    transform:none!important;
+  }
+  body.has-action-dock .digital-reception-launcher:hover,
+  body.has-action-dock .digital-reception-launcher:focus-visible{
+    background:#085549!important;
+    border-color:#085549!important;
+    color:#fff!important;
+    box-shadow:none!important;
+    transform:none!important;
+  }
+  body.has-action-dock .persistent-care-call:focus-visible,
+  body.has-action-dock .digital-reception-launcher:focus-visible,
+  body.has-action-dock .persistent-care-book:focus-visible{
+    outline:3px solid #174f75!important;
+    outline-offset:3px!important;
+  }
+
+  /* Hero / in-page: Book leads; Call is a quieter secondary */
+  .hero-actions-polished,
+  .home-page .hero-actions-polished{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:8px!important;
+    width:100%!important;
+    max-width:420px!important;
+  }
+  .hero-actions-polished .button.wmc-book-appointment,
+  .home-page .hero-actions-polished .button.wmc-book-appointment{
+    width:100%!important;
+    min-height:50px!important;
+    font-size:14px!important;
+  }
+  .hero-actions-polished .button-call-polished,
+  .home-page .hero-actions-polished .button-call-polished{
+    width:100%!important;
+    min-height:44px!important;
+    padding:8px 12px!important;
+    border:0!important;
+    border-radius:0!important;
+    background:transparent!important;
+    color:var(--navy)!important;
+    font-size:14px!important;
+    font-weight:650!important;
+    text-decoration:underline!important;
+    text-underline-offset:3px!important;
+    box-shadow:none!important;
+  }
+  .hero-actions-polished .button-call-polished:hover,
+  .hero-actions-polished .button-call-polished:focus-visible,
+  .home-page .hero-actions-polished .button-call-polished:hover,
+  .home-page .hero-actions-polished .button-call-polished:focus-visible{
+    background:transparent!important;
+    color:#123d5e!important;
+    transform:none!important;
+    box-shadow:none!important;
+  }
+
+  /* Service / journey action rows: one filled Book, Call as text */
+  .journey-actions,
+  .service-cta-actions{
+    flex-direction:column!important;
+    align-items:stretch!important;
+    gap:10px!important;
+  }
+  .journey-actions .button.wmc-book-appointment,
+  .service-cta-actions .button.wmc-book-appointment,
+  .service-cta-actions a.wmc-book-appointment.button{
+    width:100%!important;
+    justify-content:center!important;
+  }
+  .journey-actions a[href^="tel:"],
+  .service-cta-actions a[href^="tel:"]:not(.button){
+    align-self:center!important;
+    min-height:44px!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+  }
+  .service-cta-actions a.button[href^="tel:"],
+  .journey-actions a.button[href^="tel:"]{
+    width:100%!important;
+    min-height:44px!important;
+    border:0!important;
+    background:transparent!important;
+    color:var(--navy)!important;
+    font-weight:650!important;
+    text-decoration:underline!important;
+    text-underline-offset:3px!important;
+    box-shadow:none!important;
+  }
+}
+
+@media (max-width:560px){
+  body.has-action-dock .persistent-care-actions-inner{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) 48px 48px!important;
+  }
+  body.has-action-dock .persistent-care-book,
+  body.has-action-dock .persistent-care-call,
+  body.has-action-dock .digital-reception-launcher{
+    white-space:nowrap!important;
+    padding:inherit!important;
+  }
+  body.has-action-dock .persistent-care-book{
+    padding:10px 14px!important;
+    font-size:14px!important;
+    line-height:1.2!important;
+  }
+  body.has-action-dock .persistent-care-call,
+  body.has-action-dock .digital-reception-launcher{
+    padding:0!important;
+    font-size:0!important;
+    line-height:0!important;
+  }
+}
+
+@media (max-width:420px){
+  body.has-action-dock .persistent-care-book::before{
+    display:inline-block!important;
+  }
+  body.has-action-dock .persistent-care-call::before,
+  body.has-action-dock .digital-reception-launcher::before{
+    display:inline-block!important;
+  }
+  body.has-action-dock .persistent-care-book,
+  body.has-action-dock .persistent-care-call,
+  body.has-action-dock .digital-reception-launcher{
+    white-space:nowrap!important;
+  }
+  body.has-action-dock .persistent-care-book{
+    font-size:13.5px!important;
+    padding:10px 12px!important;
+  }
+}
+
+@media (forced-colors:active){
+  body.has-action-dock .persistent-care-call,
+  body.has-action-dock .digital-reception-launcher{
+    border:1px solid CanvasText!important;
+  }
+}
+
+/* =====================================================================
+   4C — Reusable mid-page conversion bands
+   Extends the new-patients critical-action-band pattern so long pages
+   offer a clear next action between hero and footer.
+   Types: book · call · practitioner · service · next
+   ===================================================================== */
+.conversion-band.critical-action-band,
+.conversion-band{
+  border-bottom:1px solid var(--line);
+  background:#f7f9f8;
+}
+.conversion-band .critical-actions{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:28px;
+  padding-top:18px;
+  padding-bottom:18px;
+}
+.conversion-band--mid{
+  margin:28px 0;
+  border:1px solid #e3e9ed;
+  border-radius:16px;
+  background:linear-gradient(180deg,#f3f7f6 0%,#f7f9f8 100%);
+}
+.conversion-band--mid .critical-actions{
+  padding:18px 20px;
+  gap:20px;
+}
+.conversion-band--mid .critical-actions-copy strong{
+  font-family:"Libre Baskerville",serif;
+  font-size:18px;
+  font-weight:400;
+  color:var(--ink);
+  line-height:1.3;
+}
+.conversion-band--mid .critical-actions-copy span{
+  color:#5f707c;
+  font-size:13.5px;
+  line-height:1.5;
+}
+.conversion-band--mid .critical-action-link{
+  min-height:48px;
+}
+.conversion-band--practitioner .critical-action-primary,
+.conversion-band--book .critical-action-primary,
+.conversion-band--next .critical-action-primary,
+.conversion-band--service .critical-action-primary{
+  border-color:var(--navy);
+  background:var(--navy);
+  color:#fff;
+}
+.conversion-band--call .critical-action-primary{
+  border-color:var(--navy);
+  background:#fff;
+  color:var(--navy);
+}
+.conversion-band .critical-action-secondary{
+  border-color:#c7d4dc;
+  background:#fff;
+  color:var(--navy);
+}
+.conversion-band .critical-action-related{
+  border-color:#c5ddd7;
+  background:#f3faf8;
+  color:#0c6d62;
+}
+@media (max-width:1024px){
+  .conversion-band .critical-actions,
+  .conversion-band--mid .critical-actions{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:14px;
+  }
+  .conversion-band .critical-action-links{
+    justify-content:flex-start;
+    width:100%;
+  }
+}
+@media (max-width:700px){
+  .conversion-band--mid{
+    margin:20px 0;
+    border-radius:14px;
+  }
+  .conversion-band--mid .critical-actions{
+    padding:14px 14px;
+  }
+  .conversion-band--mid .critical-actions-copy strong{font-size:16px}
+  .conversion-band .critical-action-links{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    width:100%;
+  }
+  .conversion-band .critical-action-links .critical-action-link:only-child,
+  .conversion-band .critical-action-links .critical-action-primary:first-child:nth-last-child(3),
+  .conversion-band .critical-action-links .critical-action-primary:first-child:nth-last-child(3)~*{
+    /* keep primary full-width when three links */
+  }
+  .conversion-band .critical-action-links:has(> :nth-child(3)){
+    grid-template-columns:1fr 1fr;
+  }
+  .conversion-band .critical-action-links:has(> :nth-child(3)) .critical-action-primary{
+    grid-column:1 / -1;
+  }
+  .conversion-band .critical-action-link{
+    min-height:48px;
+    padding:11px 12px;
+    font-size:12.5px;
+    white-space:normal;
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  .conversion-band .critical-action-link{transition:none!important}
+}
+@media (forced-colors:active){
+  .conversion-band--mid{border:1px solid CanvasText}
+}
+
+/* L3 — Mid-journey trust strip removed (AGPAL / bulk billing / open 7 days). */
+.trust-strip{display:none!important}
+
+/* =====================================================================
+   4D — Motion design standard (restrained, healthcare-appropriate)
+   --------------------------------------------------------------------
+   Principles
+   1. Motion clarifies affordance or next step — never decoration.
+   2. Cap at 2–3 product patterns site-wide.
+   3. Prefer opacity / 1–2px lift / colour. No bounce, spin, pulse, loop.
+   4. Faces stay still (no portrait zoom). Knowledge reading cards stay flat.
+   5. prefers-reduced-motion: instant state change, no enter animation.
+   6. Durations: fast 160ms · base 220ms · enter 280ms. Ease: --motion-ease.
+
+   Patterns shipped
+   A. Practitioner card interactions
+   B. CTA emphasis transitions
+   C. Journey-card transitions (Digital Reception + Find Information chips)
+   ===================================================================== */
+
+@keyframes wmc-motion-enter{
+  from{opacity:0;transform:translateY(6px)}
+  to{opacity:1;transform:none}
+}
+@keyframes wmc-journey-step{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+/* --- A. Practitioner card interactions -------------------------------- */
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+  .team-grid .practitioner,
+  .team-directory-grid .practitioner,
+  #home-practitioner-track>.practitioner{
+    transition:
+      transform var(--motion-base) var(--motion-ease),
+      box-shadow var(--motion-base) var(--motion-ease);
+  }
+  .team-grid .practitioner:hover,
+  .team-directory-grid .practitioner:hover,
+  #home-practitioner-track>.practitioner:hover{
+    transform:translateY(var(--motion-lift));
+  }
+  .team-grid .practitioner .portrait,
+  .team-directory-grid .practitioner .portrait,
+  #home-practitioner-track>.practitioner .portrait{
+    transition:box-shadow var(--motion-base) var(--motion-ease);
+  }
+  .team-grid .practitioner:hover .portrait,
+  .team-directory-grid .practitioner:hover .portrait,
+  #home-practitioner-track>.practitioner:hover .portrait{
+    box-shadow:var(--motion-shadow);
+  }
+  /* Faces stay still — override legacy portrait zoom */
+  .team-grid .practitioner:hover .portrait img,
+  .team-directory-grid .practitioner:hover .portrait img,
+  #home-practitioner-track>.practitioner:hover .portrait img,
+  .practitioner:hover .portrait img{
+    transform:none!important;
+  }
+  .team-practitioner-profile-link{
+    transition:color var(--motion-fast) var(--motion-ease),
+      border-color var(--motion-fast) var(--motion-ease);
+  }
+}
+
+/* --- B. CTA emphasis transitions -------------------------------------- */
+@media (prefers-reduced-motion:no-preference){
+  .button,
+  .critical-action-link,
+  .conversion-band .critical-action-link,
+  body.has-action-dock .persistent-care-book,
+  body.has-action-dock .persistent-care-call,
+  body.has-action-dock .digital-reception-launcher{
+    transition:
+      transform var(--motion-fast) var(--motion-ease),
+      background-color var(--motion-base) var(--motion-ease),
+      border-color var(--motion-base) var(--motion-ease),
+      box-shadow var(--motion-base) var(--motion-ease),
+      color var(--motion-fast) var(--motion-ease);
+  }
+}
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+  .button:hover,
+  .critical-action-link:hover,
+  .conversion-band .critical-action-link:hover{
+    transform:translateY(var(--motion-lift));
+  }
+  .button:hover,
+  .critical-action-primary:hover,
+  .conversion-band .critical-action-primary:hover{
+    box-shadow:var(--motion-shadow);
+  }
+  /* Conversion / critical bands: calm enter when scrolled into view */
+  .conversion-band--mid.wmc-inview,
+  .critical-action-band.wmc-inview{
+    animation:wmc-motion-enter var(--motion-enter) var(--motion-ease) both;
+  }
+}
+
+/* --- C. Journey-card transitions -------------------------------------- */
+@media (prefers-reduced-motion:no-preference){
+  .digital-reception-panel.is-open .digital-reception-journey>li{
+    animation:wmc-journey-step var(--motion-base) var(--motion-ease) both;
+  }
+  .digital-reception-panel.is-open .digital-reception-journey>li:nth-child(2){animation-delay:70ms}
+  .digital-reception-panel.is-open .digital-reception-journey>li:nth-child(3){animation-delay:140ms}
+  .digital-reception-panel.is-open .digital-reception-journey>li:nth-child(4){animation-delay:210ms}
+  .digital-reception-journey>li{
+    transition:
+      border-color var(--motion-fast) var(--motion-ease),
+      box-shadow var(--motion-base) var(--motion-ease),
+      background-color var(--motion-base) var(--motion-ease);
+  }
+  #primary-nav>.patient-tasks>a,
+  .patient-tasks>a{
+    transition:
+      background-color var(--motion-fast) var(--motion-ease),
+      border-color var(--motion-fast) var(--motion-ease),
+      color var(--motion-fast) var(--motion-ease),
+      transform var(--motion-fast) var(--motion-ease);
+  }
+}
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+  .digital-reception-journey>li:hover{
+    border-color:#9db0bd;
+    box-shadow:0 6px 16px rgba(23,48,68,.06);
+  }
+  #primary-nav>.patient-tasks>a:hover,
+  .patient-tasks>a:hover{
+    transform:translateY(-1px);
+  }
+}
+
+/* Kill decorative whole-home section rise (was firing every section on load).
+   Clarity comes from the three patterns above, not page-wide fade-ins. */
+@media (prefers-reduced-motion:no-preference){
+  .home-page main>section:not(#home){animation:none!important}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .team-grid .practitioner,
+  .team-directory-grid .practitioner,
+  #home-practitioner-track>.practitioner,
+  .team-grid .practitioner:hover,
+  .team-directory-grid .practitioner:hover,
+  #home-practitioner-track>.practitioner:hover,
+  .team-grid .practitioner .portrait,
+  .team-directory-grid .practitioner .portrait,
+  #home-practitioner-track>.practitioner .portrait,
+  .button,
+  .button:hover,
+  .critical-action-link,
+  .critical-action-link:hover,
+  .conversion-band .critical-action-link,
+  .conversion-band--mid.wmc-inview,
+  .critical-action-band.wmc-inview,
+  .digital-reception-panel.is-open .digital-reception-journey>li,
+  .digital-reception-journey>li,
+  #primary-nav>.patient-tasks>a,
+  .patient-tasks>a,
+  .patient-tasks>a:hover{
+    animation:none!important;
+    transition:none!important;
+    transform:none!important;
+    box-shadow:none!important;
+  }
+}
+
+/* =====================================================================
+   4E — Practitioner authority visibility
+   Peer cards and expertise cues use published profile links only.
+   ===================================================================== */
+.authority-expertise-caption,
+.authority-signal-note{
+  margin:6px 0 14px;
+  color:#5f707c;
+  font-size:13px;
+  line-height:1.55;
+}
+.authority-expertise-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  padding:0;
+  list-style:none;
+}
+.authority-expertise-list li{
+  display:inline-flex;
+  align-items:center;
+  min-height:34px;
+  padding:6px 12px;
+  border:1px solid #d5e1e8;
+  border-radius:999px;
+  background:#f7fafb;
+  color:var(--ink);
+  font-size:12.5px;
+  font-weight:600;
+  line-height:1.3;
+}
+.authority-signal-section .service-care-list a.service-title-link{
+  border-bottom-color:#c5d5e0;
+}
+.authority-related-practitioners,
+.authority-peer-band{
+  border-top:1px solid var(--line);
+  padding-top:28px;
+}
+.authority-peer-grid,
+.authority-related-practitioners .practitioner-knowledge-links{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin-top:16px;
+}
+.authority-peer-card,
+.authority-related-practitioners .practitioner-knowledge-link{
+  display:grid;
+  gap:6px;
+  min-height:108px;
+  padding:16px 16px 14px;
+  border:1px solid #d9e4ea;
+  border-radius:14px;
+  background:linear-gradient(180deg,#fbfcfc 0%,#f6f9f8 100%);
+  color:var(--ink);
+  text-decoration:none;
+}
+.authority-peer-card strong,
+.authority-related-practitioners .practitioner-knowledge-link strong{
+  font-family:"Libre Baskerville",serif;
+  font-size:17px;
+  font-weight:400;
+  line-height:1.3;
+}
+.authority-peer-shared,
+.authority-related-practitioners .practitioner-knowledge-link span{
+  color:#5f707c;
+  font-size:12.5px;
+  line-height:1.5;
+}
+.authority-peer-card em,
+.authority-related-practitioners .practitioner-knowledge-link em{
+  color:#0c6d62;
+  font-size:12.5px;
+  font-style:normal;
+  font-weight:700;
+}
+.authority-related-practitioners .practitioner-service-links .resource-link{
+  border-color:#d5e4df;
+  background:#f7fbfa;
+}
+.authority-related-practitioners .practitioner-service-links .resource-link>span:last-child{
+  color:#0c6d62;
+  font-weight:650;
+}
+.digital-reception-practitioner .authority-leads{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin:8px 0 0;
+  padding:0;
+  list-style:none;
+}
+.digital-reception-practitioner .authority-leads li{
+  display:inline-flex;
+  align-items:center;
+  min-height:28px;
+  padding:4px 10px;
+  border:1px solid #c5ddd7;
+  border-radius:999px;
+  background:#f3faf8;
+  color:#0c6d62;
+  font-size:11.5px;
+  font-weight:650;
+  line-height:1.2;
+}
+.digital-reception-practitioner .authority-match-source{
+  margin:6px 0 0;
+  color:#5f707c;
+  font-size:12px;
+  line-height:1.45;
+}
+@media (max-width:700px){
+  .authority-peer-grid,
+  .authority-related-practitioners .practitioner-knowledge-links{
+    grid-template-columns:1fr;
+  }
+}
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+  .authority-peer-card,
+  .authority-related-practitioners .practitioner-knowledge-link{
+    transition:
+      transform var(--motion-fast) var(--motion-ease),
+      border-color var(--motion-fast) var(--motion-ease),
+      box-shadow var(--motion-base) var(--motion-ease);
+  }
+  .authority-peer-card:hover,
+  .authority-related-practitioners .practitioner-knowledge-link:hover{
+    transform:translateY(var(--motion-lift));
+    border-color:#9db0bd;
+    box-shadow:var(--motion-shadow);
+  }
+}
+
+/* =====================================================================
+   4F — Service hub presentation (authority tiers)
+   Hub / Developing / Thin visual system + destination pathway rail.
+   Patient-facing labels: Service hub · Connected service · Focused service
+   ===================================================================== */
+.service-tier-chip{
+  display:inline-flex;
+  align-items:center;
+  min-height:28px;
+  margin:0;
+  padding:4px 10px;
+  border-radius:999px;
+  border:1px solid #d5e1e8;
+  background:#f4f7f8;
+  color:#3f5666;
+  font-family:"Inter",sans-serif;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.04em;
+  line-height:1.2;
+  text-transform:uppercase;
+}
+.service-tier-chip--hero{margin:0 0 14px}
+.service-tier-hub .service-tier-chip,
+.service-directory-row.service-tier-hub .service-tier-chip{
+  border-color:#9ec4b8;
+  background:#e8f5f1;
+  color:#0c6d62;
+}
+.service-tier-developing .service-tier-chip,
+.service-directory-row.service-tier-developing .service-tier-chip{
+  border-color:#c5d4e0;
+  background:#eef3f7;
+  color:#1f4f73;
+}
+.service-tier-thin .service-tier-chip,
+.service-directory-row.service-tier-thin .service-tier-chip{
+  border-color:#e0ddd6;
+  background:#f7f5f1;
+  color:#6a6458;
+}
+
+/* Hero / article accents by tier */
+body.service-tier-hub .service-authority-hero,
+body.service-tier-hub .page-hero.service-authority-hero{
+  border-bottom:3px solid #0c6d62;
+  background:linear-gradient(180deg,#f3faf8 0%,#fff 72%);
+}
+body.service-tier-developing .service-authority-hero,
+body.service-tier-developing .page-hero.service-authority-hero{
+  border-bottom:2px solid #7fa0b8;
+  background:linear-gradient(180deg,#f5f8fb 0%,#fff 70%);
+}
+body.service-tier-thin .service-authority-hero,
+body.service-tier-thin .page-hero.service-authority-hero{
+  border-bottom:1px solid var(--line);
+}
+
+/* Destination pathway rail — standardised hub layout */
+.service-hub-pathways{
+  border-bottom:1px solid var(--line);
+  background:#f7f9f8;
+  padding:var(--space-5) 0 var(--space-6);
+}
+body.service-tier-hub .service-hub-pathways{
+  background:linear-gradient(180deg,#eef7f4 0%,#f7f9f8 100%);
+}
+body.service-tier-developing .service-hub-pathways{
+  background:linear-gradient(180deg,#f3f6f9 0%,#f7f9f8 100%);
+}
+body.service-tier-thin .service-hub-pathways{
+  padding:16px 0 18px;
+}
+.service-hub-pathways__intro{
+  margin-bottom:16px;
+  max-width:720px;
+}
+.service-hub-pathways__intro h2{
+  margin:0 0 8px;
+  font-size:clamp(22px,2.4vw,28px);
+  line-height:1.25;
+}
+.service-hub-pathways__intro p:last-child{
+  margin:0;
+  color:#5f707c;
+  font-size:14px;
+  line-height:1.6;
+}
+.service-hub-pathways__grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+.service-hub-pathways__card{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  min-height:100%;
+  padding:16px 16px 14px;
+  border:1px solid #d7e2e8;
+  border-radius:16px;
+  background:#fff;
+}
+.service-hub-pathways__card--book{
+  border-color:#c5ddd7;
+  background:linear-gradient(180deg,#f7fbfa 0%,#fff 100%);
+}
+.service-hub-pathways__kicker{
+  margin:0;
+  color:#72828d;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.service-hub-pathways__card h3{
+  margin:0;
+  font-size:18px;
+  line-height:1.3;
+}
+.service-hub-pathways__list{
+  display:grid;
+  gap:8px;
+  margin:4px 0 0;
+  padding:0;
+  list-style:none;
+}
+.service-hub-pathways__list a{
+  color:#174a70;
+  font-size:13.5px;
+  font-weight:600;
+  line-height:1.4;
+  text-decoration:none;
+}
+.service-hub-pathways__list a:hover{text-decoration:underline;text-underline-offset:3px}
+.service-hub-pathways__empty{
+  margin:4px 0 0;
+  color:#5f707c;
+  font-size:13px;
+  line-height:1.5;
+}
+.service-hub-pathways__actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:6px;
+}
+.service-hub-pathways__actions .button{
+  min-height:44px;
+  padding:10px 16px;
+  font-size:12.5px;
+}
+.service-hub-pathways__more{
+  margin-top:auto;
+  padding-top:10px;
+  color:#0c6d62;
+  font-size:12.5px;
+  font-weight:700;
+  text-decoration:none;
+}
+.service-hub-pathways__more:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* Destination sections further down the page */
+.service-hub-destination{
+  scroll-margin-top:140px;
+}
+body.service-tier-hub .service-hub-destination--guides,
+body.service-tier-hub .service-hub-destination--practitioners,
+body.service-tier-hub .service-hub-destination--book{
+  border-left:3px solid #0c6d62;
+  padding-left:18px;
+}
+body.service-tier-developing .service-hub-destination--guides,
+body.service-tier-developing .service-hub-destination--practitioners,
+body.service-tier-developing .service-hub-destination--book{
+  border-left:3px solid #7fa0b8;
+  padding-left:18px;
+}
+
+/* Services directory tier markers */
+.services-directory-page .service-directory-row{
+  position:relative;
+}
+.services-directory-page .service-directory-row strong{
+  display:inline-flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:8px;
+}
+.services-directory-page .service-directory-row.service-tier-hub{
+  background:linear-gradient(90deg,rgba(12,109,98,.04),transparent 42%);
+}
+.services-directory-page .service-directory-row.service-tier-developing{
+  background:linear-gradient(90deg,rgba(31,79,115,.035),transparent 42%);
+}
+.services-directory-page .service-directory-row.service-tier-thin .service-tier-chip{
+  opacity:.9;
+}
+
+@media (max-width:900px){
+  .service-hub-pathways__grid{grid-template-columns:1fr}
+  .service-hub-pathways__actions{flex-direction:column}
+  .service-hub-pathways__actions .button{width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  .service-hub-pathways__list a,
+  .service-hub-pathways__more{transition:none!important}
+}
+@media (forced-colors:active){
+  .service-hub-pathways__card,
+  .service-tier-chip{border:1px solid CanvasText}
+}
+
+/* Header Find Information strip — permanently suppressed (UAT may still serve older published HTML). */
+header .patient-tasks,
+header #primary-nav > .patient-tasks,
+.institution-navigation-row #primary-nav > .patient-tasks{
+  display:none!important;
+  visibility:hidden!important;
+  height:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  border:0!important;
+}
+
+/* =====================================================================
+   L4 — Type & spacing contracts (token-backed, cascade-last)
+   Standardises hero / eyebrow / lede / article H2 / practitioner & service cards.
+   Prefer tokens over one-off px; avoid new !important on type/space.
+   ===================================================================== */
+.page-hero{
+  padding-block:var(--space-8) var(--space-7);
+}
+.page-hero .eyebrow{
+  margin-bottom:var(--space-5);
+  font-family:var(--font-ui);
+  font-size:var(--fs-eyebrow);
+  font-weight:600;
+  letter-spacing:var(--ls-eyebrow);
+  text-transform:uppercase;
+}
+.page-hero h1{
+  margin-bottom:var(--space-5);
+  font-family:var(--font-display);
+  font-size:var(--fs-h1);
+  line-height:var(--lh-tight);
+  letter-spacing:-.04em;
+}
+.page-hero .lede,
+.lede{
+  max-width:42rem;
+  margin:0;
+  font-family:var(--font-ui);
+  font-size:var(--fs-lede);
+  line-height:var(--lh-lede);
+  color:var(--ink-soft);
+}
+.article h2{
+  margin-bottom:var(--space-5);
+  font-family:var(--font-display);
+  font-size:var(--fs-h2);
+  line-height:1.2;
+}
+.article h3{
+  font-family:var(--font-ui);
+  font-size:var(--fs-h3);
+  font-weight:700;
+}
+.article p,
+.article li{
+  font-size:var(--fs-body);
+  line-height:var(--lh-body);
+}
+.article-section{
+  padding-bottom:var(--space-7);
+  margin-bottom:var(--space-7);
+}
+
+/* Practitioner cards */
+.practitioner,
+.team-directory-grid .practitioner,
+.home-page #team .practitioner{
+  min-width:0;
+}
+.practitioner .portrait,
+.team-directory-grid .practitioner .portrait{
+  border-radius:var(--radius-md);
+  box-shadow:var(--shadow-card);
+}
+.practitioner-meta{
+  padding-top:var(--space-5);
+  display:grid;
+  gap:var(--space-2);
+}
+.practitioner h3,
+.team-directory-grid .practitioner h3,
+.home-page #team .practitioner h3{
+  margin:0;
+  font-family:var(--font-display);
+  font-size:var(--fs-card-title);
+  font-weight:400;
+  line-height:1.3;
+  letter-spacing:-.02em;
+  min-height:0;
+}
+.practitioner .credentials,
+.team-directory-grid .practitioner .credentials{
+  margin:0;
+  font-family:var(--font-ui);
+  font-size:var(--fs-card-meta);
+  font-weight:600;
+  letter-spacing:.03em;
+  color:#4f6c82;
+}
+.practitioner .focus,
+.team-directory-grid .practitioner .focus{
+  margin:0;
+  font-family:var(--font-ui);
+  font-size:var(--fs-card-meta);
+  line-height:1.55;
+  color:var(--ink-soft);
+}
+
+/* Service / knowledge cards share one radius + padding contract */
+.knowledge-category-card,
+.knowledge-article-card,
+.service-hub-pathways__card,
+.network-clinic-card{
+  border-radius:var(--radius-md);
+  padding:var(--space-5);
+  gap:var(--space-3);
+  box-shadow:var(--shadow-card);
+}
+.knowledge-category-card strong,
+.knowledge-article-card strong,
+.service-hub-pathways__card strong{
+  font-family:var(--font-display);
+  font-size:var(--fs-card-title);
+  font-weight:400;
+  line-height:1.3;
+  letter-spacing:-.02em;
+}
+.conversion-band--mid{
+  margin-block:var(--space-6);
+  border-radius:var(--radius-md);
+}
+.conversion-band--mid .critical-actions{
+  padding:var(--space-5);
+  gap:var(--space-5);
+}
+.conversion-band--mid .critical-actions-copy strong{
+  font-family:var(--font-display);
+  font-size:var(--fs-card-title);
+  line-height:1.3;
+}
+.service-hub-pathways{
+  margin-block:var(--space-6);
+}
+.service-hub-pathways__grid{
+  gap:var(--space-5);
+}
+
+@media (max-width:700px){
+  .page-hero{
+    padding-block:var(--space-7) var(--space-6);
+  }
+  .page-hero h1,
+  .article h2{
+    font-size:var(--fs-h1);
+  }
+  .article h2{
+    font-size:var(--fs-h2);
+  }
+  .practitioner h3,
+  .team-directory-grid .practitioner h3,
+  .home-page #team .practitioner h3,
+  .knowledge-category-card strong,
+  .knowledge-article-card strong,
+  .service-hub-pathways__card strong{
+    font-size:var(--fs-card-title);
+  }
+  .knowledge-category-card,
+  .knowledge-article-card,
+  .service-hub-pathways__card,
+  .network-clinic-card{
+    padding:var(--space-4);
+  }
+}
+
+/* =====================================================================
+   L5 — Mobile action hierarchy (cascade-final)
+   When the persistent care dock is present, it is the sole Book/Call/Ask
+   surface on compact viewports. Header quick actions stay Menu-only.
+   Dock weight (4B): Book labelled primary · Call + Ask icon assists.
+   ===================================================================== */
+@media (max-width:1024px){
+  body.has-action-dock .mobile-header-actions,
+  body.has-action-dock .mobile-header-book,
+  body.has-action-dock .mobile-header-call,
+  body.has-persistent-care-actions .mobile-header-actions,
+  body.has-persistent-care-actions .mobile-header-book,
+  body.has-persistent-care-actions .mobile-header-call{
+    display:none!important;
+  }
+  body.has-action-dock .header-cta,
+  body.has-action-dock .header-phone,
+  body.has-persistent-care-actions .header-cta,
+  body.has-persistent-care-actions .header-phone{
+    display:none!important;
+  }
+  /* Soften any residual header action chrome so it never rivals the dock. */
+  body.has-action-dock .mobile-header-action,
+  body.has-persistent-care-actions .mobile-header-action{
+    box-shadow:none!important;
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+  }
 }

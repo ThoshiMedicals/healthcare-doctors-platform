@@ -64,8 +64,98 @@
       "status": "awaiting_review"
     },
     {
+      "path": "assignment-of-benefit.html",
+      "collection": "practice_information",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "book-appointment.html",
+      "collection": "practice_information",
+      "reviewType": "operational",
+      "status": "awaiting_review"
+    },
+    {
       "path": "bulk-billing.html",
       "collection": "practice_information",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/dr-anand-singh.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/dr-debra-larkins.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/dr-gemunu-suresh-ranawake.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/dr-kooshyar-karimi.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/dr-mary-abadir.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/dr-nirupa-sivathasan.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/dr-sambo-luon.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/dr-steven-chang.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/dr-sumita-singh.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/dr-tanya-goodwill.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/dr-usman-gul.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/dr-wasantha-hettiarchchi.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/mr-samuel-stafford.html",
+      "collection": "practitioner",
       "reviewType": "clinical",
       "status": "awaiting_review"
     },
@@ -83,6 +173,12 @@
     },
     {
       "path": "fees-billing.html",
+      "collection": "practice_information",
+      "reviewType": "operational",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "identifying-hotdoc-scam-messages.html",
       "collection": "practice_information",
       "reviewType": "operational",
       "status": "awaiting_review"
@@ -646,6 +742,12 @@
       "status": "awaiting_review"
     },
     {
+      "path": "knowledge/family-health.html",
+      "collection": "knowledge_centre",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
       "path": "knowledge/headache.html",
       "collection": "knowledge_centre",
       "reviewType": "clinical",
@@ -823,6 +925,12 @@
       "path": "quality-safety.html",
       "collection": "governance",
       "reviewType": "institutional",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "recalls-and-reminders.html",
+      "collection": "practice_information",
+      "reviewType": "clinical",
       "status": "awaiting_review"
     },
     {

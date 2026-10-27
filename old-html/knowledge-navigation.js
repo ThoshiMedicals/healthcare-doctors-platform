@@ -45,7 +45,7 @@
   function setMobileExpanded(expanded) {
     content.hidden = !expanded;
     toggle.setAttribute('aria-expanded', String(expanded));
-    toggle.setAttribute('aria-label', (expanded ? 'Hide' : 'Show') + ' Knowledge Centre topics');
+    toggle.setAttribute('aria-label', (expanded ? 'Hide' : 'Show') + ' Health Advice topics');
   }
 
   toggle.addEventListener('click', () => setMobileExpanded(content.hidden));

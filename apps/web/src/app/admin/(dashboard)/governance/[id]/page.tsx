@@ -36,14 +36,14 @@ export default async function GovernanceEditPage({
       <GateNotice error={query.error} reason={query.reason} />
       <form action={saveGovernance} className="mt-6 grid max-w-2xl gap-4">
         <input type="hidden" name="id" value={row.id} />
-        <Field label="Reviewer" name="reviewedBy" defaultValue={row.reviewedBy} impact={[]} />
-        <Field label="Reviewer sign-off" name="reviewerSignedBy" defaultValue={row.reviewerSignedBy} impact={[]} />
-        <Field label="Approver" name="approvedBy" defaultValue={row.approvedBy} impact={[]} />
-        <Field label="Content owner" name="contentOwner" defaultValue={row.contentOwner} impact={[]} />
-        <Field label="Approval reference" name="approvalReference" defaultValue={row.approvalReference} impact={[]} />
-        <Field label="Evidence reference" name="evidenceReference" defaultValue={row.evidenceReference} impact={[]} />
-        <Field label="Approval date" name="lastReviewed" type="date" defaultValue={day(row.approvedAt ?? row.lastReviewed)} impact={[]} />
-        <Field label="Next review date" name="nextReview" type="date" defaultValue={day(row.nextReview)} impact={[]} />
+        <Field label="Reviewed By" name="reviewedBy" defaultValue={row.reviewedBy} impact={[]} />
+        <Field label="Reviewer sign-off (private)" name="reviewerSignedBy" defaultValue={row.reviewerSignedBy} impact={[]} />
+        <Field label="Approver (private)" name="approvedBy" defaultValue={row.approvedBy} impact={[]} />
+        <Field label="Content Owner" name="contentOwner" defaultValue={row.contentOwner} impact={[]} />
+        <Field label="Approval reference (private)" name="approvalReference" defaultValue={row.approvalReference} impact={[]} />
+        <Field label="Evidence reference (private)" name="evidenceReference" defaultValue={row.evidenceReference} impact={[]} />
+        <Field label="Last Reviewed" name="lastReviewed" type="date" defaultValue={day(row.lastReviewed ?? row.approvedAt)} impact={[]} />
+        <Field label="Next Review Due" name="nextReview" type="date" defaultValue={day(row.nextReview)} impact={[]} />
         <label className="flex flex-col gap-1 text-sm text-slate-700">
           Review status
           <Impact items={[]} />
@@ -56,9 +56,10 @@ export default async function GovernanceEditPage({
           </select>
         </label>
         <p className="text-sm text-slate-600">
-          Approved and published require a reviewer, approver, approval date, approval reference, evidence reference,
-          content owner, a later next review date, and a fingerprint of this page. Publication is refused until that
-          fingerprint matches the page being published. Fingerprint: {row.reviewedContentSha256 ?? "not recorded"}.
+          Approved and published require Reviewed By, Content Owner, Last Reviewed, Next Review Due (later than Last
+          Reviewed), approver, approval reference, evidence reference, and a fingerprint of this page. Saving an
+          approved record regenerates the public governance strip registry immediately (fail-closed until all fields
+          are complete). Fingerprint: {row.reviewedContentSha256 ?? "not recorded"}.
         </p>
         <SaveBar historyHref={`/admin/revisions/clinical_review/${row.id}`} />
       </form>

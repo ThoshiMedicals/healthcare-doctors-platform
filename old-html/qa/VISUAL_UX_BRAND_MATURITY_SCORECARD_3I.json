@@ -1,0 +1,121 @@
+{
+  "promptId": "3I",
+  "title": "Visual, UX & Brand Maturity Audit",
+  "assessedOn": "2026-10-26",
+  "timezone": "Australia/Brisbane",
+  "environment": "http://127.0.0.1:3100",
+  "scores": {
+    "visualMaturity": 78,
+    "brandMaturity": 76,
+    "uxMaturity": 82,
+    "conversionMaturity": 84,
+    "overallWebsiteMaturity": 80
+  },
+  "scoreWeights": {
+    "visual": 0.2,
+    "brand": 0.2,
+    "ux": 0.3,
+    "conversion": 0.3
+  },
+  "recommendation": "STRONG_BASELINE_POLISH_NEXT_NOT_REBUILD",
+  "recommendationSummary": "Institutional baseline is strong after 3A–3H. Next stage: desktop Find Information, quieter mobile CTA chrome, mid-page Book bands on long pages, and 2–3 intentional motions. Do not rebuild homepage architecture.",
+  "targetAfterNextStage": {
+    "overallWebsiteMaturity": 88,
+    "visualMaturity": 85,
+    "brandMaturity": 84
+  },
+  "benchmarks": {
+    "wmcMaturityGoals": "largely_met_content_ops_next_is_visual_differentiation",
+    "hawthorneClinic": "wmc_exceeds_story_dr_authority_hawthorne_quieter_chrome",
+    "premiumAuHealthcare": "competitive_trust_booking_trails_type_motion_mid_page_cta"
+  },
+  "areas": [
+    { "id": 1, "label": "Homepage", "status": "strong", "score": 82 },
+    { "id": 2, "label": "Practitioner Profiles", "status": "strong", "score": 84 },
+    { "id": 3, "label": "Service Hubs", "status": "strong_longform", "score": 80 },
+    { "id": 4, "label": "Health Advice", "status": "strong", "score": 83 },
+    { "id": 5, "label": "Patient Information", "status": "strong", "score": 81 },
+    { "id": 6, "label": "Digital Reception", "status": "strong_busy_chrome", "score": 85 },
+    { "id": 7, "label": "Booking Pathways", "status": "strong", "score": 86 },
+    { "id": 8, "label": "Mobile Experience", "status": "good", "score": 80 },
+    { "id": 9, "label": "Accessibility", "status": "good", "score": 82 },
+    { "id": 10, "label": "Motion Design and Visual Effects", "status": "developing", "score": 62 },
+    { "id": 11, "label": "Conversion Presentation", "status": "strong", "score": 84 },
+    { "id": 12, "label": "Brand Maturity", "status": "good", "score": 76 }
+  ],
+  "issueCounts": {
+    "critical": 0,
+    "high": 4,
+    "medium": 6,
+    "low": 4,
+    "quickWins": 6
+  },
+  "issues": {
+    "critical": [],
+    "high": [
+      {
+        "id": "H1",
+        "summary": "Find Information patient-tasks hidden on desktop",
+        "area": "Homepage / Navigation"
+      },
+      {
+        "id": "H2",
+        "summary": "Mobile CTA competition: header pills + dock + Digital Reception",
+        "area": "Mobile / Conversion"
+      },
+      {
+        "id": "H3",
+        "summary": "Long service and practitioner pages lack mid-page Book band",
+        "area": "Services / Profiles / Conversion"
+      },
+      {
+        "id": "H4",
+        "summary": "Motion under-developed versus premium AU healthcare",
+        "area": "Motion / Brand"
+      }
+    ],
+    "medium": [
+      { "id": "M1", "summary": "HotDoc education mostly home-only" },
+      { "id": "M2", "summary": "Clinical-review strip not visible in UAT" },
+      { "id": "M3", "summary": "Homepage team carousel early can feel directory-like" },
+      { "id": "M4", "summary": "Inter + warm cream typography defaults" },
+      { "id": "M5", "summary": "Desktop service and patient-info side nav density" },
+      { "id": "M6", "summary": "Peer practitioner discovery weak on profile aside" }
+    ],
+    "low": [
+      { "id": "L1", "summary": "Homepage Book CTA count is high" },
+      { "id": "L2", "summary": "Knowledge trust pills unused without governance publish" },
+      { "id": "L3", "summary": "CSS important / completion-layer debt" },
+      { "id": "L4", "summary": "Portrait hover scale is dominant motion language" }
+    ],
+    "quickWins": [
+      "Show Find Information on desktop",
+      "Clone new-patients critical band onto top service pages",
+      "Quiet mobile dock: Book primary, Call/DR icon-only",
+      "One presence motion on hero with reduced-motion respect",
+      "Peer practitioners block from related graph",
+      "HotDoc how-to microcopy under Book on profiles"
+    ]
+  },
+  "roadmap": [
+    {
+      "stage": "A",
+      "name": "Clarity & conversion",
+      "durationHint": "1-2 weeks",
+      "items": ["H1", "H3", "H2", "quickWins HotDoc microcopy and peer block"]
+    },
+    {
+      "stage": "B",
+      "name": "Brand presence",
+      "durationHint": "2-3 weeks",
+      "items": ["H4", "M4", "optional M3 home order review"]
+    },
+    {
+      "stage": "C",
+      "name": "Trust & consistency",
+      "durationHint": "ongoing with clinical ops",
+      "items": ["M2", "M1", "L3"]
+    }
+  ],
+  "reportPath": "old-html/qa/VISUAL_UX_BRAND_MATURITY_AUDIT_3I.md"
+}

@@ -1,22 +1,73 @@
 import type { MembershipRole } from "@prisma/client";
 import { roleAllows, type CmsAction } from "@/auth/permissions";
 
-export const CMS_MODULES: ReadonlyArray<{ href: string; label: string; action: CmsAction }> = [
-  { href: "/admin/settings", label: "Clinic Settings", action: "manage_settings" },
-  { href: "/admin/practitioners", label: "Practitioners", action: "edit" },
-  { href: "/admin/services", label: "Services", action: "edit" },
-  { href: "/admin/knowledge", label: "Knowledge Centre", action: "edit" },
-  { href: "/admin/updates", label: "Updates", action: "edit" },
-  { href: "/admin/patient-information", label: "Patient Information", action: "edit" },
-  { href: "/admin/about", label: "About Us", action: "edit" },
-  { href: "/admin/navigation", label: "Navigation Ownership", action: "edit" },
-  { href: "/admin/governance", label: "Governance Review", action: "clinical_signoff" },
-  { href: "/admin/image-governance", label: "Image governance", action: "clinical_signoff" },
+export type CmsNavGroup = "content" | "insights" | "governance";
+
+export const CMS_NAV_GROUPS: ReadonlyArray<{ id: CmsNavGroup; label: string }> = [
+  { id: "content", label: "Content" },
+  { id: "insights", label: "Insights" },
+  { id: "governance", label: "Governance" },
+];
+
+export type CmsModule = {
+  href: string;
+  label: string;
+  action: CmsAction;
+  group: CmsNavGroup;
+};
+
+export const CMS_MODULES: ReadonlyArray<CmsModule> = [
+  // Content — editing surfaces (page types open from Pages hub)
+  { href: "/admin/pages", label: "Pages", action: "edit", group: "content" },
+  { href: "/admin/practitioners", label: "Practitioners", action: "edit", group: "content" },
+  { href: "/admin/services", label: "Services", action: "edit", group: "content" },
+
+  // Insights — practice-friendly labels (C10); analytics stay separate from editing
+  { href: "/admin", label: "Practice briefing", action: "manage_settings", group: "insights" },
+  { href: "/admin/executive", label: "Website overview", action: "manage_settings", group: "insights" },
+  { href: "/admin/digital-reception", label: "Online search", action: "manage_settings", group: "insights" },
+  {
+    href: "/admin/practitioner-authority",
+    label: "Doctor profiles",
+    action: "manage_settings",
+    group: "insights",
+  },
+  { href: "/admin/service-authority", label: "Service pages", action: "manage_settings", group: "insights" },
+  {
+    href: "/admin/conversion-intelligence",
+    label: "Booking journey",
+    action: "manage_settings",
+    group: "insights",
+  },
+
+  // Governance — clinical review, separate from editing and analytics
+  { href: "/admin/governance", label: "Content reviews", action: "clinical_signoff", group: "governance" },
+  {
+    href: "/admin/governance/management",
+    label: "Review board",
+    action: "clinical_signoff",
+    group: "governance",
+  },
+  {
+    href: "/admin/governance/expiry",
+    label: "Review due dates",
+    action: "clinical_signoff",
+    group: "governance",
+  },
+  { href: "/admin/image-governance", label: "Image reviews", action: "clinical_signoff", group: "governance" },
 ];
 
 export function visibleModules(role: MembershipRole | null) {
   if (!role) return [];
   return CMS_MODULES.filter((module) => roleAllows(role, module.action));
+}
+
+export function visibleNavGroups(role: MembershipRole | null) {
+  const modules = visibleModules(role);
+  return CMS_NAV_GROUPS.map((group) => ({
+    ...group,
+    modules: modules.filter((module) => module.group === group.id),
+  })).filter((group) => group.modules.length > 0);
 }
 
 export const ABOUT_PATHS = [

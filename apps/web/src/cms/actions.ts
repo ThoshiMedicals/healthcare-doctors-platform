@@ -21,6 +21,7 @@ import {
   parseGovernanceStatus,
   type GovernanceStatus,
 } from "@/governance/status";
+import { writePublishedGovernanceRegistry } from "@/governance/write-published-registry";
 import { moveWorkflow, publishEntity, renderedContentFingerprint, type ReleaseEntity } from "@/cms/release";
 import { prisma } from "@/db/prisma";
 
@@ -410,9 +411,12 @@ export async function saveGovernance(formData: FormData) {
   }
   const reviewedBy = text(formData, "reviewedBy") || null;
   const approvedBy = text(formData, "approvedBy") || null;
+  const contentOwner = text(formData, "contentOwner") || null;
   const evidenceReference = text(formData, "evidenceReference") || null;
   const approvalDate = text(formData, "lastReviewed");
+  const nextReviewDate = text(formData, "nextReview");
   const approvedAt = approvalDate ? new Date(`${approvalDate}T00:00:00.000Z`) : null;
+  const nextReviewAt = nextReviewDate ? new Date(`${nextReviewDate}T00:00:00.000Z`) : null;
   const fingerprint = await renderedContentFingerprint(clinic.id, current.pageId);
   if (isGovernanceCompleteStatus(status)) {
     const gaps = governanceCompletionGaps({
@@ -422,6 +426,11 @@ export async function saveGovernance(formData: FormData) {
       evidenceReference,
       fingerprint,
     });
+    if (!contentOwner?.trim()) gaps.push("Content Owner is required.");
+    if (!nextReviewAt || Number.isNaN(nextReviewAt.getTime())) gaps.push("Next Review Due is required.");
+    if (approvedAt && nextReviewAt && nextReviewAt <= approvedAt) {
+      gaps.push("Next Review Due must be later than Last Reviewed.");
+    }
     if (gaps.length > 0) {
       redirect(`/admin/governance/${id}?error=gate&reason=${encodeURIComponent(gaps.join(" "))}`);
     }
@@ -430,14 +439,14 @@ export async function saveGovernance(formData: FormData) {
   const next = {
     ...previous,
     reviewedBy,
-    contentOwner: text(formData, "contentOwner") || null,
+    contentOwner,
     reviewerSignedBy: text(formData, "reviewerSignedBy") || reviewedBy,
     approvedBy,
     approvalReference: text(formData, "approvalReference") || null,
     evidenceReference,
     reviewedContentSha256: isGovernanceCompleteStatus(status) ? fingerprint : current.reviewedContentSha256,
     lastReviewed: approvalDate || null,
-    nextReview: text(formData, "nextReview") || null,
+    nextReview: nextReviewDate || null,
     status,
   };
   await prisma.clinicalReview.update({
@@ -446,7 +455,7 @@ export async function saveGovernance(formData: FormData) {
       reviewedBy: next.reviewedBy,
       contentOwner: next.contentOwner,
       reviewerSignedBy: next.reviewerSignedBy,
-      reviewerSignedAt: next.reviewerSignedBy ? new Date() : current.reviewerSignedAt,
+      reviewerSignedAt: isGovernanceCompleteStatus(status) && approvedAt ? approvedAt : current.reviewerSignedAt,
       approvedBy: next.approvedBy,
       approvedAt: isGovernanceCompleteStatus(status) ? approvedAt : current.approvedAt,
       approvalReference: next.approvalReference,
@@ -458,6 +467,7 @@ export async function saveGovernance(formData: FormData) {
     },
   });
   await revise({ clinicId: clinic.id, authorId: user.id, entityType: "clinical_review", entityId: id, previous, next });
+  await writePublishedGovernanceRegistry(clinic.id);
   redirect(`/admin/governance/${id}?saved=1`);
 }
 

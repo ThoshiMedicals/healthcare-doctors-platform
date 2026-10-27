@@ -14,6 +14,7 @@ import { prisma } from "@/db/prisma";
 import { goldenHtmlRoot, webRoot } from "@/importer/golden-root";
 import { fingerprintContent } from "@/governance/fingerprint";
 import { governanceCompletionGaps } from "@/governance/status";
+import { writePublishedGovernanceRegistry } from "@/governance/write-published-registry";
 
 export type ReleaseEntity =
   | "practitioner"
@@ -232,9 +233,10 @@ async function recordGovernanceAfterPublish(clinicId: string, pageId: string, fi
     evidenceReference: existing?.evidenceReference ?? null,
     fingerprint,
   });
+  const stripReady = Boolean(existing?.contentOwner?.trim() && existing?.nextReview);
   const alreadyComplete =
     existing?.status === "approved" || existing?.status === "published"
-      ? existing.reviewedContentSha256 === fingerprint && gaps.length === 0
+      ? existing.reviewedContentSha256 === fingerprint && gaps.length === 0 && stripReady
       : false;
   await prisma.clinicalReview.upsert({
     where: { pageId },
@@ -250,6 +252,7 @@ async function recordGovernanceAfterPublish(clinicId: string, pageId: string, fi
       reviewedContentSha256: fingerprint,
     },
   });
+  await writePublishedGovernanceRegistry(clinicId);
 }
 
 async function renderPair(clinicId: string, entityType: ReleaseEntity, entityId: string, overlay: OverlayInput) {

@@ -1,0 +1,66 @@
+{
+  "promptId": "4G",
+  "title": "Brand polish improvement plan",
+  "assessedOn": "2026-10-26",
+  "timezone": "Australia/Brisbane",
+  "environment": "http://127.0.0.1:3100",
+  "baselinePrompt": "3I",
+  "scores": {
+    "visualMaturity": 82,
+    "brandMaturity": 79,
+    "uxMaturity": 86,
+    "conversionMaturity": 88,
+    "overallWebsiteMaturity": 84
+  },
+  "baselineScores": {
+    "visualMaturity": 78,
+    "brandMaturity": 76,
+    "uxMaturity": 82,
+    "conversionMaturity": 84,
+    "overallWebsiteMaturity": 80
+  },
+  "scoreWeights": {
+    "visual": 0.2,
+    "brand": 0.2,
+    "ux": 0.3,
+    "conversion": 0.3
+  },
+  "targetAfterPlan": {
+    "brandMaturity": 90,
+    "visualMaturity": 88,
+    "overallWebsiteMaturity": 90
+  },
+  "recommendation": "POLISH_NOT_REBUILD_TRUST_TYPE_GOVERNANCE",
+  "recommendationSummary": "Brand 76→79 after 4C–4F. Path to 90+: reusable trust strip, type/spacing token migration, component contracts, then clinical governance publish. Floor without governance ~87–88.",
+  "trustAudit": {
+    "footerTrustPages": 208,
+    "governanceHooks": 111,
+    "governanceReviewsPopulated": 0,
+    "approvedGovernancePayload": "empty",
+    "agpalPage": "strong_plain_language",
+    "homeTrustChips": "strong_but_below_fold_on_mobile"
+  },
+  "visualInconsistencies": ["V1_home_vs_inner_heroes", "V2_eyebrow_drift", "V3_button_dialects", "V4_radius_scale", "V5_footer_trust_sizes", "V6_card_dialects", "V7_important_debt", "V8_mobile_cta_density"],
+  "roadmap": [
+    {
+      "stage": "P0",
+      "name": "Trust visibility",
+      "brandTarget": 84,
+      "items": ["trust-strip reuse", "mobile first-screen trust", "footer mark unify", "qualification line pattern"]
+    },
+    {
+      "stage": "P1",
+      "name": "Type and spacing migration",
+      "brandTarget": 88,
+      "items": ["4G token migration", "spacing scale", "button-secondary + radius", "quiet mobile dock"]
+    },
+    {
+      "stage": "P2",
+      "name": "Governance publish",
+      "brandTarget": 90,
+      "items": ["approved clinical-review publish", "clinical-review-strip visible", "knowledge trust pills", "retire high-traffic important type rules"]
+    }
+  ],
+  "tokensScaffolded": true,
+  "reportPath": "apps/web/reports/BRAND_POLISH_4G.md"
+}

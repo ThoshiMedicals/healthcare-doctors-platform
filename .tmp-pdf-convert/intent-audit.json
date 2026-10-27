@@ -1,0 +1,4692 @@
+{
+  "Appointment": [
+    {
+      "query": "appointment",
+      "mode": "direct",
+      "directUrl": "book-appointment.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "book-appointment.html",
+          "title": "Book an Appointment",
+          "category": "Practice"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "appointment",
+        "book",
+        "booking",
+        "hotdoc"
+      ]
+    },
+    {
+      "query": "book appointment",
+      "mode": "direct",
+      "directUrl": "book-appointment.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "book-appointment.html",
+          "title": "Book an Appointment",
+          "category": "Practice"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "book",
+        "appointment",
+        "booking",
+        "hotdoc"
+      ]
+    },
+    {
+      "query": "book",
+      "mode": "direct",
+      "directUrl": "book-appointment.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "book-appointment.html",
+          "title": "Book an Appointment",
+          "category": "Practice"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "book",
+        "booking",
+        "appointment",
+        "hotdoc"
+      ]
+    },
+    {
+      "query": "booking",
+      "mode": "direct",
+      "directUrl": "book-appointment.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "book-appointment.html",
+          "title": "Book an Appointment",
+          "category": "Practice"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "booking",
+        "book",
+        "appointment",
+        "hotdoc"
+      ]
+    },
+    {
+      "query": "make an appointment",
+      "mode": "direct",
+      "directUrl": "book-appointment.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "book-appointment.html",
+          "title": "Book an Appointment",
+          "category": "Practice"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "make",
+        "appointment",
+        "book",
+        "booking",
+        "hotdoc"
+      ]
+    },
+    {
+      "query": "see a doctor",
+      "mode": "none",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "symptoms",
+        "conditions",
+        "mental-health",
+        "life-stages",
+        "prevention",
+        "services",
+        "doctors",
+        "billing",
+        "appointments",
+        "referrals",
+        "pathology",
+        "imaging",
+        "prescriptions",
+        "administration"
+      ],
+      "shown": [],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "see",
+        "doctor",
+        "gp",
+        "clinician",
+        "practitioner"
+      ]
+    },
+    {
+      "query": "gp appointment",
+      "mode": "direct",
+      "directUrl": "book-appointment.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "book-appointment.html",
+          "title": "Book an Appointment",
+          "category": "Practice"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "gp",
+        "appointment",
+        "doctor",
+        "general",
+        "practitioner",
+        "book",
+        "booking",
+        "hotdoc"
+      ]
+    }
+  ],
+  "New Patient": [
+    {
+      "query": "new patient",
+      "mode": "task-fallback",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "conditions",
+        "mental-health",
+        "life-stages",
+        "prevention",
+        "services",
+        "doctors",
+        "billing",
+        "appointments",
+        "referrals",
+        "pathology",
+        "imaging",
+        "prescriptions",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "new-patient-prescribing-policy.html",
+          "title": "New Patient Prescribing",
+          "category": "Patient Information"
+        },
+        {
+          "url": "new-patients.html",
+          "title": "New Patients",
+          "category": "Patient Information"
+        },
+        {
+          "url": "updates/new-patients-welcome.html",
+          "title": "New Patients Welcome",
+          "category": "Updates"
+        },
+        {
+          "url": "patient-forms.html",
+          "title": "Patient Forms",
+          "category": "Patient Information"
+        },
+        {
+          "url": "faqs.html",
+          "title": "Patient FAQs",
+          "category": "Patient Information"
+        },
+        {
+          "url": "medical-students.html",
+          "title": "Medical Students",
+          "category": "Practice & Governance"
+        }
+      ],
+      "guides": [],
+      "others": [
+        {
+          "url": "new-patient-prescribing-policy.html",
+          "title": "New Patient Prescribing",
+          "category": "Patient Information",
+          "rank": 248,
+          "base": 180,
+          "hinted": false
+        },
+        {
+          "url": "new-patients.html",
+          "title": "New Patients",
+          "category": "Patient Information",
+          "rank": 188,
+          "base": 154,
+          "hinted": false
+        },
+        {
+          "url": "updates/new-patients-welcome.html",
+          "title": "New Patients Welcome",
+          "category": "Updates",
+          "rank": 167,
+          "base": 133,
+          "hinted": false
+        },
+        {
+          "url": "patient-forms.html",
+          "title": "Patient Forms",
+          "category": "Patient Information",
+          "rank": 121,
+          "base": 87,
+          "hinted": false
+        },
+        {
+          "url": "faqs.html",
+          "title": "Patient FAQs",
+          "category": "Patient Information",
+          "rank": 85,
+          "base": 51,
+          "hinted": false
+        },
+        {
+          "url": "medical-students.html",
+          "title": "Medical Students",
+          "category": "Practice & Governance",
+          "rank": 66,
+          "base": 32,
+          "hinted": false
+        }
+      ],
+      "journeyService": null,
+      "tokens": [
+        "new",
+        "patient"
+      ]
+    },
+    {
+      "query": "new patients",
+      "mode": "task-fallback",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "conditions",
+        "mental-health",
+        "life-stages",
+        "prevention",
+        "services",
+        "doctors",
+        "billing",
+        "appointments",
+        "referrals",
+        "pathology",
+        "imaging",
+        "prescriptions",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "new-patients.html",
+          "title": "New Patients",
+          "category": "Patient Information"
+        },
+        {
+          "url": "updates/new-patients-welcome.html",
+          "title": "New Patients Welcome",
+          "category": "Updates"
+        },
+        {
+          "url": "new-patient-prescribing-policy.html",
+          "title": "New Patient Prescribing",
+          "category": "Patient Information"
+        },
+        {
+          "url": "updates/index.html",
+          "title": "Health & Practice Updates",
+          "category": "Updates"
+        }
+      ],
+      "guides": [],
+      "others": [
+        {
+          "url": "new-patients.html",
+          "title": "New Patients",
+          "category": "Patient Information",
+          "rank": 334,
+          "base": 266,
+          "hinted": false
+        },
+        {
+          "url": "updates/new-patients-welcome.html",
+          "title": "New Patients Welcome",
+          "category": "Updates",
+          "rank": 229,
+          "base": 161,
+          "hinted": false
+        },
+        {
+          "url": "new-patient-prescribing-policy.html",
+          "title": "New Patient Prescribing",
+          "category": "Patient Information",
+          "rank": 103,
+          "base": 69,
+          "hinted": false
+        },
+        {
+          "url": "updates/index.html",
+          "title": "Health & Practice Updates",
+          "category": "Updates",
+          "rank": 36,
+          "base": 36,
+          "hinted": false
+        }
+      ],
+      "journeyService": null,
+      "tokens": [
+        "new",
+        "patients"
+      ]
+    },
+    {
+      "query": "i am new",
+      "mode": "task-fallback",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "prevention",
+        "services",
+        "prescriptions",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "new-patient-prescribing-policy.html",
+          "title": "New Patient Prescribing",
+          "category": "Patient Information"
+        },
+        {
+          "url": "new-patients.html",
+          "title": "New Patients",
+          "category": "Patient Information"
+        },
+        {
+          "url": "updates/new-patients-welcome.html",
+          "title": "New Patients Welcome",
+          "category": "Updates"
+        }
+      ],
+      "guides": [],
+      "others": [
+        {
+          "url": "new-patient-prescribing-policy.html",
+          "title": "New Patient Prescribing",
+          "category": "Patient Information",
+          "rank": 67,
+          "base": 33,
+          "hinted": false
+        },
+        {
+          "url": "new-patients.html",
+          "title": "New Patients",
+          "category": "Patient Information",
+          "rank": 63,
+          "base": 29,
+          "hinted": false
+        },
+        {
+          "url": "updates/new-patients-welcome.html",
+          "title": "New Patients Welcome",
+          "category": "Updates",
+          "rank": 62,
+          "base": 28,
+          "hinted": false
+        }
+      ],
+      "journeyService": null,
+      "tokens": [
+        "am",
+        "new"
+      ]
+    },
+    {
+      "query": "first visit",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "life-stages",
+        "prevention",
+        "appointments",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/preparing-for-your-childs-first-gp-appointment.html",
+          "title": "Your Child's First GP Visit",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/your-first-pregnancy-gp-appointment.html",
+          "title": "First Pregnancy GP Appointment",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/preparing-for-your-childs-first-gp-appointment.html",
+          "title": "Your Child's First GP Visit",
+          "category": "Knowledge Centre",
+          "rank": 138,
+          "base": 45,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/your-first-pregnancy-gp-appointment.html",
+          "title": "First Pregnancy GP Appointment",
+          "category": "Knowledge Centre",
+          "rank": 91,
+          "base": 32,
+          "hinted": false
+        }
+      ],
+      "others": [
+        {
+          "url": "new-patients.html",
+          "title": "New Patients",
+          "category": "Patient Information",
+          "rank": 93,
+          "base": 93,
+          "hinted": false
+        },
+        {
+          "url": "access-parking.html",
+          "title": "Access & Parking",
+          "category": "Practice & Governance",
+          "rank": 52,
+          "base": 18,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/childrens-health.html",
+        "title": "Children’s Health"
+      },
+      "tokens": [
+        "first",
+        "visit"
+      ]
+    },
+    {
+      "query": "register",
+      "mode": "none",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "symptoms",
+        "conditions",
+        "mental-health",
+        "life-stages",
+        "prevention",
+        "services",
+        "doctors",
+        "billing",
+        "appointments",
+        "referrals",
+        "pathology",
+        "imaging",
+        "prescriptions",
+        "administration"
+      ],
+      "shown": [],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "register"
+      ]
+    },
+    {
+      "query": "new to the clinic",
+      "mode": "task-fallback",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "prevention",
+        "services",
+        "appointments",
+        "prescriptions",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "new-patient-prescribing-policy.html",
+          "title": "New Patient Prescribing",
+          "category": "Patient Information"
+        },
+        {
+          "url": "new-patients.html",
+          "title": "New Patients",
+          "category": "Patient Information"
+        },
+        {
+          "url": "updates/new-patients-welcome.html",
+          "title": "New Patients Welcome",
+          "category": "Updates"
+        }
+      ],
+      "guides": [],
+      "others": [
+        {
+          "url": "new-patient-prescribing-policy.html",
+          "title": "New Patient Prescribing",
+          "category": "Patient Information",
+          "rank": 66,
+          "base": 32,
+          "hinted": false
+        },
+        {
+          "url": "new-patients.html",
+          "title": "New Patients",
+          "category": "Patient Information",
+          "rank": 63,
+          "base": 29,
+          "hinted": false
+        },
+        {
+          "url": "updates/new-patients-welcome.html",
+          "title": "New Patients Welcome",
+          "category": "Updates",
+          "rank": 62,
+          "base": 28,
+          "hinted": false
+        }
+      ],
+      "journeyService": null,
+      "tokens": [
+        "new",
+        "clinic"
+      ]
+    },
+    {
+      "query": "join the practice",
+      "mode": "task-fallback",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "conditions",
+        "mental-health",
+        "prevention",
+        "services",
+        "doctors",
+        "billing",
+        "appointments",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "updates/index.html",
+          "title": "Health & Practice Updates",
+          "category": "Updates"
+        },
+        {
+          "url": "practice-policies.html",
+          "title": "Practice Policies",
+          "category": "Practice & Governance"
+        },
+        {
+          "url": "practice-information.html",
+          "title": "Practice Information",
+          "category": "Practice & Governance"
+        },
+        {
+          "url": "story.html",
+          "title": "Our Story",
+          "category": "Practice"
+        }
+      ],
+      "guides": [],
+      "others": [
+        {
+          "url": "updates/index.html",
+          "title": "Health & Practice Updates",
+          "category": "Updates",
+          "rank": 66,
+          "base": 32,
+          "hinted": false
+        },
+        {
+          "url": "practice-policies.html",
+          "title": "Practice Policies",
+          "category": "Practice & Governance",
+          "rank": 63,
+          "base": 29,
+          "hinted": false
+        },
+        {
+          "url": "practice-information.html",
+          "title": "Practice Information",
+          "category": "Practice & Governance",
+          "rank": 62,
+          "base": 28,
+          "hinted": false
+        },
+        {
+          "url": "story.html",
+          "title": "Our Story",
+          "category": "Practice",
+          "rank": 56,
+          "base": 22,
+          "hinted": false
+        }
+      ],
+      "journeyService": null,
+      "tokens": [
+        "join",
+        "practice"
+      ]
+    }
+  ],
+  "Repeat Script": [
+    {
+      "query": "repeat script",
+      "mode": "direct",
+      "directUrl": "repeat-scripts.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "repeat-scripts.html",
+          "title": "Repeat Scripts",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "repeat",
+        "script",
+        "prescription",
+        "medication"
+      ]
+    },
+    {
+      "query": "script",
+      "mode": "direct",
+      "directUrl": "repeat-scripts.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "repeat-scripts.html",
+          "title": "Repeat Scripts",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "script",
+        "prescription",
+        "repeat",
+        "medication"
+      ]
+    },
+    {
+      "query": "prescription",
+      "mode": "direct",
+      "directUrl": "repeat-scripts.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "repeat-scripts.html",
+          "title": "Repeat Scripts",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "prescription",
+        "script",
+        "repeat"
+      ]
+    },
+    {
+      "query": "repeat prescription",
+      "mode": "direct",
+      "directUrl": "repeat-scripts.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "repeat-scripts.html",
+          "title": "Repeat Scripts",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "repeat",
+        "prescription",
+        "script"
+      ]
+    },
+    {
+      "query": "refill",
+      "mode": "direct",
+      "directUrl": "repeat-scripts.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "repeat-scripts.html",
+          "title": "Repeat Scripts",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "refill",
+        "repeat",
+        "prescription"
+      ]
+    },
+    {
+      "query": "renew medication",
+      "mode": "direct",
+      "directUrl": "repeat-scripts.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "repeat-scripts.html",
+          "title": "Repeat Scripts",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "renew",
+        "medication"
+      ]
+    },
+    {
+      "query": "need a script",
+      "mode": "direct",
+      "directUrl": "repeat-scripts.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "repeat-scripts.html",
+          "title": "Repeat Scripts",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "script",
+        "prescription",
+        "repeat",
+        "medication"
+      ]
+    }
+  ],
+  "Referral": [
+    {
+      "query": "referral",
+      "mode": "direct",
+      "directUrl": "referrals.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "referrals.html",
+          "title": "Referrals",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "referral"
+      ]
+    },
+    {
+      "query": "referrals",
+      "mode": "direct",
+      "directUrl": "referrals.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "referrals.html",
+          "title": "Referrals",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "referrals"
+      ]
+    },
+    {
+      "query": "specialist referral",
+      "mode": "direct",
+      "directUrl": "referrals.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "referrals.html",
+          "title": "Referrals",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "specialist",
+        "referral"
+      ]
+    },
+    {
+      "query": "refer me",
+      "mode": "direct",
+      "directUrl": "referrals.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "referrals.html",
+          "title": "Referrals",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "refer"
+      ]
+    },
+    {
+      "query": "need a referral",
+      "mode": "direct",
+      "directUrl": "referrals.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "referrals.html",
+          "title": "Referrals",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "referral"
+      ]
+    },
+    {
+      "query": "specialist",
+      "mode": "task-fallback",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "prevention",
+        "referrals",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "referrals.html",
+          "title": "Referrals",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [
+        {
+          "url": "referrals.html",
+          "title": "Referrals",
+          "category": "Patient Information",
+          "rank": 77,
+          "base": 77,
+          "hinted": false
+        }
+      ],
+      "journeyService": null,
+      "tokens": [
+        "specialist"
+      ]
+    }
+  ],
+  "Test Results": [
+    {
+      "query": "test results",
+      "mode": "direct",
+      "directUrl": "test-results.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "test-results.html",
+          "title": "Test Results",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "test",
+        "results",
+        "follow",
+        "up"
+      ]
+    },
+    {
+      "query": "results",
+      "mode": "direct",
+      "directUrl": "test-results.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "test-results.html",
+          "title": "Test Results",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "results",
+        "test",
+        "follow",
+        "up"
+      ]
+    },
+    {
+      "query": "my results",
+      "mode": "direct",
+      "directUrl": "test-results.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "test-results.html",
+          "title": "Test Results",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "results",
+        "test",
+        "follow",
+        "up"
+      ]
+    },
+    {
+      "query": "blood test",
+      "mode": "direct",
+      "directUrl": "test-results.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "test-results.html",
+          "title": "Test Results",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "blood",
+        "test",
+        "pathology"
+      ]
+    },
+    {
+      "query": "pathology",
+      "mode": "task-fallback",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "services",
+        "pathology"
+      ],
+      "shown": [
+        {
+          "url": "services/pathology.html",
+          "title": "Pathology",
+          "category": "Service"
+        },
+        {
+          "url": "test-results.html",
+          "title": "Test Results",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [
+        {
+          "url": "services/pathology.html",
+          "title": "Pathology",
+          "category": "Service",
+          "rank": 325,
+          "base": 291,
+          "hinted": false
+        },
+        {
+          "url": "test-results.html",
+          "title": "Test Results",
+          "category": "Patient Information",
+          "rank": 77,
+          "base": 77,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/family-health.html",
+        "title": "Family Health"
+      },
+      "tokens": [
+        "pathology",
+        "blood",
+        "test"
+      ]
+    },
+    {
+      "query": "pathology report",
+      "mode": "direct",
+      "directUrl": "test-results.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "test-results.html",
+          "title": "Test Results",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "pathology",
+        "report",
+        "blood",
+        "test"
+      ]
+    },
+    {
+      "query": "scan result",
+      "mode": "direct",
+      "directUrl": "test-results.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "test-results.html",
+          "title": "Test Results",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "scan",
+        "result",
+        "radiology",
+        "imaging",
+        "results",
+        "test",
+        "follow",
+        "up"
+      ]
+    }
+  ],
+  "Telehealth": [
+    {
+      "query": "telehealth",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [
+        "knowledge/articles/when-can-i-use-telehealth.html"
+      ],
+      "shards": [
+        "prevention",
+        "services",
+        "appointments",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/when-can-i-use-telehealth.html",
+          "title": "When Can I Use Telehealth?",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/how-telehealth-works.html",
+          "title": "How GP Telehealth Works",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/telehealth-vs-face-to-face-appointments.html",
+          "title": "Telehealth or Face-to-Face GP?",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/when-can-i-use-telehealth.html",
+          "title": "When Can I Use Telehealth?",
+          "category": "Knowledge Centre",
+          "rank": 357,
+          "base": 133,
+          "hinted": true
+        },
+        {
+          "url": "knowledge/articles/how-telehealth-works.html",
+          "title": "How GP Telehealth Works",
+          "category": "Knowledge Centre",
+          "rank": 192,
+          "base": 133,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/telehealth-vs-face-to-face-appointments.html",
+          "title": "Telehealth or Face-to-Face GP?",
+          "category": "Knowledge Centre",
+          "rank": 192,
+          "base": 133,
+          "hinted": false
+        }
+      ],
+      "others": [
+        {
+          "url": "services/telehealth.html",
+          "title": "Telehealth",
+          "category": "Service",
+          "rank": 307,
+          "base": 273,
+          "hinted": false
+        },
+        {
+          "url": "telehealth.html",
+          "title": "Telehealth Information",
+          "category": "Patient Information",
+          "rank": 252,
+          "base": 218,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/telehealth-access-to-care.html",
+          "title": "Telehealth & Access Guides",
+          "category": "Knowledge Centre",
+          "rank": 189,
+          "base": 155,
+          "hinted": false
+        },
+        {
+          "url": "updates/telehealth-appointments.html",
+          "title": "Telehealth appointments",
+          "category": "Updates",
+          "rank": 189,
+          "base": 155,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/telehealth.html",
+        "title": "Telehealth"
+      },
+      "tokens": [
+        "telehealth"
+      ]
+    },
+    {
+      "query": "video appointment",
+      "mode": "direct",
+      "directUrl": "book-appointment.html",
+      "hints": [
+        "knowledge/articles/when-can-i-use-telehealth.html"
+      ],
+      "shards": [],
+      "shown": [
+        {
+          "url": "book-appointment.html",
+          "title": "Book an Appointment",
+          "category": "Practice"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "video",
+        "appointment",
+        "book",
+        "booking",
+        "hotdoc"
+      ]
+    },
+    {
+      "query": "phone appointment",
+      "mode": "direct",
+      "directUrl": "book-appointment.html",
+      "hints": [
+        "knowledge/articles/when-can-i-use-telehealth.html"
+      ],
+      "shards": [],
+      "shown": [
+        {
+          "url": "book-appointment.html",
+          "title": "Book an Appointment",
+          "category": "Practice"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "phone",
+        "appointment",
+        "contact",
+        "reception",
+        "call",
+        "book",
+        "booking",
+        "hotdoc"
+      ]
+    },
+    {
+      "query": "phone consult",
+      "mode": "task-fallback",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "appointments",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "contact.html",
+          "title": "Contact & Location",
+          "category": "Practice"
+        },
+        {
+          "url": "telehealth.html",
+          "title": "Telehealth Information",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [
+        {
+          "url": "contact.html",
+          "title": "Contact & Location",
+          "category": "Practice",
+          "rank": 58,
+          "base": 58,
+          "hinted": false
+        },
+        {
+          "url": "telehealth.html",
+          "title": "Telehealth Information",
+          "category": "Patient Information",
+          "rank": 52,
+          "base": 52,
+          "hinted": false
+        }
+      ],
+      "journeyService": null,
+      "tokens": [
+        "phone",
+        "consult",
+        "contact",
+        "reception",
+        "call"
+      ]
+    },
+    {
+      "query": "video call",
+      "mode": "none",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "prevention",
+        "appointments",
+        "administration"
+      ],
+      "shown": [],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "video",
+        "call"
+      ]
+    },
+    {
+      "query": "online appointment",
+      "mode": "direct",
+      "directUrl": "book-appointment.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "book-appointment.html",
+          "title": "Book an Appointment",
+          "category": "Practice"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "online",
+        "appointment",
+        "book",
+        "booking",
+        "hotdoc"
+      ]
+    }
+  ],
+  "Skin Check": [
+    {
+      "query": "skin check",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [
+        "knowledge/articles/when-should-i-book-a-skin-check.html"
+      ],
+      "shards": [
+        "conditions",
+        "prevention",
+        "services",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/when-should-i-book-a-skin-check.html",
+          "title": "When to Book a Skin Check",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/why-skin-checks-matter-in-australia.html",
+          "title": "Why Skin Checks Matter",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/protecting-your-skin-from-the-queensland-sun.html",
+          "title": "Queensland Sun Protection",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/understanding-skin-cancer-risks.html",
+          "title": "Skin Cancer Risks",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/why-regular-check-ups-matter.html",
+          "title": "Why GP Check-Ups Matter",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/when-should-i-book-a-skin-check.html",
+          "title": "When to Book a Skin Check",
+          "category": "Knowledge Centre",
+          "rank": 419,
+          "base": 161,
+          "hinted": true
+        },
+        {
+          "url": "knowledge/articles/why-skin-checks-matter-in-australia.html",
+          "title": "Why Skin Checks Matter",
+          "category": "Knowledge Centre",
+          "rank": 193,
+          "base": 134,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/protecting-your-skin-from-the-queensland-sun.html",
+          "title": "Queensland Sun Protection",
+          "category": "Knowledge Centre",
+          "rank": 88,
+          "base": 29,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/understanding-skin-cancer-risks.html",
+          "title": "Skin Cancer Risks",
+          "category": "Knowledge Centre",
+          "rank": 88,
+          "base": 29,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/why-regular-check-ups-matter.html",
+          "title": "Why GP Check-Ups Matter",
+          "category": "Knowledge Centre",
+          "rank": 88,
+          "base": 29,
+          "hinted": false
+        }
+      ],
+      "others": [
+        {
+          "url": "services/skin-checks.html",
+          "title": "Skin Checks",
+          "category": "Service",
+          "rank": 194,
+          "base": 160,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/skin-health-skin-cancer.html",
+          "title": "Skin Health Guides",
+          "category": "Knowledge Centre",
+          "rank": 78,
+          "base": 44,
+          "hinted": false
+        },
+        {
+          "url": "services/skin-cancer-care.html",
+          "title": "Skin Cancer Care",
+          "category": "Service",
+          "rank": 67,
+          "base": 33,
+          "hinted": false
+        },
+        {
+          "url": "services/breast-check.html",
+          "title": "Breast Check",
+          "category": "Service",
+          "rank": 60,
+          "base": 26,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/skin-checks.html",
+        "title": "Skin Checks"
+      },
+      "tokens": [
+        "skin",
+        "check"
+      ]
+    },
+    {
+      "query": "skin checks",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "conditions",
+        "life-stages",
+        "prevention",
+        "services",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/why-skin-checks-matter-in-australia.html",
+          "title": "Why Skin Checks Matter",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/health-checks-every-man-should-consider.html",
+          "title": "Men’s Health Checks",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/protecting-your-skin-from-the-queensland-sun.html",
+          "title": "Queensland Sun Protection",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/understanding-skin-cancer-risks.html",
+          "title": "Skin Cancer Risks",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/when-should-i-book-a-skin-check.html",
+          "title": "When to Book a Skin Check",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/womens-health-checks-at-different-stages-of-life.html",
+          "title": "Women's Health by Age",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/why-skin-checks-matter-in-australia.html",
+          "title": "Why Skin Checks Matter",
+          "category": "Knowledge Centre",
+          "rank": 254,
+          "base": 161,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/health-checks-every-man-should-consider.html",
+          "title": "Men’s Health Checks",
+          "category": "Knowledge Centre",
+          "rank": 88,
+          "base": 29,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/protecting-your-skin-from-the-queensland-sun.html",
+          "title": "Queensland Sun Protection",
+          "category": "Knowledge Centre",
+          "rank": 88,
+          "base": 29,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/understanding-skin-cancer-risks.html",
+          "title": "Skin Cancer Risks",
+          "category": "Knowledge Centre",
+          "rank": 88,
+          "base": 29,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/when-should-i-book-a-skin-check.html",
+          "title": "When to Book a Skin Check",
+          "category": "Knowledge Centre",
+          "rank": 88,
+          "base": 29,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/womens-health-checks-at-different-stages-of-life.html",
+          "title": "Women's Health by Age",
+          "category": "Knowledge Centre",
+          "rank": 88,
+          "base": 29,
+          "hinted": false
+        }
+      ],
+      "others": [
+        {
+          "url": "services/skin-checks.html",
+          "title": "Skin Checks",
+          "category": "Service",
+          "rank": 351,
+          "base": 283,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/skin-health-skin-cancer.html",
+          "title": "Skin Health Guides",
+          "category": "Knowledge Centre",
+          "rank": 81,
+          "base": 47,
+          "hinted": false
+        },
+        {
+          "url": "services/skin-cancer-care.html",
+          "title": "Skin Cancer Care",
+          "category": "Service",
+          "rank": 67,
+          "base": 33,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/skin-checks.html",
+        "title": "Skin Checks"
+      },
+      "tokens": [
+        "skin",
+        "checks"
+      ]
+    },
+    {
+      "query": "mole check",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "conditions",
+        "prevention",
+        "services"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/when-should-i-book-a-skin-check.html",
+          "title": "When to Book a Skin Check",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/why-regular-check-ups-matter.html",
+          "title": "Why GP Check-Ups Matter",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/when-should-i-book-a-skin-check.html",
+          "title": "When to Book a Skin Check",
+          "category": "Knowledge Centre",
+          "rank": 87,
+          "base": 28,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/why-regular-check-ups-matter.html",
+          "title": "Why GP Check-Ups Matter",
+          "category": "Knowledge Centre",
+          "rank": 87,
+          "base": 28,
+          "hinted": false
+        }
+      ],
+      "others": [
+        {
+          "url": "services/breast-check.html",
+          "title": "Breast Check",
+          "category": "Service",
+          "rank": 59,
+          "base": 25,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/skin-checks.html",
+        "title": "Skin Checks"
+      },
+      "tokens": [
+        "mole",
+        "check"
+      ]
+    },
+    {
+      "query": "skin cancer check",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [
+        "knowledge/articles/understanding-skin-cancer-risks.html"
+      ],
+      "shards": [
+        "conditions",
+        "prevention",
+        "services",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/understanding-skin-cancer-risks.html",
+          "title": "Skin Cancer Risks",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/when-should-i-book-a-skin-check.html",
+          "title": "When to Book a Skin Check",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/protecting-your-skin-from-the-queensland-sun.html",
+          "title": "Queensland Sun Protection",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/why-skin-checks-matter-in-australia.html",
+          "title": "Why Skin Checks Matter",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/why-regular-check-ups-matter.html",
+          "title": "Why GP Check-Ups Matter",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/understanding-skin-cancer-risks.html",
+          "title": "Skin Cancer Risks",
+          "category": "Knowledge Centre",
+          "rank": 315,
+          "base": 57,
+          "hinted": true
+        },
+        {
+          "url": "knowledge/articles/when-should-i-book-a-skin-check.html",
+          "title": "When to Book a Skin Check",
+          "category": "Knowledge Centre",
+          "rank": 150,
+          "base": 57,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/protecting-your-skin-from-the-queensland-sun.html",
+          "title": "Queensland Sun Protection",
+          "category": "Knowledge Centre",
+          "rank": 89,
+          "base": 30,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/why-skin-checks-matter-in-australia.html",
+          "title": "Why Skin Checks Matter",
+          "category": "Knowledge Centre",
+          "rank": 89,
+          "base": 30,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/why-regular-check-ups-matter.html",
+          "title": "Why GP Check-Ups Matter",
+          "category": "Knowledge Centre",
+          "rank": 88,
+          "base": 29,
+          "hinted": false
+        }
+      ],
+      "others": [
+        {
+          "url": "services/skin-cancer-care.html",
+          "title": "Skin Cancer Care",
+          "category": "Service",
+          "rank": 133,
+          "base": 65,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/skin-health-skin-cancer.html",
+          "title": "Skin Health Guides",
+          "category": "Knowledge Centre",
+          "rank": 130,
+          "base": 62,
+          "hinted": false
+        },
+        {
+          "url": "services/skin-checks.html",
+          "title": "Skin Checks",
+          "category": "Service",
+          "rank": 72,
+          "base": 38,
+          "hinted": false
+        },
+        {
+          "url": "services/breast-check.html",
+          "title": "Breast Check",
+          "category": "Service",
+          "rank": 60,
+          "base": 26,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/skin-checks.html",
+        "title": "Skin Checks"
+      },
+      "tokens": [
+        "skin",
+        "cancer",
+        "check"
+      ]
+    },
+    {
+      "query": "check a mole",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "conditions",
+        "prevention",
+        "services"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/when-should-i-book-a-skin-check.html",
+          "title": "When to Book a Skin Check",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/why-regular-check-ups-matter.html",
+          "title": "Why GP Check-Ups Matter",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/when-should-i-book-a-skin-check.html",
+          "title": "When to Book a Skin Check",
+          "category": "Knowledge Centre",
+          "rank": 87,
+          "base": 28,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/why-regular-check-ups-matter.html",
+          "title": "Why GP Check-Ups Matter",
+          "category": "Knowledge Centre",
+          "rank": 87,
+          "base": 28,
+          "hinted": false
+        }
+      ],
+      "others": [
+        {
+          "url": "services/breast-check.html",
+          "title": "Breast Check",
+          "category": "Service",
+          "rank": 59,
+          "base": 25,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/skin-checks.html",
+        "title": "Skin Checks"
+      },
+      "tokens": [
+        "check",
+        "mole"
+      ]
+    },
+    {
+      "query": "full skin check",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [
+        "knowledge/articles/when-should-i-book-a-skin-check.html"
+      ],
+      "shards": [
+        "conditions",
+        "prevention",
+        "services",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/when-should-i-book-a-skin-check.html",
+          "title": "When to Book a Skin Check",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/protecting-your-skin-from-the-queensland-sun.html",
+          "title": "Queensland Sun Protection",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/understanding-skin-cancer-risks.html",
+          "title": "Skin Cancer Risks",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/why-regular-check-ups-matter.html",
+          "title": "Why GP Check-Ups Matter",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/why-skin-checks-matter-in-australia.html",
+          "title": "Why Skin Checks Matter",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/when-should-i-book-a-skin-check.html",
+          "title": "When to Book a Skin Check",
+          "category": "Knowledge Centre",
+          "rank": 315,
+          "base": 57,
+          "hinted": true
+        },
+        {
+          "url": "knowledge/articles/protecting-your-skin-from-the-queensland-sun.html",
+          "title": "Queensland Sun Protection",
+          "category": "Knowledge Centre",
+          "rank": 88,
+          "base": 29,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/understanding-skin-cancer-risks.html",
+          "title": "Skin Cancer Risks",
+          "category": "Knowledge Centre",
+          "rank": 88,
+          "base": 29,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/why-regular-check-ups-matter.html",
+          "title": "Why GP Check-Ups Matter",
+          "category": "Knowledge Centre",
+          "rank": 88,
+          "base": 29,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/why-skin-checks-matter-in-australia.html",
+          "title": "Why Skin Checks Matter",
+          "category": "Knowledge Centre",
+          "rank": 88,
+          "base": 29,
+          "hinted": false
+        }
+      ],
+      "others": [
+        {
+          "url": "services/skin-checks.html",
+          "title": "Skin Checks",
+          "category": "Service",
+          "rank": 71,
+          "base": 37,
+          "hinted": false
+        },
+        {
+          "url": "services/skin-cancer-care.html",
+          "title": "Skin Cancer Care",
+          "category": "Service",
+          "rank": 68,
+          "base": 34,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/skin-health-skin-cancer.html",
+          "title": "Skin Health Guides",
+          "category": "Knowledge Centre",
+          "rank": 67,
+          "base": 33,
+          "hinted": false
+        },
+        {
+          "url": "services/breast-check.html",
+          "title": "Breast Check",
+          "category": "Service",
+          "rank": 60,
+          "base": 26,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/skin-checks.html",
+        "title": "Skin Checks"
+      },
+      "tokens": [
+        "full",
+        "skin",
+        "check"
+      ]
+    }
+  ],
+  "Vaccination": [
+    {
+      "query": "vaccination",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "life-stages",
+        "prevention",
+        "services"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/healthy-ageing-prevention-falls-vaccination-reviews.html",
+          "title": "Healthy Ageing: Falls, Vaccines & GP Reviews",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/influenza-vaccination-who-should-consider-it.html",
+          "title": "Influenza Vaccination: Who Needs a Flu Shot?",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/vaccinations-for-adults.html",
+          "title": "Vaccinations For Adults",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/childhood-vaccinations-explained.html",
+          "title": "Childhood Vaccinations",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/travel-vaccinations-before-overseas-travel.html",
+          "title": "Travel Vaccinations Before Overseas Travel",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/healthy-ageing-prevention-falls-vaccination-reviews.html",
+          "title": "Healthy Ageing: Falls, Vaccines & GP Reviews",
+          "category": "Knowledge Centre",
+          "rank": 209,
+          "base": 150,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/influenza-vaccination-who-should-consider-it.html",
+          "title": "Influenza Vaccination: Who Needs a Flu Shot?",
+          "category": "Knowledge Centre",
+          "rank": 197,
+          "base": 138,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/vaccinations-for-adults.html",
+          "title": "Vaccinations For Adults",
+          "category": "Knowledge Centre",
+          "rank": 192,
+          "base": 133,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/childhood-vaccinations-explained.html",
+          "title": "Childhood Vaccinations",
+          "category": "Knowledge Centre",
+          "rank": 173,
+          "base": 114,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/travel-vaccinations-before-overseas-travel.html",
+          "title": "Travel Vaccinations Before Overseas Travel",
+          "category": "Knowledge Centre",
+          "rank": 170,
+          "base": 111,
+          "hinted": false
+        }
+      ],
+      "others": [
+        {
+          "url": "knowledge/vaccinations.html",
+          "title": "Vaccination Guides",
+          "category": "Knowledge Centre",
+          "rank": 179,
+          "base": 145,
+          "hinted": false
+        },
+        {
+          "url": "services/vaccinations.html",
+          "title": "Vaccinations",
+          "category": "Service",
+          "rank": 167,
+          "base": 133,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/preventive-healthcare.html",
+        "title": "Preventive Healthcare"
+      },
+      "tokens": [
+        "vaccination",
+        "immunisation",
+        "vaccines"
+      ]
+    },
+    {
+      "query": "vaccine",
+      "mode": "none",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "administration"
+      ],
+      "shown": [],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "vaccine"
+      ]
+    },
+    {
+      "query": "immunisation",
+      "mode": "none",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "life-stages",
+        "prevention",
+        "services"
+      ],
+      "shown": [],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "immunisation",
+        "vaccinations"
+      ]
+    },
+    {
+      "query": "flu shot",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "life-stages",
+        "prevention"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/influenza-vaccination-who-should-consider-it.html",
+          "title": "Influenza Vaccination: Who Needs a Flu Shot?",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/influenza-vaccination-who-should-consider-it.html",
+          "title": "Influenza Vaccination: Who Needs a Flu Shot?",
+          "category": "Knowledge Centre",
+          "rank": 188,
+          "base": 95,
+          "hinted": false
+        }
+      ],
+      "others": [],
+      "journeyService": {
+        "url": "services/vaccinations.html",
+        "title": "Vaccinations"
+      },
+      "tokens": [
+        "flu",
+        "shot"
+      ]
+    },
+    {
+      "query": "flu vaccine",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [
+        "knowledge/articles/influenza-vaccination-who-should-consider-it.html"
+      ],
+      "shards": [
+        "life-stages",
+        "prevention",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/influenza-vaccination-who-should-consider-it.html",
+          "title": "Influenza Vaccination: Who Needs a Flu Shot?",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/influenza-vaccination-who-should-consider-it.html",
+          "title": "Influenza Vaccination: Who Needs a Flu Shot?",
+          "category": "Knowledge Centre",
+          "rank": 242,
+          "base": 18,
+          "hinted": true
+        }
+      ],
+      "others": [],
+      "journeyService": {
+        "url": "services/vaccinations.html",
+        "title": "Vaccinations"
+      },
+      "tokens": [
+        "flu",
+        "vaccine"
+      ]
+    },
+    {
+      "query": "travel vaccine",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [
+        "knowledge/articles/travel-vaccinations-before-overseas-travel.html"
+      ],
+      "shards": [
+        "prevention",
+        "services",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/travel-vaccinations-before-overseas-travel.html",
+          "title": "Travel Vaccinations Before Overseas Travel",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/travel-vaccinations-before-overseas-travel.html",
+          "title": "Travel Vaccinations Before Overseas Travel",
+          "category": "Knowledge Centre",
+          "rank": 253,
+          "base": 29,
+          "hinted": true
+        }
+      ],
+      "others": [],
+      "journeyService": {
+        "url": "services/vaccinations.html",
+        "title": "Vaccinations"
+      },
+      "tokens": [
+        "travel",
+        "vaccine"
+      ]
+    },
+    {
+      "query": "childhood vaccination",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "life-stages",
+        "prevention",
+        "services"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/childhood-vaccinations-explained.html",
+          "title": "Childhood Vaccinations",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/healthy-ageing-prevention-falls-vaccination-reviews.html",
+          "title": "Healthy Ageing: Falls, Vaccines & GP Reviews",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/influenza-vaccination-who-should-consider-it.html",
+          "title": "Influenza Vaccination: Who Needs a Flu Shot?",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/common-childhood-illnesses.html",
+          "title": "Childhood Illness Guide",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/when-should-i-be-concerned-about-a-fever.html",
+          "title": "Childhood Fever Guide",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/vaccinations-for-adults.html",
+          "title": "Vaccinations For Adults",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/childhood-vaccinations-explained.html",
+          "title": "Childhood Vaccinations",
+          "category": "Knowledge Centre",
+          "rank": 235,
+          "base": 142,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/healthy-ageing-prevention-falls-vaccination-reviews.html",
+          "title": "Healthy Ageing: Falls, Vaccines & GP Reviews",
+          "category": "Knowledge Centre",
+          "rank": 105,
+          "base": 46,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/influenza-vaccination-who-should-consider-it.html",
+          "title": "Influenza Vaccination: Who Needs a Flu Shot?",
+          "category": "Knowledge Centre",
+          "rank": 93,
+          "base": 34,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/common-childhood-illnesses.html",
+          "title": "Childhood Illness Guide",
+          "category": "Knowledge Centre",
+          "rank": 89,
+          "base": 30,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/when-should-i-be-concerned-about-a-fever.html",
+          "title": "Childhood Fever Guide",
+          "category": "Knowledge Centre",
+          "rank": 78,
+          "base": 19,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/vaccinations-for-adults.html",
+          "title": "Vaccinations For Adults",
+          "category": "Knowledge Centre",
+          "rank": 70,
+          "base": 11,
+          "hinted": false
+        }
+      ],
+      "others": [
+        {
+          "url": "knowledge/vaccinations.html",
+          "title": "Vaccination Guides",
+          "category": "Knowledge Centre",
+          "rank": 57,
+          "base": 23,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/vaccinations.html",
+        "title": "Vaccinations"
+      },
+      "tokens": [
+        "childhood",
+        "vaccination",
+        "immunisation",
+        "vaccines"
+      ]
+    },
+    {
+      "query": "needles",
+      "mode": "none",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "symptoms",
+        "conditions",
+        "mental-health",
+        "life-stages",
+        "prevention",
+        "services",
+        "doctors",
+        "billing",
+        "appointments",
+        "referrals",
+        "pathology",
+        "imaging",
+        "prescriptions",
+        "administration"
+      ],
+      "shown": [],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "needles"
+      ]
+    }
+  ],
+  "Diabetes": [
+    {
+      "query": "diabetes",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [
+        "knowledge/articles/living-with-diabetes.html",
+        "knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html"
+      ],
+      "shards": [
+        "conditions",
+        "prevention"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/living-with-diabetes.html",
+          "title": "Living With Diabetes",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html",
+          "title": "Living With Diabetes: GP Care & Monitoring",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/diabetes-care-plans-explained.html",
+          "title": "Diabetes Care Plans Explained",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/diabetes-monitoring-explained.html",
+          "title": "Diabetes Monitoring Explained",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/preventing-diabetes-complications.html",
+          "title": "Preventing Diabetes Complications",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/understanding-type-2-diabetes.html",
+          "title": "Understanding Type 2 Diabetes",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/living-with-diabetes.html",
+          "title": "Living With Diabetes",
+          "category": "Knowledge Centre",
+          "rank": 357,
+          "base": 133,
+          "hinted": true
+        },
+        {
+          "url": "knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html",
+          "title": "Living With Diabetes: GP Care & Monitoring",
+          "category": "Knowledge Centre",
+          "rank": 356,
+          "base": 133,
+          "hinted": true
+        },
+        {
+          "url": "knowledge/articles/diabetes-care-plans-explained.html",
+          "title": "Diabetes Care Plans Explained",
+          "category": "Knowledge Centre",
+          "rank": 192,
+          "base": 133,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/diabetes-monitoring-explained.html",
+          "title": "Diabetes Monitoring Explained",
+          "category": "Knowledge Centre",
+          "rank": 192,
+          "base": 133,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/preventing-diabetes-complications.html",
+          "title": "Preventing Diabetes Complications",
+          "category": "Knowledge Centre",
+          "rank": 192,
+          "base": 133,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/understanding-type-2-diabetes.html",
+          "title": "Understanding Type 2 Diabetes",
+          "category": "Knowledge Centre",
+          "rank": 192,
+          "base": 133,
+          "hinted": false
+        }
+      ],
+      "others": [
+        {
+          "url": "knowledge/diabetes.html",
+          "title": "Diabetes & Ongoing Care",
+          "category": "Knowledge Centre",
+          "rank": 167,
+          "base": 133,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/chronic-disease-care.html",
+        "title": "Chronic Disease Care"
+      },
+      "tokens": [
+        "diabetes"
+      ]
+    },
+    {
+      "query": "diabetic",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [
+        "knowledge/articles/living-with-diabetes.html",
+        "knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html"
+      ],
+      "shards": [
+        "conditions"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/living-with-diabetes.html",
+          "title": "Living With Diabetes",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html",
+          "title": "Living With Diabetes: GP Care & Monitoring",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/living-with-diabetes.html",
+          "title": "Living With Diabetes",
+          "category": "Knowledge Centre",
+          "rank": 190,
+          "base": 0,
+          "hinted": true
+        },
+        {
+          "url": "knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html",
+          "title": "Living With Diabetes: GP Care & Monitoring",
+          "category": "Knowledge Centre",
+          "rank": 189,
+          "base": 0,
+          "hinted": true
+        }
+      ],
+      "others": [],
+      "journeyService": {
+        "url": "services/chronic-disease-care.html",
+        "title": "Chronic Disease Care"
+      },
+      "tokens": [
+        "diabetic"
+      ]
+    },
+    {
+      "query": "type 2 diabetes",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [
+        "knowledge/articles/understanding-type-2-diabetes.html",
+        "knowledge/articles/living-with-diabetes.html",
+        "knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html"
+      ],
+      "shards": [
+        "conditions",
+        "prevention"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/understanding-type-2-diabetes.html",
+          "title": "Understanding Type 2 Diabetes",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/living-with-diabetes.html",
+          "title": "Living With Diabetes",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html",
+          "title": "Living With Diabetes: GP Care & Monitoring",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/diabetes-care-plans-explained.html",
+          "title": "Diabetes Care Plans Explained",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/diabetes-monitoring-explained.html",
+          "title": "Diabetes Monitoring Explained",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/preventing-diabetes-complications.html",
+          "title": "Preventing Diabetes Complications",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/understanding-type-2-diabetes.html",
+          "title": "Understanding Type 2 Diabetes",
+          "category": "Knowledge Centre",
+          "rank": 447,
+          "base": 189,
+          "hinted": true
+        },
+        {
+          "url": "knowledge/articles/living-with-diabetes.html",
+          "title": "Living With Diabetes",
+          "category": "Knowledge Centre",
+          "rank": 253,
+          "base": 30,
+          "hinted": true
+        },
+        {
+          "url": "knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html",
+          "title": "Living With Diabetes: GP Care & Monitoring",
+          "category": "Knowledge Centre",
+          "rank": 252,
+          "base": 30,
+          "hinted": true
+        },
+        {
+          "url": "knowledge/articles/diabetes-care-plans-explained.html",
+          "title": "Diabetes Care Plans Explained",
+          "category": "Knowledge Centre",
+          "rank": 89,
+          "base": 30,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/diabetes-monitoring-explained.html",
+          "title": "Diabetes Monitoring Explained",
+          "category": "Knowledge Centre",
+          "rank": 89,
+          "base": 30,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/preventing-diabetes-complications.html",
+          "title": "Preventing Diabetes Complications",
+          "category": "Knowledge Centre",
+          "rank": 89,
+          "base": 30,
+          "hinted": false
+        }
+      ],
+      "others": [
+        {
+          "url": "knowledge/diabetes.html",
+          "title": "Diabetes & Ongoing Care",
+          "category": "Knowledge Centre",
+          "rank": 81,
+          "base": 47,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/chronic-disease-care.html",
+        "title": "Chronic Disease Care"
+      },
+      "tokens": [
+        "type",
+        "2",
+        "diabetes"
+      ]
+    },
+    {
+      "query": "blood sugar",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "conditions",
+        "prevention",
+        "pathology"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/high-blood-pressure-explained.html",
+          "title": "High Blood Pressure Explained",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/when-should-i-be-concerned-about-blood-pressure.html",
+          "title": "When Should I Be Concerned About Blood Pressure?",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/blood-pressure-explained.html",
+          "title": "Blood Pressure Explained: GP Checks",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/high-blood-pressure-explained.html",
+          "title": "High Blood Pressure Explained",
+          "category": "Knowledge Centre",
+          "rank": 88,
+          "base": 29,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/when-should-i-be-concerned-about-blood-pressure.html",
+          "title": "When Should I Be Concerned About Blood Pressure?",
+          "category": "Knowledge Centre",
+          "rank": 88,
+          "base": 29,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/blood-pressure-explained.html",
+          "title": "Blood Pressure Explained: GP Checks",
+          "category": "Knowledge Centre",
+          "rank": 87,
+          "base": 28,
+          "hinted": false
+        }
+      ],
+      "others": [
+        {
+          "url": "knowledge/heart.html",
+          "title": "Blood Pressure & Heart Health",
+          "category": "Knowledge Centre",
+          "rank": 54,
+          "base": 20,
+          "hinted": false
+        },
+        {
+          "url": "services/pathology.html",
+          "title": "Pathology",
+          "category": "Service",
+          "rank": 50,
+          "base": 50,
+          "hinted": false
+        },
+        {
+          "url": "test-results.html",
+          "title": "Test Results",
+          "category": "Patient Information",
+          "rank": 45,
+          "base": 45,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/preventive-healthcare.html",
+        "title": "Preventive Healthcare"
+      },
+      "tokens": [
+        "blood",
+        "sugar",
+        "test",
+        "pathology"
+      ]
+    },
+    {
+      "query": "hba1c",
+      "mode": "none",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "conditions"
+      ],
+      "shown": [],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "hba1c"
+      ]
+    },
+    {
+      "query": "diabetes care plan",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [
+        "knowledge/articles/diabetes-care-plans-explained.html",
+        "knowledge/articles/living-with-diabetes.html",
+        "knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html"
+      ],
+      "shards": [
+        "conditions",
+        "mental-health",
+        "prevention",
+        "services",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/diabetes-care-plans-explained.html",
+          "title": "Diabetes Care Plans Explained",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html",
+          "title": "Living With Diabetes: GP Care & Monitoring",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/living-with-diabetes.html",
+          "title": "Living With Diabetes",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+          "title": "Mental Health Care Plans",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/preventing-diabetes-complications.html",
+          "title": "Preventing Diabetes Complications",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/diabetes-monitoring-explained.html",
+          "title": "Diabetes Monitoring Explained",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/diabetes-care-plans-explained.html",
+          "title": "Diabetes Care Plans Explained",
+          "category": "Knowledge Centre",
+          "rank": 375,
+          "base": 151,
+          "hinted": true
+        },
+        {
+          "url": "knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html",
+          "title": "Living With Diabetes: GP Care & Monitoring",
+          "category": "Knowledge Centre",
+          "rank": 271,
+          "base": 49,
+          "hinted": true
+        },
+        {
+          "url": "knowledge/articles/living-with-diabetes.html",
+          "title": "Living With Diabetes",
+          "category": "Knowledge Centre",
+          "rank": 253,
+          "base": 30,
+          "hinted": true
+        },
+        {
+          "url": "knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+          "title": "Mental Health Care Plans",
+          "category": "Knowledge Centre",
+          "rank": 109,
+          "base": 50,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/preventing-diabetes-complications.html",
+          "title": "Preventing Diabetes Complications",
+          "category": "Knowledge Centre",
+          "rank": 92,
+          "base": 33,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/diabetes-monitoring-explained.html",
+          "title": "Diabetes Monitoring Explained",
+          "category": "Knowledge Centre",
+          "rank": 89,
+          "base": 30,
+          "hinted": false
+        }
+      ],
+      "others": [
+        {
+          "url": "knowledge/diabetes.html",
+          "title": "Diabetes & Ongoing Care",
+          "category": "Knowledge Centre",
+          "rank": 87,
+          "base": 53,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/chronic-disease-care.html",
+        "title": "Chronic Disease Care"
+      },
+      "tokens": [
+        "diabetes",
+        "care",
+        "plan"
+      ]
+    }
+  ],
+  "Women's Health": [
+    {
+      "query": "womens health",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [
+        "knowledge/articles/womens-health-checks-at-different-stages-of-life.html"
+      ],
+      "shards": [
+        "life-stages",
+        "prevention",
+        "services",
+        "doctors",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/womens-health-checks-at-different-stages-of-life.html",
+          "title": "Women's Health by Age",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/womens-health-checks-at-different-stages-of-life.html",
+          "title": "Women's Health by Age",
+          "category": "Knowledge Centre",
+          "rank": 258,
+          "base": 68,
+          "hinted": true
+        }
+      ],
+      "others": [
+        {
+          "url": "services/womens-health.html",
+          "title": "Women’s Health",
+          "category": "Service",
+          "rank": 72,
+          "base": 72,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/womens-health.html",
+          "title": "Women's Health Guides",
+          "category": "Knowledge Centre",
+          "rank": 72,
+          "base": 72,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/womens-health.html",
+        "title": "Women’s Health"
+      },
+      "tokens": [
+        "womens",
+        "health"
+      ]
+    },
+    {
+      "query": "women's health",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [
+        "knowledge/articles/womens-health-checks-at-different-stages-of-life.html"
+      ],
+      "shards": [
+        "life-stages",
+        "prevention",
+        "services",
+        "doctors",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/womens-health-checks-at-different-stages-of-life.html",
+          "title": "Women's Health by Age",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/preventive-womens-healthcare.html",
+          "title": "Women's Preventive Care",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/womens-health-checks-at-different-stages-of-life.html",
+          "title": "Women's Health by Age",
+          "category": "Knowledge Centre",
+          "rank": 365,
+          "base": 141,
+          "hinted": true
+        },
+        {
+          "url": "knowledge/articles/preventive-womens-healthcare.html",
+          "title": "Women's Preventive Care",
+          "category": "Knowledge Centre",
+          "rank": 173,
+          "base": 114,
+          "hinted": false
+        }
+      ],
+      "others": [
+        {
+          "url": "services/womens-health.html",
+          "title": "Women’s Health",
+          "category": "Service",
+          "rank": 301,
+          "base": 267,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/womens-health.html",
+          "title": "Women's Health Guides",
+          "category": "Knowledge Centre",
+          "rank": 268,
+          "base": 234,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/womens-health.html",
+        "title": "Women’s Health"
+      },
+      "tokens": [
+        "women",
+        "s",
+        "health"
+      ]
+    },
+    {
+      "query": "female health",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [
+        "knowledge/articles/womens-health-checks-at-different-stages-of-life.html"
+      ],
+      "shards": [
+        "life-stages"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/womens-health-checks-at-different-stages-of-life.html",
+          "title": "Women's Health by Age",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/womens-health-checks-at-different-stages-of-life.html",
+          "title": "Women's Health by Age",
+          "category": "Knowledge Centre",
+          "rank": 218,
+          "base": 28,
+          "hinted": true
+        }
+      ],
+      "others": [],
+      "journeyService": {
+        "url": "services/womens-health.html",
+        "title": "Women’s Health"
+      },
+      "tokens": [
+        "female",
+        "health"
+      ]
+    },
+    {
+      "query": "pap smear",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [
+        "knowledge/articles/when-should-i-have-a-cervical-screening-test.html"
+      ],
+      "shards": [
+        "life-stages",
+        "services"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/when-should-i-have-a-cervical-screening-test.html",
+          "title": "Cervical Screening Guide",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/when-should-i-have-a-cervical-screening-test.html",
+          "title": "Cervical Screening Guide",
+          "category": "Knowledge Centre",
+          "rank": 252,
+          "base": 62,
+          "hinted": true
+        }
+      ],
+      "others": [
+        {
+          "url": "services/pap-smear-cervical-screening.html",
+          "title": "Cervical Screening",
+          "category": "Service",
+          "rank": 268,
+          "base": 200,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/pap-smear-cervical-screening.html",
+        "title": "Cervical Screening"
+      },
+      "tokens": [
+        "pap",
+        "smear",
+        "cervical",
+        "screening"
+      ]
+    },
+    {
+      "query": "cervical screening",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [
+        "knowledge/articles/when-should-i-have-a-cervical-screening-test.html"
+      ],
+      "shards": [
+        "life-stages",
+        "prevention",
+        "services"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/when-should-i-have-a-cervical-screening-test.html",
+          "title": "Cervical Screening Guide",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/breast-health-changes-screening-when-to-see-a-gp.html",
+          "title": "Breast Changes & Screening: When to See a GP",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/when-should-i-have-a-cervical-screening-test.html",
+          "title": "Cervical Screening Guide",
+          "category": "Knowledge Centre",
+          "rank": 423,
+          "base": 165,
+          "hinted": true
+        },
+        {
+          "url": "knowledge/articles/breast-health-changes-screening-when-to-see-a-gp.html",
+          "title": "Breast Changes & Screening: When to See a GP",
+          "category": "Knowledge Centre",
+          "rank": 85,
+          "base": 26,
+          "hinted": false
+        }
+      ],
+      "others": [
+        {
+          "url": "services/pap-smear-cervical-screening.html",
+          "title": "Cervical Screening",
+          "category": "Service",
+          "rank": 347,
+          "base": 279,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/pap-smear-cervical-screening.html",
+        "title": "Cervical Screening"
+      },
+      "tokens": [
+        "cervical",
+        "screening"
+      ]
+    },
+    {
+      "query": "contraception",
+      "mode": "task-fallback",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "life-stages",
+        "services"
+      ],
+      "shown": [
+        {
+          "url": "services/iud-insertion-removal.html",
+          "title": "IUD Insertion & Removal",
+          "category": "Service"
+        }
+      ],
+      "guides": [],
+      "others": [
+        {
+          "url": "services/iud-insertion-removal.html",
+          "title": "IUD Insertion & Removal",
+          "category": "Service",
+          "rank": 70,
+          "base": 70,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/womens-health.html",
+        "title": "Women’s Health"
+      },
+      "tokens": [
+        "contraception",
+        "iud",
+        "implanon",
+        "womens",
+        "health"
+      ]
+    }
+  ],
+  "Mental Health": [
+    {
+      "query": "mental health",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "mental-health",
+        "life-stages",
+        "services",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+          "title": "Mental Health Care Plans",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/mental-health-and-menopause.html",
+          "title": "Mental Health & Menopause",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+          "title": "Mental Health Care Plans",
+          "category": "Knowledge Centre",
+          "rank": 226,
+          "base": 167,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/mental-health-and-menopause.html",
+          "title": "Mental Health & Menopause",
+          "category": "Knowledge Centre",
+          "rank": 204,
+          "base": 145,
+          "hinted": false
+        }
+      ],
+      "others": [
+        {
+          "url": "knowledge/mental-health.html",
+          "title": "Mental Health Guides",
+          "category": "Knowledge Centre",
+          "rank": 286,
+          "base": 252,
+          "hinted": false
+        },
+        {
+          "url": "services/mental-health.html",
+          "title": "Mental Health Care",
+          "category": "Service",
+          "rank": 223,
+          "base": 189,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/mental-health.html",
+        "title": "Mental Health Care"
+      },
+      "tokens": [
+        "mental",
+        "health",
+        "anxiety",
+        "depression"
+      ]
+    },
+    {
+      "query": "anxiety",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [
+        "knowledge/articles/when-should-i-speak-to-a-gp-about-anxiety.html"
+      ],
+      "shards": [
+        "mental-health"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/when-should-i-speak-to-a-gp-about-anxiety.html",
+          "title": "GP Advice for Anxiety",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/anxiety-vs-stress-what-is-the-difference.html",
+          "title": "Anxiety vs Stress",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/when-should-i-speak-to-a-gp-about-anxiety.html",
+          "title": "GP Advice for Anxiety",
+          "category": "Knowledge Centre",
+          "rank": 379,
+          "base": 155,
+          "hinted": true
+        },
+        {
+          "url": "knowledge/articles/anxiety-vs-stress-what-is-the-difference.html",
+          "title": "Anxiety vs Stress",
+          "category": "Knowledge Centre",
+          "rank": 214,
+          "base": 155,
+          "hinted": false
+        }
+      ],
+      "others": [],
+      "journeyService": {
+        "url": "services/mental-health.html",
+        "title": "Mental Health Care"
+      },
+      "tokens": [
+        "anxiety"
+      ]
+    },
+    {
+      "query": "depression",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [
+        "knowledge/articles/how-can-a-gp-support-depression.html"
+      ],
+      "shards": [
+        "mental-health"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/how-can-a-gp-support-depression.html",
+          "title": "How a GP Can Help With Depression",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/how-can-a-gp-support-depression.html",
+          "title": "How a GP Can Help With Depression",
+          "category": "Knowledge Centre",
+          "rank": 379,
+          "base": 155,
+          "hinted": true
+        }
+      ],
+      "others": [],
+      "journeyService": {
+        "url": "services/mental-health.html",
+        "title": "Mental Health Care"
+      },
+      "tokens": [
+        "depression"
+      ]
+    },
+    {
+      "query": "stress",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [
+        "knowledge/articles/anxiety-vs-stress-what-is-the-difference.html"
+      ],
+      "shards": [
+        "mental-health"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/anxiety-vs-stress-what-is-the-difference.html",
+          "title": "Anxiety vs Stress",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/anxiety-vs-stress-what-is-the-difference.html",
+          "title": "Anxiety vs Stress",
+          "category": "Knowledge Centre",
+          "rank": 421,
+          "base": 197,
+          "hinted": true
+        }
+      ],
+      "others": [],
+      "journeyService": {
+        "url": "services/mental-health.html",
+        "title": "Mental Health Care"
+      },
+      "tokens": [
+        "stress",
+        "anxiety",
+        "mental",
+        "health"
+      ]
+    },
+    {
+      "query": "mental health care plan",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [
+        "knowledge/articles/what-happens-during-a-mental-health-care-plan.html"
+      ],
+      "shards": [
+        "mental-health",
+        "life-stages",
+        "prevention",
+        "services",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+          "title": "Mental Health Care Plans",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/mental-health-and-menopause.html",
+          "title": "Mental Health & Menopause",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+          "title": "Mental Health Care Plans",
+          "category": "Knowledge Centre",
+          "rank": 464,
+          "base": 206,
+          "hinted": true
+        },
+        {
+          "url": "knowledge/articles/mental-health-and-menopause.html",
+          "title": "Mental Health & Menopause",
+          "category": "Knowledge Centre",
+          "rank": 111,
+          "base": 52,
+          "hinted": false
+        }
+      ],
+      "others": [
+        {
+          "url": "services/mental-health.html",
+          "title": "Mental Health Care",
+          "category": "Service",
+          "rank": 125,
+          "base": 91,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/mental-health.html",
+          "title": "Mental Health Guides",
+          "category": "Knowledge Centre",
+          "rank": 106,
+          "base": 72,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/mental-health.html",
+        "title": "Mental Health Care"
+      },
+      "tokens": [
+        "mental",
+        "health",
+        "care",
+        "plan",
+        "anxiety",
+        "depression"
+      ]
+    },
+    {
+      "query": "burnout",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [
+        "knowledge/articles/when-should-i-seek-help-for-burnout.html"
+      ],
+      "shards": [
+        "mental-health"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/when-should-i-seek-help-for-burnout.html",
+          "title": "Burnout: When to Seek Help",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/when-should-i-seek-help-for-burnout.html",
+          "title": "Burnout: When to Seek Help",
+          "category": "Knowledge Centre",
+          "rank": 357,
+          "base": 133,
+          "hinted": true
+        }
+      ],
+      "others": [],
+      "journeyService": {
+        "url": "services/mental-health.html",
+        "title": "Mental Health Care"
+      },
+      "tokens": [
+        "burnout"
+      ]
+    }
+  ],
+  "HotDoc Messages": [
+    {
+      "query": "hotdoc messages",
+      "mode": "direct",
+      "directUrl": "book-appointment.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "book-appointment.html",
+          "title": "Book an Appointment",
+          "category": "Practice"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "hotdoc",
+        "messages",
+        "book",
+        "appointment"
+      ]
+    },
+    {
+      "query": "hotdoc message",
+      "mode": "direct",
+      "directUrl": "book-appointment.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "book-appointment.html",
+          "title": "Book an Appointment",
+          "category": "Practice"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "hotdoc",
+        "message",
+        "book",
+        "appointment"
+      ]
+    },
+    {
+      "query": "hotdoc",
+      "mode": "direct",
+      "directUrl": "book-appointment.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "book-appointment.html",
+          "title": "Book an Appointment",
+          "category": "Practice"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "hotdoc",
+        "book",
+        "appointment"
+      ]
+    },
+    {
+      "query": "scam",
+      "mode": "direct",
+      "directUrl": "identifying-hotdoc-scam-messages.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "identifying-hotdoc-scam-messages.html",
+          "title": "HotDoc Message Safety",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "scam"
+      ]
+    },
+    {
+      "query": "fake sms",
+      "mode": "direct",
+      "directUrl": "identifying-hotdoc-scam-messages.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "identifying-hotdoc-scam-messages.html",
+          "title": "HotDoc Message Safety",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "fake",
+        "sms"
+      ]
+    },
+    {
+      "query": "suspicious message",
+      "mode": "direct",
+      "directUrl": "identifying-hotdoc-scam-messages.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "identifying-hotdoc-scam-messages.html",
+          "title": "HotDoc Message Safety",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "suspicious",
+        "message"
+      ]
+    },
+    {
+      "query": "phishing",
+      "mode": "direct",
+      "directUrl": "identifying-hotdoc-scam-messages.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "identifying-hotdoc-scam-messages.html",
+          "title": "HotDoc Message Safety",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "phishing"
+      ]
+    }
+  ],
+  "Fees": [
+    {
+      "query": "fees",
+      "mode": "direct",
+      "directUrl": "fees-billing.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "fees-billing.html",
+          "title": "Fees & Billing",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "fees",
+        "cost",
+        "billing",
+        "medicare"
+      ]
+    },
+    {
+      "query": "cost",
+      "mode": "direct",
+      "directUrl": "fees-billing.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "fees-billing.html",
+          "title": "Fees & Billing",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "cost",
+        "fees",
+        "billing"
+      ]
+    },
+    {
+      "query": "pricing",
+      "mode": "direct",
+      "directUrl": "fees-billing.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "fees-billing.html",
+          "title": "Fees & Billing",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "pricing"
+      ]
+    },
+    {
+      "query": "how much",
+      "mode": "none",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "symptoms",
+        "conditions",
+        "mental-health",
+        "life-stages",
+        "prevention",
+        "services",
+        "doctors",
+        "billing",
+        "appointments",
+        "referrals",
+        "pathology",
+        "imaging",
+        "prescriptions",
+        "administration"
+      ],
+      "shown": [],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "much"
+      ]
+    },
+    {
+      "query": "consultation fee",
+      "mode": "task-fallback",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "services",
+        "billing",
+        "appointments",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "bulk-billing.html",
+          "title": "Bulk Billing",
+          "category": "Patient Information"
+        },
+        {
+          "url": "ai-transcription-consent.html",
+          "title": "AI Transcription & Consent",
+          "category": "Practice & Governance"
+        }
+      ],
+      "guides": [],
+      "others": [
+        {
+          "url": "bulk-billing.html",
+          "title": "Bulk Billing",
+          "category": "Patient Information",
+          "rank": 63,
+          "base": 63,
+          "hinted": false
+        },
+        {
+          "url": "ai-transcription-consent.html",
+          "title": "AI Transcription & Consent",
+          "category": "Practice & Governance",
+          "rank": 58,
+          "base": 24,
+          "hinted": false
+        }
+      ],
+      "journeyService": null,
+      "tokens": [
+        "consultation",
+        "fee",
+        "fees",
+        "billing",
+        "cost",
+        "medicare"
+      ]
+    },
+    {
+      "query": "gap fee",
+      "mode": "task-fallback",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "billing"
+      ],
+      "shown": [
+        {
+          "url": "bulk-billing.html",
+          "title": "Bulk Billing",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [
+        {
+          "url": "bulk-billing.html",
+          "title": "Bulk Billing",
+          "category": "Patient Information",
+          "rank": 62,
+          "base": 62,
+          "hinted": false
+        }
+      ],
+      "journeyService": null,
+      "tokens": [
+        "gap",
+        "fee",
+        "fees",
+        "billing",
+        "cost",
+        "medicare"
+      ]
+    }
+  ],
+  "Bulk Billing": [
+    {
+      "query": "bulk billing",
+      "mode": "direct",
+      "directUrl": "fees-billing.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "fees-billing.html",
+          "title": "Fees & Billing",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "bulk",
+        "billing",
+        "medicare"
+      ]
+    },
+    {
+      "query": "bulk bill",
+      "mode": "task-fallback",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "billing"
+      ],
+      "shown": [
+        {
+          "url": "bulk-billing.html",
+          "title": "Bulk Billing",
+          "category": "Patient Information"
+        },
+        {
+          "url": "assignment-of-benefit.html",
+          "title": "Assignment of Benefit (AOB)",
+          "category": "Patient Information"
+        },
+        {
+          "url": "fees-billing.html",
+          "title": "Fees & Billing",
+          "category": "Patient Information"
+        },
+        {
+          "url": "medicare.html",
+          "title": "Medicare",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [
+        {
+          "url": "bulk-billing.html",
+          "title": "Bulk Billing",
+          "category": "Patient Information",
+          "rank": 237,
+          "base": 203,
+          "hinted": false
+        },
+        {
+          "url": "assignment-of-benefit.html",
+          "title": "Assignment of Benefit (AOB)",
+          "category": "Patient Information",
+          "rank": 215,
+          "base": 181,
+          "hinted": false
+        },
+        {
+          "url": "fees-billing.html",
+          "title": "Fees & Billing",
+          "category": "Patient Information",
+          "rank": 103,
+          "base": 103,
+          "hinted": false
+        },
+        {
+          "url": "medicare.html",
+          "title": "Medicare",
+          "category": "Patient Information",
+          "rank": 99,
+          "base": 99,
+          "hinted": false
+        }
+      ],
+      "journeyService": null,
+      "tokens": [
+        "bulk",
+        "bill",
+        "billing",
+        "medicare"
+      ]
+    },
+    {
+      "query": "bulk billed",
+      "mode": "task-fallback",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "billing"
+      ],
+      "shown": [
+        {
+          "url": "bulk-billing.html",
+          "title": "Bulk Billing",
+          "category": "Patient Information"
+        },
+        {
+          "url": "assignment-of-benefit.html",
+          "title": "Assignment of Benefit (AOB)",
+          "category": "Patient Information"
+        },
+        {
+          "url": "fees-billing.html",
+          "title": "Fees & Billing",
+          "category": "Patient Information"
+        },
+        {
+          "url": "medicare.html",
+          "title": "Medicare",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [
+        {
+          "url": "bulk-billing.html",
+          "title": "Bulk Billing",
+          "category": "Patient Information",
+          "rank": 154,
+          "base": 120,
+          "hinted": false
+        },
+        {
+          "url": "assignment-of-benefit.html",
+          "title": "Assignment of Benefit (AOB)",
+          "category": "Patient Information",
+          "rank": 103,
+          "base": 69,
+          "hinted": false
+        },
+        {
+          "url": "fees-billing.html",
+          "title": "Fees & Billing",
+          "category": "Patient Information",
+          "rank": 61,
+          "base": 61,
+          "hinted": false
+        },
+        {
+          "url": "medicare.html",
+          "title": "Medicare",
+          "category": "Patient Information",
+          "rank": 49,
+          "base": 49,
+          "hinted": false
+        }
+      ],
+      "journeyService": null,
+      "tokens": [
+        "bulk",
+        "billed",
+        "billing",
+        "medicare"
+      ]
+    },
+    {
+      "query": "do you bulk bill",
+      "mode": "task-fallback",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "billing"
+      ],
+      "shown": [
+        {
+          "url": "bulk-billing.html",
+          "title": "Bulk Billing",
+          "category": "Patient Information"
+        },
+        {
+          "url": "assignment-of-benefit.html",
+          "title": "Assignment of Benefit (AOB)",
+          "category": "Patient Information"
+        },
+        {
+          "url": "fees-billing.html",
+          "title": "Fees & Billing",
+          "category": "Patient Information"
+        },
+        {
+          "url": "medicare.html",
+          "title": "Medicare",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [
+        {
+          "url": "bulk-billing.html",
+          "title": "Bulk Billing",
+          "category": "Patient Information",
+          "rank": 114,
+          "base": 80,
+          "hinted": false
+        },
+        {
+          "url": "assignment-of-benefit.html",
+          "title": "Assignment of Benefit (AOB)",
+          "category": "Patient Information",
+          "rank": 110,
+          "base": 76,
+          "hinted": false
+        },
+        {
+          "url": "fees-billing.html",
+          "title": "Fees & Billing",
+          "category": "Patient Information",
+          "rank": 60,
+          "base": 60,
+          "hinted": false
+        },
+        {
+          "url": "medicare.html",
+          "title": "Medicare",
+          "category": "Patient Information",
+          "rank": 56,
+          "base": 56,
+          "hinted": false
+        }
+      ],
+      "journeyService": null,
+      "tokens": [
+        "bulk",
+        "bill",
+        "billing",
+        "medicare"
+      ]
+    },
+    {
+      "query": "medicare bulk bill",
+      "mode": "task-fallback",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "prevention",
+        "billing",
+        "appointments",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "bulk-billing.html",
+          "title": "Bulk Billing",
+          "category": "Patient Information"
+        },
+        {
+          "url": "assignment-of-benefit.html",
+          "title": "Assignment of Benefit (AOB)",
+          "category": "Patient Information"
+        },
+        {
+          "url": "medicare.html",
+          "title": "Medicare",
+          "category": "Patient Information"
+        },
+        {
+          "url": "fees-billing.html",
+          "title": "Fees & Billing",
+          "category": "Patient Information"
+        },
+        {
+          "url": "medicare-exclusions.html",
+          "title": "Medicare Exclusions",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [
+        {
+          "url": "bulk-billing.html",
+          "title": "Bulk Billing",
+          "category": "Patient Information",
+          "rank": 132,
+          "base": 98,
+          "hinted": false
+        },
+        {
+          "url": "assignment-of-benefit.html",
+          "title": "Assignment of Benefit (AOB)",
+          "category": "Patient Information",
+          "rank": 121,
+          "base": 87,
+          "hinted": false
+        },
+        {
+          "url": "medicare.html",
+          "title": "Medicare",
+          "category": "Patient Information",
+          "rank": 90,
+          "base": 56,
+          "hinted": false
+        },
+        {
+          "url": "fees-billing.html",
+          "title": "Fees & Billing",
+          "category": "Patient Information",
+          "rank": 71,
+          "base": 71,
+          "hinted": false
+        },
+        {
+          "url": "medicare-exclusions.html",
+          "title": "Medicare Exclusions",
+          "category": "Patient Information",
+          "rank": 68,
+          "base": 34,
+          "hinted": false
+        }
+      ],
+      "journeyService": null,
+      "tokens": [
+        "medicare",
+        "bulk",
+        "bill",
+        "billing"
+      ]
+    }
+  ],
+  "Results": [
+    {
+      "query": "results",
+      "mode": "direct",
+      "directUrl": "test-results.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "test-results.html",
+          "title": "Test Results",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "results",
+        "test",
+        "follow",
+        "up"
+      ]
+    },
+    {
+      "query": "my results are in",
+      "mode": "direct",
+      "directUrl": "test-results.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "test-results.html",
+          "title": "Test Results",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "results",
+        "test",
+        "follow",
+        "up"
+      ]
+    },
+    {
+      "query": "when will my results",
+      "mode": "direct",
+      "directUrl": "test-results.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "test-results.html",
+          "title": "Test Results",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "will",
+        "results",
+        "test",
+        "follow",
+        "up"
+      ]
+    },
+    {
+      "query": "lab results",
+      "mode": "direct",
+      "directUrl": "test-results.html",
+      "hints": [],
+      "shards": [],
+      "shown": [
+        {
+          "url": "test-results.html",
+          "title": "Test Results",
+          "category": "Patient Information"
+        }
+      ],
+      "guides": [],
+      "others": [],
+      "journeyService": null,
+      "tokens": [
+        "lab",
+        "results",
+        "test",
+        "follow",
+        "up"
+      ]
+    }
+  ],
+  "Chronic Disease Care": [
+    {
+      "query": "chronic disease",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "symptoms",
+        "conditions",
+        "life-stages",
+        "prevention",
+        "services",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/understanding-gp-chronic-disease-care-plans.html",
+          "title": "GP Chronic Care Plans Explained",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/chronic-pain-when-should-i-seek-help.html",
+          "title": "Chronic Pain: When Should I Seek Help?",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/understanding-gp-chronic-disease-care-plans.html",
+          "title": "GP Chronic Care Plans Explained",
+          "category": "Knowledge Centre",
+          "rank": 240,
+          "base": 147,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/chronic-pain-when-should-i-seek-help.html",
+          "title": "Chronic Pain: When Should I Seek Help?",
+          "category": "Knowledge Centre",
+          "rank": 84,
+          "base": 25,
+          "hinted": false
+        }
+      ],
+      "others": [
+        {
+          "url": "knowledge/chronic-disease-management.html",
+          "title": "Chronic Disease Guides",
+          "category": "Knowledge Centre",
+          "rank": 238,
+          "base": 170,
+          "hinted": false
+        },
+        {
+          "url": "services/chronic-disease-care.html",
+          "title": "Chronic Disease Care",
+          "category": "Service",
+          "rank": 233,
+          "base": 165,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/chronic-disease-care.html",
+        "title": "Chronic Disease Care"
+      },
+      "tokens": [
+        "chronic",
+        "disease"
+      ]
+    },
+    {
+      "query": "chronic disease care",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "symptoms",
+        "conditions",
+        "life-stages",
+        "prevention",
+        "services",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/understanding-gp-chronic-disease-care-plans.html",
+          "title": "GP Chronic Care Plans Explained",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/chronic-pain-when-should-i-seek-help.html",
+          "title": "Chronic Pain: When Should I Seek Help?",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/understanding-gp-chronic-disease-care-plans.html",
+          "title": "GP Chronic Care Plans Explained",
+          "category": "Knowledge Centre",
+          "rank": 268,
+          "base": 175,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/chronic-pain-when-should-i-seek-help.html",
+          "title": "Chronic Pain: When Should I Seek Help?",
+          "category": "Knowledge Centre",
+          "rank": 85,
+          "base": 26,
+          "hinted": false
+        }
+      ],
+      "others": [
+        {
+          "url": "services/chronic-disease-care.html",
+          "title": "Chronic Disease Care",
+          "category": "Service",
+          "rank": 383,
+          "base": 315,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/chronic-disease-management.html",
+          "title": "Chronic Disease Guides",
+          "category": "Knowledge Centre",
+          "rank": 134,
+          "base": 66,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/chronic-disease-care.html",
+        "title": "Chronic Disease Care"
+      },
+      "tokens": [
+        "chronic",
+        "disease",
+        "care"
+      ]
+    },
+    {
+      "query": "care plan",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "mental-health",
+        "prevention",
+        "services",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+          "title": "Mental Health Care Plans",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+          "title": "Mental Health Care Plans",
+          "category": "Knowledge Centre",
+          "rank": 203,
+          "base": 144,
+          "hinted": false
+        }
+      ],
+      "others": [],
+      "journeyService": {
+        "url": "services/mental-health.html",
+        "title": "Mental Health Care"
+      },
+      "tokens": [
+        "care",
+        "plan"
+      ]
+    },
+    {
+      "query": "chronic condition",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "symptoms",
+        "conditions",
+        "life-stages",
+        "prevention",
+        "services",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/understanding-gp-chronic-disease-care-plans.html",
+          "title": "GP Chronic Care Plans Explained",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/chronic-pain-when-should-i-seek-help.html",
+          "title": "Chronic Pain: When Should I Seek Help?",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/understanding-gp-chronic-disease-care-plans.html",
+          "title": "GP Chronic Care Plans Explained",
+          "category": "Knowledge Centre",
+          "rank": 102,
+          "base": 43,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/chronic-pain-when-should-i-seek-help.html",
+          "title": "Chronic Pain: When Should I Seek Help?",
+          "category": "Knowledge Centre",
+          "rank": 84,
+          "base": 25,
+          "hinted": false
+        }
+      ],
+      "others": [
+        {
+          "url": "services/chronic-disease-care.html",
+          "title": "Chronic Disease Care",
+          "category": "Service",
+          "rank": 67,
+          "base": 33,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/chronic-disease-management.html",
+          "title": "Chronic Disease Guides",
+          "category": "Knowledge Centre",
+          "rank": 67,
+          "base": 33,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/chronic-disease-care.html",
+        "title": "Chronic Disease Care"
+      },
+      "tokens": [
+        "chronic",
+        "condition"
+      ]
+    },
+    {
+      "query": "ongoing care",
+      "mode": "task-fallback",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "symptoms",
+        "conditions",
+        "mental-health",
+        "prevention",
+        "services",
+        "pathology",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/diabetes.html",
+          "title": "Diabetes & Ongoing Care",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [],
+      "others": [
+        {
+          "url": "knowledge/diabetes.html",
+          "title": "Diabetes & Ongoing Care",
+          "category": "Knowledge Centre",
+          "rank": 137,
+          "base": 103,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/chronic-disease-care.html",
+        "title": "Chronic Disease Care"
+      },
+      "tokens": [
+        "ongoing",
+        "care"
+      ]
+    },
+    {
+      "query": "management plan",
+      "mode": "clinical",
+      "directUrl": null,
+      "hints": [],
+      "shards": [
+        "symptoms",
+        "conditions",
+        "mental-health",
+        "life-stages",
+        "prevention",
+        "services",
+        "administration"
+      ],
+      "shown": [
+        {
+          "url": "knowledge/articles/healthy-weight-management.html",
+          "title": "Healthy Weight Management",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html",
+          "title": "Living With Diabetes: GP Care & Monitoring",
+          "category": "Knowledge Centre"
+        },
+        {
+          "url": "knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+          "title": "Mental Health Care Plans",
+          "category": "Knowledge Centre"
+        }
+      ],
+      "guides": [
+        {
+          "url": "knowledge/articles/healthy-weight-management.html",
+          "title": "Healthy Weight Management",
+          "category": "Knowledge Centre",
+          "rank": 85,
+          "base": 26,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html",
+          "title": "Living With Diabetes: GP Care & Monitoring",
+          "category": "Knowledge Centre",
+          "rank": 85,
+          "base": 26,
+          "hinted": false
+        },
+        {
+          "url": "knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+          "title": "Mental Health Care Plans",
+          "category": "Knowledge Centre",
+          "rank": 84,
+          "base": 25,
+          "hinted": false
+        }
+      ],
+      "others": [
+        {
+          "url": "knowledge/chronic-disease-management.html",
+          "title": "Chronic Disease Guides",
+          "category": "Knowledge Centre",
+          "rank": 66,
+          "base": 32,
+          "hinted": false
+        }
+      ],
+      "journeyService": {
+        "url": "services/preventive-healthcare.html",
+        "title": "Preventive Healthcare"
+      },
+      "tokens": [
+        "management",
+        "plan"
+      ]
+    }
+  ]
+}

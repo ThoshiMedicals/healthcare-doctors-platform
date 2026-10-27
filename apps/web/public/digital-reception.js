@@ -23,7 +23,10 @@
     pregnancy:['antenatal','postnatal','pre pregnancy'], pregnant:['antenatal','pregnancy'],
     mental:['mental health','anxiety','depression'], stress:['anxiety','mental health'],
     scan:['radiology','imaging'], xray:['radiology','x ray'], ultrasound:['radiology','imaging'], chemist:['pharmacy','medications'],
-    vaccination:['immunisation','vaccines'], vaccines:['vaccination','immunisation'], immunisation:['vaccinations'],
+    vaccination:['immunisation','vaccines','vaccine'], vaccines:['vaccination','immunisation','vaccine'], vaccine:['vaccination','immunisation'], immunisation:['vaccination','vaccine'],
+    jab:['vaccination','vaccine','immunisation'], shot:['vaccination','vaccine'], booster:['vaccination','vaccine'], needles:['vaccination','immunisation'],
+    hba1c:['diabetes','glucose'], glucose:['diabetes','hba1c'],
+    register:['new patient'], enrol:['new patient'], enroll:['new patient'],
     pain:[], age:['ageing','senior'], aging:['ageing','older adults'],
     phone:['contact','reception','call'], location:['address','parking','contact'], hours:['opening hours','contact'],
     complaint:['feedback','complaints'], form:['patient forms','new patients'], privacy:['confidentiality','policy'],
@@ -31,7 +34,29 @@
     nebulizer:['nebulising'], nebuliser:['nebulising'],
   };
   const stopwords = new Set(['a','an','the','i','is','are','in','at','to','for','from','my','me','can','how','do','does','of','with','about','what','where','when','and','or','we','your','you','our','on','please','have','get','find','need']);
-  const expand = q => { const raw=norm(q).split(' ').filter(w=>w&&!stopwords.has(w));const terms=new Set(raw); for(const w of raw){for(const extra of (synonyms[w]||[])){for(const t of norm(extra).split(' ')){if(t&&!stopwords.has(t))terms.add(t)}}}return [...terms]; };
+  const expand = q => {
+    const text=norm(q);
+    const raw=text.split(' ').filter(w=>w&&!stopwords.has(w));
+    const terms=new Set(raw);
+    for(const w of raw){for(const extra of (synonyms[w]||[])){for(const t of norm(extra).split(' ')){if(t&&!stopwords.has(t))terms.add(t)}}}
+    const phraseSynonyms=[
+      [/\b(vaccines?|jabs?|shots?|boosters?|immunisations?|immunizations?|needles)\b/,['vaccination','immunisation','vaccine']],
+      [/\b(hba1c|hb a1c|blood sugars?|blood glucose|glucose)\b/,['diabetes','glucose','hba1c']],
+      [/\b(see a doctor|gp visits?)\b/,['appointment','booking']],
+      [/\b(register|new here|enrol|enroll)\b/,['new','patient']],
+      [/\b(video calls?|phone consults?|virtual appointments?)\b/,['telehealth']],
+    ];
+    for(const [pattern,extras] of phraseSynonyms){
+      if(!pattern.test(text))continue;
+      for(const extra of extras){if(extra&&!stopwords.has(extra))terms.add(extra);}
+    }
+    // "Blood sugar" is a glucose phrase. Do not borrow the blood-test expansion.
+    if(/\b(blood sugar|blood glucose|glucose|hba1c|hb a1c)\b/.test(text)){
+      terms.delete('test');
+      terms.delete('pathology');
+    }
+    return [...terms];
+  };
   const emergency = q => { const text=String(q||""), riskOnly=/\b(stroke risk|risk of stroke)\b/i.test(text) && !/\b(chest pain|difficulty breathing|breathing difficulty|cannot breathe|can.t breathe|worst headache|thunderclap|seizure|severe bleeding|unconscious|suicide|suicidal|self-harm|self harm|harm myself|kill myself|end my life|overdose|life threatening|stroke symptoms|face droop|arm weakness|slurred speech|emergency)\b/i.test(text); return /\b(severe shortness of breath|struggling to breathe|gasping for air|blue lips|can t catch my breath|swollen tongue with breathing problems)\b/i.test(text) || (!riskOnly && /\b(emergency|chest pain|difficulty breathing|breathing difficulty|cannot breathe|can.t breathe|worst headache|thunderclap|stroke|seizure|severe bleeding|unconscious|suicide|suicidal|self-harm|self harm|harm myself|kill myself|end my life|overdose|life threatening)\b/i.test(text)); };
   // Load only the small routing manifest when Digital Reception opens.
   // Verified topic files load at first relevant search, not on every page visit.
@@ -145,13 +170,14 @@
     // A precise service/doctor/policy page outranks a broad hub for the same clinical query.
     if(x.category==='service' && /\b(procedure|treatment|infusion|iud|implanon|ecg|spirometry|vaccine|skin check)\b/.test(query))sum+=8;
     if(x.category==='doctor' && /\b(dr|doctor|gp|practitioner)\b/.test(query))sum+=8;
-    if(x.entry.url==='book-appointment.html' && /\b(book|booking|appointment|hotdoc)\b/.test(query))sum+=30;
+    if(x.entry.url==='book-appointment.html' && /\b(book|booking|appointment|hotdoc)\b/.test(query) && !TOPIC_SIGNALS.some(([pattern])=>pattern.test(query)))sum+=30;
+    if(x.entry.url==='bulk-billing.html' && /\bbulk billing\b|\bbulk bills?\b|\bbulk billed\b/.test(query))sum+=80;
     return sum;
   };
   const esc = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const launcher=document.createElement('button'); launcher.type='button'; launcher.className='digital-reception-launcher'; launcher.setAttribute('aria-expanded','false'); launcher.setAttribute('aria-controls','digital-reception-panel'); launcher.setAttribute('aria-label','Open AI search of this website'); launcher.setAttribute('aria-haspopup','dialog'); launcher.innerHTML='<span class="digital-reception-launcher-full">Digital Reception</span><span class="digital-reception-launcher-compact" aria-hidden="true">AI Search</span>';
+  const launcher=document.createElement('button'); launcher.type='button'; launcher.className='digital-reception-launcher'; launcher.setAttribute('aria-expanded','false'); launcher.setAttribute('aria-controls','digital-reception-panel'); launcher.setAttribute('aria-haspopup','dialog'); launcher.setAttribute('aria-label','Open Digital Reception — ask for information');   launcher.innerHTML='<span class="digital-reception-launcher-full">Digital Reception</span><span class="digital-reception-launcher-compact">Ask us</span>';
   const panel=document.createElement('section'); panel.id='digital-reception-panel'; panel.className='digital-reception-panel'; panel.setAttribute('role','dialog'); panel.setAttribute('aria-modal','true'); panel.setAttribute('aria-labelledby','digital-reception-title'); panel.setAttribute('aria-describedby','digital-reception-disclosure'); panel.setAttribute('aria-hidden','true'); panel.setAttribute('tabindex','-1');
-  panel.innerHTML=`<div class="digital-reception-head"><div><h2 class="digital-reception-title" id="digital-reception-title">Digital Reception</h2><p>Find information and the next step</p></div><button type="button" class="digital-reception-close" aria-label="Close Digital Reception">Close</button></div><div class="digital-reception-body"><p class="digital-reception-disclosure" id="digital-reception-disclosure">I use information published on this website only. I do not access medical records or search the public internet, and I cannot provide medical advice. Please do not enter personal or health information.</p><label class="digital-reception-label" for="digital-reception-query">How can we help you today?</label><div class="digital-reception-search-row"><input class="digital-reception-input" id="digital-reception-query" type="search" autocomplete="off" placeholder="e.g. headache, referral, appointment"><button class="digital-reception-search" type="button">Find</button></div><div class="digital-reception-quick" aria-label="Common topics"><button type="button">Book appointment</button><button type="button">Parking</button><button type="button">Test results</button><button type="button">Fees</button><button type="button">After hours</button><button type="button">AI transcription</button></div><div class="digital-reception-results" aria-live="polite"></div><p class="digital-reception-status">If you cannot find what you need, reception can help.</p><div class="digital-reception-actions"><a class="wmc-book-appointment" href="https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors?wp=w_lightbox" data-hotdoc-widget="lightbox" data-hotdoc-button>Book Appointment</a><a href="tel:+61732173344">Call Reception</a></div></div>`;
+  panel.innerHTML=`<div class="digital-reception-head"><div><h2 class="digital-reception-title" id="digital-reception-title">Digital Reception</h2><p>Find information and the next step</p></div><button type="button" class="digital-reception-close" aria-label="Close Digital Reception">Close</button></div><div class="digital-reception-body"><p class="digital-reception-disclosure" id="digital-reception-disclosure">I use information published on this website only. I do not access medical records or search the public internet, and I cannot provide medical advice. Please do not enter personal or health information.</p><label class="digital-reception-label" for="digital-reception-query">How can we help you today?</label><div class="digital-reception-search-row"><input class="digital-reception-input" id="digital-reception-query" type="search" autocomplete="off" placeholder="e.g. headache, referral, appointment"><button class="digital-reception-search" type="button">Search</button></div><div class="digital-reception-quick" aria-label="Common topics"><button type="button">Book Appointment</button><button type="button">Parking</button><button type="button">Test results</button><button type="button">Fees</button><button type="button">After hours</button><button type="button">AI transcription</button></div><div class="digital-reception-results" aria-live="polite"></div><p class="digital-reception-status">If you cannot find what you need, reception can help.</p><div class="digital-reception-actions"><a class="wmc-book-appointment" href="https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors?wp=w_lightbox" data-hotdoc-widget="lightbox" data-hotdoc-button>Book Appointment</a><a href="tel:+61732173344">Call Reception</a></div></div>`;
   const dock=document.querySelector('.persistent-care-actions');
   const dockInner=dock&&dock.querySelector('.persistent-care-actions-inner');
   if(dockInner){
@@ -159,6 +185,13 @@
     dockInner.append(launcher);
     dock.setAttribute('aria-label','Book, call, and reception');
     document.body.classList.add('has-action-dock');
+    const syncDockClearance=()=>{
+      const height=Math.ceil(dock.getBoundingClientRect().height);
+      if(height>0) document.documentElement.style.setProperty('--action-dock-height', height+'px');
+    };
+    syncDockClearance();
+    if(typeof ResizeObserver==='function') new ResizeObserver(syncDockClearance).observe(dock);
+    window.addEventListener('resize', syncDockClearance, {passive:true});
     document.body.append(panel);
   }else{
     document.body.append(launcher,panel);
@@ -178,12 +211,58 @@
   };
   const restorePage=()=>{inertSnapshot.forEach(([el,wasInert])=>{if(el.isConnected)el.inert=wasInert;});inertSnapshot=[];};
   const focusable=()=>[...panel.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])')].filter(el=>!el.hidden&&el.getClientRects().length);
+  const measure=(name,fields)=>{
+    if(window.WMCMeasurement && typeof window.WMCMeasurement.record==='function'){
+      return window.WMCMeasurement.record(name,fields||{});
+    }
+    return null;
+  };
+  const measureIntent=raw=>{
+    if(window.WMCMeasurement && typeof window.WMCMeasurement.intentBucket==='function'){
+      return window.WMCMeasurement.intentBucket(raw);
+    }
+    return 'other';
+  };
+  let lastSearchMeta={intent_bucket:'unmatched',result_type:'',result_count:0};
+  const recordSearch=(raw,resultType,resultCount)=>{
+    const bucket=measureIntent(raw);
+    lastSearchMeta={intent_bucket:bucket,result_type:resultType,result_count:resultCount};
+    measure('digital_reception_search',{
+      intent_bucket:bucket,
+      result_type:resultType,
+      result_count:resultCount
+    });
+    if(window.WMCMeasurement && typeof window.WMCMeasurement.retainDebugQuery==='function'){
+      window.WMCMeasurement.retainDebugQuery(raw,{
+        event:'digital_reception_search',
+        intent_bucket:bucket,
+        result_type:resultType,
+        result_count:resultCount
+      });
+    }
+  };
+  const resultStep=node=>{
+    if(!node||!node.closest)return 'more';
+    if(node.closest('.digital-reception-journey-book')||node.closest('.digital-reception-care-book')||(node.matches&&node.matches('[data-hotdoc-button]')))return 'book';
+    if(node.matches&&node.matches('a[href^="tel:"]'))return 'call';
+    if(node.closest('.digital-reception-show-more'))return 'more';
+    if(node.closest('.digital-reception-quick'))return 'shortcut';
+    const href=String(node.getAttribute&&node.getAttribute('href')||'');
+    if(/knowledge\/articles\//.test(href))return 'article';
+    if(/services\//.test(href)||/services\.html/.test(href))return 'service';
+    if(/doctors\//.test(href))return 'practitioner';
+    if(node.closest('.digital-reception-journey-step--article')||node.closest('[data-journey-step="article"]'))return 'article';
+    if(node.closest('.digital-reception-journey-step--service')||node.closest('[data-journey-step="service"]'))return 'service';
+    if(node.closest('.digital-reception-journey-step--practitioner')||node.closest('[data-journey-step="practitioner"]'))return 'practitioner';
+    return 'article';
+  };
   const open=()=>{
     if(panel.classList.contains('is-open'))return;
     if(window.innerWidth<=767 && window.WMCNavigation) window.WMCNavigation.closeCompact();
     returnFocus=(document.activeElement && document.activeElement!==document.body && typeof document.activeElement.focus==='function') ? document.activeElement : launcher;
     panel.classList.add('is-open');panel.setAttribute('aria-hidden','false');launcher.setAttribute('aria-expanded','true');
     document.body.classList.add('digital-reception-open');
+    measure('digital_reception_open',{});
     setPageInactive();
     // Focus immediately after inert is applied, with a frame retry for browsers
     // that defer focus during style/layout work. Prevents a transient body-focus state.
@@ -285,18 +364,23 @@
     [/\b(cervical screening|pap smear)\b/, 'knowledge/articles/when-should-i-have-a-cervical-screening-test.html'],
     [/\b(prostate|psa)\b/, 'knowledge/articles/understanding-prostate-health.html'],
     [/\b(skin cancer|melanoma)\b/, 'knowledge/articles/understanding-skin-cancer-risks.html'],
-    [/\bskin check\b/, 'knowledge/articles/when-should-i-book-a-skin-check.html'],
+    [/\bskin checks?\b/, 'knowledge/articles/when-should-i-book-a-skin-check.html'],
     [/\bfever\b/, 'knowledge/articles/when-should-i-be-concerned-about-a-fever.html'],
-    [/\b(diabetes|diabetic)\b/, 'knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html'],
+    /* Bare diabetes lead is living-with-diabetes.html (search-alias-inventory.js); do not re-route here. */
+    [/\b(hba1c|hb a1c|blood sugars?|blood glucose|glucose)\b/, 'knowledge/articles/diabetes-monitoring-explained.html'],
     [/\b(cholesterol|lipids)\b/, 'knowledge/articles/understanding-cholesterol.html'],
     [/\b(blood pressure|hypertension)\b/, 'knowledge/articles/blood-pressure-explained.html'],
     [/\basthma\b/, 'knowledge/articles/managing-asthma.html'],
     [/\b(breast health|breast lump|breast screening)\b/, 'knowledge/articles/breast-health-changes-screening-when-to-see-a-gp.html'],
     [/\b(travel vaccine|travel vaccin|overseas vaccin)\b/, 'knowledge/articles/travel-vaccinations-before-overseas-travel.html'],
-    [/\bflu vaccin/, 'knowledge/articles/influenza-vaccination-who-should-consider-it.html'],
+    [/\bflu (?:vaccin\w*|shots?|jabs?)\b/, 'knowledge/articles/influenza-vaccination-who-should-consider-it.html'],
     [/\bwinter (illness|respiratory|cold)\b/, 'knowledge/articles/managing-winter-respiratory-illness.html'],
-    [/\b(telehealth|video appointment|phone appointment)\b/, 'knowledge/articles/when-can-i-use-telehealth.html'],
+    [/\b(telehealth|video appointments?|phone appointments?|video calls?|phone consults?|virtual appointments?)\b/, 'knowledge/articles/when-can-i-use-telehealth.html'],
     [/\b(childhood vaccin|kids vaccin|child immunis)\b/, 'knowledge/articles/childhood-vaccinations-explained.html'],
+    [{test(query){
+      if(/\b(flu|travel|childhood|child|kids)\b/.test(query))return false;
+      return /\b(vaccinations?|vaccines?|immunisations?|immunizations?|jabs?|boosters?|needles|shots?)\b/.test(query);
+    }}, 'knowledge/articles/vaccinations-for-adults.html'],
     [/\b(falls prevention|falls risk|healthy ageing)\b/, 'knowledge/articles/healthy-ageing-prevention-falls-vaccination-reviews.html']
   ];
   // Show only actual matching pages. Broad free-text matches inside unrelated
@@ -317,15 +401,33 @@
     [/\b(?:gastroenteritis|stomach bugs?|tummy bugs?|gastro bugs?|gastro)\b/,'knowledge/articles/is-a-tummy-bug-the-same-as-gastro.html'],
     [/\b(?:vaginal thrush|thrush)\b/,'knowledge/articles/is-this-thrush.html'],
     [/\b(?:blocked sinuses|sinusitis|sinus infections?|sinus problems|sinus pain|sinus)\b/,'knowledge/articles/is-this-sinus.html'],
-    [/\b(book|booking|appointment|hotdoc)\b/,'book-appointment.html'],
     [/\b(referrals?|specialist referral|refer me)\b/,'referrals.html'],
     [/\b(scripts?|prescriptions?|repeat medication|refill|renew medication)\b/,'repeat-scripts.html'],
     [/\b(results?|test results?|blood test|pathology report|scan result)\b/,'test-results.html'],
+    [/\b(recall|recalls|reminder|reminders)\b/,'recalls-and-reminders.html'],
+    [/\b(?:scam|phishing|fake (?:sms|text|email)|suspicious message|hotdoc (?:messages?|sms|texts?))\b/,'identifying-hotdoc-scam-messages.html'],
+    [/\b(assignment of benefit|\baob\b|bulk billing consent|medicare consent)\b/,'assignment-of-benefit.html'],
+    [{test(query){
+      if(/\b(script|prescription|prescrib)\b/.test(query))return false;
+      if(/\b(child|children|kids?|pregnan)/.test(query))return false;
+      return /\b(new patients?|i am new|i m new|new here|new to the (?:clinic|practice)|register|enrol|enroll)\b/.test(query) || /\bfirst visit\b/.test(query);
+    }},'new-patients.html'],
     [/\b(parking|car park|carpark|where do i park|directions|drop off)\b/,'access-parking.html'],
     [/\b(earache|ear ache|sore ears?)\b/,'services/ear-care-ear-syringing.html'],
-    [/\b(fees|cost|pricing|billing)\b/,'fees-billing.html'],
+    [{test(query){
+      if(/\bbulk billing\b|\bbulk bills?\b|\bbulk billed\b/.test(query))return false;
+      return /\b(fees|cost|pricing|billing)\b/.test(query);
+    }},'fees-billing.html'],
     [/\b(after hours|clinic closed|out of hours)\b/,'after-hours-care.html'],
     [/\b(ai transcription|transcription|recording consent)\b/,'ai-transcription-consent.html'],
+    // Generic booking is last. A named topic, including one said with "book",
+    // keeps that topic. HotDoc message and HotDoc SMS are already routed above.
+    [{test(query){
+      if(/\bhotdoc (?:messages?|sms|texts?)\b/.test(query))return false;
+      const booking=/\b(book|booking|appointments?|hotdoc)\b/.test(query) || /\bsee a doctor\b/.test(query) || /\bgp visits?\b/.test(query);
+      if(!booking)return false;
+      return !TOPIC_SIGNALS.some(([pattern])=>pattern.test(query));
+    }},'book-appointment.html'],
   ];
   // Phrases that collide with a shorter word, or that have no published page.
   // Blocking the colliding page keeps hay fever off the fever guide, sore joints
@@ -346,25 +448,56 @@
     }
     if(/\b(?:period|menstrual) pains?\b/.test(query)) urls.push('knowledge/articles/when-should-i-be-concerned-about-pain.html');
     if(/\bshingles\b/.test(query)) urls.push('knowledge/articles/managing-winter-respiratory-illness.html');
+    if(/\b(blood sugar|blood glucose|glucose|hba1c|hb a1c)\b/.test(query) && !/\b(blood pressure|hypertension)\b/.test(query)){
+      urls.push('knowledge/articles/high-blood-pressure-explained.html');
+      urls.push('knowledge/articles/when-should-i-be-concerned-about-blood-pressure.html');
+      urls.push('knowledge/articles/blood-pressure-explained.html');
+      urls.push('knowledge/heart.html');
+    }
+    if(/\b(vaccinations?|vaccines?|immunisations?|immunizations?|jabs?|boosters?|needles|shots?)\b/.test(query) && !/\b(falls?|ageing|aging|seniors?|older)\b/.test(query)){
+      urls.push('knowledge/articles/healthy-ageing-prevention-falls-vaccination-reviews.html');
+    }
+    if(/\bskin checks?\b/.test(query)){
+      urls.push('knowledge/articles/why-regular-check-ups-matter.html');
+      if(!/\b(men|mens|man)\b/.test(query)) urls.push('knowledge/articles/health-checks-every-man-should-consider.html');
+      if(!/\b(women|womens|woman)\b/.test(query)) urls.push('knowledge/articles/womens-health-checks-at-different-stages-of-life.html');
+    }
+    if(/\b(telehealth|video calls?|phone consults?|virtual appointments?|video appointments?|phone appointments?)\b/.test(query) && !/\b(child|children|kids?)\b/.test(query)){
+      urls.push('knowledge/articles/preparing-for-your-childs-first-gp-appointment.html');
+    }
+    if(/\b(telehealth|video calls?|phone consults?|virtual appointments?|video appointments?|phone appointments?)\b/.test(query) && !/\b(pregnan|antenatal|maternity)\b/.test(query)){
+      urls.push('knowledge/articles/your-first-pregnancy-gp-appointment.html');
+    }
     return new Set(urls);
   };
   const unpublishedPatientLanguage=query=>/\bcold sores?\b|\b(?:period|menstrual) pains?\b|\bshingles\b/.test(query);
   const clinicBookingLink=panel.querySelector('.digital-reception-actions [data-hotdoc-button]');
   const bookingActions=panel.querySelector('.digital-reception-actions');
   const BOOKING_URL=clinicBookingLink.href;
-  // One booking destination. The clinic button stays only when no practitioner booking is shown.
+  // One booking destination. The clinic HotDoc button stays only when no practitioner booking is shown.
+  // A guided answer keeps Call Reception and hides that clinic button.
   // Emergency hides the whole bar so 000, Lifeline, the emergency department and urgent GP advice stand alone.
   const setBookingMode=mode=>{
-    const suppress=mode==='held'||mode==='emergency';
-    clinicBookingLink.hidden=suppress;
-    if(suppress)clinicBookingLink.setAttribute('tabindex','-1');
-    else clinicBookingLink.removeAttribute('tabindex');
-    // A practitioner journey, phone handoff, or emergency owns the only next step.
-    // The clinic HotDoc button and Call Reception in this bar stay hidden.
-    bookingActions.hidden=suppress;
-    bookingActions.classList.remove('is-single');
-    document.body.classList.toggle('booking-journey-held',suppress);
+    const hideClinicBook=mode==='held'||mode==='emergency';
+    clinicBookingLink.hidden=hideClinicBook;
+    if(hideClinicBook){
+      clinicBookingLink.setAttribute('tabindex','-1');
+      clinicBookingLink.setAttribute('aria-hidden','true');
+    }else{
+      clinicBookingLink.removeAttribute('tabindex');
+      clinicBookingLink.removeAttribute('aria-hidden');
+      clinicBookingLink.style.removeProperty('display');
+    }
+    bookingActions.hidden=mode==='emergency';
+    bookingActions.classList.toggle('is-single',mode==='held');
+    document.body.classList.toggle('booking-journey-held',hideClinicBook);
     if(window.WMCBookingArchitecture)window.WMCBookingArchitecture.sync();
+    if(!hideClinicBook){
+      clinicBookingLink.hidden=false;
+      clinicBookingLink.removeAttribute('tabindex');
+      clinicBookingLink.removeAttribute('aria-hidden');
+      clinicBookingLink.style.removeProperty('display');
+    }
   };
   if(clinicBookingLink){
     try{
@@ -378,7 +511,8 @@
   const RESULTS_PER_BATCH=5;
   let shownResults=[],shownCount=0,activeIntent='clinical',careContext=null;
   const canonical=text=>norm(text).replace(/\bheadaches\b/g,'headache').replace(/\bcoughs\b/g,'cough')
-    .replace(/\bpains\b/g,'pain').replace(/\bvaccinations\b/g,'vaccination');
+    .replace(/\bpains\b/g,'pain').replace(/\bvaccinations\b/g,'vaccination').replace(/\bvaccines\b/g,'vaccination').replace(/\bvaccine\b/g,'vaccination')
+    .replace(/\bimmunisations\b/g,'immunisation').replace(/\bimmunizations\b/g,'immunisation').replace(/\bimmunization\b/g,'immunisation');
   const hasWord=(field,word)=>(' '+canonical(field)+' ').includes(' '+canonical(word)+' ');
   const clearResults=()=>{shownResults=[];shownCount=0;careContext=null;activeIntent='clinical';};
   const getEntry=getCatalogEntry;
@@ -404,10 +538,10 @@
     {id:'adhd', re:/\badhd\b/, lead:['adhd'], also:['adhd']},
     {id:'antenatal', re:/\bshared antenatal\b|\bantenatal care\b/, lead:['antenatal'], also:['maternity']},
     {id:'pregnancy', re:/\bpregnan|\bmaternity\b/, lead:['pregnancy','antenatal'], also:['maternity']},
-    {id:'diabetes', re:/\bdiabet/, lead:['diabetes'], also:['diabetes']},
-    {id:'skin', re:/\bskin check|\bskin cancer|\bmelanoma|\bdermatolog/, lead:['dermatology','skin'], also:['skin']},
+    {id:'diabetes', re:/\b(diabetes|diabetic|diabetics)\b|\bhba1c\b|\bhb a1c\b|\bblood sugars?\b|\bglucose\b/, lead:['diabetes'], also:['diabetes']},
+    {id:'skin', re:/\bskin checks?\b|\bskin cancer|\bmelanoma|\bdermatolog/, lead:['dermatology','skin'], also:['skin']},
     {id:'mens', re:/\bmens health\b|\bprostate\b/, lead:['mens health'], also:[]},
-    {id:'womens', re:/\bwomens health\b/, lead:['womens health'], also:[]},
+    {id:'womens', re:/\bwomens health\b|\bfemale health\b|\bcervical\b|\bpap smear\b/, lead:['womens health'], also:[]},
     {id:'menopause', re:/\bmenopause\b/, lead:['menopause'], also:['womens health']},
     {id:'cervical', re:/\bcervical\b|\bpap smear\b/, lead:['womens health'], also:['gynaecology']},
     {id:'chiro', re:/\b(chiropractor|chiropractic)\b/, lead:['chiropractic'], also:[]},
@@ -495,38 +629,77 @@
     if(!q) return null;
     const named=nameMatches(q);
     if(named.length) return {kind:'people', people:rankPractitioners(q,named)};
+    if(usesDirectoryFallback(q)) return null;
+    const routed=routedLeads(q);
     const topics=PRACTITIONER_TOPICS.filter(topic=>topic.re.test(q));
     const langs=PRACTITIONER_LANGS.filter(([,pattern])=>pattern.test(q)).map(([id])=>id);
-    if(genderPreference(q) && !topics.length && !langs.length) return {kind:'gender'};
+    if(genderPreference(q) && !topics.length && !langs.length && !(routed&&routed.length)) return {kind:'gender'};
     const asking=/\b(who|which|help|need|want|looking|book|booking|appointment|doctor|doctors|gp|practitioner|specialist|speak|speaks|speaking|chiropractor|chiropractic|physiotherapist|physiotherapy|physio)\b/.test(q);
+    if(routed!==null){
+      if(!asking) return null;
+      if(!routed.length) return {kind:'none', detail:'No published lead matches this request. Reception can help you book.'};
+      return {kind:'people', people:routed};
+    }
     if(!asking || (!topics.length && !langs.length)) return null;
     const people=rankPractitioners(q);
     if(!people.length) return {kind:'none', detail:langs.length?'No published practitioner lists that language for this request. Reception can help you book.':'No published practitioner lists that interest for this request. Reception can help you book.'};
     return {kind:'people', people};
   };
-  const suggestPractitioner=raw=>{
-    const q=foldPractitionerQuery(raw||'');
-    if(!q || !PRACTITIONER_TOPICS.some(topic=>topic.re.test(q))) return null;
-    return rankPractitioners(q)[0]||null;
+  // Practitioners come from published leads only. Page order is never a recommendation.
+  // Mental Health → Sumita, Tanya | Skin Checks → Anand, Tanya, Karimi
+  // Diabetes → Wasantha, Tanya | Women's Health → Sumita, Anand, Tanya
+  const LEAD_ROUTES=[
+    {re:/\b(mental health|anxiety|anxious|depression|depressed|burnout|stress|stressed)\b/, tags:['mental health'], ids:['sumita','tanya']},
+    {re:/\bskin checks?\b|\bskin cancer\b|\bmelanoma\b|\bdermatolog/, tags:['dermatology','skin'], ids:['anand','tanya','karimi']},
+    {re:/\b(diabetes|diabetic|diabetics)\b|\bhba1c\b|\bhb a1c\b|\bblood sugars?\b|\bglucose\b/, tags:['diabetes'], ids:['wasantha','tanya']},
+    {re:/\bwomens health\b|\bfemale health\b|\bcervical\b|\bpap smear\b/, tags:['womens health'], ids:['sumita','anand','tanya']},
+  ];
+  // No published lead for these tasks — send patients to the GP directory.
+  const DIRECTORY_FALLBACK_RE=/\b(vaccinations?|vaccines?|immunisations?|immunizations?|jabs?|boosters?|needles|shots?)\b|\b(telehealth|video (?:calls?|appointments?)|phone (?:consults?|appointments?)|virtual appointments?)\b|\b(new patients?|i am new|i m new|new here|new to the (?:clinic|practice)|register|enrol|enroll|first visit)\b|\b(referrals?|specialist referral|refer me)\b|\b(repeat scripts?|repeat prescriptions?|prescription refill)\b|\b(test results?|blood test|pathology report|scan result)\b/;
+  const usesDirectoryFallback=q=>DIRECTORY_FALLBACK_RE.test(q) && !LEAD_ROUTES.some(item=>item.re.test(q));
+  const routedLeads=q=>{
+    const route=LEAD_ROUTES.find(item=>item.re.test(q));
+    if(!route) return null;
+    const people=[];
+    for(const id of route.ids){
+      const person=PRACTITIONERS.find(item=>item.id===id);
+      if(!person || practitionerBlocked(person,q)) continue;
+      const lead=(person.leads||[]).find(item=>route.tags.includes(item.tag));
+      const also=!lead && (person.also||[]).some(tag=>route.tags.includes(tag));
+      if(!lead && !also) continue;
+      people.push({...person, score:1000-people.length, reason:lead?'Matched on lead interest: '+lead.label+'.':'Matched on a published interest related to this request.'});
+    }
+    return people;
   };
-  const knownPractitioner=url=>PRACTITIONERS.find(person=>person.url===url)||null;
+  const suggestPractitioners=raw=>{
+    const q=foldPractitionerQuery(raw||'');
+    if(!q || usesDirectoryFallback(q)) return [];
+    const routed=routedLeads(q);
+    if(routed!==null) return routed.slice(0,3);
+    if(!PRACTITIONER_TOPICS.some(topic=>topic.re.test(q))) return [];
+    return rankPractitioners(q).filter(person=>/Matched on lead interest/.test(person.reason||'')).slice(0,3);
+  };
+  const suggestPractitioner=raw=>suggestPractitioners(raw)[0]||null;
   const roleLabel=person=>({mary:'Obstetrician and gynaecologist',steven:'Chiropractor',samuel:'Physiotherapist'}[person.id]||'General practitioner');
   const bookingMethodText=person=>person.booking==='phone'?'Reception phone (07) 3217 3344':"This practitioner's HotDoc page";
-  // Use real, published links from the chosen article. The list is already
-  // collected and link-validated by the index builder; no clinical match is invented.
   const careFromGuide=(guide, raw)=>{
     if(!guide || !guide.url.startsWith('knowledge/articles/'))return null;
     const related=(guide.related||[]);
     const service=related.map(getEntry).find(e=>e?.category==='Service' && e.url.startsWith('services/'));
-    const published=related.map(getEntry).find(e=>e?.category==='Doctor' && e.url.startsWith('doctors/'));
-    const suggested=suggestPractitioner(raw);
-    const practitioner=suggested || (published?knownPractitioner(published.url):null);
-    const doctor=suggested?{url:suggested.url, h1:suggested.name, title:suggested.name}:(published||null);
-    return (service||doctor)?{service, doctor, practitioner, matched:Boolean(suggested)}:null;
+    const practitioners=suggestPractitioners(raw);
+    const practitioner=practitioners[0]||null;
+    return (service||practitioner)?{service, practitioner, practitioners, matched:practitioners.length>0}:null;
   };
   const itemMarkup=item=>`<a class="digital-reception-result" href="${esc(localHref(item.url))}"><strong>${esc(item.title||item.h1)}</strong><span>${esc(item.description||(item.headings||[]).slice(0,2).join(' · ')||'Read more on this page.')}</span></a>`;
   const articleBody=item=>`<a href="${esc(localHref(item.url))}"><strong>${esc(item.title||item.h1)}</strong><span>${esc(item.description||(item.headings||[]).slice(0,2).join(' · ')||'Read more on this page.')}</span></a>`;
-  const practitionerCard=person=>`<article class="digital-reception-practitioner"><a href="${esc(localHref(person.url))}"><strong>${esc(person.name)}</strong><span>${esc(roleLabel(person))}</span></a><p>Why matched: ${esc(person.reason||'Named in the published guide above.')}</p>${person.restriction?`<p class="digital-reception-restriction">Restriction: ${esc(person.restriction)}</p>`:''}<p>Booking method: ${esc(bookingMethodText(person))}</p></article>`;
+  const publishedLeads=person=>((person.leads||[]).slice(0,3).map(item=>item.label).filter(Boolean));
+  const practitionerCard=person=>{
+    const leads=publishedLeads(person);
+    const leadList=leads.length
+      ?`<ul class="authority-leads" aria-label="Published interests">${leads.map(label=>`<li>${esc(label)}</li>`).join('')}</ul>`
+      :'';
+    return `<article class="digital-reception-practitioner"><a href="${esc(localHref(person.url))}"><strong>${esc(person.name)}</strong><span>${esc(roleLabel(person))}</span></a><p class="authority-match-source">Authority signal: ${esc(person.reason||'Matched on a published lead.')}</p>${leadList}${person.restriction?`<p class="digital-reception-restriction">Restriction: ${esc(person.restriction)}</p>`:''}<p>Booking method: ${esc(bookingMethodText(person))}</p></article>`;
+  };
   const bookingAction=person=>{
     if(!person)return `<a class="digital-reception-journey-book" href="${esc(BOOKING_URL)}" data-hotdoc-widget="lightbox" data-hotdoc-button>Book Appointment</a>`;
     if(person.booking==='phone')return `<a class="digital-reception-journey-book" href="tel:+61732173344">Call reception to book ${esc(person.name)}</a>`;
@@ -534,16 +707,40 @@
   };
   const journeyStep=(number,title,body)=>`<li class="digital-reception-step"><span class="digital-reception-step-kicker">Step ${number}</span><strong class="digital-reception-step-title">${title}</strong>${body}</li>`;
   const moreMarkup=items=>items&&items.length?`<details class="digital-reception-more"><summary>More on this topic (${items.length})</summary><div class="digital-reception-more-list">${items.map(itemMarkup).join('')}</div></details>`:'';
+  // Task pages that used to stop on one result. The next page is a published
+  // destination. A practitioner is named only when a published lead matches.
+  const TASK_CHAIN={
+    'new-patients.html':{next:'patient-forms.html',label:'Next step'},
+    'repeat-scripts.html':{next:null,label:null},
+    'referrals.html':{next:'medicare.html',label:'Next step'},
+    'test-results.html':{next:'services/pathology.html',label:'Service'},
+  };
+  const taskChain=(entry,query)=>{
+    const spec=entry&&TASK_CHAIN[entry.url];
+    if(!spec)return null;
+    let information=entry;
+    let nextUrl=spec.next;
+    let label=spec.label;
+    const isNew=/\b(new patients?|i am new|i m new|new here|new to the (?:clinic|practice)|register|enrol|enroll|first visit)\b/.test(query) && !/\b(child|children|kids?|pregnan)/.test(query);
+    if(entry.url==='repeat-scripts.html' && isNew){
+      const policy=getEntry('new-patient-prescribing-policy.html');
+      if(policy){information=policy; nextUrl='repeat-scripts.html'; label='Next step';}
+    }
+    const next=nextUrl?getEntry(nextUrl):null;
+    const leads=suggestPractitioners(query);
+    return {article:information,more:[],service:next||null,serviceLabel:label||'Service',people:leads.length?leads:null,clinicFallback:!leads.length};
+  };
   // Presentation only. Who is matched is decided before this runs.
-  const renderJourney=({article,more,service,people,clinicFallback})=>{
+  const renderJourney=({article,more,service,people,clinicFallback,serviceLabel})=>{
     const list=(people||[]).slice(0,3);
     const primary=list[0]||null;
     const steps=[];
-    if(article)steps.push(journeyStep(1,'Primary answer',articleBody(article)));
-    if(service)steps.push(journeyStep(2,'Recommended service',`<a href="${esc(localHref(service.url))}"><strong>${esc(service.title||service.h1)}</strong></a>`));
-    if(primary)steps.push(journeyStep(3,'Recommended practitioner',list.map(practitionerCard).join('')+'<p class="digital-reception-confirm">Availability and suitability must be confirmed.</p>'));
-    else if(clinicFallback)steps.push(journeyStep(3,'Recommended practitioner',`<a href="${esc(localHref('team-general-practitioners.html'))}"><strong>View GP profiles</strong><span>No single practitioner is matched for this question.</span></a>`));
-    if(primary||clinicFallback)steps.push(journeyStep(4,'Booking action',bookingAction(primary)));
+    let step=1;
+    if(article)steps.push(journeyStep(step++,'Information',articleBody(article)));
+    if(service)steps.push(journeyStep(step++,serviceLabel||'Service',articleBody(service)));
+    if(primary)steps.push(journeyStep(step++,'Practitioner',list.map(practitionerCard).join('')+'<p class="digital-reception-confirm">Availability and suitability must be confirmed.</p>'));
+    else if(clinicFallback)steps.push(journeyStep(step++,'Practitioner',`<a href="${esc(localHref('team-general-practitioners.html'))}"><strong>GP directory</strong><span>No published lead for this request. Choose a GP from the directory.</span></a>`));
+    if(primary||clinicFallback)steps.push(journeyStep(step++,'Booking',bookingAction(primary)));
     results.innerHTML=`<ol class="digital-reception-journey">${steps.join('')}</ol>`+moreMarkup(more);
     const articleName=article?(article.title||article.h1):'';
     searchAnnouncement.textContent=primary
@@ -572,8 +769,8 @@
     if(activeIntent==='clinical'){
       const article=shownResults[0];
       const more=shownResults.slice(1);
-      const person=careContext&&careContext.practitioner;
-      renderJourney({article,more,service:careContext&&careContext.service,people:person?[person]:null,clinicFallback:!person});
+      const people=(careContext&&careContext.practitioners)||[];
+      renderJourney({article,more,service:careContext&&careContext.service,people:people.length?people:null,clinicFallback:!people.length});
       return;
     }
     setBookingMode('clinic');
@@ -584,6 +781,16 @@
       (remaining?`<button type="button" class="digital-reception-show-more" aria-label="Show more relevant website results">Show more (${remaining} remaining)</button>`:'');
     searchAnnouncement.textContent=`${shownResults.length} matching page${shownResults.length===1?'':'s'}; ${visible.length} displayed.${remaining?' More pages available.':''}`;
   };
+  panel.addEventListener('click',event=>{
+    if(!results.contains(event.target))return;
+    const hit=event.target.closest('a[href], .digital-reception-show-more, .digital-reception-journey-book, .digital-reception-care-book');
+    if(hit){
+      measure('digital_reception_result_click',{
+        step:resultStep(hit),
+        intent_bucket:lastSearchMeta.intent_bucket
+      });
+    }
+  },true);
   results.addEventListener('click',event=>{
     const booking=event.target.closest('.digital-reception-journey-book[data-hotdoc-button], .digital-reception-care-book[data-hotdoc-button]');
     if(booking){shut(false);return;}
@@ -615,12 +822,14 @@
       searchAnnouncement.textContent='Emergency information found. Call Triple Zero 000. Lifeline is 13 11 14. Emergency department and urgent GP options are shown.';
       results.innerHTML=`<div class="digital-reception-emergency"><strong>This needs urgent help.</strong><span>Digital Reception cannot assess symptoms or provide emergency advice. Use one of these options now.</span></div><a class="digital-reception-result" href="tel:000"><strong>Call 000</strong><span>Triple Zero for an ambulance in a life-threatening emergency.</span></a><a class="digital-reception-result" href="tel:131114"><strong>Lifeline</strong><span>Call 13 11 14 for 24-hour crisis support.</span></a><a class="digital-reception-result" href="${esc(localHref('after-hours-care.html'))}"><strong>Emergency department</strong><span>Princess Alexandra Hospital and Mater Hospital Brisbane adult emergency are listed on the After Hours Care page.</span></a><a class="digital-reception-result" href="tel:+61732173344"><strong>Urgent GP advice</strong><span>Call the clinic on (07) 3217 3344. When we are closed, call Hello Home Doctor on 134 100.</span></a>`;
       setBookingMode('emergency');
+      recordSearch(q,'emergency',4);
       focusAnswer(requestId);
       return;
     }
     const practitionerMatch=matchPractitioners(q);
     if(practitionerMatch && practitionerMatch.kind!=='people'){
       renderHandoff(practitionerMatch);
+      recordSearch(q,'direct_page',1);
       focusAnswer(requestId);
       return;
     }
@@ -643,10 +852,14 @@
         results.removeAttribute('aria-busy');
         if(practitionerMatch && practitionerMatch.kind==='people'){
           renderJourney({article:null,more:[],service:null,people:practitionerMatch.people,clinicFallback:false});
+          recordSearch(q,'care_journey',practitionerMatch.people.length);
           focusAnswer(requestId);
           return;
         }
-        if(panel.classList.contains('is-open'))indexUnavailable();
+        if(panel.classList.contains('is-open')){
+          indexUnavailable();
+          recordSearch(q,'unavailable',0);
+        }
       }
       return;
     }
@@ -672,7 +885,7 @@
       const strongGuide=isGuide&&(hinted||titleHits>0||(keywordHits>=2&&base>=25));
       const suitableOther=!isGuide&&entry.category!=='Doctor'&&entry.category!=='Team'&&base>=18&&
         (titleHits>0||keywordHits>0||record.title.includes(query));
-      const rank=base+titleHits*34+(hinted?165-hintIndex:0)+(isGuide?25:0);
+      const rank=base+titleHits*34+(hinted?190-hintIndex:0)+(isGuide?25:0);
       return {entry,isGuide,strongGuide,suitableOther,rank};
     });
     const guideMatches=matched.filter(item=>item.strongGuide&&!blocked.has(item.entry.url))
@@ -687,6 +900,7 @@
         people:practitionerMatch.people,
         clinicFallback:false
       });
+      recordSearch(q,'care_journey',(primaryGuide?1:0)+practitionerMatch.people.length);
       focusAnswer(requestId);
       return;
     }
@@ -701,6 +915,14 @@
     // existing direct page such as directions, keeps its own route.
     const direct=directListed || (hints.length===0 && CATCHMENT_SUBURBS.test(query) ? [CATCHMENT_SUBURBS,'local-healthcare-access.html'] : null);
     const directEntry=direct&&!blocked.has(direct[1])?getEntry(direct[1]):null;
+    const taskJourney=taskChain(directEntry, query);
+    if(taskJourney){
+      activeIntent='clinical';
+      renderJourney(taskJourney);
+      recordSearch(q,'care_journey',1);
+      focusAnswer(requestId);
+      return;
+    }
     const clinicallyUnmatched=/\b(rash|rashes|hives|skin eruption|breathing issues?|breathing problems?|breathless|shortness of breath|short of breath|trouble breathing|wheezing|wheeze)\b/.test(query);
     const unpublished=unpublishedPatientLanguage(query)&&hints.length===0&&!directEntry;
     const selected=unpublished?[]:directEntry?[{entry:directEntry}]:guideMatches.length?guideMatches:(clinicallyUnmatched?[]:otherMatches);
@@ -710,15 +932,17 @@
       const family=getEntry('services/family-health.html');
       if(clinicallyUnmatched && family){
         renderJourney({
-          article:{url:'knowledge/index.html',title:'No directly matching guide found',description:'Try another search phrase or browse the Knowledge Centre. If you have urgent breathing difficulty, call 000.'},
+          article:{url:'knowledge/index.html',title:'No directly matching guide found',description:'Try another search phrase or browse Health Advice. If you have urgent breathing difficulty, call 000.'},
           more:[],
           service:family,
           people:null,
           clinicFallback:true
         });
+        recordSearch(q,'care_journey',1);
       }else{
         setBookingMode('clinic');
-        results.innerHTML=`<div class="digital-reception-result"><strong>No directly matching guide found.</strong><span>Try another search phrase or browse the Knowledge Centre. If you have urgent breathing difficulty, call 000.</span></div><a class="digital-reception-result" href="${esc(localHref('knowledge/index.html'))}"><strong>Browse Knowledge Centre</strong><span>Explore patient education topics.</span></a>`;
+        results.innerHTML=`<div class="digital-reception-result"><strong>No directly matching guide found.</strong><span>Try another search phrase or browse Health Advice. If you have urgent breathing difficulty, call 000.</span></div><a class="digital-reception-result" href="${esc(localHref('knowledge/index.html'))}"><strong>Browse Health Advice</strong><span>Explore patient education topics.</span></a>`;
+        recordSearch(q,'no_result',0);
       }
       focusAnswer(requestId);
       return;
@@ -727,7 +951,18 @@
     careContext=activeIntent==='clinical'?careFromGuide(shownResults[0], q):null;
     shownCount=Math.min(RESULTS_PER_BATCH,shownResults.length);
     renderResults();
+    recordSearch(q,activeIntent==='clinical'?'care_journey':'direct_page',shownResults.length);
     focusAnswer(requestId);
   };
   find.addEventListener('click',()=>run(input.value)); input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();run(input.value);}}); panel.querySelectorAll('.digital-reception-quick button').forEach(b=>b.addEventListener('click',()=>{input.value=b.textContent;run(input.value);}));
+  window.WMCDigitalReception={
+    close(){if(panel.classList.contains('is-open'))shut(false);},
+    open(query){
+      const q=String(query||'').trim();
+      open();
+      if(!q)return;
+      input.value=q;
+      run(q);
+    }
+  };
 })();

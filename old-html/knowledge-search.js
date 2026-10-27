@@ -215,7 +215,11 @@
     "heading": "Living With Diabetes",
     "hub": "Diabetes & Ongoing Care",
     "url": "articles/living-with-diabetes.html",
-    "aliases": []
+    "aliases": [
+      "diabetes",
+      "diabetic",
+      "living with diabetes"
+    ]
   },
   {
     "title": "Managing Asthma",
@@ -473,7 +477,19 @@
     "heading": "When Can I Use Telehealth?",
     "hub": "Telehealth & Access To Care",
     "url": "articles/when-can-i-use-telehealth.html",
-    "aliases": []
+    "aliases": [
+      "telehealth",
+      "video appointment",
+      "video appointments",
+      "phone appointment",
+      "phone appointments",
+      "video call",
+      "video calls",
+      "phone consult",
+      "phone consults",
+      "virtual appointment",
+      "virtual appointments"
+    ]
   },
   {
     "title": "When Is A Headache An Emergency?",
@@ -674,6 +690,56 @@
   var UNPUBLISHED = [];
   var STOP = {a:1,an:1,the:1,of:1,and:1,or:1,to:1,for:1,my:1,me:1,i:1,is:1,am:1,are:1,be:1,when:1,should:1,would:1,could:1,about:1,with:1,how:1,what:1,do:1,does:1,can:1,see:1,speak:1,talk:1,your:1,from:1,have:1,has:1,this:1,that:1,why:1,who:1,not:1,health:1,guide:1,guides:1};
   var LIMIT = 8;
+  /* Fallback mirrors search-alias-inventory.js when that file is not yet loaded. */
+  var FALLBACK_INVENTORY = {
+    leads: {
+      diabetes: {
+        guideUrl: 'articles/living-with-diabetes.html',
+        aliases: ['diabetes', 'diabetic', 'living with diabetes']
+      },
+      telehealth: {
+        guideUrl: 'articles/when-can-i-use-telehealth.html',
+        aliases: [
+          'telehealth',
+          'video appointment',
+          'video appointments',
+          'phone appointment',
+          'phone appointments',
+          'video call',
+          'video calls',
+          'phone consult',
+          'phone consults',
+          'virtual appointment',
+          'virtual appointments'
+        ]
+      }
+    },
+    tasks: {
+      fees: { phrases: ['fees', 'fee', 'cost', 'pricing', 'billing'], query: 'fees' },
+      referral: { phrases: ['referral', 'referrals', 'refer'], query: 'referral' },
+      'repeat-script': { phrases: ['repeat script', 'repeat scripts', 'repeat prescription', 'repeat prescriptions', 'script renewal'], query: 'repeat script' },
+      'new-patient': { phrases: ['new patient', 'new patients', 'i am new', 'new here', 'register', 'enrol', 'enroll'], query: 'new patient' },
+      'hotdoc-message': { phrases: ['hotdoc message', 'hotdoc messages', 'hotdoc sms', 'hotdoc text', 'hotdoc scam'], query: 'hotdoc message' }
+    }
+  };
+
+  function getInventory() {
+    return root.WMCSearchAliasInventory || FALLBACK_INVENTORY;
+  }
+  function applyInventoryAliases() {
+    var inv = getInventory();
+    if (!inv || !inv.leads) return;
+    Object.keys(inv.leads).forEach(function (key) {
+      var lead = inv.leads[key];
+      GUIDES.forEach(function (guide) {
+        if (guide.url !== lead.guideUrl) return;
+        (lead.aliases || []).forEach(function (alias) {
+          if (guide.aliases.indexOf(alias) === -1) guide.aliases.push(alias);
+        });
+      });
+    });
+  }
+  applyInventoryAliases();
 
   function normalise(value) {
     return String(value || '').toLowerCase().replace(/[’']/g, '').replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, ' ').replace(/\s+/g, ' ').trim();
@@ -703,12 +769,52 @@
     }
     return null;
   }
+  function leadRankBoost(query, guide) {
+    var inv = getInventory();
+    if (!inv || !inv.leads) return 0;
+    var keys = Object.keys(inv.leads);
+    for (var i = 0; i < keys.length; i++) {
+      var lead = inv.leads[keys[i]];
+      if (guide.url !== lead.guideUrl) continue;
+      for (var j = 0; j < (lead.aliases || []).length; j++) {
+        if (query === normalise(lead.aliases[j])) return 4;
+      }
+    }
+    return 0;
+  }
+  function taskHandoff(query) {
+    var inv = getInventory();
+    if (!inv || !inv.tasks) return null;
+    var keys = Object.keys(inv.tasks);
+    for (var i = 0; i < keys.length; i++) {
+      var task = inv.tasks[keys[i]];
+      for (var j = 0; j < (task.phrases || []).length; j++) {
+        var phrase = normalise(task.phrases[j]);
+        if (query === phrase || hasWord(query, phrase)) return task;
+      }
+    }
+    return null;
+  }
   function matchGuides(raw) {
     var query = normalise(raw);
     if (query.length < 2) return { state: 'idle', results: [] };
     var route = publishedRoute(query);
     if (route) return { state: 'results', results: [{ title: route.title, hub: route.hub, url: route.url }] };
     if (unpublished(query)) return { state: 'unpublished', results: [] };
+    /* Exact task phrases belong in Digital Reception, not the guide finder. */
+    var exactTask = taskHandoff(query);
+    if (exactTask) {
+      var inv = getInventory();
+      var exactPhrase = false;
+      if (inv && inv.tasks) {
+        Object.keys(inv.tasks).forEach(function (key) {
+          (inv.tasks[key].phrases || []).forEach(function (phrase) {
+            if (query === normalise(phrase)) exactPhrase = true;
+          });
+        });
+      }
+      if (exactPhrase) return { state: 'task', results: [], task: exactTask };
+    }
     var tokens = query.split(' ').filter(function (word) { return word.length >= 3 && !STOP[word]; });
     if (!tokens.length) return { state: 'idle', results: [] };
     var results = GUIDES.filter(function (guide) {
@@ -718,14 +824,21 @@
       var title = normalise(guide.title);
       var heading = normalise(guide.heading);
       var rank = tokens.every(function (token) { return hasWord(title, token); }) ? 3 : tokens.every(function (token) { return hasWord(heading, token); }) ? 2 : 1;
+      if (query === 'fever' && guide.url === 'articles/when-should-i-be-concerned-about-a-fever.html') rank += 4;
+      rank += leadRankBoost(query, guide);
       return { guide: guide, rank: rank };
     }).sort(function (a, b) {
       return b.rank - a.rank || a.guide.title.localeCompare(b.guide.title);
     }).map(function (item) { return item.guide; });
-    return { state: results.length ? 'results' : 'empty', results: results };
+    if (!results.length) {
+      var task = exactTask || taskHandoff(query);
+      if (task) return { state: 'task', results: [], task: task };
+      return { state: 'empty', results: [] };
+    }
+    return { state: 'results', results: results };
   }
 
-  root.WMCKnowledgeGuideSearch = { matchGuides: matchGuides, guides: GUIDES };
+  root.WMCKnowledgeGuideSearch = { matchGuides: matchGuides, guides: GUIDES, getInventory: getInventory };
 
   if (!root.document) return;
   var form = root.document.querySelector('[data-knowledge-guide-search]');
@@ -736,13 +849,20 @@
   var results = form.querySelector('[data-knowledge-guide-results]');
   if (!input || !status || !results) return;
 
+  var label = form.querySelector('label[for="knowledge-guide-query"]');
+  if (label && /find a guide/i.test(label.textContent.trim())) label.textContent = 'Search';
+
   function escapeText(value) {
     return String(value).replace(/[&<>"']/g, function (character) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character];
     });
   }
-  function openReception(event) {
+  function openReception(event, query) {
     event.preventDefault();
+    if (root.WMCDigitalReception && typeof root.WMCDigitalReception.open === 'function') {
+      root.WMCDigitalReception.open(query || '');
+      return;
+    }
     var launcher = root.document.querySelector('.digital-reception-launcher');
     if (launcher) launcher.click();
   }
@@ -756,6 +876,12 @@
     if (matched.state === 'unpublished') {
       status.textContent = 'No guide published yet.';
       results.innerHTML = '<p class="knowledge-guide-search-empty">No guide published yet.</p><p><a class="knowledge-guide-search-reception" href="#digital-reception">Digital Reception</a></p>';
+      return;
+    }
+    if (matched.state === 'task') {
+      var taskQuery = matched.task && matched.task.query ? matched.task.query : normalise(raw);
+      status.textContent = 'Try Digital Reception for this request.';
+      results.innerHTML = '<p class="knowledge-guide-search-empty">This looks like a clinic task, not a health guide.</p><p><a class="knowledge-guide-search-reception" href="#digital-reception" data-reception-query="' + escapeText(taskQuery) + '">Open Digital Reception</a></p>';
       return;
     }
     if (matched.state === 'empty') {
@@ -779,7 +905,8 @@
   input.addEventListener('input', function () { render(input.value); });
   results.addEventListener('click', function (event) {
     var link = event.target.closest && event.target.closest('.knowledge-guide-search-reception');
-    if (link) openReception(event);
+    if (!link) return;
+    openReception(event, link.getAttribute('data-reception-query') || '');
   });
   input.addEventListener('keydown', function (event) {
     if (event.key !== 'ArrowDown') return;

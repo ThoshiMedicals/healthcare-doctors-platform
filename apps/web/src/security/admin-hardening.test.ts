@@ -10,7 +10,7 @@ import {
 } from "../auth/login-guard";
 import { foreignOrigin } from "../auth/same-origin";
 import { SESSION_IDLE_MS, SESSION_MAX_AGE_SECONDS, idleExpired } from "../auth/session-policy";
-import { visibleModules } from "../cms/modules";
+import { visibleModules, visibleNavGroups } from "../cms/modules";
 import { fingerprintContent } from "../governance/fingerprint";
 import {
   governanceCompletionGaps,
@@ -134,15 +134,51 @@ describe("login throttle", () => {
 describe("role menus", () => {
   it("hides settings, governance, and staff-only links from a content editor", () => {
     const labels = visibleModules("content_editor").map((module) => module.label);
+    assert.equal(labels.includes("Pages"), true);
     assert.equal(labels.includes("Practitioners"), true);
+    assert.equal(labels.includes("Services"), true);
     assert.equal(labels.includes("Media Library"), false);
     assert.equal(labels.includes("Clinic Settings"), false);
     assert.equal(labels.includes("Governance Review"), false);
     assert.equal(labels.includes("Image governance"), false);
+    assert.equal(labels.includes("Executive"), false);
     assert.equal(visibleModules("clinic_admin").some((module) => module.label === "Image governance"), true);
     assert.equal(visibleModules(null).length, 0);
     assert.equal(visibleModules("clinic_admin").some((module) => module.label === "Governance Review"), true);
-    assert.equal(visibleModules("clinic_admin").some((module) => module.label === "Clinic Settings"), true);
+    assert.equal(visibleModules("clinic_admin").some((module) => module.label === "Governance Expiry"), true);
+    assert.equal(visibleModules("clinic_admin").some((module) => module.label === "Executive"), true);
+    assert.equal(visibleModules("clinic_admin").some((module) => module.label === "Clinic Settings"), false);
+  });
+
+  it("groups analytics and governance away from content editing", () => {
+    const groups = visibleNavGroups("clinic_admin");
+    assert.deepEqual(
+      groups.map((group) => group.id),
+      ["content", "insights", "governance"],
+    );
+    assert.deepEqual(
+      groups.find((group) => group.id === "content")?.modules.map((module) => module.label),
+      ["Pages", "Practitioners", "Services"],
+    );
+    assert.deepEqual(
+      groups.find((group) => group.id === "insights")?.modules.map((module) => module.label),
+      [
+        "Command Centre",
+        "Executive",
+        "Digital Reception",
+        "Practitioner Authority",
+        "Service Authority",
+        "Conversion Intelligence",
+      ],
+    );
+    assert.deepEqual(
+      groups.find((group) => group.id === "governance")?.modules.map((module) => module.label),
+      ["Governance Review", "Governance Management", "Governance Expiry", "Image governance"],
+    );
+    assert.equal(
+      visibleNavGroups("content_editor").every((group) => group.id === "content"),
+      true,
+    );
   });
 });
 

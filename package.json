@@ -15,5 +15,8 @@
     "db:seed": "npm run db:seed --prefix apps/web",
     "test": "npm test --prefix apps/web",
     "db:studio": "npm run db:studio --prefix apps/web"
+  },
+  "dependencies": {
+    "pdf-to-img": "^7.0.1"
   }
 }

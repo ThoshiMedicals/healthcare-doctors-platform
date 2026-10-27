@@ -1,0 +1,88 @@
+{
+  "promptId": "L7",
+  "title": "Final launch-candidate audit",
+  "assessedOn": "2026-10-26",
+  "timezone": "Australia/Brisbane",
+  "baselinePromptId": "L1",
+  "baselineScore": 86,
+  "productionReadinessScore": 86,
+  "goLiveRecommendation": "GO_CLEAR_TO_SHIP",
+  "goLiveSummary": "Final launch-candidate audit: 0 Critical, 0 High. Domain average 9.1 → base 91; Medium (−4) and Low (−1.5) leave readiness 86. HotDoc 13/13, search 206 routes, warehouse analytics live, trust strips and mobile dock hierarchy verified. Ship; schedule M4/M5 post-launch.",
+  "scoreMethod": {
+    "domainAverage": 9.1,
+    "domainSum": 91,
+    "base": 91,
+    "penalties": { "critical": 0, "high": 0, "medium": -4, "low": -1.5 },
+    "result": 86,
+    "formula": "round(domainAverage*10) - 15*C - 5*H - 2*M - 0.5*L"
+  },
+  "issueCounts": { "critical": 0, "high": 0, "medium": 2, "low": 3 },
+  "domains": [
+    { "id": "search", "label": "Search", "status": "ready", "score": 9 },
+    { "id": "digital_reception", "label": "Digital Reception", "status": "ready", "score": 9 },
+    { "id": "booking", "label": "Booking", "status": "ready", "score": 10 },
+    { "id": "authority_graph", "label": "Authority Graph", "status": "ready", "score": 9 },
+    { "id": "governance", "label": "Governance", "status": "ready", "score": 9 },
+    { "id": "analytics", "label": "Analytics", "status": "ready", "score": 10 },
+    { "id": "trust_signals", "label": "Trust Signals", "status": "ready", "score": 9 },
+    { "id": "mobile_ux", "label": "Mobile UX", "status": "ready", "score": 9 },
+    { "id": "accessibility", "label": "Accessibility", "status": "ready", "score": 9 },
+    { "id": "performance", "label": "Performance", "status": "partial", "score": 8 }
+  ],
+  "issues": [
+    {
+      "id": "M4",
+      "severity": "medium",
+      "domain": "performance",
+      "summary": "Large PNG poster sources remain beside WebP (HTML prefers WebP)",
+      "evidence": "apps/web/public/assets/patient-information/"
+    },
+    {
+      "id": "M5",
+      "severity": "medium",
+      "domain": "digital_reception",
+      "summary": "Some intent phrases still unmatched (mode=none); 8 phrases in intent-audit",
+      "evidence": ".tmp-pdf-convert/intent-audit.txt"
+    },
+    {
+      "id": "L1",
+      "severity": "low",
+      "domain": "authority_graph",
+      "summary": "Doctor to knowledge related edges not fully reciprocal",
+      "evidence": "apps/web/public/search-index/"
+    },
+    {
+      "id": "L2",
+      "severity": "low",
+      "domain": "governance",
+      "summary": "Public governance stamps empty until approval (by design / fail-closed); publish pipeline ready",
+      "evidence": "apps/web/reports/GOVERNANCE_PUBLICATION_CHECKLIST_L2.md"
+    },
+    {
+      "id": "L3",
+      "severity": "low",
+      "domain": "performance",
+      "summary": "Large digital-reception-index.js compatibility corpus (~0.95 MB)",
+      "evidence": "apps/web/public/digital-reception-index.js"
+    }
+  ],
+  "closedGates": [
+    "C1_hotdoc_live_verify",
+    "H1_manifest_sync",
+    "H2_navigation_ownership",
+    "L2_governance_publication",
+    "L3_trust_strips",
+    "L5_mobile_action_hierarchy",
+    "L6_analytics_warehouse"
+  ],
+  "liveSpotChecks": {
+    "trustStripsOnSkinChecks": 2,
+    "hasActionDock": true,
+    "skipLink": true,
+    "hotdocOk": "13/13",
+    "searchRoutes": 206,
+    "warehouseEvents": 16,
+    "importValidationPassed": true
+  },
+  "reportPath": "apps/web/reports/LAUNCH_CANDIDATE_AUDIT_L7.md"
+}

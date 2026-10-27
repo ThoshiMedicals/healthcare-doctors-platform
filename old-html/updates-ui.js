@@ -12,6 +12,15 @@
     if (/^https?:\/\//i.test(image)) return image;
     if (image === "clinic-exterior") return `${base}assets/location-storefront-polished.webp`;
     if (image === "clinic-reception") return `${base}assets/clinic-reception.png`;
+    if (image === "new-patients-welcome" || image === "new-patients-welcome.webp") {
+      return `${base}assets/patient-information/new-patients-welcome-hero.webp`;
+    }
+    if (image === "telehealth-poster") {
+      return `${base}assets/patient-information/telehealth-consultations-poster.webp`;
+    }
+    if (image === "hotdoc-app-booking.webp" || image === "hotdoc-bookings-poster.webp") {
+      return `${base}assets/location-storefront-polished.webp`;
+    }
     return `${base}assets/${image}`;
   };
 
@@ -37,11 +46,32 @@
 
   const latest = document.querySelector("[data-latest-health-updates]");
   if (latest) {
-    const latestItems = data.slice(0,3);
-    if (latestItems.length) {
+    const feverHref = `${base}knowledge/articles/when-should-i-be-concerned-about-a-fever.html`;
+    const feverCard = `
+    <article class="health-update-card">
+      <a class="health-update-image" href="${feverHref}" aria-label="When Should I Be Concerned About A Fever?">
+        <img src="${esc(imageUrl("clinic-reception"))}" alt="Reception at Woolloongabba Medical Centre" loading="lazy" decoding="async">
+      </a>
+      <div class="health-update-copy">
+        <div class="health-update-meta">
+          <span>Children's Health</span>
+          <time datetime="2026-10-08">8 October 2026</time>
+        </div>
+        <h3><a href="${feverHref}">When Should I Be Concerned About A Fever?</a></h3>
+        <p>Understand fever in children, warning signs that need urgent assessment and when a GP review may be appropriate.</p>
+        <a class="editorial-link" href="${feverHref}">Read guide</a>
+      </div>
+    </article>`;
+    const preferredSupporting = ["new-patients-welcome", "telehealth-appointments"];
+    const supporting = preferredSupporting
+      .map(id => data.find(item => item.id === id))
+      .filter(Boolean);
+    const fallback = data.filter(item => !preferredSupporting.includes(item.id)).slice(0, Math.max(0, 2 - supporting.length));
+    const supportingCards = [...supporting, ...fallback].slice(0, 2);
+    if (supportingCards.length) {
       latest.innerHTML = `
-        <div class="latest-featured-column" aria-label="Featured update">${cardMarkup(latestItems[0])}</div>
-        <div class="latest-supporting-column" aria-label="Supporting updates">${latestItems.slice(1).map(cardMarkup).join("")}</div>`;
+        <div class="latest-featured-column" aria-label="Featured update">${feverCard}</div>
+        <div class="latest-supporting-column" aria-label="Supporting updates">${supportingCards.map(cardMarkup).join("")}</div>`;
     }
   }
 

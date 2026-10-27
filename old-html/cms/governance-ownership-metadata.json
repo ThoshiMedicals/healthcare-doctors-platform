@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "2H",
+  "purpose": "Ownership and public review-field structures for governance operations. No staff names, dates, or approvals are invented here.",
+  "publicFields": {
+    "reviewedBy": {
+      "label": "Reviewed By",
+      "storageKey": "reviewedBy",
+      "requiredForPublicDisplay": true,
+      "meaning": "Genuine reviewer attribution approved for public display."
+    },
+    "contentOwner": {
+      "label": "Content Owner",
+      "storageKey": "contentOwner",
+      "requiredForPublicDisplay": true,
+      "meaning": "Accountable department confirmed by practice management."
+    },
+    "lastReviewed": {
+      "label": "Last Reviewed",
+      "storageKey": "lastReviewed",
+      "requiredForPublicDisplay": true,
+      "format": "YYYY-MM-DD",
+      "meaning": "Actual reviewer sign-off date, not a website publish date."
+    },
+    "nextReview": {
+      "label": "Next Review Due",
+      "storageKey": "nextReview",
+      "requiredForPublicDisplay": true,
+      "format": "YYYY-MM-DD",
+      "meaning": "Approved next review due date. Shown publicly only while current."
+    }
+  },
+  "visibility": {
+    "rule": "hidden_until_approved",
+    "requiresStatus": "approved",
+    "requiresAllFourPublicFields": true,
+    "suppressAfterNextReviewDue": true,
+    "timezone": "Australia/Brisbane",
+    "hostSelector": "[data-governance-review][data-governance-page]",
+    "runtime": "site.js reads governance-published.js and keeps the host hidden when evidence is incomplete or expired"
+  },
+  "privateOnlyFields": [
+    "contentOwnerSubmittedBy",
+    "contentOwnerSubmittedAt",
+    "reviewerSignedBy",
+    "reviewerSignedAt",
+    "approvedBy",
+    "approvedAt",
+    "approvalReference",
+    "evidenceReference",
+    "reviewedContentSha256",
+    "reviewType"
+  ],
+  "ownershipByCollection": {
+    "knowledge_article": {
+      "suggestedContentOwnerRole": "Clinical education lead",
+      "suggestedReviewerRole": "Authorised clinician",
+      "suggestedApproverRole": "Practice approver",
+      "defaultReviewType": "clinical",
+      "intervalGuidance": "12 months, or when the clinical meaning changes"
+    },
+    "knowledge_centre": {
+      "suggestedContentOwnerRole": "Clinical education lead",
+      "suggestedReviewerRole": "Authorised clinician",
+      "suggestedApproverRole": "Practice approver",
+      "defaultReviewType": "clinical",
+      "intervalGuidance": "12 months, or when the clinical meaning changes"
+    },
+    "service": {
+      "suggestedContentOwnerRole": "Clinical services lead",
+      "suggestedReviewerRole": "Authorised clinician",
+      "suggestedApproverRole": "Practice approver",
+      "defaultReviewType": "clinical",
+      "intervalGuidance": "12 months, or when scope, fees, or booking rules change",
+      "exceptions": {
+        "services/pathology.html": "operational",
+        "services/pharmacy.html": "operational",
+        "services/radiology.html": "operational"
+      }
+    },
+    "practice_information": {
+      "suggestedContentOwnerRole": "Practice management",
+      "suggestedReviewerRole": "Operational reviewer, or authorised clinician when the page is clinical policy",
+      "suggestedApproverRole": "Practice approver",
+      "defaultReviewType": "operational",
+      "intervalGuidance": "6 months, or the day a fee, hour, access, or policy fact changes"
+    },
+    "governance": {
+      "suggestedContentOwnerRole": "Practice management",
+      "suggestedReviewerRole": "Institutional or clinical reviewer according to the page",
+      "suggestedApproverRole": "Practice approver",
+      "defaultReviewType": "institutional",
+      "intervalGuidance": "12 months, or when accreditation or policy statements change"
+    },
+    "practitioner": {
+      "suggestedContentOwnerRole": "That practitioner, with practice management",
+      "suggestedReviewerRole": "The practitioner confirms the profile; an authorised clinician reviews clinical claims",
+      "suggestedApproverRole": "Practice approver",
+      "defaultReviewType": "clinical",
+      "intervalGuidance": "12 months, or when the practitioner joins, leaves, or changes interests or booking rules"
+    }
+  },
+  "expiryReporting": {
+    "tool": "cms/tools/report_governance_review_expiry.py",
+    "cmsReport": "/admin/governance/expiry",
+    "defaultHorizonDays": 60,
+    "buckets": ["overdue", "due_within_horizon", "current"]
+  }
+}

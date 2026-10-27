@@ -23,8 +23,8 @@ window.PRACTICE_UPDATES = [
     published: "2026-10-01",
     dateLabel: "1 October 2026",
     summary: "A clear guide to booking your first appointment, what to bring and what to expect when you arrive.",
-    image: "new-patients-welcome.webp",
-    imageAlt: "New patients welcome and HotDoc booking information",
+    image: "new-patients-welcome",
+    imageAlt: "New patients are welcome at Woolloongabba Medical Centre",
     author: "Practice Team",
     featured: true,
     sections: [
@@ -60,7 +60,7 @@ window.PRACTICE_UPDATES = [
     dateLabel: "1 October 2026",
     summary: "An overview of 100% Medicare bulk billing for standard Medicare-eligible general practice consultations and the services where separate fees may apply.",
     image: "clinic-exterior",
-    imageAlt: "Woolloongabba Medical Centre exterior on Vulture Street",
+    imageAlt: "Woolloongabba Medical Centre on Vulture Street",
     author: "Practice Team",
     featured: false,
     sections: [
@@ -94,8 +94,8 @@ window.PRACTICE_UPDATES = [
     published: "2026-10-01",
     dateLabel: "1 October 2026",
     summary: "Telehealth can support continuity when a face-to-face visit is not required and the consultation is clinically suitable.",
-    image: "hotdoc-app-booking.webp",
-    imageAlt: "HotDoc online booking and mobile app",
+    image: "telehealth-poster",
+    imageAlt: "Telehealth consultations at Woolloongabba Medical Centre",
     author: "Practice Team",
     featured: false,
     sections: [
@@ -126,8 +126,8 @@ window.PRACTICE_UPDATES = [
     published: "2026-10-01",
     dateLabel: "1 October 2026",
     summary: "We are open seven days, including Saturday and Sunday appointments.",
-    image: "clinic-reception",
-    imageAlt: "Reception at Woolloongabba Medical Centre",
+    image: "clinic-exterior",
+    imageAlt: "Woolloongabba Medical Centre on Vulture Street",
     author: "Practice Team",
     featured: false,
     sections: [

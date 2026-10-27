@@ -1,0 +1,170 @@
+{
+  "generatedOn": "2026-10-25",
+  "timezone": "Australia/Brisbane",
+  "horizonDays": 60,
+  "counts": {
+    "eligible": 187,
+    "approvedWithDates": 0,
+    "overdue": 0,
+    "dueWithinHorizon": 0,
+    "current": 0,
+    "awaitingReview": 187,
+    "incompleteApprovals": 0
+  },
+  "overdue": [],
+  "dueWithinHorizon": [],
+  "current": [],
+  "awaitingReviewSample": [
+    {
+      "path": "about-us.html",
+      "collection": "governance",
+      "reviewType": "institutional",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "access-parking.html",
+      "collection": "practice_information",
+      "reviewType": "operational",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "accessibility.html",
+      "collection": "practice_information",
+      "reviewType": "operational",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "after-hours-care.html",
+      "collection": "practice_information",
+      "reviewType": "operational",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "agpal-accreditation.html",
+      "collection": "governance",
+      "reviewType": "institutional",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "ai-transcription-consent.html",
+      "collection": "governance",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "assignment-of-benefit.html",
+      "collection": "practice_information",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "book-appointment.html",
+      "collection": "practice_information",
+      "reviewType": "operational",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "bulk-billing.html",
+      "collection": "practice_information",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/dr-anand-singh.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/dr-debra-larkins.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/dr-gemunu-suresh-ranawake.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/dr-kooshyar-karimi.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/dr-mary-abadir.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/dr-nirupa-sivathasan.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/dr-sambo-luon.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/dr-steven-chang.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/dr-sumita-singh.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/dr-tanya-goodwill.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/dr-usman-gul.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/dr-wasantha-hettiarchchi.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "doctors/mr-samuel-stafford.html",
+      "collection": "practitioner",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "faqs.html",
+      "collection": "practice_information",
+      "reviewType": "clinical",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "feedback-concerns.html",
+      "collection": "practice_information",
+      "reviewType": "operational",
+      "status": "awaiting_review"
+    },
+    {
+      "path": "fees-billing.html",
+      "collection": "practice_information",
+      "reviewType": "operational",
+      "status": "awaiting_review"
+    }
+  ],
+  "incompleteApprovals": []
+}

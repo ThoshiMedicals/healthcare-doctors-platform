@@ -17,7 +17,7 @@ ROOT=Path(__file__).resolve().parents[2]
 REGISTRY=ROOT/'cms/governance-records.json'
 PUBLIC=ROOT/'governance-published.js'
 APPROVAL_TEMPLATE=ROOT/'cms/governance-approval-template.json'
-EXPECTED_COLS={'knowledge_article','knowledge_centre','service','practice_information','governance'}
+EXPECTED_COLS={'knowledge_article','knowledge_centre','service','practice_information','governance','practitioner'}
 EXPECTED_TYPES={'clinical','operational','institutional'}
 PATIENT_SCOPE={
     'patient-information.html','practice-information.html','new-patients.html',
@@ -30,7 +30,9 @@ PATIENT_SCOPE={
     'practice-policies.html','quality-safety.html','agpal-accreditation.html',
     'infection-prevention-control.html','ai-transcription-consent.html',
     'medical-students.html','new-patient-prescribing-policy.html',
-    'test-results.html'
+    'test-results.html','assignment-of-benefit.html',
+    'identifying-hotdoc-scam-messages.html','recalls-and-reminders.html',
+    'book-appointment.html'
 }
 
 
@@ -47,7 +49,8 @@ def audit():
     entries={r.get('path'):r for r in rows}
     knowledge={x.relative_to(ROOT).as_posix() for x in (ROOT/'knowledge').rglob('*.html')}
     services={x.relative_to(ROOT).as_posix() for x in (ROOT/'services').rglob('*.html')}
-    required=knowledge|services|PATIENT_SCOPE
+    practitioners={x.relative_to(ROOT).as_posix() for x in (ROOT/'doctors').glob('*.html')}
+    required=knowledge|services|practitioners|PATIENT_SCOPE
     missing=required-set(entries)
     if missing:
         errors.append('unregistered governance scope: '+', '.join(sorted(missing)))
@@ -74,6 +77,9 @@ def audit():
                 errors.append(f'independent service must not claim clinical review by default: {path}')
             if not independent and record.get('reviewType')!='clinical':
                 errors.append(f'clinical service incorrectly classified: {path}')
+        if path.startswith('doctors/'):
+            if record.get('collection')!='practitioner' or record.get('reviewType')!='clinical':
+                errors.append(f'practitioner profile incorrectly classified: {path}')
         page=ROOT/path
         if not page.is_file():
             errors.append(f'eligible HTML page missing: {path}')
@@ -120,7 +126,7 @@ def audit():
         for error in errors[:40]:print(' - '+error)
         return 1
     counts=Counter(r['collection'] for r in rows)
-    print(f'GOVERNANCE FRAMEWORK PASS: {len(rows)} approval-eligible pages, {len(knowledge)} Knowledge Centre, {len(services)} service authority, {len(PATIENT_SCOPE)} essential patient/policy pages')
+    print(f'GOVERNANCE FRAMEWORK PASS: {len(rows)} approval-eligible pages, {len(knowledge)} Knowledge Centre, {len(services)} service authority, {len(practitioners)} practitioner profiles, {len(PATIENT_SCOPE)} essential patient/policy pages')
     print('Eligibility categories:',', '.join(f'{k}={v}' for k,v in sorted(counts.items())))
     print('PASS: private approvals remain outside deploy, hosts fail-closed, no fictional reviewers/dates, public bundle schema checked')
     return 0

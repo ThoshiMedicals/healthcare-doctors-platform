@@ -4,7 +4,7 @@
 
 ## Source of truth and scope
 
-The existing `cms/governance-records.json` registers review-eligible pages; it is **not** an approval record. All 81 Knowledge Centre articles, associated Knowledge Centre hubs, all service authority pages (including on-site independent providers), patient information and governance pages are included in the site-wide eligibility register. Coverage and review-type assignments are checked by `cms/tools/check_governance_framework.py --check`.
+The existing `cms/governance-records.json` registers review-eligible pages; it is **not** an approval record. Knowledge Centre articles and hubs, service authority pages (including on-site independent providers), practitioner profiles, patient information and governance pages are included in the site-wide eligibility register. Coverage and review-type assignments are checked by `cms/tools/check_governance_framework.py --check`. Ownership role guidance lives in `cms/governance-ownership-metadata.json`.
 
 Do **not** introduce a second register or display a reviewer/date merely because a page is online, indexed or visible. Do not use file modification dates, sitemap dates or proposed calendar dates as review dates.
 
@@ -12,6 +12,7 @@ Do **not** introduce a second register or display a reviewer/date merely because
 | --- | --- |
 | Knowledge Centre articles and clinical topic hubs | Genuine authorised clinical review, plus approval by the designated practice approver; **department owner must be nominated and confirmed**, not guessed |
 | GP clinical service authority pages | Authorised clinical review plus practice approval; scope, fees and treatment limitations confirmed by the appropriate team |
+| Practitioner profiles | The practitioner confirms the profile with practice management; an authorised clinician reviews clinical claims; practice approver releases |
 | Patient information (accessibility, billing, opening hours, scripts, privacy and policies) | Appropriate **clinical or operational** review depending on the content; staff/department owner and practice approver documented |
 | Governance and quality/safety pages | Appropriate **clinical or institutional** reviewer depending on page; practice management authorises release |
 | Independent on-site pathology, pharmacy and radiology information | Operational validation of accurate descriptions and third-party responsibility; do **not** suggest clinical endorsement of independent providers |
@@ -42,6 +43,9 @@ No fields display for unapproved pages; there are **zero signed approvals** prov
 ```sh
 # Coverage, hidden review hosts and absence of leaked private evidence
 python cms/tools/check_governance_framework.py --check
+
+# Pages approaching or past Next Review Due (operations only; does not change public pages)
+python cms/tools/report_governance_review_expiry.py --horizon-days 60
 
 # Public bundle must match verified source; no approvals supplied => empty public card registry
 python cms/tools/build_clinical_governance.py --check

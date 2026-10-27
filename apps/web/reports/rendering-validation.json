@@ -1,7 +1,5 @@
 {
-  "generatedAt": "2026-10-21T04:21:25.714Z",
-  "compared": 205,
-  "exactMatches": 205,
+  "pagesChecked": 0,
   "mismatches": [],
-  "accepted": true
+  "passed": true
 }

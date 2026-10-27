@@ -1,0 +1,76 @@
+{
+  "prompt": "2G",
+  "measurement_version": "2G",
+  "privacy": {
+    "dashboard_stores_raw_query": false,
+    "intent_bucket_required_for_search": true,
+    "digits_stripped_before_bucket": true,
+    "debug_query_ttl_days": 14,
+    "debug_store_key": "wmc_measurement_debug_queries",
+    "ip_stored_with_query": false
+  },
+  "page_groups": [
+    "home",
+    "practitioner",
+    "service",
+    "advice_hub",
+    "advice_article",
+    "patient_information",
+    "team",
+    "booking",
+    "other"
+  ],
+  "events": [
+    {
+      "name": "page_view",
+      "required_fields": ["page_group", "page_path"],
+      "hook": "measurement.js init"
+    },
+    {
+      "name": "book_appointment_click",
+      "required_fields": ["placement", "destination", "page_group"],
+      "hook": "document click on visible HotDoc controls"
+    },
+    {
+      "name": "call_clinic_click",
+      "required_fields": ["placement", "page_group"],
+      "hook": "document click on tel:+61732173344"
+    },
+    {
+      "name": "task_shortcut_click",
+      "required_fields": ["task", "surface"],
+      "hook": ".patient-tasks a, .patient-hub-task-grid a"
+    },
+    {
+      "name": "digital_reception_open",
+      "required_fields": ["page_group"],
+      "hook": "digital-reception.js open()"
+    },
+    {
+      "name": "digital_reception_search",
+      "required_fields": ["intent_bucket", "result_type", "result_count"],
+      "hook": "digital-reception.js run()"
+    },
+    {
+      "name": "digital_reception_result_click",
+      "required_fields": ["step", "intent_bucket"],
+      "hook": "digital-reception.js results click"
+    }
+  ],
+  "result_types": [
+    "direct_page",
+    "care_journey",
+    "no_result",
+    "emergency",
+    "unavailable"
+  ],
+  "result_steps": [
+    "article",
+    "service",
+    "practitioner",
+    "book",
+    "call",
+    "more",
+    "shortcut"
+  ]
+}

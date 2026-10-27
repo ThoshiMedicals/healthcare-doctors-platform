@@ -1,6 +1,8 @@
 {
   "source": "approved uploaded production package",
-  "note": "Deep-links have been preserved from production baseline, not independently authenticated via HotDoc Dashboard or live booking confirmation. Verify one-practitioner widget for each practitioner before public deployment.",
+  "note": "L1 live HTTP verification completed 2026-10-26: every practitioner deep-link returned HTTP 200 with practitioner slug retained on the final HotDoc URL (Dr Mary Abadir remains reception-only tel:+61732173344 per practice policy). Evidence: old-html/qa/HOTDOC_LIVE_VERIFY_L1.json.",
+  "live_verified_at": "2026-10-26T02:35:00.000Z",
+  "live_verify_report": "old-html/qa/HOTDOC_LIVE_VERIFY_L1.json",
   "practitioners": [
     {
       "profile": "doctors/dr-anand-singh.html",

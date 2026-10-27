@@ -1,0 +1,33 @@
+{
+  "promptId": "L1",
+  "title": "Platform Readiness — Launch blockers cleared",
+  "assessedOn": "2026-10-26",
+  "timezone": "Australia/Brisbane",
+  "baselinePromptId": "3H",
+  "baselineScore": 72,
+  "productionReadinessScore": 86,
+  "scoreMethod": {
+    "domainAverage": 9.18,
+    "domainSum": 101,
+    "base": 92,
+    "penalties": { "critical": 0, "high": 0, "medium": -4, "low": -2 },
+    "result": 86,
+    "formula": "round(domainAverage*10) - 15*C - 5*H - 2*M - 0.5*L"
+  },
+  "goLiveRecommendation": "CLEAR_TO_SHIP",
+  "issueCounts": { "critical": 0, "high": 0, "medium": 2, "low": 3 },
+  "closedGates": ["C1_hotdoc_live_verify", "H1_manifest_sync", "H2_navigation_ownership", "L6_analytics_warehouse"],
+  "focusPractitionersVerified": [
+    "Dr Mary Abadir",
+    "Dr Sumita Singh",
+    "Dr Tanya Goodwill",
+    "Dr Anand Singh",
+    "Dr Wasantha Hettiarchchi",
+    "Dr Steven Chang",
+    "Mr Samuel Stafford"
+  ],
+  "hotDocVerify": { "ok": 13, "total": 13, "report": "old-html/qa/HOTDOC_LIVE_VERIFY_L1.json" },
+  "manifest": { "routes": 206, "goldenPublicBytesEqual": true },
+  "ownership": { "pages": 208, "missingInOwnership": [] },
+  "reportPath": "old-html/qa/PLATFORM_READINESS_AUDIT_L1.md"
+}
