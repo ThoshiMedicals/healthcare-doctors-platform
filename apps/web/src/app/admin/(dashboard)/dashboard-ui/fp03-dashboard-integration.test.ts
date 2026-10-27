@@ -125,7 +125,7 @@ describe("FP-03 Phase 6 dashboard integration and cross-layer regression", () =>
   });
 
   it("retains QA11 tier and optional focus on both Authority range controls", () => {
-    for (const route of ["/admin/practitioner-authority", "/admin/service-authority"]) {
+    for (const route of ["/admin/practitioner-authority", "/admin/service-authority"] as const) {
       const src = readDashboard(pageByRoute[route]);
       assert.match(src, /tier:\s*tierFilter\s*\?\?\s*undefined/);
       assert.match(src, /AUTHORITY_TIER_FRIENDLY\[tierFilter\]/);
@@ -195,7 +195,7 @@ describe("FP-03 Phase 6 dashboard integration and cross-layer regression", () =>
   });
 
   it("does not alter QA11's repaired authority-tier imports or roster sections", () => {
-    for (const route of ["/admin/practitioner-authority", "/admin/service-authority"]) {
+    for (const route of ["/admin/practitioner-authority", "/admin/service-authority"] as const) {
       const source = readDashboard(pageByRoute[route]);
       assert.match(source, /AUTHORITY_TIER_FRIENDLY/);
       assert.match(source, /filterRowsByTier\(/);

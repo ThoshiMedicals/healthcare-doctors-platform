@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
+import type { InsightsFilters } from "./insights-filters";
 import {
   buildInvestigationBannerModel,
   inferInvestigationSource,
@@ -9,7 +10,7 @@ import {
 
 describe("investigation banner (D6)", () => {
   it("stamps and reads investigation sources", () => {
-    assert.equal(withInvestigationSource({ range: "last_7" }, "kpi").from, "kpi");
+    assert.equal(withInvestigationSource<InsightsFilters>({ range: "last_7" }, "kpi").from, "kpi");
     assert.equal(inferInvestigationSource({ from: "recommendation", tier: "Thin" }), "recommendation");
     assert.equal(inferInvestigationSource({ health: "search" }), "health");
     assert.equal(inferInvestigationSource({ queue: "expired" }), "queue");

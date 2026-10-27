@@ -170,7 +170,7 @@ describe("role menus", () => {
     assert.equal(new Set(CMS_MODULES.map((item) => item.href)).size, APPROVED_MODULES.length);
     assert.equal(new Set(CMS_MODULES.map((item) => item.label)).size, APPROVED_MODULES.length);
     assert.equal(CMS_MODULES.every((item) => item.href.startsWith("/admin")), true);
-    assert.equal(CMS_MODULES.some((item) => item.href === "/admin/settings"), false);
+    assert.equal(new Set<string>(CMS_MODULES.map((item) => item.href)).has("/admin/settings"), false);
   });
 
   it("verifies the roleAllows action matrix independently of module labels", () => {
@@ -211,8 +211,8 @@ describe("role menus", () => {
       const visible = visibleModules(item.role);
       assert.deepEqual(visible, item.expected, "visibleModules(" + item.role + ")");
       if (item.role !== null) {
-        for (const module of visible) {
-          assert.equal(roleAllows(item.role, module.action), true, item.role + ": " + module.href);
+        for (const navItem of visible) {
+          assert.equal(roleAllows(item.role, navItem.action), true, item.role + ": " + navItem.href);
         }
       }
     }

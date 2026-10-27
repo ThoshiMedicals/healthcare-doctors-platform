@@ -47,7 +47,7 @@ function sampleGovernanceReport(): PracticeGovernanceManagementReport {
         path: "services/telehealth.html",
         title: "Telehealth",
         status: "under_review",
-        collection: "services",
+        collection: "service",
         segment: "services",
         contentOwner: "Practice Manager",
         reviewedBy: null,

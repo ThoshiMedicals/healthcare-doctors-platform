@@ -34,9 +34,11 @@ describe("platform health investigation (D3)", () => {
       accessibility: "/admin/executive",
     };
     for (const [id, path] of Object.entries(expected)) {
-      assert.ok(isPlatformHealthDomainId(id));
-      assert.equal(PLATFORM_HEALTH_DOMAIN_TARGETS[id as keyof typeof expected].path, path);
-      assert.ok(PLATFORM_HEALTH_DOMAIN_TARGETS[id as keyof typeof expected].cta.length > 5);
+      if (!isPlatformHealthDomainId(id)) {
+        assert.fail(`Unrecognised platform health domain: ${id}`);
+      }
+      assert.equal(PLATFORM_HEALTH_DOMAIN_TARGETS[id].path, path);
+      assert.ok(PLATFORM_HEALTH_DOMAIN_TARGETS[id].cta.length > 5);
     }
   });
 
