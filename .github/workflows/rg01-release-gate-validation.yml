@@ -1,0 +1,85 @@
+name: RG-01 Golden Master CI Validation
+
+on:
+  push:
+    branches:
+      - rg01-release-gate-repairs
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  golden-master-and-regressions:
+    name: Published-content import and repository regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      CI: "true"
+      DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/wmc?schema=public"
+      AUTH_SECRET: "rg01-ephemeral-ci-validation-only-not-production"
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_DB: wmc
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+
+      - name: Install web dependencies
+        run: npm ci --prefix apps/web
+
+      - name: Prepare isolated CI database
+        run: |
+          npm run db:migrate --prefix apps/web
+          npm run db:seed --prefix apps/web
+        env:
+          SEED_ADMIN_USERNAME: admin
+          SEED_ADMIN_PASSWORD: "RG01TemporaryCIAdminPassword-NotForProduction"
+
+      - name: Import and validate frozen published golden-master content
+        run: npm run import:golden --prefix apps/web | tee "$RUNNER_TEMP/rg01-golden-import.log"
+
+      - name: Require complete published import and report resource count
+        run: |
+          node - <<'NODE'
+          const fs = require("node:fs");
+          const path = require("node:path");
+          const log = fs.readFileSync(path.join(process.env.RUNNER_TEMP, "rg01-golden-import.log"), "utf8");
+          const start = log.lastIndexOf('{\n  "imported"');
+          if (start === -1) throw new Error("Golden importer did not emit its validation report.");
+          const result = JSON.parse(log.slice(start).trim());
+          const pages = result.imported?.pageCount;
+          if (!Number.isInteger(pages) || pages <= 0) {
+            throw new Error("Golden importer did not populate published pages.");
+          }
+          if (result.importPassed !== true || result.renderingAccepted !== true) {
+            throw new Error("Golden importer validation failed.");
+          }
+          console.log("RG01 imported published HTML resources: " + pages);
+          console.log("RG01 copied runtime files: " + result.imported.runtimeFilesCopied);
+          console.log("RG01 golden import and rendering validations: PASS");
+          NODE
+
+      - name: Verify frozen approved HTML is unchanged
+        run: git diff --exit-code -- old-html
+
+      - name: Execute unmodified golden-master regression test
+        run: npm run test:regression --prefix apps/web
+
+      - name: Execute complete unmodified repository test suite
+        run: npm test --prefix apps/web
