@@ -1,4 +1,6 @@
 import assert from "node:assert/strict";
+import { PLATFORM_HEALTH_DOMAIN_TARGETS } from "@/measurement/platform-health-investigation";
+import { INSIGHTS_HEALTH_DOMAIN_ROUTES } from "./filter-policy";
 import { describe, it } from "node:test";
 import {
   platformHealthBandExplanation,
@@ -61,6 +63,12 @@ describe("platform health domain actions (D3)", () => {
     assert.doesNotMatch(href, /service=/);
     assert.doesNotMatch(href, /queue=/);
     assert.match(href, /health=conversion/);
+  });
+
+  it("keeps filter ownership aligned with canonical platform-health targets", () => {
+    for (const [domain, route] of Object.entries(INSIGHTS_HEALTH_DOMAIN_ROUTES)) {
+      assert.equal(PLATFORM_HEALTH_DOMAIN_TARGETS[domain as keyof typeof INSIGHTS_HEALTH_DOMAIN_ROUTES].path, route);
+    }
   });
 
   it("returns band explanation and CTA copy", () => {

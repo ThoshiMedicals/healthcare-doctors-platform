@@ -22,9 +22,13 @@ describe("dashboard drill-through links (B5 + C5)", () => {
   it("opens governance queues from workload indicators", () => {
     assert.equal(
       governanceManagementHref({ queue: "due_soon" }),
-      "/admin/governance/management?queue=due_soon#queue-due_soon",
+      "/admin/governance/management?queue=due_soon&from=queue#queue-due_soon",
     );
     assert.equal(governanceManagementHref(), "/admin/governance/management");
+    assert.equal(
+      governanceManagementHref({ queue: "expired", filters: { from: "recommendation", data: "demo" } }),
+      "/admin/governance/management?queue=expired&data=demo&from=recommendation#queue-expired",
+    );
   });
 
   it("exposes a shared insights strip across dashboards", () => {

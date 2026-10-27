@@ -59,6 +59,7 @@ describe("persistent insights filters (C5)", () => {
       tier: undefined,
       health: undefined,
       intent: undefined,
+      from: undefined,
     });
   });
 
@@ -174,6 +175,15 @@ describe("persistent insights filters (C5)", () => {
     assert.ok(conversion?.href.includes("practitioner=dr-tanya-goodwill"));
     assert.ok(conversion?.href.includes("service=telehealth"));
     assert.ok(dr?.href.includes("service=telehealth"));
+  });
+
+  it("preserves validated legacy focus parsing without changing Phase 1 runtime", () => {
+    const practitioner = parseInsightsFilters({
+      practitioner: "dr-explicit", focus: "dr-legacy", focusAs: "practitioner",
+    });
+    assert.equal(practitioner.practitioner, "dr-explicit");
+    assert.equal(parseInsightsFilters({ focus: "telehealth", focusAs: "service" }).service, "telehealth");
+    assert.deepEqual(parseInsightsFilters({ queue: "invalid", tier: "invalid", health: "invalid", from: "invalid" }), {});
   });
 
   it("matches focus keys loosely for destination filtering", () => {
