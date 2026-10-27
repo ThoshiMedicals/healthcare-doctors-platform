@@ -35,6 +35,7 @@ export {
 export {
   INSIGHTS_FILTERS_COOKIE,
   clearInsightsFocus,
+  clearInsightsHref,
   insightsFiltersActive,
   insightsFiltersLabel,
   matchFocusKey,

@@ -13,7 +13,7 @@ import {
   type GovernanceRemediationQueue,
 } from "@/governance/remediation";
 import type { InsightsFilters } from "./insights-filters";
-import { clearInsightsFocus, withInsightsQuery } from "./insights-filters";
+import { clearInsightsFocus, clearInsightsHref } from "./insights-filters";
 import {
   conversionIntelligenceHref,
   digitalReceptionHref,
@@ -233,6 +233,8 @@ function defaultContinueLinks(
 export function buildInvestigationBannerModel(input: {
   filters: InsightsFilters;
   pathname: string;
+  /** Optional explicit YYYY-MM for Monthly Executive (not part of InsightsFilters). */
+  month?: string;
   counts?: InvestigationEntityCounts;
   continueLinks?: InvestigationLink[];
   recommendations?: string[];
@@ -243,7 +245,7 @@ export function buildInvestigationBannerModel(input: {
   if (!source && !input.viewing) return null;
   if (!investigationActive(filters) && !input.viewing) return null;
 
-  const clearHref = withInsightsQuery(pathname, clearInsightsFocus(filters));
+  const clearHref = clearInsightsHref(pathname, filters, { month: input.month });
   let viewing: InvestigationView | null = input.viewing ?? null;
   let recommendations = input.recommendations ?? [];
 

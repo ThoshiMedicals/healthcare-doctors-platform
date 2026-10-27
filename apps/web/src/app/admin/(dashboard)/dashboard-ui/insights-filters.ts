@@ -278,12 +278,32 @@ export function insightsDataModeHref(
   });
 }
 
-/** Drop focus dims for a clear-filter href while keeping range + data mode. */
+/** Clear is preference-only: do not carry any investigation dimension or provenance.
+ * Validate runtime values so only supported range/data preferences survive.
+ */
 export function clearInsightsFocus(filters: InsightsFilters): InsightsFilters {
-  const next: InsightsFilters = {};
-  if (filters.range) next.range = filters.range;
-  if (filters.data) next.data = filters.data;
-  return next;
+  return parseInsightsFilters({ range: filters.range, data: filters.data });
+}
+
+/**
+ * Clear an Insights investigation without deleting reporting preferences.
+ * - Ignore all inbound investigation params, including legacy focus and from.
+ * - Drop investigation fragments (e.g. #queue-expired and #intent-vaccination).
+ * - Preserve a valid monthly report month, either in path or explicitly provided.
+ *
+ * Phase 4's v2 cookie stores range/data only, so refresh cannot resurrect focus.
+ * This function does not write or modify cookies.
+ */
+export function clearInsightsHref(
+  pathname: string,
+  filters: InsightsFilters,
+  options?: { month?: string },
+): string {
+  return withInsightsQuery(pathname, clearInsightsFocus(filters), {
+    navigationIntent: "overview",
+    month: options?.month,
+    hash: "",
+  });
 }
 
 export function matchFocusKey(key: string, focus: string): boolean {

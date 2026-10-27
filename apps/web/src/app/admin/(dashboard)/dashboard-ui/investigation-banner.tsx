@@ -81,6 +81,7 @@ export function InvestigationBanner({
 export function InsightsInvestigationBanner({
   filters,
   pathname,
+  month,
   counts,
   continueLinks,
   recommendations,
@@ -88,6 +89,8 @@ export function InsightsInvestigationBanner({
 }: {
   filters: InsightsFilters;
   pathname: string;
+  /** Monthly report period, if this banner is used on a monthly dashboard. */
+  month?: string;
   counts?: InvestigationEntityCounts;
   continueLinks?: InvestigationLink[];
   recommendations?: string[];
@@ -96,6 +99,7 @@ export function InsightsInvestigationBanner({
   const model = buildInvestigationBannerModel({
     filters,
     pathname,
+    month,
     counts,
     continueLinks,
     recommendations,
