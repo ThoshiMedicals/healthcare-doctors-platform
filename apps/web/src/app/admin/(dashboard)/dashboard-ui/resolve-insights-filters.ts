@@ -1,28 +1,28 @@
 import { cookies } from "next/headers";
 import {
   INSIGHTS_FILTERS_COOKIE,
-  mergeInsightsFilters,
-  parseInsightsFilters,
   parseInsightsFiltersCookie,
   type InsightsFilters,
 } from "./insights-filters";
+import {
+  resolveInsightsFilterState,
+  type InsightsFilterInput,
+} from "./resolve-insights-filter-state";
 
-/** Merge URL search params with the persistent Insights cookie (URL wins). */
-export async function resolveInsightsFilters(params: {
-  range?: string;
-  practitioner?: string;
-  service?: string;
-  queue?: string;
-  focus?: string;
-  data?: string;
-  tier?: string;
-  health?: string;
-  intent?: string;
-  from?: string;
-  focusAs?: "practitioner" | "service";
-}): Promise<InsightsFilters> {
+/**
+ * Phase 3 server resolver: cookie data supplies preferences only.
+ *
+ * Pass an explicit Insights dashboard pathname to enforce route ownership.
+ * Legacy dashboard routes call the one-argument form until Phase 6; in that
+ * compatibility mode URL focus works, but no cookie investigation is restored.
+ *
+ * No cookie writing, expiry or schema migration is performed here.
+ */
+export async function resolveInsightsFilters(
+  params: InsightsFilterInput,
+  destination?: string,
+): Promise<InsightsFilters> {
   const jar = await cookies();
-  const fromCookie = parseInsightsFiltersCookie(jar.get(INSIGHTS_FILTERS_COOKIE)?.value);
-  const fromUrl = parseInsightsFilters(params);
-  return mergeInsightsFilters(fromCookie, fromUrl);
+  const legacyCookie = parseInsightsFiltersCookie(jar.get(INSIGHTS_FILTERS_COOKIE)?.value);
+  return resolveInsightsFilterState(params, legacyCookie, destination);
 }
