@@ -46,6 +46,16 @@ describe("chart navigation (D4)", () => {
     assert.match(digitalReceptionFunnelStageHref("call", {}), /conversion-intelligence/);
   });
 
+  it("does not leak a governance queue into intent and service drill-through", () => {
+    const intent = intentInvestigationHref("vaccination", { data: "demo", queue: "expired", from: "queue" });
+    assert.match(intent, /intent=vaccination/);
+    assert.match(intent, /from=chart/);
+    assert.doesNotMatch(intent, /queue=/);
+    const service = serviceInvestigationHref("services/telehealth.html", { queue: "expired", data: "live" });
+    assert.match(service, /focus=telehealth/);
+    assert.doesNotMatch(service, /queue=/);
+  });
+
   it("opens governance queues from chart segments", () => {
     assert.match(
       governanceQueueInvestigationHref("expired", { data: "demo" }),

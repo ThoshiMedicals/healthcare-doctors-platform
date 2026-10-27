@@ -22,6 +22,16 @@ describe("KPI actions (D1)", () => {
     assert.match(due.href, /data=demo/);
   });
 
+  it("preserves intentional queue provenance and drops unsupported KPI focus", () => {
+    const gov = KpiTargets.governanceQueue("expired", { service: "telehealth", data: "demo" });
+    assert.match(gov.href, /queue=expired/);
+    assert.match(gov.href, /from=queue/);
+    assert.doesNotMatch(gov.href, /service=/);
+    const search = KpiTargets.searchQuality({ range: "last_7", queue: "expired" });
+    assert.match(search.href, /range=last_7/);
+    assert.doesNotMatch(search.href, /queue=expired|from=kpi/);
+  });
+
   it("marks informational KPIs explicitly", () => {
     const info = kpiInfo(KpiInfoReasons.volumeContext);
     assert.equal(info.kind, "informational");

@@ -1,4 +1,5 @@
 import type { ExecutiveRange } from "@/measurement/ranges";
+import { insightsFiltersForDestination } from "./filter-policy";
 import {
   type InsightsFilters,
   withInsightsQuery,
@@ -93,8 +94,14 @@ export function governanceManagementHref(opts?: {
 }): string {
   const filters: InsightsFilters = {
     ...opts?.filters,
-    ...(opts?.queue ? { queue: opts.queue } : {}),
-    ...(opts?.queue && !opts?.filters?.from ? { from: "queue" as const } : {}),
+    ...(opts?.queue
+      ? {
+          queue: opts.queue,
+          // A selected queue supersedes an earlier health investigation.
+          health: undefined,
+          from: opts.filters?.from === "recommendation" ? "recommendation" as const : "queue" as const,
+        }
+      : {}),
   };
   return withInsightsQuery("/admin/governance/management", filters, {
     includeRange: false,
@@ -156,27 +163,29 @@ export function insightsNavItems(
         : {}
       : rangeOrFilters;
 
+  // Shared navigation always opens overviews, never transfers investigation focus.
+  const overview = insightsFiltersForDestination("/admin", filters, "overview");
   return [
-    { id: "command-centre", label: "Briefing", href: commandCentreHref(filters) },
-    { id: "executive", label: "Website", href: executiveHref(filters) },
-    { id: "digital-reception", label: "Search", href: digitalReceptionHref(filters) },
+    { id: "command-centre", label: "Briefing", href: commandCentreHref(overview) },
+    { id: "executive", label: "Website", href: executiveHref(overview) },
+    { id: "digital-reception", label: "Search", href: digitalReceptionHref(overview) },
     {
       id: "practitioner-authority",
       label: "Doctors",
-      href: practitionerAuthorityHref({ filters }),
+      href: practitionerAuthorityHref({ filters: overview }),
     },
-    { id: "service-authority", label: "Services", href: serviceAuthorityHref({ filters }) },
+    { id: "service-authority", label: "Services", href: serviceAuthorityHref({ filters: overview }) },
     {
       id: "conversion-intelligence",
       label: "Bookings",
-      href: conversionIntelligenceHref(filters),
+      href: conversionIntelligenceHref(overview),
     },
-    { id: "governance-review", label: "Reviews", href: governanceReviewHref({ filters }) },
+    { id: "governance-review", label: "Reviews", href: governanceReviewHref({ filters: overview }) },
     {
       id: "governance-management",
       label: "Review board",
-      href: governanceManagementHref({ filters }),
+      href: governanceManagementHref({ filters: overview }),
     },
-    { id: "governance-expiry", label: "Due dates", href: governanceExpiryHref(filters) },
+    { id: "governance-expiry", label: "Due dates", href: governanceExpiryHref(overview) },
   ];
 }

@@ -8,6 +8,7 @@ import {
   parseInsightsFilters,
   parseInsightsFiltersCookie,
   serializeInsightsFiltersCookie,
+  withInsightsQuery,
 } from "./insights-filters";
 import {
   conversionIntelligenceHref,
@@ -164,7 +165,7 @@ describe("persistent insights filters (C5)", () => {
     assert.match(insightsFiltersLabel({ tier: "Thin" }), /Needs more links/);
   });
 
-  it("propagates filters through the Insights nav strip", () => {
+  it("uses overview rather than investigation semantics in the Insights nav strip", () => {
     const items = insightsNavItems({
       range: "last_7",
       practitioner: "dr-tanya-goodwill",
@@ -172,9 +173,49 @@ describe("persistent insights filters (C5)", () => {
     });
     const conversion = items.find((item) => item.id === "conversion-intelligence");
     const dr = items.find((item) => item.id === "digital-reception");
-    assert.ok(conversion?.href.includes("practitioner=dr-tanya-goodwill"));
-    assert.ok(conversion?.href.includes("service=telehealth"));
-    assert.ok(dr?.href.includes("service=telehealth"));
+    assert.ok(conversion?.href.includes("range=last_7"));
+    for (const item of items) {
+      assert.doesNotMatch(item.href, /(?:practitioner|service|queue|tier|health|intent|from)=/);
+    }
+    assert.ok(dr?.href.includes("range=last_7"));
+  });
+
+  it("sanitises outgoing links for their destination without changing inbound parsing", () => {
+    assert.equal(withInsightsQuery("/admin/executive", {
+      range: "last_7", data: "demo", queue: "expired", from: "queue", health: "governance",
+    }), "/admin/executive?range=last_7&data=demo");
+    assert.equal(withInsightsQuery("/admin/digital-reception", {
+      range: "last_30", data: "live", queue: "expired", intent: "vaccination", from: "queue",
+    }), "/admin/digital-reception?range=last_30&data=live&intent=vaccination");
+    assert.equal(withInsightsQuery("/admin/digital-reception", {
+      intent: "vaccination", from: "chart", health: "search",
+    }), "/admin/digital-reception?health=search&intent=vaccination&from=chart");
+    assert.equal(withInsightsQuery("/admin/practitioner-authority", {
+      practitioner: "dr-a", service: "telehealth", tier: "Thin", from: "chart",
+    }, { practitionerAsFocus: true, hash: "pa-roster" }),
+    "/admin/practitioner-authority?focus=dr-a&tier=Thin&from=chart#pa-roster");
+    assert.equal(withInsightsQuery("/admin/users", { queue: "expired" }), "/admin/users");
+  });
+
+  it("supports explicit overview and investigation navigation contracts", () => {
+    const filters = { range: "last_7" as const, data: "demo" as const, service: "telehealth", from: "chart" as const };
+    assert.equal(withInsightsQuery("/admin/digital-reception", filters, { navigationIntent: "overview" }),
+      "/admin/digital-reception?range=last_7&data=demo");
+    assert.equal(withInsightsQuery("/admin/digital-reception", filters, { navigationIntent: "investigation" }),
+      "/admin/digital-reception?range=last_7&service=telehealth&data=demo&from=chart");
+  });
+
+  it("preserves a valid monthly window when changing data mode", () => {
+    assert.equal(withInsightsQuery(
+      "/admin/executive/monthly?month=2026-10#summary",
+      { range: "last_30", data: "demo", queue: "expired", from: "queue" },
+    ), "/admin/executive/monthly?month=2026-10&data=demo#summary");
+    assert.equal(withInsightsQuery("/admin/executive/monthly", { data: "live" }, { month: "2026-09" }),
+      "/admin/executive/monthly?month=2026-09&data=live");
+    assert.equal(withInsightsQuery("/admin/executive/monthly?month=2026-13", { data: "demo" }),
+      "/admin/executive/monthly?data=demo");
+    assert.equal(withInsightsQuery("/admin/digital-reception?month=2026-10&queue=expired", { data: "demo" }),
+      "/admin/digital-reception?data=demo");
   });
 
   it("preserves validated legacy focus parsing without changing Phase 1 runtime", () => {

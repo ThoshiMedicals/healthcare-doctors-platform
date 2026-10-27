@@ -1,6 +1,7 @@
-/** FP-03 Phase 1: declarative ownership only. No URL, cookie, or resolver changes. */
+/** FP-03 Phases 1-2: route ownership and outbound URL policy only. */
 import type { InsightsFilters } from "./insights-filters";
 import type { PlatformHealthDomainId } from "@/measurement/platform-health-score";
+import type { InvestigationSource } from "./investigation-source";
 
 export const INSIGHTS_DASHBOARD_FAMILIES = [
   "briefing",
@@ -15,7 +16,20 @@ export type InsightsDashboardFamily = (typeof INSIGHTS_DASHBOARD_FAMILIES)[numbe
 export type InsightsFilterKey = keyof InsightsFilters;
 export type InsightsReportingPeriod = "range" | "month" | "preference-only";
 export type InsightsLegacyFocus = "practitioner" | "service" | null;
+/** Overview links carry preferences only; investigation links may carry owned focus. */
 export type InsightsNavigationIntent = "overview" | "investigation";
+
+/** Permitted focus dimensions for each investigation entry source.
+ * "queue" and "health" require their corresponding dimensions, not arbitrary focus.
+ */
+export const INSIGHTS_SOURCE_COMPATIBILITY = {
+  queue: ["queue"],
+  health: ["health"],
+  chart: ["practitioner", "service", "queue", "tier", "intent"],
+  kpi: ["practitioner", "service", "queue", "tier", "health", "intent"],
+  recommendation: ["practitioner", "service", "queue", "tier", "health", "intent"],
+  filter: ["practitioner", "service", "queue", "tier", "health", "intent"],
+} as const satisfies Record<InvestigationSource, readonly (keyof InsightsFilters)[]>;
 
 /** The only dimensions eligible for cookie persistence in later phases. */
 export const INSIGHTS_PREFERENCE_KEYS = ["range", "data"] as const satisfies readonly InsightsFilterKey[];
@@ -108,12 +122,46 @@ export function insightsRouteOwnsHealth(pathname: string, domain: PlatformHealth
   return route !== null && INSIGHTS_HEALTH_DOMAIN_ROUTES[domain] === route;
 }
 
-/** The source marker must accompany an owned, non-empty investigation dimension. */
+/** A source is meaningful only when at least one compatible focus belongs to the route. */
 export function insightsRouteAllowsSource(pathname: string, filters: InsightsFilters): boolean {
-  if (!insightsRouteOwnsFilter(pathname, "from")) return false;
-  return INSIGHTS_FOCUS_KEYS.some((key) => {
+  if (!insightsRouteOwnsFilter(pathname, "from") || !filters.from) return false;
+  const compatible = INSIGHTS_SOURCE_COMPATIBILITY[filters.from];
+  if (!compatible) return false;
+  return compatible.some((key) => {
     const value = filters[key];
     if (!value || !insightsRouteOwnsFilter(pathname, key)) return false;
     return key !== "health" || insightsRouteOwnsHealth(pathname, value as PlatformHealthDomainId);
   });
+}
+
+/** Phase 2 URL-only projection; no cookie or server resolver integration. */
+export function insightsFiltersForDestination(
+  pathname: string,
+  filters: InsightsFilters,
+  intent: InsightsNavigationIntent,
+): InsightsFilters {
+  const policy = insightsDashboardPolicy(pathname);
+  if (!policy) return {};
+
+  const output: InsightsFilters = {};
+  const assign = (key: InsightsFilterKey) => {
+    const value = filters[key];
+    if (value !== undefined && policy.ownedFilters.includes(key)) {
+      (output as Record<string, unknown>)[key] = value;
+    }
+  };
+
+  for (const key of INSIGHTS_PREFERENCE_KEYS) assign(key);
+  if (intent === "overview") return output;
+
+  for (const key of INSIGHTS_FOCUS_KEYS) {
+    if (key === "health" && filters.health && !insightsRouteOwnsHealth(pathname, filters.health)) {
+      continue;
+    }
+    assign(key);
+  }
+  if (filters.from && insightsRouteAllowsSource(pathname, { ...output, from: filters.from })) {
+    output.from = filters.from;
+  }
+  return output;
 }

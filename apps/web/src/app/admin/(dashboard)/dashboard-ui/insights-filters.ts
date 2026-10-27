@@ -14,6 +14,11 @@ import {
   type InvestigationSource,
 } from "./investigation-source";
 import type { GovernanceQueue } from "./links";
+import {
+  insightsDashboardRoute,
+  insightsFiltersForDestination,
+  type InsightsNavigationIntent,
+} from "./filter-policy";
 
 export const INSIGHTS_FILTERS_COOKIE = "wmc_insights_filters";
 export const INSIGHTS_FILTERS_COOKIE_MAX_AGE = 60 * 60 * 8; // 8 hours
@@ -207,16 +212,45 @@ export function appendInsightsFilters(
   if (filters.from) params.set("from", filters.from);
 }
 
+/** Destination-aware URL generation. All filter values are validated before projection.
+ * Existing monthly `month` survives a mode-change URL; unrelated query keys do not.
+ */
 export function withInsightsQuery(
   path: string,
   filters?: InsightsFilters | null,
-  opts?: { hash?: string; practitionerAsFocus?: boolean; serviceAsFocus?: boolean; includeRange?: boolean },
+  opts?: {
+    hash?: string;
+    practitionerAsFocus?: boolean;
+    serviceAsFocus?: boolean;
+    includeRange?: boolean;
+    navigationIntent?: InsightsNavigationIntent;
+    month?: string;
+  },
 ): string {
+  const hashIndex = path.indexOf("#");
+  const base = hashIndex === -1 ? path : path.slice(0, hashIndex);
+  const existingHash = hashIndex === -1 ? "" : path.slice(hashIndex + 1);
+  const queryIndex = base.indexOf("?");
+  const pathname = queryIndex === -1 ? base : base.slice(0, queryIndex);
+  const existingParams = new URLSearchParams(queryIndex === -1 ? "" : base.slice(queryIndex + 1));
+  const route = insightsDashboardRoute(pathname);
   const params = new URLSearchParams();
-  appendInsightsFilters(params, filters, opts);
+
+  if (route === "/admin/executive/monthly") {
+    const month = opts?.month ?? existingParams.get("month");
+    if (month && /^\d{4}-(0[1-9]|1[0-2])$/.test(month)) {
+      params.set("month", month);
+    }
+  }
+
+  // Only the generated links are sanitised in Phase 2.
+  // Inbound URL parsing, server merge and cookies remain unchanged.
+  const validated = parseInsightsFilters(filters ?? {});
+  const selected = insightsFiltersForDestination(pathname, validated, opts?.navigationIntent ?? "investigation");
+  appendInsightsFilters(params, selected, opts);
   const query = params.toString();
-  const hash = opts?.hash ? `#${opts.hash.replace(/^#/, "")}` : "";
-  return `${path}${query ? `?${query}` : ""}${hash}`;
+  const fragment = opts?.hash !== undefined ? opts.hash.replace(/^#/, "") : existingHash;
+  return `${pathname}${query ? `?${query}` : ""}${fragment ? `#${fragment}` : ""}`;
 }
 
 /** Drop focus dims for a clear-filter href while keeping range + data mode. */
