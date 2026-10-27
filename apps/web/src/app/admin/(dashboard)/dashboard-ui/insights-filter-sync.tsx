@@ -1,28 +1,24 @@
 "use client";
 
 import { useEffect } from "react";
+import type { InsightsFilters } from "./insights-filters";
 import {
-  INSIGHTS_FILTERS_COOKIE,
-  INSIGHTS_FILTERS_COOKIE_MAX_AGE,
-  type InsightsFilters,
-  serializeInsightsFiltersCookie,
-} from "./insights-filters";
+  insightsPreferenceCookieWrites,
+  insightsPreferencesWriteConfirmed,
+} from "./insights-preferences";
 
-/**
- * Persists active Insights filters in a cookie so Investigations keep context
- * when moving between dashboards (C5). Presentation-only — no permission change.
- */
+/** Persist reporting preferences only. URL focus remains authoritative. */
 export function InsightsFilterSync({ filters }: { filters: InsightsFilters }) {
   useEffect(() => {
-    const value = serializeInsightsFiltersCookie(filters);
-    const hasState = Boolean(
-      filters.practitioner || filters.service || filters.queue || filters.range || filters.data,
+    const [writeV2, expireLegacy] = insightsPreferenceCookieWrites(
+      filters,
+      window.location.protocol === "https:",
     );
-    if (!hasState) {
-      document.cookie = `${INSIGHTS_FILTERS_COOKIE}=; Path=/admin; Max-Age=0; SameSite=Lax`;
-      return;
+    // Complete the replacement before deleting legacy state.
+    document.cookie = writeV2;
+    if (insightsPreferencesWriteConfirmed(document.cookie, filters)) {
+      document.cookie = expireLegacy;
     }
-    document.cookie = `${INSIGHTS_FILTERS_COOKIE}=${value}; Path=/admin; Max-Age=${INSIGHTS_FILTERS_COOKIE_MAX_AGE}; SameSite=Lax`;
   }, [filters]);
 
   return null;
