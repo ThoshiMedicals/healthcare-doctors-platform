@@ -25,6 +25,7 @@ import {
   practitionerAuthorityHref,
   serviceAuthorityHref,
   withInsightsQuery,
+  insightsRangeHref,
 } from "../dashboard-ui";
 import { resolveInsightsDashboardData } from "../dashboard-ui/resolve-insights-data";
 import { resolveInsightsFilters } from "../dashboard-ui/resolve-insights-filters";
@@ -59,7 +60,7 @@ export default async function ConversionIntelligencePage({
 }) {
   await requireAction("manage_settings");
   const params = searchParams ? await searchParams : {};
-  const baseFilters = await resolveInsightsFilters(params);
+  const baseFilters = await resolveInsightsFilters(params, "/admin/conversion-intelligence");
   const range: ExecutiveRange =
     baseFilters.range && isExecutiveRange(baseFilters.range) ? baseFilters.range : "last_7";
   const { mode, filters: active, loaded } = await resolveInsightsDashboardData({
@@ -122,10 +123,7 @@ export default async function ConversionIntelligencePage({
             options={conversionIntelligenceRangeOptions()}
             active={range}
             hrefFor={(value) =>
-              withInsightsQuery("/admin/conversion-intelligence", {
-                ...active,
-                range: value as ExecutiveRange,
-              })
+              insightsRangeHref("/admin/conversion-intelligence", active, value as ExecutiveRange)
             }
           />
           <div className="flex flex-wrap items-center gap-3">
@@ -286,7 +284,11 @@ export default async function ConversionIntelligencePage({
             title="Weak booking paths"
             rows={report.opportunities.weak_booking_paths}
             hrefFor={() =>
-              withInsightsQuery("/admin/conversion-intelligence", active, { hash: "ci-dropoffs" })
+              withInsightsQuery("/admin/conversion-intelligence", active, {
+                hash: "ci-dropoffs",
+                navigationIntent: "investigation",
+                focusKeys: ["practitioner", "service", "health"],
+              })
             }
           />
           <OpportunityPanel

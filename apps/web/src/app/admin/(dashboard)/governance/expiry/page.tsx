@@ -48,7 +48,7 @@ export default async function GovernanceExpiryPage({
 }) {
   const { clinic } = await requireAction("clinical_signoff");
   const params = searchParams ? await searchParams : {};
-  const filters = await resolveInsightsFilters(params);
+  const filters = await resolveInsightsFilters(params, "/admin/governance/expiry");
   const liveRows = await prisma.clinicalReview.findMany({
     where: { clinicId: clinic.id },
     include: { page: { select: { path: true, title: true } } },

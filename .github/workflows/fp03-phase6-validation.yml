@@ -1,0 +1,78 @@
+name: FP-03 Phase 6 Test and Build
+
+on:
+  push:
+    branches:
+      - fp03-phase6-dashboard-integration
+
+permissions:
+  contents: read
+
+jobs:
+  repository-tests:
+    name: Repository test suite
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CI: "true"
+      DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/wmc?schema=public"
+      AUTH_SECRET: "fp03-phase6-ci-validation-only-secret-not-for-production"
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_DB: wmc
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+      - name: Install web dependencies
+        run: npm ci --prefix apps/web
+      - name: Execute complete repository test suite
+        run: npm test --prefix apps/web
+
+  production-build:
+    name: Next.js production build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CI: "true"
+      DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/wmc?schema=public"
+      AUTH_SECRET: "fp03-phase6-ci-validation-only-secret-not-for-production"
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_DB: wmc
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+      - name: Install web dependencies
+        run: npm ci --prefix apps/web
+      - name: Execute Next.js production build
+        run: npm run build --prefix apps/web

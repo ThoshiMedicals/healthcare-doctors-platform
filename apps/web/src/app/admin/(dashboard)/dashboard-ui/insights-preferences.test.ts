@@ -9,6 +9,8 @@ import {
   INSIGHTS_PREFERENCES_COOKIE,
   INSIGHTS_PREFERENCES_COOKIE_MAX_AGE,
   INSIGHTS_PREFERENCES_VERSION,
+  insightsCookieValue,
+  mergeInsightsPreferences,
   insightsPreferenceCookieWrites,
   insightsPreferencesWriteConfirmed,
   parseInsightsPreferencesCookie,
@@ -32,6 +34,28 @@ const oldFilters: InsightsFilters = {
 const legacyRaw = encodeURIComponent(JSON.stringify(oldFilters));
 
 describe("FP-03 Phase 4 v2 preference cookie migration", () => {
+  it("merges missing range preferences on non-range dashboards without storing investigation focus", () => {
+    const saved = { range: "last_30" as const, data: "demo" as const };
+    const merged = mergeInsightsPreferences(saved, {
+      data: "live", queue: "expired", tier: "Thin", from: "queue",
+    });
+    assert.deepEqual(merged, { range: "last_30", data: "live" });
+    assert.deepEqual(mergeInsightsPreferences(saved, { range: "last_7" }), {
+      range: "last_7", data: "demo",
+    });
+    const raw = serializeInsightsPreferencesCookie(merged);
+    assert.deepEqual(parseInsightsPreferencesCookie(raw), merged);
+  });
+
+  it("reads exact browser cookie keys for safe migration without name-prefix collision", () => {
+    const raw = serializeInsightsPreferencesCookie({ range: "last_7" });
+    assert.equal(insightsCookieValue(
+      `wmc_insights_prefs_v2_fake=ignored; wmc_insights_prefs_v2=${raw}`,
+      "wmc_insights_prefs_v2",
+    ), raw);
+    assert.equal(insightsCookieValue("wmc_insights_prefs_v2_fake=ignored", "wmc_insights_prefs_v2"), undefined);
+  });
+
   it("uses a distinct versioned cookie name and the existing eight-hour lifespan", () => {
     assert.equal(INSIGHTS_PREFERENCES_COOKIE, "wmc_insights_prefs_v2");
     assert.equal(INSIGHTS_PREFERENCES_VERSION, 2);

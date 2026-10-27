@@ -56,7 +56,7 @@ export default async function PractitionerAuthorityDashboardPage({
 }) {
   await requireAction("manage_settings");
   const params = searchParams ? await searchParams : {};
-  const baseFilters = await resolveInsightsFilters({ ...params, focusAs: "practitioner" });
+  const baseFilters = await resolveInsightsFilters(params, "/admin/practitioner-authority");
   const range: ExecutiveRange =
     baseFilters.range && isExecutiveRange(baseFilters.range) ? baseFilters.range : "last_7";
   const focus = baseFilters.practitioner ?? null;
@@ -106,6 +106,7 @@ export default async function PractitionerAuthorityDashboardPage({
               practitionerAuthorityHref({
                 range: value as ExecutiveRange,
                 focus: focus || undefined,
+                tier: tierFilter ?? undefined,
                 filters: active,
               })
             }

@@ -577,7 +577,7 @@ export default async function AdminCommandCentrePage({
 }) {
   const { clinic, role } = await editorContext();
   const params = searchParams ? await searchParams : {};
-  const baseFilters = await resolveInsightsFilters(params);
+  const baseFilters = await resolveInsightsFilters(params, "/admin");
   const range: ExecutiveRange =
     baseFilters.range && isExecutiveRange(baseFilters.range) ? baseFilters.range : "last_7";
   const { mode, filters: active, loaded } = await resolveInsightsDashboardData({
@@ -689,12 +689,18 @@ export default async function AdminCommandCentrePage({
       digitalReceptionIntent: (intent) =>
         withInsightsQuery("/admin/digital-reception", { ...active, intent }, {
           hash: `intent-${intent}`,
+          navigationIntent: "investigation",
+          focusKeys: ["intent"],
         }),
       digitalReceptionIntentInvestigation: (intent) =>
         withInsightsQuery(
           "/admin/digital-reception",
           withInvestigationSource({ ...active, intent }, "recommendation"),
-          { hash: `intent-${intent}` },
+          {
+            hash: `intent-${intent}`,
+            navigationIntent: "investigation",
+            focusKeys: ["intent"],
+          },
         ),
       serviceAuthority: (slug) =>
         serviceAuthorityHref({
@@ -723,15 +729,18 @@ export default async function AdminCommandCentrePage({
       conversionService: (slug) =>
         conversionIntelligenceHref(
           withInvestigationSource({ ...active, service: slug }, "recommendation"),
+          undefined,
+          { focusKeys: ["service"] },
         ),
       conversionPractitioner: (slug) =>
         conversionIntelligenceHref(
           withInvestigationSource({ ...active, practitioner: slug }, "recommendation"),
+          undefined,
+          { focusKeys: ["practitioner"] },
         ),
-      conversionIntent: (intent) =>
-        conversionIntelligenceHref(
-          withInvestigationSource({ ...active, intent }, "recommendation"),
-        ),
+      conversionIntent: (_intent) =>
+        // Conversion does not own intent; open its overview without stale focus.
+        conversionIntelligenceHref(active),
       governanceReview: (queue) =>
         governanceReviewHref({
           queue,

@@ -27,7 +27,7 @@ export default async function MonthlyExecutiveReportPage({
 }) {
   await requireAction("manage_settings");
   const params = searchParams ? await searchParams : {};
-  const baseFilters = await resolveInsightsFilters(params);
+  const baseFilters = await resolveInsightsFilters(params, "/admin/executive/monthly");
   const { mode, filters: active, loaded } = await resolveInsightsDashboardData(baseFilters);
   const { window, report } = buildMonthlyExecutiveReport(loaded.events, params.month);
   const previous = resolveMonthWindow(

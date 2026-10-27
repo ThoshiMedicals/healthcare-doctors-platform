@@ -278,6 +278,21 @@ export function insightsDataModeHref(
   });
 }
 
+/** Same-page range selection keeps only focus owned by the current destination.
+ * Unlike Insights overview navigation, a range change must not erase a deliberate
+ * queue, tier, practitioner, service, intent, or canonical health investigation.
+ */
+export function insightsRangeHref(
+  pathname: string,
+  filters: InsightsFilters,
+  range: ExecutiveRange,
+): string {
+  return withInsightsQuery(pathname, { ...filters, range }, {
+    navigationIntent: "investigation",
+    focusKeys: INSIGHTS_FOCUS_KEYS,
+  });
+}
+
 /** Clear is preference-only: do not carry any investigation dimension or provenance.
  * Validate runtime values so only supported range/data preferences survive.
  */

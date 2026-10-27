@@ -50,7 +50,7 @@ export default async function GovernancePage({
 }) {
   const { clinic } = await requireAction("clinical_signoff");
   const params = searchParams ? await searchParams : {};
-  const filters = await resolveInsightsFilters(params);
+  const filters = await resolveInsightsFilters(params, "/admin/governance");
   const queue =
     filters.queue && isGovernanceRemediationQueue(filters.queue) ? filters.queue : null;
 

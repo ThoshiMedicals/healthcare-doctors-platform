@@ -23,6 +23,7 @@ import {
   matchFocusKey,
   RESOLUTION_BAND_FRIENDLY,
   withInsightsQuery,
+  insightsRangeHref,
 } from "../dashboard-ui";
 import { resolveInsightsDashboardData } from "../dashboard-ui/resolve-insights-data";
 import { resolveInsightsFilters } from "../dashboard-ui/resolve-insights-filters";
@@ -56,7 +57,7 @@ export default async function DigitalReceptionDashboardPage({
 }) {
   await requireAction("manage_settings");
   const params = searchParams ? await searchParams : {};
-  const baseFilters = await resolveInsightsFilters(params);
+  const baseFilters = await resolveInsightsFilters(params, "/admin/digital-reception");
   const range: ExecutiveRange =
     baseFilters.range && isExecutiveRange(baseFilters.range) ? baseFilters.range : "last_7";
   const { mode, filters: active, loaded } = await resolveInsightsDashboardData({
@@ -98,10 +99,7 @@ export default async function DigitalReceptionDashboardPage({
             options={digitalReceptionRangeOptions()}
             active={range}
             hrefFor={(value) =>
-              withInsightsQuery("/admin/digital-reception", {
-                ...active,
-                range: value as ExecutiveRange,
-              })
+              insightsRangeHref("/admin/digital-reception", active, value as ExecutiveRange)
             }
           />
           <div className="flex flex-wrap items-center gap-3">

@@ -25,6 +25,26 @@ export function pickInsightsPreferences(filters: InsightsFilters): InsightsPrefe
   };
 }
 
+/** Preserve preferences omitted by a destination that does not own them.
+ * Explicit valid values always win. Never merge investigation state.
+ */
+export function mergeInsightsPreferences(
+  stored: InsightsPreferences,
+  current: InsightsFilters,
+): InsightsPreferences {
+  return { ...pickInsightsPreferences(stored), ...pickInsightsPreferences(current) };
+}
+
+/** Read a cookie value from the browser's cookie header without trusting other names. */
+export function insightsCookieValue(cookieHeader: string, name: string): string | undefined {
+  for (const entry of cookieHeader.split(";")) {
+    const item = entry.trim();
+    const offset = item.indexOf("=");
+    if (offset > 0 && item.slice(0, offset) === name) return item.slice(offset + 1);
+  }
+  return undefined;
+}
+
 /** A v2 cookie always includes a version marker, including for empty preferences. */
 export function serializeInsightsPreferencesCookie(filters: InsightsFilters): string {
   return encodeURIComponent(JSON.stringify({

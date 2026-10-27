@@ -54,7 +54,7 @@ export default async function ServiceAuthorityDashboardPage({
 }) {
   await requireAction("manage_settings");
   const params = searchParams ? await searchParams : {};
-  const baseFilters = await resolveInsightsFilters({ ...params, focusAs: "service" });
+  const baseFilters = await resolveInsightsFilters(params, "/admin/service-authority");
   const range: ExecutiveRange =
     baseFilters.range && isExecutiveRange(baseFilters.range) ? baseFilters.range : "last_7";
   const focus = baseFilters.service ?? null;
@@ -100,6 +100,7 @@ export default async function ServiceAuthorityDashboardPage({
               serviceAuthorityHref({
                 range: value as ExecutiveRange,
                 focus: focus || undefined,
+                tier: tierFilter ?? undefined,
                 filters: active,
               })
             }

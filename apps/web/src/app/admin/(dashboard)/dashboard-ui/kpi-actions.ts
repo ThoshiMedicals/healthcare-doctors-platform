@@ -121,7 +121,11 @@ export const KpiTargets = {
     return kpiAction(governanceManagementHref({ filters: fromKpi(filters) }), "Open review board");
   },
   samePageSection(path: string, filters: InsightsFilters | undefined, hash: string, label: string) {
-    return kpiAction(withInsightsQuery(path, fromKpi(filters), { hash }), label);
+    return kpiAction(withInsightsQuery(path, fromKpi(filters), {
+      hash,
+      navigationIntent: "investigation",
+      focusKeys: ["practitioner", "service", "queue", "tier", "health", "intent"],
+    }), label);
   },
 };
 
