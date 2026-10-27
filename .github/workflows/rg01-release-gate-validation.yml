@@ -83,3 +83,52 @@ jobs:
 
       - name: Execute complete unmodified repository test suite
         run: npm test --prefix apps/web
+
+  production-build:
+    name: Next.js production build (RG-01)
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      CI: "true"
+      NEXT_TELEMETRY_DISABLED: "1"
+      DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/wmc?schema=public"
+      AUTH_SECRET: "rg01-ephemeral-ci-validation-only-not-production"
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_DB: wmc
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+
+      - name: Install web dependencies
+        run: npm ci --prefix apps/web
+
+      - name: Prepare isolated production-build database and approved content
+        run: |
+          npm run db:migrate --prefix apps/web
+          npm run db:seed --prefix apps/web
+          npm run import:golden --prefix apps/web
+        env:
+          SEED_ADMIN_USERNAME: admin
+          SEED_ADMIN_PASSWORD: "RG01TemporaryCIAdminPassword-NotForProduction"
+
+      - name: Ensure frozen approved HTML is unchanged
+        run: git diff --exit-code -- old-html
+
+      - name: Execute exact Next.js production build command
+        run: npm run build --prefix apps/web
