@@ -129,7 +129,7 @@ describe("FP-03 Phase 6 dashboard integration and cross-layer regression", () =>
       const src = readDashboard(pageByRoute[route]);
       assert.match(src, /tier:\s*tierFilter\s*\?\?\s*undefined/);
       assert.match(src, /AUTHORITY_TIER_FRIENDLY\[tierFilter\]/);
-      assert.match(src, /import\s*\{\s*AUTHORITY_TIER_FRIENDLY\s*\}/);
+      assert.match(src, /import\s*\{\s*AUTHORITY_TIER_FRIENDLY\s*,/);
       const focus = route.includes("practitioner") ? { practitioner: "dr-a" } : { service: "telehealth" };
       const href = insightsRangeHref(route, { ...focus, tier: "Thin", data: "demo", from: "chart" }, "last_7");
       assert.equal(parsedUrl(href).searchParams.get("tier"), "Thin");

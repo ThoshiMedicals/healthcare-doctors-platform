@@ -40,6 +40,29 @@ jobs:
           cache-dependency-path: apps/web/package-lock.json
       - name: Install web dependencies
         run: npm ci --prefix apps/web
+      - name: Execute FP-03 and QA11 targeted regression tests
+        working-directory: apps/web
+        run: >-
+          npx tsx --test
+          "src/app/admin/(dashboard)/dashboard-ui/filter-policy.test.ts"
+          "src/app/admin/(dashboard)/dashboard-ui/resolve-insights-filter-state.test.ts"
+          "src/app/admin/(dashboard)/dashboard-ui/insights-preferences.test.ts"
+          "src/app/admin/(dashboard)/dashboard-ui/insights-filters.test.ts"
+          "src/app/admin/(dashboard)/dashboard-ui/clear-insights-filter.test.ts"
+          "src/app/admin/(dashboard)/dashboard-ui/fp03-dashboard-integration.test.ts"
+          "src/app/admin/(dashboard)/dashboard-ui/links.test.ts"
+          "src/app/admin/(dashboard)/dashboard-ui/platform-health-actions.test.ts"
+          "src/app/admin/(dashboard)/dashboard-ui/chart-navigation.test.ts"
+          "src/app/admin/(dashboard)/dashboard-ui/kpi-actions.test.ts"
+          "src/app/admin/(dashboard)/dashboard-ui/investigation.test.ts"
+          src/readiness/authority-dashboard-qa-audit.test.ts
+      - name: Prepare ephemeral CI database
+        run: |
+          npm run db:migrate --prefix apps/web
+          npm run db:seed --prefix apps/web
+        env:
+          SEED_ADMIN_USERNAME: admin
+          SEED_ADMIN_PASSWORD: "Phase6TempAdminPassword-ForCIOnly-27"
       - name: Execute complete repository test suite
         run: npm test --prefix apps/web
 
