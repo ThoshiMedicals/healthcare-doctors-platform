@@ -44,6 +44,8 @@ export const INSIGHTS_FOCUS_KEYS = [
   "intent",
 ] as const satisfies readonly InsightsFilterKey[];
 
+export type InsightsFocusKey = (typeof INSIGHTS_FOCUS_KEYS)[number];
+
 export type InsightsDashboardPolicy = Readonly<{
   family: InsightsDashboardFamily;
   ownedFilters: readonly InsightsFilterKey[];
@@ -134,11 +136,15 @@ export function insightsRouteAllowsSource(pathname: string, filters: InsightsFil
   });
 }
 
-/** Phase 2 URL-only projection; no cookie or server resolver integration. */
+/** Outbound URL projection: focus must be explicitly selected by the caller.
+ * Overview navigation and unselected investigation dimensions never inherit focus.
+ * Incoming URLs and cookie/resolver state remain untouched until later phases.
+ */
 export function insightsFiltersForDestination(
   pathname: string,
   filters: InsightsFilters,
   intent: InsightsNavigationIntent,
+  selectedFocus: readonly InsightsFocusKey[] = [],
 ): InsightsFilters {
   const policy = insightsDashboardPolicy(pathname);
   if (!policy) return {};
@@ -154,7 +160,8 @@ export function insightsFiltersForDestination(
   for (const key of INSIGHTS_PREFERENCE_KEYS) assign(key);
   if (intent === "overview") return output;
 
-  for (const key of INSIGHTS_FOCUS_KEYS) {
+  for (const key of selectedFocus) {
+    if (!INSIGHTS_FOCUS_KEYS.includes(key)) continue;
     if (key === "health" && filters.health && !insightsRouteOwnsHealth(pathname, filters.health)) {
       continue;
     }

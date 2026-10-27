@@ -9,7 +9,7 @@ import {
 import type { ExecutiveRange } from "@/measurement/ranges";
 import { formatCount } from "./format";
 import type { InsightsFilters } from "./insights-filters";
-import { withInsightsQuery } from "./insights-filters";
+import { insightsDataModeHref } from "./insights-filters";
 import { InvestigationBanner } from "./investigation-banner";
 import type { InvestigationSource } from "./investigation-source";
 import { insightsNavItems, type InsightsDestination } from "./links";
@@ -394,17 +394,20 @@ export function DataModeSwitcher({
   path,
   filters,
   active,
+  month,
 }: {
   path: string;
   filters: InsightsFilters;
   active: InsightsDataMode;
+  /** Monthly Executive selected YYYY-MM; preserved when changing data mode. */
+  month?: string;
 }) {
   return (
     <div className="flex flex-wrap items-center gap-2" role="tablist" aria-label="Dashboard data mode">
       <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Data</span>
       {insightsDataModeOptions().map((option) => {
         const selected = option.value === active;
-        const href = withInsightsQuery(path, { ...filters, data: option.value });
+        const href = insightsDataModeHref(path, filters, option.value, month);
         return (
           <Link
             key={option.value}

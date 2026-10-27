@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import {
   clearInsightsFocus,
+  insightsDataModeHref,
   insightsFiltersLabel,
   matchFocusKey,
   mergeInsightsFilters,
@@ -82,15 +83,15 @@ describe("persistent insights filters (C5)", () => {
       conversionIntelligenceHref({
         range: "last_7",
         practitioner: "dr-tanya-goodwill",
-      }),
+      }, undefined, { focusKeys: ["practitioner"] }),
       /practitioner=dr-tanya-goodwill/,
     );
     assert.match(
-      conversionIntelligenceHref({ range: "last_7", service: "telehealth" }),
+      conversionIntelligenceHref({ range: "last_7", service: "telehealth" }, undefined, { focusKeys: ["service"] }),
       /service=telehealth/,
     );
     assert.match(
-      digitalReceptionHref({ range: "last_30", service: "skin-check" }),
+      digitalReceptionHref({ range: "last_30", service: "skin-check" }, undefined, { focusKeys: ["service"] }),
       /service=skin-check/,
     );
     assert.match(
@@ -186,13 +187,13 @@ describe("persistent insights filters (C5)", () => {
     }), "/admin/executive?range=last_7&data=demo");
     assert.equal(withInsightsQuery("/admin/digital-reception", {
       range: "last_30", data: "live", queue: "expired", intent: "vaccination", from: "queue",
-    }), "/admin/digital-reception?range=last_30&data=live&intent=vaccination");
+    }, { navigationIntent: "investigation", focusKeys: ["intent"] }), "/admin/digital-reception?range=last_30&data=live&intent=vaccination");
     assert.equal(withInsightsQuery("/admin/digital-reception", {
       intent: "vaccination", from: "chart", health: "search",
-    }), "/admin/digital-reception?health=search&intent=vaccination&from=chart");
+    }, { navigationIntent: "investigation", focusKeys: ["health", "intent"] }), "/admin/digital-reception?health=search&intent=vaccination&from=chart");
     assert.equal(withInsightsQuery("/admin/practitioner-authority", {
       practitioner: "dr-a", service: "telehealth", tier: "Thin", from: "chart",
-    }, { practitionerAsFocus: true, hash: "pa-roster" }),
+    }, { practitionerAsFocus: true, hash: "pa-roster", navigationIntent: "investigation", focusKeys: ["practitioner", "tier"] }),
     "/admin/practitioner-authority?focus=dr-a&tier=Thin&from=chart#pa-roster");
     assert.equal(withInsightsQuery("/admin/users", { queue: "expired" }), "/admin/users");
   });
@@ -201,8 +202,31 @@ describe("persistent insights filters (C5)", () => {
     const filters = { range: "last_7" as const, data: "demo" as const, service: "telehealth", from: "chart" as const };
     assert.equal(withInsightsQuery("/admin/digital-reception", filters, { navigationIntent: "overview" }),
       "/admin/digital-reception?range=last_7&data=demo");
-    assert.equal(withInsightsQuery("/admin/digital-reception", filters, { navigationIntent: "investigation" }),
+    assert.equal(withInsightsQuery("/admin/digital-reception", filters, { navigationIntent: "investigation", focusKeys: ["service"] }),
       "/admin/digital-reception?range=last_7&service=telehealth&data=demo&from=chart");
+  });
+
+  it("defaults direct and named overview links to preference-only regardless of inherited focus", () => {
+    const stale = { range: "last_7" as const, data: "demo" as const, service: "telehealth", intent: "vaccination", health: "analytics" as const, from: "chart" as const };
+    assert.equal(withInsightsQuery("/admin/digital-reception", stale), "/admin/digital-reception?range=last_7&data=demo");
+    assert.equal(digitalReceptionHref(stale), "/admin/digital-reception?range=last_7&data=demo");
+    assert.equal(conversionIntelligenceHref(stale), "/admin/conversion-intelligence?range=last_7&data=demo");
+  });
+
+  it("investigation calls retain only explicitly selected compatible dimensions", () => {
+    const previous = { range: "last_7" as const, data: "demo" as const, service: "telehealth", intent: "vaccination", health: "search" as const, from: "chart" as const };
+    assert.equal(withInsightsQuery("/admin/digital-reception", previous, {
+      navigationIntent: "investigation", focusKeys: ["intent"],
+    }), "/admin/digital-reception?range=last_7&data=demo&intent=vaccination&from=chart");
+    assert.equal(withInsightsQuery("/admin/digital-reception", previous, {
+      navigationIntent: "investigation", focusKeys: [],
+    }), "/admin/digital-reception?range=last_7&data=demo");
+    assert.equal(withInsightsQuery("/admin/executive", { health: "governance", from: "health" }, {
+      navigationIntent: "investigation", focusKeys: ["health"],
+    }), "/admin/executive");
+    assert.equal(withInsightsQuery("/admin/executive/monthly", { queue: "expired", data: "demo" }, {
+      navigationIntent: "investigation", focusKeys: ["queue"],
+    }), "/admin/executive/monthly?data=demo");
   });
 
   it("preserves a valid monthly window when changing data mode", () => {
@@ -216,6 +240,15 @@ describe("persistent insights filters (C5)", () => {
       "/admin/executive/monthly?data=demo");
     assert.equal(withInsightsQuery("/admin/digital-reception?month=2026-10&queue=expired", { data: "demo" }),
       "/admin/digital-reception?data=demo");
+  });
+
+  it("preserves the selected monthly report when switching data mode with active filters", () => {
+    assert.equal(insightsDataModeHref("/admin/executive/monthly", {
+      range: "last_7", data: "live", queue: "expired", from: "queue",
+    }, "demo", "2026-10"), "/admin/executive/monthly?month=2026-10&data=demo");
+    assert.equal(insightsDataModeHref("/admin/digital-reception", {
+      range: "last_7", data: "live", service: "telehealth", intent: "vaccination", from: "chart",
+    }, "empty"), "/admin/digital-reception?range=last_7&service=telehealth&data=empty&intent=vaccination&from=chart");
   });
 
   it("preserves validated legacy focus parsing without changing Phase 1 runtime", () => {

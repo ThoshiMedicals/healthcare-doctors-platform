@@ -71,6 +71,13 @@ describe("platform health domain actions (D3)", () => {
     }
   });
 
+  it("transfers only the explicitly selected health investigation", () => {
+    const href = platformHealthDomainHref("analytics", {
+      range: "last_7", data: "demo", service: "telehealth", intent: "vaccination", tier: "Thin",
+    });
+    assert.equal(href, "/admin/executive?range=last_7&data=demo&health=analytics&from=health#exec-performance");
+  });
+
   it("returns band explanation and CTA copy", () => {
     assert.equal(platformHealthBandExplanation("watch").label, "Needs Watch");
     assert.equal(platformHealthDomainCta("search"), "Investigate search");

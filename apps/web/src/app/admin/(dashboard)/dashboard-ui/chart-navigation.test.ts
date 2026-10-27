@@ -56,6 +56,15 @@ describe("chart navigation (D4)", () => {
     assert.doesNotMatch(service, /queue=/);
   });
 
+  it("intent chart does not inherit an unrelated service or health focus", () => {
+    const href = intentInvestigationHref("vaccination", {
+      range: "last_7", data: "demo", service: "telehealth", health: "search", from: "health",
+    });
+    assert.match(href, /intent=vaccination/);
+    assert.match(href, /from=chart/);
+    assert.doesNotMatch(href, /service=|health=/);
+  });
+
   it("opens governance queues from chart segments", () => {
     assert.match(
       governanceQueueInvestigationHref("expired", { data: "demo" }),

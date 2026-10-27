@@ -1,5 +1,13 @@
 import type { ExecutiveRange } from "@/measurement/ranges";
-import { insightsFiltersForDestination } from "./filter-policy";
+import { insightsFiltersForDestination, type InsightsFocusKey } from "./filter-policy";
+
+/** Explicit drill-through contract. Omitting focusKeys always means overview. */
+type LinkFocus = { focusKeys: readonly InsightsFocusKey[] };
+function linkIntent(focus?: LinkFocus) {
+  return focus?.focusKeys.length
+    ? { navigationIntent: "investigation" as const, focusKeys: focus.focusKeys }
+    : { navigationIntent: "overview" as const };
+}
 import {
   type InsightsFilters,
   withInsightsQuery,
@@ -20,23 +28,27 @@ function baseFilters(
   return { ...filters, ...(range ? { range } : {}) };
 }
 
-export function executiveHref(rangeOrFilters?: ExecutiveRange | InsightsFilters): string {
+export function executiveHref(
+  rangeOrFilters?: ExecutiveRange | InsightsFilters,
+  focus?: LinkFocus,
+): string {
   if (!rangeOrFilters) return "/admin/executive";
   if (typeof rangeOrFilters === "string") {
     return withInsightsQuery("/admin/executive", { range: rangeOrFilters });
   }
-  return withInsightsQuery("/admin/executive", rangeOrFilters);
+  return withInsightsQuery("/admin/executive", rangeOrFilters, linkIntent(focus));
 }
 
 export function digitalReceptionHref(
   rangeOrFilters?: ExecutiveRange | InsightsFilters,
   filters?: InsightsFilters,
+  focus?: LinkFocus,
 ): string {
   const merged =
     typeof rangeOrFilters === "string" || rangeOrFilters === undefined
       ? baseFilters(rangeOrFilters, filters)
       : rangeOrFilters;
-  return withInsightsQuery("/admin/digital-reception", merged);
+  return withInsightsQuery("/admin/digital-reception", merged, linkIntent(focus));
 }
 
 export function practitionerAuthorityHref(opts?: {
@@ -51,10 +63,14 @@ export function practitionerAuthorityHref(opts?: {
     ...(opts?.focus ? { practitioner: opts.focus } : {}),
     ...(opts?.tier ? { tier: opts.tier } : {}),
   };
-  const hash = filters.practitioner ? "pa-focus" : filters.tier ? "pa-roster" : undefined;
+  const hash = opts?.focus ? "pa-focus" : opts?.tier ? "pa-roster" : undefined;
+  const focusKeys: InsightsFocusKey[] = [];
+  if (opts?.focus) focusKeys.push("practitioner");
+  if (opts?.tier) focusKeys.push("tier");
   return withInsightsQuery("/admin/practitioner-authority", filters, {
     practitionerAsFocus: true,
     hash,
+    ...linkIntent({ focusKeys }),
   });
 }
 
@@ -70,42 +86,49 @@ export function serviceAuthorityHref(opts?: {
     ...(opts?.focus ? { service: opts.focus } : {}),
     ...(opts?.tier ? { tier: opts.tier } : {}),
   };
-  const hash = filters.service ? "sa-focus" : filters.tier ? "sa-roster" : undefined;
+  const hash = opts?.focus ? "sa-focus" : opts?.tier ? "sa-roster" : undefined;
+  const focusKeys: InsightsFocusKey[] = [];
+  if (opts?.focus) focusKeys.push("service");
+  if (opts?.tier) focusKeys.push("tier");
   return withInsightsQuery("/admin/service-authority", filters, {
     serviceAsFocus: true,
     hash,
+    ...linkIntent({ focusKeys }),
   });
 }
 
 export function conversionIntelligenceHref(
   rangeOrFilters?: ExecutiveRange | InsightsFilters,
   filters?: InsightsFilters,
+  focus?: LinkFocus,
 ): string {
   const merged =
     typeof rangeOrFilters === "string" || rangeOrFilters === undefined
       ? baseFilters(rangeOrFilters, filters)
       : rangeOrFilters;
-  return withInsightsQuery("/admin/conversion-intelligence", merged);
+  return withInsightsQuery("/admin/conversion-intelligence", merged, linkIntent(focus));
 }
 
 export function governanceManagementHref(opts?: {
   queue?: GovernanceQueue;
   filters?: InsightsFilters;
 }): string {
+  const selectedQueue = opts?.queue ?? opts?.filters?.queue;
   const filters: InsightsFilters = {
     ...opts?.filters,
-    ...(opts?.queue
+    ...(selectedQueue
       ? {
-          queue: opts.queue,
-          // A selected queue supersedes an earlier health investigation.
+          queue: selectedQueue,
+          // A selected queue supersedes any earlier health investigation.
           health: undefined,
-          from: opts.filters?.from === "recommendation" ? "recommendation" as const : "queue" as const,
+          from: opts?.filters?.from === "recommendation" ? "recommendation" as const : "queue" as const,
         }
       : {}),
   };
   return withInsightsQuery("/admin/governance/management", filters, {
     includeRange: false,
-    hash: filters.queue ? `queue-${filters.queue}` : undefined,
+    hash: selectedQueue ? `queue-${selectedQueue}` : undefined,
+    ...linkIntent({ focusKeys: selectedQueue ? ["queue"] : [] }),
   });
 }
 
@@ -117,13 +140,15 @@ export function governanceReviewHref(opts?: {
   queue?: GovernanceQueue;
   filters?: InsightsFilters;
 }): string {
+  const selectedQueue = opts?.queue ?? opts?.filters?.queue;
   const filters: InsightsFilters = {
     ...opts?.filters,
-    ...(opts?.queue ? { queue: opts.queue } : {}),
+    ...(selectedQueue ? { queue: selectedQueue } : {}),
   };
   return withInsightsQuery("/admin/governance", filters, {
     includeRange: false,
-    hash: filters.queue ? "gov-focus" : undefined,
+    hash: selectedQueue ? "gov-focus" : undefined,
+    ...linkIntent({ focusKeys: selectedQueue ? ["queue"] : [] }),
   });
 }
 

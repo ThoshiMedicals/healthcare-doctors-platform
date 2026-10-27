@@ -1,6 +1,9 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import {
+  executiveHref,
+  digitalReceptionHref,
+  conversionIntelligenceHref,
   governanceManagementHref,
   insightsNavItems,
   practitionerAuthorityHref,
@@ -35,7 +38,10 @@ describe("dashboard drill-through links (B5 + C5)", () => {
     const href = practitionerAuthorityHref({
       focus: "dr-a", filters: { data: "demo", queue: "expired", tier: "Thin", from: "chart" },
     });
-    assert.equal(href, "/admin/practitioner-authority?focus=dr-a&data=demo&tier=Thin&from=chart#pa-focus");
+    assert.equal(href, "/admin/practitioner-authority?focus=dr-a&data=demo&from=chart#pa-focus");
+    assert.equal(practitionerAuthorityHref({
+      focus: "dr-a", tier: "Thin", filters: { from: "chart", data: "demo" },
+    }), "/admin/practitioner-authority?focus=dr-a&data=demo&tier=Thin&from=chart#pa-focus");
     const governance = governanceManagementHref({
       queue: "expired", filters: { service: "telehealth", from: "recommendation", data: "demo" },
     });
@@ -44,6 +50,26 @@ describe("dashboard drill-through links (B5 + C5)", () => {
       queue: "due_soon", filters: { health: "governance", from: "health", data: "demo" },
     });
     assert.equal(fromHealth, "/admin/governance/management?queue=due_soon&data=demo&from=queue#queue-due_soon");
+  });
+
+  it("enforces overview at the named link-builder boundary", () => {
+    const filters = {
+      range: "last_7" as const,
+      data: "demo" as const,
+      intent: "vaccination",
+      service: "telehealth",
+      practitioner: "dr-a",
+      health: "analytics" as const,
+      queue: "expired" as const,
+      from: "recommendation" as const,
+    };
+    assert.equal(executiveHref(filters), "/admin/executive?range=last_7&data=demo");
+    assert.equal(digitalReceptionHref(filters), "/admin/digital-reception?range=last_7&data=demo");
+    assert.equal(conversionIntelligenceHref(filters), "/admin/conversion-intelligence?range=last_7&data=demo");
+    assert.equal(digitalReceptionHref(filters, undefined, { focusKeys: ["intent"] }),
+      "/admin/digital-reception?range=last_7&data=demo&intent=vaccination&from=recommendation");
+    assert.equal(conversionIntelligenceHref(filters, undefined, { focusKeys: ["service"] }),
+      "/admin/conversion-intelligence?range=last_7&service=telehealth&data=demo&from=recommendation");
   });
 
   it("exposes a shared insights strip across dashboards", () => {

@@ -35,6 +35,17 @@ describe("investigation banner (D6)", () => {
     assert.ok(model!.continueLinks.length >= 1);
   });
 
+  it("continues only the chosen practitioner or service focus", () => {
+    const model = buildInvestigationBannerModel({
+      filters: { range: "last_7", data: "demo", practitioner: "dr-a", service: "telehealth", from: "chart" },
+      pathname: "/admin/practitioner-authority",
+    });
+    assert.ok(model);
+    const links = model!.continueLinks.filter((link) => link.label === "Conversion");
+    assert.ok(links.some((link) => link.href.includes("practitioner=dr-a") && !link.href.includes("service=")));
+    assert.ok(links.some((link) => link.href.includes("service=telehealth") && !link.href.includes("practitioner=")));
+  });
+
   it("activates for KPI / recommendation / health / queue arrivals", () => {
     assert.equal(investigationActive({ from: "kpi" }), true);
     assert.equal(investigationActive({ from: "recommendation", service: "telehealth" }), true);

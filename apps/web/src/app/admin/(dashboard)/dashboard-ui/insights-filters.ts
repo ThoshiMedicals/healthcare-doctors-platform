@@ -15,9 +15,11 @@ import {
 } from "./investigation-source";
 import type { GovernanceQueue } from "./links";
 import {
+  INSIGHTS_FOCUS_KEYS,
   insightsDashboardRoute,
   insightsFiltersForDestination,
   type InsightsNavigationIntent,
+  type InsightsFocusKey,
 } from "./filter-policy";
 
 export const INSIGHTS_FILTERS_COOKIE = "wmc_insights_filters";
@@ -224,6 +226,8 @@ export function withInsightsQuery(
     serviceAsFocus?: boolean;
     includeRange?: boolean;
     navigationIntent?: InsightsNavigationIntent;
+    /** Deliberately selected focus dimensions, never copied implicitly. */
+    focusKeys?: readonly InsightsFocusKey[];
     month?: string;
   },
 ): string {
@@ -246,11 +250,32 @@ export function withInsightsQuery(
   // Only the generated links are sanitised in Phase 2.
   // Inbound URL parsing, server merge and cookies remain unchanged.
   const validated = parseInsightsFilters(filters ?? {});
-  const selected = insightsFiltersForDestination(pathname, validated, opts?.navigationIntent ?? "investigation");
+  const selected = insightsFiltersForDestination(
+    pathname,
+    validated,
+    opts?.navigationIntent ?? "overview",
+    opts?.focusKeys ?? [],
+  );
   appendInsightsFilters(params, selected, opts);
   const query = params.toString();
   const fragment = opts?.hash !== undefined ? opts.hash.replace(/^#/, "") : existingHash;
   return `${pathname}${query ? `?${query}` : ""}${fragment ? `#${fragment}` : ""}`;
+}
+
+/** Same-page data-mode navigation retains active focus and an explicit monthly window.
+ * Used by the shared switcher; no dashboard-specific cookie or resolver effects.
+ */
+export function insightsDataModeHref(
+  path: string,
+  filters: InsightsFilters,
+  mode: InsightsDataMode,
+  month?: string,
+): string {
+  return withInsightsQuery(path, { ...filters, data: mode }, {
+    month,
+    navigationIntent: "investigation",
+    focusKeys: INSIGHTS_FOCUS_KEYS,
+  });
 }
 
 /** Drop focus dims for a clear-filter href while keeping range + data mode. */

@@ -136,7 +136,7 @@ function defaultContinueLinks(
       href: conversionIntelligenceHref({
         ...filters,
         ...(filters.practitioner ? { practitioner: filters.practitioner } : {}),
-      }),
+      }, undefined, { focusKeys: filters.practitioner ? ["practitioner"] : [] }),
       label: "Conversion",
     });
   }
@@ -145,20 +145,22 @@ function defaultContinueLinks(
       href: conversionIntelligenceHref({
         ...filters,
         ...(filters.service ? { service: filters.service } : {}),
-      }),
+      }, undefined, { focusKeys: filters.service ? ["service"] : [] }),
       label: "Conversion",
     });
     links.push({
       href: digitalReceptionHref({
         ...filters,
         ...(filters.service ? { service: filters.service } : {}),
-      }),
+      }, undefined, { focusKeys: filters.service ? ["service"] : [] }),
       label: "Digital Reception",
     });
   }
   if (pathname.includes("digital-reception") || filters.intent) {
     links.push({
-      href: conversionIntelligenceHref(filters),
+      href: conversionIntelligenceHref(filters, undefined, {
+        focusKeys: filters.service ? ["service"] : [],
+      }),
       label: "Conversion",
     });
   }

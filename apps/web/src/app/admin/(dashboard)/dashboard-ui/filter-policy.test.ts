@@ -118,10 +118,16 @@ describe("FP-03 Phase 1 dashboard filter ownership", () => {
       service: "telehealth", intent: "vaccination", tier: "Thin" as const, from: "chart" as const,
     };
     assert.deepEqual(insightsFiltersForDestination("/admin/digital-reception", context, "overview"), { range: "last_7", data: "demo" });
-    assert.deepEqual(insightsFiltersForDestination("/admin/digital-reception", context, "investigation"), {
+    assert.deepEqual(insightsFiltersForDestination("/admin/digital-reception", context, "investigation", ["intent"]), {
+      range: "last_7", data: "demo", intent: "vaccination", from: "chart",
+    });
+    assert.deepEqual(insightsFiltersForDestination("/admin/digital-reception", context, "investigation", ["service", "intent"]), {
       range: "last_7", data: "demo", service: "telehealth", intent: "vaccination", from: "chart",
     });
-    assert.deepEqual(insightsFiltersForDestination("/admin/governance/management", { ...context, from: "queue" }, "investigation"), {
+    assert.deepEqual(insightsFiltersForDestination("/admin/digital-reception", context, "investigation"), {
+      range: "last_7", data: "demo",
+    });
+    assert.deepEqual(insightsFiltersForDestination("/admin/governance/management", { ...context, from: "queue" }, "investigation", ["queue"]), {
       data: "demo", queue: "expired", from: "queue",
     });
     assert.deepEqual(insightsFiltersForDestination("/admin/not-a-dashboard", context, "investigation"), {});
@@ -129,14 +135,28 @@ describe("FP-03 Phase 1 dashboard filter ownership", () => {
 
   it("requires both route health ownership and the domain destination", () => {
     assert.deepEqual(insightsFiltersForDestination(
-      "/admin/executive", { range: "last_7", health: "governance", from: "health" }, "investigation",
+      "/admin/executive", { range: "last_7", health: "governance", from: "health" }, "investigation", ["health"],
     ), { range: "last_7" });
     assert.deepEqual(insightsFiltersForDestination(
-      "/admin/governance/management", { health: "governance", from: "health" }, "investigation",
+      "/admin/governance/management", { health: "governance", from: "health" }, "investigation", ["health"],
     ), { health: "governance", from: "health" });
     assert.deepEqual(insightsFiltersForDestination(
-      "/admin/service-authority", { tier: "Thin", health: "authority", from: "health" }, "investigation",
+      "/admin/service-authority", { tier: "Thin", health: "authority", from: "health" }, "investigation", ["tier", "health"],
     ), { tier: "Thin" });
+  });
+
+  it("rejects unselected inherited focus regardless of route ownership", () => {
+    const stale = { service: "telehealth", intent: "vaccination", health: "search" as const, from: "chart" as const };
+    assert.deepEqual(insightsFiltersForDestination("/admin/digital-reception", stale, "overview", ["intent"]), {});
+    assert.deepEqual(insightsFiltersForDestination("/admin/digital-reception", stale, "investigation", ["intent"]), {
+      intent: "vaccination", from: "chart",
+    });
+    assert.deepEqual(insightsFiltersForDestination("/admin/digital-reception", stale, "investigation", ["health"]), {
+      health: "search",
+    });
+    assert.deepEqual(insightsFiltersForDestination("/admin/governance/management", {
+      queue: "expired", service: "telehealth", from: "queue",
+    }, "investigation", ["queue", "service"]), { queue: "expired", from: "queue" });
   });
 
   it("allows provenance only alongside an owned investigation focus", () => {

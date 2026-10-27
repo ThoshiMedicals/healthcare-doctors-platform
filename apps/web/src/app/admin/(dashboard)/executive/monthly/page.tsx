@@ -74,7 +74,7 @@ export default async function MonthlyExecutiveReportPage({
         <InsightsNav current="executive" filters={active} />
         <DataModeBanner mode={mode} feedLabel={loaded.feedLabel} />
         <HowToReadDashboard dashboard="monthly-executive" />
-        <DataModeSwitcher path="/admin/executive/monthly" filters={active} active={mode} />
+        <DataModeSwitcher path="/admin/executive/monthly" filters={active} active={mode} month={window.monthKey} />
       </div>
 
       <p className="mt-4 text-sm text-slate-600 print:hidden">

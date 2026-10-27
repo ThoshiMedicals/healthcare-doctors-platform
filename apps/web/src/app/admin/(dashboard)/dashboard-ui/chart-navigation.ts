@@ -27,7 +27,7 @@ export function intentInvestigationHref(intent: string, filters?: InsightsFilter
   return withInsightsQuery(
     "/admin/digital-reception",
     withInvestigationSource({ ...(filters ?? {}), intent }, "chart"),
-    { hash: `intent-${intent}` },
+    { hash: `intent-${intent}`, navigationIntent: "investigation", focusKeys: ["intent"] },
   );
 }
 

@@ -36,7 +36,11 @@ export function platformHealthDomainHref(
   } else if (domain !== "authority") {
     delete next.tier;
   }
-  return withInsightsQuery(target.path, next, { hash });
+  return withInsightsQuery(target.path, next, {
+    hash,
+    navigationIntent: "investigation",
+    focusKeys: domain === "authority" && opts?.authorityNeedsWork ? ["health", "tier"] : ["health"],
+  });
 }
 
 export function platformHealthBandExplanation(
