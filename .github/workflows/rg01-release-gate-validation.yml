@@ -130,5 +130,9 @@ jobs:
       - name: Ensure frozen approved HTML is unchanged
         run: git diff --exit-code -- old-html
 
+      - name: Verify strict TypeScript separately from Next.js lint
+        working-directory: apps/web
+        run: npx tsc --noEmit
+
       - name: Execute exact Next.js production build command
         run: npm run build --prefix apps/web
