@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { withSecurityHeaders } from "./security-headers";
 
 const uatQuickTunnel = process.env.UAT_QUICK_TUNNEL === "true";
 
@@ -40,4 +41,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withSecurityHeaders(nextConfig);
