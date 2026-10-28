@@ -10,6 +10,8 @@ const output = path.join(assets, "performance");
 const variants = [
   ["clinic-reception.png", "clinic-reception", [720, 1080]],
   ["location-storefront-polished.webp", "location-storefront", [720, 1280, 1800]],
+  ["community/gabba-stadium-precinct-aerial.webp", "gabba-stadium", [900]],
+  ["patient-information/new-patients-welcome-hero.webp", "new-patients-welcome", [600]],
 ];
 
 await mkdir(output, { recursive: true });

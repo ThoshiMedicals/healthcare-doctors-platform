@@ -5,6 +5,7 @@ const imageDimensions: Record<string, readonly [number, number]> = {
   "assets/location-storefront-polished.webp": [1800, 1013],
   "assets/patient-information/new-patients-welcome-hero.webp": [1200, 900],
   "assets/clinic-reception.png": [1080, 870],
+  "assets/community/gabba-stadium-precinct-aerial.webp": [1800, 1013],
   "assets/patient-information/telehealth-consultations-poster.webp": [1200, 900],
 };
 
@@ -34,6 +35,12 @@ function optimiseImages(html: string, isHomepage: boolean): string {
     } else if (normalized === "assets/location-storefront-polished.webp") {
       candidates = "assets/performance/location-storefront-720.webp 720w, assets/performance/location-storefront-1280.webp 1280w, assets/performance/location-storefront-1800.webp 1800w";
       sizes = "(max-width: 700px) 100vw, (max-width: 1024px) 90vw, 50vw";
+    } else if (normalized === "assets/community/gabba-stadium-precinct-aerial.webp") {
+      candidates = "assets/performance/gabba-stadium-900.webp 900w, assets/community/gabba-stadium-precinct-aerial.webp 1800w";
+      sizes = "(max-width: 700px) 100vw, (max-width: 1024px) 85vw, 48vw";
+    } else if (normalized === "assets/patient-information/new-patients-welcome-hero.webp") {
+      candidates = "assets/performance/new-patients-welcome-600.webp 600w, assets/patient-information/new-patients-welcome-hero.webp 1200w";
+      sizes = "(max-width: 700px) 100vw, (max-width: 1024px) 90vw, 48vw";
     }
     if (candidates && sizes) {
       result = result.replace(/\/?>$/, closing =>

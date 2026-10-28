@@ -35,7 +35,10 @@ export function applyAccessibilityClosure(html: string, pagePath: string): strin
       );
     }
     return tag;
-  });
+  }).replace(
+    'alt="Book your favourite doctor any time in the HotDoc app. Woolloongabba Medical Centre, (07) 3217 3344. App Store and Google Play badges."',
+    'alt="Book appointments with Woolloongabba Medical Centre using HotDoc"',
+  );
   if (pagePath !== "404.html") return namesCorrected;
   return namesCorrected.replace(/<footer\b[\s\S]*<\/footer>/i, (footer) => footer.replace(/<h3>/g, '<h3 aria-level="2">'));
 }
