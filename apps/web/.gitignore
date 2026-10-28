@@ -2,6 +2,7 @@
 node_modules/
 
 # Build artifacts and caches
+/public/styles.min.css
 .next/
 .next-uat/
 dist/

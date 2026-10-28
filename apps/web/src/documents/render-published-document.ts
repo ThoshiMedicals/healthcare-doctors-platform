@@ -5,6 +5,7 @@ import { publishedRepeats } from "@/cms/repeat-bindings";
 import { applyOverlay, applyRepeatBinding, practitionerFromPayload, type ClinicContent, type HourRow, type TextContent } from "@/cms/overlay";
 import { prisma } from "@/db/prisma";
 import { applyAccessibilityClosure } from "@/documents/accessibility";
+import { optimiseHomepageDelivery } from "@/documents/performance";
 import { Prisma } from "@prisma/client";
 
 export type PublishedDocument = {
@@ -142,7 +143,11 @@ async function applyStoredRepeats(clinicId: string, html: string): Promise<strin
 export async function renderStoredPage(clinicId: string, storagePath: string): Promise<RenderedPage | null> {
   const document = await getPublishedDocument(clinicId, storagePath);
   if (document) {
-    return { status: 200, html: applyAccessibilityClosure(document.html, document.path), path: document.path };
+    return {
+      status: 200,
+      html: optimiseHomepageDelivery(applyAccessibilityClosure(document.html, document.path), document.path),
+      path: document.path,
+    };
   }
 
   if (storagePath === "404.html") return null;

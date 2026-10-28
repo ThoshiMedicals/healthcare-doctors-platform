@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return {
       beforeFiles: [
+        { source: "/styles.css", destination: "/styles.min.css" },
         { source: "/digital-reception-index.js", destination: "/api/reception-index" },
         {
           source: "/assets/brand/healthcare-doctors-woolloongabba-logo.png",

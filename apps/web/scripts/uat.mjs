@@ -26,6 +26,15 @@ if (mode === "build") {
   }
 }
 
+if (mode === "build") {
+  const optimized = spawnSync(process.execPath, [path.join(root, "scripts", "optimize-css.mjs")], {
+    cwd: root,
+    env,
+    stdio: "inherit",
+  });
+  if (optimized.status !== 0) process.exit(optimized.status ?? 1);
+}
+
 const nextBin = path.join(root, "node_modules", "next", "dist", "bin", "next");
 const args = mode === "build" ? ["build"] : ["start", "-p", "3100"];
 const child = spawn(process.execPath, [nextBin, ...args], {
