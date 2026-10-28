@@ -33,6 +33,13 @@ if (mode === "build") {
     stdio: "inherit",
   });
   if (optimized.status !== 0) process.exit(optimized.status ?? 1);
+
+  const images = spawnSync(process.execPath, [path.join(root, "scripts", "optimize-images.mjs")], {
+    cwd: root,
+    env,
+    stdio: "inherit",
+  });
+  if (images.status !== 0) process.exit(images.status ?? 1);
 }
 
 const nextBin = path.join(root, "node_modules", "next", "dist", "bin", "next");

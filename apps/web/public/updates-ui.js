@@ -26,12 +26,44 @@
 
   const articleUrl = update => `${base}updates/${encodeURIComponent(update.id)}.html`;
 
+  const imageDimensions = {
+    "assets/clinic-reception.png": [1080, 870],
+    "assets/location-storefront-polished.webp": [1800, 1013],
+    "assets/patient-information/new-patients-welcome-hero.webp": [1200, 900],
+    "assets/patient-information/telehealth-consultations-poster.webp": [1200, 900],
+  };
+  const imageSize = src => {
+    const asset = String(src).replace(/^(?:\.\.\/|\.\/|\/)+/, "");
+    const size = imageDimensions[asset];
+    return size ? ` width="${size[0]}" height="${size[1]}"` : "";
+  };
+
+  // Avoid replacing identical server-rendered cards, which causes layout shifts.
+  const cardSignature = parent => JSON.stringify(
+    [...parent.querySelectorAll(".health-update-card")].map(card => {
+      const img = card.querySelector(".health-update-image img");
+      const link = card.querySelector(".health-update-image");
+      const heading = card.querySelector("h3 a");
+      const meta = card.querySelector(".health-update-meta span");
+      const time = card.querySelector("time");
+      const summary = card.querySelector(".health-update-copy > p");
+      const action = card.querySelector(".editorial-link");
+      return [
+        link?.getAttribute("href"), img?.getAttribute("src"), img?.getAttribute("alt"),
+        heading?.textContent.trim(), meta?.textContent.trim(),
+        time?.getAttribute("datetime"), time?.textContent.trim(),
+        summary?.textContent.trim(), action?.getAttribute("href"),
+        action?.textContent.trim(),
+      ];
+    })
+  );
+
   data.sort((a,b) => (b.published || "").localeCompare(a.published || ""));
 
   const cardMarkup = update => `
     <article class="health-update-card">
       <a class="health-update-image" href="${articleUrl(update)}" aria-label="${esc(update.title)}">
-        <img src="${esc(imageUrl(update.image))}" alt="${esc(update.imageAlt || "")}" loading="lazy" decoding="async">
+        <img src="${esc(imageUrl(update.image))}" alt="${esc(update.imageAlt || "")}"${imageSize(imageUrl(update.image))} loading="lazy" decoding="async">
       </a>
       <div class="health-update-copy">
         <div class="health-update-meta">
@@ -50,7 +82,7 @@
     const feverCard = `
     <article class="health-update-card">
       <a class="health-update-image" href="${feverHref}" aria-label="When Should I Be Concerned About A Fever?">
-        <img src="${esc(imageUrl("clinic-reception"))}" alt="Reception at Woolloongabba Medical Centre" loading="lazy" decoding="async">
+        <img src="${esc(imageUrl("clinic-reception"))}" alt="Reception at Woolloongabba Medical Centre"${imageSize(imageUrl("clinic-reception"))} loading="lazy" decoding="async">
       </a>
       <div class="health-update-copy">
         <div class="health-update-meta">
@@ -69,9 +101,14 @@
     const fallback = data.filter(item => !preferredSupporting.includes(item.id)).slice(0, Math.max(0, 2 - supporting.length));
     const supportingCards = [...supporting, ...fallback].slice(0, 2);
     if (supportingCards.length) {
-      latest.innerHTML = `
+      const nextMarkup = `
         <div class="latest-featured-column" aria-label="Featured update">${feverCard}</div>
         <div class="latest-supporting-column" aria-label="Supporting updates">${supportingCards.map(cardMarkup).join("")}</div>`;
+      const proposed = document.createElement("div");
+      proposed.innerHTML = nextMarkup;
+      if (cardSignature(latest) !== cardSignature(proposed)) {
+        latest.innerHTML = nextMarkup;
+      }
     }
   }
 

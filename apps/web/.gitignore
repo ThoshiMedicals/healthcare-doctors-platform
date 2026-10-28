@@ -3,6 +3,7 @@ node_modules/
 
 # Build artifacts and caches
 /public/styles.min.css
+/public/assets/performance/
 .next/
 .next-uat/
 dist/
