@@ -11,5 +11,5 @@ export const FAVICON_TAGS = [
 export function applyFaviconLinks(html: string): string {
   if (!/<head\b[^>]*>/i.test(html)) return html;
   const withoutLegacyIcons = html.replace(ICON_LINK, "");
-  return withoutLegacyIcons.replace(/<head\b[^>]*>/i, (head) => `${head}\n${FAVICON_TAGS}\n`);
+  return withoutLegacyIcons.replace(/<head\b[^>]*>\s*/i, (head) => `${head.trimEnd()}\n${FAVICON_TAGS}\n`);
 }
