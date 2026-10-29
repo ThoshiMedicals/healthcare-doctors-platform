@@ -12190,3 +12190,138 @@ header #primary-nav > .patient-tasks,
     -webkit-backdrop-filter:none!important;
   }
 }
+
+/* WMC public UX refinements, 29 Oct 2026.
+   Scope: mobile hero framing, trust badges, hours link, and footer signals.
+   Desktop/tablet hero imagery and the approved page structure are untouched. */
+@media (max-width:700px){
+  .home-page #home .hero-visual,
+  .home-page #home .hero-picture{
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+  }
+  .home-page #home .hero-picture{
+    display:block!important;
+    width:100%!important;
+  }
+  .home-page #home .hero-picture .hero-photo{
+    display:block!important;
+    width:100%!important;
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    aspect-ratio:820 / 941!important;
+    object-fit:contain!important;
+    object-position:center center!important;
+  }
+}
+/* Enlarge the three existing trust marks, without resizing the text or hero. */
+.home-page #home .hero-copy>.hero-supporting-info .hero-trust-logo-agpal,
+.home-page #home .hero-copy>.hero-supporting-info .hero-trust-logo-bulk,
+.home-page #home .hero-copy>.hero-supporting-info .hero-trust-clock{
+  box-sizing:border-box!important;
+  width:76px!important;
+  height:76px!important;
+  flex:0 0 76px!important;
+  padding:5px!important;
+}
+.home-page #home .hero-copy>.hero-supporting-info .hero-trust-clock svg{
+  width:42px!important;
+  height:42px!important;
+}
+.home-page #home .hero-copy>.hero-supporting-info .hero-trust-refined{
+  gap:12px 18px!important;
+}
+@media (max-width:700px){
+  .home-page #home .hero-copy>.hero-supporting-info .hero-trust-logo-agpal,
+  .home-page #home .hero-copy>.hero-supporting-info .hero-trust-logo-bulk,
+  .home-page #home .hero-copy>.hero-supporting-info .hero-trust-clock{
+    width:clamp(58px,19vw,96px)!important;
+    height:clamp(58px,19vw,96px)!important;
+    flex:0 0 clamp(58px,19vw,96px)!important;
+    padding:4px!important;
+  }
+  .home-page #home .hero-copy>.hero-supporting-info .hero-trust-clock svg{
+    width:50%!important;
+    height:50%!important;
+  }
+}
+.home-page #home .hero-hours-actions{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  align-items:center!important;
+  gap:8px 16px!important;
+}
+.home-page #home .hero-hours-actions .hero-hours-after-care-link{
+  white-space:nowrap!important;
+  font-weight:600!important;
+}
+.home-page #home .hero-hours-actions .hero-hours-link:focus-visible{
+  outline:2px solid currentColor!important;
+  outline-offset:3px!important;
+}
+@media(max-width:767px){
+  .home-page #home .hero-hours-refined>.hero-hours-actions{
+    grid-column:1 / -1!important;
+    width:100%!important;
+    justify-content:flex-end!important;
+    gap:10px 16px!important;
+  }
+}
+/* Keep authority classifications in the source and service model, not in
+   patient-facing badges. Links, destinations and sections remain visible. */
+.service-tier-chip{display:none!important}
+
+/* Show and enlarge crisp approved accreditation/billing artwork in the footer. */
+.footer-trust,
+.home-page .footer-trust{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  align-items:center!important;
+  gap:8px!important;
+}
+.footer-trust img:first-child,
+.home-page .footer-trust img:first-child{
+  box-sizing:border-box!important;
+  width:112px!important;
+  height:112px!important;
+  max-width:112px!important;
+  padding:4px!important;
+  object-fit:contain!important;
+  object-position:center!important;
+}
+.footer-trust img:last-child,
+.home-page .footer-trust img:last-child{
+  box-sizing:border-box!important;
+  width:128px!important;
+  height:128px!important;
+  max-width:128px!important;
+  padding:4px!important;
+  object-fit:contain!important;
+  object-position:center!important;
+}
+@media(max-width:700px){
+  .footer-trust,
+  .home-page .footer-trust{flex-wrap:nowrap!important;gap:6px!important}
+  .footer-trust img:first-child,
+  .home-page .footer-trust img:first-child{
+    width:clamp(56px,18vw,96px)!important;
+    height:clamp(56px,18vw,96px)!important;
+    max-width:none!important;
+    padding:2px!important;
+  }
+  .footer-trust img:last-child,
+  .home-page .footer-trust img:last-child{
+    width:clamp(60px,19vw,104px)!important;
+    height:clamp(60px,19vw,104px)!important;
+    max-width:none!important;
+    padding:2px!important;
+  }
+}
+/* Eight navigation destinations fit the established desktop navigation row. */
+@media(min-width:1320px){
+  header .institution-navigation-row>#primary-nav{
+    column-gap:clamp(10px,1vw,18px)!important;
+  }
+}
