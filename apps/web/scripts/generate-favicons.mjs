@@ -21,8 +21,13 @@ if (metadata.width !== 475 || metadata.height !== 71) {
 
 // Extract the leading W from "Woolloongabba" in the approved header artwork.
 // Keeping the exact source lettering avoids replacing the brand with a new logo.
-const glyph = await sharp(wordmark)
+// Sharp can reorder trim and extract within one pipeline. Materialise
+// the exact source glyph crop first, then trim its white edges.
+const crop = await sharp(wordmark)
   .extract({ left: 131, top: 13, width: 24, height: 26 })
+  .png()
+  .toBuffer();
+const glyph = await sharp(crop)
   .trim({ background: "#ffffff", threshold: 10 })
   .png()
   .toBuffer();
