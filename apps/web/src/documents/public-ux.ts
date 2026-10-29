@@ -4,25 +4,27 @@
  */
 export function applyPublicUxRefinements(html: string, pagePath: string): string {
   let next = html;
+  // A new URL bypasses stale browser/Cloudflare CSS after visual-polish deployment.
+  next = next.replace(/styles\.css(?=")/g, "styles.css?v=wmc-polish-20261029b");
 
   // Add Join Our Team in every public primary navigation using the Updates
   // link's existing relative prefix (works for nested services/knowledge pages).
   next = next.replace(/<nav\b[^>]*\bid="primary-nav"[^>]*>[\s\S]*?<\/nav>/i, nav => {
     if (nav.includes('data-nav-key="join-team"')) return nav;
 
-    const updates = nav.match(/<a\b[^>]*\bdata-nav-key="updates"[^>]*>Updates<\/a>/i);
-    const updatesHref = updates?.[0].match(/\bhref="([^"]*updates\/index\.html)"/i)?.[1];
-    if (!updates || !updatesHref) return nav;
-
-    const joinHref = updatesHref.replace(/updates\/index\.html$/i, "join-our-team.html");
+    // Use Contact as the stable anchor even if the Updates link markup changes.
+    const contact = nav.match(/<a\b(?=[^>]*\bdata-nav-key="contact")[^>]*>[\s\S]*?<\/a>/i)?.[0];
+    const contactHref = contact?.match(/\bhref="([^"]*contact\.html)"/i)?.[1];
+    if (!contact || !contactHref) return nav;
+    const joinHref = contactHref.replace(/contact\.html$/i, "join-our-team.html");
     const onJoinPage = pagePath === "join-our-team.html";
     let updatedNav = nav.replace(
-      updates[0],
-      `${updates[0]}<a href="${joinHref}" data-nav-key="join-team"${onJoinPage ? ' aria-current="page"' : ""}>Join Our Team</a>`,
+      contact,
+      `<a href="${joinHref}" data-nav-key="join-team"${onJoinPage ? ' aria-current="page"' : ""}>Join Our Team</a>${contact}`,
     );
 
     if (onJoinPage) {
-      // Preserve aria-current="page" through the existing site.js nav enhancer.
+      // Preserve page-level active state in the existing site.js nav enhancer.
       updatedNav = updatedNav.replace('data-nav-is-hub="false"', 'data-nav-is-hub="true"');
       // Only the primary-nav active section changes; the page's internal
       // About Us taxonomy and breadcrumbs remain untouched.
