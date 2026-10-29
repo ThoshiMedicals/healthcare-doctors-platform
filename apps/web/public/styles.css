@@ -12325,3 +12325,81 @@ header #primary-nav > .patient-tasks,
     column-gap:clamp(10px,1vw,18px)!important;
   }
 }
+
+/* WMC polish: verified 2.5x trust artwork; no hero architecture changes.
+   Cascade-final overrides account for earlier !important mobile rules. */
+.home-page #home .hero-supporting-info .hero-trust-logo-agpal,
+.home-page #home .hero-supporting-info .hero-trust-logo-bulk,
+.home-page #home .hero-supporting-info .hero-trust-clock{
+  width:112px!important;
+  height:112px!important;
+  flex:0 0 112px!important;
+  padding:4px!important;
+  box-sizing:border-box!important;
+}
+.home-page #home .hero-supporting-info .hero-trust-logo img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  object-fit:contain!important;
+  object-position:center!important;
+}
+.home-page #home .hero-supporting-info .hero-trust-clock svg{
+  width:68px!important;
+  height:68px!important;
+}
+.home-page #home .hero-supporting-info .hero-trust-refined{
+  flex-wrap:wrap!important;
+  gap:12px 20px!important;
+}
+.home-page #home .hero-supporting-info .hero-hours-actions{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:8px 16px!important;
+  width:100%!important;
+}
+.home-page #home .hero-supporting-info .hero-hours-actions .hero-hours-link{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-height:36px!important;
+  color:inherit!important;
+  text-decoration:underline!important;
+  text-underline-offset:3px!important;
+  white-space:normal!important;
+}
+@media(max-width:767px){
+  .home-page #home .hero-supporting-info .hero-trust-refined{
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    align-items:start!important;
+    gap:8px!important;
+  }
+  .home-page #home .hero-supporting-info .hero-trust-logo-agpal,
+  .home-page #home .hero-supporting-info .hero-trust-logo-bulk,
+  .home-page #home .hero-supporting-info .hero-trust-clock{
+    width:min(100%,clamp(76px,26vw,116px))!important;
+    height:auto!important;
+    aspect-ratio:1!important;
+    flex:none!important;
+    margin:0 auto!important;
+    padding:3px!important;
+  }
+  .home-page #home .hero-supporting-info .hero-trust-clock svg{
+    width:64%!important;
+    height:64%!important;
+  }
+  .home-page #home .hero-supporting-info .hero-hours-refined>.hero-hours-actions{
+    grid-column:1 / -1!important;
+    width:100%!important;
+    justify-content:space-between!important;
+    gap:8px 12px!important;
+  }
+  .home-page #home .hero-supporting-info .hero-hours-actions .hero-hours-link{
+    min-height:44px!important;
+    font-size:13px!important;
+  }
+}

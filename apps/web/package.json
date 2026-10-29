@@ -5,7 +5,7 @@
   "description": "Next.js infrastructure for the approved Woolloongabba Medical Centre website. Does not migrate or redesign pages.",
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && node scripts/optimize-css.mjs && node scripts/optimize-images.mjs && node scripts/generate-favicons.mjs && next build",
+    "build": "prisma generate && node scripts/optimize-css.mjs && node scripts/optimize-images.mjs && node scripts/generate-favicons.mjs && node scripts/verify-favicons.mjs && next build",
     "favicon:generate": "node scripts/generate-favicons.mjs",
     "start": "next start",
     "uat:build": "node scripts/uat.mjs build",

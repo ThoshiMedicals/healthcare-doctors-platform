@@ -47,6 +47,13 @@ if (mode === "build") {
     stdio: "inherit",
   });
   if (favicons.status !== 0) process.exit(favicons.status ?? 1);
+
+  const verifiedIcons = spawnSync(process.execPath, [path.join(root, "scripts", "verify-favicons.mjs")], {
+    cwd: root,
+    env,
+    stdio: "inherit",
+  });
+  if (verifiedIcons.status !== 0) process.exit(verifiedIcons.status ?? 1);
 }
 
 const nextBin = path.join(root, "node_modules", "next", "dist", "bin", "next");

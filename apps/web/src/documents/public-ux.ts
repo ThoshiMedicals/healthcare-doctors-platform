@@ -22,6 +22,8 @@ export function applyPublicUxRefinements(html: string, pagePath: string): string
     );
 
     if (onJoinPage) {
+      // Preserve aria-current="page" through the existing site.js nav enhancer.
+      updatedNav = updatedNav.replace('data-nav-is-hub="false"', 'data-nav-is-hub="true"');
       // Only the primary-nav active section changes; the page's internal
       // About Us taxonomy and breadcrumbs remain untouched.
       updatedNav = updatedNav.replace('data-nav-owner="about"', 'data-nav-owner="join-team"');

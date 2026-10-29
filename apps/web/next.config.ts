@@ -32,12 +32,17 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   async headers() {
-    if (!uatQuickTunnel) return [];
     return [
-      {
+      ...(uatQuickTunnel ? [{
         source: "/:path*",
         headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
-      },
+      }] : []),
+      // Ensure browsers revalidate icon files after brand-mark revisions.
+      ...["/favicon.ico", "/favicon-16x16.png", "/favicon-32x32.png", "/apple-touch-icon.png"]
+        .map(source => ({
+          source,
+          headers: [{ key: "Cache-Control", value: "no-cache, max-age=0, must-revalidate" }],
+        })),
     ];
   },
 };

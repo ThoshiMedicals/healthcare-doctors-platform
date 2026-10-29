@@ -2,10 +2,10 @@
 const ICON_LINK = /<link\b(?=[^>]*\brel\s*=\s*(["'])(?:icon|shortcut\s+icon|apple-touch-icon(?:-precomposed)?)\1)[^>]*\/?>\s*/gi;
 
 export const FAVICON_TAGS = [
-  '<link rel="icon" href="/favicon.ico" sizes="any">',
-  '<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">',
-  '<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">',
-  '<link rel="apple-touch-icon" href="/apple-touch-icon.png">',
+  '<link rel="icon" href="/favicon.ico?v=hd-symbol-20261029b" sizes="any">',
+  '<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=hd-symbol-20261029b">',
+  '<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=hd-symbol-20261029b">',
+  '<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=hd-symbol-20261029b">',
 ].join("\n");
 
 export function applyFaviconLinks(html: string): string {
