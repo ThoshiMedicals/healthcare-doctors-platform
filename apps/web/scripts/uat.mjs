@@ -40,6 +40,13 @@ if (mode === "build") {
     stdio: "inherit",
   });
   if (images.status !== 0) process.exit(images.status ?? 1);
+
+  const favicons = spawnSync(process.execPath, [path.join(root, "scripts", "generate-favicons.mjs")], {
+    cwd: root,
+    env,
+    stdio: "inherit",
+  });
+  if (favicons.status !== 0) process.exit(favicons.status ?? 1);
 }
 
 const nextBin = path.join(root, "node_modules", "next", "dist", "bin", "next");

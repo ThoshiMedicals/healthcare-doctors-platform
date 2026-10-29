@@ -3,6 +3,10 @@ node_modules/
 
 # Build artifacts and caches
 /public/styles.min.css
+/public/favicon.ico
+/public/favicon-16x16.png
+/public/favicon-32x32.png
+/public/apple-touch-icon.png
 /public/assets/performance/
 .next/
 .next-uat/

@@ -6,6 +6,7 @@ import { applyOverlay, applyRepeatBinding, practitionerFromPayload, type ClinicC
 import { prisma } from "@/db/prisma";
 import { applyAccessibilityClosure } from "@/documents/accessibility";
 import { optimiseHomepageDelivery } from "@/documents/performance";
+import { applyFaviconLinks } from "@/documents/favicon";
 import { Prisma } from "@prisma/client";
 
 export type PublishedDocument = {
@@ -145,7 +146,7 @@ export async function renderStoredPage(clinicId: string, storagePath: string): P
   if (document) {
     return {
       status: 200,
-      html: optimiseHomepageDelivery(applyAccessibilityClosure(document.html, document.path), document.path),
+      html: applyFaviconLinks(optimiseHomepageDelivery(applyAccessibilityClosure(document.html, document.path), document.path)),
       path: document.path,
     };
   }
@@ -153,5 +154,5 @@ export async function renderStoredPage(clinicId: string, storagePath: string): P
   if (storagePath === "404.html") return null;
   const notFound = await getPublishedDocument(clinicId, "404.html");
   if (!notFound) return null;
-  return { status: 404, html: applyAccessibilityClosure(notFound.html, "404.html"), path: "404.html" };
+  return { status: 404, html: applyFaviconLinks(applyAccessibilityClosure(notFound.html, "404.html")), path: "404.html" };
 }
