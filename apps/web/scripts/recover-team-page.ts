@@ -13,6 +13,7 @@ import { prisma } from "../src/db/prisma";
 import { goldenHtmlRoot } from "../src/importer/golden-root";
 import { fingerprintContent } from "../src/governance/fingerprint";
 import { parseDocument } from "../src/importer/parse-document";
+import { getPublishedDocument, renderStoredPage } from "../src/documents/render-published-document";
 import { assessTeamOpening } from "../src/regression/team-opening";
 
 const pagePath = "team.html";
@@ -41,6 +42,28 @@ async function main() {
     publishedContentSha256: page.publishedRevision.contentSha256,
     goldenContentSha256: fingerprintContent(golden),
     ...assessment,
+  }, null, 2));
+
+  // Distinguish a damaged database revision from a renderer-only or CSS issue.
+  const afterOverlay = await getPublishedDocument(clinic.id, pagePath);
+  const afterResponse = await renderStoredPage(clinic.id, pagePath);
+  const stage = (html: string | null | undefined) => ({
+    present: Boolean(html),
+    header: Boolean(html?.includes("<header")),
+    hero: Boolean(html?.includes('<section class="page-hero">')),
+    h1: Boolean(html?.includes("<h1>Healthcare is strongest when people work together.</h1>")),
+    lede: Boolean(html?.includes('<p class="lede">Our healthcare team works together')),
+    teamIntroduction: Boolean(html?.includes('class="team-directory-intro"')),
+    departmentNavigation: Boolean(html?.includes('class="team-ecosystem-nav"')),
+    practitionerCards: Boolean(html?.includes('id="general-practitioners"')),
+    footer: Boolean(html?.includes("<footer")),
+  });
+  console.log(JSON.stringify({
+    stages: {
+      publishedDatabaseRevision: stage(page.publishedRevision.html),
+      afterOverlaysAndRepeats: stage(afterOverlay?.html),
+      deliveredNextJsHtml: stage(afterResponse?.html),
+    },
   }, null, 2));
 
   if (mode === "--check") {
