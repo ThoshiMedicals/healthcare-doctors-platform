@@ -65,6 +65,7 @@ type AuditRow = {
   publishedHash: string | null;
   revisionId: string | null;
   headPreserved: boolean;
+  chromePreserved: boolean;
   downstreamPreserved: boolean;
   afterOverlayMissing: string[];
   deliveredHtmlMissing: string[];
@@ -91,7 +92,7 @@ async function main() {
         page: p, kind, status: "unsafe", missing: ["repository or golden file"],
         sourceVsGolden: false, databaseVsGolden: false, goldenHash: "", repositoryHash: "",
         publishedHash: null, revisionId: null, headPreserved: false,
-        downstreamPreserved: false, afterOverlayMissing: [], deliveredHtmlMissing: [],
+        chromePreserved: false, downstreamPreserved: false, afterOverlayMissing: [], deliveredHtmlMissing: [],
         renderingError: "Source file absent", reason: "Approved source unavailable.",
         recoveryAction: actionFor("unsafe"),
       });
@@ -124,7 +125,7 @@ async function main() {
       goldenHash: fingerprintContent(golden), repositoryHash: fingerprintContent(repository),
       publishedHash: published == null ? null : fingerprintContent(published),
       revisionId: page?.publishedRevisionId ?? null, headPreserved: audit.headPreserved,
-      downstreamPreserved: audit.downstreamPreserved,
+      chromePreserved: audit.chromePreserved, downstreamPreserved: audit.downstreamPreserved,
       afterOverlayMissing: stageMissing(kind, golden, overlay),
       deliveredHtmlMissing: stageMissing(kind, golden, delivered),
       renderingError: error, reason: audit.reason, recoveryAction: actionFor(audit.status),
@@ -137,7 +138,7 @@ async function main() {
   const columns: Array<keyof AuditRow> = [
     "page", "kind", "status", "missing", "sourceVsGolden", "databaseVsGolden",
     "goldenHash", "repositoryHash", "publishedHash", "revisionId",
-    "headPreserved", "downstreamPreserved", "afterOverlayMissing", "deliveredHtmlMissing",
+    "headPreserved", "chromePreserved", "downstreamPreserved", "afterOverlayMissing", "deliveredHtmlMissing",
     "renderingError", "reason", "recoveryAction",
   ];
   const csv = [columns.map(csvCell).join(",")].concat(
