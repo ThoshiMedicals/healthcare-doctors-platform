@@ -89,7 +89,7 @@ test("surgical recovery is refused if cards, downstream content, schema, or cano
 
 test("edited copy is other-drift and absent database revision is unsafe", () => {
   const page = read("knowledge/heart.html");
-  const edited = page.replace("Understand blood pressure readings, cardiovascular risk, cholesterol and preventive checks.", "An introductory guide to cardiovascular health.");
+  const edited = page.replace("<h1>Blood Pressure &amp; Heart Health</h1>", "<h1>Cardiovascular Education</h1>");
   assert.equal(auditPublishedOpening("knowledge-hub", page, page, edited).status, "other-drift");
   assert.equal(auditPublishedOpening("knowledge-hub", page, page, null).status, "unsafe");
   assert.equal(stageMissing("knowledge-hub", page, null).length > 0, true);
