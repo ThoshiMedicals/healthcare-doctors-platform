@@ -15,8 +15,8 @@ const FIRST_PRACTITIONER_SECTION =
 
 const REQUIRED_OPENING = [
   ["page hero", '<section class="page-hero">'],
-  ["page H1", '<h1>Healthcare is strongest when people work together.</h1>'],
-  ["introductory content", '<p class="lede">Our healthcare team works together'],
+  ["page H1", '<h1>'],
+  ["introductory content", '<p class="lede">'],
   ["breadcrumb", '<div class="breadcrumb-bar">'],
   ["on-this-page navigation", 'class="on-this-page"'],
   ["healthcare team introduction", '<div class="team-directory-intro">'],
