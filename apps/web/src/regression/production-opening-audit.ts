@@ -8,6 +8,7 @@ export type OpeningAudit = {
   repositoryMatchesGolden: boolean;
   publishedMatchesGolden: boolean;
   headPreserved: boolean;
+  chromePreserved: boolean;
   downstreamPreserved: boolean;
   reason: string;
 };
@@ -54,6 +55,18 @@ function htmlHead(html: string): string | null {
   return end < 0 ? null : html.slice(0, end + 7);
 }
 
+function htmlChrome(html: string): string | null {
+  const header = html.match(/<header\b[^>]*>[\s\S]*?<\/header>/i)?.[0];
+  if (!header) return null;
+  return header;
+}
+
+function bookingDestinations(html: string): string[] {
+  return [...html.matchAll(/<a\b[^>]*href="([^"]+)"/gi)]
+    .map(m => m[1])
+    .filter(url => /^https:\/\/www\.hotdoc\.com\.au\/|^tel:/i.test(url));
+}
+
 function protectedAnchor(html: string, kind: RecoveryKind): string | null {
   const doc = main(html);
   if (!doc) return null;
@@ -82,6 +95,11 @@ export function auditPublishedOpening(
     ? openingFeatures(kind).filter(f => f.present(goldenHtml) && !f.present(publishedHtml)).map(f => f.name)
     : openingFeatures(kind).map(f => f.name);
   const headOK = Boolean(publishedHtml && htmlHead(goldenHtml) && htmlHead(publishedHtml) === htmlHead(goldenHtml));
+  const chromeOK = Boolean(publishedHtml && htmlChrome(goldenHtml) && htmlChrome(publishedHtml) === htmlChrome(goldenHtml));
+  // Remaining appointment destinations must be approved ones; disappearing links
+  // in a missing hero may be restored only from the frozen golden source.
+  const approvedLinks = new Set(bookingDestinations(goldenHtml));
+  const bookingOK = Boolean(publishedHtml && bookingDestinations(publishedHtml).every(url => approvedLinks.has(url)));
   const anchor = protectedAnchor(goldenHtml, kind);
   const goldenAt = anchor ? goldenHtml.indexOf(anchor) : -1;
   const publishedAt = anchor && publishedHtml ? publishedHtml.indexOf(anchor) : -1;
@@ -91,7 +109,7 @@ export function auditPublishedOpening(
   const make = (status: RecoveryStatus, reason: string): OpeningAudit => ({
     status, missing, repositoryMatchesGolden: sourceOK,
     publishedMatchesGolden: publishedHtml === goldenHtml, headPreserved: headOK,
-    downstreamPreserved: tailOK, reason,
+    chromePreserved: chromeOK && bookingOK, downstreamPreserved: tailOK, reason,
   });
   if (!sourceOK || sourceFeatures.length) {
     return make("unsafe", "Repository or golden source differs, or required golden markers are absent: " + sourceFeatures.join(", "));
@@ -99,6 +117,7 @@ export function auditPublishedOpening(
   if (publishedHtml == null) return make("unsafe", "Published immutable HTML revision missing.");
   if (publishedHtml === goldenHtml) return make("healthy", "Published revision exactly matches repository and approved golden master.");
   if (!headOK) return make("unsafe", "Published HTML head differs; SEO, canonical, or structured-data preservation cannot be guaranteed.");
+  if (!chromeOK || !bookingOK) return make("unsafe", "Header, navigation or remaining appointment destinations differ from the approved source.");
   if (missing.length === 0) return make("other-drift", "All expected opening elements exist; content differs. Do not republish automatically.");
   if (!tailOK) return make("unsafe", "Opening elements are missing AND downstream content differs. Manual review is required.");
   return make("opening-damaged", "Opening-only damage confirmed. Head and all content after the protected boundary are byte-identical.");
