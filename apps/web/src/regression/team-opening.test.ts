@@ -71,6 +71,6 @@ test("recovery refuses publication when SEO or structured data changed", () => {
 });
 
 test("an intact opening with unrelated edits requires investigation, not forced restoration", () => {
-  const changed = golden.replace("Our healthcare team works together", "Our local team works together");
+  const changed = golden.replace("Our GPs are usually the central clinical point for your care.", "Our GPs are the central point for patient care.");
   assert.equal(assessTeamOpening(changed, golden).status, "other-drift");
 });
