@@ -507,6 +507,10 @@
       if (!isCompactNavigation() && nav.classList.contains('open')) setMenuState(false);
     }, { passive: true });
 
+ 	console.log('WMC NAV INIT');
+	console.log('toggle', toggle);
+	console.log('nav', nav);
+
     window.WMCNavigation = {
       closeCompact() {
         if (isCompactNavigation() && nav.classList.contains('open')) setMenuState(false);
@@ -1516,4 +1520,27 @@
   guideSection?.classList.add('service-hub-destination', 'service-hub-destination--guides');
   practitionerSection?.classList.add('service-hub-destination', 'service-hub-destination--practitioners');
   bookSection?.classList.add('service-hub-destination', 'service-hub-destination--book');
+})();
+/* Emergency mobile menu fallback */
+(() => {
+  const toggle = document.querySelector('.menu-toggle');
+  const nav = document.getElementById('primary-nav');
+
+  if (!toggle || !nav) return;
+
+  if (!toggle.dataset.menuBound) {
+    toggle.dataset.menuBound = 'true';
+
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute(
+        'aria-label',
+        open ? 'Close navigation menu' : 'Open navigation menu'
+      );
+
+      toggle.textContent = open ? 'Close' : 'Menu';
+    });
+  }
 })();
