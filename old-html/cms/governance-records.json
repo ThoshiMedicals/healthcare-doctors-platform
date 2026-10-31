@@ -94,7 +94,7 @@
       "status": "awaiting_review"
     },
     {
-      "path": "doctors/dr-gemunu-suresh-ranawake.html",
+      "path": null,
       "collection": "practitioner",
       "reviewType": "clinical",
       "status": "awaiting_review"

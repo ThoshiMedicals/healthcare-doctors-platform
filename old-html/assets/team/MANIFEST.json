@@ -8,7 +8,6 @@
   "expected_files": [
     "dr-anand-singh.webp",
     "dr-debra-larkins.webp",
-    "dr-gemunu-suresh-ranawake.webp",
     "dr-kooshyar-karimi.webp",
     "dr-mary-abadir.webp",
     "dr-sambo-luon.webp",
@@ -52,14 +51,14 @@
       "pixel_verified_identical_to_user_upload": true
     },
     {
-      "practitioner_name": "Dr Gemunu Suresh Ranawake",
-      "filename": "dr-gemunu-suresh-ranawake.webp",
+      "practitioner_name": null,
+      "filename": null,
       "status": "locally_imported_lossless_from_user_upload",
       "sha256": "51149dc48754bc3dd05c4a46d578b2d7cab3eaac8f4eae19b048a8eddf14bbaf",
       "source_asset_original": true,
       "previous_external_url": "https://gabbamedicalcentre.com.au/wp-content/uploads/2025/02/2.jpg",
-      "responsive_filename": "dr-gemunu-suresh-ranawake-640.webp",
-      "source_filename": "Dr Gemunu Ranawake.png",
+      "responsive_filename": null,
+      "source_filename": null,
       "source_upload_sha256": "789198ea357625d47f9bb1477af2028530594ecce0a9b49ea130633cb843863d",
       "width": 1122,
       "height": 1402,

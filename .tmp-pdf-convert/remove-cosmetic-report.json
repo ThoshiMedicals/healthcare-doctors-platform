@@ -1,0 +1,18 @@
+{
+  "updatedFiles": [],
+  "skippedFiles": [],
+  "db": {
+    "pagesTouched": [
+      "doctors/dr-tanya-goodwill.html",
+      "doctors/dr-kooshyar-karimi.html",
+      "knowledge/articles/why-skin-checks-matter-in-australia.html",
+      "services/skin-checks.html",
+      "doctors/dr-wasantha-hettiarchchi.html",
+      "team-general-practitioners.html"
+    ],
+    "revisionsScrubbed": 41,
+    "practitionersUpdated": []
+  },
+  "remainingHits": [],
+  "samples": {}
+}

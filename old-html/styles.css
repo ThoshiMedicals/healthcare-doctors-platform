@@ -1096,7 +1096,6 @@ footer h3{margin-bottom:15px;color:#fff;font-size:14px}footer p,footer a{color:#
 .practitioner:hover .portrait img{filter:saturate(.92) contrast(1.03) brightness(1.02)!important}
 .practitioner-dr-tanya-goodwill .portrait img{object-position:center 21%!important}
 .practitioner-dr-sumita-singh .portrait img{object-position:center 18%!important}
-.practitioner-dr-gemunu-suresh-ranawake .portrait img{object-position:center 20%!important}
 .practitioner-dr-wasantha-hettiarchchi .portrait img{object-position:center 18%!important}
 
 /* Location: guarantee a finished visual even when Google embeds are blocked. */
@@ -1272,7 +1271,6 @@ footer h3{margin-bottom:15px;color:#fff;font-size:14px}footer p,footer a{color:#
 }
 .practitioner-dr-tanya-goodwill .portrait img{object-position:center 20%!important}
 .practitioner-dr-sumita-singh .portrait img{object-position:center 20%!important}
-.practitioner-dr-gemunu-suresh-ranawake .portrait img{object-position:center 19%!important}
 .practitioner-dr-wasantha-hettiarchchi .portrait img{object-position:center 19%!important}
 .practitioner-meta{
   min-height:0;
@@ -1731,7 +1729,6 @@ body{
 }
 .practitioner-dr-tanya-goodwill{--portrait-scale:1.075;--portrait-y:17%}
 .practitioner-dr-sumita-singh{--portrait-scale:1.02}
-.practitioner-dr-gemunu-suresh-ranawake{--portrait-y:17%}
 .practitioner-dr-wasantha-hettiarchchi{--portrait-scale:1.04;--portrait-y:17%}
 .practitioner:hover .portrait img{
   transform:scale(1.006)!important;
@@ -2143,7 +2140,6 @@ header{
 /* Fine crop corrections use only the authentic source portraits. */
 .practitioner-dr-tanya-goodwill{--portrait-scale:1.070;--portrait-y:17.5%}
 .practitioner-dr-sumita-singh{--portrait-scale:1.025;--portrait-y:18%}
-.practitioner-dr-gemunu-suresh-ranawake{--portrait-scale:1.045;--portrait-y:17.5%}
 .practitioner-dr-wasantha-hettiarchchi{--portrait-scale:1.040;--portrait-y:17.5%}
 .practitioner:hover .portrait img{
   transform:scale(1.004)!important;
@@ -3754,7 +3750,6 @@ footer :where(a,button):focus-visible{
 }
 .home-page .practitioner-dr-tanya-goodwill .portrait img{object-position:50% 20%!important}
 .home-page .practitioner-dr-sumita-singh .portrait img{object-position:50% 19%!important}
-.home-page .practitioner-dr-gemunu-suresh-ranawake .portrait img{object-position:50% 19%!important}
 .home-page .practitioner-dr-wasantha-hettiarchchi .portrait img{object-position:50% 19%!important}
 .home-page .practitioner-meta{padding-top:15px!important;min-height:84px!important}
 .home-page .practitioner h3{font-size:var(--fs-card-title);min-height:0}
@@ -11984,13 +11979,17 @@ body.service-tier-developing .service-hub-destination--book{
   .service-tier-chip{border:1px solid CanvasText}
 }
 
-/* Header Find Information strip — permanently suppressed (UAT may still serve older published HTML). */
-header .patient-tasks,
+/* Header Find Information strip — permanently suppressed (UAT may still serve older published HTML).
+   Must beat the desktop rule that forces this strip onto its own navigation row. */
+header .institution-navigation-row > #primary-nav > .patient-tasks,
 header #primary-nav > .patient-tasks,
-.institution-navigation-row #primary-nav > .patient-tasks{
+header .patient-tasks{
   display:none!important;
   visibility:hidden!important;
+  flex:none!important;
   height:0!important;
+  min-height:0!important;
+  max-height:0!important;
   margin:0!important;
   padding:0!important;
   overflow:hidden!important;
@@ -12189,4 +12188,173 @@ header #primary-nav > .patient-tasks,
     backdrop-filter:none!important;
     -webkit-backdrop-filter:none!important;
   }
+}
+
+/* Phase 1A authority content blocks. Reuse on future knowledge clusters. */
+.authority-block{
+  min-width:0;
+}
+.authority-figure{
+  margin:1.25rem 0 0;
+  max-width:100%;
+  min-width:0;
+}
+.authority-figure--infographic{
+  max-width:440px;
+}
+.authority-image{
+  width:100%;
+  height:auto;
+  border:1px solid var(--line);
+  border-radius:var(--radius-md);
+  background:var(--mist);
+}
+.authority-figure figcaption,
+.authority-block-note{
+  margin-top:.55rem;
+  color:var(--ink-soft);
+  font-family:var(--font-ui);
+  font-size:13px;
+  line-height:1.55;
+}
+.authority-block-note{
+  margin-top:1rem;
+}
+.authority-checklist{
+  list-style:none;
+  margin:1.25rem 0 0;
+  padding:0;
+  display:grid;
+  gap:.75rem;
+}
+.authority-checklist li{
+  display:grid;
+  grid-template-columns:2rem minmax(0,1fr);
+  gap:.75rem 1rem;
+  align-items:start;
+  margin:0;
+  padding:.9rem 1rem;
+  border:1px solid var(--line);
+  border-radius:var(--radius-md);
+  background:var(--mist);
+}
+.authority-step{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:2rem;
+  height:2rem;
+  border-radius:var(--radius-pill);
+  background:var(--navy);
+  color:#fff;
+  font-family:var(--font-ui);
+  font-size:13px;
+  font-weight:600;
+  line-height:1;
+}
+.authority-checklist strong{
+  display:block;
+  color:var(--ink);
+  font-family:var(--font-ui);
+  font-size:15px;
+  font-weight:600;
+  line-height:1.4;
+}
+.authority-checklist li > div > span{
+  display:block;
+  margin-top:.2rem;
+}
+@media (max-width:720px){
+  .authority-figure--infographic{
+    max-width:100%;
+  }
+  .authority-checklist li{
+    padding:.85rem .9rem;
+  }
+}
+
+/* Eight navigation destinations stay on one row, with clear space between labels. */
+@media(min-width:1320px){
+  header .institution-navigation-row>#primary-nav{
+    flex-wrap:nowrap!important;
+    justify-content:center!important;
+    column-gap:clamp(32px,2.8vw,48px)!important;
+    row-gap:0!important;
+  }
+}
+
+/* Homepage hours and trust marks: one left-aligned group.
+   Day and time stay stacked. Links sit under the hours.
+   Each trust label stays beside its icon. */
+.home-page #home .hero-copy>.hero-supporting-info .hero-hours-refined{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  align-items:start!important;
+  justify-items:start!important;
+  gap:8px 10px!important;
+  width:100%!important;
+}
+.home-page #home .hero-copy>.hero-supporting-info .hero-hours-refined>span{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  justify-content:flex-start!important;
+  gap:2px!important;
+  min-width:0!important;
+}
+.home-page #home .hero-copy>.hero-supporting-info .hero-hours-refined>.hero-hours-actions{
+  grid-column:1 / -1!important;
+  display:flex!important;
+  flex-wrap:wrap!important;
+  justify-content:flex-start!important;
+  align-items:center!important;
+  width:auto!important;
+  max-width:100%!important;
+  margin:2px 0 0!important;
+  gap:2px 16px!important;
+}
+.home-page #home .hero-copy>.hero-supporting-info .hero-hours-actions .hero-hours-link{
+  width:auto!important;
+  min-height:32px!important;
+  justify-content:flex-start!important;
+  text-align:left!important;
+  white-space:nowrap!important;
+}
+.home-page #home .hero-copy>.hero-supporting-info .hero-trust-refined{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  align-items:center!important;
+  justify-items:start!important;
+  gap:8px 12px!important;
+  width:100%!important;
+}
+.home-page #home .hero-copy>.hero-supporting-info .hero-trust-refined-item{
+  display:flex!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:8px!important;
+  min-width:0!important;
+  min-height:0!important;
+  padding:0!important;
+}
+.home-page #home .hero-copy>.hero-supporting-info .hero-trust-logo-agpal,
+.home-page #home .hero-copy>.hero-supporting-info .hero-trust-logo-bulk,
+.home-page #home .hero-copy>.hero-supporting-info .hero-trust-clock{
+  width:40px!important;
+  height:40px!important;
+  flex:0 0 40px!important;
+  padding:3px!important;
+}
+.home-page #home .hero-copy>.hero-supporting-info .hero-trust-clock svg{
+  width:22px!important;
+  height:22px!important;
+}
+.home-page #home .hero-copy>.hero-supporting-info .hero-trust-text{
+  min-width:0!important;
+}
+.home-page #home .hero-copy>.hero-supporting-info .hero-trust-text strong{
+  font-size:13px!important;
+  line-height:1.25!important;
+  white-space:normal!important;
 }

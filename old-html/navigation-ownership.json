@@ -243,23 +243,6 @@
         }
       ]
     },
-    "doctors/dr-gemunu-suresh-ranawake.html": {
-      "section": "team",
-      "breadcrumbs": [
-        {
-          "label": "Home",
-          "path": "index.html"
-        },
-        {
-          "label": "Meet Our Team",
-          "path": "team.html"
-        },
-        {
-          "label": "Dr Gemunu Suresh Ranawake",
-          "path": "doctors/dr-gemunu-suresh-ranawake.html"
-        }
-      ]
-    },
     "doctors/dr-kooshyar-karimi.html": {
       "section": "team",
       "breadcrumbs": [

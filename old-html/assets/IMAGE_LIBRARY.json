@@ -931,9 +931,9 @@
       "responsivePath": "assets/team/dr-debra-larkins-640.webp"
     },
     {
-      "id": "practitioner-dr-gemunu-suresh-ranawake",
-      "path": "assets/team/dr-gemunu-suresh-ranawake.webp",
-      "expectedLocalPath": "assets/team/dr-gemunu-suresh-ranawake.webp",
+      "id": null,
+      "path": null,
+      "expectedLocalPath": null,
       "categories": [
         "team"
       ],
@@ -951,15 +951,14 @@
       "publicationStatus": "integrated_user_supplied_identity_confirmation_pending",
       "newLibraryEligible": false,
       "existingUsage": [
-        "doctors/dr-gemunu-suresh-ranawake.html",
         "index.html",
         "team-general-practitioners.html",
         "team.html"
       ],
       "notes": "Local lossless full-resolution original plus responsive derivative. The supplied filename maps to practitioner profile. Independent approval/identity confirmation not asserted.",
       "previousExternalSourceUrl": "https://gabbamedicalcentre.com.au/wp-content/uploads/2025/02/2.jpg",
-      "sourceUrl": "user_upload:Dr Gemunu Ranawake.png",
-      "responsivePath": "assets/team/dr-gemunu-suresh-ranawake-640.webp"
+      "sourceUrl": null,
+      "responsivePath": null
     },
     {
       "id": "practitioner-dr-kooshyar-karimi",

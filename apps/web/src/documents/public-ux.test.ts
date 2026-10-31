@@ -43,6 +43,16 @@ test("adds After Hours Care beside existing hours link without removing existing
   assert.equal(applyPublicUxRefinements(actual, "index.html"), actual);
 });
 
+test("removes the topic wayfinding bar and keeps the breadcrumb", () => {
+  const html =
+    '<main><nav class="topic-wayfinding" aria-label="Related topic"><div class="shell"><a href="../services/chronic-disease-care.html">Need ongoing diabetes care?</a></div></nav><div class="breadcrumb-bar">Home</div></main>';
+  const actual = applyPublicUxRefinements(html, "knowledge/diabetes.html");
+  assert.equal(actual.includes("topic-wayfinding"), false);
+  assert.equal(actual.includes("Need ongoing diabetes care?"), false);
+  assert.match(actual, /class="breadcrumb-bar"/);
+  assert.equal(applyPublicUxRefinements(actual, "knowledge/diabetes.html"), actual);
+});
+
 test("leaves SEO head, internal classifications and unmodified pages untouched", () => {
   const html = '<html><head><link rel="canonical" href="/services.html"></head><body class="service-tier-hub"><span class="service-tier-chip">Service hub</span></body></html>';
   assert.equal(applyPublicUxRefinements(html, "services.html"), html);
@@ -74,7 +84,7 @@ test("the real homepage opening-hours block includes both links", () => {
   assert.match(result, /class="hero-hours-actions"/);
   assert.match(result, /href="contact\.html">View all hours/);
   assert.match(result, /href="after-hours-care\.html">After Hours Care/);
-  assert.match(result, /styles\.css\?v=wmc-polish-20261029b/);
+  assert.match(result, /styles\.css\?v=wmc-hero-group-20261030/);
 });
 
 test("the direct static index also contains all release-critical links", () => {

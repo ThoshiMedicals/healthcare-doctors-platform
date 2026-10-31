@@ -1,0 +1,330 @@
+{
+  "phase": "1A",
+  "purpose": "Reusable authority blocks for knowledge hubs. Future clusters reuse education, diagram, checklist, infographic, related-services and related-practitioners without changing page architecture.",
+  "assetRoot": "../assets/knowledge/authority/",
+  "variants": [640, 960],
+  "blockTypes": [
+    "education",
+    "diagram",
+    "checklist",
+    "infographic",
+    "related-services",
+    "related-practitioners"
+  ],
+  "pages": [
+    {
+      "file": "old-html/knowledge/diabetes.html",
+      "insertBefore": "<section class=\"article-section\" id=\"related-care\">",
+      "relatedSectionId": "related-care",
+      "onThisPage": {
+        "from": "<div class=\"on-this-page-links\"><a href=\"#about-this-topic\">About this topic</a><a href=\"#patient-guides\">Patient guides</a><a href=\"#related-reading\">Related patient guides</a><a href=\"#related-care\">Related care at Woolloongabba Medical Centre</a><a href=\"#get-support\">Book or get support</a></div>",
+        "to": "<div class=\"on-this-page-links\"><a href=\"#about-this-topic\">About this topic</a><a href=\"#patient-guides\">Patient guides</a><a href=\"#related-reading\">Related patient guides</a><a href=\"#how-the-body-uses-glucose\">How the body uses glucose</a><a href=\"#diabetes-healthcare-review\">Diabetes healthcare review</a><a href=\"#related-care\">Related care at Woolloongabba Medical Centre</a><a href=\"#related-practitioners\">Related practitioners</a><a href=\"#get-support\">Book or get support</a></div>"
+      },
+      "extraServices": {
+        "anchorBefore": "<div class=\"practitioner-knowledge-links\">",
+        "links": [
+          {
+            "href": "../services/pathology.html",
+            "title": "Pathology",
+            "label": "View service information →"
+          },
+          {
+            "href": "../team-nursing.html",
+            "title": "Nursing Team",
+            "label": "View team information →"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "id": "how-the-body-uses-glucose",
+          "type": "education",
+          "eyebrow": "Educational overview",
+          "heading": "How the body uses glucose",
+          "paragraphs": [
+            "Glucose is a type of sugar the body uses for energy. In usual digestion, carbohydrates in food are broken down in the stomach and small intestine. Glucose is absorbed into the bloodstream and travels through the body.",
+            "When blood glucose rises after eating, the pancreas releases insulin. Insulin helps glucose move from the bloodstream into body cells. Inside cells, glucose can be broken down to release the energy used for everyday functions such as muscle movement, brain activity and organ function.",
+            "This is a simplified explanation of usual glucose use. It does not describe a personal diabetes plan, a target result, or a treatment."
+          ],
+          "items": [
+            {
+              "title": "Food is digested",
+              "text": "Carbohydrates in food are broken down into glucose in the stomach and small intestine."
+            },
+            {
+              "title": "Glucose enters the bloodstream",
+              "text": "Glucose is absorbed from the intestine into the bloodstream and travels through the body."
+            },
+            {
+              "title": "The pancreas produces insulin",
+              "text": "As blood glucose levels rise after eating, the pancreas releases insulin into the bloodstream."
+            },
+            {
+              "title": "Insulin helps glucose enter body cells",
+              "text": "Insulin binds to receptors on body cells, helping glucose move from the bloodstream into the cells."
+            },
+            {
+              "title": "Cells use glucose for energy",
+              "text": "Once inside cells, glucose is broken down to release energy for everyday body functions."
+            }
+          ],
+          "note": "Simplified educational illustration.",
+          "guideLink": { "href": "#patient-guides", "label": "Read the diabetes patient guides" },
+          "figures": [
+            {
+              "file": "glucose-education.webp",
+              "role": "diagram",
+              "alt": "Diagram titled How the Body Uses Glucose, showing digestion, glucose entering the bloodstream, insulin from the pancreas, glucose entering a cell through a receptor, and energy released in a mitochondrion.",
+              "caption": "Educational diagram of how the body uses glucose."
+            }
+          ]
+        },
+        {
+          "id": "diabetes-healthcare-review",
+          "type": "checklist",
+          "eyebrow": "Consultation checklist",
+          "heading": "Your diabetes healthcare review",
+          "paragraphs": [
+            "Ongoing diabetes care is coordinated around you and your GP. Depending on your needs, a review may bring together your health history and results, your overall health, practice nursing, relevant allied healthcare professionals, and the timing of future appointments.",
+            "The support you receive may vary. The checklist below is a guide to what a review can cover. It is not a promise that every item applies to every appointment."
+          ],
+          "items": [
+            {
+              "title": "Discuss your concerns",
+              "text": "Talk with your GP about your health, lifestyle and any questions you have."
+            },
+            {
+              "title": "Review results and history",
+              "text": "Your GP will look at relevant test results, your medical history and your overall health."
+            },
+            {
+              "title": "Consider overall health",
+              "text": "Your GP will take a whole-of-health approach, considering your physical, mental and social wellbeing."
+            },
+            {
+              "title": "Coordinate care when needed",
+              "text": "Your GP can work with other healthcare professionals to support your ongoing care, if needed."
+            },
+            {
+              "title": "Discuss questions and priorities",
+              "text": "Share what matters to you and discuss any questions you have."
+            },
+            {
+              "title": "Plan follow-up",
+              "text": "Together, you can plan your next steps, including when to have your next review."
+            }
+          ],
+          "note": "Your healthcare review will depend on your individual needs.",
+          "figures": []
+        }
+      ]
+    },
+    {
+      "file": "old-html/knowledge/heart.html",
+      "insertBefore": "<section class=\"article-section\" id=\"related-care\">",
+      "relatedSectionId": "related-care",
+      "onThisPage": {
+        "from": "<div class=\"on-this-page-links\"><a href=\"#about-this-topic\">About this topic</a><a href=\"#patient-guides\">Patient guides</a><a href=\"#related-reading\">Related patient guides</a><a href=\"#related-care\">Related care at Woolloongabba Medical Centre</a><a href=\"#get-support\">Book or get support</a></div>",
+        "to": "<div class=\"on-this-page-links\"><a href=\"#about-this-topic\">About this topic</a><a href=\"#patient-guides\">Patient guides</a><a href=\"#related-reading\">Related patient guides</a><a href=\"#how-blood-circulates\">How blood circulates</a><a href=\"#heart-health-check\">Heart health check</a><a href=\"#related-care\">Related care at Woolloongabba Medical Centre</a><a href=\"#related-practitioners\">Related practitioners</a><a href=\"#get-support\">Book or get support</a></div>"
+      },
+      "extraServices": {
+        "anchorBefore": "<div class=\"practitioner-knowledge-links\">",
+        "links": [
+          {
+            "href": "../services/ecg.html",
+            "title": "ECG (Electrocardiogram)",
+            "label": "View service information →"
+          },
+          {
+            "href": "../services/chronic-disease-care.html",
+            "title": "Chronic Disease Care",
+            "label": "View service information →"
+          }
+        ]
+      },
+      "sections": [
+        {
+          "id": "how-blood-circulates",
+          "type": "education",
+          "eyebrow": "Educational overview",
+          "heading": "How blood circulates",
+          "paragraphs": [
+            "In usual circulation, blood returning from the body is pumped to the lungs. It receives oxygen in the lungs and returns to the heart. The heart then pumps that oxygen-rich blood around the body.",
+            "Blood travelling to the lungs, and blood returning from the body, carries less oxygen. Blood leaving the lungs and travelling out to the body carries more oxygen. The arrows in the diagrams show the direction of flow."
+          ],
+          "items": [
+            {
+              "title": "Blood returns to the heart from the body",
+              "text": "Veins carry blood from the body back to the heart."
+            },
+            {
+              "title": "Blood travels to the lungs",
+              "text": "The heart pumps that blood to the lungs."
+            },
+            {
+              "title": "Blood receives oxygen in the lungs",
+              "text": "In the lungs, blood picks up oxygen."
+            },
+            {
+              "title": "Blood returns to the heart",
+              "text": "Oxygen-rich blood comes back from the lungs to the heart."
+            },
+            {
+              "title": "Blood is pumped around the body",
+              "text": "The heart pumps oxygen-rich blood out through the arteries to the body."
+            }
+          ],
+          "note": "Simplified diagram of normal circulation.",
+          "guideLink": { "href": "#patient-guides", "label": "Read the heart health patient guides" },
+          "figures": [
+            {
+              "file": "circulation-education.webp",
+              "role": "diagram",
+              "alt": "Diagram titled Heart and Blood Circulation, showing blood travelling to the lungs, returning to the heart, travelling to the body and returning from the body, with a legend for oxygen-poor and oxygen-rich blood.",
+              "caption": "Educational diagram of heart and blood circulation."
+            }
+          ]
+        },
+        {
+          "id": "heart-health-check",
+          "type": "checklist",
+          "eyebrow": "Consultation checklist",
+          "heading": "What may happen during a heart health check",
+          "paragraphs": [
+            "A heart health check looks at combined information rather than one reading. A GP may ask about medical and family history, review relevant measurements, and explain results in the context of your overall health.",
+            "What is considered depends on individual circumstances. An appointment does not, by itself, decide Medicare eligibility."
+          ],
+          "items": [
+            {
+              "title": "Discuss medical and family history",
+              "text": "Your doctor will ask about your personal health, family history and lifestyle to get a clearer picture of your heart health."
+            },
+            {
+              "title": "Review relevant measurements",
+              "text": "Your doctor may check things like your blood pressure, heart rate, and other relevant measures to assess your heart health."
+            },
+            {
+              "title": "Understand results in context",
+              "text": "Your doctor will explain what your results mean in the context of your overall health, medical history and individual circumstances."
+            },
+            {
+              "title": "Discuss overall cardiovascular risk",
+              "text": "Your doctor will look at your combined information to understand your overall cardiovascular risk and what it may mean for your future health."
+            },
+            {
+              "title": "Plan future healthcare conversations",
+              "text": "Your doctor will discuss when to next review your heart health and what to keep in mind for future appointments."
+            }
+          ],
+          "note": "Assessment and Medicare eligibility depend on individual circumstances.",
+          "figures": []
+        }
+      ]
+    },
+    {
+      "file": "old-html/knowledge/mental-health.html",
+      "insertBefore": "<section class=\"article-section\" id=\"related-care-at-woolloongabba-medical-centre\">",
+      "relatedSectionId": "related-care-at-woolloongabba-medical-centre",
+      "onThisPage": {
+        "from": "<div class=\"on-this-page-links\"><a href=\"#understanding-mental-health\">Understanding Mental Health</a><a href=\"#patient-guides\">Patient guides</a><a href=\"#related-care-at-woolloongabba-medical-centre\">Related care at Woolloongabba Medical Centre</a></div>",
+        "to": "<div class=\"on-this-page-links\"><a href=\"#understanding-mental-health\">Understanding Mental Health</a><a href=\"#patient-guides\">Patient guides</a><a href=\"#mental-wellbeing\">Mental wellbeing</a><a href=\"#gp-mental-health-conversation\">GP mental health conversation</a><a href=\"#related-care-at-woolloongabba-medical-centre\">Related care at Woolloongabba Medical Centre</a><a href=\"#related-practitioners\">Related practitioners</a></div>"
+      },
+      "practitioners": [
+        {
+          "href": "../doctors/dr-sumita-singh.html",
+          "name": "Dr Sumita Singh",
+          "summary": "General practice; interests include women’s health and mental health"
+        },
+        {
+          "href": "../doctors/dr-tanya-goodwill.html",
+          "name": "Dr Tanya Goodwill",
+          "summary": "General practice; interests include mental health care, women’s health, children’s health, chronic care and weight management"
+        }
+      ],
+      "sections": [
+        {
+          "id": "mental-wellbeing",
+          "type": "education",
+          "eyebrow": "Educational overview",
+          "heading": "Mental wellbeing and everyday life",
+          "paragraphs": [
+            "Mental wellbeing can sit alongside sleep, physical health, everyday routines, work or study, and relationships. These areas may interact differently for each person.",
+            "A GP can listen to concerns and discuss appropriate professional support. The topics below are a starting point for that conversation, not a list of symptoms that applies to everyone."
+          ],
+          "items": [
+            {
+              "title": "Sleep and rest",
+              "text": "You can discuss your sleep, rest and daily energy."
+            },
+            {
+              "title": "Physical health",
+              "text": "Talk about physical health and everyday wellbeing."
+            },
+            {
+              "title": "Relationships and support",
+              "text": "Share what connections and support mean to you."
+            },
+            {
+              "title": "Work or study",
+              "text": "Discuss your routines and responsibilities."
+            },
+            {
+              "title": "Everyday activities",
+              "text": "Talk about the things that matter in daily life."
+            }
+          ],
+          "note": "Everyone's experience is different.",
+          "guideLink": { "href": "#patient-guides", "label": "Read the mental health patient guides" },
+          "figures": [
+            {
+              "file": "mental-wellbeing-education.webp",
+              "role": "diagram",
+              "alt": "Diagram titled Mental Wellbeing and Everyday Life, linking mental wellbeing with sleep, physical health, everyday functioning, work or study, and relationships.",
+              "caption": "Educational diagram of mental wellbeing and everyday life."
+            }
+          ]
+        },
+        {
+          "id": "gp-mental-health-conversation",
+          "type": "checklist",
+          "eyebrow": "Consultation checklist",
+          "heading": "What to expect during a GP mental health conversation",
+          "paragraphs": [
+            "A GP conversation is individual. You can talk about concerns that matter to you, and about everyday life, including routines, relationships, rest or work. You can ask how privacy works and where its limits are.",
+            "If you or someone else is in immediate danger, call 000."
+          ],
+          "items": [
+            {
+              "title": "Share your concerns",
+              "text": "Talk about concerns that matter to you."
+            },
+            {
+              "title": "Talk about everyday life",
+              "text": "Discuss routines, relationships, rest or work."
+            },
+            {
+              "title": "Ask about privacy and confidentiality",
+              "text": "Your GP can explain how privacy works and its limits."
+            },
+            {
+              "title": "Discuss professional support options",
+              "text": "Explore support options that may suit your needs."
+            },
+            {
+              "title": "Plan follow-up conversations",
+              "text": "Discuss whether and when to meet again."
+            }
+          ],
+          "note": "You can bring notes and ask questions. Every conversation is individual.",
+          "links": [
+            {
+              "href": "../privacy-confidentiality.html",
+              "label": "Privacy & Confidentiality"
+            }
+          ],
+          "figures": []
+        }
+      ]
+    }
+  ]
+}

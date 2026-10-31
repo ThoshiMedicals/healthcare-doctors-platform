@@ -191,11 +191,10 @@ export const PRACTITIONER_QA_AUDIT_QA2: PractitionerQaAudit = (() => {
     promptId: "QA2",
     assessedOn: "2026-10-26",
     environment: "http://127.0.0.1:3100/",
-    templateCount: 13,
+    templateCount: 12,
     templatePaths: [
       "old-html/doctors/dr-anand-singh.html",
       "old-html/doctors/dr-debra-larkins.html",
-      "old-html/doctors/dr-gemunu-suresh-ranawake.html",
       "old-html/doctors/dr-kooshyar-karimi.html",
       "old-html/doctors/dr-mary-abadir.html",
       "old-html/doctors/dr-nirupa-sivathasan.html",
