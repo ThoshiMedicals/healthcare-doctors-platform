@@ -94,3 +94,23 @@ test("the direct static index also contains all release-critical links", () => {
   assert.match(content, /href="\/favicon\.ico\?v=hd-symbol-20261029b"/);
   assert.doesNotMatch(content, /<link\b[^>]*href="assets\/brand\/wmc-brand-mark\.webp"/);
 });
+
+test("published pages version site.js once without changing other scripts", () => {
+  for (const src of ["site.js", "../site.js", "../../site.js"]) {
+    const html = `<html><body><script defer src="${src}"></script><script defer src="digital-reception.js"></script></body></html>`;
+    const rendered = applyPublicUxRefinements(html, "services/family-health.html");
+    assert.ok(rendered.includes(`src="${src}?v=wmc-nav-20261101"`), src);
+    assert.ok(rendered.includes('src="digital-reception.js"'), src);
+    assert.equal(applyPublicUxRefinements(rendered, "services/family-health.html"), rendered, src);
+  }
+});
+
+test("public menu binds only one click handler and preserves keyboard and focus support", () => {
+  const source = readFileSync(path.resolve(process.cwd(), "public/site.js"), "utf8");
+  assert.equal((source.match(/toggle\\.addEventListener\\(['"]click['"]/g) ?? []).length, 1);
+  assert.doesNotMatch(source, /Emergency mobile menu fallback/);
+  assert.match(source, /setMenuState\\(false, true\\)/);
+  assert.match(source, /aria-expanded/);
+  assert.match(source, /focusin/);
+  assert.match(source, /pointerdown/);
+});
