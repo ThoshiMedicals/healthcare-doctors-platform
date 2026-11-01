@@ -107,9 +107,9 @@ test("published pages version site.js once without changing other scripts", () =
 
 test("public menu binds only one click handler and preserves keyboard and focus support", () => {
   const source = readFileSync(path.resolve(process.cwd(), "public/site.js"), "utf8");
-  assert.equal((source.match(/toggle\\.addEventListener\\(['"]click['"]/g) ?? []).length, 1);
+  assert.equal((source.match(/toggle\.addEventListener\(['"]click['"]/g) ?? []).length, 1);
   assert.doesNotMatch(source, /Emergency mobile menu fallback/);
-  assert.match(source, /setMenuState\\(false, true\\)/);
+  assert.match(source, /setMenuState\(false, true\)/);
   assert.match(source, /aria-expanded/);
   assert.match(source, /focusin/);
   assert.match(source, /pointerdown/);
