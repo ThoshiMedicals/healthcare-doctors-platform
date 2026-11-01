@@ -1076,10 +1076,19 @@
       title = h1 ? `Ready to book with ${h1}?` : 'Ready to book with this practitioner?';
       support = 'Use online booking for this practitioner, or call reception for help choosing an appointment.';
       const bookHref = practitionerBook?.getAttribute('href') || CLINIC_BOOK;
-      links = [
-        { href: bookHref, label: 'Book Appointment', primary: true, book: true, practitioner: !!practitionerBook },
-        { href: TEL, label: 'Call Reception', call: true }
-      ];
+      // Phone-only practitioner destinations must never be treated as HotDoc links.
+      const phoneOnly = /^tel:/i.test(bookHref);
+      if (phoneOnly) {
+        support = 'Call reception to arrange an appointment with this practitioner.';
+        links = [
+          { href: bookHref, label: 'Call Reception to Book', primary: true, call: true }
+        ];
+      } else {
+        links = [
+          { href: bookHref, label: 'Book Appointment', primary: true, book: true, practitioner: !!practitionerBook },
+          { href: TEL, label: 'Call Reception', call: true }
+        ];
+      }
       const firstService = document.querySelector('#related-services a.resource-link, #areas-of-care a.service-title-link');
       if (firstService) {
         links.push({ href: firstService.getAttribute('href'), label: 'Related Service', related: true });
@@ -1154,7 +1163,8 @@
         a.setAttribute('data-hotdoc-button', '');
         a.setAttribute('data-hotdoc-widget', 'lightbox');
       }
-      if (item.call) a.setAttribute('aria-label', 'Call Woolloongabba Medical Centre on (07) 3217 3344');
+      // Use the visible 'Call Reception to Book' text as the accessible name for phone-only primary CTAs.
+      if (item.call && !item.primary) a.setAttribute('aria-label', 'Call Woolloongabba Medical Centre on (07) 3217 3344');
       a.href = item.href;
       a.textContent = item.label;
       linkRow.append(a);
