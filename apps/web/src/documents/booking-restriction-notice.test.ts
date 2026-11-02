@@ -80,11 +80,17 @@ test("preserves existing Mental Health and Skin Checks insurance notices", () =>
   }
 });
 
-test("golden insurance profiles receive generated notices through public UX", () => {
+test("golden insurance profiles keep baked notices and stay idempotent under public UX", () => {
   const root = path.resolve(process.cwd(), "../../old-html/doctors");
   for (const [file, name, slug] of insuranceProfiles) {
     const source = readFileSync(path.join(root, file), "utf8");
-    assert.doesNotMatch(source, /class="practitioner-booking-notice"/, file);
+    // Approved model: notices are committed in golden HTML (HotDoc slug remains the injector fallback).
+    assert.match(
+      source,
+      new RegExp(`practitioner-booking-notice[\\s\\S]*${name} does not bulk bill for insurance patients`),
+      file,
+    );
+    assert.match(source, new RegExp(`/doctors/${slug}\\?wp=w_lightbox`), file);
     const result = applyPublicUxRefinements(source, `doctors/${file}`);
     assert.match(
       result,
@@ -92,6 +98,8 @@ test("golden insurance profiles receive generated notices through public UX", ()
       file,
     );
     assert.match(result, new RegExp(`/doctors/${slug}\\?wp=w_lightbox`), file);
+    const noticeCount = (result.match(/class="practitioner-booking-notice"/g) || []).length;
+    assert.equal(noticeCount, (source.match(/class="practitioner-booking-notice"/g) || []).length, file);
     assert.equal(applyPublicUxRefinements(result, `doctors/${file}`), result, file);
   }
 });

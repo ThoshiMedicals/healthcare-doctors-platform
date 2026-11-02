@@ -1008,16 +1008,8 @@
       });
     };
 
-    const placeRestriction = () => {
-      const notice = document.querySelector('.practitioner-booking-notice');
-      const bar = document.querySelector('.persistent-care-actions');
-      const inner = document.querySelector('.persistent-care-actions-inner');
-      if (!notice || !bar || !inner || inner.querySelector('.persistent-care-restriction')) return;
-      const copy = notice.cloneNode(true);
-      copy.classList.add('persistent-care-restriction');
-      inner.prepend(copy);
-      bar.classList.add('has-restriction');
-    };
+    // Do not clone booking notes into the sticky care bar — keep notices beside
+    // profile / lead booking CTAs only (see ensureInsuranceNotice + public-ux HTML).
 
     const applyDuplicates = () => {
       standardise();
@@ -1057,7 +1049,6 @@
     };
 
     ensureInsuranceNotice();
-    placeRestriction();
     applyDuplicates();
     sync();
     document.addEventListener('scroll', sync, { passive: true, capture: true });
