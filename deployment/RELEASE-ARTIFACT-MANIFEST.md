@@ -1,8 +1,9 @@
 # WMC release artifact manifest — commit-ready
 
-**Date:** 2026-11-02  
+**Date:** 2026-11-03  
 **Branch:** `rg01-release-gate-repairs`  
 **Base tip (pre-commit):** `09b7d78`  
+**Release SHA:** `3875dc3` (`3875dc34edae2bf39cb591835455484876803acc`) — pushed to `origin/rg01-release-gate-repairs`  
 **Target:** one production release commit covering Phase 1A–1C authority assets, authority/service HTML, insurance-notice golden fixes, `site.js` placeRestriction removal, and aligned tests.
 
 This file is an operator staging list. It does not change public content.
@@ -15,8 +16,8 @@ This file is an operator staging list. It does not change public content.
 | Authority / service / insurance HTML in working tree | PASS — included below |
 | `placeRestriction` removed from `site.js` | PASS — absent in `old-html/site.js` and `apps/web/public/site.js` (byte-identical); bust `site.js?v=wmc-nav-20261102d` |
 | Insurance-notice tests match baked golden model | PASS — `booking-restriction-notice.test.ts` + `public-ux.test.ts` (16/16) |
-| Commit created / tip advanced | **PENDING** — not committed in this pass |
-| LAUNCH.md DNS cutover ops | **OPEN** — see CRITICAL blockers |
+| Commit created / tip advanced | **PASS** — `3875dc3` committed and pushed |
+| LAUNCH.md DNS cutover ops | **OPEN** — see `deployment/DNS-CUTOVER-CHECKLIST.md` |
 
 ## Include in the release commit
 
