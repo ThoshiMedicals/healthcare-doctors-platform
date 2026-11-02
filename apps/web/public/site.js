@@ -1532,26 +1532,3 @@
   practitionerSection?.classList.add('service-hub-destination', 'service-hub-destination--practitioners');
   bookSection?.classList.add('service-hub-destination', 'service-hub-destination--book');
 })();
-/* Emergency mobile menu fallback */
-(() => {
-  const toggle = document.querySelector('.menu-toggle');
-  const nav = document.getElementById('primary-nav');
-
-  if (!toggle || !nav) return;
-
-  if (!toggle.dataset.menuBound) {
-    toggle.dataset.menuBound = 'true';
-
-    toggle.addEventListener('click', () => {
-      const open = nav.classList.toggle('open');
-
-      toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute(
-        'aria-label',
-        open ? 'Close navigation menu' : 'Open navigation menu'
-      );
-
-      toggle.textContent = open ? 'Close' : 'Menu';
-    });
-  }
-})();
