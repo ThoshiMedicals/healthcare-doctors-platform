@@ -9723,15 +9723,16 @@ a.portrait.practitioner-no-photo{
     inset:auto!important;
     order:1!important;
     width:100%!important;
-    height:230px!important;
-    min-height:230px!important;
+    height:auto!important;
+    min-height:0!important;
   }
   .home-page #home .hero-picture,
   .home-page #home .hero-picture .hero-photo{
     width:100%!important;
-    height:230px!important;
-    object-fit:cover!important;
-    object-position:center 62%!important;
+    height:auto!important;
+    aspect-ratio:1672 / 941!important;
+    object-fit:contain!important;
+    object-position:center center!important;
   }
   .home-page #home .hero-copy{
     position:relative!important;
@@ -12210,7 +12211,8 @@ header .patient-tasks{
     height:auto!important;
     min-height:0!important;
     max-height:none!important;
-    aspect-ratio:820 / 941!important;
+    /* Full exterior hero (same framing as desktop), not a portrait crop. */
+    aspect-ratio:1672 / 941!important;
     object-fit:contain!important;
     object-position:center center!important;
   }

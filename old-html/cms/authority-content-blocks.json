@@ -44,29 +44,8 @@
           "paragraphs": [
             "Glucose is a type of sugar the body uses for energy. In usual digestion, carbohydrates in food are broken down in the stomach and small intestine. Glucose is absorbed into the bloodstream and travels through the body.",
             "When blood glucose rises after eating, the pancreas releases insulin. Insulin helps glucose move from the bloodstream into body cells. Inside cells, glucose can be broken down to release the energy used for everyday functions such as muscle movement, brain activity and organ function.",
-            "This is a simplified explanation of usual glucose use. It does not describe a personal diabetes plan, a target result, or a treatment."
-          ],
-          "items": [
-            {
-              "title": "Food is digested",
-              "text": "Carbohydrates in food are broken down into glucose in the stomach and small intestine."
-            },
-            {
-              "title": "Glucose enters the bloodstream",
-              "text": "Glucose is absorbed from the intestine into the bloodstream and travels through the body."
-            },
-            {
-              "title": "The pancreas produces insulin",
-              "text": "As blood glucose levels rise after eating, the pancreas releases insulin into the bloodstream."
-            },
-            {
-              "title": "Insulin helps glucose enter body cells",
-              "text": "Insulin binds to receptors on body cells, helping glucose move from the bloodstream into the cells."
-            },
-            {
-              "title": "Cells use glucose for energy",
-              "text": "Once inside cells, glucose is broken down to release energy for everyday body functions."
-            }
+            "This is a simplified explanation of usual glucose use. It does not describe a personal diabetes plan, a target result, or a treatment.",
+            "In diabetes, a review looks at more than one glucose result. It can also cover health history, overall health, and when to meet again."
           ],
           "note": "Simplified educational illustration.",
           "guideLink": { "href": "#patient-guides", "label": "Read the diabetes patient guides" },
@@ -115,6 +94,12 @@
             }
           ],
           "note": "Your healthcare review will depend on your individual needs.",
+          "links": [
+            {
+              "href": "articles/diabetes-care-plans-explained.html",
+              "label": "See the diabetes review journey"
+            }
+          ],
           "figures": []
         }
       ]
@@ -150,29 +135,7 @@
           "heading": "How blood circulates",
           "paragraphs": [
             "In usual circulation, blood returning from the body is pumped to the lungs. It receives oxygen in the lungs and returns to the heart. The heart then pumps that oxygen-rich blood around the body.",
-            "Blood travelling to the lungs, and blood returning from the body, carries less oxygen. Blood leaving the lungs and travelling out to the body carries more oxygen. The arrows in the diagrams show the direction of flow."
-          ],
-          "items": [
-            {
-              "title": "Blood returns to the heart from the body",
-              "text": "Veins carry blood from the body back to the heart."
-            },
-            {
-              "title": "Blood travels to the lungs",
-              "text": "The heart pumps that blood to the lungs."
-            },
-            {
-              "title": "Blood receives oxygen in the lungs",
-              "text": "In the lungs, blood picks up oxygen."
-            },
-            {
-              "title": "Blood returns to the heart",
-              "text": "Oxygen-rich blood comes back from the lungs to the heart."
-            },
-            {
-              "title": "Blood is pumped around the body",
-              "text": "The heart pumps oxygen-rich blood out through the arteries to the body."
-            }
+            "Blood travelling to the lungs, and blood returning from the body, carries less oxygen. Blood leaving the lungs and travelling out to the body carries more oxygen. The arrows in the diagram show the direction of flow."
           ],
           "note": "Simplified diagram of normal circulation.",
           "guideLink": { "href": "#patient-guides", "label": "Read the heart health patient guides" },
@@ -217,6 +180,12 @@
             }
           ],
           "note": "Assessment and Medicare eligibility depend on individual circumstances.",
+          "links": [
+            {
+              "href": "articles/heart-health-checks.html",
+              "label": "See what a heart health check may include"
+            }
+          ],
           "figures": []
         }
       ]
@@ -245,6 +214,7 @@
         {
           "id": "mental-wellbeing",
           "type": "education",
+          "plainList": true,
           "eyebrow": "Educational overview",
           "heading": "Mental wellbeing and everyday life",
           "paragraphs": [
@@ -317,6 +287,14 @@
           ],
           "note": "You can bring notes and ask questions. Every conversation is individual.",
           "links": [
+            {
+              "href": "../services/mental-health.html",
+              "label": "Read about a mental health appointment"
+            },
+            {
+              "href": "articles/what-happens-during-a-mental-health-care-plan.html",
+              "label": "Read what happens during a mental health care plan"
+            },
             {
               "href": "../privacy-confidentiality.html",
               "label": "Privacy & Confidentiality"

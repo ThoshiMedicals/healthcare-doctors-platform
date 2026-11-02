@@ -53,6 +53,14 @@ function checklist(items) {
   return `<ol class="authority-checklist">${items.map((item, index) => `<li><span class="authority-step" aria-hidden="true">${index + 1}</span><div><strong>${esc(item.title)}</strong><span>${esc(item.text)}</span></div></li>`).join("")}</ol>`;
 }
 
+function itemList(block) {
+  if (!block.items?.length) return "";
+  if (block.plainList) {
+    return `<ul class="service-care-list">${block.items.map((item) => `<li><strong>${esc(item.title)}.</strong> ${esc(item.text)}</li>`).join("")}</ul>`;
+  }
+  return checklist(block.items);
+}
+
 function renderSection(block) {
   const approved = (block.figures || []).filter((item) => item.role !== "hero");
   const byRole = (role) => approved.filter((item) => item.role === role).map(figure).join("\n");
@@ -68,7 +76,7 @@ function renderSection(block) {
 ${paragraphs}
 ${byRole("hero")}
 ${byRole("diagram")}
-${block.items ? checklist(block.items) : ""}
+${itemList(block)}
 ${byRole("infographic")}
 ${note}
 ${links}

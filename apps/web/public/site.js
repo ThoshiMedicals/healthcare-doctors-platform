@@ -472,7 +472,10 @@
   };
 
   if (toggle && nav) {
-    toggle.addEventListener('click', () => {
+    // stopImmediatePropagation blocks any later duplicate click binder (for example a
+    // stale cached trailing toggle) from opening then immediately closing the menu.
+    toggle.addEventListener('click', event => {
+      event.stopImmediatePropagation();
       const opening = !nav.classList.contains('open');
       setMenuState(opening);
       if (opening && isCompactNavigation()) {
@@ -507,10 +510,6 @@
       if (!isCompactNavigation() && nav.classList.contains('open')) setMenuState(false);
     }, { passive: true });
 
- 	console.log('WMC NAV INIT');
-	console.log('toggle', toggle);
-	console.log('nav', nav);
-
     window.WMCNavigation = {
       closeCompact() {
         if (isCompactNavigation() && nav.classList.contains('open')) setMenuState(false);
@@ -538,7 +537,12 @@
   document.querySelectorAll('a[href^="tel:"]').forEach(link => {
     if (!link.hasAttribute('aria-label')) {
       const visible = link.textContent.trim().replace(/\s+/g, ' ');
-      link.setAttribute('aria-label', visible ? `Call ${visible}` : 'Call the practice');
+      const label = !visible
+        ? 'Call the practice'
+        : /^call\b/i.test(visible)
+          ? visible
+          : `Call ${visible}`;
+      link.setAttribute('aria-label', label);
     }
   });
 
@@ -1076,10 +1080,19 @@
       title = h1 ? `Ready to book with ${h1}?` : 'Ready to book with this practitioner?';
       support = 'Use online booking for this practitioner, or call reception for help choosing an appointment.';
       const bookHref = practitionerBook?.getAttribute('href') || CLINIC_BOOK;
-      links = [
-        { href: bookHref, label: 'Book Appointment', primary: true, book: true, practitioner: !!practitionerBook },
-        { href: TEL, label: 'Call Reception', call: true }
-      ];
+      // Phone-only practitioner destinations must never be treated as HotDoc links.
+      const phoneOnly = /^tel:/i.test(bookHref);
+      if (phoneOnly) {
+        support = 'Call reception to arrange an appointment with this practitioner.';
+        links = [
+          { href: bookHref, label: 'Call Reception to Book', primary: true, call: true }
+        ];
+      } else {
+        links = [
+          { href: bookHref, label: 'Book Appointment', primary: true, book: true, practitioner: !!practitionerBook },
+          { href: TEL, label: 'Call Reception', call: true }
+        ];
+      }
       const firstService = document.querySelector('#related-services a.resource-link, #areas-of-care a.service-title-link');
       if (firstService) {
         links.push({ href: firstService.getAttribute('href'), label: 'Related Service', related: true });
@@ -1154,7 +1167,8 @@
         a.setAttribute('data-hotdoc-button', '');
         a.setAttribute('data-hotdoc-widget', 'lightbox');
       }
-      if (item.call) a.setAttribute('aria-label', 'Call Woolloongabba Medical Centre on (07) 3217 3344');
+      // Use the visible 'Call Reception to Book' text as the accessible name for phone-only primary CTAs.
+      if (item.call && !item.primary) a.setAttribute('aria-label', 'Call Woolloongabba Medical Centre on (07) 3217 3344');
       a.href = item.href;
       a.textContent = item.label;
       linkRow.append(a);
@@ -1204,7 +1218,7 @@
    Peer recommendations use the published related-service graph only.
    No availability, suitability, or clinical ranking claims. */
 (() => {
-  const PEERS = {"generated":"2026-10-26","source":"search-index/doctors.json + services.json (shared service links only)","disclaimer":"Peer links are based on publicly listed related services on practitioner profiles. They do not indicate availability, clinical suitability, or a recommendation of one practitioner over another.","practitioners":{"doctors/dr-anand-singh.html":{"name":"Dr Anand Singh","expertise":["Family Health","Children’s Health","Skin Checks","Women’s Health","Skin Cancer Care","Preventive Healthcare"],"peers":[{"url":"doctors/dr-tanya-goodwill.html","name":"Dr Tanya Goodwill","shared":["Family Health","Children’s Health","Skin Checks"],"count":5},{"url":"doctors/dr-wasantha-hettiarchchi.html","name":"Dr Wasantha Hettiarchchi","shared":["Family Health","Skin Checks","Women’s Health"],"count":5},{"url":"doctors/dr-debra-larkins.html","name":"Dr Debra Larkins","shared":["Family Health","Women’s Health","Preventive Healthcare"],"count":3},{"url":"doctors/dr-kooshyar-karimi.html","name":"Dr Kooshyar Karimi","shared":["Family Health","Skin Checks","Skin Cancer Care"],"count":3}]},"doctors/dr-debra-larkins.html":{"name":"Dr Debra Larkins","expertise":["Family Health","Antenatal & Postnatal Care","Women’s Health","Preventive Healthcare"],"peers":[{"url":"doctors/dr-wasantha-hettiarchchi.html","name":"Dr Wasantha Hettiarchchi","shared":["Family Health","Antenatal & Postnatal Care","Women’s Health"],"count":4},{"url":"doctors/dr-anand-singh.html","name":"Dr Anand Singh","shared":["Family Health","Women’s Health","Preventive Healthcare"],"count":3},{"url":"doctors/dr-mary-abadir.html","name":"Dr Mary Abadir, Gynaecologist","shared":["Family Health","Antenatal & Postnatal Care","Women’s Health"],"count":3},{"url":"doctors/dr-tanya-goodwill.html","name":"Dr Tanya Goodwill","shared":["Family Health","Antenatal & Postnatal Care","Women’s Health"],"count":3}]},{"url":"doctors/dr-usman-gul.html","name":"Dr Usman Gul","shared":["Family Health","Men’s Health","Telehealth"],"count":3},{"url":"doctors/dr-wasantha-hettiarchchi.html","name":"Dr Wasantha Hettiarchchi","shared":["Family Health","Chronic Disease Care","Men’s Health"],"count":3},{"url":"doctors/dr-anand-singh.html","name":"Dr Anand Singh","shared":["Family Health","Children’s Health"],"count":2}]},"doctors/dr-kooshyar-karimi.html":{"name":"Dr Kooshyar Karimi","expertise":["Family Health","Chronic Disease Care","Medical Procedures","Skin Checks","Skin Cancer Care"],"peers":[{"url":"doctors/dr-tanya-goodwill.html","name":"Dr Tanya Goodwill","shared":["Family Health","Chronic Disease Care","Medical Procedures"],"count":5},{"url":"doctors/dr-wasantha-hettiarchchi.html","name":"Dr Wasantha Hettiarchchi","shared":["Family Health","Chronic Disease Care","Medical Procedures"],"count":5},{"url":"doctors/dr-anand-singh.html","name":"Dr Anand Singh","shared":["Family Health","Skin Checks","Skin Cancer Care"],"count":3}]},"doctors/dr-mary-abadir.html":{"name":"Dr Mary Abadir, Gynaecologist","expertise":["Pre-Pregnancy Care","Women’s Health","Antenatal & Postnatal Care","Cervical Screening","Family Health","IUD Insertion & Removal"],"peers":[{"url":"doctors/dr-debra-larkins.html","name":"Dr Debra Larkins","shared":["Women’s Health","Antenatal & Postnatal Care","Family Health"],"count":3},{"url":"doctors/dr-tanya-goodwill.html","name":"Dr Tanya Goodwill","shared":["Women’s Health","Antenatal & Postnatal Care","Family Health"],"count":3},{"url":"doctors/dr-wasantha-hettiarchchi.html","name":"Dr Wasantha Hettiarchchi","shared":["Women’s Health","Antenatal & Postnatal Care","Family Health"],"count":3},{"url":"doctors/dr-anand-singh.html","name":"Dr Anand Singh","shared":["Women’s Health","Family Health"],"count":2}]},"doctors/dr-nirupa-sivathasan.html":{"name":"Dr Nirupa Sivathasan","expertise":["Family Health","Preventive Healthcare","Chronic Disease Care"],"peers":[{"url":"doctors/dr-wasantha-hettiarchchi.html","name":"Dr Wasantha Hettiarchchi","shared":["Family Health","Preventive Healthcare","Chronic Disease Care"],"count":3},{"url":"doctors/dr-anand-singh.html","name":"Dr Anand Singh","shared":["Family Health","Preventive Healthcare"],"count":2},{"url":"doctors/dr-debra-larkins.html","name":"Dr Debra Larkins","shared":["Family Health","Preventive Healthcare"],"count":2}]},"doctors/dr-sambo-luon.html":{"name":"Dr Sambo Luon","expertise":["Family Health","Preventive Healthcare","Vaccinations"],"peers":[{"url":"doctors/dr-wasantha-hettiarchchi.html","name":"Dr Wasantha Hettiarchchi","shared":["Family Health","Preventive Healthcare","Vaccinations"],"count":3},{"url":"doctors/dr-anand-singh.html","name":"Dr Anand Singh","shared":["Family Health","Preventive Healthcare"],"count":2},{"url":"doctors/dr-debra-larkins.html","name":"Dr Debra Larkins","shared":["Family Health","Preventive Healthcare"],"count":2},{"url":"doctors/dr-nirupa-sivathasan.html","name":"Dr Nirupa Sivathasan","shared":["Family Health","Preventive Healthcare"],"count":2}]},"doctors/dr-steven-chang.html":{"name":"Dr Steven Chang, Chiropractor","expertise":["Allied Health"],"peers":[{"url":"doctors/dr-tanya-goodwill.html","name":"Dr Tanya Goodwill","shared":["Allied Health"],"count":1},{"url":"doctors/mr-samuel-stafford.html","name":"Samuel Stafford, Physio","shared":["Allied Health"],"count":1}]},"doctors/dr-sumita-singh.html":{"name":"Dr Sumita Singh","expertise":["Family Health","Women’s Health","Mental Health Care"],"peers":[{"url":"doctors/dr-tanya-goodwill.html","name":"Dr Tanya Goodwill","shared":["Family Health","Women’s Health","Mental Health Care"],"count":3},{"url":"doctors/dr-anand-singh.html","name":"Dr Anand Singh","shared":["Family Health","Women’s Health"],"count":2},{"url":"doctors/dr-debra-larkins.html","name":"Dr Debra Larkins","shared":["Family Health","Women’s Health"],"count":2}]},"doctors/dr-tanya-goodwill.html":{"name":"Dr Tanya Goodwill","expertise":["Family Health","Women’s Health","Children’s Health","Chronic Disease Care","Skin Checks","Mental Health Care"],"peers":[{"url":"doctors/dr-wasantha-hettiarchchi.html","name":"Dr Wasantha Hettiarchchi","shared":["Family Health","Women’s Health","Chronic Disease Care"],"count":7},{"url":"doctors/dr-anand-singh.html","name":"Dr Anand Singh","shared":["Family Health","Women’s Health","Children’s Health"],"count":5},{"url":"doctors/dr-kooshyar-karimi.html","name":"Dr Kooshyar Karimi","shared":["Family Health","Chronic Disease Care","Skin Checks"],"count":5}]},"doctors/dr-usman-gul.html":{"name":"Dr Usman Gul","expertise":["Family Health","Men’s Health","Telehealth"],"peers":[{"url":"doctors/dr-wasantha-hettiarchchi.html","name":"Dr Wasantha Hettiarchchi","shared":["Family Health","Men’s Health"],"count":2},{"url":"doctors/dr-anand-singh.html","name":"Dr Anand Singh","shared":["Family Health"],"count":1},{"url":"doctors/dr-debra-larkins.html","name":"Dr Debra Larkins","shared":["Family Health"],"count":1}]},"doctors/dr-wasantha-hettiarchchi.html":{"name":"Dr Wasantha Hettiarchchi","expertise":["Family Health","Chronic Disease Care","Men’s Health","Medical Procedures","Antenatal & Postnatal Care","Skin Checks"],"peers":[{"url":"doctors/dr-tanya-goodwill.html","name":"Dr Tanya Goodwill","shared":["Family Health","Chronic Disease Care","Medical Procedures"],"count":7},{"url":"doctors/dr-anand-singh.html","name":"Dr Anand Singh","shared":["Family Health","Skin Checks","Women’s Health"],"count":5},{"url":"doctors/dr-kooshyar-karimi.html","name":"Dr Kooshyar Karimi","shared":["Family Health","Chronic Disease Care","Medical Procedures"],"count":5},{"url":"doctors/dr-debra-larkins.html","name":"Dr Debra Larkins","shared":["Family Health","Antenatal & Postnatal Care","Women’s Health"],"count":4}]},"doctors/mr-samuel-stafford.html":{"name":"Samuel Stafford, Physio","expertise":["Allied Health"],"peers":[{"url":"doctors/dr-steven-chang.html","name":"Dr Steven Chang, Chiropractor","shared":["Allied Health"],"count":1},{"url":"doctors/dr-tanya-goodwill.html","name":"Dr Tanya Goodwill","shared":["Allied Health"],"count":1}]}}};
+  const PEERS = {"generated":"2026-10-26","source":"search-index/doctors.json + services.json (shared service links only)","disclaimer":"Peer links are based on publicly listed related services on practitioner profiles. They do not indicate availability, clinical suitability, or a recommendation of one practitioner over another.","practitioners":{"doctors/dr-anand-singh.html":{"name":"Dr Anand Singh","expertise":["Family Health","Children’s Health","Skin Checks","Women’s Health","Skin Cancer Care","Preventive Healthcare"],"peers":[{"url":"doctors/dr-tanya-goodwill.html","name":"Dr Tanya Goodwill","shared":["Family Health","Children’s Health","Skin Checks"],"count":5},{"url":"doctors/dr-wasantha-hettiarchchi.html","name":"Dr Wasantha Hettiarchchi","shared":["Family Health","Skin Checks","Women’s Health"],"count":5},{"url":"doctors/dr-debra-larkins.html","name":"Dr Debra Larkins","shared":["Family Health","Women’s Health","Preventive Healthcare"],"count":3},{"url":"doctors/dr-kooshyar-karimi.html","name":"Dr Kooshyar Karimi","shared":["Family Health","Skin Checks","Skin Cancer Care"],"count":3}]},"doctors/dr-debra-larkins.html":{"name":"Dr Debra Larkins","expertise":["Family Health","Antenatal & Postnatal Care","Women’s Health","Preventive Healthcare"],"peers":[{"url":"doctors/dr-wasantha-hettiarchchi.html","name":"Dr Wasantha Hettiarchchi","shared":["Family Health","Antenatal & Postnatal Care","Women’s Health"],"count":4},{"url":"doctors/dr-anand-singh.html","name":"Dr Anand Singh","shared":["Family Health","Women’s Health","Preventive Healthcare"],"count":3},{"url":"doctors/dr-mary-abadir.html","name":"Dr Mary Abadir, Gynaecologist","shared":["Family Health","Antenatal & Postnatal Care","Women’s Health"],"count":3},{"url":"doctors/dr-tanya-goodwill.html","name":"Dr Tanya Goodwill","shared":["Family Health","Antenatal & Postnatal Care","Women’s Health"],"count":3}]},"doctors/dr-kooshyar-karimi.html":{"name":"Dr Kooshyar Karimi","expertise":["Family Health","Chronic Disease Care","Medical Procedures","Skin Checks","Skin Cancer Care"],"peers":[{"url":"doctors/dr-tanya-goodwill.html","name":"Dr Tanya Goodwill","shared":["Family Health","Chronic Disease Care","Medical Procedures"],"count":5},{"url":"doctors/dr-wasantha-hettiarchchi.html","name":"Dr Wasantha Hettiarchchi","shared":["Family Health","Chronic Disease Care","Medical Procedures"],"count":5},{"url":"doctors/dr-anand-singh.html","name":"Dr Anand Singh","shared":["Family Health","Skin Checks","Skin Cancer Care"],"count":3}]},"doctors/dr-mary-abadir.html":{"name":"Dr Mary Abadir, Gynaecologist","expertise":["Pre-Pregnancy Care","Women’s Health","Antenatal & Postnatal Care","Cervical Screening","Family Health","IUD Insertion & Removal"],"peers":[{"url":"doctors/dr-debra-larkins.html","name":"Dr Debra Larkins","shared":["Women’s Health","Antenatal & Postnatal Care","Family Health"],"count":3},{"url":"doctors/dr-tanya-goodwill.html","name":"Dr Tanya Goodwill","shared":["Women’s Health","Antenatal & Postnatal Care","Family Health"],"count":3},{"url":"doctors/dr-wasantha-hettiarchchi.html","name":"Dr Wasantha Hettiarchchi","shared":["Women’s Health","Antenatal & Postnatal Care","Family Health"],"count":3},{"url":"doctors/dr-anand-singh.html","name":"Dr Anand Singh","shared":["Women’s Health","Family Health"],"count":2}]},"doctors/dr-nirupa-sivathasan.html":{"name":"Dr Nirupa Sivathasan","expertise":["Family Health","Preventive Healthcare","Chronic Disease Care"],"peers":[{"url":"doctors/dr-wasantha-hettiarchchi.html","name":"Dr Wasantha Hettiarchchi","shared":["Family Health","Preventive Healthcare","Chronic Disease Care"],"count":3},{"url":"doctors/dr-anand-singh.html","name":"Dr Anand Singh","shared":["Family Health","Preventive Healthcare"],"count":2},{"url":"doctors/dr-debra-larkins.html","name":"Dr Debra Larkins","shared":["Family Health","Preventive Healthcare"],"count":2}]},"doctors/dr-sambo-luon.html":{"name":"Dr Sambo Luon","expertise":["Family Health","Preventive Healthcare","Vaccinations"],"peers":[{"url":"doctors/dr-wasantha-hettiarchchi.html","name":"Dr Wasantha Hettiarchchi","shared":["Family Health","Preventive Healthcare","Vaccinations"],"count":3},{"url":"doctors/dr-anand-singh.html","name":"Dr Anand Singh","shared":["Family Health","Preventive Healthcare"],"count":2},{"url":"doctors/dr-debra-larkins.html","name":"Dr Debra Larkins","shared":["Family Health","Preventive Healthcare"],"count":2},{"url":"doctors/dr-nirupa-sivathasan.html","name":"Dr Nirupa Sivathasan","shared":["Family Health","Preventive Healthcare"],"count":2}]},"doctors/dr-steven-chang.html":{"name":"Dr Steven Chang, Chiropractor","expertise":["Allied Health"],"peers":[{"url":"doctors/dr-tanya-goodwill.html","name":"Dr Tanya Goodwill","shared":["Allied Health"],"count":1},{"url":"doctors/mr-samuel-stafford.html","name":"Samuel Stafford, Physio","shared":["Allied Health"],"count":1}]},"doctors/dr-sumita-singh.html":{"name":"Dr Sumita Singh","expertise":["Family Health","Women’s Health","Mental Health Care"],"peers":[{"url":"doctors/dr-tanya-goodwill.html","name":"Dr Tanya Goodwill","shared":["Family Health","Women’s Health","Mental Health Care"],"count":3},{"url":"doctors/dr-anand-singh.html","name":"Dr Anand Singh","shared":["Family Health","Women’s Health"],"count":2},{"url":"doctors/dr-debra-larkins.html","name":"Dr Debra Larkins","shared":["Family Health","Women’s Health"],"count":2}]},"doctors/dr-tanya-goodwill.html":{"name":"Dr Tanya Goodwill","expertise":["Family Health","Women’s Health","Children’s Health","Chronic Disease Care","Skin Checks","Mental Health Care"],"peers":[{"url":"doctors/dr-wasantha-hettiarchchi.html","name":"Dr Wasantha Hettiarchchi","shared":["Family Health","Women’s Health","Chronic Disease Care"],"count":7},{"url":"doctors/dr-anand-singh.html","name":"Dr Anand Singh","shared":["Family Health","Women’s Health","Children’s Health"],"count":5},{"url":"doctors/dr-kooshyar-karimi.html","name":"Dr Kooshyar Karimi","shared":["Family Health","Chronic Disease Care","Skin Checks"],"count":5}]},"doctors/dr-usman-gul.html":{"name":"Dr Usman Gul","expertise":["Family Health","Men’s Health","Telehealth"],"peers":[{"url":"doctors/dr-wasantha-hettiarchchi.html","name":"Dr Wasantha Hettiarchchi","shared":["Family Health","Men’s Health"],"count":2},{"url":"doctors/dr-anand-singh.html","name":"Dr Anand Singh","shared":["Family Health"],"count":1},{"url":"doctors/dr-debra-larkins.html","name":"Dr Debra Larkins","shared":["Family Health"],"count":1}]},"doctors/dr-wasantha-hettiarchchi.html":{"name":"Dr Wasantha Hettiarchchi","expertise":["Family Health","Chronic Disease Care","Men’s Health","Medical Procedures","Antenatal & Postnatal Care","Skin Checks"],"peers":[{"url":"doctors/dr-tanya-goodwill.html","name":"Dr Tanya Goodwill","shared":["Family Health","Chronic Disease Care","Medical Procedures"],"count":7},{"url":"doctors/dr-anand-singh.html","name":"Dr Anand Singh","shared":["Family Health","Skin Checks","Women’s Health"],"count":5},{"url":"doctors/dr-kooshyar-karimi.html","name":"Dr Kooshyar Karimi","shared":["Family Health","Chronic Disease Care","Medical Procedures"],"count":5},{"url":"doctors/dr-debra-larkins.html","name":"Dr Debra Larkins","shared":["Family Health","Antenatal & Postnatal Care","Women’s Health"],"count":4}]},"doctors/mr-samuel-stafford.html":{"name":"Samuel Stafford, Physio","expertise":["Allied Health"],"peers":[{"url":"doctors/dr-steven-chang.html","name":"Dr Steven Chang, Chiropractor","shared":["Allied Health"],"count":1},{"url":"doctors/dr-tanya-goodwill.html","name":"Dr Tanya Goodwill","shared":["Allied Health"],"count":1}]}}};
 
   const path = (location.pathname || '').replace(/\\/g, '/');
   const depth = (path.match(/\/(doctors|services|knowledge)\//) || path.includes('/knowledge/articles/'))
@@ -1520,27 +1534,4 @@
   guideSection?.classList.add('service-hub-destination', 'service-hub-destination--guides');
   practitionerSection?.classList.add('service-hub-destination', 'service-hub-destination--practitioners');
   bookSection?.classList.add('service-hub-destination', 'service-hub-destination--book');
-})();
-/* Emergency mobile menu fallback */
-(() => {
-  const toggle = document.querySelector('.menu-toggle');
-  const nav = document.getElementById('primary-nav');
-
-  if (!toggle || !nav) return;
-
-  if (!toggle.dataset.menuBound) {
-    toggle.dataset.menuBound = 'true';
-
-    toggle.addEventListener('click', () => {
-      const open = nav.classList.toggle('open');
-
-      toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute(
-        'aria-label',
-        open ? 'Close navigation menu' : 'Open navigation menu'
-      );
-
-      toggle.textContent = open ? 'Close' : 'Menu';
-    });
-  }
 })();

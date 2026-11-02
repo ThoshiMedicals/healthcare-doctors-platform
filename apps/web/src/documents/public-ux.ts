@@ -8,6 +8,8 @@ export function applyPublicUxRefinements(html: string, pagePath: string): string
   next = next.replace(/<nav\b[^>]*\bclass="topic-wayfinding"[^>]*>[\s\S]*?<\/nav>/gi, "");
   // A new URL bypasses stale browser/Cloudflare CSS after visual-polish deployment.
   next = next.replace(/styles\.css(?=")/g, "styles.css?v=wmc-hero-group-20261030");
+  // site.js is otherwise cached for hours (CDN max-age); bust so mobile-nav fixes ship.
+  next = next.replace(/site\.js(?=")/g, "site.js?v=wmc-nav-20261102b");
 
   // Add Join Our Team in every public primary navigation using the Updates
   // link's existing relative prefix (works for nested services/knowledge pages).

@@ -85,6 +85,7 @@ test("the real homepage opening-hours block includes both links", () => {
   assert.match(result, /href="contact\.html">View all hours/);
   assert.match(result, /href="after-hours-care\.html">After Hours Care/);
   assert.match(result, /styles\.css\?v=wmc-hero-group-20261030/);
+  assert.match(result, /site\.js\?v=wmc-nav-20261102b/);
 });
 
 test("the direct static index also contains all release-critical links", () => {

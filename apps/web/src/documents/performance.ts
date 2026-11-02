@@ -58,7 +58,11 @@ export function optimiseHomepageDelivery(html: string, pagePath: string): string
     next = next
       .replace(
         '<source media="(max-width: 700px)" srcset="assets/hero-final-desktop.webp"/>',
-        '<source media="(max-width: 700px)" srcset="assets/hero-final-mobile.webp" width="820" height="941"/>',
+        '<source media="(max-width: 700px)" srcset="assets/hero-final-mobile.webp" width="1200" height="675"/>',
+      )
+      .replace(
+        /<source media="\(max-width: 700px\)" srcset="assets\/hero-final-mobile\.webp" width="\d+" height="\d+"\/>/,
+        '<source media="(max-width: 700px)" srcset="assets/hero-final-mobile.webp" width="1200" height="675"/>',
       )
       .replace(
         'href="assets/hero-final-desktop.webp" media="(max-width: 700px)"',
