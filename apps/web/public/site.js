@@ -968,6 +968,46 @@
       link.style.removeProperty('display');
     };
 
+    // Keep in sync with apps/web/src/documents/booking-restriction-notice.ts
+    const INSURANCE_BULK_BILL_SLUG = 'does-not-bulk-bill-for-insurance-patients';
+
+    const insuranceHref = href => typeof href === 'string' && href.includes(INSURANCE_BULK_BILL_SLUG) && !href.startsWith('tel:');
+
+    const nameFromInsuranceHref = href => {
+      try {
+        const path = new URL(href, 'https://www.hotdoc.com.au').pathname;
+        const slug = (path.match(/\/doctors\/([^/]+)/i) || [])[1] || '';
+        const stem = slug.replace(new RegExp('-?' + INSURANCE_BULK_BILL_SLUG + '$', 'i'), '');
+        if (!stem) return '';
+        return stem.split('-').filter(Boolean).map((part, index) => {
+          const lower = part.toLowerCase();
+          if (index === 0 && lower === 'dr') return 'Dr';
+          if (index === 0 && lower === 'mr') return 'Mr';
+          if (index === 0 && lower === 'ms') return 'Ms';
+          return lower.charAt(0).toUpperCase() + lower.slice(1);
+        }).join(' ');
+      } catch (_) {
+        return '';
+      }
+    };
+
+    const ensureInsuranceNotice = () => {
+      document.querySelectorAll('.doctor-profile-actions, .service-lead-booking').forEach(block => {
+        const link = [...block.querySelectorAll('a.wmc-book-appointment, a[data-hotdoc-button]')].find(a => insuranceHref(a.getAttribute('href') || a.href || ''));
+        if (!link) return;
+        const scope = block.classList.contains('service-lead-booking') ? block : block.parentElement || block;
+        if (scope.querySelector('.practitioner-booking-notice')) return;
+        if (block.nextElementSibling && block.nextElementSibling.classList && block.nextElementSibling.classList.contains('practitioner-booking-notice')) return;
+        const name = nameFromInsuranceHref(link.href);
+        if (!name) return;
+        const notice = document.createElement('p');
+        notice.className = 'practitioner-booking-notice';
+        notice.innerHTML = '<strong>Booking note:</strong> ' + name + ' does not bulk bill for insurance patients.';
+        if (block.classList.contains('service-lead-booking')) block.appendChild(notice);
+        else block.insertAdjacentElement('afterend', notice);
+      });
+    };
+
     const placeRestriction = () => {
       const notice = document.querySelector('.practitioner-booking-notice');
       const bar = document.querySelector('.persistent-care-actions');
@@ -1016,6 +1056,7 @@
       else bar.style.removeProperty('display');
     };
 
+    ensureInsuranceNotice();
     placeRestriction();
     applyDuplicates();
     sync();

@@ -2,6 +2,8 @@
  * Public-facing HTML presentation only.
  * Leave frozen golden pages, canonical URLs, classification and schema intact.
  */
+import { ensureInsuranceBookingNoticesInHtml } from "./booking-restriction-notice";
+
 export function applyPublicUxRefinements(html: string, pagePath: string): string {
   let next = html;
   // Topic cross-link bar under the hero (for example "Need ongoing diabetes care?").
@@ -9,7 +11,9 @@ export function applyPublicUxRefinements(html: string, pagePath: string): string
   // A new URL bypasses stale browser/Cloudflare CSS after visual-polish deployment.
   next = next.replace(/styles\.css(?=")/g, "styles.css?v=wmc-hero-group-20261030");
   // site.js is otherwise cached for hours (CDN max-age); bust so mobile-nav fixes ship.
-  next = next.replace(/site\.js(?=")/g, "site.js?v=wmc-nav-20261102b");
+  next = next.replace(/site\.js(?=")/g, "site.js?v=wmc-nav-20261102c");
+  // Insurance bulk-bill notes follow HotDoc practitioner slugs (not hand-authored per page).
+  next = ensureInsuranceBookingNoticesInHtml(next);
 
   // Add Join Our Team in every public primary navigation using the Updates
   // link's existing relative prefix (works for nested services/knowledge pages).
