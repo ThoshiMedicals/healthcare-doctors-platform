@@ -472,7 +472,10 @@
   };
 
   if (toggle && nav) {
-    toggle.addEventListener('click', () => {
+    // stopImmediatePropagation blocks any later duplicate click binder (for example a
+    // stale cached trailing toggle) from opening then immediately closing the menu.
+    toggle.addEventListener('click', event => {
+      event.stopImmediatePropagation();
       const opening = !nav.classList.contains('open');
       setMenuState(opening);
       if (opening && isCompactNavigation()) {

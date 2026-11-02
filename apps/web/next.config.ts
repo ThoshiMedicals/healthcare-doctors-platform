@@ -43,6 +43,11 @@ const nextConfig: NextConfig = {
           source,
           headers: [{ key: "Cache-Control", value: "no-cache, max-age=0, must-revalidate" }],
         })),
+      // Mobile nav lives in site.js; do not let CDN/browser keep a broken copy for hours.
+      {
+        source: "/site.js",
+        headers: [{ key: "Cache-Control", value: "no-cache, max-age=0, must-revalidate" }],
+      },
     ];
   },
 };
