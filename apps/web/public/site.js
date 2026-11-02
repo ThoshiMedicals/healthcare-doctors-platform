@@ -507,10 +507,6 @@
       if (!isCompactNavigation() && nav.classList.contains('open')) setMenuState(false);
     }, { passive: true });
 
- 	console.log('WMC NAV INIT');
-	console.log('toggle', toggle);
-	console.log('nav', nav);
-
     window.WMCNavigation = {
       closeCompact() {
         if (isCompactNavigation() && nav.classList.contains('open')) setMenuState(false);
@@ -538,7 +534,12 @@
   document.querySelectorAll('a[href^="tel:"]').forEach(link => {
     if (!link.hasAttribute('aria-label')) {
       const visible = link.textContent.trim().replace(/\s+/g, ' ');
-      link.setAttribute('aria-label', visible ? `Call ${visible}` : 'Call the practice');
+      const label = !visible
+        ? 'Call the practice'
+        : /^call\b/i.test(visible)
+          ? visible
+          : `Call ${visible}`;
+      link.setAttribute('aria-label', label);
     }
   });
 

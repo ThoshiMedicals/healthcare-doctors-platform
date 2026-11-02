@@ -534,7 +534,12 @@
   document.querySelectorAll('a[href^="tel:"]').forEach(link => {
     if (!link.hasAttribute('aria-label')) {
       const visible = link.textContent.trim().replace(/\s+/g, ' ');
-      link.setAttribute('aria-label', visible ? `Call ${visible}` : 'Call the practice');
+      const label = !visible
+        ? 'Call the practice'
+        : /^call\b/i.test(visible)
+          ? visible
+          : `Call ${visible}`;
+      link.setAttribute('aria-label', label);
     }
   });
 
