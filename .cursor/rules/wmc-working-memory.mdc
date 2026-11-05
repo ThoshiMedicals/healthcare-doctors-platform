@@ -17,7 +17,7 @@ alwaysApply: true
 
 - Repo: `ThoshiMedicals/healthcare-doctors-platform` (local folder `WMC-Master-Project`).
 - Active release branch: `rg01-release-gate-repairs`.
-- Tip SHA to ship: **`3875dc3`** (Phase 1B/1C authority artifact + insurance-notice gate alignment; `placeRestriction` removed). Local uncommitted: multi-tenant Phase 1; tier pills removed; draft EMP clinic exercise (`eight-mile-plains` status=draft, no DNS/pages). Reports: `docs/WMC-MULTI-TENANT-FOUNDATION-PHASE1.md`, `docs/WMC-DRAFT-SECOND-CLINIC-EXERCISE.md`. Second-clinic readiness **64/100**. Not yet a new ship tip.
+- Tip SHA to ship: **`3875dc3`** (Phase 1B/1C authority artifact + insurance-notice gate alignment; `placeRestriction` removed). Homepage hero freeze commit on branch: **`6874998`** (authority v6 / landing presentation) — not yet promoted as cutover ship tip. Local uncommitted: multi-tenant Phase 1; tier pills removed; draft EMP clinic exercise (`eight-mile-plains` status=draft, no DNS/pages). Reports: `docs/WMC-MULTI-TENANT-FOUNDATION-PHASE1.md`, `docs/WMC-DRAFT-SECOND-CLINIC-EXERCISE.md`. Second-clinic readiness **64/100**.
 - Older tips `09b7d78` / `e305e87` are **ancestors** — do not treat them as current tip.
 - Cutover status: **NO-GO** — 8/8 ops evidence items FAIL (2026-11-03). See `docs/WMC-PRODUCTION-READINESS-EVIDENCE.md` and `deployment/DNS-CUTOVER-CHECKLIST.md`.
 - Related hotfix branch merged in: `hotfix/wmc-phone-only-practitioner-booking-20261101`.
