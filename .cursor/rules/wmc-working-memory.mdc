@@ -1,0 +1,79 @@
+---
+description: WMC platform working memory — hosting, release state, constraints, how to ship next.
+alwaysApply: true
+---
+
+# Woolloongabba Medical Centre — working memory
+
+## Product constraints (hard)
+
+- Golden master is `old-html/`. Do not edit it unless a written exception names the file.
+- Preserve SEO, schema, HotDoc, governance, and approved public layout. No Phase 1B redesign unless asked.
+- Public HTML is served from DB-imported immutable page revisions; presentation tweaks go through `apps/web/src/documents/public-ux.ts` (and related modules), not ad-hoc page rewrites.
+- **Homepage hero + landing presentation FROZEN (2026-11-05):** authority v6 in `apps/web/src/documents/public-ux.ts` (`hero--authority-v6`, practitioner strip, linked stats, HotDoc benefit cards, `#team` carousel removed). Do not iterate hero/landing layout, copy hierarchy, or those homepage sections unless the operator explicitly asks. Cache bust token currently `wmc-hero-authority-v6f-20261105`.
+- Production deploy guide is `deployment/LAUNCH.md` only. Hostinger and Cloudflare Pages are superseded/fail paths.
+
+## Repo and release tip (as of 2026-11-03)
+
+- Repo: `ThoshiMedicals/healthcare-doctors-platform` (local folder `WMC-Master-Project`).
+- Active release branch: `rg01-release-gate-repairs`.
+- Tip SHA to ship: **`3875dc3`** (Phase 1B/1C authority artifact + insurance-notice gate alignment; `placeRestriction` removed). Local uncommitted: multi-tenant Phase 1; tier pills removed; draft EMP clinic exercise (`eight-mile-plains` status=draft, no DNS/pages). Reports: `docs/WMC-MULTI-TENANT-FOUNDATION-PHASE1.md`, `docs/WMC-DRAFT-SECOND-CLINIC-EXERCISE.md`. Second-clinic readiness **64/100**. Not yet a new ship tip.
+- Older tips `09b7d78` / `e305e87` are **ancestors** — do not treat them as current tip.
+- Cutover status: **NO-GO** — 8/8 ops evidence items FAIL (2026-11-03). See `docs/WMC-PRODUCTION-READINESS-EVIDENCE.md` and `deployment/DNS-CUTOVER-CHECKLIST.md`.
+- Related hotfix branch merged in: `hotfix/wmc-phone-only-practitioner-booking-20261101`.
+- Commit style in practice often uses `fix(wmc): …` / `merge(wmc): …`.
+
+## How `next.` is hosted (critical)
+
+- `https://next.gabbamedicalcentre.com.au` is **not a remote VPS app** in the current operator setup.
+- It is this Windows PC: **UAT on `127.0.0.1:3100`** + **Cloudflare tunnel** (`cloudflared` → 3100).
+- Update live `next.` by rebuilding/restarting local UAT, not by SSH to a VPS:
+  - `npm run uat:build` then `npm run uat` from `apps/web` (sets `UAT_QUICK_TUNNEL=true`, distDir `.next-uat`).
+  - Keep Postgres up (`npm run db:local` or Docker compose). Health fails with `database: down` / HTML 500 when Postgres is down.
+- Dev stays on `:3000` (`npm run dev`, distDir `.next`). Do not confuse the two.
+- This machine has **no `~/.ssh`** and no Cloudflare purge API in-agent; edge purge is dashboard/operator unless credentials are provided.
+- Local origin sends `Cache-Control: no-cache` for `/site.js`; Cloudflare edge may still show `max-age=14400` until purged. Prefer versioned `site.js?v=…` busts.
+
+## Key technical map
+
+| Concern | Where |
+| --- | --- |
+| Mobile nav / PEERS / insurance client inject | `apps/web/public/site.js` (keep `old-html/site.js` in sync when changing shared runtime) |
+| Cache-bust + Join Our Team + insurance SSR/HTML | `apps/web/src/documents/public-ux.ts` |
+| Insurance slug → notice | `apps/web/src/documents/booking-restriction-notice.ts` (+ `.test.ts`) |
+| `/site.js` no-cache header | `apps/web/next.config.ts` |
+| Host / quick-tunnel clinic resolve | `apps/web/src/clinics/host.ts` |
+| Backup / smoke / cutover | `deployment/backup-database.sh`, `smoke-test.sh`, `LAUNCH.md` |
+| Branch/tag policy | `deployment/SOURCE-CONTROL.md`, `RELEASE-WORKFLOW.md` |
+
+## Booking / practitioner facts
+
+- Insurance HotDoc slug: `does-not-bulk-bill-for-insurance-patients` (data-driven notices; do not invent for other paths).
+- Mary: phone-only CTA (`tel:`) — no HotDoc book; no insurance notice invention.
+- Usman: other restriction path — leave alone.
+- Gemunu: removed / 404 expected on staging recovery.
+- Sticky care bar / `placeRestriction` interact with booking UX; insurance notices use `.practitioner-booking-notice`.
+
+## Closed recovery (do not reopen without live regression)
+
+- Authority hubs and recovered public openings were validated PASS on staging after recovery work.
+- Menu fix: `stopImmediatePropagation` / emergency listener; cache-bust when “still broken” after JS fix.
+- Insurance notices + `02c` bust verified live on `next.` after UAT rebuild from `09b7d78` (Tanya notice present).
+
+## Audit / gate posture
+
+- Audits are evidence-based against live `next.` + git tip; do not claim GO if deploy ≠ commit, ops unverified, or DB down.
+- npm audit: safe patch OK (e.g. Next 15.5.28); **do not** `npm audit fix --force` (Next 16 / zod 4) on cutover day.
+- Remaining GO blockers for real production cutover: VPS backup off-box, formal smoke logged, env (`AUTH_*`, Postgres not public), Cloudflare Full (strict), and clean CF cache policy — many are VPS/`LAUNCH.md` ops, separate from laptop tunnel UAT.
+- DNS cutover to apex must not happen until a clean release artifact + ops checklist; leave public DNS on current site until then.
+
+## Agent operating habits for this project
+
+- Prefer absolute paths; PowerShell (no bash `&&` / heredoc assumptions).
+- After public-ux / `site.js` / `next.config` changes: rebuild UAT and verify both `127.0.0.1:3100` and `https://next.gabbamedicalcentre.com.au`.
+- Do not commit secrets, `.env`, or dirty laptop-only deploys; ship from a known git SHA.
+- `uat:build` may rewrite `apps/web/next-env.d.ts` to `.next-uat/types` — restore to `.next/types` before commit if dirty.
+- Chat history for this long thread lives under agent-transcripts `f1dfa081-c08c-4b6b-a553-0e86b1c6e2ec` (compaction segments 000–007).
+---
+
+Refresh this rule when tip SHA, hosting model, or release blockers change.

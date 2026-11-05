@@ -53,9 +53,26 @@ test("removes the topic wayfinding bar and keeps the breadcrumb", () => {
   assert.equal(applyPublicUxRefinements(actual, "knowledge/diabetes.html"), actual);
 });
 
-test("leaves SEO head, internal classifications and unmodified pages untouched", () => {
-  const html = '<html><head><link rel="canonical" href="/services.html"></head><body class="service-tier-hub"><span class="service-tier-chip">Service hub</span></body></html>';
-  assert.equal(applyPublicUxRefinements(html, "services.html"), html);
+test("leaves SEO head and internal classifications intact while adding clinic slug", () => {
+  const html = '<html><head><link rel="canonical" href="/services.html"></head><body class="service-tier-hub"><main>Services</main></body></html>';
+  const actual = applyPublicUxRefinements(html, "services.html");
+  assert.match(actual, /data-clinic-slug="woolloongabba"/);
+  assert.match(actual, /data-practice-name="Woolloongabba Medical Centre"/);
+  assert.match(actual, /rel="canonical" href="\/services\.html"/);
+  assert.match(actual, /service-tier-hub/);
+  assert.equal(applyPublicUxRefinements(actual, "services.html"), actual);
+});
+
+test("uses ClinicProfile practice name for patient form handoff copy", () => {
+  const html =
+    '<html><body><form data-patient-form-request method="post"><p class="form-email-handoff">old</p></form></body></html>';
+  const actual = applyPublicUxRefinements(html, "patient-forms.html", {
+    clinicSlug: "example",
+    branding: { practiceName: "Example Medical Centre", clinicSlug: "example" },
+  });
+  assert.match(actual, /Example Medical Centre/);
+  assert.match(actual, /data-clinic-slug="example"/);
+  assert.match(actual, /action="\/api\/clinics\/example\/form-requests"/);
 });
 
 
@@ -78,14 +95,65 @@ test("actual published golden pages receive Join Our Team in the right position"
   }
 });
 
+test("About Us hub receives Practice Experience card without golden-master edit", () => {
+  const content = readFileSync(path.resolve(process.cwd(), "../../old-html/about-us.html"), "utf8");
+  const result = applyPublicUxRefinements(content, "about-us.html");
+  assert.match(result, /data-pe-hub-card="true"/);
+  assert.match(result, /href="about-us\/practice-experience\.html">Practice Experience Hub/);
+  assert.match(result, /id="careers"/);
+  assert.equal(applyPublicUxRefinements(result, "about-us.html"), result);
+});
+
 test("the real homepage opening-hours block includes both links", () => {
   const content = readFileSync(path.resolve(process.cwd(), "../../old-html/index.html"), "utf8");
   const result = applyPublicUxRefinements(content, "index.html");
   assert.match(result, /class="hero-hours-actions"/);
   assert.match(result, /href="contact\.html">View all hours/);
   assert.match(result, /href="after-hours-care\.html">After Hours Care/);
-  assert.match(result, /styles\.css\?v=wmc-hero-group-20261030/);
-  assert.match(result, /site\.js\?v=wmc-nav-20261102d/);
+  assert.match(result, /styles\.css\?v=wmc-hero-authority-v6f-20261105/);
+  assert.match(result, /site\.js\?v=wmc-hero-authority-v6f-20261105/);
+  assert.match(result, /#hotdoc-app \.hotdoc-benefits a\{[\s\S]*?text-decoration:none!important/);
+  assert.match(result, /\.hero-visual\{[\s\S]*?order:1!important/);
+  assert.match(result, /hero-content-panel>h1\{[\s\S]*?text-align:center!important/);
+  assert.match(result, /href="recalls-and-reminders\.html">Receive reminders/);
+  assert.match(result, /href="book-appointment\.html#booking-help">Reschedule appointments/);
+  assert.match(result, /href="book-appointment\.html#using-the-hotdoc-app">Manage family bookings/);
+  assert.match(result, /href="book-appointment\.html">Book appointments/);
+  assert.match(result, /digital-reception\.js\?v=wmc-search-signals-20261103/);
+  assert.match(result, /data-clinic-slug="woolloongabba"/);
+  assert.match(result, /hero hero--authority-v6/);
+  assert.match(result, /#home\.hero\.hero--authority-v6/);
+  assert.match(result, /hero-content-panel/);
+  assert.match(result, /id="wmc-hero-authority-v6"/);
+  assert.match(result, /Your trusted local doctors/);
+  assert.match(result, /understand your health journey/);
+  assert.match(result, /AGPAL Accredited/);
+  assert.match(result, /Bulk Billing Available/);
+  assert.match(result, /Open 7 Days/);
+  assert.match(result, /Experienced GP Team/);
+  assert.match(result, /Continuity of Care/);
+  assert.match(result, /Meet Our Doctors/);
+  assert.match(result, /Call \(07\) 3217 3344/);
+  assert.match(result, /max-width:520px/);
+  assert.match(result, /hero-stats-bar/);
+  assert.match(result, /href="#continuity"[^>]*>[\s\S]*?Continuity of Care/);
+  assert.match(result, /href="contact\.html"[^>]*>[\s\S]*?Open 7 Days/);
+  assert.match(result, /href="agpal-accreditation\.html"[^>]*>[\s\S]*?AGPAL Accredited/);
+  assert.match(result, /href="team\.html"[^>]*>[\s\S]*?Experienced GP Team/);
+  assert.match(result, /data-open-digital-reception/);
+  assert.match(result, /object-fit:contain!important/);
+  assert.match(result, /hero-practitioner-strip/);
+  assert.match(result, /Doctors who take the time to know you/);
+  assert.match(result, /dr-tanya-goodwill-640\.webp/);
+  assert.match(result, /dr-mary-abadir-640\.webp/);
+  assert.match(result, /hero-visual[\s\S]*?hero-final-desktop\.webp/);
+  assert.match(result, /as="image"[^>]*hero-final-desktop\.webp/);
+  assert.doesNotMatch(result, /id="team"/);
+  assert.doesNotMatch(result, /home-practitioner-track/);
+  assert.doesNotMatch(result, /class="hero-team-mosaic"/);
+  assert.doesNotMatch(result, /20\+\s*Years/);
+  assert.doesNotMatch(result, /hero--desktop-split/);
+  assert.equal(applyPublicUxRefinements(result, "index.html"), result);
 });
 
 test("the direct static index also contains all release-critical links", () => {
