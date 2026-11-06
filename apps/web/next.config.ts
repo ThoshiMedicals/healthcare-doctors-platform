@@ -10,6 +10,16 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   skipTrailingSlashRedirect: true,
   serverExternalPackages: ["sharp"],
+  // Hostinger shared builds enforce tight process/thread limits. Default Next
+  // parallelism (many page-data workers + Tokio threads) fails with EAGAIN /
+  // "OS can't spawn worker thread" during "Collecting page data". Cap workers
+  // and static-generation concurrency; pages and features are unchanged.
+  experimental: {
+    cpus: 1,
+    workerThreads: false,
+    staticGenerationMaxConcurrency: 1,
+    staticGenerationMinPagesPerWorker: 50,
+  },
   async rewrites() {
     return {
       beforeFiles: [
