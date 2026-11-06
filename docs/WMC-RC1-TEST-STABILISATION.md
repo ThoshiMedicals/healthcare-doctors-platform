@@ -30,10 +30,11 @@
 | Original pushed RC1 tip | `e161209307a30759eaba97410bfa5c9b9dd79be2` |
 | Test stabilisation (honesty, public-ux, CMS parse, QA, SA grant) | `ea50be42313c92c7ebdedbf9157f7d7ce069b39d` |
 | Golden CRLF compare hardening | `dd7774d647988be029a00c5505d33e3d71bf62a9` |
-| This report commit | `50c3f2cc10cc07d6bc234d4cd47d73b9e33823ab` |
-| **Final remote tip** | **`50c3f2cc10cc07d6bc234d4cd47d73b9e33823ab`** |
+| Report commits | docs-only after `dd7774d` (tip advances with this file) |
+| **Code-green tip (tests/build)** | **`dd7774d647988be029a00c5505d33e3d71bf62a9`** |
+| **Branch tip for staging** | `origin/release/wmc-hostinger-rc1` (includes this report; docs-only after code-green) |
 
-Stabilisation commits were held local until validation completed, then pushed with this report.
+Stabilisation code commits were held local until validation completed, then pushed with this report.
 
 ---
 
@@ -123,7 +124,7 @@ These are **outside** this RC1 GitHub/test scope (see `docs/WMC-HOSTINGER-WEBAPP
 
 | Gate | Status |
 | --- | --- |
-| Full platform on GitHub release branch | **GO** (`release/wmc-hostinger-rc1` @ `50c3f2c` after push) |
+| Full platform on GitHub release branch | **GO** (`release/wmc-hostinger-rc1`; code-green `dd7774d`+) |
 | Automated suite green | **GO** (347/347) |
 | Clean install + Prisma generate + production build | **GO** |
 | Lint | **GO** (warnings only) |
@@ -134,9 +135,9 @@ These are **outside** this RC1 GitHub/test scope (see `docs/WMC-HOSTINGER-WEBAPP
 
 ## 10. Exact next action for Hostinger staging
 
-1. Confirm remote tip: `git fetch origin && git rev-parse origin/release/wmc-hostinger-rc1` equals `50c3f2cc10cc07d6bc234d4cd47d73b9e33823ab`.  
+1. Confirm remote tip: `git fetch origin && git rev-parse origin/release/wmc-hostinger-rc1` (must be `dd7774d` or a docs-only descendant).  
 2. On Hostinger Web App (Node), create/select a **staging** hostname (not apex).  
-3. Connect Git deploy to `ThoshiMedicals/healthcare-doctors-platform` branch `release/wmc-hostinger-rc1` at `50c3f2c` (or pull that SHA).  
+3. Connect Git deploy to `ThoshiMedicals/healthcare-doctors-platform` branch `release/wmc-hostinger-rc1` at that tip SHA.  
 4. Provision **external Postgres** + set env from `.env.example` (`DATABASE_URL`, `AUTH_*`, durable `IMAGE_STORE_DIR` / `CAREER_RESUME_DIR` / `GP_READINESS_STORAGE_DIR`).  
 5. Run `prisma migrate deploy` against staging DB only; `npm run build`; start standalone.  
 6. Smoke against staging URL only — **do not** change public DNS or WordPress.
