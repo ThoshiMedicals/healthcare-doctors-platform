@@ -1,0 +1,11 @@
+[
+  {
+    "id": "dec_1793756932810",
+    "decisionType": "open_recruitment_conversation",
+    "recommendationId": "rec_review_eoi",
+    "actorUserId": "pm_01",
+    "actorName": "Practice Manager",
+    "rationale": "Human-led review of priority EOIs against spare session capacity; no auto-offer.",
+    "createdAt": "2026-11-04T01:48:52.810Z"
+  }
+]

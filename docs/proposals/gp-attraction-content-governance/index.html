@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GP Attraction Content Governance | Woolloongabba Medical Centre</title>
+  <meta
+    name="description"
+    content="Governance framework for GP attraction content — tone, messaging, approvals, schema and accessibility. No agency language, salary marketing, provider-number promises, or recruitment hype."
+  />
+  <meta name="robots" content="noindex,nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#173044",
+            "ink-soft": "#596b78",
+            navy: "#163f62",
+            green: "#0f6b45",
+            warm: "#f5f3ee",
+            mist: "#f4f7f7",
+            line: "#dbe4e9",
+            amber: "#8a6a2f",
+          },
+          fontFamily: {
+            display: ['"Libre Baskerville"', "Georgia", "serif"],
+            ui: ["Inter", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    [data-tab].is-active { background: #163f62; color: #fff; border-color: #163f62; }
+  </style>
+</head>
+<body class="bg-mist font-ui text-ink antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white">Skip to content</a>
+
+  <div class="border-b border-line bg-warm px-4 py-3 text-center text-sm text-ink-soft" role="note">
+    <strong class="text-ink">Design proposal</strong>
+    — GP attraction content governance. Blocks publish on hard-rule violations.
+  </div>
+
+  <header class="border-b border-line bg-warm">
+    <div class="mx-auto max-w-3xl px-4 py-8 sm:px-6">
+      <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Woolloongabba Medical Centre</p>
+      <h1 class="mt-2 font-display text-3xl font-bold leading-tight sm:text-4xl">GP attraction content governance</h1>
+      <p class="mt-3 text-base leading-relaxed text-ink-soft">
+        Tone, messaging, approvals, schema standards and accessibility standards —
+        with hard rules against agency language, salary marketing, provider-number promises and recruitment hype.
+      </p>
+    </div>
+  </header>
+
+  <main id="main" class="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8">
+    <p id="load-error" class="mb-4 hidden rounded-xl border border-red-200 bg-white p-4 text-sm text-red-800" role="alert" hidden>
+      Unable to load <code>governance.json</code>. Serve this folder over HTTP.
+    </p>
+
+    <div class="flex flex-wrap gap-2" role="tablist" aria-label="Governance sections">
+      <button type="button" data-tab="rules" class="min-h-11 rounded-full border border-line bg-white px-4 text-sm font-semibold text-navy" aria-selected="true">Hard rules</button>
+      <button type="button" data-tab="tone" class="min-h-11 rounded-full border border-line bg-white px-4 text-sm font-semibold text-navy" aria-selected="false">Tone &amp; messaging</button>
+      <button type="button" data-tab="approvals" class="min-h-11 rounded-full border border-line bg-white px-4 text-sm font-semibold text-navy" aria-selected="false">Approvals</button>
+      <button type="button" data-tab="schema" class="min-h-11 rounded-full border border-line bg-white px-4 text-sm font-semibold text-navy" aria-selected="false">Schema</button>
+      <button type="button" data-tab="a11y" class="min-h-11 rounded-full border border-line bg-white px-4 text-sm font-semibold text-navy" aria-selected="false">Accessibility</button>
+      <button type="button" data-tab="checklist" class="min-h-11 rounded-full border border-line bg-white px-4 text-sm font-semibold text-navy" aria-selected="false">Pre-publish</button>
+    </div>
+
+    <section data-panel="rules" class="mt-6 space-y-3" aria-label="Hard rules"></section>
+    <section data-panel="tone" class="mt-6 hidden space-y-3" aria-label="Tone and messaging" hidden></section>
+    <section data-panel="approvals" class="mt-6 hidden space-y-3" aria-label="Approvals" hidden></section>
+    <section data-panel="schema" class="mt-6 hidden space-y-3" aria-label="Schema" hidden></section>
+    <section data-panel="a11y" class="mt-6 hidden space-y-3" aria-label="Accessibility" hidden></section>
+    <section data-panel="checklist" class="mt-6 hidden space-y-3" aria-label="Pre-publish checklist" hidden></section>
+  </main>
+
+  <footer class="border-t border-line py-6">
+    <div class="mx-auto max-w-3xl px-4 text-xs text-ink-soft sm:px-6">
+      Woolloongabba Medical Centre · GP Attraction Content Governance v1 · Proposal prototype
+    </div>
+  </footer>
+
+  <script src="./governance.js" defer></script>
+</body>
+</html>

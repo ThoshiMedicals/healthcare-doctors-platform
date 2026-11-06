@@ -1,0 +1,119 @@
+{
+  "title": "Admin GP Enquiries Dashboard API",
+  "version": "1.0.0",
+  "basePath": "/api/clinics/{clinicSlug}/admin/gp-enquiries",
+  "auth": "Admin ClinicMembership session required for all endpoints",
+  "coreRule": {
+    "summary": "Do not automate hiring decisions",
+    "enforcement": [
+      "Score and capacity fit are display/sort aids only",
+      "Status changes require actorUserId and optional note",
+      "No endpoint auto-transitions to offer/hired based on score thresholds",
+      "Bulk status update forbidden for hired/offer without explicit human confirmation payload",
+      "Eligibility discussion fields are conversation trackers — not DPA/19AB determinations"
+    ]
+  },
+  "localhostPrototype": {
+    "base": "http://127.0.0.1:4182",
+    "routes": [
+      "GET /api/enquiries",
+      "GET /api/enquiries/:id",
+      "PATCH /api/enquiries/:id",
+      "POST /api/enquiries/:id/notes",
+      "POST /api/enquiries/:id/assign",
+      "GET /api/meta"
+    ]
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/api/clinics/{clinicSlug}/admin/gp-enquiries",
+      "summary": "Search and filter GP enquiry queue",
+      "query": {
+        "q": "name, email, phone (partial)",
+        "status": "comma-separated enquiry statuses",
+        "scoreBand": "priority_review|strong_fit|possible_fit|nurture|incomplete",
+        "assignedToUserId": "uuid or unassigned",
+        "onboardingStage": "GpOnboardingStageId or none",
+        "capacityFit": "strong|limited|uncertain|unknown",
+        "hasHardFlag": "true|false",
+        "sort": "priorityScore_desc|submittedAt_desc|startDate_asc",
+        "page": "1",
+        "pageSize": "25"
+      },
+      "response": {
+        "items": ["GpEnquiryListItem"],
+        "page": 1,
+        "total": 42,
+        "notice": "Priority score orders human review only — not an automated hire decision."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/clinics/{clinicSlug}/admin/gp-enquiries/{enquiryId}",
+      "summary": "Full enquiry detail: EOI, readiness, provider readiness, session prefs, scores, notes, onboarding",
+      "response": "GpEnquiryDetail"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/clinics/{clinicSlug}/admin/gp-enquiries/{enquiryId}",
+      "summary": "Human status / eligibility discussion / capacity fit updates",
+      "body": {
+        "status": "optional",
+        "capacityFit": "optional",
+        "eligibilityDiscussionStatus": "optional",
+        "eligibilityDiscussionSummary": "optional free text — not a determination",
+        "actorUserId": "required",
+        "note": "optional audit note"
+      },
+      "rejects": {
+        "400": "Missing actorUserId",
+        "403": "Attempt to set hired without humanConfirmation=true"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/clinics/{clinicSlug}/admin/gp-enquiries/{enquiryId}/notes",
+      "body": {
+        "body": "string",
+        "visibility": "internal",
+        "authorUserId": "required"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/clinics/{clinicSlug}/admin/gp-enquiries/{enquiryId}/assign",
+      "body": {
+        "assigneeUserId": "uuid|null",
+        "actorUserId": "required",
+        "note": "optional"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/clinics/{clinicSlug}/admin/gp-enquiries/meta",
+      "summary": "Filter enums, assignees, status labels, disclaimer"
+    }
+  ],
+  "types": {
+    "GpEnquiryListItem": {
+      "id": "string",
+      "doctorDisplayName": "string",
+      "email": "string",
+      "status": "GpEnquiryStatus",
+      "priorityScore": 0,
+      "scoreBand": "string",
+      "hardFlags": ["code"],
+      "capacityFit": "strong|limited|uncertain|unknown",
+      "eligibilityDiscussionStatus": "string",
+      "onboardingStage": "string|null",
+      "assignedToName": "string|null",
+      "preferredStartDate": "date|null",
+      "sessionsPerWeek": "number|null",
+      "submittedAt": "datetime",
+      "hasReadinessResult": true,
+      "hasProviderReadiness": true,
+      "hasSessionPlan": true
+    }
+  }
+}

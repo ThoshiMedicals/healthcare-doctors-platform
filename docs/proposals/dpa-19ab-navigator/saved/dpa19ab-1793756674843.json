@@ -1,0 +1,113 @@
+{
+  "formType": "dpa_19ab_eligibility_navigator",
+  "version": "1.0.0",
+  "clinicSlug": "woolloongabba",
+  "completedAt": "2026-11-04T01:44:34.841Z",
+  "disclaimers": {
+    "notEligibilityDetermination": true,
+    "notLegalAdvice": true,
+    "notMigrationAdvice": true,
+    "decisionMaker": "Services Australia and relevant Australian Government programs — not Woolloongabba Medical Centre"
+  },
+  "answers": {
+    "fellowshipStatus": "fracgp",
+    "primaryDegreeCountry": "competent_authority_comparable",
+    "currentWorkLocation": "other_qld",
+    "providerNumberStatus": "none",
+    "medicareBillingExperience": "limited",
+    "australianTrainingPathway": "agpt_or_college_australian",
+    "visaWorkRightsStatus": "citizen_pr",
+    "dpaAwareness": "not_familiar"
+  },
+  "outputs": {
+    "pathwayThemes": [
+      "verify_dpa_for_location",
+      "provider_number_with_services_australia",
+      "medicare_orientation_with_practice"
+    ],
+    "pathwaySummary": [
+      "This summary highlights pathway topics to explore — it is not an eligibility decision.",
+      "Woolloongabba Medical Centre cannot determine DPA or s19AB outcomes and cannot issue Medicare provider numbers.",
+      "Confirm how Distribution Priority Area (DPA) classifications apply to your intended practice location using official Health Department tools — not practice marketing claims.",
+      "Provider number status is incomplete or unsure. Provider numbers are issued by Services Australia; the practice can share location details to support your application but cannot approve or guarantee a number.",
+      "Medicare billing familiarity can be supported through practice orientation after a mutual fit conversation — separate from any government eligibility rules."
+    ],
+    "questionsForWmc": [
+      "Can you share the exact practice location details needed for my Services Australia / provider-number paperwork?",
+      "What onboarding documents does WMC usually request from GPs before a start date?",
+      "How do nursing and reception support work for the sessions I am considering?",
+      "What Medicare / MBS orientation does the practice provide after a mutual yes?"
+    ],
+    "documentationChecklist": [
+      {
+        "id": "ahpra",
+        "label": "AHPRA registration evidence",
+        "owner": "doctor",
+        "note": "Confirm status independently via AHPRA."
+      },
+      {
+        "id": "id_work_rights",
+        "label": "Evidence of identity and work rights (as applicable)",
+        "owner": "doctor",
+        "note": "WMC does not advise on visas."
+      },
+      {
+        "id": "cv",
+        "label": "Current CV with training and practice history",
+        "owner": "doctor"
+      },
+      {
+        "id": "indemnity",
+        "label": "Professional indemnity certificate (when approaching start)",
+        "owner": "doctor"
+      },
+      {
+        "id": "sa_provider",
+        "label": "Services Australia provider number correspondence / application status",
+        "owner": "services_australia",
+        "note": "Issued/managed via Services Australia — not the practice."
+      },
+      {
+        "id": "dpa_self_check",
+        "label": "Notes from your official DPA / location classification check",
+        "owner": "other_official",
+        "note": "Keep your own record of government tool results."
+      },
+      {
+        "id": "practice_location_pack",
+        "label": "Practice location details pack (address / provider location info)",
+        "owner": "practice",
+        "note": "Request from WMC when ready — factual location information only."
+      }
+    ],
+    "servicesAustraliaResources": [
+      {
+        "title": "Services Australia — Medicare for health professionals",
+        "url": "https://www.servicesaustralia.gov.au/medicare-for-health-professionals",
+        "why": "Official starting point for provider numbers and Medicare practitioner information."
+      },
+      {
+        "title": "Department of Health — Distribution Priority Area (DPA)",
+        "url": "https://www.health.gov.au/topics/rural-health-workforce/classifications/dpa",
+        "why": "Official DPA classification information — verify location status via government sources."
+      },
+      {
+        "title": "Services Australia — Overseas trained doctors & Medicare",
+        "url": "https://www.servicesaustralia.gov.au/medicare-benefits-overseas-trained-doctors",
+        "why": "Government information related to Medicare arrangements that may involve s19AB considerations."
+      },
+      {
+        "title": "AHPRA — Medical Board registration",
+        "url": "https://www.ahpra.gov.au/",
+        "why": "Confirm registration pathway and status independently of the practice."
+      }
+    ],
+    "recommendedNextAction": {
+      "id": "provider_number_pathway_then_eoi",
+      "title": "Map your Services Australia provider-number pathway, then contact WMC",
+      "detail": "Use Services Australia resources first. WMC can later provide location details for paperwork, but cannot issue a provider number.",
+      "ctaLabel": "Open provider-number readiness tool",
+      "ctaHref": "../provider-number-readiness/"
+    }
+  }
+}

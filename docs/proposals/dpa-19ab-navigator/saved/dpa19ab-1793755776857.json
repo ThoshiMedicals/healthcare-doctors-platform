@@ -1,0 +1,64 @@
+{
+  "formType": "dpa_19ab_eligibility_navigator",
+  "version": "1.0.0",
+  "clinicSlug": "woolloongabba",
+  "completedAt": "2026-11-04T01:20:00.000Z",
+  "disclaimers": {
+    "notEligibilityDetermination": true,
+    "notLegalAdvice": true,
+    "notMigrationAdvice": true,
+    "decisionMaker": "Services Australia and relevant Australian Government programs — not Woolloongabba Medical Centre"
+  },
+  "answers": {
+    "fellowshipStatus": "fracgp",
+    "primaryDegreeCountry": "australia_nz",
+    "currentWorkLocation": "greater_brisbane",
+    "providerNumberStatus": "active",
+    "medicareBillingExperience": "extensive",
+    "australianTrainingPathway": "not_applicable",
+    "visaWorkRightsStatus": "citizen_pr",
+    "dpaAwareness": "reviewed_official"
+  },
+  "outputs": {
+    "pathwayThemes": [
+      "verify_dpa_for_location",
+      "standard_vr_conversation"
+    ],
+    "pathwaySummary": [
+      "This summary highlights pathway topics to explore — it is not an eligibility decision.",
+      "Woolloongabba Medical Centre cannot determine DPA or s19AB outcomes and cannot issue Medicare provider numbers.",
+      "Confirm how Distribution Priority Area (DPA) classifications apply to your intended practice location using official Health Department tools — not practice marketing claims.",
+      "Your answers are consistent with preparing for a standard vocationally registered GP conversation with the practice, while still verifying any location-specific government requirements yourself."
+    ],
+    "questionsForWmc": [
+      "Can you share the exact practice location details needed for my Services Australia / provider-number paperwork?",
+      "What onboarding documents does WMC usually request from GPs before a start date?",
+      "How do nursing and reception support work for the sessions I am considering?"
+    ],
+    "documentationChecklist": [
+      {
+        "id": "ahpra",
+        "label": "AHPRA registration evidence",
+        "owner": "doctor"
+      },
+      {
+        "id": "sa_provider",
+        "label": "Services Australia provider number correspondence / application status",
+        "owner": "services_australia"
+      },
+      {
+        "id": "practice_location_pack",
+        "label": "Practice location details pack",
+        "owner": "practice"
+      }
+    ],
+    "servicesAustraliaResources": [],
+    "recommendedNextAction": {
+      "id": "express_interest_now",
+      "title": "Express interest with Woolloongabba Medical Centre",
+      "detail": "If the practice philosophy feels like a fit, start a direct conversation.",
+      "ctaLabel": "Express interest with the practice",
+      "ctaHref": "../gp-eoi/"
+    }
+  }
+}

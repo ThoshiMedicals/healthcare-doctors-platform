@@ -1,0 +1,270 @@
+{
+  "id": "wmc-practice-support-admin-checklist",
+  "version": "1.0.0",
+  "audience": "practice_admin",
+  "purpose": "Internal checklist to deliver onboarding support consistently while respecting external boundaries.",
+  "usage": "Use after mutual interest is clear and before first patient session. Tick practice-owned items only. External items are tracked, not approved by WMC.",
+  "sections": [
+    {
+      "id": "before_sharing",
+      "title": "Before sharing this matrix with a doctor",
+      "items": [
+        {
+          "id": "confirm_mutual_interest",
+          "task": "Confirm mutual interest for a conversation about onboarding (not an offer guarantee)",
+          "owner": "practice_manager",
+          "type": "practice"
+        },
+        {
+          "id": "send_disclaimer",
+          "task": "Share capability matrix with short disclaimer: support ≠ guarantee; WMC does not issue provider numbers",
+          "owner": "practice_manager",
+          "type": "practice"
+        },
+        {
+          "id": "link_related_tools",
+          "task": "Offer Provider Number Readiness and DPA/19AB Navigator as exploration tools if relevant",
+          "owner": "practice_manager",
+          "type": "practice"
+        }
+      ]
+    },
+    {
+      "id": "provider_number_support",
+      "title": "Provider number support",
+      "items": [
+        {
+          "id": "pn_location_pack",
+          "task": "Prepare verified practice location pack (legal name, address, any location identifiers used)",
+          "owner": "practice_manager",
+          "type": "practice"
+        },
+        {
+          "id": "pn_explain_boundary",
+          "task": "Confirm doctor understands Services Australia issues provider numbers — WMC does not",
+          "owner": "practice_manager",
+          "type": "practice"
+        },
+        {
+          "id": "pn_track_external",
+          "task": "Record application status as awaiting_external when lodged; do not mark complete until doctor confirms SA outcome",
+          "owner": "practice_manager",
+          "type": "external_track"
+        }
+      ]
+    },
+    {
+      "id": "medicare_onboarding_guidance",
+      "title": "Medicare onboarding guidance",
+      "items": [
+        {
+          "id": "mbs_walkthrough",
+          "task": "Schedule Medicare billing workflow walkthrough for this practice",
+          "owner": "practice_manager",
+          "type": "practice"
+        },
+        {
+          "id": "billing_contact",
+          "task": "Assign early-week billing contact for questions",
+          "owner": "practice_manager",
+          "type": "practice"
+        },
+        {
+          "id": "no_eligibility_advice",
+          "task": "Avoid personal eligibility determinations; refer to Services Australia resources when asked",
+          "owner": "practice_manager",
+          "type": "boundary"
+        }
+      ]
+    },
+    {
+      "id": "orientation",
+      "title": "Orientation",
+      "items": [
+        {
+          "id": "orient_schedule",
+          "task": "Book orientation covering layout, emergency, privacy, contacts, hours",
+          "owner": "practice_manager",
+          "type": "practice"
+        },
+        {
+          "id": "policy_access",
+          "task": "Provide relevant practice policies after mutual confirmation",
+          "owner": "practice_manager",
+          "type": "practice"
+        },
+        {
+          "id": "verify_ahpra_indemnity",
+          "task": "Sight AHPRA and indemnity evidence (track only — WMC does not grant registration)",
+          "owner": "practice_manager",
+          "type": "external_track"
+        }
+      ]
+    },
+    {
+      "id": "clinical_software_onboarding",
+      "title": "Clinical software onboarding",
+      "items": [
+        {
+          "id": "id_check",
+          "task": "Complete identity verification required for system access",
+          "owner": "practice_manager",
+          "type": "practice"
+        },
+        {
+          "id": "software_access",
+          "task": "Request clinical software login / permissions",
+          "owner": "practice_manager",
+          "type": "practice"
+        },
+        {
+          "id": "software_walkthrough",
+          "task": "Deliver supervised software walkthrough (notes, results, prescribing, recalls)",
+          "owner": "practice_manager",
+          "type": "practice"
+        }
+      ]
+    },
+    {
+      "id": "nursing_introductions",
+      "title": "Nursing introductions",
+      "items": [
+        {
+          "id": "nurse_meet",
+          "task": "Arrange nursing team introduction and scope overview",
+          "owner": "nurse_lead",
+          "type": "practice"
+        },
+        {
+          "id": "nurse_comms",
+          "task": "Explain same-day support request pathways",
+          "owner": "nurse_lead",
+          "type": "practice"
+        },
+        {
+          "id": "no_cover_promise",
+          "task": "Do not promise dedicated nursing cover beyond current roster capacity",
+          "owner": "nurse_lead",
+          "type": "boundary"
+        }
+      ]
+    },
+    {
+      "id": "reception_workflows",
+      "title": "Reception workflows",
+      "items": [
+        {
+          "id": "reception_intro",
+          "task": "Introduce reception contacts and messaging habits",
+          "owner": "reception_lead",
+          "type": "practice"
+        },
+        {
+          "id": "booking_pattern",
+          "task": "Explain booking patterns, HotDoc visibility, and running-late expectations",
+          "owner": "reception_lead",
+          "type": "practice"
+        }
+      ]
+    },
+    {
+      "id": "practice_systems",
+      "title": "Practice systems",
+      "items": [
+        {
+          "id": "privacy_records",
+          "task": "Orient to privacy, records, recalls, and local pathology/radiology workflows",
+          "owner": "practice_manager",
+          "type": "practice"
+        },
+        {
+          "id": "quality_touchpoints",
+          "task": "Note accreditation / quality touchpoints relevant to consulting GPs",
+          "owner": "practice_manager",
+          "type": "practice"
+        }
+      ]
+    },
+    {
+      "id": "session_planning",
+      "title": "Session planning",
+      "items": [
+        {
+          "id": "capacity_check",
+          "task": "Check rooms and nursing cover before proposing sessions",
+          "owner": "practice_manager",
+          "type": "practice"
+        },
+        {
+          "id": "draft_sessions",
+          "task": "Document draft session plan for mutual review",
+          "owner": "practice_manager",
+          "type": "practice"
+        },
+        {
+          "id": "no_volume_promise",
+          "task": "Do not promise patient volume, earnings, or fill rates",
+          "owner": "practice_manager",
+          "type": "boundary"
+        }
+      ]
+    },
+    {
+      "id": "team_integration",
+      "title": "Team integration",
+      "items": [
+        {
+          "id": "gp_intros",
+          "task": "Introduce consulting GPs and key team members on consulting days",
+          "owner": "practice_manager",
+          "type": "practice"
+        },
+        {
+          "id": "early_feedback",
+          "task": "Schedule a brief early-week check-in for questions and friction points",
+          "owner": "practice_manager",
+          "type": "practice"
+        },
+        {
+          "id": "registrar_supervision",
+          "task": "If registrar pathway: confirm formal supervision separately — collegial welcome is not supervision approval",
+          "owner": "practice_manager",
+          "type": "boundary"
+        }
+      ]
+    },
+    {
+      "id": "close_out",
+      "title": "Close-out",
+      "items": [
+        {
+          "id": "status_update",
+          "task": "Update plan status to settling or complete; keep awaiting_external visible if still open",
+          "owner": "practice_manager",
+          "type": "practice"
+        },
+        {
+          "id": "record_boundaries",
+          "task": "Ensure notes never claim WMC approved provider numbers, visas, DPA, or s19AB",
+          "owner": "practice_manager",
+          "type": "boundary"
+        }
+      ]
+    }
+  ],
+  "languageDoNotUse": [
+    "we will get you a provider number",
+    "guaranteed start",
+    "we approve your Medicare eligibility",
+    "fast-track placement",
+    "hot candidate",
+    "we will sort your visa"
+  ],
+  "languagePrefer": [
+    "we can share practice location details for your application",
+    "Services Australia decides provider number outcomes",
+    "subject to capacity and mutual agreement",
+    "we will orient you to how billing works at this practice",
+    "external timelines are outside our control"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "version": "1.0.0",
+  "clinicEntity": {
+    "@type": ["MedicalClinic", "MedicalOrganization"],
+    "@id": "https://gabbamedicalcentre.com.au/#medical-clinic"
+  },
+  "surfaces": {
+    "opportunities": {
+      "allowedTypes": ["WebPage", "BreadcrumbList", "MedicalClinic", "FAQPage"],
+      "forbiddenTypes": ["JobPosting", "JobBoard", "EmploymentAgency", "Occupation", "AggregateRating"],
+      "jobPostingPolicy": "never",
+      "faqSyncRequired": true
+    },
+    "faq": {
+      "allowedTypes": ["FAQPage", "WebPage", "MedicalClinic", "BreadcrumbList"],
+      "forbiddenTypes": ["JobPosting", "JobBoard", "EmploymentAgency", "Occupation"],
+      "jobPostingPolicy": "never",
+      "faqSyncRequired": true
+    },
+    "practice_experience": {
+      "allowedTypes": ["WebPage", "BreadcrumbList", "MedicalClinic", "VideoObject", "Person"],
+      "forbiddenTypes": ["JobPosting", "JobBoard", "EmploymentAgency", "Occupation", "AggregateRating", "Review"],
+      "jobPostingPolicy": "never",
+      "faqSyncRequired": false,
+      "personVideoPolicy": "consented_optional"
+    },
+    "registrar_pathway": {
+      "allowedTypes": ["WebPage", "BreadcrumbList", "MedicalClinic", "FAQPage"],
+      "forbiddenTypes": ["JobPosting", "JobBoard", "EmploymentAgency", "Occupation"],
+      "jobPostingPolicy": "never",
+      "faqSyncRequired": true,
+      "changeClassDefault": "C_clinical_or_capacity"
+    },
+    "story": {
+      "allowedTypes": ["WebPage", "Person", "VideoObject", "MedicalClinic"],
+      "forbiddenTypes": ["JobPosting", "JobBoard", "EmploymentAgency", "AggregateRating", "Review"],
+      "jobPostingPolicy": "never",
+      "personVideoPolicy": "consented_optional",
+      "requiresStoryCaptureConsent": true
+    }
+  }
+}

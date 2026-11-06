@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GP Expression of Interest | Woolloongabba Medical Centre</title>
+  <meta name="description" content="Express interest in joining Woolloongabba Medical Centre as a General Practitioner." />
+  <meta name="robots" content="noindex,nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#173044",
+            "ink-soft": "#596b78",
+            navy: "#163f62",
+            green: "#0f6b45",
+            warm: "#f5f3ee",
+            mist: "#f4f7f7",
+            line: "#dbe4e9",
+          },
+          fontFamily: {
+            display: ['"Libre Baskerville"', "Georgia", "serif"],
+            ui: ["Inter", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-mist font-ui text-ink antialiased">
+  <a
+    href="#gp-eoi-form"
+    class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white"
+  >
+    Skip to expression of interest form
+  </a>
+
+  <header class="border-b border-line bg-warm">
+    <div class="mx-auto max-w-xl px-4 py-8 sm:px-6">
+      <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Woolloongabba Medical Centre</p>
+      <h1 class="mt-2 font-display text-3xl font-bold leading-tight text-ink sm:text-4xl">
+        GP Expression of Interest
+      </h1>
+      <p class="mt-3 text-base leading-relaxed text-ink-soft">
+        Share your details with the practice. This is a direct expression of interest —
+        not a public job board or recruitment agency form.
+      </p>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-xl px-4 py-8 sm:px-6 sm:py-10">
+    <form
+      id="gp-eoi-form"
+      class="space-y-8 rounded-2xl border border-line bg-white p-5 shadow-[0_8px_24px_rgba(23,48,68,0.05)] sm:p-8"
+      novalidate
+      method="post"
+      action="/api/gp-eoi"
+      aria-describedby="gp-eoi-status"
+    >
+      <!-- Contact -->
+      <fieldset class="space-y-5">
+        <legend class="font-display text-xl font-bold text-ink">Contact</legend>
+
+        <div>
+          <label for="name" class="block text-sm font-semibold text-ink">
+            Name <span class="text-green" aria-hidden="true">*</span>
+            <span class="sr-only">(required)</span>
+          </label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            autocomplete="name"
+            required
+            maxlength="120"
+            class="mt-2 min-h-12 w-full rounded-xl border border-line bg-white px-4 text-base text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+            aria-describedby="name-error"
+          />
+          <p id="name-error" class="mt-1.5 hidden text-sm text-red-700" data-error-for="name" role="alert"></p>
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-semibold text-ink">
+            Email <span class="text-green" aria-hidden="true">*</span>
+            <span class="sr-only">(required)</span>
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            inputmode="email"
+            autocomplete="email"
+            required
+            maxlength="200"
+            class="mt-2 min-h-12 w-full rounded-xl border border-line bg-white px-4 text-base text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+            aria-describedby="email-error"
+          />
+          <p id="email-error" class="mt-1.5 hidden text-sm text-red-700" data-error-for="email" role="alert"></p>
+        </div>
+
+        <div>
+          <label for="phone" class="block text-sm font-semibold text-ink">
+            Phone <span class="text-green" aria-hidden="true">*</span>
+            <span class="sr-only">(required)</span>
+          </label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            inputmode="tel"
+            autocomplete="tel"
+            required
+            placeholder="04xx xxx xxx"
+            class="mt-2 min-h-12 w-full rounded-xl border border-line bg-white px-4 text-base text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+            aria-describedby="phone-hint phone-error"
+          />
+          <p id="phone-hint" class="mt-1.5 text-xs text-ink-soft">Australian mobile or landline.</p>
+          <p id="phone-error" class="mt-1.5 hidden text-sm text-red-700" data-error-for="phone" role="alert"></p>
+        </div>
+      </fieldset>
+
+      <!-- Credentials -->
+      <fieldset class="space-y-5">
+        <legend class="font-display text-xl font-bold text-ink">Credentials</legend>
+
+        <div>
+          <label for="ahpraRegistration" class="block text-sm font-semibold text-ink">
+            AHPRA Registration <span class="text-green" aria-hidden="true">*</span>
+            <span class="sr-only">(required)</span>
+          </label>
+          <input
+            id="ahpraRegistration"
+            name="ahpraRegistration"
+            type="text"
+            required
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="MED0001234567"
+            class="mt-2 min-h-12 w-full rounded-xl border border-line bg-white px-4 font-mono text-base uppercase tracking-wide text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+            aria-describedby="ahpra-hint ahpraRegistration-error"
+          />
+          <p id="ahpra-hint" class="mt-1.5 text-xs text-ink-soft">Medical registration number (MED + 10 digits).</p>
+          <p id="ahpraRegistration-error" class="mt-1.5 hidden text-sm text-red-700" data-error-for="ahpraRegistration" role="alert"></p>
+        </div>
+
+        <fieldset>
+          <legend class="text-sm font-semibold text-ink">
+            RACGP Fellowship <span class="text-green" aria-hidden="true">*</span>
+            <span class="sr-only">(required)</span>
+          </legend>
+          <div class="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-3" role="radiogroup" aria-describedby="racgpFellowship-error">
+            <label class="flex min-h-12 cursor-pointer items-center gap-2 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist">
+              <input id="racgp-yes" class="h-5 w-5 text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" type="radio" name="racgpFellowship" value="yes" required />
+              <span class="text-sm">Yes</span>
+            </label>
+            <label class="flex min-h-12 cursor-pointer items-center gap-2 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist">
+              <input id="racgp-no" class="h-5 w-5 text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" type="radio" name="racgpFellowship" value="no" />
+              <span class="text-sm">No</span>
+            </label>
+            <label class="flex min-h-12 cursor-pointer items-center gap-2 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist">
+              <input id="racgp-progress" class="h-5 w-5 text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" type="radio" name="racgpFellowship" value="in_progress" />
+              <span class="text-sm">In progress</span>
+            </label>
+          </div>
+          <p id="racgpFellowship-error" class="mt-1.5 hidden text-sm text-red-700" data-error-for="racgpFellowship" role="alert"></p>
+        </fieldset>
+
+        <fieldset>
+          <legend class="text-sm font-semibold text-ink">
+            ACRRM Fellowship <span class="text-green" aria-hidden="true">*</span>
+            <span class="sr-only">(required)</span>
+          </legend>
+          <div class="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-3" role="radiogroup" aria-describedby="acrrmFellowship-error">
+            <label class="flex min-h-12 cursor-pointer items-center gap-2 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist">
+              <input id="acrrm-yes" class="h-5 w-5 text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" type="radio" name="acrrmFellowship" value="yes" required />
+              <span class="text-sm">Yes</span>
+            </label>
+            <label class="flex min-h-12 cursor-pointer items-center gap-2 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist">
+              <input id="acrrm-no" class="h-5 w-5 text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" type="radio" name="acrrmFellowship" value="no" />
+              <span class="text-sm">No</span>
+            </label>
+            <label class="flex min-h-12 cursor-pointer items-center gap-2 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist">
+              <input id="acrrm-progress" class="h-5 w-5 text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" type="radio" name="acrrmFellowship" value="in_progress" />
+              <span class="text-sm">In progress</span>
+            </label>
+          </div>
+          <p id="acrrmFellowship-error" class="mt-1.5 hidden text-sm text-red-700" data-error-for="acrrmFellowship" role="alert"></p>
+        </fieldset>
+      </fieldset>
+
+      <!-- Preferences -->
+      <fieldset id="special-interests-fieldset" class="space-y-5" aria-describedby="specialInterests-error">
+        <legend class="font-display text-xl font-bold text-ink">
+          Special Interests <span class="text-green" aria-hidden="true">*</span>
+          <span class="sr-only">(required — select at least one)</span>
+        </legend>
+        <p class="text-sm text-ink-soft">Select all that apply.</p>
+        <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
+          <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist">
+            <input class="h-5 w-5 rounded border-line text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" type="checkbox" name="specialInterests" value="womens_health" />
+            <span class="text-sm">Women’s health</span>
+          </label>
+          <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist">
+            <input class="h-5 w-5 rounded border-line text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" type="checkbox" name="specialInterests" value="skin_checks" />
+            <span class="text-sm">Skin checks</span>
+          </label>
+          <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist">
+            <input class="h-5 w-5 rounded border-line text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" type="checkbox" name="specialInterests" value="chronic_disease" />
+            <span class="text-sm">Chronic disease</span>
+          </label>
+          <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist">
+            <input class="h-5 w-5 rounded border-line text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" type="checkbox" name="specialInterests" value="mental_health" />
+            <span class="text-sm">Mental health</span>
+          </label>
+          <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist">
+            <input class="h-5 w-5 rounded border-line text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" type="checkbox" name="specialInterests" value="childrens_health" />
+            <span class="text-sm">Children’s health</span>
+          </label>
+          <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist">
+            <input class="h-5 w-5 rounded border-line text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" type="checkbox" name="specialInterests" value="procedural" />
+            <span class="text-sm">Procedural</span>
+          </label>
+          <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist">
+            <input class="h-5 w-5 rounded border-line text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" type="checkbox" name="specialInterests" value="preventive_care" />
+            <span class="text-sm">Preventive care</span>
+          </label>
+          <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist">
+            <input id="interest-other" class="h-5 w-5 rounded border-line text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" type="checkbox" name="specialInterests" value="other" />
+            <span class="text-sm">Other</span>
+          </label>
+        </div>
+        <p id="specialInterests-error" class="hidden text-sm text-red-700" data-error-for="specialInterests" role="alert"></p>
+
+        <div id="other-interest-wrap" class="hidden">
+          <label for="specialInterestsOther" class="block text-sm font-semibold text-ink">
+            Describe other interest <span class="text-green" aria-hidden="true">*</span>
+          </label>
+          <textarea
+            id="specialInterestsOther"
+            name="specialInterestsOther"
+            rows="3"
+            maxlength="500"
+            class="mt-2 w-full rounded-xl border border-line bg-white px-4 py-3 text-base text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+            aria-describedby="specialInterestsOther-error"
+          ></textarea>
+          <p id="specialInterestsOther-error" class="mt-1.5 hidden text-sm text-red-700" data-error-for="specialInterestsOther" role="alert"></p>
+        </div>
+
+        <div>
+          <label for="preferredStartDate" class="block text-sm font-semibold text-ink">
+            Preferred Start Date <span class="text-green" aria-hidden="true">*</span>
+            <span class="sr-only">(required)</span>
+          </label>
+          <input
+            id="preferredStartDate"
+            name="preferredStartDate"
+            type="date"
+            required
+            class="mt-2 min-h-12 w-full rounded-xl border border-line bg-white px-4 text-base text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+            aria-describedby="preferredStartDate-error"
+          />
+          <p id="preferredStartDate-error" class="mt-1.5 hidden text-sm text-red-700" data-error-for="preferredStartDate" role="alert"></p>
+        </div>
+      </fieldset>
+
+      <div class="rounded-xl border border-line bg-mist/70 p-4 text-sm leading-relaxed text-ink-soft">
+        <strong class="text-ink">Privacy:</strong>
+        Contact and professional details only — do not include patient information.
+        Handled in line with our Privacy &amp; Confidentiality practices.
+      </div>
+
+      <label for="privacyConfirm" class="flex items-start gap-3 text-sm leading-relaxed text-ink">
+        <input
+          id="privacyConfirm"
+          name="privacyConfirm"
+          type="checkbox"
+          required
+          class="mt-0.5 h-5 w-5 shrink-0 rounded border-line text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+          aria-describedby="privacyConfirm-error"
+        />
+        <span>
+          I consent to Woolloongabba Medical Centre storing these details for recruitment.
+          <span class="text-green" aria-hidden="true">*</span>
+          <span class="sr-only">(required)</span>
+        </span>
+      </label>
+      <p id="privacyConfirm-error" class="-mt-4 hidden text-sm text-red-700" data-error-for="privacyConfirm" role="alert"></p>
+
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+        <button
+          id="gp-eoi-submit"
+          type="submit"
+          class="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-navy px-6 text-sm font-semibold text-white transition hover:bg-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+        >
+          Submit expression of interest
+        </button>
+        <a
+          href="tel:+61732173344"
+          class="inline-flex min-h-12 items-center justify-center text-sm font-semibold text-navy underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+        >
+          Or call (07) 3217 3344
+        </a>
+      </div>
+
+      <p
+        id="gp-eoi-status"
+        class="text-sm text-ink-soft"
+        role="status"
+        aria-live="polite"
+        data-state="idle"
+      ></p>
+    </form>
+
+    <section class="mt-8 hidden rounded-2xl border border-line bg-white p-5 sm:p-6" aria-label="JSON submission preview">
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-ink-soft">JSON submission (localhost)</h2>
+      <pre id="gp-eoi-json-preview" class="mt-3 overflow-x-auto rounded-xl bg-ink p-4 text-xs leading-relaxed text-mist"></pre>
+    </section>
+
+    <p class="mt-8 text-center text-xs text-ink-soft">
+      Localhost proposal ·
+      <a class="underline" href="./submission-model.json">JSON model</a>
+      ·
+      <a class="underline" href="./validation-messages.json">Validation messages</a>
+    </p>
+  </main>
+
+  <script src="./gp-eoi.js" defer></script>
+</body>
+</html>

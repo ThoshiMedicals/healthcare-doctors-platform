@@ -1,0 +1,193 @@
+{
+  "title": "Consulting Capacity Planning API",
+  "version": "1.0.0",
+  "basePath": "/api/clinics/{clinicSlug}/capacity",
+  "auth": "Admin session (ClinicMembership) — practice-internal tool, not public",
+  "computation": {
+    "definitions": {
+      "offeredRoomSessions": "For each offered session window: min(activeRooms, nursing.maxSupportedRooms ?? activeRooms)",
+      "usedSessions": "Count of active GpSessionAssignment in offered windows (unique room+window)",
+      "availableConsultingSessions": "sum(offeredRoomSessions) - usedSessions - reserveFreeSessions (floor at 0)",
+      "capacityPercentage": "round(usedSessions / sum(offeredRoomSessions) * 100, 1)",
+      "recommendedRecruitmentTargets": "ceil(availableConsultingSessions / targetSessionsPerGp)"
+    },
+    "statusBands": {
+      "available": "free rooms in window >= 2 OR utilisation < 67%",
+      "limited": "free rooms == 1 OR utilisation >= 67%",
+      "full": "free rooms == 0"
+    },
+    "nursingConstraint": "If coverageLevel=none, maxSupportedRooms forced to 0 for that window unless overridden. limited defaults maxSupportedRooms to floor(activeRooms/2) when null."
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/api/clinics/{clinicSlug}/capacity/inputs",
+      "summary": "Load planning inputs",
+      "response": {
+        "roomCount": 4,
+        "rooms": [{ "id": "…", "name": "Consulting Room 1", "isActive": true }],
+        "operatingHours": [
+          { "dayOfWeek": "monday", "opens": "07:00", "closes": "19:00" }
+        ],
+        "sessionWindows": [
+          {
+            "id": "…",
+            "dayOfWeek": "monday",
+            "period": "morning",
+            "startsAt": "07:00",
+            "endsAt": "12:00",
+            "isOffered": true
+          }
+        ],
+        "currentGpSchedules": [
+          {
+            "id": "…",
+            "doctorName": "Dr Chen",
+            "practitionerId": null,
+            "roomId": "…",
+            "sessionWindowId": "…",
+            "dayOfWeek": "monday",
+            "period": "morning"
+          }
+        ],
+        "nursingSupport": [
+          {
+            "sessionWindowId": "…",
+            "coverageLevel": "full",
+            "maxSupportedRooms": 4,
+            "nurseCount": 2
+          }
+        ]
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/api/clinics/{clinicSlug}/capacity/rooms",
+      "summary": "Replace active room inventory (or patch via id)",
+      "body": {
+        "rooms": [{ "name": "Consulting Room 1", "isActive": true, "sortOrder": 1 }]
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/api/clinics/{clinicSlug}/capacity/session-windows",
+      "summary": "Upsert offered session windows from operating hours or manual edit",
+      "body": {
+        "windows": [
+          {
+            "dayOfWeek": "monday",
+            "period": "morning",
+            "startsAt": "07:00",
+            "endsAt": "12:00",
+            "isOffered": true
+          }
+        ],
+        "deriveFromOpeningHours": false
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/api/clinics/{clinicSlug}/capacity/nursing",
+      "summary": "Set nursing support per session window",
+      "body": {
+        "coverage": [
+          {
+            "dayOfWeek": "monday",
+            "period": "morning",
+            "coverageLevel": "full",
+            "maxSupportedRooms": 4,
+            "nurseCount": 2
+          }
+        ]
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/api/clinics/{clinicSlug}/capacity/schedules",
+      "summary": "Upsert current GP schedules; rejects room-session conflicts",
+      "body": {
+        "assignments": [
+          {
+            "doctorName": "Dr Chen",
+            "roomId": "…",
+            "dayOfWeek": "monday",
+            "period": "morning"
+          }
+        ]
+      },
+      "errors": [
+        { "status": 409, "code": "ROOM_SESSION_CONFLICT", "message": "Room already assigned for that session." },
+        { "status": 400, "code": "SESSION_NOT_OFFERED", "message": "Session window is not offered." },
+        { "status": 400, "code": "NURSING_CAP_EXCEEDED", "message": "Assignments exceed nursing maxSupportedRooms." }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/clinics/{clinicSlug}/capacity/compute",
+      "summary": "Compute available sessions, capacity %, recruitment targets",
+      "body": {
+        "targetSessionsPerGp": 4,
+        "reserveFreeSessions": 2,
+        "persistAsPlan": true,
+        "planName": "2026-Q4 capacity"
+      },
+      "response": {
+        "availableConsultingSessions": 18,
+        "capacityPercentage": 62.5,
+        "recommendedRecruitmentTargets": 4,
+        "totals": {
+          "activeRooms": 4,
+          "totalOfferedRoomSessions": 48,
+          "usedSessions": 30,
+          "nursingConstrainedSessions": 2,
+          "reserveFreeSessions": 2
+        },
+        "byWindow": [
+          {
+            "dayOfWeek": "monday",
+            "period": "morning",
+            "offeredCapacity": 4,
+            "used": 2,
+            "available": 2,
+            "status": "available",
+            "nursingCoverageLevel": "full"
+          }
+        ],
+        "recruitmentGuidance": {
+          "recommendedGpFteApprox": 4,
+          "assumption": "targetSessionsPerGp=4 (part-time footprint)",
+          "caveats": [
+            "Targets are planning estimates, not approved vacancies.",
+            "Nursing coverage may reduce fillable rooms below room count.",
+            "Commercial and credential readiness are out of scope for this calculator."
+          ]
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/clinics/{clinicSlug}/capacity/plans",
+      "summary": "List saved capacity plans"
+    },
+    {
+      "method": "GET",
+      "path": "/api/clinics/{clinicSlug}/capacity/plans/{planId}",
+      "summary": "Fetch one plan including computationJson"
+    },
+    {
+      "method": "POST",
+      "path": "/api/clinics/{clinicSlug}/capacity/plans/{planId}/activate",
+      "summary": "Mark plan active (archives previous active)"
+    }
+  ],
+  "audit": {
+    "actions": [
+      "capacity.rooms.updated",
+      "capacity.windows.updated",
+      "capacity.nursing.updated",
+      "capacity.schedules.updated",
+      "capacity.computed",
+      "capacity.plan.activated"
+    ]
+  }
+}

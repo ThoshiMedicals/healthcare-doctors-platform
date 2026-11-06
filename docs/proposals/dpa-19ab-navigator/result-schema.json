@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gabbamedicalcentre.com.au/schemas/dpa-19ab-navigator-result.json",
+  "title": "Dpa19abNavigatorResult",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "formType",
+    "version",
+    "clinicSlug",
+    "completedAt",
+    "disclaimers",
+    "answers",
+    "outputs"
+  ],
+  "properties": {
+    "formType": { "const": "dpa_19ab_eligibility_navigator" },
+    "version": { "type": "string" },
+    "clinicSlug": { "type": "string" },
+    "completedAt": { "type": "string", "format": "date-time" },
+    "disclaimers": {
+      "type": "object",
+      "required": ["notEligibilityDetermination", "notLegalAdvice", "notMigrationAdvice", "decisionMaker"],
+      "properties": {
+        "notEligibilityDetermination": { "type": "boolean", "const": true },
+        "notLegalAdvice": { "type": "boolean", "const": true },
+        "notMigrationAdvice": { "type": "boolean", "const": true },
+        "decisionMaker": {
+          "type": "string",
+          "const": "Services Australia and relevant Australian Government programs — not Woolloongabba Medical Centre"
+        }
+      }
+    },
+    "answers": {
+      "type": "object",
+      "required": [
+        "fellowshipStatus",
+        "primaryDegreeCountry",
+        "currentWorkLocation",
+        "providerNumberStatus",
+        "medicareBillingExperience",
+        "australianTrainingPathway",
+        "visaWorkRightsStatus",
+        "dpaAwareness"
+      ],
+      "properties": {
+        "fellowshipStatus": {
+          "type": "string",
+          "enum": ["fracgp", "facrrm", "both", "in_progress", "none"]
+        },
+        "primaryDegreeCountry": {
+          "type": "string",
+          "enum": ["australia_nz", "competent_authority_comparable", "other_international", "unsure"]
+        },
+        "currentWorkLocation": {
+          "type": "string",
+          "enum": ["brisbane_inner_south", "greater_brisbane", "other_qld", "other_australia", "overseas", "not_working"]
+        },
+        "providerNumberStatus": {
+          "type": "string",
+          "enum": ["active", "applied", "none", "unsure"]
+        },
+        "medicareBillingExperience": {
+          "type": "string",
+          "enum": ["extensive", "moderate", "limited", "none"]
+        },
+        "australianTrainingPathway": {
+          "type": "string",
+          "enum": ["agpt_or_college_australian", "otd_img_pathway", "specialist_pathway", "unsure", "not_applicable"]
+        },
+        "visaWorkRightsStatus": {
+          "type": "string",
+          "enum": ["citizen_pr", "temporary_with_work_rights", "applying", "unsure"]
+        },
+        "dpaAwareness": {
+          "type": "string",
+          "enum": ["reviewed_official", "heard_of", "not_familiar"]
+        }
+      }
+    },
+    "outputs": {
+      "type": "object",
+      "required": [
+        "pathwaySummary",
+        "questionsForWmc",
+        "documentationChecklist",
+        "servicesAustraliaResources",
+        "recommendedNextAction"
+      ],
+      "properties": {
+        "pathwayThemes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "verify_dpa_for_location",
+              "review_19ab_exemptions_officially",
+              "provider_number_with_services_australia",
+              "fellowship_or_training_clarity",
+              "work_rights_confirmation",
+              "medicare_orientation_with_practice",
+              "standard_vr_conversation"
+            ]
+          }
+        },
+        "pathwaySummary": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "questionsForWmc": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "documentationChecklist": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "label", "owner"],
+            "properties": {
+              "id": { "type": "string" },
+              "label": { "type": "string" },
+              "owner": {
+                "type": "string",
+                "enum": ["doctor", "practice", "services_australia", "other_official"]
+              },
+              "note": { "type": "string" }
+            }
+          }
+        },
+        "servicesAustraliaResources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["title", "url", "why"],
+            "properties": {
+              "title": { "type": "string" },
+              "url": { "type": "string", "format": "uri" },
+              "why": { "type": "string" }
+            }
+          }
+        },
+        "recommendedNextAction": {
+          "type": "object",
+          "required": ["id", "title", "detail", "ctaLabel"],
+          "properties": {
+            "id": {
+              "type": "string",
+              "enum": [
+                "review_official_resources_then_eoi",
+                "confirm_work_rights_then_eoi",
+                "provider_number_pathway_then_eoi",
+                "express_interest_now",
+                "call_practice_for_orientation_questions"
+              ]
+            },
+            "title": { "type": "string" },
+            "detail": { "type": "string" },
+            "ctaLabel": { "type": "string" },
+            "ctaHref": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

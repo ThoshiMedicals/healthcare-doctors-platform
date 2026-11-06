@@ -1,0 +1,17 @@
+{
+  "id": "gp-clinical-interests-framework",
+  "title": "Clinical Interests Framework",
+  "status": "approved-implemented-synthetic",
+  "interests": ["womens-health", "mental-health", "skin", "chronic-disease"],
+  "dimensions": [
+    "credentialRequirements",
+    "supportNeeded",
+    "nursingImpact",
+    "roomImpact",
+    "growthPathway",
+    "capacityHonesty"
+  ],
+  "cmsKind": "clinical_interests",
+  "cmsSlug": "clinical-interests-framework",
+  "implementation": "apps/web/src/attraction-cms/content/clinical-interests.ts"
+}

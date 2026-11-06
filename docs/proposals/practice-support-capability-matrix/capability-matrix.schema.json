@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wmc.local/schemas/practice-support-capability-matrix.json",
+  "title": "WMC Practice Support Capability Matrix",
+  "type": "object",
+  "required": ["meta", "boundaryLegend", "categories"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["id", "version", "clinic", "purpose", "disclaimer"],
+      "properties": {
+        "id": { "type": "string" },
+        "version": { "type": "string" },
+        "clinic": { "type": "string" },
+        "clinicSlug": { "type": "string" },
+        "audience": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["prospective_gp", "practice_admin", "internal"] }
+        },
+        "purpose": { "type": "string" },
+        "tone": { "type": "array", "items": { "type": "string" } },
+        "disclaimer": {
+          "type": "object",
+          "required": ["short", "full"],
+          "properties": {
+            "short": { "type": "string" },
+            "full": { "type": "string" }
+          }
+        },
+        "relatedTools": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "boundaryLegend": {
+      "type": "object",
+      "required": ["canAssist", "cannotApprove", "externalDepends"],
+      "properties": {
+        "canAssist": { "$ref": "#/$defs/legendItem" },
+        "cannotApprove": { "$ref": "#/$defs/legendItem" },
+        "externalDepends": { "$ref": "#/$defs/legendItem" }
+      }
+    },
+    "categories": {
+      "type": "array",
+      "minItems": 9,
+      "items": { "$ref": "#/$defs/category" }
+    },
+    "crossCuttingPrinciples": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "$defs": {
+    "legendItem": {
+      "type": "object",
+      "required": ["label", "description"],
+      "properties": {
+        "label": { "type": "string" },
+        "description": { "type": "string" }
+      }
+    },
+    "externalDependency": {
+      "type": "object",
+      "required": ["agency", "dependency"],
+      "properties": {
+        "agency": { "type": "string" },
+        "dependency": { "type": "string" }
+      }
+    },
+    "category": {
+      "type": "object",
+      "required": [
+        "id",
+        "order",
+        "label",
+        "doctorFacingSummary",
+        "canAssist",
+        "cannotApprove",
+        "externalDepends"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "enum": [
+            "provider_number_support",
+            "medicare_onboarding_guidance",
+            "orientation",
+            "clinical_software_onboarding",
+            "nursing_introductions",
+            "reception_workflows",
+            "practice_systems",
+            "session_planning",
+            "team_integration"
+          ]
+        },
+        "order": { "type": "integer", "minimum": 1 },
+        "label": { "type": "string" },
+        "shortLabel": { "type": "string" },
+        "doctorFacingSummary": { "type": "string" },
+        "canAssist": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        },
+        "cannotApprove": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        },
+        "externalDepends": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/externalDependency" }
+        },
+        "typicalTiming": { "type": "string" },
+        "adminOwnerRole": {
+          "type": "string",
+          "enum": ["practice_manager", "nurse_lead", "reception_lead", "principal_gp"]
+        },
+        "statusKeys": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

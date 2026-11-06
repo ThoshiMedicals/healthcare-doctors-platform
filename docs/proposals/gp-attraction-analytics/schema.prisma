@@ -1,0 +1,93 @@
+// GP Attraction Analytics — Prisma fragment (proposal)
+// Woolloongabba Medical Centre
+// Anonymous-first product analytics for GP decision journey.
+
+enum GpAttractionSurface {
+  gp_opportunities
+  gp_faq
+  doctor_readiness
+  provider_number_readiness
+  gp_session_planner
+  gp_eoi
+  dpa_19ab_navigator
+  practice_support_matrix
+  join_our_team
+}
+
+enum GpAttractionPersonaHint {
+  early_career_gp
+  established_gp_seeking_change
+  returning_gp
+  part_time_parent_gp
+  special_interest_gp
+  unknown
+}
+
+enum GpAttractionChannel {
+  direct
+  organic_search
+  referral
+  email
+  social
+  unknown
+}
+
+model GpAttractionEvent {
+  id                 String                    @id @default(cuid())
+  clinicId           String
+  occurredAt         DateTime                  @default(now())
+  name               String                    /// page_view | faq_open | tool_complete | eoi_submit | …
+  anonymousSessionId String
+  surface            GpAttractionSurface?
+  toolId             String?
+  path               String?
+  referrerPath       String?
+  faqId              String?
+  ctaId              String?
+  stepId             String?
+  stepIndex          Int?
+  lastStepId         String?
+  fromSurface        GpAttractionSurface?
+  toSurface          GpAttractionSurface?
+  vote               String?
+  eoiSubmissionId    String?
+  personaHint        GpAttractionPersonaHint   @default(unknown)
+  channel            GpAttractionChannel       @default(unknown)
+  deviceClass        String?
+  durationMs         Int?
+  props              Json?                     /// non-PII extras only
+  createdAt          DateTime                  @default(now())
+
+  @@index([clinicId, occurredAt])
+  @@index([clinicId, name, occurredAt])
+  @@index([anonymousSessionId, occurredAt])
+  @@index([toolId, name])
+  @@index([personaHint, occurredAt])
+}
+
+/// Daily rollups for dashboard performance (counts only)
+model GpAttractionDailyRollup {
+  id        String   @id @default(cuid())
+  clinicId  String
+  day       DateTime @db.Date
+  metricId  String
+  dimension String   @default("_all") /// e.g. persona=early_career_gp | tool=doctor-readiness
+  value     Float
+  updatedAt DateTime @updatedAt
+
+  @@unique([clinicId, day, metricId, dimension])
+  @@index([clinicId, day])
+}
+
+model GpAttractionPathRollup {
+  id           String   @id @default(cuid())
+  clinicId     String
+  windowDays   Int
+  pathKey      String   /// e.g. gp_opportunities>gp_faq>doctor_readiness>gp_eoi
+  sessions     Int
+  eoiSessions  Int
+  liftToEoi    Float?
+  updatedAt    DateTime @updatedAt
+
+  @@unique([clinicId, windowDays, pathKey])
+}

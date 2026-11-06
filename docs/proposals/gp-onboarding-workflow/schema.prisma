@@ -1,0 +1,154 @@
+// GP Onboarding Workflow — Prisma fragment (proposal)
+// Woolloongabba Medical Centre
+// Human-reviewed gates only — no automated approvals.
+
+enum GpOnboardingCaseStatus {
+  enquiry
+  eoi_received
+  in_review
+  awaiting_doctor
+  awaiting_external
+  ready_for_go_live
+  live
+  settling
+  paused
+  withdrawn
+  declined
+}
+
+enum GpOnboardingStageId {
+  initial_discussion
+  eoi_review
+  credential_checks
+  provider_number_preparation
+  session_allocation
+  orientation
+  go_live
+}
+
+enum GpOnboardingStageStatus {
+  not_started
+  in_progress
+  awaiting_doctor
+  awaiting_external
+  ready_for_gate
+  gate_approved
+  skipped_with_rationale
+  blocked
+}
+
+enum GpOnboardingTaskOwner {
+  admin
+  doctor
+  external
+}
+
+enum GpOnboardingTaskStatus {
+  pending
+  in_progress
+  done
+  waived_with_rationale
+  blocked
+}
+
+enum GpOnboardingGateDecision {
+  approve_advance
+  request_changes
+  pause
+  decline
+  withdraw
+  acknowledge_awaiting_external
+}
+
+model GpOnboardingCase {
+  id                   String                 @id @default(cuid())
+  clinicId             String
+  doctorDisplayName    String
+  doctorEmail          String?
+  careerApplicationId  String?                /// link to EOI / CareerApplication
+  status               GpOnboardingCaseStatus @default(enquiry)
+  currentStageId       GpOnboardingStageId    @default(initial_discussion)
+  workflowVersion      String                 @default("1.0.0")
+  targetStartDate      DateTime?
+  firstSessionAt       DateTime?
+  dayOneSupportContact String?
+  providerNumberNote   String?                /// e.g. awaiting_external acknowledgement
+  internalNotes        String?
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @updatedAt
+
+  stages      GpOnboardingStageState[]
+  tasks       GpOnboardingTask[]
+  gates       GpOnboardingGateEvent[]
+  notifications GpOnboardingNotificationLog[]
+
+  @@index([clinicId, status])
+  @@index([careerApplicationId])
+}
+
+model GpOnboardingStageState {
+  id                String                  @id @default(cuid())
+  caseId            String
+  case              GpOnboardingCase        @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  stageId           GpOnboardingStageId
+  status            GpOnboardingStageStatus @default(not_started)
+  startedAt         DateTime?
+  readyForGateAt    DateTime?
+  gateApprovedAt    DateTime?
+  externalAgency    String?
+  blockerSummary    String?
+  updatedAt         DateTime                @updatedAt
+
+  @@unique([caseId, stageId])
+  @@index([status])
+}
+
+model GpOnboardingTask {
+  id          String                  @id @default(cuid())
+  caseId      String
+  case        GpOnboardingCase        @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  stageId     GpOnboardingStageId
+  taskKey     String                  /// matches workflow.json task id
+  owner       GpOnboardingTaskOwner
+  label       String
+  required    Boolean                 @default(true)
+  status      GpOnboardingTaskStatus  @default(pending)
+  completedAt DateTime?
+  completedBy String?
+  notes       String?
+  updatedAt   DateTime                @updatedAt
+
+  @@unique([caseId, taskKey])
+  @@index([caseId, stageId, status])
+}
+
+/// Immutable human gate record — source of truth for advances
+model GpOnboardingGateEvent {
+  id            String                    @id @default(cuid())
+  caseId        String
+  case          GpOnboardingCase          @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  stageId       GpOnboardingStageId
+  decision      GpOnboardingGateDecision
+  reviewerId    String                    /// required — human actor
+  reviewerName  String
+  rationale     String
+  checklistSnapshot Json?
+  createdAt     DateTime                  @default(now())
+
+  @@index([caseId, stageId, createdAt])
+}
+
+model GpOnboardingNotificationLog {
+  id            String   @id @default(cuid())
+  caseId        String
+  case          GpOnboardingCase @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  eventId       String
+  channel       String
+  recipientRole String
+  payload       Json
+  sentAt        DateTime @default(now())
+  /// Explicit: notification ack is never an approval
+  countsAsApproval Boolean @default(false)
+
+  @@index([caseId, sentAt])
+}

@@ -1,0 +1,96 @@
+{
+  "id": "wmc-gp-attraction-multi-clinic-capability",
+  "version": "1.0.0",
+  "assessedAt": "2026-11-04",
+  "verdict": {
+    "summary": "Yes as a shared-services architecture — not as forked Gabba microsites. Current state ≈ L1 (tenant-keyed platform). Target near-term ≈ L2. Public multi-clinic attraction ≈ L3 (requires golden corpus + domains).",
+    "alignsWithPlatform": {
+      "phase1Score": 58,
+      "draftSecondClinicScore": 64,
+      "note": "Platform can operate draft tenants; attraction content layer still single-clinic."
+    }
+  },
+  "evaluation": {
+    "dataStructures": {
+      "score": 68,
+      "status": "partial_strong_design",
+      "finding": "Most attraction APIs/schemas key clinicId/clinicSlug; proposal content JSON still Gabba-literal; knowledge graph is a single-clinic instance."
+    },
+    "clinicSpecificSettings": {
+      "score": 42,
+      "status": "weak_on_attraction_content",
+      "finding": "ClinicProfile/branding exists on platform; attraction packs, personas, pathway, governance UI hardcode WMC strings."
+    },
+    "capacityPlanning": {
+      "score": 72,
+      "status": "clinic_scoped_prototypes",
+      "finding": "Room capacity, session matching, workforce planning are clinic-scoped designs but not one shared CapacityService product."
+    },
+    "onboardingWorkflows": {
+      "score": 65,
+      "status": "clinic_scoped_design",
+      "finding": "Cases/stages keyed by clinicId; notification and workflow copy need merge fields and membership-scoped gates."
+    },
+    "contentGovernance": {
+      "score": 55,
+      "status": "network_ready_clinic_weak_binding",
+      "finding": "Hard rules (agency/salary/PN/hype) are network-global and portable; approver pools and MedicalClinic @id must be dual-scoped."
+    }
+  },
+  "capabilityLevels": [
+    {
+      "level": "L0",
+      "name": "Single-clinic prototype",
+      "meaning": "Current attraction proposals with Gabba-hardcoded content"
+    },
+    {
+      "level": "L1",
+      "name": "Tenant-keyed platform",
+      "meaning": "Clinic row, profile, admin switcher, scoped ops; attraction not fully productised",
+      "current": true
+    },
+    {
+      "level": "L2",
+      "name": "Shared attraction services",
+      "meaning": "Shared engines + ClinicAttractionConfig + per-clinic content documents",
+      "targetNearTerm": true
+    },
+    {
+      "level": "L3",
+      "name": "Multi-live attraction",
+      "meaning": "Each live clinic publishes governed attraction surfaces on its host"
+    },
+    {
+      "level": "L4",
+      "name": "Network intelligence",
+      "meaning": "Cross-clinic pattern roll-up with strict isolation on PII and vacancies"
+    }
+  ],
+  "sharedServices": [
+    { "id": "ClinicContext", "responsibility": "Resolve slug → clinicId, profile, branding, flags" },
+    { "id": "AttractionContentService", "responsibility": "FAQ/personas/packs/pathway overlays by clinic" },
+    { "id": "CapacityService", "responsibility": "Rooms, sessions, nursing cover, unmet demand" },
+    { "id": "OnboardingWorkflowEngine", "responsibility": "Shared stages + clinic case store" },
+    { "id": "ReadinessTools", "responsibility": "Shared logic + clinic location pack" },
+    { "id": "AttractionAnalytics", "responsibility": "Event ingest + clinic filter" },
+    { "id": "ContentIntelligence", "responsibility": "Gap scoring within clinic" },
+    { "id": "GovernanceGate", "responsibility": "Hard-rules lint + approval record" },
+    { "id": "EoiInbox", "responsibility": "Clinic-scoped enquiries; no cross-tenant default" }
+  ],
+  "refactoringRoadmap": [
+    { "id": "R1", "name": "Inventory & tenancy contract", "effort": "1–2 weeks" },
+    { "id": "R2", "name": "ClinicAttractionConfig", "effort": "2–3 weeks" },
+    { "id": "R3", "name": "Content extraction (templates vs clinic docs)", "effort": "3–4 weeks" },
+    { "id": "R4", "name": "Unify CapacityService", "effort": "2–3 weeks" },
+    { "id": "R5", "name": "Onboarding multi-clinic harden", "effort": "2 weeks" },
+    { "id": "R6", "name": "Governance dual-scope", "effort": "1–2 weeks" },
+    { "id": "R7", "name": "Analytics & intelligence tenancy", "effort": "2 weeks" },
+    { "id": "R8", "name": "Second-clinic pilot draft→live", "effort": "Depends on golden corpus" }
+  ],
+  "nonGoals": [
+    "Fork entire attraction suite per clinic",
+    "Cross-clinic EOI or vacancy visibility by default",
+    "Reuse Gabba schema @id / HotDoc IDs on another clinic",
+    "Weaken network hard rules for any tenant"
+  ]
+}

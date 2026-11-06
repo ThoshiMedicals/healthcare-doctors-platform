@@ -1,0 +1,320 @@
+[
+  {
+    "id": "enq_001",
+    "clinicId": "woolloongabba",
+    "doctorDisplayName": "Dr A. Nguyen",
+    "email": "a.nguyen@example.com",
+    "phone": "0400 111 001",
+    "status": "reviewing",
+    "assignedToUserId": "pm_01",
+    "assignedToName": "Practice Manager",
+    "priorityScore": 86,
+    "scoreBand": "priority_review",
+    "hardFlags": [],
+    "capacityFit": "strong",
+    "capacityFitNote": "Tue/Thu mornings align with free rooms and nursing cover.",
+    "eligibilityDiscussionStatus": "not_started",
+    "eligibilityDiscussionSummary": null,
+    "onboardingCaseId": "case_demo_001",
+    "onboardingStage": "provider_number_preparation",
+    "preferredStartDate": "2026-12-01",
+    "sessionsPerWeek": 4,
+    "submittedAt": "2026-10-28T02:00:00.000Z",
+    "eoi": {
+      "ahpraStatus": "current_unrestricted",
+      "fellowship": "fracgp",
+      "clinicalInterests": ["womens_health", "chronic_disease", "preventive_care"],
+      "availabilityNotes": "Tue–Thu preferred"
+    },
+    "readiness": {
+      "completedAt": "2026-10-28T03:10:00.000Z",
+      "overallBand": "practice_ready_to_discuss",
+      "themeIds": ["continuity", "systems"]
+    },
+    "providerReadiness": {
+      "completedAt": "2026-10-29T01:00:00.000Z",
+      "hasProviderNumber": "yes",
+      "applicationStatus": "location_application_planned",
+      "documentsReadyCount": 5,
+      "documentsTotal": 7,
+      "noticeAcknowledged": true
+    },
+    "sessionPreferences": {
+      "completedAt": "2026-10-29T04:00:00.000Z",
+      "preferredDays": ["tuesday", "wednesday", "thursday"],
+      "sessionsPerWeek": 4,
+      "startFlexibility": "within_6_weeks"
+    },
+    "score": {
+      "totalScore": 86,
+      "adjustedTotalScore": 86,
+      "manualAdjustment": 0,
+      "band": "priority_review",
+      "factors": {
+        "ahpraStatus": 20,
+        "fellowship": 20,
+        "clinicalInterests": 15,
+        "availability": 12,
+        "startDate": 12,
+        "sessionCommitment": 7
+      },
+      "hardFlags": []
+    },
+    "notes": [
+      {
+        "id": "note_001",
+        "authorUserId": "pm_01",
+        "authorName": "Practice Manager",
+        "body": "Strong continuity fit. Discuss location PN timing before go-live.",
+        "createdAt": "2026-10-29T05:00:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": "enq_002",
+    "clinicId": "woolloongabba",
+    "doctorDisplayName": "Dr S. Patel",
+    "email": "s.patel@example.com",
+    "phone": "0400 222 002",
+    "status": "triage",
+    "assignedToUserId": null,
+    "assignedToName": null,
+    "priorityScore": 64,
+    "scoreBand": "possible_fit",
+    "hardFlags": [],
+    "capacityFit": "limited",
+    "capacityFitNote": "Prefers five full days; current nursing cover supports fewer sessions.",
+    "eligibilityDiscussionStatus": "in_discussion",
+    "eligibilityDiscussionSummary": "Doctor asked about DPA for this location. Shared practice address and pointed to Services Australia / official reading. No determination by WMC.",
+    "onboardingCaseId": null,
+    "onboardingStage": null,
+    "preferredStartDate": "2027-02-01",
+    "sessionsPerWeek": 8,
+    "submittedAt": "2026-11-01T06:30:00.000Z",
+    "eoi": {
+      "ahpraStatus": "current_unrestricted",
+      "fellowship": "fracgp",
+      "clinicalInterests": ["skin_checks", "procedural"],
+      "availabilityNotes": "Full-time preferred"
+    },
+    "readiness": {
+      "completedAt": "2026-11-01T07:00:00.000Z",
+      "overallBand": "needs_conversation",
+      "themeIds": ["sessions", "capacity"]
+    },
+    "providerReadiness": null,
+    "sessionPreferences": {
+      "completedAt": "2026-11-01T08:00:00.000Z",
+      "preferredDays": ["monday", "tuesday", "wednesday", "thursday", "friday"],
+      "sessionsPerWeek": 8,
+      "startFlexibility": "flexible"
+    },
+    "score": {
+      "totalScore": 64,
+      "adjustedTotalScore": 64,
+      "manualAdjustment": 0,
+      "band": "possible_fit",
+      "factors": {
+        "ahpraStatus": 20,
+        "fellowship": 20,
+        "clinicalInterests": 8,
+        "availability": 6,
+        "startDate": 5,
+        "sessionCommitment": 5
+      },
+      "hardFlags": []
+    },
+    "notes": []
+  },
+  {
+    "id": "enq_003",
+    "clinicId": "woolloongabba",
+    "doctorDisplayName": "Dr M. Okonkwo",
+    "email": "m.okonkwo@example.com",
+    "phone": null,
+    "status": "awaiting_doctor",
+    "assignedToUserId": "pm_01",
+    "assignedToName": "Practice Manager",
+    "priorityScore": 48,
+    "scoreBand": "nurture",
+    "hardFlags": ["AHPRA_REQUIRED"],
+    "capacityFit": "uncertain",
+    "capacityFitNote": "Hold capacity judgement until registration evidence shared.",
+    "eligibilityDiscussionStatus": "doctor_seeking_external_advice",
+    "eligibilityDiscussionSummary": "IMG pathway questions raised. Directed to official sources; practice will not determine eligibility.",
+    "onboardingCaseId": null,
+    "onboardingStage": null,
+    "preferredStartDate": "2026-11-20",
+    "sessionsPerWeek": 3,
+    "submittedAt": "2026-10-20T01:15:00.000Z",
+    "eoi": {
+      "ahpraStatus": "pending",
+      "fellowship": "in_progress",
+      "clinicalInterests": ["childrens_health", "general_practice"],
+      "availabilityNotes": "Part-time evenings interest"
+    },
+    "readiness": {
+      "completedAt": "2026-10-20T02:00:00.000Z",
+      "overallBand": "early_exploration",
+      "themeIds": ["registration", "training"]
+    },
+    "providerReadiness": {
+      "completedAt": "2026-10-21T01:00:00.000Z",
+      "hasProviderNumber": "no",
+      "applicationStatus": "not_started",
+      "documentsReadyCount": 2,
+      "documentsTotal": 7,
+      "noticeAcknowledged": true
+    },
+    "sessionPreferences": null,
+    "score": {
+      "totalScore": 48,
+      "adjustedTotalScore": 48,
+      "manualAdjustment": 0,
+      "band": "nurture",
+      "factors": {
+        "ahpraStatus": 6,
+        "fellowship": 10,
+        "clinicalInterests": 12,
+        "availability": 8,
+        "startDate": 8,
+        "sessionCommitment": 4
+      },
+      "hardFlags": [
+        {
+          "code": "AHPRA_REQUIRED",
+          "severity": "high",
+          "message": "Current AHPRA registration required before consulting; keep in nurture only."
+        }
+      ]
+    },
+    "notes": [
+      {
+        "id": "note_002",
+        "authorUserId": "pm_01",
+        "authorName": "Practice Manager",
+        "body": "Hard flag visible. Requested AHPRA evidence before any interview scheduling. Score must not auto-decline.",
+        "createdAt": "2026-10-21T03:00:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": "enq_004",
+    "clinicId": "woolloongabba",
+    "doctorDisplayName": "Dr L. Chen",
+    "email": "l.chen@example.com",
+    "phone": "0400 444 004",
+    "status": "new_submission",
+    "assignedToUserId": null,
+    "assignedToName": null,
+    "priorityScore": 78,
+    "scoreBand": "strong_fit",
+    "hardFlags": [],
+    "capacityFit": "unknown",
+    "capacityFitNote": null,
+    "eligibilityDiscussionStatus": "not_started",
+    "eligibilityDiscussionSummary": null,
+    "onboardingCaseId": null,
+    "onboardingStage": null,
+    "preferredStartDate": "2026-12-15",
+    "sessionsPerWeek": 3,
+    "submittedAt": "2026-11-03T09:00:00.000Z",
+    "eoi": {
+      "ahpraStatus": "current_unrestricted",
+      "fellowship": "fracgp",
+      "clinicalInterests": ["mental_health", "womens_health", "preventive_care"],
+      "availabilityNotes": "Mon/Wed/Fri mornings"
+    },
+    "readiness": null,
+    "providerReadiness": null,
+    "sessionPreferences": null,
+    "score": {
+      "totalScore": 78,
+      "adjustedTotalScore": 78,
+      "manualAdjustment": 0,
+      "band": "strong_fit",
+      "factors": {
+        "ahpraStatus": 20,
+        "fellowship": 20,
+        "clinicalInterests": 15,
+        "availability": 10,
+        "startDate": 8,
+        "sessionCommitment": 5
+      },
+      "hardFlags": []
+    },
+    "notes": []
+  },
+  {
+    "id": "enq_005",
+    "clinicId": "woolloongabba",
+    "doctorDisplayName": "Dr R. Williams",
+    "email": "r.williams@example.com",
+    "phone": "0400 555 005",
+    "status": "in_conversation",
+    "assignedToUserId": "principal_01",
+    "assignedToName": "Principal GP",
+    "priorityScore": 91,
+    "scoreBand": "priority_review",
+    "hardFlags": [],
+    "capacityFit": "strong",
+    "capacityFitNote": "Two afternoon sessions match open room windows.",
+    "eligibilityDiscussionStatus": "closed_no_determination",
+    "eligibilityDiscussionSummary": "VR citizen; location PN process explained. Closed discussion tracker — SA remains issuer.",
+    "onboardingCaseId": null,
+    "onboardingStage": "initial_discussion",
+    "preferredStartDate": "2026-11-24",
+    "sessionsPerWeek": 2,
+    "submittedAt": "2026-10-15T04:20:00.000Z",
+    "eoi": {
+      "ahpraStatus": "current_unrestricted",
+      "fellowship": "both",
+      "clinicalInterests": ["chronic_disease", "preventive_care", "skin_checks"],
+      "availabilityNotes": "Two sessions; may grow"
+    },
+    "readiness": {
+      "completedAt": "2026-10-15T05:00:00.000Z",
+      "overallBand": "practice_ready_to_discuss",
+      "themeIds": ["continuity"]
+    },
+    "providerReadiness": {
+      "completedAt": "2026-10-16T02:00:00.000Z",
+      "hasProviderNumber": "yes",
+      "applicationStatus": "active_elsewhere",
+      "documentsReadyCount": 7,
+      "documentsTotal": 7,
+      "noticeAcknowledged": true
+    },
+    "sessionPreferences": {
+      "completedAt": "2026-10-16T03:00:00.000Z",
+      "preferredDays": ["monday", "friday"],
+      "sessionsPerWeek": 2,
+      "startFlexibility": "asap"
+    },
+    "score": {
+      "totalScore": 88,
+      "adjustedTotalScore": 91,
+      "manualAdjustment": 3,
+      "manualAdjustmentReason": "Known local GP; continuity reputation — human adjustment, not automation",
+      "band": "priority_review",
+      "factors": {
+        "ahpraStatus": 20,
+        "fellowship": 20,
+        "clinicalInterests": 15,
+        "availability": 12,
+        "startDate": 14,
+        "sessionCommitment": 7
+      },
+      "hardFlags": []
+    },
+    "notes": [
+      {
+        "id": "note_003",
+        "authorUserId": "principal_01",
+        "authorName": "Principal GP",
+        "body": "Manual score +3 recorded with reason. Still requires mutual conversation before any offer language.",
+        "createdAt": "2026-10-17T01:00:00.000Z"
+      }
+    ]
+  }
+]

@@ -1,0 +1,174 @@
+// Admin GP Enquiries Dashboard — Prisma fragment (proposal)
+// Woolloongabba Medical Centre
+// Human-reviewed queue. Scores prioritise review order — never auto-hire/reject.
+
+enum GpEnquiryStatus {
+  new_submission
+  triage
+  reviewing
+  awaiting_doctor
+  in_conversation
+  onboarding
+  nurture
+  declined
+  withdrawn
+  hired
+}
+
+enum GpEnquiryScoreBand {
+  priority_review
+  strong_fit
+  possible_fit
+  nurture
+  incomplete
+}
+
+enum GpEnquiryCapacityFit {
+  strong
+  limited
+  uncertain
+  unknown
+}
+
+enum GpEligibilityDiscussionStatus {
+  not_started
+  in_discussion
+  practice_location_shared
+  doctor_seeking_external_advice
+  paused
+  closed_no_determination
+}
+
+model GpEnquiry {
+  id                         String                        @id @default(cuid())
+  clinicId                   String
+  careerApplicationId        String?                       @unique
+  doctorDisplayName          String
+  email                      String
+  phone                      String?
+  status                     GpEnquiryStatus               @default(new_submission)
+  assignedToUserId           String?
+  assignedToName             String?
+  /// From GpEoiScore.adjustedTotalScore — display/sort only
+  priorityScore              Int                           @default(0)
+  scoreBand                  GpEnquiryScoreBand            @default(incomplete)
+  hardFlagsJson              Json                          @default("[]")
+  capacityFit                GpEnquiryCapacityFit          @default(unknown)
+  capacityFitNote            String?
+  eligibilityDiscussionStatus GpEligibilityDiscussionStatus @default(not_started)
+  /// Conversation tracker only — NEVER a DPA/s19AB/eligibility determination
+  eligibilityDiscussionSummary String?
+  onboardingCaseId           String?
+  onboardingStage            String?
+  preferredStartDate         DateTime?
+  sessionsPerWeek            Float?
+  submittedAt                DateTime                      @default(now())
+  updatedAt                  DateTime                      @updatedAt
+
+  eoiSnapshot                GpEnquiryEoiSnapshot?
+  readinessResult            GpEnquiryReadinessResult?
+  providerReadiness          GpEnquiryProviderReadiness?
+  sessionPreferences         GpEnquirySessionPreferences?
+  scoreBreakdown             GpEnquiryScoreBreakdown?
+  notes                      GpEnquiryNote[]
+  statusAudits               GpEnquiryStatusAudit[]
+
+  @@index([clinicId, status, priorityScore])
+  @@index([clinicId, assignedToUserId])
+  @@index([clinicId, submittedAt])
+  @@index([doctorDisplayName])
+  @@index([email])
+}
+
+model GpEnquiryEoiSnapshot {
+  id              String    @id @default(cuid())
+  enquiryId       String    @unique
+  enquiry         GpEnquiry @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+  ahpraStatus     String?
+  fellowship      String?
+  clinicalInterests Json    @default("[]")
+  availabilityNotes String?
+  rawSummaryJson  Json?
+  createdAt       DateTime  @default(now())
+}
+
+model GpEnquiryReadinessResult {
+  id            String    @id @default(cuid())
+  enquiryId     String    @unique
+  enquiry       GpEnquiry @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+  completedAt   DateTime?
+  overallBand   String?
+  themeIdsJson  Json      @default("[]")
+  summaryJson   Json?
+  /// Never treat as hire decision
+  advisoryOnly  Boolean   @default(true)
+}
+
+model GpEnquiryProviderReadiness {
+  id                    String    @id @default(cuid())
+  enquiryId             String    @unique
+  enquiry               GpEnquiry @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+  completedAt           DateTime?
+  hasProviderNumber     String?
+  applicationStatus     String?
+  documentsReadyCount   Int       @default(0)
+  documentsTotal        Int       @default(0)
+  noticeAcknowledged    Boolean   @default(false)
+  summaryJson           Json?
+}
+
+model GpEnquirySessionPreferences {
+  id                String    @id @default(cuid())
+  enquiryId         String    @unique
+  enquiry           GpEnquiry @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+  completedAt       DateTime?
+  preferredDaysJson Json      @default("[]")
+  sessionsPerWeek   Float?
+  startFlexibility  String?
+  notes             String?
+  planJson          Json?
+}
+
+model GpEnquiryScoreBreakdown {
+  id                  String    @id @default(cuid())
+  enquiryId           String    @unique
+  enquiry             GpEnquiry @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+  totalScore          Int
+  adjustedTotalScore  Int
+  manualAdjustment    Int       @default(0)
+  manualAdjustmentReason String?
+  band                GpEnquiryScoreBand
+  factorsJson         Json
+  hardFlagsJson       Json      @default("[]")
+  scoredAt            DateTime  @default(now())
+}
+
+model GpEnquiryNote {
+  id           String    @id @default(cuid())
+  enquiryId    String
+  enquiry      GpEnquiry @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+  authorUserId String
+  authorName   String?
+  body         String
+  visibility   String    @default("internal")
+  createdAt    DateTime  @default(now())
+
+  @@index([enquiryId, createdAt])
+}
+
+model GpEnquiryStatusAudit {
+  id             String    @id @default(cuid())
+  enquiryId      String
+  enquiry        GpEnquiry @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+  actorUserId    String
+  actorName      String?
+  fromStatus     String?
+  toStatus       String?
+  field          String?
+  fromValue      String?
+  toValue        String?
+  note           String?
+  createdAt      DateTime  @default(now())
+
+  @@index([enquiryId, createdAt])
+}

@@ -1,0 +1,29 @@
+bundle,id,title,owner,status,consent_state,interview_status,quote_approval_status,approval_status,implementation_status,replacement_target,website_placement,due_capture_or_interview,due_that_is_us_or_approve,due_live_uat,sign_off_state,notes
+Photo,PH-01,Arrival threshold,PM + Photographer; Principal gate,Blocked,Not issued,,,,"",,WMC arrival / reception threshold still,join-our-team.html hero,2026-11-11,2026-11-13,2026-11-17,Pending,Retire concept Join hero; Batch1 NO-SWAP
+Photo,PH-02,Street entrance,PM + Photographer; Principal gate,Blocked,N/A if facade only,,,,"",,WMC exterior / 468 Vulture St,about-us/community-catchment.html feature,2026-11-11,2026-11-13,2026-11-17,Pending,Staff consent if faces
+Photo,PH-03,Collegial fit,PM + Photographer; Principal gate,Blocked,Not issued,,,,"",,Collegial GP +/- nurse in real room,join-our-team/gp-opportunities.html feature,2026-11-11,2026-11-13,2026-11-17,Pending,
+Photo,PH-04,Atmosphere,PM + Photographer; Principal gate,Blocked,Not issued,,,,"",,Reception to corridor atmosphere,about-us/practice-experience.html feature,2026-11-11,2026-11-13,2026-11-17,Pending,
+Photo,PH-05,Typical day,PM + Photographer; Principal gate,Blocked,Not issued,,,,"",,GP at desk in our room,PE Typical Day,2026-11-11,2026-11-13,2026-11-18,Pending,Patient default OFF
+Photo,PH-06,Nursing,PM + Photographer; NUM consulted; Principal gate,Blocked,Not issued,,,,"",,Nurse treatment-room prep,PE Nursing,2026-11-11,2026-11-13,2026-11-18,Pending,
+Photo,PH-07,Reception,PM + Photographer; Reception lead; Principal gate,Blocked,Not issued,,,,"",,Reception desk screens blank,PE Reception,2026-11-11,2026-11-13,2026-11-18,Pending,
+Photo,PH-08,Team corridor,PM + Photographer; Principal gate,Blocked,Not issued,,,,"",,GP-nurse or GP-GP doorway exchange,PE Team Interactions,2026-11-11,2026-11-13,2026-11-18,Pending,
+Photo,PH-09,Community cue,PM + Photographer; Principal gate,Blocked,N/A if empty street,,,,"",,Entrance / bench / street near clinic,PE Community,2026-11-11,2026-11-13,2026-11-18,Pending,
+Photo,PH-10,Continuity cue,PM + Photographer; Principal gate,Blocked,Not issued,,,,"",,Same GP in room privacy-safe,PE Continuity,2026-11-11,2026-11-13,2026-11-18,Pending,Patient form only if identifiable
+Photo,PH-11,Flexible sessions,PM + Principal,Blocked,N/A if empty/typo treatment,,,,"",,Empty consult ready OR signed non-photo treatment,PE Flexible Sessions,2026-11-11,2026-11-13,2026-11-18,Pending,Fallback decision at G3
+Voice,V-GP-01,Day shape,PM schedules; Principal or long-stay GP,Not started,Not issued,Not started,Pending,,,Consented GP day voice,PE Typical Day,2026-11-12,draft+48h approve+72h,2026-11-19,Pending,Critical
+Voice,V-GP-02,Team / nursing,PM; continuity GP; NUM consulted,Not started,Not issued,Not started,Pending,,,Consented GP team/nursing voice,PE Nursing or Team,2026-11-12,draft+48h approve+72h,2026-11-19,Pending,Critical
+Voice,V-GP-03,Fit honesty,PM; fit-honesty GP; Principal sanity,Not started,Not issued,Not started,Pending,,,Consented GP who should not join,gp-opportunities.html,2026-11-12,draft+48h approve+72h,2026-11-19,Pending,Critical
+Voice,V-NU-01,Pathway,PM; senior nurse; NUM accuracy,Not started,Not issued,Not started,Pending,,,Consented nurse pathway,PE Nursing,2026-11-12,draft+48h approve+72h,2026-11-19,Pending,Critical
+Voice,V-NU-02,Cover honesty,PM; thin-cover nurse; NUM accuracy,Not started,Not issued,Not started,Pending,,,Consented nurse cover honesty,PE Nursing,2026-11-12,draft+48h approve+72h,2026-11-19,Pending,Critical; ties OWN-NURSE
+Voice,V-RX-01,Flow,PM; experienced receptionist; Reception lead,Not started,Not issued,Not started,Pending,,,Consented reception flow,PE Reception,2026-11-11,draft+48h approve+72h,2026-11-19,Pending,Prefer shoot afternoon
+Ownership,OWN-EOI,Named EOI reader,PM (A); Owner informed; Platform lead copy,Pending — Pack 03 unsigned,,,"",Pending,Not started,Approved ownership statement,express-interest.html,2026-11-14,,2026-11-20,Pending,Critical
+Ownership,OWN-CALL,Joining call path,PM + Reception lead,Pending,,,"",Pending,Not started,Call-handling script briefed,Reception desk + sticky tel:,2026-11-14,,2026-11-20,Pending,Critical
+Ownership,OWN-SLA,Response guideline,PM,Pending,,,"",Pending,Not started,Internal response-time guideline,Internal (+/- optional public),2026-11-14,,,Pending,Critical
+Ownership,OWN-ADDR,Address / hours truth,PM,Pending verify,,,"",Pending,Not started,Verified address/hours,Catchment + Support cues,2026-11-12,,,Pending,Critical
+Ownership,OWN-VAC,Vacancy honesty,PM + Owner,Pending weekly review,,,"",Pending,Not started,Honest vacancy cards,Opportunities vacancy cards,2026-11-14,,2026-11-21,Pending,Critical
+Ownership,OWN-NURSE,Nursing cover honesty,NUM/senior nurse + PM,Pending,,,"",Pending,Tied to V-NU-02,Ops-owned nursing honesty,PE Nursing,2026-11-19,,2026-11-19,Pending,Critical
+Ownership,OWN-FLEX,Session flexibility honesty,PM + Principal,Pending,,,"",Pending,Tied to PH-11,Rooms/nursing constraints owned,PE Flexible Sessions,2026-11-13,,2026-11-18,Pending,Critical
+Ownership,OWN-PRIN,Principal endorsement,Principal GP,Pending,,,"",Pending,Not started,Short principal line,Join or Opportunities,2026-11-20,,2026-11-20,Pending,Important optional
+Ownership,OWN-AGPAL,AGPAL mark,PM,Approved (existing),,,"",Approved,Live (keep),Existing mark only,Footer,—,—,—,N/A,Keep; do not overclaim
+Ownership,OWN-PHOTO-GATE,Photo sign-off,Principal + PM,Pending G3,,,"",Pending,Blocked,That-is-us on all Critical photos,All Critical photo slots,2026-11-13,2026-11-13,,Pending,Hard stop G3
+Ownership,OWN-QUOTE-GATE,Quote sign-off,Interviewee + PM; Principal sanity clinical,Pending,,,"",Pending,Blocked,That-is-us on all Critical voices,All Critical voices,,2026-11-19,2026-11-19,Pending,Hard stop before voice publish

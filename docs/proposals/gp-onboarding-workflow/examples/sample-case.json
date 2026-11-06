@@ -1,0 +1,38 @@
+{
+  "id": "case_demo_001",
+  "clinicId": "woolloongabba",
+  "doctorDisplayName": "Dr A. Nguyen",
+  "doctorEmail": "a.nguyen@example.com",
+  "careerApplicationId": "eoi_demo_88",
+  "status": "in_review",
+  "currentStageId": "provider_number_preparation",
+  "workflowVersion": "1.0.0",
+  "targetStartDate": "2026-12-01",
+  "providerNumberNote": null,
+  "stages": [
+    { "stageId": "initial_discussion", "status": "gate_approved" },
+    { "stageId": "eoi_review", "status": "gate_approved" },
+    { "stageId": "credential_checks", "status": "gate_approved" },
+    { "stageId": "provider_number_preparation", "status": "in_progress", "externalAgency": "Services Australia" },
+    { "stageId": "session_allocation", "status": "not_started" },
+    { "stageId": "orientation", "status": "not_started" },
+    { "stageId": "go_live", "status": "not_started" }
+  ],
+  "tasks": [
+    { "taskKey": "pn_location_pack", "stageId": "provider_number_preparation", "owner": "admin", "label": "Supply verified practice location pack", "required": true, "status": "done" },
+    { "taskKey": "pn_explain_boundary", "stageId": "provider_number_preparation", "owner": "admin", "label": "Reconfirm Services Australia is the issuer", "required": true, "status": "done" },
+    { "taskKey": "pn_track_status", "stageId": "provider_number_preparation", "owner": "admin", "label": "Record application status", "required": true, "status": "in_progress" },
+    { "taskKey": "pd_apply_sa", "stageId": "provider_number_preparation", "owner": "doctor", "label": "Lodge Services Australia application for this location", "required": true, "status": "in_progress" },
+    { "taskKey": "pd_share_status", "stageId": "provider_number_preparation", "owner": "doctor", "label": "Share application status with practice", "required": true, "status": "pending" }
+  ],
+  "gates": [
+    {
+      "stageId": "credential_checks",
+      "decision": "approve_advance",
+      "reviewerId": "pm_01",
+      "reviewerName": "Practice Manager",
+      "rationale": "AHPRA, indemnity, ID and working rights sighted for onboarding process.",
+      "createdAt": "2026-11-01T03:00:00.000Z"
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GP Story Capture System | Woolloongabba Medical Centre</title>
+  <meta name="description" content="Collect and govern GP practice-experience stories — inventory, consent, review, reuse controls." />
+  <meta name="robots" content="noindex,nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#173044",
+            "ink-soft": "#596b78",
+            navy: "#163f62",
+            green: "#0f6b45",
+            warm: "#f5f3ee",
+            mist: "#f4f7f7",
+            line: "#dbe4e9",
+            amber: "#8a6a2f",
+          },
+          fontFamily: {
+            display: ['"Libre Baskerville"', "Georgia", "serif"],
+            ui: ["Inter", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: false, theme: "neutral", securityLevel: "strict" });
+    window.__mermaid = mermaid;
+  </script>
+</head>
+<body class="bg-mist font-ui text-ink antialiased">
+  <a href="#workflow" class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white">Skip to workflow</a>
+
+  <header class="border-b border-line bg-warm">
+    <div class="mx-auto max-w-3xl px-4 py-8 sm:px-6">
+      <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Woolloongabba Medical Centre</p>
+      <h1 class="mt-2 font-display text-3xl font-bold leading-tight sm:text-4xl">GP Story Capture System</h1>
+      <p class="mt-3 text-base leading-relaxed text-ink-soft">
+        Operational layer for collecting and managing GP practice-experience stories:
+        inventory, consent, status, categories, review, and content reuse controls.
+      </p>
+      <aside class="mt-5 rounded-xl border border-navy/20 bg-white p-4 text-sm leading-relaxed" role="note">
+        <strong class="text-navy">Design rule.</strong> Human gates only — no auto-publish.
+        Stories describe practice experience; they are not job ads, earnings claims, or agency assets.
+        Default reuse is deny; channels are explicitly allowed per signed consent.
+      </aside>
+      <nav class="mt-5 flex flex-wrap gap-3 text-sm" aria-label="Prototype views">
+        <a class="min-h-11 inline-flex items-center rounded-lg bg-navy px-4 font-semibold text-white" href="/dashboard.html">Collection dashboard</a>
+        <a class="min-h-11 inline-flex items-center rounded-lg border border-line bg-white px-4 font-medium text-navy" href="/editorial.html">Editorial review</a>
+        <a class="min-h-11 inline-flex items-center rounded-lg border border-line bg-white px-4 font-medium text-navy" href="/api/workflow">Workflow JSON</a>
+        <a class="min-h-11 inline-flex items-center rounded-lg border border-line bg-white px-4 font-medium text-navy" href="/api/schema">Schema</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-3xl px-4 py-8 sm:px-6">
+    <section class="mb-10" aria-labelledby="cat-title">
+      <h2 id="cat-title" class="font-display text-xl font-bold">Categories</h2>
+      <ul class="mt-3 grid gap-2 sm:grid-cols-2" id="category-list"></ul>
+    </section>
+
+    <section id="workflow" class="mb-10" aria-labelledby="flow-title">
+      <h2 id="flow-title" class="font-display text-xl font-bold">Admin capture flow</h2>
+      <p class="mt-2 text-sm text-ink-soft">Eight stages from invite to published, plus withdrawal SLA.</p>
+      <div class="mt-4 overflow-x-auto rounded-xl border border-line bg-white p-4">
+        <pre class="mermaid" id="mermaid-src"></pre>
+      </div>
+      <ol class="mt-6 space-y-4" id="stage-list"></ol>
+    </section>
+
+    <section class="mb-10" aria-labelledby="reuse-title">
+      <h2 id="reuse-title" class="font-display text-xl font-bold">Content reuse controls</h2>
+      <div class="mt-3 space-y-3 text-sm" id="reuse-blocks"></div>
+    </section>
+
+    <section class="rounded-2xl border border-dashed border-line bg-white/70 p-5" aria-labelledby="deliver-title">
+      <h2 id="deliver-title" class="font-display text-lg font-bold">Proposal deliverables</h2>
+      <ul class="mt-2 list-disc space-y-1 pl-5 text-sm text-ink-soft">
+        <li><code class="text-ink">schema.prisma</code> — inventory, consent, versions, reuse policy, placements, review events</li>
+        <li><code class="text-ink">workflow.json</code> — admin stages + editorial checklist</li>
+        <li><code class="text-ink">dashboard.html</code> — collection inventory board</li>
+        <li><code class="text-ink">editorial.html</code> — blocking review gate</li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    async function boot() {
+      const wf = await fetch("/api/workflow").then((r) => r.json());
+      const cats = document.getElementById("category-list");
+      cats.innerHTML = wf.categories
+        .map(
+          (c) =>
+            `<li class="rounded-lg border border-line bg-white px-3 py-2"><span class="font-semibold text-navy">${c.label}</span><p class="mt-1 text-xs text-ink-soft">${c.pairingHint}</p></li>`
+        )
+        .join("");
+
+      const src = document.getElementById("mermaid-src");
+      src.textContent = wf.diagram.source;
+      if (window.__mermaid) {
+        await window.__mermaid.run({ nodes: [src] });
+      }
+
+      const stages = document.getElementById("stage-list");
+      stages.innerHTML = wf.adminWorkflow.stages
+        .map(
+          (s) =>
+            `<li class="rounded-xl border border-line bg-white p-4"><div class="flex flex-wrap items-baseline justify-between gap-2"><p class="text-xs font-semibold uppercase tracking-wide text-green">Stage ${s.order}</p><p class="text-xs text-ink-soft">Gate: ${s.humanGate.role}</p></div><h3 class="mt-1 font-display text-lg font-bold">${s.label}</h3><p class="mt-1 text-sm text-ink-soft">${s.goal}</p><p class="mt-2 text-xs text-ink"><strong>Action:</strong> ${s.humanGate.action}</p></li>`
+        )
+        .join("");
+
+      const reuse = wf.contentReuseControls;
+      document.getElementById("reuse-blocks").innerHTML = [
+        `<div class="rounded-xl border border-line bg-white p-4"><strong class="text-navy">Default deny.</strong> ${reuse.defaultDeny ? "Unset channel = not allowed." : ""} On sign, default allow: ${reuse.defaultAllowedOnSign.join(", ")}.</div>`,
+        `<div class="rounded-xl border border-line bg-white p-4"><strong class="text-navy">Opt-in only.</strong> ${reuse.optInOnly.join(", ")}</div>`,
+        `<div class="rounded-xl border border-amber/40 bg-warm p-4"><strong class="text-amber">Hard block</strong> unless new consent: ${reuse.hardBlockUnlessNewConsent.join(", ")}</div>`,
+        `<div class="rounded-xl border border-line bg-white p-4"><strong class="text-navy">Material change.</strong> ${reuse.materialChangeRule}</div>`,
+      ].join("");
+    }
+    boot().catch((err) => {
+      document.body.insertAdjacentHTML(
+        "afterbegin",
+        `<p class="bg-amber/20 p-3 text-sm">Start the prototype server: <code>node server.mjs</code> — ${err.message}</p>`
+      );
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+// Session-to-Capacity Matching Engine — Prisma fragment (proposal)
+// Woolloongabba Medical Centre
+// Advisory matching only — human confirms session allocation.
+
+enum SessionDayOfWeek {
+  monday
+  tuesday
+  wednesday
+  thursday
+  friday
+  saturday
+}
+
+enum SessionPeriod {
+  morning
+  afternoon
+  evening
+}
+
+enum CapacityWindowStatus {
+  available
+  limited
+  full
+}
+
+enum MatchRunSource {
+  admin_manual
+  enquiry_session_prefs
+  session_planner
+  onboarding_allocation
+}
+
+model CapacitySessionWindow {
+  id           String          @id @default(cuid())
+  clinicId     String
+  dayOfWeek    SessionDayOfWeek
+  period       SessionPeriod
+  startsAt     String          /// HH:mm
+  endsAt       String
+  isOffered    Boolean         @default(true)
+  activeRooms  Int             @default(0)
+  reserveSlots Int             @default(0)
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+
+  nursing      CapacityNursingCoverage?
+  assignments  CapacityGpAssignment[]
+
+  @@unique([clinicId, dayOfWeek, period])
+  @@index([clinicId, isOffered])
+}
+
+model CapacityNursingCoverage {
+  id                  String   @id @default(cuid())
+  sessionWindowId     String   @unique
+  sessionWindow       CapacitySessionWindow @relation(fields: [sessionWindowId], references: [id], onDelete: Cascade)
+  coverageLevel       String   /// full | limited | none
+  maxSupportedRooms   Int?
+  nurseCount          Int      @default(0)
+  updatedAt           DateTime @updatedAt
+}
+
+model CapacityGpAssignment {
+  id              String   @id @default(cuid())
+  sessionWindowId String
+  sessionWindow   CapacitySessionWindow @relation(fields: [sessionWindowId], references: [id], onDelete: Cascade)
+  doctorName      String
+  practitionerId  String?
+  roomLabel       String?
+  isActive        Boolean  @default(true)
+
+  @@index([sessionWindowId, isActive])
+}
+
+model SessionCapacityMatchRun {
+  id                    String         @id @default(cuid())
+  clinicId              String
+  source                MatchRunSource @default(admin_manual)
+  enquiryId             String?
+  doctorDisplayName     String?
+  preferredKeysJson     Json           /// ["monday_afternoon", ...]
+  compatibilityScore    Int            /// 0–100
+  breakdownJson         Json
+  availableOptionsJson  Json
+  alternativesJson      Json
+  capacitySnapshotJson  Json?
+  createdByUserId       String?
+  createdAt             DateTime       @default(now())
+
+  @@index([clinicId, createdAt])
+  @@index([enquiryId])
+}

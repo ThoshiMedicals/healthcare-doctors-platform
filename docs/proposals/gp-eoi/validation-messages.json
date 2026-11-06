@@ -1,0 +1,46 @@
+{
+  "name": {
+    "required": "Enter your full name.",
+    "min": "Name must be at least 2 characters.",
+    "max": "Name must be 120 characters or fewer.",
+    "pattern": "Use letters, spaces, hyphens or apostrophes only."
+  },
+  "email": {
+    "required": "Enter your email address.",
+    "invalid": "Enter a valid email address (for example name@practice.com.au)."
+  },
+  "phone": {
+    "required": "Enter a contact phone number.",
+    "invalid": "Enter a valid Australian phone number (mobile or landline)."
+  },
+  "ahpraRegistration": {
+    "required": "Enter your AHPRA registration number.",
+    "invalid": "Enter a valid AHPRA number (for example MED0001234567)."
+  },
+  "racgpFellowship": {
+    "required": "Select whether you hold RACGP Fellowship."
+  },
+  "acrrmFellowship": {
+    "required": "Select whether you hold ACRRM Fellowship."
+  },
+  "specialInterests": {
+    "required": "Select at least one special interest, or choose Other and describe it.",
+    "otherRequired": "Describe your other special interest.",
+    "max": "Special interests notes must be 500 characters or fewer."
+  },
+  "preferredStartDate": {
+    "required": "Select a preferred start date.",
+    "invalid": "Enter a valid date.",
+    "past": "Preferred start date cannot be in the past."
+  },
+  "privacyConfirm": {
+    "required": "Confirm privacy consent to submit this expression of interest."
+  },
+  "form": {
+    "incomplete": "Please fix the highlighted fields before submitting.",
+    "submitting": "Sending your expression of interest…",
+    "success": "Thank you. Your GP expression of interest has been received. The practice will contact you if there is a suitable opportunity.",
+    "network": "We could not reach the server. Check your connection and try again, or call (07) 3217 3344.",
+    "server": "Something went wrong while submitting. Please try again or call the practice."
+  }
+}

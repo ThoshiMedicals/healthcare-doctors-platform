@@ -1,0 +1,503 @@
+{
+  "id": "wmc-gp-onboarding-workflow",
+  "version": "1.0.0",
+  "clinic": "Woolloongabba Medical Centre",
+  "purpose": "Human-reviewed GP onboarding from first conversation through go-live. No automated approvals.",
+  "principles": [
+    "Every stage advance requires a named human reviewer.",
+    "Systems may prompt, remind, and block unsafe auto-advance — they never approve credentials, provider numbers, or go-live.",
+    "External agency outcomes are tracked as dependencies, not practice decisions.",
+    "Practice voice only — no recruitment-agency framing or outcome guarantees.",
+    "Medicare provider numbers are issued by Services Australia; WMC does not issue or guarantee them."
+  ],
+  "diagram": {
+    "format": "mermaid",
+    "source": "flowchart LR\n  A[1 Initial discussion] --> B[2 EOI review]\n  B --> C[3 Credential checks]\n  C --> D[4 Provider-number preparation]\n  D --> E[5 Session allocation]\n  E --> F[6 Orientation]\n  F --> G[7 Go-live]\n  B -.->|pause / withdraw| X[Paused or withdrawn]\n  C -.-> X\n  D -.->|awaiting Services Australia| D\n  E -.->|capacity change| E\n  G --> H[Settling / business as usual]\n\n  classDef human fill:#163f62,color:#fff,stroke:#173044\n  classDef external fill:#f5f3ee,color:#173044,stroke:#8a6a2f\n  class A,B,C,E,F,G,H human\n  class D external"
+  },
+  "stages": [
+    {
+      "id": "initial_discussion",
+      "order": 1,
+      "label": "Initial discussion",
+      "goal": "Clarify mutual interest, practice fit, and next information needs — without promising placement.",
+      "humanGate": {
+        "required": true,
+        "role": "practice_manager",
+        "action": "Mark discussion complete and invite EOI, or pause / decline politely"
+      },
+      "adminTasks": [
+        {
+          "id": "id_capture_enquiry",
+          "task": "Log enquiry source and preferred contact method",
+          "required": true
+        },
+        {
+          "id": "id_share_boundaries",
+          "task": "Share practice support boundaries (provider numbers, no guarantees)",
+          "required": true
+        },
+        {
+          "id": "id_offer_explorers",
+          "task": "Offer DPA/19AB Navigator and Practice Support Matrix if relevant",
+          "required": false
+        },
+        {
+          "id": "id_invite_eoi",
+          "task": "Invite Expression of Interest when mutual interest is clear",
+          "required": true
+        }
+      ],
+      "doctorTasks": [
+        {
+          "id": "dd_ask_fit",
+          "task": "Ask clarifying questions about sessions, nursing support, and start timing",
+          "required": false
+        },
+        {
+          "id": "dd_review_public",
+          "task": "Review practice public information and FAQ",
+          "required": false
+        },
+        {
+          "id": "dd_decide_eoi",
+          "task": "Decide whether to submit an EOI",
+          "required": true
+        }
+      ],
+      "dependencies": [
+        { "type": "none", "label": "No hard external dependency" }
+      ],
+      "exitCriteria": [
+        "Named admin records outcome of discussion",
+        "Doctor invited to EOI or case paused/withdrawn with reason"
+      ],
+      "relatedTools": ["practice-support-capability-matrix", "dpa-19ab-navigator", "gp-faq"]
+    },
+    {
+      "id": "eoi_review",
+      "order": 2,
+      "label": "EOI review",
+      "goal": "Human review of Expression of Interest for fit, completeness, and conversation priority — never auto-reject by score alone.",
+      "humanGate": {
+        "required": true,
+        "role": "practice_manager",
+        "action": "Queue priority decision: progress / request more info / pause / decline"
+      },
+      "adminTasks": [
+        {
+          "id": "er_validate_completeness",
+          "task": "Check EOI completeness and obvious missing fields",
+          "required": true
+        },
+        {
+          "id": "er_score_assist",
+          "task": "Use EOI scoring as queue prioritisation aid only (not approval)",
+          "required": false
+        },
+        {
+          "id": "er_human_decision",
+          "task": "Record human review decision and rationale",
+          "required": true
+        },
+        {
+          "id": "er_reply_doctor",
+          "task": "Reply to doctor with next step or clarifying questions",
+          "required": true
+        }
+      ],
+      "doctorTasks": [
+        {
+          "id": "ed_submit_eoi",
+          "task": "Submit EOI with AHPRA / fellowship / availability details",
+          "required": true
+        },
+        {
+          "id": "ed_respond_clarifications",
+          "task": "Respond to any clarification requests",
+          "required": false
+        }
+      ],
+      "dependencies": [
+        { "type": "internal", "label": "EOI submission record exists" },
+        { "type": "human", "label": "Named reviewer decision before stage advance" }
+      ],
+      "exitCriteria": [
+        "Human review decision recorded",
+        "Doctor notified of outcome or clarification path"
+      ],
+      "relatedTools": ["gp-eoi", "gp-eoi-scoring"]
+    },
+    {
+      "id": "credential_checks",
+      "order": 3,
+      "label": "Credential checks",
+      "goal": "Sight and record evidence of registration, indemnity, identity, and working rights. Practice verifies documents; external bodies own the credentials.",
+      "humanGate": {
+        "required": true,
+        "role": "practice_manager",
+        "action": "Confirm documents sighted and acceptable for onboarding to continue — not an AHPRA approval"
+      },
+      "adminTasks": [
+        {
+          "id": "cc_request_pack",
+          "task": "Send credential document request list",
+          "required": true
+        },
+        {
+          "id": "cc_sight_ahpra",
+          "task": "Sight current AHPRA registration evidence",
+          "required": true
+        },
+        {
+          "id": "cc_sight_indemnity",
+          "task": "Sight professional indemnity for intended period",
+          "required": true
+        },
+        {
+          "id": "cc_sight_id_rights",
+          "task": "Sight photo ID and working rights evidence",
+          "required": true
+        },
+        {
+          "id": "cc_human_signoff",
+          "task": "Human sign-off that pack is complete enough to proceed",
+          "required": true
+        }
+      ],
+      "doctorTasks": [
+        {
+          "id": "cd_upload_ahpra",
+          "task": "Provide AHPRA registration evidence",
+          "required": true
+        },
+        {
+          "id": "cd_upload_indemnity",
+          "task": "Provide indemnity certificate / cover note",
+          "required": true
+        },
+        {
+          "id": "cd_upload_id_rights",
+          "task": "Provide photo ID and working rights evidence",
+          "required": true
+        },
+        {
+          "id": "cd_cv",
+          "task": "Provide current CV if not already attached to EOI",
+          "required": true
+        }
+      ],
+      "dependencies": [
+        { "type": "external", "agency": "AHPRA", "label": "Current registration status" },
+        { "type": "external", "agency": "Indemnity insurer", "label": "Adequate cover for start period" },
+        { "type": "external", "agency": "Home Affairs / citizenship docs", "label": "Working rights evidence (doctor-supplied)" },
+        { "type": "human", "label": "Practice manager document sighting sign-off" }
+      ],
+      "exitCriteria": [
+        "Required documents recorded as sighted",
+        "Human credential gate approved to proceed (practice process only)"
+      ],
+      "relatedTools": ["doctor-readiness", "practice-support-capability-matrix"]
+    },
+    {
+      "id": "provider_number_preparation",
+      "order": 4,
+      "label": "Provider-number preparation",
+      "goal": "Help the doctor prepare a location-linked Services Australia application. Never issue or approve a provider number.",
+      "humanGate": {
+        "required": true,
+        "role": "practice_manager",
+        "action": "Confirm practice location pack supplied; track external status — do not mark as WMC-approved PN"
+      },
+      "adminTasks": [
+        {
+          "id": "pn_location_pack",
+          "task": "Supply verified practice name, address, and location identifiers",
+          "required": true
+        },
+        {
+          "id": "pn_explain_boundary",
+          "task": "Reconfirm Services Australia is the issuer; WMC does not approve PNs",
+          "required": true
+        },
+        {
+          "id": "pn_track_status",
+          "task": "Record application status as doctor reports (lodged / awaiting / issued)",
+          "required": true
+        },
+        {
+          "id": "pn_billing_constraint_note",
+          "task": "Note any billing constraints if still awaiting_external at later stages",
+          "required": false
+        }
+      ],
+      "doctorTasks": [
+        {
+          "id": "pd_readiness",
+          "task": "Complete Provider Number Readiness checklist",
+          "required": false
+        },
+        {
+          "id": "pd_apply_sa",
+          "task": "Lodge or update Services Australia provider number application for this location",
+          "required": true
+        },
+        {
+          "id": "pd_share_status",
+          "task": "Share application / outcome correspondence status with the practice",
+          "required": true
+        }
+      ],
+      "dependencies": [
+        { "type": "external", "agency": "Services Australia", "label": "Provider number application and outcome" },
+        { "type": "internal", "label": "Accurate practice location pack" },
+        { "type": "human", "label": "Admin confirms pack sent; does not approve SA outcome" }
+      ],
+      "exitCriteria": [
+        "Location pack supplied",
+        "Doctor application status recorded (may still be awaiting_external)",
+        "Human acknowledges billing implications if not yet issued"
+      ],
+      "allowsAdvanceWhileAwaitingExternal": true,
+      "advanceWhileAwaitingNote": "May advance with explicit human acknowledgement that Medicare billing for this location may be constrained until Services Australia confirms.",
+      "relatedTools": ["provider-number-readiness", "dpa-19ab-navigator"]
+    },
+    {
+      "id": "session_allocation",
+      "order": 5,
+      "label": "Session allocation",
+      "goal": "Agree consulting sessions against rooms, nursing cover, and practice need.",
+      "humanGate": {
+        "required": true,
+        "role": "practice_manager",
+        "action": "Approve proposed session plan after capacity check — mutual agreement, not auto-assign"
+      },
+      "adminTasks": [
+        {
+          "id": "sa_capacity_check",
+          "task": "Check room and nursing capacity for proposed windows",
+          "required": true
+        },
+        {
+          "id": "sa_draft_plan",
+          "task": "Draft session plan with doctor preferences",
+          "required": true
+        },
+        {
+          "id": "sa_human_agree",
+          "task": "Record mutual agreement on sessions (human approval)",
+          "required": true
+        },
+        {
+          "id": "sa_booking_setup",
+          "task": "Prepare booking / HotDoc visibility for agreed sessions (pre go-live)",
+          "required": false
+        }
+      ],
+      "doctorTasks": [
+        {
+          "id": "sd_preferences",
+          "task": "Confirm preferred days, hours, and start timing",
+          "required": true
+        },
+        {
+          "id": "sd_review_plan",
+          "task": "Review and accept or request changes to draft session plan",
+          "required": true
+        }
+      ],
+      "dependencies": [
+        { "type": "internal", "label": "Room availability" },
+        { "type": "internal", "label": "Nursing cover for proposed windows" },
+        { "type": "human", "label": "Mutual agreement recorded by practice manager" }
+      ],
+      "exitCriteria": [
+        "Session plan status = agreed",
+        "Capacity check recorded",
+        "Human approval of allocation"
+      ],
+      "relatedTools": ["gp-session-planner", "consulting-capacity-planning", "room-capacity-dashboard"]
+    },
+    {
+      "id": "orientation",
+      "order": 6,
+      "label": "Orientation",
+      "goal": "Introduce practice systems, Medicare workflows (local), nursing, reception, and team — without substituting for external credentials.",
+      "humanGate": {
+        "required": true,
+        "role": "practice_manager",
+        "action": "Confirm orientation delivered or scheduled with named owner; software access granted after ID checks"
+      },
+      "adminTasks": [
+        {
+          "id": "or_schedule",
+          "task": "Schedule orientation (layout, emergency, privacy, contacts)",
+          "required": true
+        },
+        {
+          "id": "or_software",
+          "task": "Arrange clinical software access after identity checks",
+          "required": true
+        },
+        {
+          "id": "or_nursing_reception",
+          "task": "Coordinate nursing and reception introductions",
+          "required": true
+        },
+        {
+          "id": "or_medicare_local",
+          "task": "Deliver local Medicare billing workflow orientation",
+          "required": true
+        },
+        {
+          "id": "or_complete_signoff",
+          "task": "Human sign-off that orientation essentials are complete or explicitly deferred with plan",
+          "required": true
+        }
+      ],
+      "doctorTasks": [
+        {
+          "id": "od_attend",
+          "task": "Attend scheduled orientation",
+          "required": true
+        },
+        {
+          "id": "od_software",
+          "task": "Complete clinical software walkthrough",
+          "required": true
+        },
+        {
+          "id": "od_questions",
+          "task": "Raise workflow questions before first patient session",
+          "required": false
+        }
+      ],
+      "dependencies": [
+        { "type": "internal", "label": "Identity verification for system access" },
+        { "type": "internal", "label": "Staff availability for intros" },
+        { "type": "human", "label": "Orientation completion sign-off" }
+      ],
+      "exitCriteria": [
+        "Orientation essentials complete or deferred with dated plan",
+        "Software access status recorded",
+        "Human orientation gate signed"
+      ],
+      "relatedTools": ["practice-support-capability-matrix"]
+    },
+    {
+      "id": "go_live",
+      "order": 7,
+      "label": "Go-live",
+      "goal": "Human-authorised first patient session. Systems may show a readiness checklist; only a named person can release go-live.",
+      "humanGate": {
+        "required": true,
+        "role": "practice_manager_or_principal",
+        "action": "Explicit go-live approval after checklist review — no automated release"
+      },
+      "adminTasks": [
+        {
+          "id": "gl_readiness_review",
+          "task": "Review go-live checklist (credentials, sessions, orientation, PN status notes)",
+          "required": true
+        },
+        {
+          "id": "gl_pn_acknowledgement",
+          "task": "If PN still awaiting_external, record explicit billing-constraint acknowledgement",
+          "required": false
+        },
+        {
+          "id": "gl_booking_live",
+          "task": "Enable agreed sessions for booking",
+          "required": true
+        },
+        {
+          "id": "gl_human_approve",
+          "task": "Named human approves go-live (timestamp + identity)",
+          "required": true
+        },
+        {
+          "id": "gl_day1_support",
+          "task": "Assign day-one support contact",
+          "required": true
+        }
+      ],
+      "doctorTasks": [
+        {
+          "id": "gd_confirm_start",
+          "task": "Confirm first session date and arrival time",
+          "required": true
+        },
+        {
+          "id": "gd_final_docs",
+          "task": "Confirm no outstanding required personal documents",
+          "required": true
+        }
+      ],
+      "dependencies": [
+        { "type": "internal", "label": "Prior stage human gates complete (or waived with recorded rationale)" },
+        { "type": "external", "agency": "Services Australia", "label": "Provider number status understood for billing", "optionalAdvance": true },
+        { "type": "human", "label": "Named go-live approver" }
+      ],
+      "exitCriteria": [
+        "Go-live approval recorded with actor and timestamp",
+        "First session visible/bookable as agreed",
+        "Day-one support contact assigned"
+      ],
+      "relatedTools": ["practice-support-capability-matrix"]
+    }
+  ],
+  "statusModel": {
+    "caseStatuses": {
+      "enquiry": "Initial discussion open",
+      "eoi_received": "EOI submitted, awaiting human review",
+      "in_review": "Active human review across stages",
+      "awaiting_doctor": "Blocked on doctor action",
+      "awaiting_external": "Blocked or constrained by external agency",
+      "ready_for_go_live": "Checklist complete; awaiting human go-live approval",
+      "live": "First session authorised / underway",
+      "settling": "Post go-live support window",
+      "paused": "Paused by mutual agreement",
+      "withdrawn": "Closed without go-live",
+      "declined": "Practice declined after human review"
+    },
+    "stageStatuses": {
+      "not_started": "Stage not opened",
+      "in_progress": "Work underway",
+      "awaiting_doctor": "Waiting on doctor tasks",
+      "awaiting_external": "Waiting on external agency",
+      "ready_for_gate": "Tasks done; human gate pending",
+      "gate_approved": "Named human approved advance",
+      "skipped_with_rationale": "Human skipped with written rationale (rare)",
+      "blocked": "Cannot proceed until blocker cleared"
+    },
+    "transitions": [
+      { "from": "enquiry", "to": ["eoi_received", "paused", "withdrawn"], "requiresHuman": true },
+      { "from": "eoi_received", "to": ["in_review", "awaiting_doctor", "paused", "declined", "withdrawn"], "requiresHuman": true },
+      { "from": "in_review", "to": ["awaiting_doctor", "awaiting_external", "ready_for_go_live", "paused", "declined", "withdrawn"], "requiresHuman": true },
+      { "from": "awaiting_doctor", "to": ["in_review", "paused", "withdrawn"], "requiresHuman": false, "note": "Doctor submission can move to in_review; progression still human-gated" },
+      { "from": "awaiting_external", "to": ["in_review", "ready_for_go_live", "paused"], "requiresHuman": true },
+      { "from": "ready_for_go_live", "to": ["live", "paused", "in_review"], "requiresHuman": true, "forbiddenAutomation": "No auto go-live" },
+      { "from": "live", "to": ["settling"], "requiresHuman": false, "note": "Time-based settling window may open; still no auto credential approvals" },
+      { "from": "settling", "to": ["live"], "requiresHuman": true, "note": "Return only if reopened for support tracking" },
+      { "from": "paused", "to": ["enquiry", "in_review", "withdrawn"], "requiresHuman": true },
+      { "from": "withdrawn", "to": [], "requiresHuman": true },
+      { "from": "declined", "to": [], "requiresHuman": true }
+    ],
+    "stageAdvanceRule": {
+      "summary": "A stage may move to gate_approved only via POST with reviewerId + decision. Server rejects missing human fields.",
+      "automationAllowed": [
+        "Reminders",
+        "Checklist completeness calculation",
+        "Blocking advance when required tasks incomplete",
+        "Flagging awaiting_external"
+      ],
+      "automationForbidden": [
+        "Approving EOI",
+        "Approving credentials",
+        "Approving provider numbers",
+        "Allocating sessions without human confirm",
+        "Go-live release",
+        "Auto-declining by score threshold alone"
+      ]
+    }
+  }
+}

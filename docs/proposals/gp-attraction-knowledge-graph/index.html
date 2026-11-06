@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GP Attraction Knowledge Graph | Woolloongabba Medical Centre</title>
+  <meta
+    name="description"
+    content="Explore links between personas, FAQs, EOIs, search, readiness and content intelligence — objections, gaps, converting pathways and emerging patterns."
+  />
+  <meta name="robots" content="noindex,nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#173044",
+            "ink-soft": "#596b78",
+            navy: "#163f62",
+            green: "#0f6b45",
+            warm: "#f5f3ee",
+            mist: "#f4f7f7",
+            line: "#dbe4e9",
+          },
+          fontFamily: {
+            display: ['"Libre Baskerville"', "Georgia", "serif"],
+            ui: ["Inter", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    [data-tab].is-active { background: #163f62; color: #fff; border-color: #163f62; }
+    .node-chip { cursor: pointer; }
+    .node-chip.is-selected { outline: 2px solid #163f62; outline-offset: 2px; }
+  </style>
+</head>
+<body class="bg-mist font-ui text-ink antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white">Skip to content</a>
+
+  <div class="border-b border-line bg-warm px-4 py-3 text-center text-sm text-ink-soft" role="note">
+    <strong class="text-ink">Design proposal</strong>
+    — GP Attraction Knowledge Graph. Advisory for human editors. Not a recruitment scoreboard.
+  </div>
+
+  <header class="border-b border-line bg-warm">
+    <div class="mx-auto max-w-5xl px-4 py-8 sm:px-6">
+      <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Woolloongabba Medical Centre</p>
+      <h1 class="mt-2 font-display text-3xl font-bold leading-tight sm:text-4xl">GP Attraction Knowledge Graph</h1>
+      <p class="mt-3 max-w-2xl text-base leading-relaxed text-ink-soft">
+        Link personas, FAQs, EOIs, search behaviour, readiness results and content intelligence
+        to identify common objections, missing content, high-converting pathways and emerging patterns.
+      </p>
+    </div>
+  </header>
+
+  <main id="main" class="mx-auto max-w-5xl px-4 py-6 sm:px-6 sm:py-8">
+    <p id="load-error" class="mb-4 hidden rounded-xl border border-red-200 bg-white p-4 text-sm text-red-800" role="alert" hidden>
+      Unable to load <code>knowledge-graph.json</code>. Serve this folder over HTTP.
+    </p>
+
+    <div class="flex flex-wrap gap-2" role="tablist" aria-label="Graph views">
+      <button type="button" data-tab="explore" class="min-h-11 rounded-full border border-line bg-white px-4 text-sm font-semibold text-navy" aria-selected="true">Explore graph</button>
+      <button type="button" data-tab="objections" class="min-h-11 rounded-full border border-line bg-white px-4 text-sm font-semibold text-navy" aria-selected="false">Objections</button>
+      <button type="button" data-tab="gaps" class="min-h-11 rounded-full border border-line bg-white px-4 text-sm font-semibold text-navy" aria-selected="false">Missing content</button>
+      <button type="button" data-tab="paths" class="min-h-11 rounded-full border border-line bg-white px-4 text-sm font-semibold text-navy" aria-selected="false">Pathways</button>
+      <button type="button" data-tab="patterns" class="min-h-11 rounded-full border border-line bg-white px-4 text-sm font-semibold text-navy" aria-selected="false">Patterns</button>
+    </div>
+
+    <section data-panel="explore" class="mt-6 space-y-4" aria-label="Explore graph">
+      <div class="flex flex-wrap items-end gap-3">
+        <label class="text-sm">
+          <span class="mb-1 block font-semibold">Filter type</span>
+          <select id="type-filter" class="min-h-10 rounded-xl border border-line bg-white px-3 text-sm">
+            <option value="all">All types</option>
+          </select>
+        </label>
+        <p id="selection-live" class="text-sm text-ink-soft" aria-live="polite">Select a node to see linked edges.</p>
+      </div>
+      <div id="nodes-root" class="flex flex-wrap gap-2"></div>
+      <div id="edges-root" class="rounded-2xl border border-line bg-white p-4 text-sm text-ink-soft">
+        Select a node.
+      </div>
+    </section>
+
+    <section data-panel="objections" class="mt-6 hidden space-y-3" aria-label="Objections" hidden>
+      <h2 class="font-display text-2xl font-bold">Common objections</h2>
+      <div id="objections-root" class="space-y-3"></div>
+    </section>
+
+    <section data-panel="gaps" class="mt-6 hidden space-y-3" aria-label="Missing content" hidden>
+      <h2 class="font-display text-2xl font-bold">Missing content</h2>
+      <div id="gaps-root" class="space-y-3"></div>
+    </section>
+
+    <section data-panel="paths" class="mt-6 hidden space-y-3" aria-label="Pathways" hidden>
+      <h2 class="font-display text-2xl font-bold">High-converting pathways</h2>
+      <div id="paths-root" class="space-y-3"></div>
+    </section>
+
+    <section data-panel="patterns" class="mt-6 hidden space-y-3" aria-label="Patterns" hidden>
+      <h2 class="font-display text-2xl font-bold">Emerging recruitment patterns</h2>
+      <div id="patterns-root" class="space-y-3"></div>
+    </section>
+  </main>
+
+  <footer class="border-t border-line py-6">
+    <div class="mx-auto max-w-5xl px-4 text-xs text-ink-soft sm:px-6">
+      Woolloongabba Medical Centre · GP Attraction Knowledge Graph v1 · Proposal prototype
+    </div>
+  </footer>
+
+  <script src="./graph.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GP Attraction Analytics | Woolloongabba Medical Centre</title>
+  <meta name="description" content="Internal analytics for GP decision-journey attraction: funnel, engagement, drop-off, paths, personas." />
+  <meta name="robots" content="noindex,nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#173044",
+            "ink-soft": "#596b78",
+            navy: "#163f62",
+            green: "#0f6b45",
+            warm: "#f5f3ee",
+            mist: "#f4f7f7",
+            line: "#dbe4e9",
+            amber: "#8a6a2f",
+          },
+          fontFamily: {
+            display: ['"Libre Baskerville"', "Georgia", "serif"],
+            ui: ["Inter", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-mist font-ui text-ink antialiased">
+  <a href="#dashboard-main" class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white">Skip to dashboard</a>
+
+  <header class="border-b border-line bg-warm">
+    <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+      <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Internal · Woolloongabba Medical Centre</p>
+      <h1 class="mt-2 font-display text-3xl font-bold leading-tight sm:text-4xl">GP attraction analytics</h1>
+      <p class="mt-3 max-w-2xl text-sm leading-relaxed text-ink-soft">
+        Decision-journey performance for opportunities, FAQ, readiness tools, and EOI —
+        so the practice can improve clarity, not run a recruitment scoreboard.
+      </p>
+      <aside class="mt-4 max-w-2xl rounded-xl border border-navy/20 bg-white p-4 text-sm" role="note">
+        <strong class="text-navy">Privacy.</strong> Anonymous sessions first. No AHPRA, provider numbers, or document contents in this stream.
+        Persona is a hint only. Analytics never auto-approves EOI or onboarding.
+      </aside>
+      <nav class="mt-5 flex flex-wrap gap-3 text-sm">
+        <a class="min-h-11 inline-flex items-center rounded-lg border border-line bg-white px-3 font-medium text-navy" href="/api/metrics-catalogue">Metrics catalogue</a>
+        <a class="min-h-11 inline-flex items-center rounded-lg border border-line bg-white px-3 font-medium text-navy" href="/api/event-model">Event model</a>
+        <a class="min-h-11 inline-flex items-center rounded-lg border border-line bg-white px-3 font-medium text-navy" href="/api/summary">Summary JSON</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="dashboard-main" class="mx-auto max-w-6xl px-4 py-6 sm:px-6" aria-busy="true">
+    <p id="dash-live" class="sr-only" aria-live="polite"></p>
+
+    <section aria-labelledby="kpi-title">
+      <div class="flex flex-wrap items-end justify-between gap-2">
+        <h2 id="kpi-title" class="font-display text-xl font-bold">Tracked volume · 28d seed</h2>
+        <p class="text-xs text-ink-soft">Wireframe · synthetic localhost data</p>
+      </div>
+      <div id="kpi-row" class="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6"></div>
+    </section>
+
+    <div class="mt-8 grid gap-6 lg:grid-cols-2">
+      <section class="rounded-2xl border border-line bg-white p-5" aria-labelledby="funnel-title">
+        <h2 id="funnel-title" class="font-display text-lg font-bold">Conversion funnel</h2>
+        <p class="mt-1 text-xs text-ink-soft">Sessions reaching each stage (nested from opportunities where applicable)</p>
+        <div id="funnel-root" class="mt-4 space-y-3"></div>
+      </section>
+
+      <section class="rounded-2xl border border-line bg-white p-5" aria-labelledby="drop-title">
+        <h2 id="drop-title" class="font-display text-lg font-bold">Drop-off stages</h2>
+        <p class="mt-1 text-xs text-ink-soft">Where interest cools between funnel steps</p>
+        <div id="dropoff-root" class="mt-4"></div>
+      </section>
+    </div>
+
+    <div class="mt-6 grid gap-6 lg:grid-cols-2">
+      <section class="rounded-2xl border border-line bg-white p-5" aria-labelledby="content-title">
+        <h2 id="content-title" class="font-display text-lg font-bold">Content engagement</h2>
+        <p class="mt-1 text-xs text-ink-soft">Top FAQ opens</p>
+        <ul id="faq-root" class="mt-3"></ul>
+        <div class="mt-5">
+          <h3 class="text-xs font-semibold uppercase tracking-wide text-navy">Tool completion / abandon</h3>
+          <div id="tool-root" class="mt-2 space-y-2"></div>
+        </div>
+      </section>
+
+      <section class="rounded-2xl border border-line bg-white p-5" aria-labelledby="path-title">
+        <h2 id="path-title" class="font-display text-lg font-bold">High-value traffic paths</h2>
+        <p class="mt-1 text-xs text-ink-soft">Common sequences among sessions that submit an EOI</p>
+        <ul id="path-root" class="mt-3 space-y-2"></ul>
+      </section>
+    </div>
+
+    <section class="mt-6 rounded-2xl border border-line bg-white p-5" aria-labelledby="persona-title">
+      <h2 id="persona-title" class="font-display text-lg font-bold">Persona engagement</h2>
+      <div id="persona-root" class="mt-3 overflow-x-auto"></div>
+    </section>
+
+    <section class="mt-8 rounded-2xl border border-dashed border-line bg-white/70 p-5" aria-labelledby="wire-title">
+      <h2 id="wire-title" class="font-display text-lg font-bold">Wireframe layout</h2>
+      <ol class="mt-2 list-decimal space-y-1 pl-5 text-sm text-ink-soft">
+        <li>KPI strip — six tracked volumes (visits, FAQ, three completions, EOI)</li>
+        <li>Funnel + drop-off pair — conversion diagnosis</li>
+        <li>Content + paths — what to improve vs what already converts</li>
+        <li>Persona table — messaging fit, not automated rejection</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="border-t border-line py-6">
+    <div class="mx-auto max-w-6xl px-4 text-xs text-ink-soft sm:px-6">Proposal · localhost :4181 · schema.prisma + event-model.json</div>
+  </footer>
+
+  <script src="./analytics.js" defer></script>
+</body>
+</html>

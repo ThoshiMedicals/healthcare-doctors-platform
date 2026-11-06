@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gabbamedicalcentre.com.au/schemas/gp-expression-of-interest.json",
+  "title": "GpExpressionOfInterest",
+  "description": "JSON submission model for Woolloongabba Medical Centre GP Expression of Interest.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "formType",
+    "clinicSlug",
+    "submittedAt",
+    "applicant",
+    "credentials",
+    "preferences",
+    "privacy"
+  ],
+  "properties": {
+    "formType": {
+      "const": "gp_expression_of_interest"
+    },
+    "clinicSlug": {
+      "type": "string",
+      "enum": ["woolloongabba"]
+    },
+    "submittedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source": {
+      "type": "string",
+      "enum": ["join_our_team", "direct", "localhost_test"],
+      "default": "join_our_team"
+    },
+    "applicant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "email", "phone"],
+      "properties": {
+        "name": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "email": { "type": "string", "format": "email", "maxLength": 200 },
+        "phone": {
+          "type": "string",
+          "description": "E.164-ish AU phone string, digits with optional +61 or leading 0",
+          "minLength": 8,
+          "maxLength": 20
+        }
+      }
+    },
+    "credentials": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ahpraRegistration", "racgpFellowship", "acrrmFellowship"],
+      "properties": {
+        "ahpraRegistration": {
+          "type": "string",
+          "pattern": "^MED\\d{10}$",
+          "description": "AHPRA medical registration number, normalised uppercase without spaces"
+        },
+        "racgpFellowship": {
+          "type": "string",
+          "enum": ["yes", "no", "in_progress"]
+        },
+        "acrrmFellowship": {
+          "type": "string",
+          "enum": ["yes", "no", "in_progress"]
+        }
+      }
+    },
+    "preferences": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["specialInterests", "preferredStartDate"],
+      "properties": {
+        "specialInterests": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": [
+              "womens_health",
+              "skin_checks",
+              "chronic_disease",
+              "mental_health",
+              "childrens_health",
+              "procedural",
+              "preventive_care",
+              "other"
+            ]
+          }
+        },
+        "specialInterestsOther": {
+          "type": ["string", "null"],
+          "maxLength": 500
+        },
+        "preferredStartDate": {
+          "type": "string",
+          "format": "date",
+          "description": "ISO date YYYY-MM-DD"
+        }
+      }
+    },
+    "privacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["confirmed", "confirmedAt"],
+      "properties": {
+        "confirmed": { "const": true },
+        "confirmedAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "examples": [
+    {
+      "formType": "gp_expression_of_interest",
+      "clinicSlug": "woolloongabba",
+      "submittedAt": "2026-11-04T00:52:00.000Z",
+      "source": "localhost_test",
+      "applicant": {
+        "name": "Dr Alex Nguyen",
+        "email": "alex.nguyen@example.com",
+        "phone": "+61412345678"
+      },
+      "credentials": {
+        "ahpraRegistration": "MED0001234567",
+        "racgpFellowship": "yes",
+        "acrrmFellowship": "no"
+      },
+      "preferences": {
+        "specialInterests": ["womens_health", "chronic_disease"],
+        "specialInterestsOther": null,
+        "preferredStartDate": "2026-12-01"
+      },
+      "privacy": {
+        "confirmed": true,
+        "confirmedAt": "2026-11-04T00:52:00.000Z"
+      }
+    }
+  ]
+}

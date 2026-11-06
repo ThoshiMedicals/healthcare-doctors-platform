@@ -1,0 +1,762 @@
+{
+  "generatedAt": "2026-11-04T01:51:42.260Z",
+  "periodLabel": "2026-11",
+  "windowDays": 28,
+  "notice": "Advisory content intelligence for human editors. Does not auto-publish. Preserve WMC voice: community care, continuity, honest employer brand — no recruitment-agency or earnings hype.",
+  "brandPillars": {
+    "community_care": "Community care",
+    "continuity_of_care": "Continuity of care",
+    "gp_employer_brand": "GP employer brand"
+  },
+  "analysis": {
+    "faqUsage": [
+      {
+        "faqId": "provider-numbers",
+        "opens": 48,
+        "helpful": 22,
+        "notHelpful": 9
+      },
+      {
+        "faqId": "nursing-support",
+        "opens": 41,
+        "helpful": 31,
+        "notHelpful": 2
+      },
+      {
+        "faqId": "session-flexibility",
+        "opens": 37,
+        "helpful": 24,
+        "notHelpful": 4
+      },
+      {
+        "faqId": "billing-model",
+        "opens": 33,
+        "helpful": 12,
+        "notHelpful": 11
+      },
+      {
+        "faqId": "percentage-arrangements",
+        "opens": 29,
+        "helpful": 8,
+        "notHelpful": 14
+      },
+      {
+        "faqId": "systems-hotdoc",
+        "opens": 18,
+        "helpful": 14,
+        "notHelpful": 1
+      },
+      {
+        "faqId": "reception-support",
+        "opens": 16,
+        "helpful": 13,
+        "notHelpful": 0
+      },
+      {
+        "faqId": "registrar-pathway",
+        "opens": 14,
+        "helpful": 7,
+        "notHelpful": 3
+      }
+    ],
+    "searchKeywords": [
+      {
+        "query": "GP jobs Woolloongabba",
+        "impressions": 420,
+        "clicks": 38,
+        "position": 8.2
+      },
+      {
+        "query": "continuity of care GP practice Brisbane",
+        "impressions": 210,
+        "clicks": 29,
+        "position": 12.4
+      },
+      {
+        "query": "community medical centre Woolloongabba GP",
+        "impressions": 180,
+        "clicks": 24,
+        "position": 9.1
+      },
+      {
+        "query": "flexible GP sessions Brisbane inner south",
+        "impressions": 160,
+        "clicks": 18,
+        "position": 14
+      },
+      {
+        "query": "does practice issue Medicare provider number",
+        "impressions": 140,
+        "clicks": 31,
+        "position": 6.5
+      },
+      {
+        "query": "GP onboarding nursing support Brisbane",
+        "impressions": 95,
+        "clicks": 16,
+        "position": 11.2
+      },
+      {
+        "query": "FRACGP join practice Woolloongabba",
+        "impressions": 88,
+        "clicks": 9,
+        "position": 18
+      },
+      {
+        "query": "DPA GP Brisbane medical centre",
+        "impressions": 120,
+        "clicks": 22,
+        "position": 15.3
+      },
+      {
+        "query": "part time GP parent friendly practice Brisbane",
+        "impressions": 75,
+        "clicks": 11,
+        "position": 16.8
+      },
+      {
+        "query": "GP percentage split Woolloongabba",
+        "impressions": 200,
+        "clicks": 27,
+        "position": 7.4
+      }
+    ],
+    "internalSearch": [
+      {
+        "term": "provider number",
+        "count": 34
+      },
+      {
+        "term": "nursing support",
+        "count": 22
+      },
+      {
+        "term": "sessions",
+        "count": 19
+      },
+      {
+        "term": "DPA",
+        "count": 17
+      },
+      {
+        "term": "continuity",
+        "count": 14
+      },
+      {
+        "term": "percentage",
+        "count": 14
+      },
+      {
+        "term": "list building",
+        "count": 12
+      },
+      {
+        "term": "registrar supervision",
+        "count": 11
+      },
+      {
+        "term": "parking",
+        "count": 9
+      },
+      {
+        "term": "after hours",
+        "count": 8
+      },
+      {
+        "term": "indemnity",
+        "count": 7
+      },
+      {
+        "term": "orientation",
+        "count": 6
+      }
+    ],
+    "eoiSources": [
+      {
+        "source": "gp_opportunities",
+        "submissions": 7,
+        "label": "GP Opportunities page"
+      },
+      {
+        "source": "organic_search",
+        "submissions": 5,
+        "label": "Organic search (direct to EOI)"
+      },
+      {
+        "source": "gp_faq",
+        "submissions": 4,
+        "label": "GP FAQ"
+      },
+      {
+        "source": "doctor_readiness",
+        "submissions": 3,
+        "label": "Doctor Readiness tool"
+      },
+      {
+        "source": "join_our_team",
+        "submissions": 2,
+        "label": "Join Our Team"
+      },
+      {
+        "source": "referral_colleague",
+        "submissions": 2,
+        "label": "Colleague referral"
+      }
+    ],
+    "personaEngagement": [
+      {
+        "personaId": "early_career_gp",
+        "label": "Early career",
+        "sessions": 28,
+        "topFaqs": [
+          "nursing-support",
+          "session-flexibility",
+          "provider-numbers"
+        ],
+        "topSearches": [
+          "list building",
+          "orientation",
+          "nursing support"
+        ],
+        "eoiRate": 0.18,
+        "pillarHint": "continuity_of_care"
+      },
+      {
+        "personaId": "established_gp_seeking_change",
+        "label": "Established · change",
+        "sessions": 22,
+        "topFaqs": [
+          "billing-model",
+          "continuity",
+          "reception-support"
+        ],
+        "topSearches": [
+          "continuity",
+          "percentage",
+          "after hours"
+        ],
+        "eoiRate": 0.14,
+        "pillarHint": "community_care"
+      },
+      {
+        "personaId": "returning_gp",
+        "label": "Returning",
+        "sessions": 15,
+        "topFaqs": [
+          "provider-numbers",
+          "systems-hotdoc"
+        ],
+        "topSearches": [
+          "provider number",
+          "orientation",
+          "indemnity"
+        ],
+        "eoiRate": 0.11,
+        "pillarHint": "continuity_of_care"
+      },
+      {
+        "personaId": "part_time_parent_gp",
+        "label": "Part-time / parent",
+        "sessions": 18,
+        "topFaqs": [
+          "session-flexibility",
+          "nursing-support"
+        ],
+        "topSearches": [
+          "sessions",
+          "parking",
+          "part time"
+        ],
+        "eoiRate": 0.16,
+        "pillarHint": "gp_employer_brand"
+      },
+      {
+        "personaId": "special_interest_gp",
+        "label": "Special interest",
+        "sessions": 12,
+        "topFaqs": [
+          "systems-hotdoc",
+          "nursing-support"
+        ],
+        "topSearches": [
+          "skin checks",
+          "womens health",
+          "procedural"
+        ],
+        "eoiRate": 0.08,
+        "pillarHint": "community_care"
+      }
+    ]
+  },
+  "contentGaps": [
+    {
+      "id": "gap_continuity_story",
+      "title": "Continuity-of-care employer narrative is thin vs search demand",
+      "pillar": "continuity_of_care",
+      "score": 92,
+      "evidence": "Keyword ‘continuity of care GP practice Brisbane’ converts interest but no dedicated FAQ/section.",
+      "doctorNeed": "How patient lists and returning patients work for a new GP here."
+    },
+    {
+      "id": "gap_list_building",
+      "title": "List-building / first-90-days guidance missing",
+      "pillar": "continuity_of_care",
+      "score": 88,
+      "evidence": "Internal search ‘list building’ ×12; early-career persona top need.",
+      "doctorNeed": "What the first weeks look like for building a sustainable list."
+    },
+    {
+      "id": "gap_dpa_boundary",
+      "title": "DPA / location facts page gap (boundary-safe)",
+      "pillar": "gp_employer_brand",
+      "score": 85,
+      "evidence": "Internal search DPA ×17; SEO ‘DPA GP Brisbane medical centre’; no FAQ mapping.",
+      "doctorNeed": "Where to read official DPA information; what WMC can/cannot say."
+    },
+    {
+      "id": "gap_percentage_clarity",
+      "title": "Percentage FAQ opens high not-helpful — trust risk",
+      "pillar": "gp_employer_brand",
+      "score": 84,
+      "evidence": "percentage-arrangements: 14 not-helpful / 8 helpful.",
+      "doctorNeed": "Clearer why terms are private — without publishing a rate."
+    },
+    {
+      "id": "gap_community_proof",
+      "title": "Community care proof points underused on opportunities path",
+      "pillar": "community_care",
+      "score": 78,
+      "evidence": "Community medical centre keyword interest; Join Our Team converts lower than Opportunities/FAQ.",
+      "doctorNeed": "Local patient context, team-based care, AGPAL/community positioning."
+    },
+    {
+      "id": "gap_part_time_parent",
+      "title": "Part-time / parent GP session story incomplete",
+      "pillar": "gp_employer_brand",
+      "score": 74,
+      "evidence": "Persona part_time_parent_gp + SEO ‘part time GP parent friendly practice Brisbane’.",
+      "doctorNeed": "How reliable part-time sessions and nursing cover are discussed."
+    },
+    {
+      "id": "gap_parking_access",
+      "title": "Practical community access (parking / after hours) unanswered",
+      "pillar": "community_care",
+      "score": 70,
+      "evidence": "Internal search parking ×9, after hours ×8 — no GP-attraction FAQ link.",
+      "doctorNeed": "Day-to-day practicalities of working at this location."
+    }
+  ],
+  "unansweredQuestions": [
+    {
+      "id": "unans_seo_GP_jobs_Woolloongabba",
+      "question": "GP jobs Woolloongabba",
+      "evidence": "SEO impressions 420, clicks 38, avg position 8.2",
+      "demand": 42,
+      "pillar": "community_care",
+      "source": "search_keyword"
+    },
+    {
+      "id": "unans_seo_continuity_of_care_GP_practice_Brisbane",
+      "question": "continuity of care GP practice Brisbane",
+      "evidence": "SEO impressions 210, clicks 29, avg position 12.4",
+      "demand": 21,
+      "pillar": "continuity_of_care",
+      "source": "search_keyword"
+    },
+    {
+      "id": "unans_seo_community_medical_centre_Woolloongabba_G",
+      "question": "community medical centre Woolloongabba GP",
+      "evidence": "SEO impressions 180, clicks 24, avg position 9.1",
+      "demand": 18,
+      "pillar": "community_care",
+      "source": "search_keyword"
+    },
+    {
+      "id": "unans_internal_DPA",
+      "question": "DPA",
+      "evidence": "Internal search ×17",
+      "demand": 17,
+      "pillar": "gp_employer_brand",
+      "source": "internal_search"
+    },
+    {
+      "id": "unans_internal_continuity",
+      "question": "continuity",
+      "evidence": "Internal search ×14",
+      "demand": 14,
+      "pillar": "continuity_of_care",
+      "source": "internal_search"
+    },
+    {
+      "id": "unans_faq_percentage-arrangements",
+      "question": "Clarify FAQ: percentage-arrangements",
+      "evidence": "14 not-helpful votes vs 8 helpful (29 opens)",
+      "demand": 14,
+      "pillar": "gp_employer_brand",
+      "source": "faq_not_helpful",
+      "faqId": "percentage-arrangements"
+    },
+    {
+      "id": "unans_internal_list_building",
+      "question": "list building",
+      "evidence": "Internal search ×12",
+      "demand": 12,
+      "pillar": "continuity_of_care",
+      "source": "internal_search"
+    },
+    {
+      "id": "unans_seo_DPA_GP_Brisbane_medical_centre",
+      "question": "DPA GP Brisbane medical centre",
+      "evidence": "SEO impressions 120, clicks 22, avg position 15.3",
+      "demand": 12,
+      "pillar": "gp_employer_brand",
+      "source": "search_keyword"
+    },
+    {
+      "id": "unans_faq_billing-model",
+      "question": "Clarify FAQ: billing-model",
+      "evidence": "11 not-helpful votes vs 12 helpful (33 opens)",
+      "demand": 11,
+      "pillar": "gp_employer_brand",
+      "source": "faq_not_helpful",
+      "faqId": "billing-model"
+    },
+    {
+      "id": "unans_internal_parking",
+      "question": "parking",
+      "evidence": "Internal search ×9",
+      "demand": 9,
+      "pillar": "community_care",
+      "source": "internal_search"
+    },
+    {
+      "id": "unans_faq_provider-numbers",
+      "question": "Clarify FAQ: provider-numbers",
+      "evidence": "9 not-helpful votes vs 22 helpful (48 opens)",
+      "demand": 9,
+      "pillar": "gp_employer_brand",
+      "source": "faq_not_helpful",
+      "faqId": "provider-numbers"
+    },
+    {
+      "id": "unans_seo_FRACGP_join_practice_Woolloongabba",
+      "question": "FRACGP join practice Woolloongabba",
+      "evidence": "SEO impressions 88, clicks 9, avg position 18",
+      "demand": 9,
+      "pillar": "community_care",
+      "source": "search_keyword"
+    }
+  ],
+  "highConvertingPages": [
+    {
+      "path": "/doctor-readiness",
+      "sessions": 42,
+      "eoiSessions": 9,
+      "conversionRate": 21.4,
+      "personaTop": "early_career_gp",
+      "sampleOk": true
+    },
+    {
+      "path": "/gp-session-planner",
+      "sessions": 24,
+      "eoiSessions": 4,
+      "conversionRate": 16.7,
+      "personaTop": "part_time_parent_gp",
+      "sampleOk": true
+    },
+    {
+      "path": "/join-our-team#gp-faq",
+      "sessions": 75,
+      "eoiSessions": 12,
+      "conversionRate": 16,
+      "personaTop": "established_gp_seeking_change",
+      "sampleOk": true
+    },
+    {
+      "path": "/provider-number-readiness",
+      "sessions": 36,
+      "eoiSessions": 5,
+      "conversionRate": 13.9,
+      "personaTop": "returning_gp",
+      "sampleOk": true
+    },
+    {
+      "path": "/gp-opportunities",
+      "sessions": 120,
+      "eoiSessions": 16,
+      "conversionRate": 13.3,
+      "personaTop": "early_career_gp",
+      "sampleOk": true
+    },
+    {
+      "path": "/join-our-team",
+      "sessions": 90,
+      "eoiSessions": 6,
+      "conversionRate": 6.7,
+      "personaTop": "unknown",
+      "sampleOk": true
+    }
+  ],
+  "monthlyContentRecommendations": [
+    {
+      "id": "rec_continuity_section",
+      "type": "new_page_section",
+      "priority": "high",
+      "pillar": "continuity_of_care",
+      "title": "Add ‘Continuity at WMC’ section to GP Opportunities",
+      "rationale": "High SEO interest + employer brand differentiator; Opportunities already high-converting.",
+      "targetPath": "/gp-opportunities",
+      "suggestedCopy": "Patients here are encouraged to return to a known GP. We support list-building with nursing and reception around the consult — continuity over throughput.",
+      "monthAction": "Draft section + review for no earnings claims"
+    },
+    {
+      "id": "rec_faq_list_building",
+      "type": "new_faq",
+      "priority": "high",
+      "pillar": "continuity_of_care",
+      "title": "New FAQ: How does list-building work for new GPs?",
+      "rationale": "Internal search gap; early-career persona engagement.",
+      "targetPath": "/join-our-team#gp-faq",
+      "suggestedCopy": "Explain staged growth of consulting footprint, patient allocation honesty, and what the team does to support returning patients — no volume guarantees.",
+      "monthAction": "Write FAQ + FAQPage schema entry"
+    },
+    {
+      "id": "rec_faq_dpa_boundary",
+      "type": "clarify_boundary",
+      "priority": "high",
+      "pillar": "gp_employer_brand",
+      "title": "Boundary-safe FAQ: DPA and location information",
+      "rationale": "Unanswered DPA demand; link to navigator + Services Australia — never determine eligibility.",
+      "targetPath": "/join-our-team#gp-faq",
+      "suggestedCopy": "WMC can share accurate practice location details. DPA/s19AB outcomes are not decided by the practice. Point doctors to official resources and the DPA/19AB Navigator.",
+      "monthAction": "Publish FAQ + deep-link to navigator prototype"
+    },
+    {
+      "id": "rec_rewrite_percentage",
+      "type": "expand_faq",
+      "priority": "high",
+      "pillar": "gp_employer_brand",
+      "title": "Rewrite percentage FAQ for trust (still no public %)",
+      "rationale": "Highest not-helpful votes among billing FAQs.",
+      "targetPath": "/join-our-team#gp-faq",
+      "suggestedCopy": "Acknowledge the question, explain why public % claims mislead, invite private conversation, reinforce community practice context.",
+      "monthAction": "A/B clarity edit; monitor not-helpful votes"
+    },
+    {
+      "id": "rec_persona_part_time",
+      "type": "persona_message",
+      "priority": "medium",
+      "pillar": "gp_employer_brand",
+      "title": "Part-time / parent GP callout on Opportunities",
+      "rationale": "Persona conversion healthy but SEO position weak.",
+      "targetPath": "/gp-opportunities",
+      "suggestedCopy": "Reliable part-time sessions, agreed days, nursing cover discussed honestly against capacity — not a casual locum board.",
+      "monthAction": "Add short persona block + session planner CTA"
+    },
+    {
+      "id": "rec_community_proof",
+      "type": "seo_landing_tweak",
+      "priority": "medium",
+      "pillar": "community_care",
+      "title": "Strengthen community care proof on Join Our Team",
+      "rationale": "Join Our Team under-converts vs Opportunities; community keywords exist.",
+      "targetPath": "/join-our-team",
+      "suggestedCopy": "Lead with Woolloongabba / inner-south community care and AGPAL-aligned team practice before any ‘join’ language.",
+      "monthAction": "Reorder hero supporting line; link to Opportunities decision page"
+    },
+    {
+      "id": "rec_practical_access",
+      "type": "new_faq",
+      "priority": "low",
+      "pillar": "community_care",
+      "title": "FAQ: Working here day-to-day (access / parking pointer)",
+      "rationale": "Internal search for parking/after hours without GP-attraction answer.",
+      "targetPath": "/join-our-team#gp-faq",
+      "suggestedCopy": "Point to public access/parking page; keep GP tone practical and local.",
+      "monthAction": "Cross-link existing access content; avoid duplicating long parking essays"
+    }
+  ],
+  "seoOpportunities": [
+    {
+      "query": "GP jobs Woolloongabba",
+      "impressions": 420,
+      "clicks": 38,
+      "position": 8.2,
+      "ctr": 9,
+      "pillar": "community_care",
+      "opportunity": "create_supporting_content",
+      "recommendation": "Create FAQ/section aligned to brand pillar"
+    },
+    {
+      "query": "continuity of care GP practice Brisbane",
+      "impressions": 210,
+      "clicks": 29,
+      "position": 12.4,
+      "ctr": 13.8,
+      "pillar": "continuity_of_care",
+      "opportunity": "create_supporting_content",
+      "recommendation": "Create FAQ/section aligned to brand pillar"
+    },
+    {
+      "query": "GP percentage split Woolloongabba",
+      "impressions": 200,
+      "clicks": 27,
+      "position": 7.4,
+      "ctr": 13.5,
+      "pillar": "community_care",
+      "opportunity": "capture_without_public_rates",
+      "recommendation": "Rank for intent with trust copy — do not publish %"
+    },
+    {
+      "query": "community medical centre Woolloongabba GP",
+      "impressions": 180,
+      "clicks": 24,
+      "position": 9.1,
+      "ctr": 13.3,
+      "pillar": "community_care",
+      "opportunity": "create_supporting_content",
+      "recommendation": "Create FAQ/section aligned to brand pillar"
+    },
+    {
+      "query": "flexible GP sessions Brisbane inner south",
+      "impressions": 160,
+      "clicks": 18,
+      "position": 14,
+      "ctr": 11.3,
+      "pillar": "community_care",
+      "opportunity": "improve_position",
+      "recommendation": "Strengthen title/H2 and internal links from Opportunities"
+    },
+    {
+      "query": "does practice issue Medicare provider number",
+      "impressions": 140,
+      "clicks": 31,
+      "position": 6.5,
+      "ctr": 22.1,
+      "pillar": "gp_employer_brand",
+      "opportunity": "maintain",
+      "recommendation": "Monitor"
+    },
+    {
+      "query": "DPA GP Brisbane medical centre",
+      "impressions": 120,
+      "clicks": 22,
+      "position": 15.3,
+      "ctr": 18.3,
+      "pillar": "gp_employer_brand",
+      "opportunity": "create_supporting_content",
+      "recommendation": "Create FAQ/section aligned to brand pillar"
+    },
+    {
+      "query": "GP onboarding nursing support Brisbane",
+      "impressions": 95,
+      "clicks": 16,
+      "position": 11.2,
+      "ctr": 16.8,
+      "pillar": "gp_employer_brand",
+      "opportunity": "maintain",
+      "recommendation": "Monitor"
+    },
+    {
+      "query": "FRACGP join practice Woolloongabba",
+      "impressions": 88,
+      "clicks": 9,
+      "position": 18,
+      "ctr": 10.2,
+      "pillar": "community_care",
+      "opportunity": "create_supporting_content",
+      "recommendation": "Create FAQ/section aligned to brand pillar"
+    },
+    {
+      "query": "part time GP parent friendly practice Brisbane",
+      "impressions": 75,
+      "clicks": 11,
+      "position": 16.8,
+      "ctr": 14.7,
+      "pillar": "gp_employer_brand",
+      "opportunity": "create_supporting_content",
+      "recommendation": "Create FAQ/section aligned to brand pillar"
+    }
+  ],
+  "doctorInformationGaps": [
+    {
+      "id": "info_first_90",
+      "title": "First 90 days / orientation expectations",
+      "pillar": "gp_employer_brand",
+      "whyItMatters": "Early-career and returning personas search orientation/list-building.",
+      "relatedSignals": [
+        "list building",
+        "orientation",
+        "early_career_gp"
+      ]
+    },
+    {
+      "id": "info_pn_boundary",
+      "title": "Provider number boundary remains high-anxiety",
+      "pillar": "gp_employer_brand",
+      "whyItMatters": "Top FAQ opens + internal search; must stay Services Australia–accurate.",
+      "relatedSignals": [
+        "provider-numbers",
+        "provider number"
+      ]
+    },
+    {
+      "id": "info_continuity_ops",
+      "title": "How continuity actually works operationally",
+      "pillar": "continuity_of_care",
+      "whyItMatters": "Brand differentiator vs throughput clinics; SEO demand present.",
+      "relatedSignals": [
+        "continuity of care GP practice Brisbane",
+        "continuity"
+      ]
+    },
+    {
+      "id": "info_supervision_capacity",
+      "title": "Registrar supervision capacity honesty",
+      "pillar": "gp_employer_brand",
+      "whyItMatters": "Internal search registrar supervision; FAQ exists but demand continues.",
+      "relatedSignals": [
+        "registrar supervision",
+        "registrar-pathway"
+      ]
+    },
+    {
+      "id": "info_community_context",
+      "title": "Local community / catchment context for GPs",
+      "pillar": "community_care",
+      "whyItMatters": "Helps doctors picture the patient community they will serve.",
+      "relatedSignals": [
+        "community medical centre Woolloongabba GP"
+      ]
+    }
+  ],
+  "highlights": {
+    "topConvertingPage": {
+      "path": "/doctor-readiness",
+      "sessions": 42,
+      "eoiSessions": 9,
+      "conversionRate": 21.4,
+      "personaTop": "early_career_gp",
+      "sampleOk": true
+    },
+    "topEoiSource": {
+      "source": "gp_opportunities",
+      "submissions": 7,
+      "label": "GP Opportunities page"
+    },
+    "topFaq": {
+      "faqId": "provider-numbers",
+      "opens": 48,
+      "helpful": 22,
+      "notHelpful": 9
+    },
+    "topContentGap": {
+      "id": "gap_continuity_story",
+      "title": "Continuity-of-care employer narrative is thin vs search demand",
+      "pillar": "continuity_of_care",
+      "score": 92,
+      "evidence": "Keyword ‘continuity of care GP practice Brisbane’ converts interest but no dedicated FAQ/section.",
+      "doctorNeed": "How patient lists and returning patients work for a new GP here."
+    }
+  }
+}

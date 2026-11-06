@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your onboarding tasks | Woolloongabba Medical Centre</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#173044",
+            "ink-soft": "#596b78",
+            navy: "#163f62",
+            green: "#0f6b45",
+            warm: "#f5f3ee",
+            mist: "#f4f7f7",
+            line: "#dbe4e9",
+            amber: "#8a6a2f",
+          },
+          fontFamily: {
+            display: ['"Libre Baskerville"', "Georgia", "serif"],
+            ui: ["Inter", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-mist font-ui text-ink antialiased">
+  <header class="border-b border-line bg-warm">
+    <div class="mx-auto max-w-lg px-4 py-8 sm:px-6">
+      <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Woolloongabba Medical Centre</p>
+      <h1 class="mt-2 font-display text-3xl font-bold">Your onboarding tasks</h1>
+      <p class="mt-3 text-sm leading-relaxed text-ink-soft">
+        A calm view of what we need from you at the current stage.
+        A team member reviews each gate personally — nothing here is auto-approved.
+      </p>
+      <aside class="mt-4 rounded-xl border border-navy/20 bg-white p-4 text-sm" role="note">
+        Medicare provider numbers are issued by <strong>Services Australia</strong>, not by the practice.
+      </aside>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-lg px-4 py-6 sm:px-6">
+    <div id="doctor-root" aria-busy="true">
+      <p class="text-sm text-ink-soft">Loading your tasks…</p>
+    </div>
+    <p class="mt-8 text-center text-xs text-ink-soft">
+      <a class="text-navy underline-offset-2 hover:underline" href="/">Workflow overview</a>
+      · Doctor wireframe prototype
+    </p>
+  </main>
+
+  <script>
+    (async () => {
+      const root = document.getElementById("doctor-root");
+      try {
+        const [wfRes, casesRes] = await Promise.all([fetch("/api/workflow"), fetch("/api/cases")]);
+        const wf = await wfRes.json();
+        const cases = await casesRes.json();
+        const c = cases[0];
+        if (!c) {
+          root.innerHTML = `<p class="text-sm">No open case in this prototype.</p>`;
+          return;
+        }
+        const stage = wf.stages.find((s) => s.id === c.currentStageId);
+        const tasks = (stage?.doctorTasks || [])
+          .map((t) => {
+            const runtime = (c.tasks || []).find((x) => x.taskKey === t.id);
+            const st = runtime?.status || "pending";
+            return `<li class="rounded-xl border border-line bg-white p-4">
+              <p class="font-medium">${t.task}</p>
+              <p class="mt-1 text-xs uppercase tracking-wide text-ink-soft">${st}${t.required ? " · required" : ""}</p>
+            </li>`;
+          })
+          .join("");
+        root.setAttribute("aria-busy", "false");
+        root.innerHTML = `
+          <p class="text-sm text-ink-soft">Hello, <strong class="text-ink">${c.doctorDisplayName}</strong></p>
+          <div class="mt-4 rounded-2xl border border-line bg-white p-5">
+            <p class="text-xs font-semibold uppercase tracking-wide text-navy">Current stage</p>
+            <h2 class="mt-1 font-display text-2xl font-bold">${stage.label}</h2>
+            <p class="mt-2 text-sm text-ink-soft">${stage.goal}</p>
+          </div>
+          <h3 class="mt-6 text-xs font-semibold uppercase tracking-wide text-green">Your tasks</h3>
+          <ul class="mt-3 space-y-3">${tasks}</ul>
+          <div class="mt-6 rounded-xl border border-amber/40 bg-white p-4 text-sm">
+            <strong class="text-amber">What happens next.</strong>
+            When your tasks are done, a practice team member reviews the stage gate.
+            Completing tasks does not automatically approve the next stage or go-live.
+          </div>`;
+      } catch (err) {
+        root.innerHTML = `<p class="text-sm text-red-700" role="alert">Start <code>node server.mjs</code> on port 4180.</p>`;
+      }
+    })();
+  </script>
+</body>
+</html>

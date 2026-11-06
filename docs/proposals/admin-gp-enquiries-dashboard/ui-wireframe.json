@@ -1,0 +1,42 @@
+{
+  "id": "admin-gp-enquiries-dashboard-wireframe",
+  "version": "1.0.0",
+  "surface": "/admin/gp-enquiries",
+  "layout": {
+    "header": ["Title", "Human-review disclaimer", "Eligibility / provider-number boundary note"],
+    "filterBar": ["Search", "Status", "Score band", "Capacity fit", "Assignee", "Sort"],
+    "leftQueue": [
+      "Doctor name",
+      "Priority score",
+      "Score band badge",
+      "Status badge",
+      "Hard flag badge",
+      "Capacity fit",
+      "Current onboarding stage"
+    ],
+    "detailPanel": [
+      "EOI submission summary",
+      "EOI score breakdown (+ manual adjustment reason)",
+      "Readiness result",
+      "Provider readiness",
+      "Session preferences",
+      "Priority score / capacity fit / eligibility discussion / onboarding stage",
+      "Status update form (human)",
+      "Assignment form",
+      "Notes thread"
+    ]
+  },
+  "interactions": {
+    "search": "Filters queue by name/email/phone",
+    "filters": "Combinable; hard-flagged rows sort above peers",
+    "statusUpdate": "Requires actorUserId; hired requires humanConfirmation",
+    "notes": "Internal only in v1",
+    "assignment": "pm / principal; unassign allowed"
+  },
+  "nonGoals": [
+    "Auto-decline by score",
+    "Auto-offer / auto-hire",
+    "Automated eligibility determination",
+    "Recruitment-agency pipeline chrome"
+  ]
+}

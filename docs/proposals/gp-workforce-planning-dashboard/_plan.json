@@ -1,0 +1,539 @@
+{
+  "generatedAt": "2026-11-04T01:48:52.755Z",
+  "clinicId": "woolloongabba",
+  "notice": "Human decision-making only. Targets and forecasts are advisory. This dashboard does not hire, decline, or publish rosters.",
+  "currentGpCapacity": {
+    "activeGpCount": 2,
+    "activeGps": [
+      "Dr Chen",
+      "Dr Lee"
+    ],
+    "offeredSessions": 35,
+    "usedSessions": 11,
+    "availableSessions": 23,
+    "reserveSessions": 1,
+    "utilisationPercent": 31.4,
+    "targetSessionsPerGp": 4
+  },
+  "forecastShortages": [
+    {
+      "horizonWeeks": 4,
+      "scenario": "moderate",
+      "demandSessions": 37.9,
+      "offeredSessions": 35,
+      "shortageSessions": 2.9,
+      "impliedAdditionalGps": 1,
+      "label": "Forecast shortage ~2.9 sessions by week 4"
+    },
+    {
+      "horizonWeeks": 12,
+      "scenario": "moderate",
+      "demandSessions": 38,
+      "offeredSessions": 35,
+      "shortageSessions": 3,
+      "impliedAdditionalGps": 1,
+      "label": "Forecast shortage ~3 sessions by week 12"
+    },
+    {
+      "horizonWeeks": 26,
+      "scenario": "moderate",
+      "demandSessions": 38.2,
+      "offeredSessions": 35,
+      "shortageSessions": 3.2,
+      "impliedAdditionalGps": 1,
+      "label": "Forecast shortage ~3.2 sessions by week 26"
+    }
+  ],
+  "availableSessions": {
+    "total": 23,
+    "windows": [
+      {
+        "key": "wednesday_afternoon",
+        "label": "Wed PM",
+        "dayOfWeek": "wednesday",
+        "period": "afternoon",
+        "status": "available",
+        "offered": 4,
+        "used": 0,
+        "free": 4,
+        "utilisationPercent": 0,
+        "nursing": "full",
+        "existingGps": []
+      },
+      {
+        "key": "monday_afternoon",
+        "label": "Mon PM",
+        "dayOfWeek": "monday",
+        "period": "afternoon",
+        "status": "available",
+        "offered": 4,
+        "used": 1,
+        "free": 3,
+        "utilisationPercent": 25,
+        "nursing": "full",
+        "existingGps": [
+          "Dr Chen"
+        ]
+      },
+      {
+        "key": "tuesday_morning",
+        "label": "Tue AM",
+        "dayOfWeek": "tuesday",
+        "period": "morning",
+        "status": "available",
+        "offered": 4,
+        "used": 1,
+        "free": 3,
+        "utilisationPercent": 25,
+        "nursing": "full",
+        "existingGps": [
+          "Dr Lee"
+        ]
+      },
+      {
+        "key": "thursday_afternoon",
+        "label": "Thu PM",
+        "dayOfWeek": "thursday",
+        "period": "afternoon",
+        "status": "available",
+        "offered": 4,
+        "used": 1,
+        "free": 3,
+        "utilisationPercent": 25,
+        "nursing": "full",
+        "existingGps": [
+          "Dr Lee"
+        ]
+      },
+      {
+        "key": "friday_afternoon",
+        "label": "Fri PM",
+        "dayOfWeek": "friday",
+        "period": "afternoon",
+        "status": "available",
+        "offered": 4,
+        "used": 1,
+        "free": 3,
+        "utilisationPercent": 25,
+        "nursing": "full",
+        "existingGps": [
+          "Dr Lee"
+        ]
+      },
+      {
+        "key": "monday_morning",
+        "label": "Mon AM",
+        "dayOfWeek": "monday",
+        "period": "morning",
+        "status": "available",
+        "offered": 4,
+        "used": 2,
+        "free": 2,
+        "utilisationPercent": 50,
+        "nursing": "full",
+        "existingGps": [
+          "Dr Chen",
+          "Dr Lee"
+        ]
+      },
+      {
+        "key": "thursday_morning",
+        "label": "Thu AM",
+        "dayOfWeek": "thursday",
+        "period": "morning",
+        "status": "available",
+        "offered": 4,
+        "used": 2,
+        "free": 2,
+        "utilisationPercent": 50,
+        "nursing": "full",
+        "existingGps": [
+          "Dr Chen",
+          "Dr Lee"
+        ]
+      },
+      {
+        "key": "friday_morning",
+        "label": "Fri AM",
+        "dayOfWeek": "friday",
+        "period": "morning",
+        "status": "available",
+        "offered": 3,
+        "used": 1,
+        "free": 2,
+        "utilisationPercent": 33.3,
+        "nursing": "full",
+        "existingGps": [
+          "Dr Chen"
+        ]
+      },
+      {
+        "key": "tuesday_afternoon",
+        "label": "Tue PM",
+        "dayOfWeek": "tuesday",
+        "period": "afternoon",
+        "status": "limited",
+        "offered": 2,
+        "used": 1,
+        "free": 1,
+        "utilisationPercent": 50,
+        "nursing": "limited",
+        "existingGps": [
+          "Dr Chen"
+        ]
+      },
+      {
+        "key": "wednesday_morning",
+        "label": "Wed AM",
+        "dayOfWeek": "wednesday",
+        "period": "morning",
+        "status": "limited",
+        "offered": 2,
+        "used": 1,
+        "free": 1,
+        "utilisationPercent": 50,
+        "nursing": "limited",
+        "existingGps": [
+          "Dr Lee"
+        ]
+      }
+    ]
+  },
+  "recruitmentTargets": {
+    "recommendedGpCount": 6,
+    "basis": "ceil(23 available / 4 sessions per GP)",
+    "alignedPriorityEois": 3,
+    "note": "Recommendation only — practice decides whether to recruit."
+  },
+  "eoiPipeline": {
+    "total": 5,
+    "byStatus": {
+      "reviewing": 1,
+      "triage": 1,
+      "awaiting_doctor": 1,
+      "new_submission": 1,
+      "in_conversation": 1
+    },
+    "byBand": {
+      "priority_review": 2,
+      "possible_fit": 1,
+      "nurture": 1,
+      "strong_fit": 1
+    },
+    "priorityOrStrong": 3,
+    "hardFlagged": 1,
+    "items": [
+      {
+        "id": "enq_001",
+        "name": "Dr A. Nguyen",
+        "status": "reviewing",
+        "priorityScore": 86,
+        "scoreBand": "priority_review",
+        "hardFlags": []
+      },
+      {
+        "id": "enq_002",
+        "name": "Dr S. Patel",
+        "status": "triage",
+        "priorityScore": 64,
+        "scoreBand": "possible_fit",
+        "hardFlags": []
+      },
+      {
+        "id": "enq_003",
+        "name": "Dr M. Okonkwo",
+        "status": "awaiting_doctor",
+        "priorityScore": 48,
+        "scoreBand": "nurture",
+        "hardFlags": [
+          "AHPRA_REQUIRED"
+        ]
+      },
+      {
+        "id": "enq_004",
+        "name": "Dr L. Chen",
+        "status": "new_submission",
+        "priorityScore": 78,
+        "scoreBand": "strong_fit",
+        "hardFlags": []
+      },
+      {
+        "id": "enq_005",
+        "name": "Dr R. Williams",
+        "status": "in_conversation",
+        "priorityScore": 91,
+        "scoreBand": "priority_review",
+        "hardFlags": []
+      }
+    ]
+  },
+  "onboardingPipeline": {
+    "total": 2,
+    "byStage": {
+      "provider_number_preparation": 1,
+      "initial_discussion": 1
+    },
+    "awaitingExternal": 1,
+    "items": [
+      {
+        "id": "case_demo_001",
+        "name": "Dr A. Nguyen",
+        "status": "awaiting_external",
+        "stage": "provider_number_preparation"
+      },
+      {
+        "id": "case_demo_002",
+        "name": "Dr R. Williams",
+        "status": "in_review",
+        "stage": "initial_discussion"
+      }
+    ]
+  },
+  "roomUtilisation": [
+    {
+      "key": "monday_morning",
+      "label": "Mon AM",
+      "dayOfWeek": "monday",
+      "period": "morning",
+      "status": "available",
+      "offered": 4,
+      "used": 2,
+      "free": 2,
+      "utilisationPercent": 50,
+      "nursing": "full",
+      "existingGps": [
+        "Dr Chen",
+        "Dr Lee"
+      ]
+    },
+    {
+      "key": "monday_afternoon",
+      "label": "Mon PM",
+      "dayOfWeek": "monday",
+      "period": "afternoon",
+      "status": "available",
+      "offered": 4,
+      "used": 1,
+      "free": 3,
+      "utilisationPercent": 25,
+      "nursing": "full",
+      "existingGps": [
+        "Dr Chen"
+      ]
+    },
+    {
+      "key": "tuesday_morning",
+      "label": "Tue AM",
+      "dayOfWeek": "tuesday",
+      "period": "morning",
+      "status": "available",
+      "offered": 4,
+      "used": 1,
+      "free": 3,
+      "utilisationPercent": 25,
+      "nursing": "full",
+      "existingGps": [
+        "Dr Lee"
+      ]
+    },
+    {
+      "key": "tuesday_afternoon",
+      "label": "Tue PM",
+      "dayOfWeek": "tuesday",
+      "period": "afternoon",
+      "status": "limited",
+      "offered": 2,
+      "used": 1,
+      "free": 1,
+      "utilisationPercent": 50,
+      "nursing": "limited",
+      "existingGps": [
+        "Dr Chen"
+      ]
+    },
+    {
+      "key": "wednesday_morning",
+      "label": "Wed AM",
+      "dayOfWeek": "wednesday",
+      "period": "morning",
+      "status": "limited",
+      "offered": 2,
+      "used": 1,
+      "free": 1,
+      "utilisationPercent": 50,
+      "nursing": "limited",
+      "existingGps": [
+        "Dr Lee"
+      ]
+    },
+    {
+      "key": "wednesday_afternoon",
+      "label": "Wed PM",
+      "dayOfWeek": "wednesday",
+      "period": "afternoon",
+      "status": "available",
+      "offered": 4,
+      "used": 0,
+      "free": 4,
+      "utilisationPercent": 0,
+      "nursing": "full",
+      "existingGps": []
+    },
+    {
+      "key": "thursday_morning",
+      "label": "Thu AM",
+      "dayOfWeek": "thursday",
+      "period": "morning",
+      "status": "available",
+      "offered": 4,
+      "used": 2,
+      "free": 2,
+      "utilisationPercent": 50,
+      "nursing": "full",
+      "existingGps": [
+        "Dr Chen",
+        "Dr Lee"
+      ]
+    },
+    {
+      "key": "thursday_afternoon",
+      "label": "Thu PM",
+      "dayOfWeek": "thursday",
+      "period": "afternoon",
+      "status": "available",
+      "offered": 4,
+      "used": 1,
+      "free": 3,
+      "utilisationPercent": 25,
+      "nursing": "full",
+      "existingGps": [
+        "Dr Lee"
+      ]
+    },
+    {
+      "key": "friday_morning",
+      "label": "Fri AM",
+      "dayOfWeek": "friday",
+      "period": "morning",
+      "status": "available",
+      "offered": 3,
+      "used": 1,
+      "free": 2,
+      "utilisationPercent": 33.3,
+      "nursing": "full",
+      "existingGps": [
+        "Dr Chen"
+      ]
+    },
+    {
+      "key": "friday_afternoon",
+      "label": "Fri PM",
+      "dayOfWeek": "friday",
+      "period": "afternoon",
+      "status": "available",
+      "offered": 4,
+      "used": 1,
+      "free": 3,
+      "utilisationPercent": 25,
+      "nursing": "full",
+      "existingGps": [
+        "Dr Lee"
+      ]
+    }
+  ],
+  "capacityForecasts": [
+    {
+      "horizonWeeks": 4,
+      "scenario": "moderate",
+      "demandSessions": 37.9,
+      "offeredSessions": 35,
+      "shortageSessions": 2.9,
+      "impliedAdditionalGps": 1,
+      "label": "Forecast shortage ~2.9 sessions by week 4"
+    },
+    {
+      "horizonWeeks": 12,
+      "scenario": "moderate",
+      "demandSessions": 38,
+      "offeredSessions": 35,
+      "shortageSessions": 3,
+      "impliedAdditionalGps": 1,
+      "label": "Forecast shortage ~3 sessions by week 12"
+    },
+    {
+      "horizonWeeks": 26,
+      "scenario": "moderate",
+      "demandSessions": 38.2,
+      "offeredSessions": 35,
+      "shortageSessions": 3.2,
+      "impliedAdditionalGps": 1,
+      "label": "Forecast shortage ~3.2 sessions by week 26"
+    }
+  ],
+  "recruitmentRecommendations": [
+    {
+      "id": "rec_review_eoi",
+      "kind": "open_eoi_review",
+      "priority": "high",
+      "title": "Review priority EOIs against spare sessions",
+      "rationale": "3 priority/strong-fit EOI(s) while ~6 GP target(s) of capacity exist.",
+      "suggestedHumanAction": "Open Admin GP Enquiries; assign reviewer; do not auto-offer."
+    },
+    {
+      "id": "rec_rebalance",
+      "kind": "rebalance_sessions",
+      "priority": "medium",
+      "title": "Rebalance sessions into available windows",
+      "rationale": "0 full and 2 limited window(s).",
+      "suggestedHumanAction": "Use Session–Capacity Matching with candidate prefs; human allocates."
+    },
+    {
+      "id": "rec_nursing",
+      "kind": "adjust_nursing_cover",
+      "priority": "medium",
+      "title": "Review nursing cover on limited windows",
+      "rationale": "Nursing caps reduce effective rooms independent of physical room count.",
+      "suggestedHumanAction": "Nurse lead + practice manager discuss roster — not an automated change."
+    }
+  ],
+  "priorityGaps": [
+    {
+      "id": "gap_recruit_target",
+      "severity": "high",
+      "type": "unfilled_recruitment",
+      "label": "6 GP recruitment target(s) from spare sessions",
+      "detail": "23 available sessions ÷ 4 target sessions/GP.",
+      "score": 12
+    },
+    {
+      "id": "gap_lim_tuesday_afternoon",
+      "severity": "medium",
+      "type": "limited_window",
+      "label": "Tue PM is limited",
+      "detail": "Only 1 free slot(s); nursing=limited.",
+      "score": 1.5
+    },
+    {
+      "id": "gap_lim_wednesday_morning",
+      "severity": "medium",
+      "type": "limited_window",
+      "label": "Wed AM is limited",
+      "detail": "Only 1 free slot(s); nursing=limited.",
+      "score": 1.5
+    },
+    {
+      "id": "gap_onboarding_external",
+      "severity": "medium",
+      "type": "onboarding_lag",
+      "label": "1 onboarding case(s) awaiting external",
+      "detail": "Provider number / external agency lag — practice cannot clear automatically.",
+      "score": 1
+    }
+  ],
+  "links": {
+    "capacityMatching": "http://127.0.0.1:4183/",
+    "gpEnquiries": "http://127.0.0.1:4182/",
+    "onboarding": "http://127.0.0.1:4180/dashboard.html",
+    "attractionAnalytics": "http://127.0.0.1:4181/"
+  }
+}

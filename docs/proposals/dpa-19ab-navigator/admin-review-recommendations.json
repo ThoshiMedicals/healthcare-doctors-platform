@@ -1,0 +1,54 @@
+{
+  "title": "Admin review recommendations — DPA / 19AB Navigator",
+  "surface": "/admin/careers/pathway-navigator (proposed)",
+  "purpose": "Help practice staff prepare for EOI conversations using navigator themes — never to rule on eligibility.",
+  "do": [
+    "Read pathwayThemes and questionsForWmc before calling a candidate",
+    "Provide factual practice location details when asked for Services Australia paperwork",
+    "Point doctors back to official SA / Health links in resultJson.servicesAustraliaResources",
+    "Link navigator session to CareerApplication when EOI follows (careerApplicationId)",
+    "Document that WMC did not determine DPA/19AB outcomes in any notes",
+    "Escalate complex cases to the doctor’s own adviser / Services Australia — not practice interpretation"
+  ],
+  "doNot": [
+    "Tell a doctor they are eligible or ineligible for DPA or s19AB",
+    "Provide migration or legal advice",
+    "Promise provider numbers, exemptions, or Medicare outcomes",
+    "Use navigator results as an automated reject/hire score",
+    "Store migration document copies unless a later formal onboarding process requires them under policy"
+  ],
+  "reviewChecklist": [
+    {
+      "id": "disclaimers_present",
+      "label": "Session result includes non-advisory disclaimers"
+    },
+    {
+      "id": "themes_noted",
+      "label": "Pathway themes noted for conversation prep"
+    },
+    {
+      "id": "location_pack_ready",
+      "label": "Practice location information pack ready if requested"
+    },
+    {
+      "id": "supervision_capacity",
+      "label": "If fellowship in_progress — check supervision capacity before encouraging start dates"
+    },
+    {
+      "id": "eoi_link",
+      "label": "If EOI received — link navigator session id on application"
+    }
+  ],
+  "dashboardWidgets": [
+    "Completed navigators (7 days)",
+    "Themes frequency (verify_dpa, review_19ab, provider_number, work_rights)",
+    "Sessions shared_with_practice awaiting EOI",
+    "Registrar/in_progress fellowship count needing capacity check"
+  ],
+  "auditActions": [
+    "dpa19ab_navigator.completed",
+    "dpa19ab_navigator.shared_with_practice",
+    "dpa19ab_navigator.linked_to_application",
+    "dpa19ab_navigator.admin_reviewed"
+  ]
+}

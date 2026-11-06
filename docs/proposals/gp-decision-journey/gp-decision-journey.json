@@ -1,0 +1,466 @@
+{
+  "title": "WMC GP Decision Journey",
+  "clinic": "Woolloongabba Medical Centre",
+  "version": "1.0.0",
+  "createdAt": "2026-11-04",
+  "frame": {
+    "purpose": "Help doctors decide whether WMC is a suitable practice — then progress from enquiry to onboarding without recruitment-agency framing.",
+    "voice": "Practice-to-doctor, trust-first",
+    "guards": [
+      "No talent-pool / job-board framing on decision pages",
+      "No public percentage or earnings claims",
+      "Practice does not issue Medicare provider numbers",
+      "JobPosting schema only when a live vacancy exists"
+    ]
+  },
+  "stages": [
+    {
+      "id": "awareness",
+      "order": 1,
+      "name": "Awareness",
+      "goal": "Doctor discovers WMC exists as a continuity-focused inner-south practice worth noticing.",
+      "questions": [
+        "Which Brisbane practices still prioritise continuity?",
+        "Is there an AGPAL-accredited clinic in Woolloongabba / inner south?",
+        "Where do GPs at this practice publish how they work?"
+      ],
+      "decisionFactors": [
+        "Location credibility (468 Vulture Street, inner south)",
+        "Accreditation signal (AGPAL)",
+        "Employer brand tone (practice vs agency)",
+        "Visibility in organic search and peer referral"
+      ],
+      "requiredContent": [
+        "Join Our Team / GP Opportunities landing (decision framing)",
+        "About Us, Philosophy of Care, Our Story, Community",
+        "AGPAL accreditation authority page",
+        "Meet the team / GP directory (public clinical presence)"
+      ],
+      "requiredWebsiteFeatures": [
+        "Primary nav Join Our Team (not buried)",
+        "SEO title/meta for GP decision intent",
+        "MedicalClinic + WebPage schema",
+        "Canonical URLs and internal links from About → Join Our Team",
+        "Mobile-readable trust marks (AGPAL) with text labels"
+      ],
+      "existingAssets": [
+        "docs/proposals/gp-opportunities/index.html",
+        "old-html/join-our-team.html",
+        "old-html/agpal-accreditation.html",
+        "old-html/philosophy-of-care.html"
+      ]
+    },
+    {
+      "id": "interest",
+      "order": 2,
+      "name": "Interest",
+      "goal": "Doctor feels WMC might match their practice values and wants to learn more.",
+      "questions": [
+        "Does this practice match how I want to practise?",
+        "Is the culture continuity-based or high-volume?",
+        "Will I have nursing and reception support?",
+        "Are part-time or staged sessions possible?"
+      ],
+      "decisionFactors": [
+        "Philosophy fit (continuity, autonomy, teamwork)",
+        "Persona resonance (early career, established, returning, PT parent, special interest)",
+        "Evidence of team-based care",
+        "Absence of recruiter/hype language"
+      ],
+      "requiredContent": [
+        "GP Opportunities hero + philosophy section",
+        "Why WMC / facilities / flexibility / clinical interests / collaboration",
+        "Persona-aligned messaging blocks (subtle, not labelled as personas publicly)",
+        "Short trust strip (AGPAL, location, care model, team)"
+      ],
+      "requiredWebsiteFeatures": [
+        "On-this-page anchors (philosophy, how we work, FAQ, EOI)",
+        "Accessible CTA pair: learn how we work + express interest",
+        "No JobBoard UI; soft EOI invitation only",
+        "Fast LCP on hero; meaningful image alt"
+      ],
+      "existingAssets": [
+        "docs/proposals/gp-opportunities/index.html",
+        "docs/proposals/gp-personas/wmc-gp-recruitment-personas.json",
+        "docs/proposals/join-our-team-gp-recruitment-redesign.html"
+      ]
+    },
+    {
+      "id": "research",
+      "order": 3,
+      "name": "Research",
+      "goal": "Doctor verifies operational reality: support, systems, location, accreditation, provider-number honesty.",
+      "questions": [
+        "What nursing/reception support exists day to day?",
+        "What technology and booking systems are used?",
+        "Where is parking and how do I get there?",
+        "Does the practice issue provider numbers?",
+        "What does AGPAL actually mean here?"
+      ],
+      "decisionFactors": [
+        "Operational proof vs marketing claims",
+        "Provider-number honesty (Services Australia)",
+        "Location / parking practicality",
+        "Accreditation depth (not logo-only)",
+        "Transparency on commercial discussions (private, not public %)"
+      ],
+      "requiredContent": [
+        "GP FAQ (billing model, %, nursing, reception, sessions, autonomy, tech, AGPAL, registrars, PN, parking)",
+        "Access & Parking, Community, Local access",
+        "Team nursing / reception / practice management pages",
+        "Provider number readiness explainer (no issuance claim)"
+      ],
+      "requiredWebsiteFeatures": [
+        "FAQPage schema synced to visible FAQ",
+        "Internal links FAQ ↔ authority pages",
+        "Searchable/findable FAQ headings (H2/H3)",
+        "Print/share friendly FAQ section",
+        "Clear contact tel: and practice address"
+      ],
+      "existingAssets": [
+        "docs/proposals/gp-faq/gp-faq-content.json",
+        "docs/proposals/gp-faq/faqpage-schema.json",
+        "docs/proposals/provider-number-readiness/",
+        "old-html/access-parking.html",
+        "old-html/team-nursing.html"
+      ]
+    },
+    {
+      "id": "comparison",
+      "order": 4,
+      "name": "Comparison",
+      "goal": "Doctor compares WMC against other practices on fit factors that matter to them.",
+      "questions": [
+        "How does WMC differ from high-throughput clinics?",
+        "Will part-time be treated as real membership?",
+        "Can I develop clinical interests without becoming a boutique silo?",
+        "Is commercial discussion serious and private?",
+        "What would week-one support look like vs elsewhere?"
+      ],
+      "decisionFactors": [
+        "Continuity vs throughput",
+        "Session reliability and flexibility",
+        "Team support quality",
+        "Clinical interest fit within GP",
+        "Trust signals (AGPAL, governance, tone)",
+        "Commute / parking / inner-south lifestyle"
+      ],
+      "requiredContent": [
+        "Side-by-side decision cues on GP Opportunities (philosophy contrast language)",
+        "Flexible consulting + clinical interests sections",
+        "Persona-informed objection handling in FAQ",
+        "Network note: Healthcare Doctors network without losing local identity"
+      ],
+      "requiredWebsiteFeatures": [
+        "Scannable comparison-friendly layout (short sections, clear H3s)",
+        "Sticky or repeated EOI CTA after comparison content",
+        "No competitor naming; principle-based differentiation only",
+        "Optional Doctor Readiness Assessment as self-check (not a scoregate)"
+      ],
+      "existingAssets": [
+        "docs/proposals/gp-opportunities/index.html",
+        "docs/proposals/doctor-readiness/",
+        "docs/proposals/gp-personas/wmc-gp-recruitment-personas.json"
+      ]
+    },
+    {
+      "id": "enquiry",
+      "order": 5,
+      "name": "Enquiry",
+      "goal": "Doctor starts a direct conversation with the practice via EOI or phone.",
+      "questions": [
+        "How do I contact the practice without a job board?",
+        "What should I include in an expression of interest?",
+        "Who reviews my enquiry?",
+        "What happens after I submit?"
+      ],
+      "decisionFactors": [
+        "Friction of enquiry (mobile-first form)",
+        "Privacy/consent clarity",
+        "Confidence enquiry goes to the practice (not an agency)",
+        "Option to call"
+      ],
+      "requiredContent": [
+        "Expression of Interest form copy (practice-direct)",
+        "Privacy note (no patient info; recruitment storage consent)",
+        "What happens next (review → practice contact)",
+        "Phone CTA (07) 3217 3344"
+      ],
+      "requiredWebsiteFeatures": [
+        "GP EOI form (name, email, phone, AHPRA, fellowships, interests, start date)",
+        "Client + server validation and accessible error messages",
+        "JSON submission model / secure careers API path when live",
+        "aria-live status; noscript fallback to phone/email",
+        "No public candidate marketplace listing"
+      ],
+      "existingAssets": [
+        "docs/proposals/gp-eoi/",
+        "apps/web career-applications API (production path)",
+        "old-html/join-our-team.html talent form hooks"
+      ]
+    },
+    {
+      "id": "assessment",
+      "order": 6,
+      "name": "Assessment",
+      "goal": "Doctor and practice assess mutual fit: readiness, credentials pathway, capacity.",
+      "questions": [
+        "Am I operationally ready to onboard?",
+        "What documents am I missing?",
+        "Is there room/session capacity for me?",
+        "How does WMC evaluate fit beyond a CV?"
+      ],
+      "decisionFactors": [
+        "Credential and document readiness",
+        "Provider-number pathway status (SA, not practice)",
+        "DPA / Medicare experience awareness",
+        "Room and session capacity at WMC",
+        "Cultural/clinical fit from conversation"
+      ],
+      "requiredContent": [
+        "Doctor Readiness Assessment results language",
+        "Provider Number Readiness Workflow (score, missing items, checklist)",
+        "Room Capacity Dashboard outputs (for internal/practice use; public-safe summaries only if shared)",
+        "Honest next-action recommendations"
+      ],
+      "requiredWebsiteFeatures": [
+        "Doctor Readiness wizard (score + next action + JSON export)",
+        "Provider Number Readiness workflow (with non-issuance notice)",
+        "Room capacity tools for practice planning (admin/internal or gated)",
+        "Checklist export for doctor + practice shared understanding"
+      ],
+      "existingAssets": [
+        "docs/proposals/doctor-readiness/",
+        "docs/proposals/provider-number-readiness/",
+        "docs/proposals/room-capacity-dashboard/"
+      ]
+    },
+    {
+      "id": "session_planning",
+      "order": 7,
+      "name": "Session Planning",
+      "goal": "Agree a sustainable consulting footprint (days × morning/afternoon/evening).",
+      "questions": [
+        "Which sessions can I realistically commit to?",
+        "What is estimated weekly capacity?",
+        "Which rooms/slots are free vs limited?",
+        "Can this grow over time?"
+      ],
+      "decisionFactors": [
+        "Personal availability vs practice capacity",
+        "Nursing/reception cover by session",
+        "Part-time reliability vs expansion path",
+        "Room occupancy (green/yellow/red)"
+      ],
+      "requiredContent": [
+        "Session planning guidance (planning only — not a roster contract)",
+        "Flexible consulting narrative from Join Our Team / Opportunities",
+        "Capacity legend explanation for doctors when shared"
+      ],
+      "requiredWebsiteFeatures": [
+        "GP Session Planner (weekly M/A/E selection, totals, JSON save)",
+        "Room Capacity Dashboard (available rooms, sessions, schedules)",
+        "Export/share JSON of preferred sessions for practice conversation",
+        "LocalStorage draft so planning survives refresh"
+      ],
+      "existingAssets": [
+        "docs/proposals/gp-session-planner/",
+        "docs/proposals/room-capacity-dashboard/"
+      ]
+    },
+    {
+      "id": "onboarding",
+      "order": 8,
+      "name": "Onboarding",
+      "goal": "Complete practice onboarding after mutual yes — documents, orientation, go-live.",
+      "questions": [
+        "What documents does the practice need?",
+        "What do I still need from Services Australia?",
+        "What orientation covers billing/systems?",
+        "When is my first consulting session?"
+      ],
+      "decisionFactors": [
+        "Document completeness",
+        "Provider number status for this location (SA-issued)",
+        "Orientation quality (Medicare/MBS, systems, team intros)",
+        "Confirmed session start and room assignment",
+        "Privacy and employment/contractor paperwork"
+      ],
+      "requiredContent": [
+        "Onboarding checklist (doctor / practice / Services Australia owners)",
+        "Missing-items list from readiness workflows",
+        "Links to practice policies, privacy, infection prevention (as relevant)",
+        "Welcome orientation outline (not public marketing)"
+      ],
+      "requiredWebsiteFeatures": [
+        "Provider Number Readiness checklist completion tracking",
+        "Secure document handoff path (existing careers application / admin inbox)",
+        "Admin careers applications workflow for practice team",
+        "Post-offer private checklist (not public careers hype)",
+        "Confirmation contact paths (phone/email)"
+      ],
+      "existingAssets": [
+        "docs/proposals/provider-number-readiness/",
+        "apps/web admin careers applications",
+        "old-html privacy / practice information pages"
+      ]
+    }
+  ],
+  "journeyMap": {
+    "description": "Linear primary path with optional loops back to Research or Session Planning.",
+    "flow": [
+      "awareness",
+      "interest",
+      "research",
+      "comparison",
+      "enquiry",
+      "assessment",
+      "session_planning",
+      "onboarding"
+    ],
+    "loops": [
+      {
+        "from": "comparison",
+        "to": "research",
+        "when": "Doctor needs more operational proof before enquiring"
+      },
+      {
+        "from": "assessment",
+        "to": "enquiry",
+        "when": "Readiness tools surface gaps; doctor updates EOI or calls"
+      },
+      {
+        "from": "session_planning",
+        "to": "assessment",
+        "when": "Preferred sessions conflict with capacity; reassess timing"
+      },
+      {
+        "from": "onboarding",
+        "to": "assessment",
+        "when": "Provider-number or document blockers remain"
+      }
+    ],
+    "exitRamps": [
+      {
+        "stage": "interest",
+        "reason": "Philosophy mismatch (throughput preference)"
+      },
+      {
+        "stage": "comparison",
+        "reason": "Another practice is a better fit"
+      },
+      {
+        "stage": "assessment",
+        "reason": "Credential/PN pathway not viable for intended start"
+      },
+      {
+        "stage": "session_planning",
+        "reason": "No mutually workable sessions/rooms"
+      }
+    ]
+  },
+  "contentMap": {
+    "byStage": {
+      "awareness": ["Join Our Team", "GP Opportunities", "Philosophy", "AGPAL", "Community", "Team"],
+      "interest": ["GP Opportunities sections", "Why WMC", "Trust strip", "Persona-informed copy"],
+      "research": ["GP FAQ", "Access & Parking", "Nursing/Reception pages", "Provider number honesty"],
+      "comparison": ["Differentiation copy", "Flexibility", "Clinical interests", "Readiness self-check"],
+      "enquiry": ["EOI form", "Privacy", "What happens next", "Phone CTA"],
+      "assessment": ["Doctor Readiness results", "PN Readiness checklist", "Capacity summaries"],
+      "session_planning": ["Session planner guidance", "Flexible consulting", "Capacity legend"],
+      "onboarding": ["Onboarding checklist", "Missing items", "Policy links", "Orientation outline"]
+    },
+    "primaryPages": [
+      {
+        "id": "gp_opportunities",
+        "path": "docs/proposals/gp-opportunities/index.html",
+        "stages": ["awareness", "interest", "comparison", "enquiry"]
+      },
+      {
+        "id": "join_our_team",
+        "path": "join-our-team.html",
+        "stages": ["awareness", "interest", "research", "enquiry"]
+      },
+      {
+        "id": "gp_faq",
+        "path": "docs/proposals/gp-faq/",
+        "stages": ["research", "comparison"]
+      },
+      {
+        "id": "gp_eoi",
+        "path": "docs/proposals/gp-eoi/",
+        "stages": ["enquiry"]
+      },
+      {
+        "id": "doctor_readiness",
+        "path": "docs/proposals/doctor-readiness/",
+        "stages": ["comparison", "assessment"]
+      },
+      {
+        "id": "provider_number_readiness",
+        "path": "docs/proposals/provider-number-readiness/",
+        "stages": ["research", "assessment", "onboarding"]
+      },
+      {
+        "id": "session_planner",
+        "path": "docs/proposals/gp-session-planner/",
+        "stages": ["session_planning"]
+      },
+      {
+        "id": "room_capacity",
+        "path": "docs/proposals/room-capacity-dashboard/",
+        "stages": ["assessment", "session_planning"]
+      }
+    ]
+  },
+  "featureMap": {
+    "publicWebsite": [
+      {
+        "feature": "GP Opportunities decision page",
+        "stages": ["awareness", "interest", "comparison", "enquiry"]
+      },
+      {
+        "feature": "Join Our Team employer-brand page + nav",
+        "stages": ["awareness", "interest", "research", "enquiry"]
+      },
+      {
+        "feature": "FAQPage + accessible FAQ UI",
+        "stages": ["research", "comparison"]
+      },
+      {
+        "feature": "GP Expression of Interest form + validation",
+        "stages": ["enquiry"]
+      },
+      {
+        "feature": "Doctor Readiness Assessment wizard",
+        "stages": ["comparison", "assessment"]
+      },
+      {
+        "feature": "Provider Number Readiness workflow",
+        "stages": ["research", "assessment", "onboarding"]
+      },
+      {
+        "feature": "GP Session Planner (M/A/E + JSON)",
+        "stages": ["session_planning"]
+      },
+      {
+        "feature": "MedicalClinic / WebPage / Breadcrumb schema",
+        "stages": ["awareness", "interest", "research"]
+      }
+    ],
+    "practiceInternal": [
+      {
+        "feature": "Room Capacity Dashboard",
+        "stages": ["assessment", "session_planning"]
+      },
+      {
+        "feature": "Admin careers applications inbox",
+        "stages": ["enquiry", "assessment", "onboarding"]
+      },
+      {
+        "feature": "Vacancy CMS inject + optional JobPosting",
+        "stages": ["awareness", "enquiry"]
+      }
+    ]
+  }
+}

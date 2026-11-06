@@ -1,0 +1,242 @@
+{
+  "id": "wmc-gp-first-90-days-success",
+  "version": "1.0.0",
+  "clinic": "Woolloongabba Medical Centre",
+  "purpose": "Post go-live settling framework for GPs — continuity and reliability over volume. Extends human-reviewed onboarding after Stage 7 Go-live.",
+  "boundaries": [
+    "No guaranteed patient list size, earnings, or session growth",
+    "Session expansion only with rooms, nursing cover, and mutual reliability",
+    "Medicare provider numbers issued by Services Australia — not WMC",
+    "Metrics inform support — they are not recruitment KPIs"
+  ],
+  "phases": [
+    {
+      "id": "day1",
+      "label": "Day 1",
+      "theme": "Safe start",
+      "outcome": "Orientation complete; first patients with named support"
+    },
+    {
+      "id": "week1",
+      "label": "Week 1",
+      "theme": "Rhythm",
+      "outcome": "Daily systems and nursing handoffs become familiar"
+    },
+    {
+      "id": "month1",
+      "label": "Month 1",
+      "theme": "Stability",
+      "outcome": "Reliable sessions; early continuity; systems fluent"
+    },
+    {
+      "id": "month2",
+      "label": "Month 2",
+      "theme": "Relationship",
+      "outcome": "List thickening; community literacy; predictable nursing partnership"
+    },
+    {
+      "id": "month3",
+      "label": "Month 3",
+      "theme": "Sustain",
+      "outcome": "90-day review; hold or staged expansion if capacity allows"
+    }
+  ],
+  "themes": [
+    "patient_list_building",
+    "nursing_integration",
+    "systems_adoption",
+    "community_introductions",
+    "session_expansion"
+  ],
+  "doctorGuide": {
+    "day1": [
+      "Complete orientation: emergency, privacy, rooms, treatment room, reception flow",
+      "Verify login, templates, pathology/imaging preferences",
+      "Meet named nurse and reception lead; agree mid-list help cue",
+      "Consult only within the agreed session footprint",
+      "Invite continuity: offer to be the patient’s regular GP where appropriate",
+      "End-of-day 15-minute debrief with practice contact"
+    ],
+    "week1": [
+      "Prioritise documentation quality; learn inbox/results conventions",
+      "Use nursing for appropriate treatment-room and preventive steps daily",
+      "Book clinically needed follow-ups to your own sessions when capacity allows",
+      "Learn local referral preferences and after-hours/escalation paths",
+      "Do not request extra sessions — reliability first"
+    ],
+    "month1": [
+      "Establish a predictable weekly rhythm patients and reception can trust",
+      "Complete one recall/results hygiene review with practice support",
+      "Agree booking-length notes with reception for longer presentations",
+      "Keep continuity language consistent with returning patients",
+      "Log systems friction once in writing so it can be owned"
+    ],
+    "month2": [
+      "Deepen nursing partnership on care plans, immunisation, credentialed procedures",
+      "Grow known-patient share ethically — no gaming allocations",
+      "Apply catchment literacy (mental health, women’s health, skin, emerging CDM) inside GP care",
+      "Optional: introductions to key local shared-care contacts via the practice",
+      "Raise unmet demand as a capacity conversation, not a volume demand"
+    ],
+    "month3": [
+      "Prepare for structured 90-day review (clinical, systems, sessions, wellbeing)",
+      "Decide with the practice: hold footprint, adjust days, or staged expansion if rooms and nursing allow",
+      "Confirm clinical interest pathways that fit credentialing and team capacity",
+      "Write down personal operating norms that work here",
+      "Measure success as sustainable continuity — not a patient-count target"
+    ]
+  },
+  "practiceGuide": {
+    "day1": [
+      "Roster named clinical and admin buddy; complete orientation sign-off",
+      "Match HotDoc/roster visibility to agreed sessions only",
+      "Brief nursing on new GP preferences and escalation",
+      "Give reception a continuity offer script — no overselling",
+      "Protect first lists from overbooking or overflow dumping",
+      "Hold end-of-day debrief and log blockers"
+    ],
+    "week1": [
+      "Soft check-in Day 2–5 (5–10 min); log issues on the settling case",
+      "Nursing: proactively offer treatment-room capacity on consulting days",
+      "Mentor results/inbox conventions without blame",
+      "Introduce peer GPs on overlapping days",
+      "Do not expand published sessions without mutual written agreement"
+    ],
+    "month1": [
+      "Fortnightly settling review (practice manager + GP)",
+      "Audit follow-ups landing on the correct GP; confirm recalls enabled",
+      "Close or assign owners for Week 1 friction items",
+      "Confirm AHPRA/indemnity file currency",
+      "Optional: share de-identified book mix vs catchment expectations"
+    ],
+    "month2": [
+      "Support ethical list-building (return bookings, accurate HotDoc/team profile)",
+      "Verify procedural credentials before any public interest promotion",
+      "Offer hospital shared-care orientation if relevant",
+      "Record unmet demand by daypart for planning only",
+      "Wellbeing and admin-burden check"
+    ],
+    "month3": [
+      "Formal 90-day review with written summary for both parties",
+      "Expansion decision uses rooms + nursing cover + reliability criteria",
+      "Close settling status to BAU or a staged growth plan",
+      "Optional voluntary practice-experience reflection (testimonial framework)",
+      "No earnings or volume guarantees in review notes"
+    ]
+  },
+  "checklist": [
+    { "id": "d1_orient", "phase": "day1", "owner": "doctor", "theme": "systems_adoption", "item": "Orientation walk complete" },
+    { "id": "d1_login", "phase": "day1", "owner": "doctor", "theme": "systems_adoption", "item": "Systems login and core templates verified" },
+    { "id": "d1_nurse", "phase": "day1", "owner": "doctor", "theme": "nursing_integration", "item": "Named nurse and reception contacts confirmed" },
+    { "id": "d1_session", "phase": "day1", "owner": "doctor", "theme": "session_expansion", "item": "First session completed within agreed footprint" },
+    { "id": "d1_buddy", "phase": "day1", "owner": "practice", "theme": "nursing_integration", "item": "Buddy assigned and present" },
+    { "id": "d1_roster", "phase": "day1", "owner": "practice", "theme": "session_expansion", "item": "HotDoc/roster matches agreed sessions only" },
+    { "id": "d1_debrief", "phase": "day1", "owner": "practice", "theme": "systems_adoption", "item": "End-of-day debrief held" },
+    { "id": "w1_handoff", "phase": "week1", "owner": "doctor", "theme": "nursing_integration", "item": "Daily nursing handoff used when clinically appropriate" },
+    { "id": "w1_fu", "phase": "week1", "owner": "doctor", "theme": "patient_list_building", "item": "Follow-ups booked to own sessions where capacity allows" },
+    { "id": "w1_inbox", "phase": "week1", "owner": "doctor", "theme": "systems_adoption", "item": "Results/inbox convention understood" },
+    { "id": "w1_referral", "phase": "week1", "owner": "doctor", "theme": "community_introductions", "item": "Local referral and after-hours path known" },
+    { "id": "w1_checkin", "phase": "week1", "owner": "practice", "theme": "systems_adoption", "item": "Day 2–5 soft check-ins logged" },
+    { "id": "w1_peer", "phase": "week1", "owner": "practice", "theme": "community_introductions", "item": "Peer GP introduction on an overlapping day" },
+    { "id": "w1_no_expand", "phase": "week1", "owner": "practice", "theme": "session_expansion", "item": "No unilateral session expansion" },
+    { "id": "m1_rhythm", "phase": "month1", "owner": "doctor", "theme": "session_expansion", "item": "Weekly rhythm feels predictable" },
+    { "id": "m1_recall", "phase": "month1", "owner": "doctor", "theme": "systems_adoption", "item": "Recall/results hygiene review done once" },
+    { "id": "m1_booking", "phase": "month1", "owner": "doctor", "theme": "patient_list_building", "item": "Booking-length notes agreed with reception" },
+    { "id": "m1_review", "phase": "month1", "owner": "practice", "theme": "systems_adoption", "item": "Fortnightly settling review completed" },
+    { "id": "m1_friction", "phase": "month1", "owner": "practice", "theme": "systems_adoption", "item": "Week 1 friction items closed or owned" },
+    { "id": "m1_return", "phase": "month1", "owner": "practice", "theme": "patient_list_building", "item": "Return-to-GP booking pattern audited" },
+    { "id": "m2_nursing", "phase": "month2", "owner": "doctor", "theme": "nursing_integration", "item": "Care-plan/preventive nursing partnership in routine use" },
+    { "id": "m2_known", "phase": "month2", "owner": "doctor", "theme": "patient_list_building", "item": "Known-patient share of book reviewed (directional)" },
+    { "id": "m2_catchment", "phase": "month2", "owner": "doctor", "theme": "community_introductions", "item": "Catchment case-mix literacy applied to interests" },
+    { "id": "m2_profile", "phase": "month2", "owner": "practice", "theme": "patient_list_building", "item": "HotDoc/team profile accuracy checked" },
+    { "id": "m2_cred", "phase": "month2", "owner": "practice", "theme": "nursing_integration", "item": "Procedural credentials verified before promotion" },
+    { "id": "m2_wellbeing", "phase": "month2", "owner": "practice", "theme": "systems_adoption", "item": "Wellbeing / admin-burden check held" },
+    { "id": "m3_reflect", "phase": "month3", "owner": "doctor", "theme": "session_expansion", "item": "90-day self-reflection prepared" },
+    { "id": "m3_footprint", "phase": "month3", "owner": "doctor", "theme": "session_expansion", "item": "Footprint decision discussed (hold / adjust / expand)" },
+    { "id": "m3_meeting", "phase": "month3", "owner": "practice", "theme": "session_expansion", "item": "Formal 90-day review meeting and written summary" },
+    { "id": "m3_expand_gate", "phase": "month3", "owner": "practice", "theme": "session_expansion", "item": "Expansion only if rooms + nursing + reliability met" },
+    { "id": "m3_close", "phase": "month3", "owner": "practice", "theme": "systems_adoption", "item": "Settling status closed to BAU or staged plan" }
+  ],
+  "metrics": [
+    {
+      "id": "sessions_delivered",
+      "label": "Sessions delivered vs agreed",
+      "unit": "count / %",
+      "cadence": "weekly",
+      "theme": "session_expansion",
+      "guidance": "≥95% of agreed sessions staffed as planned (excluding leave)"
+    },
+    {
+      "id": "return_rate",
+      "label": "Return-patient booking rate",
+      "unit": "%",
+      "cadence": "weekly then monthly",
+      "theme": "patient_list_building",
+      "guidance": "Upward trend M1→M3; no target gaming"
+    },
+    {
+      "id": "same_gp_followups",
+      "label": "Follow-ups booked to same GP",
+      "unit": "%",
+      "cadence": "weekly",
+      "theme": "patient_list_building",
+      "guidance": "≥80% when capacity exists"
+    },
+    {
+      "id": "nursing_assists",
+      "label": "Nursing-supported encounters",
+      "unit": "count per GP consulting day",
+      "cadence": "weekly",
+      "theme": "nursing_integration",
+      "guidance": "Stable non-zero use on consulting days"
+    },
+    {
+      "id": "inbox_lag",
+      "label": "Results / inbox lag",
+      "unit": "median days",
+      "cadence": "weekly",
+      "theme": "systems_adoption",
+      "guidance": "Within practice standard by end of Month 1"
+    },
+    {
+      "id": "friction_open",
+      "label": "Friction log open items",
+      "unit": "count / age",
+      "cadence": "weekly",
+      "theme": "systems_adoption",
+      "guidance": "None open >14 days without owner by Month 1"
+    },
+    {
+      "id": "unmet_demand",
+      "label": "Unmet demand by daypart",
+      "unit": "declined / wait requests",
+      "cadence": "monthly",
+      "theme": "session_expansion",
+      "guidance": "Inform Month 3 conversation only — not a maximise KPI"
+    },
+    {
+      "id": "known_patient_share",
+      "label": "Known-patient share of book",
+      "unit": "%",
+      "cadence": "monthly",
+      "theme": "patient_list_building",
+      "guidance": "Directional rise; context over absolute %"
+    },
+    {
+      "id": "review_done",
+      "label": "90-day review completed",
+      "unit": "yes/no + date",
+      "cadence": "once",
+      "theme": "session_expansion",
+      "guidance": "100% of settling GPs"
+    },
+    {
+      "id": "wellbeing_pulse",
+      "label": "Doctor wellbeing pulse",
+      "unit": "1–5 or RAG (optional, confidential)",
+      "cadence": "M1, M2, M3",
+      "theme": "systems_adoption",
+      "guidance": "No red without documented support action"
+    }
+  ]
+}

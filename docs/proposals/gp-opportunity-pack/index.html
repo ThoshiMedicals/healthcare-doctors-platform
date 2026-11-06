@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GP Opportunity Pack Generator | Woolloongabba Medical Centre</title>
+  <meta
+    name="description"
+    content="Assemble a take-away GP Opportunity Pack from practice content, FAQ, support, eligibility and facilities — web, print and PDF structure."
+  />
+  <meta name="robots" content="noindex,nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#173044",
+            "ink-soft": "#596b78",
+            navy: "#163f62",
+            green: "#0f6b45",
+            warm: "#f5f3ee",
+            mist: "#f4f7f7",
+            line: "#dbe4e9",
+          },
+          fontFamily: {
+            display: ['"Libre Baskerville"', "Georgia", "serif"],
+            ui: ["Inter", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    .pack-preview {
+      font-family: "Libre Baskerville", Georgia, serif;
+      color: #173044;
+    }
+    .pack-preview .pack-eyebrow {
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #0f6b45;
+      margin: 0 0 0.5rem;
+    }
+    .pack-preview .pack-h1 {
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      line-height: 1.12;
+      margin: 0 0 0.75rem;
+      font-weight: 700;
+    }
+    .pack-preview h2 {
+      font-size: 1.4rem;
+      margin: 0 0 0.6rem;
+      font-weight: 700;
+    }
+    .pack-preview h3,
+    .pack-preview .pack-h3 {
+      font-size: 1.05rem;
+      margin: 1rem 0 0.5rem;
+      font-weight: 700;
+    }
+    .pack-preview .pack-lede {
+      color: #596b78;
+      font-size: 1.02rem;
+      line-height: 1.6;
+      margin: 0 0 1rem;
+      max-width: 42rem;
+    }
+    .pack-preview .pack-meta {
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 0.9rem;
+      color: #596b78;
+      margin: 0.25rem 0;
+    }
+    .pack-preview .pack-note,
+    .pack-preview .pack-boundaries {
+      border: 1px solid #dbe4e9;
+      background: #f5f3ee;
+      border-radius: 0.9rem;
+      padding: 0.9rem 1rem;
+      margin: 1.25rem 0;
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+    .pack-preview .pack-section {
+      padding: 1.75rem 0;
+      border-top: 1px solid #dbe4e9;
+    }
+    .pack-preview .pack-list {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: #596b78;
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 0.92rem;
+    }
+    .pack-preview .pack-list li { margin: 0.35rem 0; }
+    .pack-preview .pack-grid {
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 0.85rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .pack-preview .pack-grid-3 {
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 0.85rem;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+    .pack-preview .pack-two {
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 0.85rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .pack-preview .pack-card {
+      border: 1px solid #dbe4e9;
+      border-radius: 0.9rem;
+      padding: 0.9rem 1rem;
+      background: #f4f7f7;
+    }
+    .pack-preview .pack-card h3 { margin-top: 0; }
+    .pack-preview .pack-card p {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 0.9rem;
+      color: #596b78;
+      line-height: 1.55;
+    }
+    .pack-preview .pack-faq {
+      border-top: 1px solid #dbe4e9;
+      padding: 0.75rem 0;
+      font-family: Inter, system-ui, sans-serif;
+    }
+    .pack-preview .pack-faq summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: #173044;
+    }
+    .pack-preview .pack-faq p,
+    .pack-preview .pack-faq-static p {
+      margin: 0.5rem 0 0;
+      color: #596b78;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+    .pack-preview .pack-faq-static {
+      border-top: 1px solid #dbe4e9;
+      padding: 0.85rem 0;
+    }
+    .pack-preview .pack-faq-static h3 {
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 0.95rem;
+      margin: 0;
+      color: #173044;
+    }
+    .pack-preview .pack-contact {
+      font-style: normal;
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      margin-top: 1rem;
+      color: #596b78;
+    }
+    .pack-preview .pack-notes {
+      margin-top: 1rem;
+      border: 1px dashed #dbe4e9;
+      border-radius: 0.75rem;
+      padding: 0.85rem 1rem;
+      font-family: Inter, system-ui, sans-serif;
+    }
+    .pack-preview .pack-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 0.88rem;
+      margin-top: 0.75rem;
+    }
+    .pack-preview .pack-table th,
+    .pack-preview .pack-table td {
+      border: 1px solid #dbe4e9;
+      padding: 0.55rem 0.65rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    .pack-preview .pack-table th { background: #f4f7f7; }
+    .pack-preview .pack-list.mt { margin-top: 1rem; }
+    .pack-preview .pack-error { font-family: Inter, system-ui, sans-serif; color: #9b1c1c; }
+    [data-view-mode].is-active {
+      background: #163f62;
+      color: #fff;
+      border-color: #163f62;
+    }
+    .pack-preview.view-print,
+    .pack-preview.view-pdf {
+      background: #fff;
+    }
+    @media print {
+      body * { visibility: hidden; }
+      #print-root,
+      #print-root * { visibility: visible; }
+      #print-root {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        background: #fff;
+      }
+      .no-print { display: none !important; }
+      .pack-preview .pack-section {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+      #pack-opportunities,
+      #pack-support,
+      #pack-eligibility,
+      #pack-faq,
+      #pack-next {
+        page-break-before: always;
+      }
+      .pdf-map { display: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-mist font-ui text-ink antialiased">
+  <a
+    href="#generator"
+    class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white no-print"
+  >
+    Skip to generator
+  </a>
+
+  <div class="border-b border-line bg-warm px-4 py-3 text-center text-sm text-ink-soft no-print" role="note">
+    <strong class="text-ink">Design proposal</strong>
+    — GP Opportunity Pack generator. Practice take-away summary, not a recruitment brochure. Not the live golden master.
+  </div>
+
+  <header class="border-b border-line bg-warm no-print">
+    <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+      <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Woolloongabba Medical Centre</p>
+      <h1 class="mt-2 font-display text-3xl font-bold leading-tight sm:text-4xl">GP Opportunity Pack generator</h1>
+      <p class="mt-3 max-w-2xl text-base leading-relaxed text-ink-soft">
+        Assemble a complete take-away for doctors from GP Opportunities content, FAQ, practice support,
+        eligibility guidance and facilities — as web, print layout, and PDF structure.
+      </p>
+    </div>
+  </header>
+
+  <main id="generator" class="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
+    <div class="grid gap-6 lg:grid-cols-[minmax(260px,320px)_minmax(0,1fr)]">
+      <!-- Controls -->
+      <aside class="no-print space-y-5" aria-label="Pack controls">
+        <section class="rounded-2xl border border-line bg-white p-4 sm:p-5" aria-labelledby="sections-title">
+          <div class="flex items-center justify-between gap-2">
+            <h2 id="sections-title" class="font-display text-lg font-bold">Inputs · sections</h2>
+          </div>
+          <p class="mt-1 text-xs text-ink-soft">Toggle content drawn from the opportunity platform sources.</p>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li>
+              <label class="flex min-h-10 items-center gap-2">
+                <input class="h-4 w-4" type="checkbox" data-section-toggle="opportunities" checked />
+                <span>GP Opportunities content</span>
+              </label>
+            </li>
+            <li>
+              <label class="flex min-h-10 items-center gap-2">
+                <input class="h-4 w-4" type="checkbox" data-section-toggle="facilities" checked />
+                <span>Practice facilities</span>
+              </label>
+            </li>
+            <li>
+              <label class="flex min-h-10 items-center gap-2">
+                <input class="h-4 w-4" type="checkbox" data-section-toggle="support" checked />
+                <span>Practice support</span>
+              </label>
+            </li>
+            <li>
+              <label class="flex min-h-10 items-center gap-2">
+                <input class="h-4 w-4" type="checkbox" data-section-toggle="eligibility" checked />
+                <span>Eligibility guidance</span>
+              </label>
+            </li>
+            <li>
+              <label class="flex min-h-10 items-center gap-2">
+                <input class="h-4 w-4" type="checkbox" data-section-toggle="faq" checked />
+                <span>FAQ</span>
+              </label>
+            </li>
+            <li>
+              <label class="flex min-h-10 items-center gap-2">
+                <input class="h-4 w-4" type="checkbox" data-section-toggle="nextSteps" checked />
+                <span>Next steps &amp; contact</span>
+              </label>
+            </li>
+          </ul>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <button id="btn-select-all" type="button" class="min-h-9 rounded-full border border-line px-3 text-xs font-semibold text-navy">
+              All sections
+            </button>
+            <button id="btn-decision-pack" type="button" class="min-h-9 rounded-full border border-line px-3 text-xs font-semibold text-navy">
+              Decision pack
+            </button>
+          </div>
+          <label class="mt-4 block text-sm font-semibold" for="faq-subset">FAQ subset</label>
+          <select id="faq-subset" class="mt-1 w-full rounded-xl border border-line bg-mist/40 px-3 py-2 text-sm">
+            <option value="decision">Decision-critical (6)</option>
+            <option value="all">Full FAQ (11)</option>
+          </select>
+        </section>
+
+        <section class="rounded-2xl border border-line bg-white p-4 sm:p-5" aria-labelledby="personalise-title">
+          <h2 id="personalise-title" class="font-display text-lg font-bold">Personalise</h2>
+          <label class="mt-3 block text-sm font-semibold" for="recipient-name">Prepared for (optional)</label>
+          <input id="recipient-name" type="text" autocomplete="name" placeholder="Dr …" class="mt-1 w-full rounded-xl border border-line px-3 py-2 text-sm" />
+          <label class="mt-3 block text-sm font-semibold" for="prepared-date">Date</label>
+          <input id="prepared-date" type="date" class="mt-1 w-full rounded-xl border border-line px-3 py-2 text-sm" />
+          <label class="mt-3 block text-sm font-semibold" for="doctor-notes">Private notes (optional)</label>
+          <textarea id="doctor-notes" rows="3" placeholder="Session preferences discussed…" class="mt-1 w-full rounded-xl border border-line px-3 py-2 text-sm"></textarea>
+          <label class="mt-3 flex min-h-10 items-center gap-2 text-sm">
+            <input id="include-contact" class="h-4 w-4" type="checkbox" checked />
+            <span>Include clinic contact block</span>
+          </label>
+        </section>
+
+        <section class="rounded-2xl border border-line bg-white p-4 sm:p-5" aria-labelledby="outputs-title">
+          <h2 id="outputs-title" class="font-display text-lg font-bold">Outputs</h2>
+          <div class="mt-3 flex flex-wrap gap-2" role="group" aria-label="Preview mode">
+            <button type="button" data-view-mode="web" class="min-h-10 rounded-full border border-line px-3 text-xs font-semibold text-navy" aria-pressed="true">
+              Web version
+            </button>
+            <button type="button" data-view-mode="print" class="min-h-10 rounded-full border border-line px-3 text-xs font-semibold text-navy" aria-pressed="false">
+              Print version
+            </button>
+            <button type="button" data-view-mode="pdf" class="min-h-10 rounded-full border border-line px-3 text-xs font-semibold text-navy" aria-pressed="false">
+              PDF structure
+            </button>
+          </div>
+          <div class="mt-4 grid gap-2">
+            <button id="btn-print" type="button" class="min-h-11 rounded-full bg-navy px-4 text-sm font-semibold text-white">
+              Print / Save as PDF
+            </button>
+            <button id="btn-export-html" type="button" class="min-h-11 rounded-full border border-line px-4 text-sm font-semibold text-navy">
+              Download web HTML
+            </button>
+            <button id="btn-export-json" type="button" class="min-h-11 rounded-full border border-line px-4 text-sm font-semibold text-navy">
+              Download pack JSON
+            </button>
+          </div>
+          <p id="generator-live" class="mt-3 text-xs text-ink-soft" aria-live="polite"></p>
+        </section>
+      </aside>
+
+      <!-- Preview -->
+      <div id="print-root">
+        <section class="rounded-2xl border border-line bg-white p-5 shadow-[0_8px_24px_rgba(23,48,68,0.05)] sm:p-8" aria-labelledby="preview-title">
+          <div class="mb-4 flex flex-wrap items-end justify-between gap-2 no-print">
+            <div>
+              <h2 id="preview-title" class="font-display text-xl font-bold">Pack preview</h2>
+              <p class="text-sm text-ink-soft">Live assemble from selected inputs.</p>
+            </div>
+          </div>
+          <div id="pack-preview" class="pack-preview view-web" aria-live="polite">
+            <p class="pack-lede">Loading pack content…</p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <section class="no-print mt-8 rounded-2xl border border-line bg-white p-5 sm:p-6" aria-labelledby="source-title">
+      <h2 id="source-title" class="font-display text-lg font-bold">Content sources</h2>
+      <ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-ink-soft">
+        <li>GP Opportunities — <code class="text-ink">../gp-opportunities/</code></li>
+        <li>FAQ — <code class="text-ink">../gp-faq/gp-faq-content.json</code></li>
+        <li>Practice support — <code class="text-ink">../practice-support-capability-matrix/</code></li>
+        <li>Eligibility — boundary-safe DPA / provider-number guidance</li>
+        <li>Facilities — opportunities facilities module + access cues</li>
+      </ul>
+      <p class="mt-3 text-xs text-ink-soft">
+        Model: <code class="text-ink">pack-model.json</code> · Content: <code class="text-ink">pack-content.json</code>.
+        Serve this folder over HTTP so JSON loads (e.g. <code class="text-ink">npx serve .</code>).
+      </p>
+    </section>
+  </main>
+
+  <footer class="border-t border-line py-6 no-print">
+    <div class="mx-auto max-w-6xl px-4 text-xs text-ink-soft sm:px-6">
+      Woolloongabba Medical Centre · GP Opportunity Pack Generator v1 · Proposal prototype
+    </div>
+  </footer>
+
+  <script src="./pack.js" defer></script>
+</body>
+</html>

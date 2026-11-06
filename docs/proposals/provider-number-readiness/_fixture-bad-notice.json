@@ -1,0 +1,8 @@
+{
+  "formType": "provider_number_readiness_workflow",
+  "outputs": {
+    "readinessScore": 50,
+    "missingItems": [],
+    "onboardingChecklist": []
+  }
+}

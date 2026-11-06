@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GP Workforce Planning | Woolloongabba Medical Centre</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#173044",
+            "ink-soft": "#596b78",
+            navy: "#163f62",
+            green: "#0f6b45",
+            warm: "#f5f3ee",
+            mist: "#f4f7f7",
+            line: "#dbe4e9",
+            amber: "#8a6a2f",
+          },
+          fontFamily: {
+            display: ['"Libre Baskerville"', "Georgia", "serif"],
+            ui: ["Inter", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-mist font-ui text-ink antialiased">
+  <a href="#dashboard" class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white">Skip to dashboard</a>
+
+  <header class="border-b border-line bg-warm">
+    <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+      <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Workforce strategy · Woolloongabba Medical Centre</p>
+      <h1 class="mt-2 font-display text-3xl font-bold sm:text-4xl">GP workforce planning</h1>
+      <p class="mt-3 max-w-3xl text-sm leading-relaxed text-ink-soft">
+        Capacity, EOI pipeline, session availability, and onboarding in one advisory view.
+        Recommendations inform human decisions — they never hire or publish rosters.
+      </p>
+      <div class="mt-4 flex flex-wrap items-center gap-3">
+        <label class="text-sm font-medium">Forecast scenario
+          <select id="scenario" class="ml-2 min-h-11 rounded-lg border border-line bg-white px-3 text-sm">
+            <option value="stable">Stable</option>
+            <option value="moderate" selected>Moderate growth</option>
+            <option value="pressure">Pressure</option>
+          </select>
+        </label>
+        <a class="min-h-11 inline-flex items-center rounded-lg border border-line bg-white px-3 text-sm font-medium text-navy" href="/api/plan">Plan JSON</a>
+        <a class="min-h-11 inline-flex items-center rounded-lg border border-line bg-white px-3 text-sm font-medium text-navy" href="/api/model">Planning model</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="dashboard" class="mx-auto max-w-6xl px-4 py-6 sm:px-6" aria-busy="true">
+    <p id="live" class="sr-only" aria-live="polite"></p>
+    <p id="notice" class="rounded-xl border border-navy/20 bg-white px-4 py-3 text-sm"></p>
+
+    <section class="mt-6" aria-labelledby="kpi-title">
+      <h2 id="kpi-title" class="font-display text-xl font-bold">Current GP capacity</h2>
+      <div id="kpi-row" class="mt-3 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6"></div>
+    </section>
+
+    <div class="mt-8 grid gap-6 lg:grid-cols-2">
+      <section class="rounded-2xl border border-line bg-white p-5" aria-labelledby="avail-title">
+        <h2 id="avail-title" class="font-display text-lg font-bold">Available sessions</h2>
+        <div id="available-root" class="mt-3"></div>
+      </section>
+      <section class="rounded-2xl border border-line bg-white p-5" aria-labelledby="recruit-title">
+        <h2 id="recruit-title" class="font-display text-lg font-bold">Recruitment targets</h2>
+        <div id="recruit-root" class="mt-3"></div>
+      </section>
+    </div>
+
+    <div class="mt-6 grid gap-6 lg:grid-cols-2">
+      <section class="rounded-2xl border border-line bg-white p-5" aria-labelledby="eoi-title">
+        <h2 id="eoi-title" class="font-display text-lg font-bold">EOI pipeline</h2>
+        <div id="eoi-root" class="mt-3"></div>
+      </section>
+      <section class="rounded-2xl border border-line bg-white p-5" aria-labelledby="onb-title">
+        <h2 id="onb-title" class="font-display text-lg font-bold">Onboarding pipeline</h2>
+        <div id="onb-root" class="mt-3"></div>
+      </section>
+    </div>
+
+    <section class="mt-6 rounded-2xl border border-line bg-white p-5" aria-labelledby="forecast-title">
+      <h2 id="forecast-title" class="font-display text-lg font-bold">Capacity forecasts &amp; shortages</h2>
+      <div id="forecast-root" class="mt-3 overflow-x-auto"></div>
+    </section>
+
+    <div class="mt-6 grid gap-6 lg:grid-cols-2">
+      <section class="rounded-2xl border border-line bg-white p-5" aria-labelledby="gap-title">
+        <h2 id="gap-title" class="font-display text-lg font-bold">Priority gaps</h2>
+        <div id="gaps-root" class="mt-3"></div>
+      </section>
+      <section class="rounded-2xl border border-line bg-white p-5" aria-labelledby="rec-title">
+        <h2 id="rec-title" class="font-display text-lg font-bold">Recruitment recommendations</h2>
+        <div id="rec-root" class="mt-3"></div>
+      </section>
+    </div>
+
+    <section class="mt-6 rounded-2xl border border-line bg-white p-5" aria-labelledby="util-title">
+      <h2 id="util-title" class="font-display text-lg font-bold">Room utilisation</h2>
+      <div id="util-root" class="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5"></div>
+    </section>
+
+    <section class="mt-6 rounded-2xl border border-dashed border-line bg-white/80 p-5" aria-labelledby="decision-title">
+      <h2 id="decision-title" class="font-display text-lg font-bold">Record human decision</h2>
+      <form id="decision-form" class="mt-3 grid gap-3 sm:grid-cols-2">
+        <label class="text-sm">Recommendation ID
+          <input name="recommendationId" id="rec-id" class="mt-1 w-full min-h-11 rounded-lg border border-line px-3" placeholder="rec_review_eoi" />
+        </label>
+        <label class="text-sm">Decision type
+          <select name="decisionType" class="mt-1 w-full min-h-11 rounded-lg border border-line px-3">
+            <option value="accept_recommendation">Accept recommendation (still human-led)</option>
+            <option value="defer">Defer</option>
+            <option value="adjust_target">Adjust target</option>
+            <option value="open_recruitment_conversation">Open recruitment conversation</option>
+          </select>
+        </label>
+        <label class="text-sm sm:col-span-2">Rationale (required)
+          <textarea name="rationale" required rows="2" class="mt-1 w-full rounded-lg border border-line px-3 py-2"></textarea>
+        </label>
+        <button type="submit" class="min-h-11 rounded-lg bg-navy px-4 text-sm font-semibold text-white sm:col-span-2 sm:justify-self-start">Save decision</button>
+        <p id="decision-msg" class="text-sm sm:col-span-2" role="status"></p>
+      </form>
+      <div id="decisions-list" class="mt-4 text-sm"></div>
+      <p class="mt-4 text-xs text-ink-soft">Related tools:
+        <a class="text-navy underline-offset-2 hover:underline" href="http://127.0.0.1:4182/">Enquiries</a> ·
+        <a class="text-navy underline-offset-2 hover:underline" href="http://127.0.0.1:4183/">Session match</a> ·
+        <a class="text-navy underline-offset-2 hover:underline" href="http://127.0.0.1:4180/dashboard.html">Onboarding</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="border-t border-line py-6">
+    <div class="mx-auto max-w-6xl px-4 text-xs text-ink-soft sm:px-6">Localhost :4184 · Inputs from capacity + EOI + onboarding snapshots</div>
+  </footer>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>

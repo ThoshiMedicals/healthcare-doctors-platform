@@ -1,0 +1,197 @@
+{
+  "generatedAt": "2026-11-04T02:00:00.000Z",
+  "clinicId": "woolloongabba",
+  "workflowVersion": "1.0.0",
+  "stories": [
+    {
+      "id": "story_ec_01",
+      "workingTitle": "Early-career continuity — second year",
+      "subjectDisplayName": "Dr A. Chen",
+      "primaryCategory": "early_career",
+      "secondaryCategories": [],
+      "status": "editorial_review",
+      "formats": ["short_story", "pull_quote"],
+      "attribution": "first_name_only",
+      "publicByline": "Alex, early-career GP",
+      "consent": {
+        "status": "signed",
+        "consentVersion": "wmc-gp-story-consent-2026-11",
+        "channelsAllowed": ["practice_experience_web", "gp_opportunities_rail"],
+        "channelsDenied": ["job_boards", "recruitment_agencies", "paid_testimonial_networks"],
+        "signedAt": "2026-10-28",
+        "recordingAudioVideo": false
+      },
+      "reuse": {
+        "clinicScope": "flagship_only",
+        "materialChangeRequiresReapproval": true
+      },
+      "placements": [
+        {
+          "channel": "practice_experience_web",
+          "surfacePath": "/about-us/practice-experience",
+          "live": false
+        }
+      ],
+      "daysInStatus": 2,
+      "nextAction": "Brand governance editorial checklist"
+    },
+    {
+      "id": "story_pt_02",
+      "workingTitle": "Part-week footprint + recall handoff",
+      "subjectDisplayName": "Dr M. Okonkwo",
+      "primaryCategory": "part_time",
+      "secondaryCategories": ["established"],
+      "status": "gp_review",
+      "formats": ["long_story", "pull_quote"],
+      "attribution": "full_name",
+      "publicByline": null,
+      "consent": {
+        "status": "draft_linked",
+        "consentVersion": "wmc-gp-story-consent-2026-11",
+        "channelsAllowed": ["practice_experience_web"],
+        "channelsDenied": ["job_boards", "recruitment_agencies", "owned_social_og"],
+        "signedAt": null,
+        "recordingAudioVideo": false
+      },
+      "reuse": {
+        "clinicScope": "flagship_only",
+        "materialChangeRequiresReapproval": true
+      },
+      "placements": [],
+      "daysInStatus": 4,
+      "nextAction": "Await GP attribution + signature (review window day 4/5)"
+    },
+    {
+      "id": "story_si_03",
+      "workingTitle": "Skin interest inside community GP",
+      "subjectDisplayName": "Dr R. Patel",
+      "primaryCategory": "special_interest",
+      "secondaryCategories": ["established"],
+      "specialInterestLabel": "Skin checks within general practice",
+      "status": "published",
+      "formats": ["short_story", "video"],
+      "attribution": "full_name",
+      "publicByline": "Dr R. Patel, GP",
+      "consent": {
+        "status": "signed",
+        "consentVersion": "wmc-gp-story-consent-2026-11",
+        "channelsAllowed": [
+          "practice_experience_web",
+          "gp_opportunities_rail",
+          "video_embed",
+          "owned_social_og"
+        ],
+        "channelsDenied": ["job_boards", "recruitment_agencies", "third_clinic_sites"],
+        "signedAt": "2026-09-12",
+        "recordingAudioVideo": true,
+        "retentionUntil": "2029-09-12"
+      },
+      "reuse": {
+        "clinicScope": "flagship_only",
+        "materialChangeRequiresReapproval": true
+      },
+      "placements": [
+        {
+          "channel": "practice_experience_web",
+          "surfacePath": "/about-us/practice-experience",
+          "live": true
+        },
+        {
+          "channel": "video_embed",
+          "surfacePath": "/about-us/practice-experience#gp-voices",
+          "live": true
+        }
+      ],
+      "daysInStatus": 45,
+      "publishedAt": "2026-09-20",
+      "nextAction": "Monitor — no action"
+    },
+    {
+      "id": "story_rg_04",
+      "workingTitle": "Staged return — pace expectations",
+      "subjectDisplayName": "Dr L. Nguyen",
+      "primaryCategory": "returning",
+      "secondaryCategories": ["part_time"],
+      "status": "drafting",
+      "formats": ["short_story"],
+      "attribution": null,
+      "publicByline": null,
+      "consent": {
+        "status": "summary_shared",
+        "consentVersion": "wmc-gp-story-consent-2026-11",
+        "channelsAllowed": [],
+        "channelsDenied": ["job_boards", "recruitment_agencies"],
+        "signedAt": null,
+        "recordingAudioVideo": true
+      },
+      "reuse": {
+        "clinicScope": "flagship_only",
+        "materialChangeRequiresReapproval": true
+      },
+      "placements": [],
+      "daysInStatus": 6,
+      "nextAction": "Editor: finish structure draft from transcript"
+    },
+    {
+      "id": "story_es_05",
+      "workingTitle": "Established book — nursing co-manage",
+      "subjectDisplayName": "Dr S. Williams",
+      "primaryCategory": "established",
+      "secondaryCategories": [],
+      "status": "withdrawn",
+      "formats": ["pull_quote"],
+      "attribution": "role_label_only",
+      "publicByline": "Established GP",
+      "consent": {
+        "status": "withdrawn",
+        "consentVersion": "wmc-gp-story-consent-2026-06",
+        "channelsAllowed": [],
+        "channelsDenied": ["job_boards", "recruitment_agencies", "owned_social_og"],
+        "signedAt": "2026-06-01",
+        "withdrawnAt": "2026-10-30",
+        "recordingAudioVideo": false
+      },
+      "reuse": {
+        "clinicScope": "flagship_only",
+        "materialChangeRequiresReapproval": true
+      },
+      "placements": [
+        {
+          "channel": "practice_experience_web",
+          "surfacePath": "/about-us/practice-experience",
+          "live": false,
+          "takenDownAt": "2026-11-02",
+          "takeDownReason": "GP withdrawal — SLA met"
+        }
+      ],
+      "daysInStatus": 5,
+      "nextAction": "Closed — confirm OG cache lag note filed"
+    },
+    {
+      "id": "story_ec_06",
+      "workingTitle": "Invite — new fellow",
+      "subjectDisplayName": "Dr J. Rahman",
+      "primaryCategory": "early_career",
+      "secondaryCategories": [],
+      "status": "invited",
+      "formats": [],
+      "attribution": null,
+      "publicByline": null,
+      "consent": {
+        "status": "not_started",
+        "consentVersion": "wmc-gp-story-consent-2026-11",
+        "channelsAllowed": [],
+        "channelsDenied": [],
+        "signedAt": null,
+        "recordingAudioVideo": false
+      },
+      "reuse": {
+        "clinicScope": "flagship_only",
+        "materialChangeRequiresReapproval": true
+      },
+      "placements": [],
+      "daysInStatus": 1,
+      "nextAction": "Await interest reply"
+    }
+  ]
+}

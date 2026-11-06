@@ -1,0 +1,190 @@
+{
+  "id": "wmc-gp-attraction-metrics-catalogue",
+  "version": "1.0.0",
+  "purpose": "Canonical definitions for the GP Attraction Analytics Dashboard.",
+  "reportingWindows": ["7d", "28d", "90d"],
+  "defaultWindow": "28d",
+  "outputs": {
+    "conversion_funnel": {
+      "description": "Ordered conversion from opportunities visit through tool completions to EOI submit",
+      "metrics": ["funnel_step_sessions", "funnel_step_conversion_rate", "funnel_overall_conversion_rate"]
+    },
+    "content_engagement": {
+      "description": "FAQ and opportunities content depth",
+      "metrics": ["faq_opens", "faq_unique_sessions", "faq_top_questions", "opportunities_avg_time_proxy", "cta_clicks"]
+    },
+    "drop_off_stages": {
+      "description": "Where sessions leave the funnel or abandon tools",
+      "metrics": ["funnel_drop_off_rate", "tool_abandon_rate", "tool_last_step_distribution"]
+    },
+    "high_value_traffic_paths": {
+      "description": "Paths that disproportionately reach EOI submit",
+      "metrics": ["path_to_eoi_lift", "top_paths_by_eoi", "entry_surface_eoi_rate"]
+    },
+    "persona_engagement": {
+      "description": "Engagement and completion by persona hint",
+      "metrics": ["persona_session_share", "persona_funnel_conversion", "persona_tool_completion_rate"]
+    }
+  },
+  "metrics": [
+    {
+      "id": "opportunities_page_visits",
+      "label": "Opportunities page visits",
+      "type": "count",
+      "grain": "event",
+      "definition": "Count of page_view where surface = gp_opportunities",
+      "tracks": "Opportunities page visits"
+    },
+    {
+      "id": "opportunities_unique_sessions",
+      "label": "Opportunities unique sessions",
+      "type": "count_distinct",
+      "grain": "anonymousSessionId",
+      "definition": "Distinct sessions with ≥1 opportunities page_view"
+    },
+    {
+      "id": "faq_engagement_events",
+      "label": "FAQ engagement",
+      "type": "count",
+      "definition": "Count of faq_open events",
+      "tracks": "FAQ engagement"
+    },
+    {
+      "id": "faq_engaged_sessions",
+      "label": "FAQ engaged sessions",
+      "type": "count_distinct",
+      "definition": "Distinct sessions with ≥1 faq_open"
+    },
+    {
+      "id": "readiness_completions",
+      "label": "Readiness completions",
+      "type": "count",
+      "definition": "tool_complete where toolId = doctor-readiness",
+      "tracks": "Readiness completion"
+    },
+    {
+      "id": "provider_readiness_completions",
+      "label": "Provider-readiness completions",
+      "type": "count",
+      "definition": "tool_complete where toolId = provider-number-readiness",
+      "tracks": "Provider-readiness completion"
+    },
+    {
+      "id": "session_planner_completions",
+      "label": "Session-planner completions",
+      "type": "count",
+      "definition": "tool_complete where toolId = gp-session-planner",
+      "tracks": "Session-planner completion"
+    },
+    {
+      "id": "eoi_submissions",
+      "label": "EOI submissions",
+      "type": "count",
+      "definition": "Count of eoi_submit events",
+      "tracks": "EOI submissions"
+    },
+    {
+      "id": "funnel_step_sessions",
+      "label": "Funnel step sessions",
+      "type": "count_distinct",
+      "definition": "Distinct sessions reaching each ordered funnel step (any prior order allowed; step attributed on first qualifying event)"
+    },
+    {
+      "id": "funnel_step_conversion_rate",
+      "label": "Step-to-step conversion",
+      "type": "rate",
+      "definition": "sessions_at_step_n / sessions_at_step_n-1",
+      "format": "percent_1dp"
+    },
+    {
+      "id": "funnel_overall_conversion_rate",
+      "label": "Opportunities → EOI conversion",
+      "type": "rate",
+      "definition": "sessions with eoi_submit / sessions with opportunities page_view",
+      "format": "percent_1dp"
+    },
+    {
+      "id": "funnel_drop_off_rate",
+      "label": "Drop-off rate between steps",
+      "type": "rate",
+      "definition": "1 - funnel_step_conversion_rate",
+      "format": "percent_1dp"
+    },
+    {
+      "id": "tool_abandon_rate",
+      "label": "Tool abandon rate",
+      "type": "rate",
+      "definition": "sessions with tool_start and no tool_complete / sessions with tool_start (per toolId)",
+      "format": "percent_1dp"
+    },
+    {
+      "id": "tool_last_step_distribution",
+      "label": "Abandon last-step distribution",
+      "type": "distribution",
+      "definition": "Among tool_abandon, share by lastStepId"
+    },
+    {
+      "id": "faq_top_questions",
+      "label": "Top FAQ questions",
+      "type": "ranked_list",
+      "definition": "faqId ranked by faq_open count"
+    },
+    {
+      "id": "cta_clicks",
+      "label": "CTA clicks",
+      "type": "count",
+      "definition": "cta_click events on GP attraction surfaces"
+    },
+    {
+      "id": "path_to_eoi_lift",
+      "label": "Path lift to EOI",
+      "type": "lift",
+      "definition": "(EOI rate among sessions containing path P) / (overall EOI rate among opportunities sessions)",
+      "note": "Highlight paths with lift ≥ 1.5 and minimum sample size"
+    },
+    {
+      "id": "top_paths_by_eoi",
+      "label": "High-value traffic paths",
+      "type": "ranked_list",
+      "definition": "Most common surface sequences among sessions that submit EOI (length 2–5)"
+    },
+    {
+      "id": "entry_surface_eoi_rate",
+      "label": "Entry surface EOI rate",
+      "type": "rate",
+      "definition": "EOI rate grouped by first GP surface in session"
+    },
+    {
+      "id": "persona_session_share",
+      "label": "Persona session share",
+      "type": "share",
+      "definition": "Share of sessions by personaHint (including unknown)"
+    },
+    {
+      "id": "persona_funnel_conversion",
+      "label": "Persona funnel conversion",
+      "type": "rate",
+      "definition": "Opportunities → EOI conversion by personaHint"
+    },
+    {
+      "id": "persona_tool_completion_rate",
+      "label": "Persona tool completion",
+      "type": "rate",
+      "definition": "tool_complete / tool_start by personaHint and toolId"
+    }
+  ],
+  "personaHints": [
+    "early_career_gp",
+    "established_gp_seeking_change",
+    "returning_gp",
+    "part_time_parent_gp",
+    "special_interest_gp",
+    "unknown"
+  ],
+  "guardrails": [
+    "Do not publish public % earnings or commercial rates derived from analytics.",
+    "Suppress cells with session count < 5 in persona and path tables.",
+    "Label persona as hint / self-select — not a verified identity.",
+    "Dashboard is practice-internal; not a recruitment agency scoreboard."
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "title": "DoctorReadinessAssessment",
+  "version": "1.0.0",
+  "clinicSlug": "woolloongabba",
+  "maxScore": 100,
+  "bands": [
+    {
+      "id": "ready",
+      "min": 80,
+      "max": 100,
+      "label": "Ready to express interest",
+      "nextAction": {
+        "id": "submit_eoi",
+        "title": "Submit a GP Expression of Interest",
+        "detail": "Your credentials, availability and practice-fit signals look strong. Share a brief introduction with Woolloongabba Medical Centre."
+      }
+    },
+    {
+      "id": "nearly_ready",
+      "min": 60,
+      "max": 79,
+      "label": "Nearly ready — clarify a few items",
+      "nextAction": {
+        "id": "call_practice",
+        "title": "Call the practice for a short conversation",
+        "detail": "You are close. A brief call can clarify sessions, start timing or credential details before a formal expression of interest."
+      }
+    },
+    {
+      "id": "preparing",
+      "min": 40,
+      "max": 59,
+      "label": "Preparing — strengthen readiness",
+      "nextAction": {
+        "id": "prepare_then_eoi",
+        "title": "Prepare credentials and availability, then return",
+        "detail": "Confirm AHPRA status, indemnity and preferred sessions. When those are clear, submit an expression of interest."
+      }
+    },
+    {
+      "id": "early",
+      "min": 0,
+      "max": 39,
+      "label": "Early stage",
+      "nextAction": {
+        "id": "explore_practice",
+        "title": "Explore the practice and fellowship pathway",
+        "detail": "Learn about our team and philosophy first. Complete fellowship or registration milestones before applying for consulting sessions."
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "credentials",
+      "title": "Credentials",
+      "weight": 30
+    },
+    {
+      "id": "availability",
+      "title": "Availability",
+      "weight": 25
+    },
+    {
+      "id": "clinical",
+      "title": "Clinical practice",
+      "weight": 20
+    },
+    {
+      "id": "fit",
+      "title": "Practice fit",
+      "weight": 15
+    },
+    {
+      "id": "practical",
+      "title": "Practical readiness",
+      "weight": 10
+    }
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "generatedAt": "2026-11-06T03:20:39.972Z",
+  "base": "http://127.0.0.1:3100",
+  "pass": 24,
+  "fail": 0,
+  "total": 24,
+  "rows": [
+    {
+      "from": "/doctor/dr-golnar-mortezaei-gp-fracgp",
+      "expected": "/doctors/dr-golnar-mortezaei.html",
+      "status": 301,
+      "location": "/doctors/dr-golnar-mortezaei.html",
+      "finalStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/doctor/dr-golnar-mortezaei-gp-fracgp/",
+      "expected": "/doctors/dr-golnar-mortezaei.html",
+      "status": 301,
+      "location": "/doctors/dr-golnar-mortezaei.html",
+      "finalStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/doctor/dr-james-general-practitioner",
+      "expected": "/doctors/dr-james.html",
+      "status": 301,
+      "location": "/doctors/dr-james.html",
+      "finalStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/doctor/dr-james-general-practitioner/",
+      "expected": "/doctors/dr-james.html",
+      "status": 301,
+      "location": "/doctors/dr-james.html",
+      "finalStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/bulk-billing-doctors-woolloongabba",
+      "expected": "/bulk-billing.html",
+      "status": 301,
+      "location": "/bulk-billing.html",
+      "finalStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/bulk-billing-doctors-woolloongabba/",
+      "expected": "/bulk-billing.html",
+      "status": 301,
+      "location": "/bulk-billing.html",
+      "finalStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/family-doctors-woolloongabba",
+      "expected": "/services/family-health.html",
+      "status": 301,
+      "location": "/services/family-health.html",
+      "finalStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/family-doctors-woolloongabba/",
+      "expected": "/services/family-health.html",
+      "status": 301,
+      "location": "/services/family-health.html",
+      "finalStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/skin-cancer-clinic-doctors-brisbane",
+      "expected": "/services/skin-checks.html",
+      "status": 301,
+      "location": "/services/skin-checks.html",
+      "finalStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/skin-cancer-clinic-doctors-brisbane/",
+      "expected": "/services/skin-checks.html",
+      "status": 301,
+      "location": "/services/skin-checks.html",
+      "finalStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/your-complete-guide-to-a-skin-check-at-gabba-medical-centre",
+      "expected": "/knowledge/articles/when-should-i-book-a-skin-check.html",
+      "status": 301,
+      "location": "/knowledge/articles/when-should-i-book-a-skin-check.html",
+      "finalStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/your-complete-guide-to-a-skin-check-at-gabba-medical-centre/",
+      "expected": "/knowledge/articles/when-should-i-book-a-skin-check.html",
+      "status": 301,
+      "location": "/knowledge/articles/when-should-i-book-a-skin-check.html",
+      "finalStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/free-flu-vaccine-woolloongabba-2026",
+      "expected": "/services/vaccinations.html",
+      "status": 301,
+      "location": "/services/vaccinations.html",
+      "finalStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/free-flu-vaccine-woolloongabba-2026/",
+      "expected": "/services/vaccinations.html",
+      "status": 301,
+      "location": "/services/vaccinations.html",
+      "finalStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/diabetes-doctor-woolloongabba",
+      "expected": "/services/chronic-disease-care.html",
+      "status": 301,
+      "location": "/services/chronic-disease-care.html",
+      "finalStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/diabetes-doctor-woolloongabba/",
+      "expected": "/services/chronic-disease-care.html",
+      "status": 301,
+      "location": "/services/chronic-disease-care.html",
+      "finalStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/local-gp-woolloongabba",
+      "expected": "/team-general-practitioners.html",
+      "status": 301,
+      "location": "/team-general-practitioners.html",
+      "finalStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/local-gp-woolloongabba/",
+      "expected": "/team-general-practitioners.html",
+      "status": 301,
+      "location": "/team-general-practitioners.html",
+      "finalStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/find-the-best-doctor-near-me-in-brisbane",
+      "expected": "/team-general-practitioners.html",
+      "status": 301,
+      "location": "/team-general-practitioners.html",
+      "finalStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/find-the-best-doctor-near-me-in-brisbane/",
+      "expected": "/team-general-practitioners.html",
+      "status": 301,
+      "location": "/team-general-practitioners.html",
+      "finalStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/services/sexual-health-doctors",
+      "expected": "/services/family-health.html",
+      "status": 301,
+      "location": "/services/family-health.html",
+      "finalStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/services/sexual-health-doctors/",
+      "expected": "/services/family-health.html",
+      "status": 301,
+      "location": "/services/family-health.html",
+      "finalStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/services/travel-health-doctors",
+      "expected": "/services/vaccinations.html",
+      "status": 301,
+      "location": "/services/vaccinations.html",
+      "finalStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/services/travel-health-doctors/",
+      "expected": "/services/vaccinations.html",
+      "status": 301,
+      "location": "/services/vaccinations.html",
+      "finalStatus": 200,
+      "chain": false,
+      "ok": true
+    }
+  ]
+}

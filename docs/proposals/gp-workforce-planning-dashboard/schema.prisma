@@ -1,0 +1,72 @@
+// GP Workforce Planning Dashboard — Prisma fragment (proposal)
+// Woolloongabba Medical Centre
+// Advisory planning snapshots. No automated hiring or roster publish.
+
+enum WorkforceScenario {
+  stable
+  moderate
+  pressure
+}
+
+enum WorkforceRecommendationKind {
+  recruit_sessions
+  open_eoi_review
+  advance_onboarding
+  adjust_nursing_cover
+  rebalance_sessions
+  hold_recruitment
+}
+
+model WorkforcePlanningSnapshot {
+  id                     String   @id @default(cuid())
+  clinicId               String
+  capturedAt             DateTime @default(now())
+  offeredSessions        Int
+  usedSessions           Int
+  availableSessions      Int
+  reserveSessions        Int
+  utilisationPercent     Float
+  activeGpCount          Int
+  targetSessionsPerGp    Int
+  recruitmentTargetGps   Int
+  capacityJson           Json
+  eoiPipelineJson        Json
+  onboardingPipelineJson Json
+  roomUtilisationJson    Json
+  forecastsJson          Json
+  recommendationsJson    Json
+  priorityGapsJson       Json
+  createdByUserId        String?
+  note                   String?
+
+  @@index([clinicId, capturedAt])
+}
+
+model WorkforcePlanningDecision {
+  id               String   @id @default(cuid())
+  clinicId         String
+  snapshotId       String?
+  decisionType     String   /// accept_recommendation | defer | adjust_target | open_recruitment_conversation
+  recommendationId String?
+  actorUserId      String
+  actorName        String?
+  rationale        String
+  payloadJson      Json?
+  createdAt        DateTime @default(now())
+
+  @@index([clinicId, createdAt])
+}
+
+model WorkforceForecastRun {
+  id              String             @id @default(cuid())
+  clinicId        String
+  scenario        WorkforceScenario
+  horizonWeeks    Int
+  demandSessions  Float
+  offeredSessions Int
+  shortageSessions Float
+  assumptionsJson Json?
+  createdAt       DateTime           @default(now())
+
+  @@index([clinicId, scenario, horizonWeeks])
+}

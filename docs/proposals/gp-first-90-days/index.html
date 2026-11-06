@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>First 90 Days GP Success | Woolloongabba Medical Centre</title>
+  <meta
+    name="description"
+    content="Doctor and practice guides, checklist and dashboard metrics for the first 90 days after GP go-live at Woolloongabba Medical Centre."
+  />
+  <meta name="robots" content="noindex,nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#173044",
+            "ink-soft": "#596b78",
+            navy: "#163f62",
+            green: "#0f6b45",
+            warm: "#f5f3ee",
+            mist: "#f4f7f7",
+            line: "#dbe4e9",
+          },
+          fontFamily: {
+            display: ['"Libre Baskerville"', "Georgia", "serif"],
+            ui: ["Inter", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    [data-tab].is-active {
+      background: #163f62;
+      color: #fff;
+      border-color: #163f62;
+    }
+  </style>
+</head>
+<body class="bg-mist font-ui text-ink antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white">
+    Skip to content
+  </a>
+
+  <div class="border-b border-line bg-warm px-4 py-3 text-center text-sm text-ink-soft" role="note">
+    <strong class="text-ink">Design proposal</strong>
+    — First 90 Days after go-live. Extends the GP onboarding workflow. Continuity over volume. Not a recruitment brochure.
+  </div>
+
+  <header class="border-b border-line bg-warm">
+    <div class="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+      <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Woolloongabba Medical Centre</p>
+      <h1 class="mt-2 font-display text-3xl font-bold leading-tight sm:text-4xl">First 90 Days GP Success</h1>
+      <p class="mt-3 max-w-2xl text-base leading-relaxed text-ink-soft">
+        Day 1 → Week 1 → Month 1 → Month 2 → Month 3.
+        Patient list building, nursing integration, systems adoption, community introductions, and session expansion —
+        without promising volume or earnings.
+      </p>
+      <aside class="mt-5 rounded-xl border border-navy/20 bg-white p-4 text-sm leading-relaxed" role="note">
+        <strong class="text-navy">Starts after go-live.</strong>
+        Use the onboarding workflow through orientation and first-session approval first.
+        Medicare provider numbers are issued by Services Australia.
+      </aside>
+    </div>
+  </header>
+
+  <main id="main" class="mx-auto max-w-4xl px-4 py-6 sm:px-6 sm:py-8">
+    <p id="app-error" class="mb-4 hidden rounded-xl border border-red-200 bg-white p-4 text-sm text-red-800" role="alert" hidden>
+      Unable to load <code>framework.json</code>. Serve this folder over HTTP (for example <code>npx --yes serve .</code>).
+    </p>
+
+    <div class="flex flex-wrap gap-2" role="tablist" aria-label="Framework views">
+      <button type="button" role="tab" data-tab="doctor" aria-selected="true" class="min-h-11 rounded-full border border-line bg-white px-4 text-sm font-semibold text-navy">
+        Doctor guide
+      </button>
+      <button type="button" role="tab" data-tab="practice" aria-selected="false" class="min-h-11 rounded-full border border-line bg-white px-4 text-sm font-semibold text-navy">
+        Practice guide
+      </button>
+      <button type="button" role="tab" data-tab="checklist" aria-selected="false" class="min-h-11 rounded-full border border-line bg-white px-4 text-sm font-semibold text-navy">
+        Checklist
+      </button>
+      <button type="button" role="tab" data-tab="metrics" aria-selected="false" class="min-h-11 rounded-full border border-line bg-white px-4 text-sm font-semibold text-navy">
+        Dashboard metrics
+      </button>
+    </div>
+
+    <section data-panel="doctor" role="tabpanel" class="mt-6 space-y-4" aria-label="Doctor guide">
+      <h2 class="font-display text-2xl font-bold">Doctor guide</h2>
+      <p class="text-sm text-ink-soft">Your operating guide for settling into continuity practice at WMC.</p>
+      <div id="doctor-guide-root" class="space-y-4"></div>
+    </section>
+
+    <section data-panel="practice" role="tabpanel" class="mt-6 hidden space-y-4" aria-label="Practice guide" hidden>
+      <h2 class="font-display text-2xl font-bold">Practice guide</h2>
+      <p class="text-sm text-ink-soft">Practice manager, nursing and reception obligations — so Day 1 is not “set and forget”.</p>
+      <div id="practice-guide-root" class="space-y-4"></div>
+    </section>
+
+    <section data-panel="checklist" role="tabpanel" class="mt-6 hidden space-y-4" aria-label="Checklist" hidden>
+      <div class="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <h2 class="font-display text-2xl font-bold">Checklist</h2>
+          <p class="text-sm text-ink-soft">Dual ownership. Progress saves in this browser for the prototype.</p>
+        </div>
+        <p id="checklist-progress" class="text-sm font-semibold text-navy" aria-live="polite"></p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <label class="text-sm">
+          <span class="mb-1 block font-semibold">Owner</span>
+          <select id="checklist-owner" class="min-h-10 rounded-xl border border-line bg-white px-3 text-sm">
+            <option value="all">All</option>
+            <option value="doctor">Doctor</option>
+            <option value="practice">Practice</option>
+          </select>
+        </label>
+        <label class="text-sm">
+          <span class="mb-1 block font-semibold">Phase</span>
+          <select id="checklist-phase" class="min-h-10 rounded-xl border border-line bg-white px-3 text-sm">
+            <option value="all">All</option>
+            <option value="day1">Day 1</option>
+            <option value="week1">Week 1</option>
+            <option value="month1">Month 1</option>
+            <option value="month2">Month 2</option>
+            <option value="month3">Month 3</option>
+          </select>
+        </label>
+        <button id="btn-export-checklist" type="button" class="min-h-10 self-end rounded-full border border-line bg-white px-4 text-sm font-semibold text-navy">
+          Export JSON
+        </button>
+        <button id="btn-reset-checklist" type="button" class="min-h-10 self-end rounded-full border border-line bg-white px-4 text-sm font-semibold text-navy">
+          Reset
+        </button>
+      </div>
+      <div id="checklist-root" class="space-y-2"></div>
+    </section>
+
+    <section data-panel="metrics" role="tabpanel" class="mt-6 hidden space-y-4" aria-label="Dashboard metrics" hidden>
+      <h2 class="font-display text-2xl font-bold">Dashboard metrics</h2>
+      <p class="text-sm text-ink-soft">
+        Production widgets should pull sessions, return bookings, nursing assists and inbox lag.
+        Below: metric catalogue plus a checklist-based demo strip.
+      </p>
+      <div id="metrics-demo" class="mb-2"></div>
+      <div id="metrics-root"></div>
+    </section>
+
+    <section class="mt-10 rounded-2xl border border-line bg-white p-5 sm:p-6">
+      <h2 class="font-display text-lg font-bold">Related tools</h2>
+      <ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-ink-soft">
+        <li>GP onboarding workflow (pre go-live) — <code class="text-ink">../gp-onboarding-workflow/</code></li>
+        <li>GP Opportunity Pack — <code class="text-ink">../gp-opportunity-pack/</code></li>
+        <li>Session planner / capacity matching — planning only before expansion</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="border-t border-line py-6">
+    <div class="mx-auto max-w-4xl px-4 text-xs text-ink-soft sm:px-6">
+      Woolloongabba Medical Centre · First 90 Days GP Success Framework v1 · Proposal prototype
+    </div>
+  </footer>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Room Capacity Dashboard | Woolloongabba Medical Centre</title>
+  <meta name="description" content="Plan consulting room capacity against existing GP schedules and find placement options." />
+  <meta name="robots" content="noindex,nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#173044",
+            "ink-soft": "#596b78",
+            navy: "#163f62",
+            green: "#0f6b45",
+            warm: "#f5f3ee",
+            mist: "#f4f7f7",
+            line: "#dbe4e9",
+          },
+          fontFamily: {
+            display: ['"Libre Baskerville"', "Georgia", "serif"],
+            ui: ["Inter", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-mist font-ui text-ink antialiased">
+  <a href="#dashboard" class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white">
+    Skip to dashboard
+  </a>
+
+  <header class="border-b border-line bg-warm">
+    <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+      <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Woolloongabba Medical Centre</p>
+      <h1 class="mt-2 font-display text-3xl font-bold leading-tight sm:text-4xl">Room Capacity Dashboard</h1>
+      <p class="mt-3 max-w-2xl text-base leading-relaxed text-ink-soft">
+        Compare available rooms and sessions with existing doctor schedules.
+        Find free capacity and potential placement options for a new GP.
+      </p>
+      <div class="mt-4 flex flex-wrap gap-3 text-xs font-semibold uppercase tracking-wide" aria-label="Status legend">
+        <span class="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1.5 text-emerald-900 ring-1 ring-emerald-600/30">
+          <span class="h-2.5 w-2.5 rounded-full bg-emerald-500" aria-hidden="true"></span> Green = available
+        </span>
+        <span class="inline-flex items-center gap-2 rounded-full bg-amber-50 px-3 py-1.5 text-amber-950 ring-1 ring-amber-500/40">
+          <span class="h-2.5 w-2.5 rounded-full bg-amber-400" aria-hidden="true"></span> Yellow = limited
+        </span>
+        <span class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1.5 text-red-900 ring-1 ring-red-500/30">
+          <span class="h-2.5 w-2.5 rounded-full bg-red-500" aria-hidden="true"></span> Red = full
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main id="dashboard" class="mx-auto max-w-6xl space-y-6 px-4 py-6 sm:px-6 sm:py-8">
+    <!-- KPI strip -->
+    <section aria-label="Available capacity summary" class="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
+      <div class="rounded-2xl border border-line bg-white p-4">
+        <p class="text-[10px] font-semibold uppercase tracking-wide text-ink-soft">Active rooms</p>
+        <p id="stat-rooms" class="mt-1 font-display text-2xl font-bold text-navy">—</p>
+      </div>
+      <div class="rounded-2xl border border-line bg-white p-4">
+        <p class="text-[10px] font-semibold uppercase tracking-wide text-ink-soft">Slots free</p>
+        <p id="stat-free" class="mt-1 font-display text-2xl font-bold text-navy">—</p>
+      </div>
+      <div class="rounded-2xl border border-line bg-white p-4">
+        <p class="text-[10px] font-semibold uppercase tracking-wide text-ink-soft">Slots used</p>
+        <p id="stat-used" class="mt-1 font-display text-2xl font-bold text-navy">—</p>
+      </div>
+      <div class="rounded-2xl border border-line bg-white p-4">
+        <p class="text-[10px] font-semibold uppercase tracking-wide text-ink-soft">Utilisation</p>
+        <p id="stat-util" class="mt-1 font-display text-2xl font-bold text-navy">—</p>
+      </div>
+      <div class="rounded-2xl border border-emerald-600/30 bg-emerald-50 p-4">
+        <p class="text-[10px] font-semibold uppercase tracking-wide text-emerald-900">Green sessions</p>
+        <p id="stat-green" class="mt-1 font-display text-2xl font-bold text-emerald-900">—</p>
+      </div>
+      <div class="rounded-2xl border border-amber-500/40 bg-amber-50 p-4">
+        <p class="text-[10px] font-semibold uppercase tracking-wide text-amber-950">Yellow sessions</p>
+        <p id="stat-yellow" class="mt-1 font-display text-2xl font-bold text-amber-950">—</p>
+      </div>
+      <div class="col-span-2 rounded-2xl border border-red-500/30 bg-red-50 p-4 sm:col-span-1">
+        <p class="text-[10px] font-semibold uppercase tracking-wide text-red-900">Red sessions</p>
+        <p id="stat-red" class="mt-1 font-display text-2xl font-bold text-red-900">—</p>
+      </div>
+    </section>
+
+    <!-- Heatmap -->
+    <section class="rounded-2xl border border-line bg-white p-4 shadow-[0_8px_24px_rgba(23,48,68,0.05)] sm:p-6" aria-labelledby="heatmap-title">
+      <h2 id="heatmap-title" class="font-display text-xl font-bold sm:text-2xl">Weekly capacity</h2>
+      <p class="mt-1 text-sm text-ink-soft">Free rooms per offered session (Mon–Sat · Morning / Afternoon / Evening).</p>
+      <div id="capacity-heatmap" class="mt-4 grid grid-cols-7 gap-1.5 sm:gap-2" role="table" aria-label="Room capacity by day and session"></div>
+    </section>
+
+    <div class="grid gap-6 lg:grid-cols-2">
+      <!-- Placement options -->
+      <section class="rounded-2xl border border-line bg-white p-5 sm:p-6" aria-labelledby="placement-title">
+        <h2 id="placement-title" class="font-display text-xl font-bold">Potential placement options</h2>
+        <p class="mt-1 text-sm text-ink-soft">Open room + session combinations ranked for a new GP.</p>
+        <ul id="placement-list" class="mt-4 space-y-2" aria-live="polite"></ul>
+        <h3 class="mt-6 text-sm font-semibold uppercase tracking-wide text-ink-soft">Room bundles</h3>
+        <ul id="bundle-list" class="mt-3 space-y-3"></ul>
+      </section>
+
+      <!-- Inputs -->
+      <section class="space-y-4" aria-label="Dashboard inputs">
+        <div class="rounded-2xl border border-line bg-white p-5 sm:p-6">
+          <div class="flex items-center justify-between gap-2">
+            <h2 class="font-display text-xl font-bold">Available rooms</h2>
+            <button id="btn-add-room" type="button" class="min-h-10 rounded-full border border-line px-3 text-xs font-semibold text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">Add room</button>
+          </div>
+          <ul id="room-list" class="mt-3 space-y-2"></ul>
+        </div>
+
+        <div class="rounded-2xl border border-line bg-white p-5 sm:p-6">
+          <h2 class="font-display text-xl font-bold">Available sessions</h2>
+          <p class="mt-1 text-sm text-ink-soft">Toggle which day / period the practice offers.</p>
+          <div id="session-offer-grid" class="mt-4 grid grid-cols-7 gap-1"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Schedules -->
+    <section class="rounded-2xl border border-line bg-white p-5 sm:p-6" aria-labelledby="schedule-title">
+      <h2 id="schedule-title" class="font-display text-xl font-bold">Existing doctor schedules</h2>
+      <div class="mt-4 overflow-x-auto">
+        <table class="min-w-full text-left">
+          <thead>
+            <tr class="border-b border-line text-xs font-semibold uppercase tracking-wide text-ink-soft">
+              <th class="py-2 pr-2">Doctor</th>
+              <th class="py-2 pr-2">Room</th>
+              <th class="py-2 pr-2">Day</th>
+              <th class="py-2 pr-2">Session</th>
+              <th class="py-2"> </th>
+            </tr>
+          </thead>
+          <tbody id="schedule-body"></tbody>
+        </table>
+      </div>
+
+      <div class="mt-5 grid gap-3 rounded-xl border border-line bg-mist/50 p-4 sm:grid-cols-2 lg:grid-cols-5">
+        <label class="block text-sm sm:col-span-2 lg:col-span-1">
+          <span class="font-medium">Doctor</span>
+          <input id="new-doctor" type="text" placeholder="Dr Surname" class="mt-1 min-h-11 w-full rounded-xl border border-line bg-white px-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" />
+        </label>
+        <label class="block text-sm">
+          <span class="font-medium">Room</span>
+          <select id="new-room" class="mt-1 min-h-11 w-full rounded-xl border border-line bg-white px-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"></select>
+        </label>
+        <label class="block text-sm">
+          <span class="font-medium">Day</span>
+          <select id="new-day" class="mt-1 min-h-11 w-full rounded-xl border border-line bg-white px-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"></select>
+        </label>
+        <label class="block text-sm">
+          <span class="font-medium">Session</span>
+          <select id="new-period" class="mt-1 min-h-11 w-full rounded-xl border border-line bg-white px-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"></select>
+        </label>
+        <div class="flex items-end">
+          <button id="btn-add-schedule" type="button" class="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-navy px-4 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">
+            Add schedule
+          </button>
+        </div>
+      </div>
+      <p id="schedule-form-status" class="mt-2 text-sm text-ink-soft" role="status" aria-live="polite"></p>
+    </section>
+
+    <!-- Save -->
+    <section class="rounded-2xl border border-line bg-white p-5 sm:p-6">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <h2 class="font-display text-xl font-bold">Export</h2>
+        <div class="flex flex-wrap gap-2">
+          <button id="btn-reset" type="button" class="min-h-11 rounded-full border border-line px-4 text-sm font-semibold text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">Reset demo</button>
+          <button id="btn-copy-json" type="button" class="min-h-11 rounded-full border border-line px-4 text-sm font-semibold text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">Copy JSON</button>
+          <button id="btn-save-json" type="button" class="min-h-11 rounded-full bg-navy px-4 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">Save JSON</button>
+        </div>
+      </div>
+      <p id="save-status" class="mt-3 text-sm text-ink-soft" role="status" aria-live="polite"></p>
+      <pre id="json-preview" class="mt-4 max-h-72 overflow-auto rounded-xl bg-ink p-4 text-xs leading-relaxed text-mist"></pre>
+    </section>
+
+    <p class="text-center text-xs text-ink-soft">
+      Localhost proposal · Planning tool only · Not a live roster system
+    </p>
+  </main>
+
+  <script src="./dashboard.js" defer></script>
+</body>
+</html>

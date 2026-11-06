@@ -1,0 +1,272 @@
+// GP Story Capture System — Prisma fragment (proposal)
+// Woolloongabba Medical Centre
+// Collect + govern GP practice-experience stories. Human gates only — no auto-publish.
+
+/// Career / practice-pattern category used for inventory filters and surface pairing.
+/// A story may carry one primary + optional secondary categories.
+enum GpStoryCategory {
+  early_career
+  established
+  returning
+  part_time
+  special_interest
+}
+
+enum GpStoryStatus {
+  invited          /// GP invited; waiting on interest
+  briefed          /// purpose + consent summary shared; category chosen
+  interviewed      /// conversation captured; transcript pending / attached
+  drafting         /// editor building structured story from source
+  gp_review        /// GP reviewing draft + attribution + consent version
+  editorial_review /// practice editorial / brand gate
+  changes_requested
+  approved         /// ready to place; not yet live
+  published
+  paused           /// hold (capacity, timing, clinical review)
+  withdrawn        /// GP withdrew future use
+  archived         /// superseded or retired from active inventory
+}
+
+enum GpStoryFormat {
+  pull_quote   /// 12–22 words
+  short_story  /// 45–70 words
+  long_story   /// 120–180 words
+  video        /// 60–90s; transcript mirrors long_story
+}
+
+enum GpStoryAttribution {
+  full_name
+  first_name_only
+  initials
+  role_label_only  /// e.g. "Part-time GP" — no personal name
+}
+
+enum GpStoryConsentStatus {
+  not_started
+  summary_shared
+  draft_linked     /// consent attached to specific draft version
+  signed
+  expired
+  withdrawn
+  superseded       /// newer consent version replaced this one
+}
+
+/// Where a consented story may appear. Explicit allow-list — unset = not allowed.
+enum GpStoryReuseChannel {
+  practice_experience_web
+  gp_opportunities_rail
+  join_our_team_quiet_quote  /// max one quiet quote; never hero
+  owned_social_og            /// WMC-owned social / OG shares only
+  internal_proposal_pack     /// non-public opportunity packs
+  video_embed
+  /// Explicitly never default-allowed — require new consent record if ever enabled:
+  /// job_boards, recruitment_agencies, paid_testimonial_networks, third_clinic_sites
+}
+
+enum GpStoryReviewDecision {
+  approve_advance
+  request_changes
+  pause
+  withdraw
+  archive
+  approve_publish
+  acknowledge_withdrawal
+}
+
+enum GpStoryReviewRole {
+  practice_manager
+  content_editor
+  brand_governance
+  clinical_lead_or_principal
+  subject_gp
+}
+
+/// Inventory root — one story case per GP contribution (may spawn multiple formats).
+model GpStory {
+  id                   String            @id @default(cuid())
+  clinicId             String
+  /// Optional link to public practitioner / team entity when named publicly
+  practitionerId       String?
+  /// Optional link to CareerApplication / EOI — never used as consent substitute
+  careerApplicationId  String?
+
+  workingTitle         String
+  subjectDisplayName   String            /// internal ops name (may differ from public attribution)
+  subjectEmail         String?
+  primaryCategory      GpStoryCategory
+  status               GpStoryStatus     @default(invited)
+  workflowVersion      String            @default("1.0.0")
+
+  interviewScheduledAt DateTime?
+  interviewedAt        DateTime?
+  publishedAt          DateTime?
+  withdrawnAt          DateTime?
+  archivedAt           DateTime?
+
+  specialInterestLabel String?           /// only when primary/secondary = special_interest
+  honestyCueEnabled    Boolean           @default(true)
+  compositeExampleFlag Boolean           @default(false) /// clinical vignette is labelled composite
+  internalNotes        String?
+
+  createdAt            DateTime          @default(now())
+  updatedAt            DateTime          @updatedAt
+  createdByUserId      String?
+
+  categories           GpStoryCategoryAssignment[]
+  versions             GpStoryVersion[]
+  consents             GpStoryConsent[]
+  reusePolicies        GpStoryReusePolicy[]
+  placements           GpStoryPlacement[]
+  reviews              GpStoryReviewEvent[]
+  sourceAssets         GpStorySourceAsset[]
+
+  @@index([clinicId, status])
+  @@index([clinicId, primaryCategory])
+  @@index([practitionerId])
+  @@index([publishedAt])
+}
+
+model GpStoryCategoryAssignment {
+  id        String          @id @default(cuid())
+  storyId   String
+  story     GpStory         @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  category  GpStoryCategory
+  isPrimary Boolean         @default(false)
+  assignedAt DateTime       @default(now())
+  assignedBy String?
+
+  @@unique([storyId, category])
+  @@index([category])
+}
+
+/// Immutable-ish draft lineage. Publish points at a specific versionId.
+model GpStoryVersion {
+  id              String         @id @default(cuid())
+  storyId         String
+  story           GpStory        @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  versionNumber   Int
+  format          GpStoryFormat
+  statusSnapshot  GpStoryStatus  /// status when this version was frozen/saved
+  bodyText        String
+  pullQuoteText   String?
+  transcriptText  String?        /// required when format = video
+  attribution     GpStoryAttribution
+  publicByline    String?        /// computed/display string GP approved
+  structureJson   Json?          /// context / day / operational moment / trade-off / close
+  editorUserId    String?
+  gpApprovedAt    DateTime?
+  editorialApprovedAt DateTime?
+  createdAt       DateTime       @default(now())
+
+  placements      GpStoryPlacement[]
+
+  @@unique([storyId, versionNumber, format])
+  @@index([storyId, format])
+}
+
+model GpStoryConsent {
+  id                   String               @id @default(cuid())
+  storyId              String
+  story                GpStory              @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  consentVersion       String               /// e.g. "wmc-gp-story-consent-2026-11"
+  status               GpStoryConsentStatus @default(not_started)
+
+  attributionChosen    GpStoryAttribution?
+  recordingAudioVideo  Boolean              @default(false)
+  retentionUntil       DateTime?            /// e.g. 3 years or until withdrawal
+  storageLocationNote  String?
+
+  channelsAllowedJson  Json                 /// GpStoryReuseChannel[]
+  channelsDeniedJson   Json                 /// explicit denials (job boards, agencies, etc.)
+  commercialSilenceAck Boolean              @default(false) /// no earnings / % / package claims
+  patientPrivacyAck    Boolean              @default(false)
+  editRightsAck        Boolean              @default(false) /// light edits OK; material = re-approval
+  reviewWindowDays     Int                  @default(5)
+  withdrawalSlaDays    Int                  @default(10)
+
+  signedAt             DateTime?
+  signedByName         String?
+  signedByEmail        String?
+  documentUri          String?              /// path/ref to signed PDF or CMS attachment
+  withdrawnAt          DateTime?
+  withdrawalReason     String?
+  supersededById       String?
+  createdAt            DateTime             @default(now())
+  updatedAt            DateTime             @updatedAt
+
+  @@index([storyId, status])
+  @@index([consentVersion])
+}
+
+/// Active reuse controls for a story — evaluated before any placement or export.
+model GpStoryReusePolicy {
+  id                    String              @id @default(cuid())
+  storyId               String
+  story                 GpStory             @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  channel               GpStoryReuseChannel
+  allowed               Boolean
+  requiresFreshConsent  Boolean             @default(false)
+  clinicScope           String              @default("flagship_only") /// flagship_only | named_clinic_ids | network_blocked
+  notes                 String?
+  effectiveFrom         DateTime            @default(now())
+  effectiveUntil        DateTime?
+  createdByUserId       String?
+  createdAt             DateTime            @default(now())
+
+  @@unique([storyId, channel])
+  @@index([channel, allowed])
+}
+
+model GpStoryPlacement {
+  id              String   @id @default(cuid())
+  storyId         String
+  story           GpStory  @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  versionId       String
+  version         GpStoryVersion @relation(fields: [versionId], references: [id], onDelete: Restrict)
+  channel         GpStoryReuseChannel
+  surfacePath     String   /// e.g. /about-us/practice-experience
+  moduleKey       String?  /// CMS / public-ux module id
+  live            Boolean  @default(false)
+  wentLiveAt      DateTime?
+  takenDownAt     DateTime?
+  takeDownReason  String?
+  createdAt       DateTime @default(now())
+
+  @@index([storyId, live])
+  @@index([channel, live])
+  @@index([surfacePath])
+}
+
+/// Immutable human gate / review record — source of truth for advances and publish.
+model GpStoryReviewEvent {
+  id                 String                @id @default(cuid())
+  storyId            String
+  story              GpStory               @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  fromStatus         GpStoryStatus
+  toStatus           GpStoryStatus
+  decision           GpStoryReviewDecision
+  reviewerRole       GpStoryReviewRole
+  reviewerId         String                /// required — human actor; never "system"/"auto"
+  reviewerName       String
+  rationale          String
+  checklistSnapshot  Json?
+  versionId          String?               /// which draft was reviewed
+  createdAt          DateTime              @default(now())
+
+  @@index([storyId, createdAt])
+  @@index([decision])
+}
+
+model GpStorySourceAsset {
+  id            String   @id @default(cuid())
+  storyId       String
+  story         GpStory  @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  kind          String   /// audio | video | transcript | still_photo | signed_consent_pdf
+  uri           String
+  capturedAt    DateTime?
+  retentionUntil DateTime?
+  notes         String?
+  createdAt     DateTime @default(now())
+
+  @@index([storyId, kind])
+}

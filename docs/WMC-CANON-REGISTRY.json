@@ -1,0 +1,1379 @@
+{
+  "lockedAt": "2026-11-03",
+  "phase": "C0-C2",
+  "sourceClassification": "docs/WMC-HEALTHCARE-DOCTORS-CANONICAL-CONTENT.md",
+  "extractionFramework": "docs/WMC-CANON-EXTRACTION-FRAMEWORK.md",
+  "rules": {
+    "noNewPages": true,
+    "noNewDiagrams": true,
+    "noLayoutRedesign": true,
+    "noPractitionerNamesInCanonEducation": true,
+    "noSuburbReferencesInCanonEducation": true,
+    "noBookingChanges": true,
+    "preserveSchema": true,
+    "preserveAuthorityAssets": true
+  },
+  "hubs": {
+    "P0": [
+      {
+        "path": "knowledge/womens-health.html",
+        "slug": "womens-health",
+        "packageType": "knowledge_hub",
+        "priority": "P0",
+        "status": "c1_prepared",
+        "serviceEducation": "services/womens-health.html",
+        "primaryArticle": "knowledge/articles/when-should-i-have-a-cervical-screening-test.html",
+        "assetRef": "assets/knowledge/authority/womens-life-stages-education.webp"
+      },
+      {
+        "path": "knowledge/menopause.html",
+        "slug": "menopause",
+        "packageType": "knowledge_hub",
+        "priority": "P0",
+        "status": "c1_prepared",
+        "serviceEducation": "services/womens-health.html",
+        "primaryArticle": "knowledge/articles/understanding-menopause.html",
+        "assetRef": "assets/knowledge/authority/menopause-education.webp"
+      },
+      {
+        "path": "knowledge/skin-health-skin-cancer.html",
+        "slug": "skin-health-skin-cancer",
+        "packageType": "knowledge_hub",
+        "priority": "P0",
+        "status": "c1_prepared",
+        "serviceEducation": "services/skin-checks.html",
+        "primaryArticle": "knowledge/articles/why-skin-checks-matter-in-australia.html",
+        "assetRef": "assets/knowledge/authority/skin-check-education.webp"
+      },
+      {
+        "path": "knowledge/mental-health.html",
+        "slug": "mental-health",
+        "packageType": "knowledge_hub",
+        "priority": "P0",
+        "status": "c1_prepared",
+        "serviceEducation": "services/mental-health.html",
+        "primaryArticle": "knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+        "assetRef": "assets/knowledge/authority/mental-wellbeing-education.webp"
+      },
+      {
+        "path": "knowledge/diabetes.html",
+        "slug": "diabetes",
+        "packageType": "knowledge_hub",
+        "priority": "P0",
+        "status": "c1_prepared",
+        "serviceEducation": "services/chronic-disease-care.html",
+        "primaryArticle": "knowledge/articles/diabetes-care-plans-explained.html",
+        "assetRef": "assets/knowledge/authority/glucose-education.webp"
+      },
+      {
+        "path": "knowledge/heart.html",
+        "slug": "heart",
+        "packageType": "knowledge_hub",
+        "priority": "P0",
+        "status": "c1_prepared",
+        "serviceEducation": "services/preventive-healthcare.html",
+        "primaryArticle": "knowledge/articles/understanding-your-cardiovascular-risk.html",
+        "assetRef": "assets/knowledge/authority/circulation-education.webp"
+      },
+      {
+        "path": "knowledge/chronic-disease-management.html",
+        "slug": "chronic-disease-management",
+        "packageType": "knowledge_hub",
+        "priority": "P0",
+        "status": "c1_prepared",
+        "serviceEducation": "services/chronic-disease-care.html",
+        "primaryArticle": "knowledge/articles/living-with-diabetes.html",
+        "assetRef": "assets/knowledge/authority/chronic-disease-care-coordination-education.webp"
+      },
+      {
+        "path": "knowledge/childrens-health.html",
+        "slug": "childrens-health",
+        "packageType": "knowledge_hub",
+        "priority": "P0",
+        "status": "c1_prepared",
+        "serviceEducation": "services/childrens-health.html",
+        "primaryArticle": "knowledge/articles/childhood-vaccinations-explained.html",
+        "assetRef": "assets/knowledge/authority/childrens-gp-visit-education.webp"
+      }
+    ],
+    "P1": [
+      {
+        "path": "knowledge/vaccinations.html",
+        "packageType": "knowledge_hub",
+        "priority": "P1",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/pregnancy.html",
+        "packageType": "knowledge_hub",
+        "priority": "P1",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/preventive-healthcare.html",
+        "packageType": "knowledge_hub",
+        "priority": "P1",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/mens-health.html",
+        "packageType": "knowledge_hub",
+        "priority": "P1",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/healthy-ageing.html",
+        "packageType": "knowledge_hub",
+        "priority": "P1",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/telehealth-access-to-care.html",
+        "packageType": "knowledge_hub",
+        "priority": "P1",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/adhd.html",
+        "packageType": "knowledge_hub",
+        "priority": "P1",
+        "status": "inventory_locked"
+      }
+    ],
+    "P2": [
+      {
+        "path": "knowledge/cough.html",
+        "packageType": "knowledge_hub",
+        "priority": "P2",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/headache.html",
+        "packageType": "knowledge_hub",
+        "priority": "P2",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/pain.html",
+        "packageType": "knowledge_hub",
+        "priority": "P2",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/sleep.html",
+        "packageType": "knowledge_hub",
+        "priority": "P2",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/weight.html",
+        "packageType": "knowledge_hub",
+        "priority": "P2",
+        "status": "inventory_locked"
+      }
+    ],
+    "excludedLocal": [
+      {
+        "path": "knowledge/family-health.html",
+        "class": "local_clinic_content",
+        "status": "not_canon"
+      },
+      {
+        "path": "knowledge/index.html",
+        "class": "local_clinic_content",
+        "status": "not_canon"
+      }
+    ]
+  },
+  "articles": {
+    "allEducational": [
+      {
+        "path": "knowledge/articles/adhd-assessment-pathways.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/anxiety-vs-stress-what-is-the-difference.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P0_harden",
+        "status": "c2_triangle"
+      },
+      {
+        "path": "knowledge/articles/back-pain-when-should-i-see-a-gp.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/blood-pressure-explained.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/breast-health-changes-screening-when-to-see-a-gp.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/childhood-vaccinations-explained.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P0_harden",
+        "status": "c2_triangle"
+      },
+      {
+        "path": "knowledge/articles/childrens-preventive-healthcare.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/cholesterol-explained.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/chronic-pain-when-should-i-seek-help.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/common-childhood-illnesses.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/diabetes-care-plans-explained.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P0_harden",
+        "status": "c2_triangle"
+      },
+      {
+        "path": "knowledge/articles/diabetes-monitoring-explained.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/health-assessments-explained.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/health-checks-every-man-should-consider.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/healthy-ageing-for-men.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/healthy-ageing-prevention-falls-vaccination-reviews.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/healthy-weight-management.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/heart-health-checks.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/heart-health-for-men.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/high-blood-pressure-explained.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/how-can-a-gp-support-depression.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P0_harden",
+        "status": "c2_triangle"
+      },
+      {
+        "path": "knowledge/articles/how-telehealth-works.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/hrt-discussions-with-your-gp.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/influenza-vaccination-who-should-consider-it.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/is-a-tummy-bug-the-same-as-gastro.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P2_synonym",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/is-a-water-infection-the-same-as-a-uti.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P2_synonym",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/is-hay-fever-a-fever.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P2_synonym",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/is-my-sore-throat-viral-or-bacterial.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P2_synonym",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/is-this-sinus.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P2_synonym",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/is-this-thrush.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P2_synonym",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/living-with-diabetes.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P0_harden",
+        "status": "c2_triangle"
+      },
+      {
+        "path": "knowledge/articles/managing-asthma.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/managing-winter-respiratory-illness.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/menopause-symptoms-explained.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/mental-health-and-menopause.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/migraine-or-headache-how-do-i-tell-the-difference.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/planning-a-pregnancy.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/preparing-for-your-childs-first-gp-appointment.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/preventing-diabetes-complications.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/preventive-womens-healthcare.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/protecting-your-skin-from-the-queensland-sun.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/sleep-problems-explained.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/sore-throat-when-should-i-see-a-doctor.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/staying-healthy-as-you-age.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/telehealth-vs-face-to-face-appointments.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/travel-vaccinations-before-overseas-travel.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/understanding-adhd-referrals.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/understanding-cholesterol.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/understanding-gp-chronic-disease-care-plans.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/understanding-healthy-lifestyle-changes.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/understanding-menopause.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P0_harden",
+        "status": "c2_triangle"
+      },
+      {
+        "path": "knowledge/articles/understanding-muscle-and-joint-pain.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/understanding-neck-pain.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/understanding-perimenopause.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/understanding-prostate-health.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/understanding-skin-cancer-risks.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/understanding-type-2-diabetes.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/understanding-your-cardiovascular-risk.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P0_harden",
+        "status": "c2_triangle"
+      },
+      {
+        "path": "knowledge/articles/vaccinations-for-adults.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/what-are-school-sores.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P2_synonym",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/what-causes-a-persistent-cough.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/what-causes-frequent-headaches.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P0_harden",
+        "status": "c2_triangle"
+      },
+      {
+        "path": "knowledge/articles/what-happens-during-antenatal-care.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/what-is-preventive-healthcare.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/when-can-i-use-telehealth.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/when-is-a-headache-an-emergency.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P2_synonym",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/when-should-a-child-with-a-cough-see-a-gp.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/when-should-i-be-concerned-about-a-fever.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/when-should-i-be-concerned-about-blood-pressure.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/when-should-i-be-concerned-about-pain.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/when-should-i-book-a-skin-check.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P0_harden",
+        "status": "c2_triangle"
+      },
+      {
+        "path": "knowledge/articles/when-should-i-have-a-cervical-screening-test.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P0_harden",
+        "status": "c2_triangle"
+      },
+      {
+        "path": "knowledge/articles/when-should-i-see-a-gp-about-headaches.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/when-should-i-seek-adhd-assessment.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/when-should-i-seek-help-for-burnout.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/when-should-i-speak-to-a-gp-about-anxiety.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P0_harden",
+        "status": "c2_triangle"
+      },
+      {
+        "path": "knowledge/articles/when-should-i-speak-to-a-gp-about-sleep.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/when-should-i-speak-to-a-gp-about-weight.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/why-am-i-always-tired.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/why-preventive-healthcare-matters.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/why-regular-check-ups-matter.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/why-skin-checks-matter-in-australia.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P0_harden",
+        "status": "c2_triangle"
+      },
+      {
+        "path": "knowledge/articles/why-won-t-my-cough-go-away.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/womens-health-checks-at-different-stages-of-life.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      },
+      {
+        "path": "knowledge/articles/your-first-pregnancy-gp-appointment.html",
+        "packageType": "knowledge_article",
+        "class": "network_canon",
+        "priority": "P1_cohort",
+        "status": "inventory_locked"
+      }
+    ],
+    "synonymDecisionAids": [
+      "knowledge/articles/is-a-tummy-bug-the-same-as-gastro.html",
+      "knowledge/articles/is-a-water-infection-the-same-as-a-uti.html",
+      "knowledge/articles/is-hay-fever-a-fever.html",
+      "knowledge/articles/is-my-sore-throat-viral-or-bacterial.html",
+      "knowledge/articles/is-this-sinus.html",
+      "knowledge/articles/is-this-thrush.html",
+      "knowledge/articles/what-are-school-sores.html",
+      "knowledge/articles/when-is-a-headache-an-emergency.html"
+    ],
+    "c2HardenSet": [
+      "knowledge/articles/when-should-i-have-a-cervical-screening-test.html",
+      "knowledge/articles/understanding-menopause.html",
+      "knowledge/articles/why-skin-checks-matter-in-australia.html",
+      "knowledge/articles/when-should-i-book-a-skin-check.html",
+      "knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+      "knowledge/articles/when-should-i-speak-to-a-gp-about-anxiety.html",
+      "knowledge/articles/anxiety-vs-stress-what-is-the-difference.html",
+      "knowledge/articles/how-can-a-gp-support-depression.html",
+      "knowledge/articles/understanding-your-cardiovascular-risk.html",
+      "knowledge/articles/childhood-vaccinations-explained.html",
+      "knowledge/articles/diabetes-care-plans-explained.html",
+      "knowledge/articles/living-with-diabetes.html"
+    ]
+  },
+  "serviceEducation": [
+    {
+      "path": "services/womens-health.html",
+      "packageType": "service_education",
+      "priority": "P0",
+      "hub": "knowledge/womens-health.html",
+      "status": "inventory_locked_education_blocks_only",
+      "note": "Clinic HTML chrome + booking remain local; education blocks are Canon candidates"
+    },
+    {
+      "path": "services/family-health.html",
+      "packageType": "service_education",
+      "priority": "P0",
+      "hub": "knowledge/family-health.html",
+      "status": "inventory_locked_education_blocks_only",
+      "note": "Clinic HTML chrome + booking remain local; education blocks are Canon candidates"
+    },
+    {
+      "path": "services/skin-checks.html",
+      "packageType": "service_education",
+      "priority": "P0",
+      "hub": "knowledge/skin-health-skin-cancer.html",
+      "status": "inventory_locked_education_blocks_only",
+      "note": "Clinic HTML chrome + booking remain local; education blocks are Canon candidates"
+    },
+    {
+      "path": "services/mental-health.html",
+      "packageType": "service_education",
+      "priority": "P0",
+      "hub": "knowledge/mental-health.html",
+      "status": "inventory_locked_education_blocks_only",
+      "note": "Clinic HTML chrome + booking remain local; education blocks are Canon candidates"
+    },
+    {
+      "path": "services/childrens-health.html",
+      "packageType": "service_education",
+      "priority": "P0",
+      "hub": "knowledge/childrens-health.html",
+      "status": "inventory_locked_education_blocks_only",
+      "note": "Clinic HTML chrome + booking remain local; education blocks are Canon candidates"
+    },
+    {
+      "path": "services/preventive-healthcare.html",
+      "packageType": "service_education",
+      "priority": "P0",
+      "hub": "knowledge/preventive-healthcare.html",
+      "status": "inventory_locked_education_blocks_only",
+      "note": "Clinic HTML chrome + booking remain local; education blocks are Canon candidates"
+    },
+    {
+      "path": "services/chronic-disease-care.html",
+      "packageType": "service_education",
+      "priority": "P0",
+      "hub": "knowledge/chronic-disease-management.html",
+      "status": "inventory_locked_education_blocks_only",
+      "note": "Clinic HTML chrome + booking remain local; education blocks are Canon candidates"
+    },
+    {
+      "path": "services/vaccinations.html",
+      "packageType": "service_education",
+      "priority": "P1",
+      "hub": "knowledge/vaccinations.html",
+      "status": "inventory_locked_education_blocks_only",
+      "note": "Clinic HTML chrome + booking remain local; education blocks are Canon candidates"
+    },
+    {
+      "path": "services/mens-health.html",
+      "packageType": "service_education",
+      "priority": "P1",
+      "hub": "knowledge/mens-health.html",
+      "status": "inventory_locked_education_blocks_only",
+      "note": "Clinic HTML chrome + booking remain local; education blocks are Canon candidates"
+    },
+    {
+      "path": "services/skin-cancer-care.html",
+      "packageType": "service_education",
+      "priority": "P0",
+      "hub": "knowledge/skin-health-skin-cancer.html",
+      "status": "inventory_locked_education_blocks_only",
+      "note": "Clinic HTML chrome + booking remain local; education blocks are Canon candidates"
+    }
+  ],
+  "triangles": [
+    {
+      "hub": "knowledge/womens-health.html",
+      "article": "knowledge/articles/when-should-i-have-a-cervical-screening-test.html",
+      "service": "services/womens-health.html"
+    },
+    {
+      "hub": "knowledge/menopause.html",
+      "article": "knowledge/articles/understanding-menopause.html",
+      "service": "services/womens-health.html"
+    },
+    {
+      "hub": "knowledge/skin-health-skin-cancer.html",
+      "article": "knowledge/articles/why-skin-checks-matter-in-australia.html",
+      "service": "services/skin-checks.html"
+    },
+    {
+      "hub": "knowledge/skin-health-skin-cancer.html",
+      "article": "knowledge/articles/when-should-i-book-a-skin-check.html",
+      "service": "services/skin-checks.html"
+    },
+    {
+      "hub": "knowledge/mental-health.html",
+      "article": "knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+      "service": "services/mental-health.html"
+    },
+    {
+      "hub": "knowledge/mental-health.html",
+      "article": "knowledge/articles/when-should-i-speak-to-a-gp-about-anxiety.html",
+      "service": "services/mental-health.html"
+    },
+    {
+      "hub": "knowledge/mental-health.html",
+      "article": "knowledge/articles/anxiety-vs-stress-what-is-the-difference.html",
+      "service": "services/mental-health.html"
+    },
+    {
+      "hub": "knowledge/mental-health.html",
+      "article": "knowledge/articles/how-can-a-gp-support-depression.html",
+      "service": "services/mental-health.html"
+    },
+    {
+      "hub": "knowledge/heart.html",
+      "article": "knowledge/articles/understanding-your-cardiovascular-risk.html",
+      "service": "services/preventive-healthcare.html"
+    },
+    {
+      "hub": "knowledge/childrens-health.html",
+      "article": "knowledge/articles/childhood-vaccinations-explained.html",
+      "service": "services/vaccinations.html"
+    },
+    {
+      "hub": "knowledge/diabetes.html",
+      "article": "knowledge/articles/diabetes-care-plans-explained.html",
+      "service": "services/chronic-disease-care.html"
+    },
+    {
+      "hub": "knowledge/diabetes.html",
+      "article": "knowledge/articles/living-with-diabetes.html",
+      "service": "services/chronic-disease-care.html"
+    }
+  ],
+  "extractionCandidates": [
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "knowledge/womens-health.html",
+      "targetSlug": "womens-health",
+      "packageType": "knowledge_hub",
+      "priority": "P0",
+      "assetRefs": [
+        "assets/knowledge/authority/womens-life-stages-education.webp"
+      ],
+      "relatedCanonSlugs": [
+        "womens-health",
+        "knowledge/articles/when-should-i-have-a-cervical-screening-test.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "C1 prepared on Flagship host; strip clinic chrome at extract time"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "knowledge/menopause.html",
+      "targetSlug": "menopause",
+      "packageType": "knowledge_hub",
+      "priority": "P0",
+      "assetRefs": [
+        "assets/knowledge/authority/menopause-education.webp"
+      ],
+      "relatedCanonSlugs": [
+        "womens-health",
+        "knowledge/articles/understanding-menopause.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "C1 prepared on Flagship host; strip clinic chrome at extract time"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "knowledge/skin-health-skin-cancer.html",
+      "targetSlug": "skin-health-skin-cancer",
+      "packageType": "knowledge_hub",
+      "priority": "P0",
+      "assetRefs": [
+        "assets/knowledge/authority/skin-check-education.webp"
+      ],
+      "relatedCanonSlugs": [
+        "skin-checks",
+        "knowledge/articles/why-skin-checks-matter-in-australia.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "C1 prepared on Flagship host; strip clinic chrome at extract time"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "knowledge/mental-health.html",
+      "targetSlug": "mental-health",
+      "packageType": "knowledge_hub",
+      "priority": "P0",
+      "assetRefs": [
+        "assets/knowledge/authority/mental-wellbeing-education.webp"
+      ],
+      "relatedCanonSlugs": [
+        "mental-health",
+        "knowledge/articles/what-happens-during-a-mental-health-care-plan.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "C1 prepared on Flagship host; strip clinic chrome at extract time"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "knowledge/diabetes.html",
+      "targetSlug": "diabetes",
+      "packageType": "knowledge_hub",
+      "priority": "P0",
+      "assetRefs": [
+        "assets/knowledge/authority/glucose-education.webp"
+      ],
+      "relatedCanonSlugs": [
+        "chronic-disease-care",
+        "knowledge/articles/diabetes-care-plans-explained.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "C1 prepared on Flagship host; strip clinic chrome at extract time"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "knowledge/heart.html",
+      "targetSlug": "heart",
+      "packageType": "knowledge_hub",
+      "priority": "P0",
+      "assetRefs": [
+        "assets/knowledge/authority/circulation-education.webp"
+      ],
+      "relatedCanonSlugs": [
+        "preventive-healthcare",
+        "knowledge/articles/understanding-your-cardiovascular-risk.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "C1 prepared on Flagship host; strip clinic chrome at extract time"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "knowledge/chronic-disease-management.html",
+      "targetSlug": "chronic-disease-management",
+      "packageType": "knowledge_hub",
+      "priority": "P0",
+      "assetRefs": [
+        "assets/knowledge/authority/chronic-disease-care-coordination-education.webp"
+      ],
+      "relatedCanonSlugs": [
+        "chronic-disease-care",
+        "knowledge/articles/living-with-diabetes.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "C1 prepared on Flagship host; strip clinic chrome at extract time"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "knowledge/childrens-health.html",
+      "targetSlug": "childrens-health",
+      "packageType": "knowledge_hub",
+      "priority": "P0",
+      "assetRefs": [
+        "assets/knowledge/authority/childrens-gp-visit-education.webp"
+      ],
+      "relatedCanonSlugs": [
+        "childrens-health",
+        "knowledge/articles/childhood-vaccinations-explained.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "C1 prepared on Flagship host; strip clinic chrome at extract time"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "knowledge/articles/when-should-i-have-a-cervical-screening-test.html",
+      "targetSlug": "when-should-i-have-a-cervical-screening-test",
+      "packageType": "knowledge_article",
+      "priority": "P0",
+      "relatedCanonSlugs": [
+        "knowledge/womens-health.html",
+        "services/womens-health.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "C2 triangle links in place; extract educational body only"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "knowledge/articles/understanding-menopause.html",
+      "targetSlug": "understanding-menopause",
+      "packageType": "knowledge_article",
+      "priority": "P0",
+      "relatedCanonSlugs": [
+        "knowledge/menopause.html",
+        "services/womens-health.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "C2 triangle links in place; extract educational body only"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "knowledge/articles/why-skin-checks-matter-in-australia.html",
+      "targetSlug": "why-skin-checks-matter-in-australia",
+      "packageType": "knowledge_article",
+      "priority": "P0",
+      "relatedCanonSlugs": [
+        "knowledge/skin-health-skin-cancer.html",
+        "services/skin-checks.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "C2 triangle links in place; extract educational body only"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "knowledge/articles/when-should-i-book-a-skin-check.html",
+      "targetSlug": "when-should-i-book-a-skin-check",
+      "packageType": "knowledge_article",
+      "priority": "P0",
+      "relatedCanonSlugs": [
+        "knowledge/skin-health-skin-cancer.html",
+        "services/skin-checks.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "C2 triangle links in place; extract educational body only"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+      "targetSlug": "what-happens-during-a-mental-health-care-plan",
+      "packageType": "knowledge_article",
+      "priority": "P0",
+      "relatedCanonSlugs": [
+        "knowledge/mental-health.html",
+        "services/mental-health.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "C2 triangle links in place; extract educational body only"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "knowledge/articles/when-should-i-speak-to-a-gp-about-anxiety.html",
+      "targetSlug": "when-should-i-speak-to-a-gp-about-anxiety",
+      "packageType": "knowledge_article",
+      "priority": "P0",
+      "relatedCanonSlugs": [
+        "knowledge/mental-health.html",
+        "services/mental-health.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "C2 triangle links in place; extract educational body only"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "knowledge/articles/anxiety-vs-stress-what-is-the-difference.html",
+      "targetSlug": "anxiety-vs-stress-what-is-the-difference",
+      "packageType": "knowledge_article",
+      "priority": "P0",
+      "relatedCanonSlugs": [
+        "knowledge/mental-health.html",
+        "services/mental-health.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "C2 triangle links in place; extract educational body only"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "knowledge/articles/how-can-a-gp-support-depression.html",
+      "targetSlug": "how-can-a-gp-support-depression",
+      "packageType": "knowledge_article",
+      "priority": "P0",
+      "relatedCanonSlugs": [
+        "knowledge/mental-health.html",
+        "services/mental-health.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "C2 triangle links in place; extract educational body only"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "knowledge/articles/understanding-your-cardiovascular-risk.html",
+      "targetSlug": "understanding-your-cardiovascular-risk",
+      "packageType": "knowledge_article",
+      "priority": "P0",
+      "relatedCanonSlugs": [
+        "knowledge/heart.html",
+        "services/preventive-healthcare.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "C2 triangle links in place; extract educational body only"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "knowledge/articles/childhood-vaccinations-explained.html",
+      "targetSlug": "childhood-vaccinations-explained",
+      "packageType": "knowledge_article",
+      "priority": "P0",
+      "relatedCanonSlugs": [
+        "knowledge/childrens-health.html",
+        "services/vaccinations.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "C2 triangle links in place; extract educational body only"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "knowledge/articles/diabetes-care-plans-explained.html",
+      "targetSlug": "diabetes-care-plans-explained",
+      "packageType": "knowledge_article",
+      "priority": "P0",
+      "relatedCanonSlugs": [
+        "knowledge/diabetes.html",
+        "services/chronic-disease-care.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "C2 triangle links in place; extract educational body only"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "knowledge/articles/living-with-diabetes.html",
+      "targetSlug": "living-with-diabetes",
+      "packageType": "knowledge_article",
+      "priority": "P0",
+      "relatedCanonSlugs": [
+        "knowledge/diabetes.html",
+        "services/chronic-disease-care.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "C2 triangle links in place; extract educational body only"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "services/womens-health.html",
+      "targetSlug": "womens-health-education",
+      "packageType": "service_education",
+      "priority": "P0",
+      "relatedCanonSlugs": [
+        "knowledge/womens-health.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "Extract education/FAQ/care-list only — never HotDoc/phone/pract cards"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "services/family-health.html",
+      "targetSlug": "family-health-education",
+      "packageType": "service_education",
+      "priority": "P0",
+      "relatedCanonSlugs": [
+        "knowledge/family-health.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "Extract education/FAQ/care-list only — never HotDoc/phone/pract cards"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "services/skin-checks.html",
+      "targetSlug": "skin-checks-education",
+      "packageType": "service_education",
+      "priority": "P0",
+      "relatedCanonSlugs": [
+        "knowledge/skin-health-skin-cancer.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "Extract education/FAQ/care-list only — never HotDoc/phone/pract cards"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "services/mental-health.html",
+      "targetSlug": "mental-health-education",
+      "packageType": "service_education",
+      "priority": "P0",
+      "relatedCanonSlugs": [
+        "knowledge/mental-health.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "Extract education/FAQ/care-list only — never HotDoc/phone/pract cards"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "services/childrens-health.html",
+      "targetSlug": "childrens-health-education",
+      "packageType": "service_education",
+      "priority": "P0",
+      "relatedCanonSlugs": [
+        "knowledge/childrens-health.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "Extract education/FAQ/care-list only — never HotDoc/phone/pract cards"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "services/preventive-healthcare.html",
+      "targetSlug": "preventive-healthcare-education",
+      "packageType": "service_education",
+      "priority": "P0",
+      "relatedCanonSlugs": [
+        "knowledge/preventive-healthcare.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "Extract education/FAQ/care-list only — never HotDoc/phone/pract cards"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "services/chronic-disease-care.html",
+      "targetSlug": "chronic-disease-care-education",
+      "packageType": "service_education",
+      "priority": "P0",
+      "relatedCanonSlugs": [
+        "knowledge/chronic-disease-management.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "Extract education/FAQ/care-list only — never HotDoc/phone/pract cards"
+    },
+    {
+      "sourceClinic": "woolloongabba",
+      "sourcePath": "services/skin-cancer-care.html",
+      "targetSlug": "skin-cancer-care-education",
+      "packageType": "service_education",
+      "priority": "P0",
+      "relatedCanonSlugs": [
+        "knowledge/skin-health-skin-cancer.html"
+      ],
+      "status": "nominated",
+      "gateA_ready": true,
+      "notes": "Extract education/FAQ/care-list only — never HotDoc/phone/pract cards"
+    }
+  ]
+}

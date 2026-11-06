@@ -1,0 +1,173 @@
+{
+  "title": "GP Expression of Interest Scoring Framework",
+  "clinic": "Woolloongabba Medical Centre",
+  "version": "1.0.0",
+  "purpose": "Prioritise GP EOIs for human review. Score is a practice-fit signal — never an automated hire/reject decision.",
+  "guards": [
+    "Human review required before interview/offer status changes",
+    "Do not auto-reject on score alone",
+    "Do not imply provider-number issuance by the practice",
+    "Commercial terms remain out of band for this score",
+    "Weights are clinic-configurable; defaults below are WMC continuity-first"
+  ],
+  "maxScore": 100,
+  "weights": {
+    "ahpraStatus": 20,
+    "fellowship": 20,
+    "clinicalInterests": 15,
+    "availability": 15,
+    "startDate": 15,
+    "sessionCommitment": 15
+  },
+  "factors": {
+    "ahpraStatus": {
+      "label": "AHPRA status",
+      "weight": 20,
+      "values": {
+        "current_unrestricted": { "points": 20, "label": "Current / unrestricted" },
+        "current_with_conditions": { "points": 12, "label": "Current with conditions" },
+        "pending": { "points": 6, "label": "Pending / in process" },
+        "not_registered": { "points": 0, "label": "Not currently registered" }
+      },
+      "hardFlag": {
+        "when": "not_registered",
+        "code": "AHPRA_REQUIRED",
+        "severity": "high",
+        "message": "Current AHPRA registration required before consulting; keep in nurture only."
+      }
+    },
+    "fellowship": {
+      "label": "Fellowship",
+      "weight": 20,
+      "values": {
+        "fracgp": { "points": 20, "label": "FRACGP" },
+        "facrrm": { "points": 20, "label": "FACRRM" },
+        "both": { "points": 20, "label": "FRACGP and FACRRM" },
+        "in_progress": { "points": 10, "label": "Fellowship in progress / registrar" },
+        "none": { "points": 2, "label": "No fellowship yet" }
+      },
+      "notes": "Registrar pathway depends on supervision capacity — flag for manual check when in_progress."
+    },
+    "clinicalInterests": {
+      "label": "Clinical interests",
+      "weight": 15,
+      "method": "overlap_with_clinic_priority_interests",
+      "clinicPriorityInterests": [
+        "womens_health",
+        "skin_checks",
+        "chronic_disease",
+        "mental_health",
+        "childrens_health",
+        "procedural",
+        "preventive_care"
+      ],
+      "scoring": {
+        "0_matches": 3,
+        "1_match": 8,
+        "2_matches": 12,
+        "3_or_more_matches": 15
+      },
+      "generalistBonus": {
+        "when": "lists_general_practice_continuity_or_empty_specialty_only",
+        "points": 2,
+        "capAtWeight": true,
+        "rationale": "WMC remains GP-first; pure specialty-only without GP framing does not get bonus"
+      }
+    },
+    "availability": {
+      "label": "Availability",
+      "weight": 15,
+      "values": {
+        "weekdays_flexible": { "points": 15, "label": "Flexible across weekdays" },
+        "fixed_part_time": { "points": 12, "label": "Fixed part-time days stated" },
+        "weekends_or_evenings_only": { "points": 8, "label": "Weekends/evenings only" },
+        "unclear": { "points": 4, "label": "Availability unclear" },
+        "none_stated": { "points": 0, "label": "No availability provided" }
+      },
+      "capacityModifier": {
+        "description": "Optional post-score adjustment using Room Capacity / Session Planner overlap (admin compute).",
+        "highOverlapBonus": 0,
+        "note": "Keep out of base 100 unless capacity service is wired; expose as separate capacityFitScore 0–10"
+      }
+    },
+    "startDate": {
+      "label": "Start date",
+      "weight": 15,
+      "rules": [
+        { "id": "within_30_days", "points": 15, "when": "preferredStartDate <= today+30d" },
+        { "id": "31_to_90_days", "points": 12, "when": "preferredStartDate in 31–90d" },
+        { "id": "91_to_180_days", "points": 8, "when": "preferredStartDate in 91–180d" },
+        { "id": "beyond_180_days", "points": 4, "when": "preferredStartDate > 180d" },
+        { "id": "past_or_invalid", "points": 0, "when": "missing, past, or invalid" }
+      ]
+    },
+    "sessionCommitment": {
+      "label": "Session commitment",
+      "weight": 15,
+      "rules": [
+        { "id": "sessions_6_plus", "points": 15, "when": "sessionsPerWeek >= 6" },
+        { "id": "sessions_3_to_5", "points": 12, "when": "sessionsPerWeek between 3 and 5" },
+        { "id": "sessions_1_to_2", "points": 8, "when": "sessionsPerWeek in 1–2" },
+        { "id": "exploring", "points": 4, "when": "commitment=exploring or 0" },
+        { "id": "missing", "points": 0, "when": "not provided" }
+      ],
+      "alignmentNote": "Part-time (1–2 or 3–5) remains valuable for WMC; do not treat lower sessions as poor culture fit — only lower urgency."
+    }
+  },
+  "bands": [
+    {
+      "id": "priority_review",
+      "min": 80,
+      "max": 100,
+      "label": "Priority review",
+      "adminAction": "Assign owner within 2 business days; offer practice conversation."
+    },
+    {
+      "id": "standard_review",
+      "min": 60,
+      "max": 79,
+      "label": "Standard review",
+      "adminAction": "Review in weekly GP recruitment triage."
+    },
+    {
+      "id": "nurture",
+      "min": 40,
+      "max": 59,
+      "label": "Nurture / clarify",
+      "adminAction": "Request missing info (AHPRA, sessions, start) before conversation."
+    },
+    {
+      "id": "hold",
+      "min": 0,
+      "max": 39,
+      "label": "Hold",
+      "adminAction": "Do not auto-reject. Hold pending credentials/timing; polite acknowledgement."
+    }
+  ],
+  "composite": {
+    "totalScore": "sum(factorPoints) capped at 100",
+    "capacityFitScore": "optional 0–10 from overlap of preferred sessions vs free room-sessions",
+    "displayScore": "totalScore",
+    "sortKey": ["hardFlagCount ASC", "totalScore DESC", "preferredStartDate ASC", "createdAt ASC"]
+  },
+  "example": {
+    "input": {
+      "ahpraStatus": "current_unrestricted",
+      "fellowship": "fracgp",
+      "clinicalInterests": ["womens_health", "chronic_disease", "mental_health"],
+      "availability": "fixed_part_time",
+      "preferredStartDate": "within_90_days",
+      "sessionsPerWeek": 4
+    },
+    "breakdown": {
+      "ahpraStatus": 20,
+      "fellowship": 20,
+      "clinicalInterests": 15,
+      "availability": 12,
+      "startDate": 12,
+      "sessionCommitment": 12
+    },
+    "totalScore": 91,
+    "band": "priority_review"
+  }
+}

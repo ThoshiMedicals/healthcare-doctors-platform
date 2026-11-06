@@ -1,0 +1,19 @@
+{
+  "id": "gp-catchment-analysis",
+  "title": "Catchment Analysis",
+  "status": "approved-implemented-synthetic",
+  "statisticsPolicy": "qualitative_public_copy_only",
+  "suburbSources": ["community.html", "local-healthcare-access.html"],
+  "suburbs": [
+    "Woolloongabba",
+    "East Brisbane",
+    "South Brisbane",
+    "Kangaroo Point",
+    "Greenslopes",
+    "Stones Corner",
+    "Dutton Park"
+  ],
+  "cmsKind": "catchment_analysis",
+  "cmsSlug": "inner-south-catchment",
+  "implementation": "apps/web/src/attraction-cms/content/catchment-analysis.ts"
+}

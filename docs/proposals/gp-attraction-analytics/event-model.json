@@ -1,0 +1,133 @@
+{
+  "id": "wmc-gp-attraction-event-model",
+  "version": "1.0.0",
+  "clinic": "Woolloongabba Medical Centre",
+  "purpose": "Privacy-aware product analytics for GP decision-journey surfaces. Measures attraction and content usefulness — not candidate scoring for automated rejection.",
+  "principles": [
+    "No clinical patient data in this stream.",
+    "Prefer anonymous session keys over persistent doctor identity until EOI submit.",
+    "Persona is inferred or self-selected label — never a definitive HR classification.",
+    "Do not store free-text answers from readiness tools in analytics events; store completion flags and stage IDs only.",
+    "Analytics never auto-approves onboarding or EOI outcomes."
+  ],
+  "identity": {
+    "anonymousSessionId": "UUID in first-party cookie / localStorage; rotatable; not a login",
+    "eoiSubmissionId": "Set only after EOI submit; linkable in warehouse with access control",
+    "personaHint": "Optional enum from self-select or lightweight path inference",
+    "forbidden": ["AHPRA number", "provider number", "passport", "full CV text", "document binaries"]
+  },
+  "contexts": {
+    "surface": {
+      "enum": [
+        "gp_opportunities",
+        "gp_faq",
+        "doctor_readiness",
+        "provider_number_readiness",
+        "gp_session_planner",
+        "gp_eoi",
+        "dpa_19ab_navigator",
+        "practice_support_matrix",
+        "join_our_team"
+      ]
+    },
+    "channel": {
+      "enum": ["direct", "organic_search", "referral", "email", "social", "unknown"]
+    },
+    "deviceClass": {
+      "enum": ["mobile", "tablet", "desktop", "unknown"]
+    }
+  },
+  "events": [
+    {
+      "name": "page_view",
+      "description": "Opportunities or other GP decision page viewed",
+      "requiredProps": ["surface", "path", "anonymousSessionId"],
+      "optionalProps": ["referrerPath", "channel", "personaHint", "deviceClass", "utm"]
+    },
+    {
+      "name": "faq_open",
+      "description": "FAQ accordion / question opened",
+      "requiredProps": ["surface", "faqId", "anonymousSessionId"],
+      "optionalProps": ["personaHint", "timeOnPageMs"]
+    },
+    {
+      "name": "faq_helpful_vote",
+      "description": "Optional helpful/not helpful on FAQ answer",
+      "requiredProps": ["faqId", "vote", "anonymousSessionId"],
+      "optionalProps": ["personaHint"]
+    },
+    {
+      "name": "tool_start",
+      "description": "Wizard / planner / readiness tool started",
+      "requiredProps": ["surface", "toolId", "anonymousSessionId"],
+      "optionalProps": ["personaHint"]
+    },
+    {
+      "name": "tool_step_view",
+      "description": "Step viewed inside a multi-step tool",
+      "requiredProps": ["toolId", "stepId", "stepIndex", "anonymousSessionId"],
+      "optionalProps": ["personaHint"]
+    },
+    {
+      "name": "tool_complete",
+      "description": "Tool reached completion / results screen",
+      "requiredProps": ["toolId", "anonymousSessionId"],
+      "optionalProps": ["personaHint", "durationMs", "resultThemeIds"]
+    },
+    {
+      "name": "tool_abandon",
+      "description": "Session left tool without completion (inferred or explicit)",
+      "requiredProps": ["toolId", "lastStepId", "anonymousSessionId"],
+      "optionalProps": ["personaHint", "durationMs"]
+    },
+    {
+      "name": "cta_click",
+      "description": "Primary CTA click (e.g. Express interest, Open readiness)",
+      "requiredProps": ["surface", "ctaId", "anonymousSessionId"],
+      "optionalProps": ["targetSurface", "personaHint"]
+    },
+    {
+      "name": "eoi_start",
+      "description": "EOI form opened",
+      "requiredProps": ["anonymousSessionId"],
+      "optionalProps": ["personaHint", "entrySurface"]
+    },
+    {
+      "name": "eoi_field_error",
+      "description": "Validation error shown (field id only)",
+      "requiredProps": ["fieldId", "anonymousSessionId"],
+      "optionalProps": []
+    },
+    {
+      "name": "eoi_submit",
+      "description": "EOI successfully submitted",
+      "requiredProps": ["anonymousSessionId", "eoiSubmissionId"],
+      "optionalProps": ["personaHint", "priorToolCompletions"]
+    },
+    {
+      "name": "path_edge",
+      "description": "Ordered navigation edge for path analysis (fromSurface → toSurface)",
+      "requiredProps": ["fromSurface", "toSurface", "anonymousSessionId"],
+      "optionalProps": ["personaHint", "latencyMs"]
+    }
+  ],
+  "toolIds": {
+    "doctor_readiness": "doctor-readiness",
+    "provider_number_readiness": "provider-number-readiness",
+    "gp_session_planner": "gp-session-planner",
+    "dpa_19ab_navigator": "dpa-19ab-navigator"
+  },
+  "funnelSteps": [
+    { "id": "opportunities_visit", "event": "page_view", "filter": { "surface": "gp_opportunities" } },
+    { "id": "faq_engagement", "event": "faq_open", "filter": { "surface": "gp_faq" } },
+    { "id": "readiness_complete", "event": "tool_complete", "filter": { "toolId": "doctor-readiness" } },
+    { "id": "provider_readiness_complete", "event": "tool_complete", "filter": { "toolId": "provider-number-readiness" } },
+    { "id": "session_planner_complete", "event": "tool_complete", "filter": { "toolId": "gp-session-planner" } },
+    { "id": "eoi_submit", "event": "eoi_submit", "filter": {} }
+  ],
+  "retention": {
+    "rawEventsDays": 90,
+    "dailyRollupsDays": 730,
+    "note": "Rollups store counts only; raw events purged on schedule."
+  }
+}

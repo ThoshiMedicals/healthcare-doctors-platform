@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DPA &amp; 19AB Eligibility Navigator | Woolloongabba Medical Centre</title>
+  <meta name="description" content="Explore DPA and s19AB pathway questions before expressing interest. Not an eligibility determination. Not legal or migration advice." />
+  <meta name="robots" content="noindex,nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#173044",
+            "ink-soft": "#596b78",
+            navy: "#163f62",
+            green: "#0f6b45",
+            warm: "#f5f3ee",
+            mist: "#f4f7f7",
+            line: "#dbe4e9",
+          },
+          fontFamily: {
+            display: ['"Libre Baskerville"', "Georgia", "serif"],
+            ui: ["Inter", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-mist font-ui text-ink antialiased">
+  <a href="#navigator" class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white">Skip to navigator</a>
+
+  <header class="border-b border-line bg-warm">
+    <div class="mx-auto max-w-lg px-4 py-6 sm:px-6">
+      <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Woolloongabba Medical Centre</p>
+      <h1 class="mt-2 font-display text-3xl font-bold leading-tight sm:text-[2rem]">DPA &amp; 19AB pathway navigator</h1>
+      <p class="mt-3 text-sm leading-relaxed text-ink-soft">
+        Explore questions that often come up before an expression of interest.
+        This tool does <strong class="text-ink">not</strong> determine eligibility and does <strong class="text-ink">not</strong> provide legal or migration advice.
+      </p>
+    </div>
+  </header>
+
+  <aside class="border-b border-navy/20 bg-white px-4 py-3 text-center text-xs leading-relaxed text-ink sm:px-6" role="note">
+    Official decisions sit with <strong>Services Australia</strong> and relevant government programs — not with this practice.
+  </aside>
+
+  <main id="navigator" class="mx-auto max-w-lg px-4 py-6 sm:px-6">
+    <div id="progress-wrap" class="mb-5 hidden">
+      <div class="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-ink-soft">
+        <span id="progress-label">Step 1 of 8</span>
+        <span class="normal-case tracking-normal">About 4 minutes</span>
+      </div>
+      <div class="h-2 overflow-hidden rounded-full bg-line" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="12" aria-labelledby="progress-label">
+        <div id="progress-bar" class="h-full w-[12%] rounded-full bg-navy transition-[width] duration-300"></div>
+      </div>
+    </div>
+
+    <div class="rounded-2xl border border-line bg-white p-5 shadow-[0_8px_24px_rgba(23,48,68,0.05)] sm:p-7">
+      <!-- Orient -->
+      <section data-step="orient" class="block space-y-5" aria-labelledby="step-orient-title">
+        <h2 id="step-orient-title" tabindex="-1" class="font-display text-2xl font-bold outline-none">Before you begin</h2>
+        <ul class="list-disc space-y-2 pl-5 text-sm leading-relaxed text-ink-soft">
+          <li>This navigator does <strong class="text-ink">not</strong> determine DPA or s19AB eligibility.</li>
+          <li>It does <strong class="text-ink">not</strong> provide legal advice or migration advice.</li>
+          <li>Woolloongabba Medical Centre cannot grant exemptions or issue Medicare provider numbers.</li>
+          <li>Use official Services Australia / Health resources for rules that apply to you.</li>
+        </ul>
+        <label class="flex items-start gap-3 rounded-xl border border-line p-4 has-[:checked]:border-navy has-[:checked]:bg-mist">
+          <input id="ack-non-advisory" type="checkbox" class="mt-0.5 h-5 w-5 shrink-0 rounded border-line text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" />
+          <span class="text-sm leading-relaxed">I understand this is an exploration tool only, not an eligibility decision or legal/migration advice.</span>
+        </label>
+        <p class="hidden text-sm text-red-700" data-error-for="ack" role="alert"></p>
+      </section>
+
+      <!-- Fellowship -->
+      <section data-step="fellowship" class="hidden space-y-4" hidden aria-labelledby="step-fellowship-title">
+        <h2 id="step-fellowship-title" tabindex="-1" class="font-display text-2xl font-bold outline-none">Fellowship status</h2>
+        <fieldset>
+          <legend class="text-sm font-semibold">Which best describes your fellowship status?</legend>
+          <div class="mt-3 grid gap-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="fellowshipStatus" value="fracgp" /><span class="text-sm">FRACGP</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="fellowshipStatus" value="facrrm" /><span class="text-sm">FACRRM</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="fellowshipStatus" value="both" /><span class="text-sm">Both</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="fellowshipStatus" value="in_progress" /><span class="text-sm">In progress / registrar</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="fellowshipStatus" value="none" /><span class="text-sm">Neither yet</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="fellowshipStatus" role="alert"></p>
+        </fieldset>
+      </section>
+
+      <!-- Degree country -->
+      <section data-step="degree" class="hidden space-y-4" hidden aria-labelledby="step-degree-title">
+        <h2 id="step-degree-title" tabindex="-1" class="font-display text-2xl font-bold outline-none">Primary medical degree</h2>
+        <fieldset>
+          <legend class="text-sm font-semibold">Where was your primary medical degree obtained?</legend>
+          <div class="mt-3 grid gap-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="primaryDegreeCountry" value="australia_nz" /><span class="text-sm">Australia or New Zealand</span></label>
+            <label class="flex min-h-12 items-start gap-3 rounded-xl border border-line px-3 py-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="mt-0.5 h-5 w-5" type="radio" name="primaryDegreeCountry" value="competent_authority_comparable" /><span class="text-sm leading-snug">Another country often discussed under competent-authority / comparable pathways <span class="block text-xs font-normal text-ink-soft">Verify your category via official sources</span></span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="primaryDegreeCountry" value="other_international" /><span class="text-sm">Other international</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="primaryDegreeCountry" value="unsure" /><span class="text-sm">Unsure how to classify</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="primaryDegreeCountry" role="alert"></p>
+        </fieldset>
+      </section>
+
+      <!-- Location -->
+      <section data-step="location" class="hidden space-y-4" hidden aria-labelledby="step-location-title">
+        <h2 id="step-location-title" tabindex="-1" class="font-display text-2xl font-bold outline-none">Current work location</h2>
+        <fieldset>
+          <legend class="text-sm font-semibold">Where are you currently working?</legend>
+          <div class="mt-3 grid gap-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="currentWorkLocation" value="brisbane_inner_south" /><span class="text-sm">Brisbane inner south</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="currentWorkLocation" value="greater_brisbane" /><span class="text-sm">Greater Brisbane</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="currentWorkLocation" value="other_qld" /><span class="text-sm">Elsewhere in Queensland</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="currentWorkLocation" value="other_australia" /><span class="text-sm">Elsewhere in Australia</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="currentWorkLocation" value="overseas" /><span class="text-sm">Overseas</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="currentWorkLocation" value="not_working" /><span class="text-sm">Not currently working clinically</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="currentWorkLocation" role="alert"></p>
+        </fieldset>
+      </section>
+
+      <!-- Provider -->
+      <section data-step="provider" class="hidden space-y-4" hidden aria-labelledby="step-provider-title">
+        <h2 id="step-provider-title" tabindex="-1" class="font-display text-2xl font-bold outline-none">Provider number status</h2>
+        <p class="text-sm text-ink-soft">Provider numbers are issued by Services Australia — not by this practice.</p>
+        <fieldset>
+          <legend class="text-sm font-semibold">Current Medicare provider number status</legend>
+          <div class="mt-3 grid gap-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="providerNumberStatus" value="active" /><span class="text-sm">Active provider number(s)</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="providerNumberStatus" value="applied" /><span class="text-sm">Application in progress with Services Australia</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="providerNumberStatus" value="none" /><span class="text-sm">No provider number yet</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="providerNumberStatus" value="unsure" /><span class="text-sm">Unsure</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="providerNumberStatus" role="alert"></p>
+        </fieldset>
+      </section>
+
+      <!-- Medicare -->
+      <section data-step="medicare" class="hidden space-y-4" hidden aria-labelledby="step-medicare-title">
+        <h2 id="step-medicare-title" tabindex="-1" class="font-display text-2xl font-bold outline-none">Medicare billing experience</h2>
+        <fieldset>
+          <legend class="text-sm font-semibold">Your experience with Medicare billing in Australian practice</legend>
+          <div class="mt-3 grid gap-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="medicareBillingExperience" value="extensive" /><span class="text-sm">Extensive</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="medicareBillingExperience" value="moderate" /><span class="text-sm">Moderate</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="medicareBillingExperience" value="limited" /><span class="text-sm">Limited</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="medicareBillingExperience" value="none" /><span class="text-sm">None yet</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="medicareBillingExperience" role="alert"></p>
+        </fieldset>
+      </section>
+
+      <!-- Training -->
+      <section data-step="training" class="hidden space-y-4" hidden aria-labelledby="step-training-title">
+        <h2 id="step-training-title" tabindex="-1" class="font-display text-2xl font-bold outline-none">Australian training pathway</h2>
+        <fieldset>
+          <legend class="text-sm font-semibold">Which best describes your Australian GP training pathway?</legend>
+          <div class="mt-3 grid gap-2">
+            <label class="flex min-h-12 items-start gap-3 rounded-xl border border-line px-3 py-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="mt-0.5 h-5 w-5" type="radio" name="australianTrainingPathway" value="agpt_or_college_australian" /><span class="text-sm">Australian college / AGPT-style pathway</span></label>
+            <label class="flex min-h-12 items-start gap-3 rounded-xl border border-line px-3 py-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="mt-0.5 h-5 w-5" type="radio" name="australianTrainingPathway" value="otd_img_pathway" /><span class="text-sm">OTD / IMG-related pathway</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="australianTrainingPathway" value="specialist_pathway" /><span class="text-sm">Specialist pathway</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="australianTrainingPathway" value="not_applicable" /><span class="text-sm">Not applicable / already VR</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="australianTrainingPathway" value="unsure" /><span class="text-sm">Unsure</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="australianTrainingPathway" role="alert"></p>
+        </fieldset>
+      </section>
+
+      <!-- Visa -->
+      <section data-step="visa" class="hidden space-y-4" hidden aria-labelledby="step-visa-title">
+        <h2 id="step-visa-title" tabindex="-1" class="font-display text-2xl font-bold outline-none">Visa / work rights</h2>
+        <p class="text-sm text-ink-soft">The practice does not provide migration advice. Select the closest factual status.</p>
+        <fieldset>
+          <legend class="text-sm font-semibold">Work rights status</legend>
+          <div class="mt-3 grid gap-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="visaWorkRightsStatus" value="citizen_pr" /><span class="text-sm">Australian citizen or permanent resident</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="visaWorkRightsStatus" value="temporary_with_work_rights" /><span class="text-sm">Temporary visa with work rights</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="visaWorkRightsStatus" value="applying" /><span class="text-sm">Applying / in process</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="visaWorkRightsStatus" value="unsure" /><span class="text-sm">Unsure</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="visaWorkRightsStatus" role="alert"></p>
+        </fieldset>
+      </section>
+
+      <!-- DPA -->
+      <section data-step="dpa" class="hidden space-y-4" hidden aria-labelledby="step-dpa-title">
+        <h2 id="step-dpa-title" tabindex="-1" class="font-display text-2xl font-bold outline-none">DPA awareness</h2>
+        <fieldset>
+          <legend class="text-sm font-semibold">Have you reviewed official Distribution Priority Area (DPA) information?</legend>
+          <div class="mt-3 grid gap-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="dpaAwareness" value="reviewed_official" /><span class="text-sm">Yes — via official government sources</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="dpaAwareness" value="heard_of" /><span class="text-sm">I have heard of DPA but not verified officially</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="dpaAwareness" value="not_familiar" /><span class="text-sm">Not familiar yet</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="dpaAwareness" role="alert"></p>
+        </fieldset>
+      </section>
+
+      <!-- Results -->
+      <section data-step="result" class="hidden space-y-6" hidden aria-labelledby="step-result-title">
+        <h2 id="step-result-title" tabindex="-1" class="font-display text-2xl font-bold outline-none">Your pathway summary</h2>
+
+        <aside class="rounded-xl border border-navy/20 bg-mist/80 p-4 text-sm leading-relaxed" role="note">
+          Reminder: this is <strong>not</strong> an eligibility determination, legal advice, or migration advice.
+          Official decisions sit with Services Australia and relevant government programs.
+        </aside>
+
+        <div>
+          <h3 class="text-xs font-semibold uppercase tracking-wide text-ink-soft">Pathway themes</h3>
+          <div id="pathway-themes" class="mt-2 flex flex-wrap gap-2"></div>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-semibold uppercase tracking-wide text-ink-soft">Pathway summary</h3>
+          <ul id="pathway-summary" class="mt-2 list-disc space-y-2 pl-5"></ul>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-semibold uppercase tracking-wide text-ink-soft">Questions to discuss with WMC</h3>
+          <ul id="questions-wmc" class="mt-2 list-decimal space-y-2 pl-5"></ul>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-semibold uppercase tracking-wide text-ink-soft">Documentation checklist</h3>
+          <ul id="docs-checklist" class="mt-2 space-y-2"></ul>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-semibold uppercase tracking-wide text-ink-soft">Services Australia &amp; official resources</h3>
+          <ul id="sa-resources" class="mt-2 space-y-3"></ul>
+        </div>
+
+        <div class="rounded-2xl border border-line bg-warm/50 p-5">
+          <p class="text-xs font-semibold uppercase tracking-wide text-green">Recommended next action</p>
+          <h3 id="next-action-title" class="mt-2 font-display text-xl font-bold"></h3>
+          <p id="next-action-detail" class="mt-2 text-sm leading-relaxed text-ink-soft"></p>
+          <a id="next-action-cta" href="../gp-eoi/" class="mt-4 inline-flex min-h-12 items-center justify-center rounded-full bg-navy px-5 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"></a>
+        </div>
+
+        <div>
+          <div class="flex flex-wrap gap-2">
+            <button id="btn-copy-json" type="button" class="min-h-10 rounded-full border border-line px-4 text-sm font-semibold text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">Copy JSON</button>
+            <button id="btn-download-json" type="button" class="min-h-10 rounded-full bg-ink px-4 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">Download JSON</button>
+          </div>
+          <p id="export-status" class="mt-2 text-xs text-ink-soft" role="status" aria-live="polite"></p>
+          <pre id="json-preview" class="mt-3 max-h-56 overflow-auto rounded-xl bg-ink p-4 text-xs text-mist"></pre>
+        </div>
+
+        <button id="btn-restart" type="button" class="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-line text-sm font-semibold text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy sm:w-auto sm:px-6">Start again</button>
+      </section>
+
+      <div id="wizard-nav" class="mt-6 flex gap-3 border-t border-line pt-5">
+        <button id="btn-back" type="button" class="inline-flex min-h-12 flex-1 items-center justify-center rounded-full border border-line text-sm font-semibold text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy disabled:cursor-not-allowed">Back</button>
+        <button id="btn-next" type="button" class="inline-flex min-h-12 flex-[1.4] items-center justify-center rounded-full bg-navy text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">Continue</button>
+      </div>
+    </div>
+
+    <p class="mt-6 text-center text-xs text-ink-soft">
+      Localhost prototype · Not legal advice · Not migration advice · Not an eligibility decision
+    </p>
+  </main>
+
+  <script src="./navigator.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+// Proposal fragment — Consulting Capacity Planning
+// Aligns with existing Clinic, OpeningHours, Practitioner (apps/web/prisma/schema.prisma).
+// Do not apply to production without a migration review.
+
+enum DayOfWeek {
+  monday
+  tuesday
+  wednesday
+  thursday
+  friday
+  saturday
+  sunday
+}
+
+enum SessionPeriod {
+  morning
+  afternoon
+  evening
+}
+
+enum NursingCoverageLevel {
+  none
+  limited
+  full
+}
+
+enum CapacityPlanStatus {
+  draft
+  active
+  archived
+}
+
+/// Consulting room inventory for a clinic.
+model ConsultingRoom {
+  id          String   @id @default(cuid())
+  clinicId    String   @map("clinic_id")
+  name        String
+  code        String?
+  isActive    Boolean  @default(true) @map("is_active")
+  sortOrder   Int      @default(0) @map("sort_order")
+  notes       String   @default("") @db.Text
+  clinic      Clinic   @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  assignments GpSessionAssignment[]
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@unique([clinicId, name])
+  @@index([clinicId, isActive])
+  @@map("consulting_rooms")
+}
+
+/// Explicit consulting session windows derived from / overriding opening hours.
+/// Example: Mon morning 07:00–12:00, afternoon 12:00–17:00, evening 17:00–19:00.
+model ConsultingSessionWindow {
+  id         String        @id @default(cuid())
+  clinicId   String        @map("clinic_id")
+  dayOfWeek  DayOfWeek     @map("day_of_week")
+  period     SessionPeriod
+  startsAt   String        @map("starts_at") // HH:mm local
+  endsAt     String        @map("ends_at")   // HH:mm local
+  isOffered  Boolean       @default(true) @map("is_offered")
+  clinic     Clinic        @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  nursing    NursingSessionCoverage?
+  assignments GpSessionAssignment[]
+  createdAt  DateTime      @default(now()) @map("created_at")
+  updatedAt  DateTime      @updatedAt @map("updated_at")
+
+  @@unique([clinicId, dayOfWeek, period])
+  @@index([clinicId, isOffered])
+  @@map("consulting_session_windows")
+}
+
+/// Nursing support available for a given day/period (bottleneck on concurrent GPs).
+model NursingSessionCoverage {
+  id                 String               @id @default(cuid())
+  clinicId           String               @map("clinic_id")
+  sessionWindowId    String               @unique @map("session_window_id")
+  coverageLevel      NursingCoverageLevel @default(full) @map("coverage_level")
+  /// Max concurrent GP rooms nursing can safely support this session (null = = room count).
+  maxSupportedRooms  Int?                 @map("max_supported_rooms")
+  nurseCount         Int                  @default(0) @map("nurse_count")
+  notes              String               @default("") @db.Text
+  clinic             Clinic               @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  sessionWindow      ConsultingSessionWindow @relation(fields: [sessionWindowId], references: [id], onDelete: Cascade)
+  createdAt          DateTime             @default(now()) @map("created_at")
+  updatedAt          DateTime             @updatedAt @map("updated_at")
+
+  @@index([clinicId])
+  @@map("nursing_session_coverages")
+}
+
+/// Current GP consulting schedule (one doctor in one room for one session window).
+model GpSessionAssignment {
+  id              String   @id @default(cuid())
+  clinicId        String   @map("clinic_id")
+  practitionerId  String?  @map("practitioner_id")
+  doctorName      String   @map("doctor_name")
+  roomId          String   @map("room_id")
+  sessionWindowId String   @map("session_window_id")
+  effectiveFrom   DateTime? @map("effective_from")
+  effectiveTo     DateTime? @map("effective_to")
+  isActive        Boolean  @default(true) @map("is_active")
+  notes           String   @default("") @db.Text
+  clinic          Clinic   @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  practitioner    Practitioner? @relation(fields: [practitionerId], references: [id], onDelete: SetNull)
+  room            ConsultingRoom @relation(fields: [roomId], references: [id], onDelete: Restrict)
+  sessionWindow   ConsultingSessionWindow @relation(fields: [sessionWindowId], references: [id], onDelete: Cascade)
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@unique([roomId, sessionWindowId, isActive]) // one active occupant per room-session
+  @@index([clinicId, isActive])
+  @@index([practitionerId])
+  @@map("gp_session_assignments")
+}
+
+/// Saved capacity plan / snapshot used for recruitment targeting.
+model CapacityPlan {
+  id                         String            @id @default(cuid())
+  clinicId                   String            @map("clinic_id")
+  name                       String
+  status                     CapacityPlanStatus @default(draft)
+  /// Assumed sessions per recruited GP (e.g. 4 part-time, 8 near-full).
+  targetSessionsPerGp        Int               @default(4) @map("target_sessions_per_gp")
+  /// Optional headroom: leave N free room-sessions unfilled for surge/leave.
+  reserveFreeSessions        Int               @default(0) @map("reserve_free_sessions")
+  notes                      String            @default("") @db.Text
+  lastComputedAt             DateTime?         @map("last_computed_at")
+  availableConsultingSessions Int?             @map("available_consulting_sessions")
+  totalOfferedSessions       Int?              @map("total_offered_sessions")
+  usedSessions               Int?              @map("used_sessions")
+  capacityPercentage         Decimal?          @map("capacity_percentage") @db.Decimal(5, 2)
+  recommendedGpTargets       Int?              @map("recommended_gp_targets")
+  computationJson            Json?             @map("computation_json")
+  clinic                     Clinic            @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  createdAt                  DateTime          @default(now()) @map("created_at")
+  updatedAt                  DateTime          @updatedAt @map("updated_at")
+
+  @@index([clinicId, status])
+  @@map("capacity_plans")
+}
+
+// --- Required Clinic relation additions (merge into Clinic model) ---
+// consultingRooms          ConsultingRoom[]
+// consultingSessionWindows ConsultingSessionWindow[]
+// nursingSessionCoverages  NursingSessionCoverage[]
+// gpSessionAssignments     GpSessionAssignment[]
+// capacityPlans            CapacityPlan[]
+//
+// --- Required Practitioner relation addition ---
+// gpSessionAssignments     GpSessionAssignment[]

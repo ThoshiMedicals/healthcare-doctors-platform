@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GP Story Editorial Review | WMC</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#173044",
+            "ink-soft": "#596b78",
+            navy: "#163f62",
+            green: "#0f6b45",
+            warm: "#f5f3ee",
+            mist: "#f4f7f7",
+            line: "#dbe4e9",
+            amber: "#8a6a2f",
+            danger: "#8b2e2e",
+          },
+          fontFamily: {
+            display: ['"Libre Baskerville"', "Georgia", "serif"],
+            ui: ["Inter", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-mist font-ui text-ink antialiased">
+  <header class="border-b border-line bg-warm">
+    <div class="mx-auto max-w-5xl px-4 py-6 sm:px-6">
+      <div class="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Editorial review flow</p>
+          <h1 class="mt-1 font-display text-3xl font-bold">GP story gate</h1>
+          <p class="mt-2 text-sm text-ink-soft">Blocking checklist. Checklist completeness never publishes by itself.</p>
+        </div>
+        <nav class="flex flex-wrap gap-3 text-sm">
+          <a href="/dashboard.html" class="min-h-11 inline-flex items-center text-navy underline-offset-2 hover:underline">Collection dashboard</a>
+          <a href="/" class="min-h-11 inline-flex items-center text-navy underline-offset-2 hover:underline">Overview</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-5xl px-4 py-6 sm:px-6">
+    <p id="review-live" class="sr-only" aria-live="polite"></p>
+
+    <div class="grid gap-6 lg:grid-cols-[220px_1fr]">
+      <aside aria-labelledby="queue-title">
+        <h2 id="queue-title" class="text-xs font-semibold uppercase tracking-wide text-ink-soft">Editorial queue</h2>
+        <div id="queue-list" class="mt-3 space-y-2"></div>
+      </aside>
+
+      <section id="review-panel" class="rounded-2xl border border-line bg-white p-5 sm:p-6" aria-live="polite">
+        <p class="text-sm text-ink-soft">Loading queue…</p>
+      </section>
+    </div>
+
+    <section class="mt-8 rounded-2xl border border-dashed border-line bg-white/70 p-5">
+      <h2 class="font-display text-lg font-bold">Flow rules</h2>
+      <ul class="mt-2 list-disc space-y-1 pl-5 text-sm text-ink-soft">
+        <li>Entry status: <code>editorial_review</code> only (after GP approval + signed consent).</li>
+        <li>All blocking checks must pass before <code>approve_advance</code> → <code>approved</code>.</li>
+        <li>Material edits since GP approval force return to <code>gp_review</code>.</li>
+        <li>Publish is a separate practice-manager gate on the approved inventory row.</li>
+        <li>Reviewer id cannot be system / auto / bot.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="./editorial.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Provider Number Readiness Workflow | Woolloongabba Medical Centre</title>
+  <meta name="description" content="Assess GP onboarding preparedness. Medicare provider numbers are issued by Services Australia — not by the practice." />
+  <meta name="robots" content="noindex,nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#173044",
+            "ink-soft": "#596b78",
+            navy: "#163f62",
+            green: "#0f6b45",
+            warm: "#f5f3ee",
+            mist: "#f4f7f7",
+            line: "#dbe4e9",
+          },
+          fontFamily: {
+            display: ['"Libre Baskerville"', "Georgia", "serif"],
+            ui: ["Inter", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-mist font-ui text-ink antialiased">
+  <a href="#workflow" class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white">
+    Skip to workflow
+  </a>
+
+  <header class="border-b border-line bg-warm">
+    <div class="mx-auto max-w-lg px-4 py-8 sm:px-6">
+      <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Woolloongabba Medical Centre</p>
+      <h1 class="mt-2 font-display text-3xl font-bold leading-tight sm:text-4xl">Provider Number Readiness</h1>
+      <p class="mt-3 text-base leading-relaxed text-ink-soft">
+        A private checklist to assess preparedness for practice onboarding —
+        provider numbers, practice history, Medicare experience, DPA status and documents.
+      </p>
+      <aside class="mt-5 rounded-xl border border-navy/20 bg-white p-4 text-sm leading-relaxed text-ink" role="note">
+        <strong class="text-navy">Important:</strong>
+        Medicare provider numbers are issued by <strong>Services Australia</strong>.
+        Woolloongabba Medical Centre does <strong>not</strong> issue, approve, or guarantee provider numbers.
+        We can share practice location details to support <em>your</em> application.
+      </aside>
+    </div>
+  </header>
+
+  <main id="workflow" class="mx-auto max-w-lg px-4 py-6 sm:px-6 sm:py-8">
+    <div id="progress-wrap" class="mb-6" aria-label="Workflow progress">
+      <div class="mb-2 flex justify-between text-xs font-semibold uppercase tracking-wide text-ink-soft">
+        <span id="progress-label">Step 1 of 5</span>
+        <span class="normal-case tracking-normal">Onboarding prep</span>
+      </div>
+      <div class="h-2 overflow-hidden rounded-full bg-line" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20" aria-labelledby="progress-label">
+        <div id="progress-bar" class="h-full rounded-full bg-navy transition-[width] duration-300" style="width:20%"></div>
+      </div>
+    </div>
+
+    <div class="rounded-2xl border border-line bg-white p-5 shadow-[0_8px_24px_rgba(23,48,68,0.05)] sm:p-7">
+      <!-- Step 1: Current provider numbers -->
+      <section data-step="provider" class="block space-y-5" aria-labelledby="step-provider-title">
+        <h2 id="step-provider-title" tabindex="-1" class="font-display text-2xl font-bold outline-none">Current provider numbers</h2>
+        <p class="text-sm text-ink-soft">Tell us your current Medicare provider number status. The practice cannot create one for you.</p>
+
+        <fieldset>
+          <legend class="text-sm font-semibold">Do you currently hold a Medicare provider number? <span class="text-green" aria-hidden="true">*</span></legend>
+          <div class="mt-2 grid gap-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="hasProviderNumber" value="yes" /><span class="text-sm">Yes — I hold one or more</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="hasProviderNumber" value="applied" /><span class="text-sm">Application lodged with Services Australia</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="hasProviderNumber" value="no" /><span class="text-sm">No — I still need to apply to Services Australia</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="hasProviderNumber" role="alert"></p>
+        </fieldset>
+
+        <div id="provider-yes-fields" class="hidden space-y-4">
+          <div>
+            <label for="providerNumberCount" class="text-sm font-semibold">How many active provider numbers do you hold? <span class="text-green" aria-hidden="true">*</span></label>
+            <input id="providerNumberCount" name="providerNumberCount" type="number" min="1" max="20" class="mt-2 min-h-12 w-full rounded-xl border border-line px-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" />
+            <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="providerNumberCount" role="alert"></p>
+          </div>
+          <div>
+            <label for="locationBoundNotes" class="text-sm font-semibold">Location / practice notes (optional)</label>
+            <textarea id="locationBoundNotes" name="locationBoundNotes" rows="2" placeholder="e.g. existing numbers bound to other locations" class="mt-2 w-full rounded-xl border border-line px-4 py-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"></textarea>
+          </div>
+        </div>
+
+        <div id="provider-applied-fields" class="hidden space-y-4">
+          <fieldset>
+            <legend class="text-sm font-semibold">Services Australia application status <span class="text-green" aria-hidden="true">*</span></legend>
+            <div class="mt-2 grid gap-2">
+              <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="applicationStatus" value="submitted" /><span class="text-sm">Submitted — awaiting outcome</span></label>
+              <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="applicationStatus" value="info_requested" /><span class="text-sm">More information requested</span></label>
+              <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="applicationStatus" value="preparing" /><span class="text-sm">Preparing to lodge</span></label>
+            </div>
+            <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="applicationStatus" role="alert"></p>
+          </fieldset>
+        </div>
+
+        <fieldset>
+          <legend class="text-sm font-semibold">Acknowledgement <span class="text-green" aria-hidden="true">*</span></legend>
+          <label class="mt-2 flex items-start gap-3 rounded-xl border border-line px-3 py-3 has-[:checked]:border-navy has-[:checked]:bg-mist">
+            <input class="mt-0.5 h-5 w-5 shrink-0" type="radio" name="understandsIssuer" value="yes" />
+            <span class="text-sm leading-relaxed">I understand that Services Australia issues Medicare provider numbers, and that Woolloongabba Medical Centre cannot issue or guarantee a provider number.</span>
+          </label>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="understandsIssuer" role="alert"></p>
+        </fieldset>
+      </section>
+
+      <!-- Step 2: Previous practices -->
+      <section data-step="practices" class="hidden space-y-5" hidden aria-labelledby="step-practices-title">
+        <h2 id="step-practices-title" tabindex="-1" class="font-display text-2xl font-bold outline-none">Previous practices</h2>
+        <p class="text-sm text-ink-soft">Your practice history helps us plan orientation — it does not replace provider number requirements.</p>
+
+        <div>
+          <label for="previousPracticeCount" class="text-sm font-semibold">Number of previous practices / locations <span class="text-green" aria-hidden="true">*</span></label>
+          <select id="previousPracticeCount" name="previousPracticeCount" class="mt-2 min-h-12 w-full rounded-xl border border-line px-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">
+            <option value="">Select</option>
+            <option value="0">0 — first practice role</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3+</option>
+          </select>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="previousPracticeCount" role="alert"></p>
+        </div>
+
+        <fieldset>
+          <legend class="text-sm font-semibold">Most recent setting <span class="text-green" aria-hidden="true">*</span></legend>
+          <div class="mt-2 grid gap-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="mostRecentPracticeType" value="general_practice" /><span class="text-sm">General practice</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="mostRecentPracticeType" value="hospital_gp" /><span class="text-sm">Hospital / GP training</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="mostRecentPracticeType" value="aboriginal_health" /><span class="text-sm">Aboriginal Community Controlled Health</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="mostRecentPracticeType" value="other" /><span class="text-sm">Other</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="mostRecentPracticeType" role="alert"></p>
+        </fieldset>
+
+        <div>
+          <label for="practiceHistoryNotes" class="text-sm font-semibold">Brief history notes (optional)</label>
+          <textarea id="practiceHistoryNotes" name="practiceHistoryNotes" rows="3" placeholder="Locations and approximate years" class="mt-2 w-full rounded-xl border border-line px-4 py-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"></textarea>
+        </div>
+      </section>
+
+      <!-- Step 3: Medicare experience -->
+      <section data-step="medicare" class="hidden space-y-5" hidden aria-labelledby="step-medicare-title">
+        <h2 id="step-medicare-title" tabindex="-1" class="font-display text-2xl font-bold outline-none">Medicare experience</h2>
+        <p class="text-sm text-ink-soft">Billing familiarity supports a smoother start. It is separate from holding a provider number.</p>
+
+        <fieldset>
+          <legend class="text-sm font-semibold">Medicare billing experience <span class="text-green" aria-hidden="true">*</span></legend>
+          <div class="mt-2 grid gap-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="medicareBillingExperience" value="extensive" /><span class="text-sm">Extensive</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="medicareBillingExperience" value="moderate" /><span class="text-sm">Moderate</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="medicareBillingExperience" value="limited" /><span class="text-sm">Limited</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="medicareBillingExperience" value="none" /><span class="text-sm">None yet</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="medicareBillingExperience" role="alert"></p>
+        </fieldset>
+
+        <fieldset>
+          <legend class="text-sm font-semibold">Bulk billing familiarity <span class="text-green" aria-hidden="true">*</span></legend>
+          <div class="mt-2 grid gap-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="bulkBillingFamiliarity" value="confident" /><span class="text-sm">Confident</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="bulkBillingFamiliarity" value="some" /><span class="text-sm">Some experience</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="bulkBillingFamiliarity" value="none" /><span class="text-sm">None</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="bulkBillingFamiliarity" role="alert"></p>
+        </fieldset>
+
+        <fieldset>
+          <legend class="text-sm font-semibold">Confidence with common MBS items in general practice <span class="text-green" aria-hidden="true">*</span></legend>
+          <div class="mt-2 grid gap-2 sm:grid-cols-3">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="mbsItemConfidence" value="high" /><span class="text-sm">High</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="mbsItemConfidence" value="moderate" /><span class="text-sm">Moderate</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="mbsItemConfidence" value="low" /><span class="text-sm">Low</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="mbsItemConfidence" role="alert"></p>
+        </fieldset>
+      </section>
+
+      <!-- Step 4: DPA -->
+      <section data-step="dpa" class="hidden space-y-5" hidden aria-labelledby="step-dpa-title">
+        <h2 id="step-dpa-title" tabindex="-1" class="font-display text-2xl font-bold outline-none">DPA eligibility</h2>
+        <p class="text-sm text-ink-soft">
+          Distribution Priority Area (DPA) status is determined by official government criteria.
+          The practice does not decide or grant DPA eligibility.
+        </p>
+
+        <fieldset>
+          <legend class="text-sm font-semibold">Your current DPA-related status <span class="text-green" aria-hidden="true">*</span></legend>
+          <div class="mt-2 grid gap-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="dpaStatus" value="eligible" /><span class="text-sm">Eligible / meets requirements for my pathway</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="dpaStatus" value="not_required" /><span class="text-sm">Not required for my registration pathway</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="dpaStatus" value="unsure" /><span class="text-sm">Unsure — I need to verify officially</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="dpaStatus" value="not_eligible" /><span class="text-sm">Not eligible</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="dpaStatus" role="alert"></p>
+        </fieldset>
+
+        <fieldset>
+          <legend class="text-sm font-semibold">Have you reviewed official DPA guidance? <span class="text-green" aria-hidden="true">*</span></legend>
+          <div class="mt-2 grid gap-2 sm:grid-cols-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="dpaAwareness" value="yes" /><span class="text-sm">Yes</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="dpaAwareness" value="no" /><span class="text-sm">Not yet</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="dpaAwareness" role="alert"></p>
+        </fieldset>
+      </section>
+
+      <!-- Step 5: Documents -->
+      <section data-step="documents" class="hidden space-y-5" hidden aria-labelledby="step-documents-title">
+        <h2 id="step-documents-title" tabindex="-1" class="font-display text-2xl font-bold outline-none">Required documents</h2>
+        <p class="text-sm text-ink-soft">Select what you already have ready. Provider number evidence must come from Services Australia correspondence.</p>
+
+        <fieldset>
+          <legend class="text-sm font-semibold">Documents ready to provide</legend>
+          <div class="mt-2 grid gap-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5 rounded" type="checkbox" name="documentsReady" value="ahpra" /><span class="text-sm">AHPRA registration evidence</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5 rounded" type="checkbox" name="documentsReady" value="indemnity" /><span class="text-sm">Professional indemnity certificate</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5 rounded" type="checkbox" name="documentsReady" value="cv" /><span class="text-sm">Curriculum vitae</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5 rounded" type="checkbox" name="documentsReady" value="id" /><span class="text-sm">Photo identification</span></label>
+            <label class="flex min-h-12 items-start gap-3 rounded-xl border border-line px-3 py-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="mt-0.5 h-5 w-5 rounded" type="checkbox" name="documentsReady" value="medicare_provider_letter" /><span class="text-sm leading-snug">Medicare / Services Australia provider correspondence <span class="block text-xs font-normal text-ink-soft">Not issued by this practice</span></span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5 rounded" type="checkbox" name="documentsReady" value="bank_super" /><span class="text-sm">Bank and superannuation details</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5 rounded" type="checkbox" name="documentsReady" value="working_rights" /><span class="text-sm">Evidence of working rights</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend class="text-sm font-semibold">Confirm document review <span class="text-green" aria-hidden="true">*</span></legend>
+          <label class="mt-2 flex items-start gap-3 rounded-xl border border-line px-3 py-3 has-[:checked]:border-navy has-[:checked]:bg-mist">
+            <input class="mt-0.5 h-5 w-5 shrink-0" type="radio" name="docsReviewed" value="yes" />
+            <span class="text-sm">I have reviewed this document list and selected what I currently have ready.</span>
+          </label>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="docsReviewed" role="alert"></p>
+        </fieldset>
+      </section>
+
+      <!-- Results -->
+      <section data-step="results" class="hidden space-y-6" hidden aria-labelledby="step-results-title">
+        <h2 id="step-results-title" tabindex="-1" class="font-display text-2xl font-bold outline-none">Onboarding readiness</h2>
+
+        <aside class="rounded-xl border border-navy/20 bg-mist/80 p-4 text-sm leading-relaxed" role="note">
+          Reminder: a high readiness score does <strong>not</strong> mean the practice has issued a provider number.
+          Provider numbers remain a Services Australia responsibility.
+        </aside>
+
+        <div class="rounded-2xl bg-gradient-to-b from-warm to-mist p-6 text-center">
+          <p class="text-xs font-semibold uppercase tracking-[0.14em] text-ink-soft">Readiness score</p>
+          <p id="readiness-score" class="mt-2 font-display text-6xl font-bold text-navy" aria-live="polite">—</p>
+          <p class="mt-1 text-sm text-ink-soft">out of 100</p>
+          <p id="readiness-band" class="mt-4 text-base font-semibold text-ink"></p>
+          <p id="readiness-detail" class="mt-2 text-sm leading-relaxed text-ink-soft"></p>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-semibold uppercase tracking-wide text-ink-soft">Missing items</h3>
+          <ul id="missing-list" class="mt-3 space-y-2" aria-live="polite"></ul>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-semibold uppercase tracking-wide text-ink-soft">Onboarding checklist</h3>
+          <ul id="checklist" class="mt-3 space-y-2"></ul>
+        </div>
+
+        <div>
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-ink-soft">JSON export</h3>
+            <div class="flex gap-2">
+              <button id="btn-copy-json" type="button" class="min-h-10 rounded-full border border-line px-4 text-sm font-semibold text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">Copy</button>
+              <button id="btn-download-json" type="button" class="min-h-10 rounded-full bg-ink px-4 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">Download</button>
+            </div>
+          </div>
+          <p id="export-status" class="mt-2 text-xs text-ink-soft" role="status" aria-live="polite"></p>
+          <pre id="json-preview" class="mt-3 max-h-64 overflow-auto rounded-xl bg-ink p-4 text-xs leading-relaxed text-mist"></pre>
+        </div>
+
+        <button id="btn-restart" type="button" class="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-line text-sm font-semibold text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy sm:w-auto sm:px-6">
+          Start again
+        </button>
+      </section>
+
+      <p id="wizard-status" class="mt-4 text-sm text-red-700" role="status" aria-live="polite"></p>
+
+      <div id="wizard-nav" class="mt-6 flex gap-3 border-t border-line pt-5">
+        <button id="btn-back" type="button" class="inline-flex min-h-12 flex-1 items-center justify-center rounded-full border border-line text-sm font-semibold text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy disabled:cursor-not-allowed">Back</button>
+        <button id="btn-next" type="button" class="inline-flex min-h-12 flex-[1.4] items-center justify-center rounded-full bg-navy text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">Continue</button>
+      </div>
+    </div>
+
+    <p class="mt-6 text-center text-xs text-ink-soft">
+      Localhost proposal · Services Australia issues provider numbers · Practice does not
+    </p>
+  </main>
+
+  <script src="./workflow.js" defer></script>
+</body>
+</html>

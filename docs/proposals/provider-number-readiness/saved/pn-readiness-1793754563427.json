@@ -1,0 +1,199 @@
+{
+  "formType": "provider_number_readiness_workflow",
+  "version": "1.0.0",
+  "clinicSlug": "woolloongabba",
+  "completedAt": "2026-11-04T01:09:23.423Z",
+  "importantNotice": "Medicare provider numbers are issued by Services Australia. Woolloongabba Medical Centre does not issue, approve, or guarantee provider numbers. This workflow only assesses onboarding preparedness.",
+  "captures": {
+    "currentProviderNumbers": {
+      "hasProviderNumber": "no",
+      "providerNumberCount": null,
+      "applicationStatus": null,
+      "locationBoundNotes": null
+    },
+    "previousPractices": {
+      "previousPracticeCount": "0",
+      "mostRecentPracticeType": "general_practice",
+      "practiceHistoryNotes": null
+    },
+    "medicareExperience": {
+      "medicareBillingExperience": "none",
+      "bulkBillingFamiliarity": "none",
+      "mbsItemConfidence": "low"
+    },
+    "dpaEligibility": {
+      "dpaStatus": "not_eligible",
+      "dpaAwareness": "no"
+    },
+    "requiredDocuments": {
+      "documentsReady": [],
+      "docsReviewed": "yes"
+    },
+    "acknowledgements": {
+      "understandsPracticeDoesNotIssueProviderNumbers": true
+    }
+  },
+  "outputs": {
+    "readinessScore": 19,
+    "readinessBand": "blocked",
+    "readinessLabel": "Not ready to onboard yet",
+    "missingItems": [
+      {
+        "id": "no_provider_number",
+        "label": "No current Medicare provider number — you must apply to Services Australia (the practice cannot issue one)",
+        "severity": "high"
+      },
+      {
+        "id": "dpa_not_eligible",
+        "label": "DPA not eligible — confirm whether this affects your intended start pathway and discuss with the practice",
+        "severity": "high"
+      },
+      {
+        "id": "doc_ahpra",
+        "label": "Missing document: AHPRA registration evidence",
+        "severity": "high"
+      },
+      {
+        "id": "doc_medicare_provider_letter",
+        "label": "Missing document: Medicare / Services Australia provider correspondence",
+        "severity": "high"
+      },
+      {
+        "id": "no_medicare_billing",
+        "label": "No Medicare billing experience yet — structured onboarding support recommended",
+        "severity": "medium"
+      },
+      {
+        "id": "mbs_confidence",
+        "label": "MBS item confidence is low — include billing education in onboarding",
+        "severity": "medium"
+      },
+      {
+        "id": "doc_indemnity",
+        "label": "Missing document: Professional indemnity certificate",
+        "severity": "medium"
+      },
+      {
+        "id": "doc_cv",
+        "label": "Missing document: Curriculum vitae",
+        "severity": "medium"
+      },
+      {
+        "id": "doc_id",
+        "label": "Missing document: Photo identification",
+        "severity": "medium"
+      },
+      {
+        "id": "doc_bank_super",
+        "label": "Missing document: Bank and superannuation details",
+        "severity": "medium"
+      },
+      {
+        "id": "doc_working_rights",
+        "label": "Missing document: Evidence of working rights",
+        "severity": "medium"
+      },
+      {
+        "id": "no_prior_practice",
+        "label": "No previous practice history — onboarding may need extra orientation time",
+        "severity": "low"
+      },
+      {
+        "id": "bulk_billing_familiarity",
+        "label": "Bulk billing familiarity to be covered in practice orientation",
+        "severity": "low"
+      },
+      {
+        "id": "dpa_awareness",
+        "label": "Review official DPA guidance before finalising onboarding plans",
+        "severity": "low"
+      }
+    ],
+    "onboardingChecklist": [
+      {
+        "id": "apply_services_australia",
+        "label": "Apply for a Medicare provider number via Services Australia for the Woolloongabba practice location",
+        "owner": "services_australia",
+        "done": false
+      },
+      {
+        "id": "practice_location_details",
+        "label": "Request practice location details from WMC to support your Services Australia application",
+        "owner": "practice",
+        "done": false
+      },
+      {
+        "id": "practice_history_cv",
+        "label": "Ensure CV lists previous practice locations and dates accurately",
+        "owner": "doctor",
+        "done": false
+      },
+      {
+        "id": "billing_orientation",
+        "label": "Schedule Medicare / MBS orientation with practice management (does not replace provider number requirements)",
+        "owner": "practice",
+        "done": false
+      },
+      {
+        "id": "verify_dpa",
+        "label": "Verify DPA eligibility via official Health Department / Services Australia channels (not issued by the practice)",
+        "owner": "doctor",
+        "done": false
+      },
+      {
+        "id": "upload_ahpra",
+        "label": "Provide: AHPRA registration evidence",
+        "owner": "doctor",
+        "done": false
+      },
+      {
+        "id": "upload_indemnity",
+        "label": "Provide: Professional indemnity certificate",
+        "owner": "doctor",
+        "done": false
+      },
+      {
+        "id": "upload_cv",
+        "label": "Provide: Curriculum vitae",
+        "owner": "doctor",
+        "done": false
+      },
+      {
+        "id": "upload_id",
+        "label": "Provide: Photo identification",
+        "owner": "doctor",
+        "done": false
+      },
+      {
+        "id": "upload_medicare_provider_letter",
+        "label": "Provide: Medicare / Services Australia provider correspondence",
+        "owner": "doctor",
+        "done": false
+      },
+      {
+        "id": "upload_bank_super",
+        "label": "Provide: Bank and superannuation details",
+        "owner": "doctor",
+        "done": false
+      },
+      {
+        "id": "upload_working_rights",
+        "label": "Provide: Evidence of working rights",
+        "owner": "doctor",
+        "done": false
+      },
+      {
+        "id": "practice_cannot_issue_pn",
+        "label": "Acknowledgement on file: Woolloongabba Medical Centre does not issue Medicare provider numbers",
+        "owner": "practice",
+        "done": true
+      },
+      {
+        "id": "onboarding_meeting",
+        "label": "Book practice onboarding meeting once provider-number pathway and documents are clear",
+        "owner": "practice",
+        "done": false
+      }
+    ]
+  }
+}

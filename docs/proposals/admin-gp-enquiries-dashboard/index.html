@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin GP Enquiries | Woolloongabba Medical Centre</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#173044",
+            "ink-soft": "#596b78",
+            navy: "#163f62",
+            green: "#0f6b45",
+            warm: "#f5f3ee",
+            mist: "#f4f7f7",
+            line: "#dbe4e9",
+            amber: "#8a6a2f",
+          },
+          fontFamily: {
+            display: ['"Libre Baskerville"', "Georgia", "serif"],
+            ui: ["Inter", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-mist font-ui text-ink antialiased">
+  <a href="#queue" class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white">Skip to queue</a>
+
+  <header class="border-b border-line bg-warm">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6">
+      <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Internal admin · Woolloongabba Medical Centre</p>
+      <h1 class="mt-1 font-display text-3xl font-bold">GP enquiries</h1>
+      <p class="mt-2 max-w-3xl text-sm text-ink-soft">
+        Unified view of EOI submissions, readiness results, provider readiness, session preferences, and scores.
+        Priority score orders human review — it does not hire or decline automatically.
+      </p>
+      <aside class="mt-4 max-w-3xl rounded-xl border border-navy/20 bg-white p-3 text-sm" role="note">
+        Eligibility discussion fields track conversations only. Woolloongabba Medical Centre does not determine DPA/s19AB outcomes or issue Medicare provider numbers.
+      </aside>
+      <nav class="mt-4 flex flex-wrap gap-3 text-sm">
+        <a class="min-h-11 inline-flex items-center rounded-lg border border-line bg-white px-3 font-medium text-navy" href="/api/meta">API meta</a>
+        <a class="min-h-11 inline-flex items-center rounded-lg border border-line bg-white px-3 font-medium text-navy" href="/api-contracts.json">API contracts</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="queue" class="mx-auto max-w-7xl px-4 py-6 sm:px-6">
+    <section id="filters" class="rounded-2xl border border-line bg-white p-4" aria-label="Search and filters">
+      <div class="grid gap-3 md:grid-cols-2 lg:grid-cols-6">
+        <label class="lg:col-span-2 text-xs font-semibold uppercase tracking-wide text-ink-soft">Search
+          <div class="mt-1 flex gap-2">
+            <input id="filter-q" type="search" placeholder="Name, email, phone" class="min-h-11 w-full rounded-lg border border-line px-3 text-sm font-normal normal-case tracking-normal" />
+            <button id="btn-search" type="button" class="min-h-11 shrink-0 rounded-lg bg-navy px-3 text-sm font-semibold text-white">Search</button>
+          </div>
+        </label>
+        <label class="text-xs font-semibold uppercase tracking-wide text-ink-soft">Status
+          <select id="filter-status" class="mt-1 w-full min-h-11 rounded-lg border border-line px-3 text-sm font-normal normal-case tracking-normal">
+            <option value="">All</option>
+            <option value="new_submission">new_submission</option>
+            <option value="triage">triage</option>
+            <option value="reviewing">reviewing</option>
+            <option value="awaiting_doctor">awaiting_doctor</option>
+            <option value="in_conversation">in_conversation</option>
+            <option value="onboarding">onboarding</option>
+            <option value="nurture">nurture</option>
+          </select>
+        </label>
+        <label class="text-xs font-semibold uppercase tracking-wide text-ink-soft">Score band
+          <select id="filter-band" class="mt-1 w-full min-h-11 rounded-lg border border-line px-3 text-sm font-normal normal-case tracking-normal">
+            <option value="">All</option>
+            <option value="priority_review">priority_review</option>
+            <option value="strong_fit">strong_fit</option>
+            <option value="possible_fit">possible_fit</option>
+            <option value="nurture">nurture</option>
+          </select>
+        </label>
+        <label class="text-xs font-semibold uppercase tracking-wide text-ink-soft">Capacity fit
+          <select id="filter-capacity" class="mt-1 w-full min-h-11 rounded-lg border border-line px-3 text-sm font-normal normal-case tracking-normal">
+            <option value="">All</option>
+            <option value="strong">strong</option>
+            <option value="limited">limited</option>
+            <option value="uncertain">uncertain</option>
+            <option value="unknown">unknown</option>
+          </select>
+        </label>
+        <label class="text-xs font-semibold uppercase tracking-wide text-ink-soft">Assignee
+          <select id="filter-assigned" class="mt-1 w-full min-h-11 rounded-lg border border-line px-3 text-sm font-normal normal-case tracking-normal">
+            <option value="">All</option>
+            <option value="unassigned">Unassigned</option>
+            <option value="pm_01">Practice Manager</option>
+            <option value="principal_01">Principal GP</option>
+          </select>
+        </label>
+      </div>
+      <div class="mt-3 flex flex-wrap items-center justify-between gap-2">
+        <label class="text-xs font-semibold uppercase tracking-wide text-ink-soft">Sort
+          <select id="filter-sort" class="ml-2 min-h-11 rounded-lg border border-line px-3 text-sm font-normal normal-case tracking-normal">
+            <option value="priorityScore_desc">Priority score (high first)</option>
+            <option value="submittedAt_desc">Newest submission</option>
+            <option value="startDate_asc">Earliest start date</option>
+          </select>
+        </label>
+        <p id="result-count" class="text-sm text-ink-soft">—</p>
+      </div>
+    </section>
+
+    <div class="mt-6 grid gap-6 lg:grid-cols-[320px_1fr]">
+      <aside>
+        <h2 class="text-xs font-semibold uppercase tracking-wide text-ink-soft">Queue</h2>
+        <div id="enquiry-list" class="mt-3 space-y-2" aria-label="Enquiry list"></div>
+      </aside>
+      <section id="detail-panel" class="rounded-2xl border border-line bg-white p-5 sm:p-6" aria-live="polite">
+        <p class="text-sm text-ink-soft">Loading…</p>
+      </section>
+    </div>
+
+    <section class="mt-8 rounded-2xl border border-dashed border-line bg-white/70 p-5" aria-labelledby="wire-title">
+      <h2 id="wire-title" class="font-display text-lg font-bold">Wireframe structure</h2>
+      <ul class="mt-2 list-disc space-y-1 pl-5 text-sm text-ink-soft">
+        <li>Filter bar: search, status, band, capacity, assignee, sort</li>
+        <li>Left queue: name, priority score, band, status, hard flags, capacity, onboarding stage</li>
+        <li>Right detail: EOI + score + readiness + provider readiness + sessions</li>
+        <li>Actions: human status/capacity/eligibility update, assignment, notes</li>
+        <li>No auto-hire control; hired requires explicit humanConfirmation in API</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="border-t border-line py-6">
+    <div class="mx-auto max-w-7xl px-4 text-xs text-ink-soft sm:px-6">Proposal localhost :4182 · schema.prisma · api-contracts.json</div>
+  </footer>
+
+  <script src="./dashboard.js" defer></script>
+</body>
+</html>

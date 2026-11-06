@@ -1,0 +1,118 @@
+// Proposal — GP EOI scoring extension
+// Extends CareerApplication; do not apply without migration review.
+
+enum AhpraStatus {
+  current_unrestricted
+  current_with_conditions
+  pending
+  not_registered
+}
+
+enum FellowshipStatus {
+  fracgp
+  facrrm
+  both
+  in_progress
+  none
+}
+
+enum AvailabilityPattern {
+  weekdays_flexible
+  fixed_part_time
+  weekends_or_evenings_only
+  unclear
+  none_stated
+}
+
+enum EoiScoreBand {
+  priority_review
+  standard_review
+  nurture
+  hold
+}
+
+/// Structured GP fields for an expression of interest (1:1 with CareerApplication when role is GP).
+model GpEoiProfile {
+  id                   String              @id @default(cuid())
+  clinicId             String              @map("clinic_id")
+  applicationId        String              @unique @map("application_id")
+  ahpraStatus          AhpraStatus         @map("ahpra_status")
+  ahpraRegistration    String?             @map("ahpra_registration") // normalised MED########## when provided
+  fellowship           FellowshipStatus
+  clinicalInterests    String[]            @default([]) @map("clinical_interests")
+  availability         AvailabilityPattern
+  preferredStartDate   DateTime?           @map("preferred_start_date") @db.Date
+  sessionsPerWeek      Int?                @map("sessions_per_week")
+  sessionNotes         String              @default("") @map("session_notes") @db.Text
+  preferredPeriods     String[]            @default([]) @map("preferred_periods") // morning|afternoon|evening
+  preferredDays        String[]            @default([]) @map("preferred_days")
+  application          CareerApplication   @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  clinic               Clinic              @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  score                GpEoiScore?
+  createdAt            DateTime            @default(now()) @map("created_at")
+  updatedAt            DateTime            @updatedAt @map("updated_at")
+
+  @@index([clinicId, preferredStartDate])
+  @@index([clinicId, fellowship])
+  @@map("gp_eoi_profiles")
+}
+
+/// Computed + optionally overridden score snapshot.
+model GpEoiScore {
+  id                    String       @id @default(cuid())
+  clinicId              String       @map("clinic_id")
+  profileId             String       @unique @map("profile_id")
+  modelVersion          String       @map("model_version") // e.g. 1.0.0
+  totalScore            Int          @map("total_score")
+  band                  EoiScoreBand
+  ahpraPoints           Int          @map("ahpra_points")
+  fellowshipPoints      Int          @map("fellowship_points")
+  interestsPoints       Int          @map("interests_points")
+  availabilityPoints    Int          @map("availability_points")
+  startDatePoints       Int          @map("start_date_points")
+  sessionPoints         Int          @map("session_points")
+  capacityFitScore      Int?         @map("capacity_fit_score") // 0–10 optional
+  hardFlags             String[]     @default([]) @map("hard_flags")
+  breakdownJson         Json         @map("breakdown_json")
+  /// Manual admin adjustment (−20..+20) with required reason.
+  manualAdjustment      Int          @default(0) @map("manual_adjustment")
+  manualAdjustmentReason String      @default("") @map("manual_adjustment_reason") @db.Text
+  adjustedTotalScore    Int          @map("adjusted_total_score")
+  scoredAt              DateTime     @default(now()) @map("scored_at")
+  scoredByUserId        String?      @map("scored_by_user_id")
+  profile               GpEoiProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  clinic                Clinic       @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  createdAt             DateTime     @default(now()) @map("created_at")
+  updatedAt             DateTime     @updatedAt @map("updated_at")
+
+  @@index([clinicId, band, adjustedTotalScore])
+  @@index([clinicId, adjustedTotalScore])
+  @@map("gp_eoi_scores")
+}
+
+/// Per-clinic weight configuration (defaults from scoring-model.json).
+model GpEoiScoringConfig {
+  id                      String   @id @default(cuid())
+  clinicId                String   @unique @map("clinic_id")
+  modelVersion            String   @default("1.0.0") @map("model_version")
+  weightAhpra             Int      @default(20) @map("weight_ahpra")
+  weightFellowship        Int      @default(20) @map("weight_fellowship")
+  weightInterests         Int      @default(15) @map("weight_interests")
+  weightAvailability      Int      @default(15) @map("weight_availability")
+  weightStartDate         Int      @default(15) @map("weight_start_date")
+  weightSessionCommitment Int      @default(15) @map("weight_session_commitment")
+  priorityInterestTags    String[] @default([]) @map("priority_interest_tags")
+  clinic                  Clinic   @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  createdAt               DateTime @default(now()) @map("created_at")
+  updatedAt               DateTime @updatedAt @map("updated_at")
+
+  @@map("gp_eoi_scoring_configs")
+}
+
+// Merge into CareerApplication:
+// gpEoiProfile GpEoiProfile?
+//
+// Merge into Clinic:
+// gpEoiProfiles GpEoiProfile[]
+// gpEoiScores GpEoiScore[]
+// gpEoiScoringConfig GpEoiScoringConfig?

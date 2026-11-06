@@ -1,0 +1,10 @@
+{
+  "id": "gp-local-continuity-network",
+  "title": "Local Continuity Network",
+  "status": "approved-implemented-synthetic",
+  "purpose": "Show how continuity operates with nearby hospitals, specialists, allied health and community services — workflow, not a directory.",
+  "forbidden": ["referral marketplace", "wait-time claims", "preferred-provider league tables", "fake named doctors"],
+  "cmsKind": "continuity_network",
+  "cmsSlug": "local-continuity-network",
+  "implementation": "apps/web/src/attraction-cms/content/continuity-network.ts"
+}

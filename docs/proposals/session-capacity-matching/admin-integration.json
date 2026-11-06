@@ -1,0 +1,42 @@
+{
+  "id": "session-capacity-match-admin-integration",
+  "version": "1.0.0",
+  "integratesWith": [
+    "admin-gp-enquiries-dashboard",
+    "gp-onboarding-workflow",
+    "gp-session-planner",
+    "consulting-capacity-planning"
+  ],
+  "adminGpEnquiries": {
+    "placement": "Detail panel section — below Session preferences",
+    "title": "Session–capacity match",
+    "trigger": "Auto-run when sessionPreferences present; manual refresh button",
+    "endpoint": "GET /api/match/enquiry/{enquiryId}",
+    "display": [
+      "compatibilityLabel (large)",
+      "perSession status chips",
+      "availableOptions list",
+      "alternativeRecommendations list",
+      "Link: Open matching engine"
+    ],
+    "actionsAllowed": [
+      "Refresh match",
+      "Copy alternatives into note",
+      "Open onboarding session_allocation stage (human gate still required)"
+    ],
+    "actionsForbidden": [
+      "Auto-write session assignments from score",
+      "Auto-change enquiry status based on compatibility",
+      "Hide hard AHPRA flags because score is high"
+    ]
+  },
+  "onboardingWorkflow": {
+    "stage": "session_allocation",
+    "use": "Show match result beside draft session plan before human gate approve_advance"
+  },
+  "localhostDeepLink": "http://127.0.0.1:4183/?enquiryId={enquiryId}",
+  "embedSnippet": {
+    "note": "Prototype: admin dashboard can iframe or fetch JSON",
+    "fetch": "GET http://127.0.0.1:4183/api/match/enquiry/enq_001"
+  }
+}

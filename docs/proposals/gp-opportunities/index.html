@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>General Practice at Woolloongabba Medical Centre | Is WMC a Fit for You?</title>
+  <meta
+    name="description"
+    content="Understand how Woolloongabba Medical Centre works — continuity, community care, facilities, flexible sessions and clinical collaboration — so you can decide if this AGPAL-accredited Brisbane practice is a fit."
+  />
+  <meta name="robots" content="noindex,nofollow" />
+  <!--
+    DESIGN PROPOSAL — not production golden master.
+    Purpose: help GPs decide suitability. Practice employer brand — NOT a recruitment website.
+    Avoid: jobs board, talent pool, “we’re hiring”, agency CTAs, % / earnings claims.
+
+    ACCESSIBILITY RECOMMENDATIONS
+    1. Keep one H1; section H2s in logical order; FAQ summaries as accessible names.
+    2. Skip link to #main; focus-visible rings on all interactive controls (min 2px offset).
+    3. Trust signals as a list with text + images that have meaningful alt (or empty alt if decorative beside text).
+    4. FAQ: native <details>/<summary>; do not remove disclosure triangles without providing aria-expanded alternative.
+    5. EOI CTA: descriptive link text (“Express interest with the practice”), not “Click here”.
+    6. Colour is not the only trust cue — pair green AGPAL text with the word “Accredited”.
+    7. Ensure 4.5:1 contrast for body (ink on warm/mist/white); navy buttons with white text.
+    8. Landmark regions: header, main, nav (on this page), complementary (trust), contentinfo optional.
+    9. If embedding the live EOI form later, associate errors with aria-describedby + role="alert".
+   10. Prefer reduced-motion: no essential info in animation; honor prefers-reduced-motion.
+
+    SCHEMA RECOMMENDATIONS
+    1. WebPage about MedicalClinic (@id #medical-clinic) — primary entity.
+    2. FAQPage for the GP decision FAQ block (keep visible Q&A text identical to JSON-LD).
+    3. BreadcrumbList: Home → About Us → Join Our Team (or this page path when published).
+    4. Do NOT emit JobPosting, JobBoard, or Occupation aggregates on this decision page.
+    5. Do NOT use EmploymentAgency or hiringOrganization that isn’t the MedicalClinic.
+    6. Optional: ItemList of “how we work” themes only if useful; avoid fake review stars.
+    7. When a real vacancy exists, JobPosting belongs on Join Our Team vacancy inject — not here.
+  -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#173044",
+            "ink-soft": "#596b78",
+            navy: "#163f62",
+            green: "#0f6b45",
+            warm: "#f5f3ee",
+            mist: "#f4f7f7",
+            line: "#dbe4e9",
+          },
+          fontFamily: {
+            display: ['"Libre Baskerville"', "Georgia", "serif"],
+            ui: ["Inter", "system-ui", "sans-serif"],
+          },
+          maxWidth: { shell: "1120px" },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["MedicalClinic", "MedicalOrganization"],
+        "@id": "https://gabbamedicalcentre.com.au/#medical-clinic",
+        "name": "Woolloongabba Medical Centre",
+        "url": "https://gabbamedicalcentre.com.au/",
+        "telephone": "+61 7 3217 3344",
+        "email": "reception@gabbamedicalcentre.com.au",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "468 Vulture Street",
+          "addressLocality": "Woolloongabba",
+          "addressRegion": "QLD",
+          "postalCode": "4102",
+          "addressCountry": "AU"
+        },
+        "medicalSpecialty": "https://schema.org/PrimaryCare",
+        "isAcceptingNewPatients": true
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://gabbamedicalcentre.com.au/join-our-team.html#gp-opportunities",
+        "url": "https://gabbamedicalcentre.com.au/join-our-team.html#gp-opportunities",
+        "name": "General Practice at Woolloongabba Medical Centre",
+        "description": "Understand how Woolloongabba Medical Centre works so you can decide if this AGPAL-accredited Brisbane practice is a fit.",
+        "isPartOf": { "@id": "https://gabbamedicalcentre.com.au/#medical-clinic" },
+        "about": { "@id": "https://gabbamedicalcentre.com.au/#medical-clinic" },
+        "mainEntity": { "@id": "https://gabbamedicalcentre.com.au/join-our-team.html#gp-opportunities-faq" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://gabbamedicalcentre.com.au/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "About Us",
+            "item": "https://gabbamedicalcentre.com.au/about-us.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Join Our Team",
+            "item": "https://gabbamedicalcentre.com.au/join-our-team.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://gabbamedicalcentre.com.au/join-our-team.html#gp-opportunities-faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is Woolloongabba Medical Centre focused on continuity of care?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Our practice culture is built around long-term patient relationships, familiarity and care that can evolve over time — not high-volume throughput alone. GPs who value continuity tend to find the strongest fit here."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What support surrounds GP consulting?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nursing support assists with treatment-room activity, preventive pathways and follow-up where appropriate. Reception manages appointments and patient flow. Practice management and AGPAL-aligned systems support privacy, safety and everyday reliability."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are flexible sessions possible?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Permanent, part-time and staged session arrangements can be discussed. Flexibility means a clear agreement on days and reliability for patients and the team — confirmed individually against rooms, nursing cover and practice need."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I bring clinical interests into general practice here?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Clinical interests that strengthen community general practice are welcome when they fit patient need, credentialing and team capacity. We remain a general practice first — interests sit inside continuity care, not instead of it."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does the practice issue Medicare provider numbers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Medicare provider numbers are issued by Services Australia. Woolloongabba Medical Centre does not issue, approve or guarantee provider numbers. We can share accurate practice location details to support your application."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do commercial arrangements work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Commercial terms are discussed privately with suitable doctors. We do not publish percentage splits or earnings claims on this page. Clarity before commitment matters more than marketing headlines."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-white font-ui text-ink antialiased">
+  <a
+    href="#main"
+    class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white"
+  >
+    Skip to content
+  </a>
+
+  <div class="border-b border-line bg-warm px-4 py-3 text-center text-sm text-ink-soft" role="note">
+    <strong class="text-ink">Design proposal</strong>
+    — GP Opportunities decision page. Practice employer brand, not a recruitment website. Not the live golden master.
+  </div>
+
+  <!-- Minimal practice chrome (not a careers portal nav) -->
+  <header class="border-b border-line bg-white">
+    <div class="mx-auto flex max-w-shell items-center justify-between gap-4 px-5 py-4 lg:px-8">
+      <p class="font-display text-sm font-bold text-ink sm:text-base">Woolloongabba Medical Centre</p>
+      <nav aria-label="On this page" class="hidden text-sm sm:block">
+        <ul class="flex flex-wrap gap-4 text-navy">
+          <li><a class="underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" href="#philosophy">Philosophy</a></li>
+          <li><a class="underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" href="#how-we-work">How we work</a></li>
+          <li><a class="underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" href="#gp-faq">FAQ</a></li>
+          <li><a class="underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" href="#express-interest">Express interest</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1" class="outline-none">
+    <!-- Hero: decision aid, not job ad -->
+    <section class="border-b border-line bg-gradient-to-b from-warm to-mist" aria-labelledby="hero-heading">
+      <div class="mx-auto grid max-w-shell gap-10 px-5 py-14 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-center lg:px-8 lg:py-20">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">
+            For general practitioners · Brisbane inner south
+          </p>
+          <h1 id="hero-heading" class="mt-4 font-display text-4xl font-bold leading-[1.08] text-ink md:text-5xl">
+            Is Woolloongabba Medical Centre a fit for how you practise?
+          </h1>
+          <p class="mt-5 max-w-xl text-lg leading-relaxed text-ink-soft">
+            This page explains how we work — continuity, community care, facilities, flexibility and clinical collaboration —
+            so you can decide whether a conversation with our practice makes sense.
+          </p>
+          <p class="mt-4 max-w-xl text-sm leading-relaxed text-ink-soft">
+            It is not a job board. We do not run a recruitment agency page. If the fit feels right, you can express interest directly with the practice.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a
+              href="#how-we-work"
+              class="inline-flex min-h-12 items-center justify-center rounded-full bg-navy px-6 text-sm font-semibold text-white transition hover:bg-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+            >
+              See how we work
+            </a>
+            <a
+              href="#express-interest"
+              class="inline-flex min-h-12 items-center justify-center rounded-full border border-line bg-white px-6 text-sm font-semibold text-navy transition hover:border-navy/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+            >
+              Express interest with the practice
+            </a>
+          </div>
+        </div>
+        <figure class="overflow-hidden rounded-[1.5rem] border border-line bg-white">
+          <img
+            src="../../old-html/assets/careers-editorial.webp"
+            alt="Consulting and team environment at Woolloongabba Medical Centre"
+            width="1600"
+            height="900"
+            class="h-full w-full object-cover"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </figure>
+      </div>
+    </section>
+
+    <!-- Trust signals -->
+    <section class="border-b border-line bg-white" aria-labelledby="trust-heading">
+      <div class="mx-auto max-w-shell px-5 py-10 lg:px-8">
+        <h2 id="trust-heading" class="sr-only">Trust signals</h2>
+        <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" role="list">
+          <li class="rounded-2xl border border-line bg-mist/50 p-5">
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Accredited</p>
+            <p class="mt-2 font-display text-lg font-bold text-ink">AGPAL-accredited general practice</p>
+            <p class="mt-2 text-sm leading-relaxed text-ink-soft">Independent assessment against RACGP Standards for general practices.</p>
+          </li>
+          <li class="rounded-2xl border border-line bg-mist/50 p-5">
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Location</p>
+            <p class="mt-2 font-display text-lg font-bold text-ink">468 Vulture Street, Woolloongabba</p>
+            <p class="mt-2 text-sm leading-relaxed text-ink-soft">Inner-south Brisbane · near major hospitals · Translink access.</p>
+          </li>
+          <li class="rounded-2xl border border-line bg-mist/50 p-5">
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Care model</p>
+            <p class="mt-2 font-display text-lg font-bold text-ink">Continuity over churn</p>
+            <p class="mt-2 text-sm leading-relaxed text-ink-soft">Long-term relationships and care that knows a patient’s story.</p>
+          </li>
+          <li class="rounded-2xl border border-line bg-mist/50 p-5">
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Team</p>
+            <p class="mt-2 font-display text-lg font-bold text-ink">Nursing · reception · practice management</p>
+            <p class="mt-2 text-sm leading-relaxed text-ink-soft">Operational support designed to protect consulting time.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="mx-auto max-w-shell space-y-20 px-5 py-14 lg:px-8 lg:py-16">
+      <!-- Philosophy -->
+      <section id="philosophy" class="scroll-mt-8" aria-labelledby="philosophy-heading">
+        <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Practice philosophy</p>
+        <h2 id="philosophy-heading" class="mt-3 font-display text-3xl font-bold text-ink md:text-[2.125rem]">
+          Care that knows your patients’ stories.
+        </h2>
+        <p class="mt-4 max-w-3xl text-base leading-relaxed text-ink-soft">
+          Woolloongabba Medical Centre is shaped by continuity, familiarity and long-term relationships.
+          We look for GPs who want to practise medicine with context — not only episodic throughput.
+          Clinical autonomy sits alongside respectful teamwork and AGPAL-aligned governance that supports safe care.
+        </p>
+        <p class="mt-4 max-w-3xl text-base leading-relaxed text-ink-soft">
+          If that philosophy does not match how you prefer to work, this may not be the right practice —
+          and that clarity is useful for everyone.
+        </p>
+      </section>
+
+      <!-- How we work: community, facilities, flexibility, interests, collaboration -->
+      <section id="how-we-work" class="scroll-mt-8" aria-labelledby="how-heading">
+        <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">How we work</p>
+        <h2 id="how-heading" class="mt-3 font-display text-3xl font-bold text-ink md:text-[2.125rem]">
+          What to expect if you practise here.
+        </h2>
+
+        <div class="mt-10 space-y-12">
+          <article class="grid gap-6 border-t border-line pt-10 lg:grid-cols-[220px_minmax(0,1fr)]" aria-labelledby="community-heading">
+            <h3 id="community-heading" class="font-display text-xl font-bold text-ink">Community care</h3>
+            <div class="max-w-2xl text-base leading-relaxed text-ink-soft">
+              <p>
+                We care for people across Woolloongabba and neighbouring inner-south suburbs.
+                Community general practice here means everyday health needs, changing life stages and
+                relationships that accumulate over years — close to where people live and work.
+              </p>
+            </div>
+          </article>
+
+          <article class="grid gap-6 border-t border-line pt-10 lg:grid-cols-[220px_minmax(0,1fr)]" aria-labelledby="facilities-heading">
+            <h3 id="facilities-heading" class="font-display text-xl font-bold text-ink">Facilities</h3>
+            <div class="max-w-2xl space-y-3 text-base leading-relaxed text-ink-soft">
+              <p>
+                Consulting environments are supported by nursing, reception and practice systems.
+                The point of facilities is practical: rooms, clinical support and administration that let you focus on patients.
+              </p>
+              <ul class="list-disc space-y-1 pl-5">
+                <li>Consulting rooms suited to continuity-based general practice</li>
+                <li>Nursing support for treatment-room and preventive pathways where appropriate</li>
+                <li>Reception managing appointments, enquiries and patient flow</li>
+                <li>Policies aligned with AGPAL expectations for privacy, safety and quality</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="grid gap-6 border-t border-line pt-10 lg:grid-cols-[220px_minmax(0,1fr)]" aria-labelledby="flexibility-heading">
+            <h3 id="flexibility-heading" class="font-display text-xl font-bold text-ink">Flexibility</h3>
+            <div class="max-w-2xl text-base leading-relaxed text-ink-soft">
+              <p>
+                Permanent sessions, part-time arrangements and staged growth can be discussed.
+                Flexibility at WMC means a clear agreement on days and reliability — for you, for patients and for the team —
+                not a casual marketplace of leftover slots. Availability depends on rooms, nursing cover and practice need.
+              </p>
+            </div>
+          </article>
+
+          <article class="grid gap-6 border-t border-line pt-10 lg:grid-cols-[220px_minmax(0,1fr)]" aria-labelledby="interests-heading">
+            <h3 id="interests-heading" class="font-display text-xl font-bold text-ink">Clinical interests</h3>
+            <div class="max-w-2xl space-y-3 text-base leading-relaxed text-ink-soft">
+              <p>
+                Interests that strengthen community general practice are welcome when they fit local need,
+                credentialing and team capacity — women’s health, skin checks, chronic disease, mental health,
+                children’s health, procedural work and preventive care among them.
+              </p>
+              <p>
+                We remain a general practice first. Interests sit inside continuity care, not instead of it.
+              </p>
+            </div>
+          </article>
+
+          <article class="grid gap-6 border-t border-line pt-10 lg:grid-cols-[220px_minmax(0,1fr)]" aria-labelledby="collab-heading">
+            <h3 id="collab-heading" class="font-display text-xl font-bold text-ink">Professional collaboration</h3>
+            <div class="max-w-2xl text-base leading-relaxed text-ink-soft">
+              <p>
+                GPs practise with clinical autonomy within Australian standards and practice policy,
+                alongside nurses, reception, practice management and allied health where relevant.
+                Collaboration means colleagues you can ask, share cases with and co-manage complex presentations —
+                without replacing your professional judgement.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- FAQs -->
+      <section id="gp-faq" class="scroll-mt-8" aria-labelledby="faq-heading">
+        <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Questions doctors ask</p>
+        <h2 id="faq-heading" class="mt-3 font-display text-3xl font-bold text-ink md:text-[2.125rem]">
+          Decide with clear answers.
+        </h2>
+        <div class="mt-8 divide-y divide-line border-y border-line">
+          <details class="group py-5">
+            <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-left font-semibold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy [&::-webkit-details-marker]:hidden">
+              <span>Is Woolloongabba Medical Centre focused on continuity of care?</span>
+              <span class="mt-1 text-ink-soft transition group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 max-w-3xl text-sm leading-relaxed text-ink-soft">
+              Yes. Our practice culture is built around long-term patient relationships, familiarity and care that can evolve over time —
+              not high-volume throughput alone. GPs who value continuity tend to find the strongest fit here.
+            </p>
+          </details>
+          <details class="group py-5">
+            <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-left font-semibold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy [&::-webkit-details-marker]:hidden">
+              <span>What support surrounds GP consulting?</span>
+              <span class="mt-1 text-ink-soft transition group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 max-w-3xl text-sm leading-relaxed text-ink-soft">
+              Nursing support assists with treatment-room activity, preventive pathways and follow-up where appropriate.
+              Reception manages appointments and patient flow. Practice management and AGPAL-aligned systems support privacy,
+              safety and everyday reliability.
+            </p>
+          </details>
+          <details class="group py-5">
+            <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-left font-semibold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy [&::-webkit-details-marker]:hidden">
+              <span>Are flexible sessions possible?</span>
+              <span class="mt-1 text-ink-soft transition group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 max-w-3xl text-sm leading-relaxed text-ink-soft">
+              Permanent, part-time and staged session arrangements can be discussed. Flexibility means a clear agreement on days
+              and reliability for patients and the team — confirmed individually against rooms, nursing cover and practice need.
+            </p>
+          </details>
+          <details class="group py-5">
+            <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-left font-semibold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy [&::-webkit-details-marker]:hidden">
+              <span>Can I bring clinical interests into general practice here?</span>
+              <span class="mt-1 text-ink-soft transition group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 max-w-3xl text-sm leading-relaxed text-ink-soft">
+              Clinical interests that strengthen community general practice are welcome when they fit patient need, credentialing
+              and team capacity. We remain a general practice first — interests sit inside continuity care, not instead of it.
+            </p>
+          </details>
+          <details class="group py-5">
+            <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-left font-semibold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy [&::-webkit-details-marker]:hidden">
+              <span>Does the practice issue Medicare provider numbers?</span>
+              <span class="mt-1 text-ink-soft transition group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 max-w-3xl text-sm leading-relaxed text-ink-soft">
+              No. Medicare provider numbers are issued by Services Australia. Woolloongabba Medical Centre does not issue,
+              approve or guarantee provider numbers. We can share accurate practice location details to support your application.
+            </p>
+          </details>
+          <details class="group py-5">
+            <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-left font-semibold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy [&::-webkit-details-marker]:hidden">
+              <span>How do commercial arrangements work?</span>
+              <span class="mt-1 text-ink-soft transition group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 max-w-3xl text-sm leading-relaxed text-ink-soft">
+              Commercial terms are discussed privately with suitable doctors. We do not publish percentage splits or earnings claims
+              on this page. Clarity before commitment matters more than marketing headlines.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <!-- EOI CTA -->
+      <section
+        id="express-interest"
+        class="scroll-mt-8 rounded-[1.5rem] border border-line bg-gradient-to-b from-warm to-mist p-8 sm:p-10"
+        aria-labelledby="eoi-heading"
+      >
+        <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Next step</p>
+        <h2 id="eoi-heading" class="mt-3 font-display text-3xl font-bold text-ink md:text-[2.125rem]">
+          If this sounds like how you want to practise, start a conversation.
+        </h2>
+        <p class="mt-4 max-w-2xl text-base leading-relaxed text-ink-soft">
+          Share a brief professional introduction with Woolloongabba Medical Centre.
+          Suitable doctors are contacted by the practice — not placed on a public job board or third-party talent pool.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a
+            href="../gp-eoi/"
+            class="inline-flex min-h-12 items-center justify-center rounded-full bg-navy px-6 text-sm font-semibold text-white transition hover:bg-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+          >
+            Express interest with the practice
+          </a>
+          <a
+            href="tel:+61732173344"
+            class="inline-flex min-h-12 items-center justify-center rounded-full border border-line bg-white px-6 text-sm font-semibold text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+          >
+            Call (07) 3217 3344
+          </a>
+        </div>
+        <p class="mt-6 max-w-2xl text-sm leading-relaxed text-ink-soft">
+          Related: <a class="font-medium text-navy underline-offset-2 hover:underline" href="../join-our-team-gp-recruitment-redesign.html">Join Our Team redesign proposal</a>
+          ·
+          <a class="font-medium text-navy underline-offset-2 hover:underline" href="/philosophy-of-care.html">Our philosophy</a>
+          ·
+          <a class="font-medium text-navy underline-offset-2 hover:underline" href="/agpal-accreditation.html">AGPAL accreditation</a>
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="border-t border-line bg-white">
+    <div class="mx-auto max-w-shell px-5 py-8 text-sm text-ink-soft lg:px-8">
+      <p class="font-medium text-ink">Woolloongabba Medical Centre</p>
+      <p class="mt-1">468 Vulture Street, Woolloongabba QLD 4102 · (07) 3217 3344</p>
+      <p class="mt-4 text-xs">
+        Proposal page for GP decision support. Not a recruitment website. Medicare provider numbers are issued by Services Australia.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

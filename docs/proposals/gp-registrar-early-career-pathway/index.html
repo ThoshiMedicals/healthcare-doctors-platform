@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registrar &amp; Early-Career GP Pathway | Woolloongabba Medical Centre</title>
+  <meta
+    name="description"
+    content="Journey map, website content and operational workflow for registrar and early-career GPs at Woolloongabba Medical Centre — training support, supervision, sessions, readiness and provider-number guidance."
+  />
+  <meta name="robots" content="noindex,nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#173044",
+            "ink-soft": "#596b78",
+            navy: "#163f62",
+            green: "#0f6b45",
+            warm: "#f5f3ee",
+            mist: "#f4f7f7",
+            line: "#dbe4e9",
+            amber: "#8a6a2f",
+          },
+          fontFamily: {
+            display: ['"Libre Baskerville"', "Georgia", "serif"],
+            ui: ["Inter", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    [data-tab].is-active { background: #163f62; color: #fff; border-color: #163f62; }
+  </style>
+</head>
+<body class="bg-mist font-ui text-ink antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white">Skip to content</a>
+
+  <div class="border-b border-line bg-warm px-4 py-3 text-center text-sm text-ink-soft" role="note">
+    <strong class="text-ink">Design proposal</strong>
+    — Registrar &amp; early-career pathway. Capacity-based intake. Not a job board. Not the live golden master.
+  </div>
+
+  <header class="border-b border-line bg-warm">
+    <div class="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+      <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Woolloongabba Medical Centre</p>
+      <h1 class="mt-2 font-display text-3xl font-bold leading-tight sm:text-4xl">Registrar &amp; early-career GP pathway</h1>
+      <p class="mt-3 max-w-2xl text-base leading-relaxed text-ink-soft">
+        Training support, supervision conversations, session progression, readiness assessment, and provider-number guidance —
+        as a journey map, website content draft, and operational workflow.
+      </p>
+      <aside class="mt-5 rounded-xl border border-navy/20 bg-white p-4 text-sm leading-relaxed" role="note">
+        <strong class="text-navy">Boundaries.</strong>
+        Registrar placements need confirmed supervisor capacity.
+        Medicare provider numbers are issued by <strong>Services Australia</strong> — WMC does not issue, approve, or guarantee them.
+        Readiness scores never auto-approve placement.
+      </aside>
+    </div>
+  </header>
+
+  <main id="main" class="mx-auto max-w-4xl px-4 py-6 sm:px-6 sm:py-8">
+    <p id="load-error" class="mb-4 hidden rounded-xl border border-red-200 bg-white p-4 text-sm text-red-800" role="alert" hidden>
+      Unable to load <code>pathway.json</code>. Serve this folder over HTTP.
+    </p>
+
+    <div class="flex flex-wrap gap-2" role="tablist" aria-label="Pathway views">
+      <button type="button" class="min-h-11 rounded-full border border-line bg-white px-4 text-sm font-semibold text-navy" data-tab="journey" aria-selected="true">Journey map</button>
+      <button type="button" class="min-h-11 rounded-full border border-line bg-white px-4 text-sm font-semibold text-navy" data-tab="website" aria-selected="false">Website content</button>
+      <button type="button" class="min-h-11 rounded-full border border-line bg-white px-4 text-sm font-semibold text-navy" data-tab="ops" aria-selected="false">Operational workflow</button>
+      <button type="button" class="min-h-11 rounded-full border border-line bg-white px-4 text-sm font-semibold text-navy" data-tab="detail" aria-selected="false">Support detail</button>
+    </div>
+
+    <section data-panel="journey" class="mt-6 space-y-4" aria-label="Journey map">
+      <h2 class="font-display text-2xl font-bold">Journey map</h2>
+      <div id="tracks-root" class="grid gap-3 sm:grid-cols-2"></div>
+      <div id="journey-root" class="space-y-3"></div>
+    </section>
+
+    <section data-panel="website" class="mt-6 hidden space-y-4" aria-label="Website content" hidden>
+      <h2 class="font-display text-2xl font-bold">Website content</h2>
+      <p class="text-sm text-ink-soft">Draft IA and practice-voice copy for a public pathway page (proposal only).</p>
+      <div id="website-root" class="space-y-4"></div>
+    </section>
+
+    <section data-panel="ops" class="mt-6 hidden space-y-4" aria-label="Operational workflow" hidden>
+      <h2 class="font-display text-2xl font-bold">Operational workflow</h2>
+      <div id="ops-root" class="space-y-3"></div>
+      <div id="raci-root" class="mt-4"></div>
+    </section>
+
+    <section data-panel="detail" class="mt-6 hidden space-y-6" aria-label="Support detail" hidden>
+      <h2 class="font-display text-2xl font-bold">Support detail</h2>
+      <div>
+        <h3 class="font-display text-lg font-bold">Training support</h3>
+        <div id="training-root" class="mt-3 space-y-2"></div>
+      </div>
+      <div>
+        <h3 class="font-display text-lg font-bold">Supervision conversations</h3>
+        <div id="supervision-root" class="mt-3 space-y-2"></div>
+      </div>
+      <div>
+        <h3 class="font-display text-lg font-bold">Session progression</h3>
+        <div id="sessions-root" class="mt-3 space-y-2"></div>
+      </div>
+      <div>
+        <h3 class="font-display text-lg font-bold">Readiness signals</h3>
+        <div id="readiness-root" class="mt-3 space-y-2"></div>
+      </div>
+      <div>
+        <h3 class="font-display text-lg font-bold">Provider-number guidance</h3>
+        <div id="pn-root" class="mt-3"></div>
+      </div>
+    </section>
+
+    <section class="mt-10 rounded-2xl border border-line bg-white p-5 text-sm text-ink-soft">
+      <p><strong class="text-ink">Related tools:</strong> EOI · Doctor Readiness · Provider Number Readiness · DPA/19AB Navigator · Onboarding workflow · First 90 Days · Opportunity Pack · FAQ.</p>
+      <p class="mt-2">Source of truth: <code class="text-ink">pathway.json</code></p>
+    </section>
+  </main>
+
+  <footer class="border-t border-line py-6">
+    <div class="mx-auto max-w-4xl px-4 text-xs text-ink-soft sm:px-6">
+      Woolloongabba Medical Centre · Registrar &amp; Early-Career Pathway v1 · Proposal prototype
+    </div>
+  </footer>
+
+  <script src="./pathway.js" defer></script>
+</body>
+</html>

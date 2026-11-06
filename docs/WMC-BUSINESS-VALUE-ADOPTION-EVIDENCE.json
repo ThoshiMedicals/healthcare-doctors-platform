@@ -1,0 +1,356 @@
+{
+  "generatedAt": "2026-11-06T03:44:04.618Z",
+  "clinic": {
+    "id": "cmv4iwlii0001vyuspwemc2yq",
+    "slug": "woolloongabba",
+    "practiceName": "Woolloongabba Medical Centre",
+    "status": "live"
+  },
+  "counts": {
+    "practitioners_all": {
+      "label": "practitioners_all",
+      "count": 16,
+      "ok": true
+    },
+    "practitioners_published": {
+      "label": "practitioners_published",
+      "count": 15,
+      "ok": true
+    },
+    "practitioners_drafting": {
+      "label": "practitioners_drafting",
+      "count": 0,
+      "ok": true
+    },
+    "pages_published": {
+      "label": "pages_published",
+      "count": 226,
+      "ok": true
+    },
+    "knowledge_articles": {
+      "label": "knowledge_articles",
+      "count": 87,
+      "ok": true
+    },
+    "knowledge_published": {
+      "label": "knowledge_published",
+      "count": 87,
+      "ok": true
+    },
+    "practice_updates": {
+      "label": "practice_updates",
+      "count": 7,
+      "ok": true
+    },
+    "practice_updates_published": {
+      "label": "practice_updates_published",
+      "count": 7,
+      "ok": true
+    },
+    "services": {
+      "label": "services",
+      "count": 29,
+      "ok": true
+    },
+    "services_published": {
+      "label": "services_published",
+      "count": 29,
+      "ok": true
+    },
+    "vacancies": {
+      "label": "vacancies",
+      "count": 4,
+      "ok": true
+    },
+    "vacancies_active": {
+      "label": "vacancies_active",
+      "count": 4,
+      "ok": true
+    },
+    "career_applications": {
+      "label": "career_applications",
+      "count": 4,
+      "ok": true
+    },
+    "form_requests": {
+      "label": "form_requests",
+      "count": 1,
+      "ok": true
+    },
+    "media_assets": {
+      "label": "media_assets",
+      "count": 37,
+      "ok": true
+    },
+    "clinics": {
+      "label": "clinics",
+      "count": 2,
+      "ok": true
+    },
+    "clinics_live": {
+      "label": "clinics_live",
+      "count": 1,
+      "ok": true
+    },
+    "clinics_draft": {
+      "label": "clinics_draft",
+      "count": 1,
+      "ok": true
+    },
+    "gp_doctor_profile_drafts": {
+      "label": "gp_doctor_profile_drafts",
+      "count": 6,
+      "ok": true
+    },
+    "gp_stories": {
+      "label": "gp_stories",
+      "count": 3,
+      "ok": true
+    },
+    "gp_readiness_packages": {
+      "label": "gp_readiness_packages",
+      "count": 2,
+      "ok": true
+    },
+    "gp_pipeline_candidates": {
+      "label": "gp_pipeline_candidates",
+      "count": null,
+      "ok": false,
+      "error": "model missing"
+    },
+    "gp_eoi": {
+      "label": "gp_eoi",
+      "count": null,
+      "ok": false,
+      "error": "model missing"
+    },
+    "attraction_documents": {
+      "label": "attraction_documents",
+      "count": 6,
+      "ok": true
+    },
+    "clinical_reviews": {
+      "label": "clinical_reviews",
+      "count": 188,
+      "ok": true
+    },
+    "cms_revisions": {
+      "label": "cms_revisions",
+      "count": 112,
+      "ok": true
+    },
+    "search_demand_signals": {
+      "label": "search_demand_signals",
+      "count": 1,
+      "ok": true
+    }
+  },
+  "extras": {
+    "gpDoctorProfileDrafts": 6,
+    "gpStories": 3,
+    "gpReadinessPackages": 2,
+    "attractionDocuments": 6,
+    "clinicalReviews": 188,
+    "searchDemandSignals": 1,
+    "contentRevisions": 112
+  },
+  "practitioners": [
+    {
+      "name": "Dr Anand Singh",
+      "slug": "dr-anand-singh",
+      "status": "published",
+      "acceptingNewPatients": true,
+      "updatedAt": "2026-11-03T12:32:19.422Z"
+    },
+    {
+      "name": "Dr Debra Larkins",
+      "slug": "dr-debra-larkins",
+      "status": "published",
+      "acceptingNewPatients": true,
+      "updatedAt": "2026-11-03T12:32:19.430Z"
+    },
+    {
+      "name": "Dr Gemunu Suresh Ranawake",
+      "slug": "dr-gemunu-suresh-ranawake",
+      "status": "on_hold",
+      "acceptingNewPatients": true,
+      "updatedAt": "2026-10-30T03:01:55.104Z"
+    },
+    {
+      "name": "Dr Golnar Mortezaei",
+      "slug": "dr-golnar-mortezaei",
+      "status": "published",
+      "acceptingNewPatients": true,
+      "updatedAt": "2026-11-06T03:35:56.932Z"
+    },
+    {
+      "name": "Dr James Chanaka",
+      "slug": "dr-james",
+      "status": "published",
+      "acceptingNewPatients": true,
+      "updatedAt": "2026-11-06T03:35:56.949Z"
+    },
+    {
+      "name": "Dr Kooshyar Karimi",
+      "slug": "dr-kooshyar-karimi",
+      "status": "published",
+      "acceptingNewPatients": true,
+      "updatedAt": "2026-11-03T12:32:19.440Z"
+    },
+    {
+      "name": "Dr Mary Abadir",
+      "slug": "dr-mary-abadir",
+      "status": "published",
+      "acceptingNewPatients": true,
+      "updatedAt": "2026-11-03T12:32:19.452Z"
+    },
+    {
+      "name": "Dr Nirupa Sivathasan",
+      "slug": "dr-nirupa-sivathasan",
+      "status": "published",
+      "acceptingNewPatients": true,
+      "updatedAt": "2026-11-03T12:32:19.459Z"
+    },
+    {
+      "name": "Dr Sambo Luon",
+      "slug": "dr-sambo-luon",
+      "status": "published",
+      "acceptingNewPatients": true,
+      "updatedAt": "2026-11-03T12:32:19.467Z"
+    },
+    {
+      "name": "Dr Steven Chang",
+      "slug": "dr-steven-chang",
+      "status": "published",
+      "acceptingNewPatients": true,
+      "updatedAt": "2026-11-03T12:32:19.475Z"
+    },
+    {
+      "name": "Dr Sumita Singh",
+      "slug": "dr-sumita-singh",
+      "status": "published",
+      "acceptingNewPatients": true,
+      "updatedAt": "2026-11-03T12:32:19.483Z"
+    },
+    {
+      "name": "Dr Tanya Goodwill",
+      "slug": "dr-tanya-goodwill",
+      "status": "published",
+      "acceptingNewPatients": true,
+      "updatedAt": "2026-11-03T12:32:19.488Z"
+    },
+    {
+      "name": "Dr Usman Gul",
+      "slug": "dr-usman-gul",
+      "status": "published",
+      "acceptingNewPatients": true,
+      "updatedAt": "2026-11-03T12:32:19.493Z"
+    },
+    {
+      "name": "Dr Wasantha Hettiarchchi",
+      "slug": "dr-wasantha-hettiarchchi",
+      "status": "published",
+      "acceptingNewPatients": true,
+      "updatedAt": "2026-11-03T12:32:19.500Z"
+    },
+    {
+      "name": "Dr Yamesha Ranatunga",
+      "slug": "dr-yamesha-ranatunga",
+      "status": "published",
+      "acceptingNewPatients": true,
+      "updatedAt": "2026-11-06T03:35:56.953Z"
+    },
+    {
+      "name": "Mr Samuel Stafford",
+      "slug": "mr-samuel-stafford",
+      "status": "published",
+      "acceptingNewPatients": true,
+      "updatedAt": "2026-11-03T12:32:19.507Z"
+    }
+  ],
+  "updates": [
+    {
+      "title": "Welcome Dr James Chanaka to Woolloongabba Medical Centre",
+      "status": "published",
+      "slug": "welcome-dr-james-chanaka",
+      "publishedAt": "2026-11-06T00:00:00.000Z",
+      "updatedAt": "2026-11-06T02:06:53.144Z"
+    },
+    {
+      "title": "Welcome Dr Golnar Mortezaei to Woolloongabba Medical Centre",
+      "status": "published",
+      "slug": "welcome-dr-golnar-mortezaei",
+      "publishedAt": "2026-11-06T00:00:00.000Z",
+      "updatedAt": "2026-11-06T02:06:53.121Z"
+    },
+    {
+      "title": "Telehealth appointments",
+      "status": "published",
+      "slug": "telehealth-appointments",
+      "publishedAt": "2026-10-01T00:00:00.000Z",
+      "updatedAt": "2026-11-03T12:32:20.826Z"
+    },
+    {
+      "title": "Appointments available seven days a week",
+      "status": "published",
+      "slug": "open-seven-days",
+      "publishedAt": "2026-10-01T00:00:00.000Z",
+      "updatedAt": "2026-11-03T12:32:20.820Z"
+    },
+    {
+      "title": "New patients are welcome",
+      "status": "published",
+      "slug": "new-patients-welcome",
+      "publishedAt": "2026-10-01T00:00:00.000Z",
+      "updatedAt": "2026-11-03T12:32:20.816Z"
+    },
+    {
+      "title": "Current billing information",
+      "status": "published",
+      "slug": "current-billing-information",
+      "publishedAt": "2026-10-01T00:00:00.000Z",
+      "updatedAt": "2026-11-03T12:32:20.803Z"
+    },
+    {
+      "title": "After-hours care when we are closed",
+      "status": "published",
+      "slug": "after-hours-care-options",
+      "publishedAt": "2026-10-01T00:00:00.000Z",
+      "updatedAt": "2026-11-03T12:32:20.791Z"
+    }
+  ],
+  "vacancies": [
+    {
+      "title": "General Practitioner (GP)",
+      "active": true,
+      "status": "now_hiring",
+      "updatedAt": "2026-11-05T04:51:22.747Z"
+    },
+    {
+      "title": "Practice Nurse",
+      "active": true,
+      "status": "now_hiring",
+      "updatedAt": "2026-11-05T04:51:22.752Z"
+    },
+    {
+      "title": "Medical Receptionist",
+      "active": true,
+      "status": "expression_of_interest",
+      "updatedAt": "2026-11-05T04:51:22.754Z"
+    },
+    {
+      "title": "Allied Health Professional",
+      "active": true,
+      "status": "expression_of_interest",
+      "updatedAt": "2026-11-05T04:51:22.756Z"
+    }
+  ],
+  "applicationCount": 4,
+  "applicationsByStatus": {
+    "new": 4
+  },
+  "draftCount": 6,
+  "draftsByStatus": {
+    "draft": 6
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "formType": "gp_expression_of_interest",
+  "clinicSlug": "woolloongabba",
+  "submittedAt": "2026-11-04T00:52:00.000Z",
+  "source": "localhost_test",
+  "applicant": {
+    "name": "Dr Alex Nguyen",
+    "email": "alex.nguyen@example.com",
+    "phone": "+61412345678"
+  },
+  "credentials": {
+    "ahpraRegistration": "MED0001234567",
+    "racgpFellowship": "yes",
+    "acrrmFellowship": "no"
+  },
+  "preferences": {
+    "specialInterests": ["womens_health", "chronic_disease"],
+    "specialInterestsOther": null,
+    "preferredStartDate": "2026-12-01"
+  },
+  "privacy": {
+    "confirmed": true,
+    "confirmedAt": "2026-11-04T00:52:00.000Z"
+  }
+}

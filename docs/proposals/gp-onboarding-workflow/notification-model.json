@@ -1,0 +1,133 @@
+{
+  "id": "wmc-gp-onboarding-notification-model",
+  "version": "1.0.0",
+  "purpose": "Prompt humans and doctors; never imply automated approval of credentials, provider numbers, or go-live.",
+  "channels": ["email", "in_app", "sms_optional"],
+  "tone": {
+    "practice": "Calm, clear, factual. No recruitment-agency urgency language.",
+    "doctor": "Respectful, actionable, boundary-aware.",
+    "forbiddenPhrases": [
+      "you have been automatically approved",
+      "provider number granted by WMC",
+      "guaranteed start date",
+      "fast-tracked placement"
+    ]
+  },
+  "events": [
+    {
+      "id": "enquiry_received",
+      "trigger": "Initial discussion logged",
+      "recipients": ["practice_manager"],
+      "doctorCopy": null,
+      "adminCopy": "New GP enquiry logged. Review and decide whether to invite an EOI.",
+      "requiresHumanFollowUp": true
+    },
+    {
+      "id": "eoi_submitted",
+      "trigger": "Doctor submits EOI",
+      "recipients": ["practice_manager", "doctor"],
+      "doctorCopy": "We have received your expression of interest. A team member will review it personally — this is not an automated decision.",
+      "adminCopy": "EOI ready for human review. Scoring aids queue order only.",
+      "requiresHumanFollowUp": true
+    },
+    {
+      "id": "eoi_decision",
+      "trigger": "Human records EOI review decision",
+      "recipients": ["doctor"],
+      "doctorCopy": "Update on your expression of interest: {{decision_summary}}. {{next_step}}",
+      "adminCopy": null,
+      "requiresHumanFollowUp": false,
+      "templatesByDecision": {
+        "progress": "We would like to continue conversations and request credential documents.",
+        "more_info": "Please provide the clarifications listed below.",
+        "pause": "We are pausing for now and will reopen if timing improves.",
+        "decline": "We are unable to progress at this time. Thank you for your interest."
+      }
+    },
+    {
+      "id": "credentials_requested",
+      "trigger": "Credential stage opened",
+      "recipients": ["doctor"],
+      "doctorCopy": "Please provide the listed documents for practice onboarding checks. External bodies (for example AHPRA) remain the credential owners.",
+      "adminCopy": "Credential request sent. Await doctor upload, then human sighting.",
+      "requiresHumanFollowUp": true
+    },
+    {
+      "id": "credentials_gate_pending",
+      "trigger": "All required doctor credential tasks marked complete",
+      "recipients": ["practice_manager"],
+      "doctorCopy": null,
+      "adminCopy": "Credential pack appears complete. Human sighting and gate approval required before advance.",
+      "requiresHumanFollowUp": true,
+      "autoApprove": false
+    },
+    {
+      "id": "provider_number_pack_ready",
+      "trigger": "Location pack marked supplied",
+      "recipients": ["doctor"],
+      "doctorCopy": "Practice location details are ready for your Services Australia application. Woolloongabba Medical Centre does not issue provider numbers.",
+      "adminCopy": null,
+      "requiresHumanFollowUp": false
+    },
+    {
+      "id": "awaiting_external_reminder",
+      "trigger": "Stage status awaiting_external beyond reminder threshold (e.g. 7 days)",
+      "recipients": ["practice_manager", "doctor"],
+      "doctorCopy": "Friendly reminder: please share any update from {{agency}} when available. Timelines are outside the practice’s control.",
+      "adminCopy": "External dependency still open ({{agency}}). Do not invent outcomes; check in with the doctor.",
+      "requiresHumanFollowUp": true,
+      "autoApprove": false
+    },
+    {
+      "id": "session_plan_proposed",
+      "trigger": "Admin drafts session plan",
+      "recipients": ["doctor"],
+      "doctorCopy": "A draft session plan is ready for your review. Please accept or request changes — allocation is confirmed only after mutual agreement.",
+      "adminCopy": null,
+      "requiresHumanFollowUp": true
+    },
+    {
+      "id": "orientation_scheduled",
+      "trigger": "Orientation date set",
+      "recipients": ["doctor", "nurse_lead", "reception_lead"],
+      "doctorCopy": "Your orientation is scheduled for {{datetime}} at Woolloongabba Medical Centre.",
+      "adminCopy": "Orientation scheduled. Confirm nursing and reception intros.",
+      "requiresHumanFollowUp": false
+    },
+    {
+      "id": "go_live_ready_for_gate",
+      "trigger": "Checklist marks ready_for_go_live",
+      "recipients": ["practice_manager", "principal_gp"],
+      "doctorCopy": "Your onboarding checklist is ready for practice review. Go-live is confirmed only after a team member authorises your first session.",
+      "adminCopy": "Go-live gate pending. Review checklist and approve or return to in_review. No automatic release.",
+      "requiresHumanFollowUp": true,
+      "autoApprove": false
+    },
+    {
+      "id": "go_live_approved",
+      "trigger": "Named human approves go-live",
+      "recipients": ["doctor", "reception_lead", "practice_manager"],
+      "doctorCopy": "Your first session is confirmed for {{first_session}}. Your day-one support contact is {{support_contact}}.",
+      "adminCopy": "Go-live approved by {{approver}}. Booking visibility should match agreed sessions.",
+      "requiresHumanFollowUp": false
+    },
+    {
+      "id": "case_paused_or_withdrawn",
+      "trigger": "Human sets paused / withdrawn / declined",
+      "recipients": ["doctor", "practice_manager"],
+      "doctorCopy": "{{status_label}}: {{human_message}}",
+      "adminCopy": "Case {{status}} recorded by {{actor}}.",
+      "requiresHumanFollowUp": false
+    }
+  ],
+  "deliveryRules": {
+    "dedupeWindowMinutes": 60,
+    "quietHoursLocal": { "start": "20:00", "end": "07:30", "tz": "Australia/Brisbane" },
+    "smsOptionalOnlyFor": ["orientation_scheduled", "go_live_approved"],
+    "auditEverySend": true
+  },
+  "antiAutomation": {
+    "rule": "Notification completion never transitions a human gate to gate_approved or live.",
+    "enforcement": "API transition endpoints ignore notification acknowledgements as approval signals."
+  }
+}

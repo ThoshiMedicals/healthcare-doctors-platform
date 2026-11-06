@@ -1,0 +1,41 @@
+{
+  "formType": "doctor_readiness_assessment",
+  "version": "1.0.0",
+  "clinicSlug": "woolloongabba",
+  "completedAt": "2026-11-04T01:00:00.000Z",
+  "answers": {
+    "ahpraStatus": "current",
+    "fellowship": "racgp",
+    "indemnity": "yes",
+    "sessionsPerWeek": "4",
+    "startWindow": "1_to_3_months",
+    "arrangement": "part_time",
+    "gpExperience": "5_plus",
+    "clinicalInterests": ["womens_health", "chronic", "mental"],
+    "continuityComfort": "high",
+    "valuesContinuity": "yes",
+    "teamBasedCare": "yes",
+    "communityGp": "yes",
+    "brisbaneBased": "yes",
+    "rightToWork": "yes",
+    "cvReady": "yes"
+  },
+  "readinessScore": 92,
+  "scoreBreakdown": {
+    "credentials": 30,
+    "availability": 21,
+    "clinical": 20,
+    "fit": 15,
+    "practical": 10
+  },
+  "readinessBand": "ready",
+  "readinessLabel": "Ready to express interest",
+  "recommendedNextAction": {
+    "id": "submit_eoi",
+    "title": "Submit a GP Expression of Interest",
+    "detail": "Your credentials, availability and practice-fit signals look strong.",
+    "href": "../gp-eoi/",
+    "cta": "Open GP Expression of Interest"
+  },
+  "guidanceNotes": []
+}

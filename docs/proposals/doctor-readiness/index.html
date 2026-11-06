@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Doctor Readiness Assessment | Woolloongabba Medical Centre</title>
+  <meta name="description" content="A short, private readiness check for GPs considering Woolloongabba Medical Centre." />
+  <meta name="robots" content="noindex,nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#173044",
+            "ink-soft": "#596b78",
+            navy: "#163f62",
+            green: "#0f6b45",
+            warm: "#f5f3ee",
+            mist: "#f4f7f7",
+            line: "#dbe4e9",
+          },
+          fontFamily: {
+            display: ['"Libre Baskerville"', "Georgia", "serif"],
+            ui: ["Inter", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-mist font-ui text-ink antialiased">
+  <a href="#wizard" class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white">
+    Skip to assessment
+  </a>
+
+  <header class="border-b border-line bg-warm">
+    <div class="mx-auto max-w-lg px-4 py-8 sm:px-6">
+      <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Woolloongabba Medical Centre</p>
+      <h1 class="mt-2 font-display text-3xl font-bold leading-tight sm:text-4xl">Doctor Readiness Assessment</h1>
+      <p class="mt-3 text-base leading-relaxed text-ink-soft">
+        A private, five-step check to see how ready you are to join a continuity-focused Brisbane general practice.
+        Not a job application — guidance only.
+      </p>
+    </div>
+  </header>
+
+  <main id="wizard" class="mx-auto max-w-lg px-4 py-6 sm:px-6 sm:py-8">
+    <!-- Progress -->
+    <div id="progress-wrap" class="mb-6" aria-label="Assessment progress">
+      <div class="mb-2 flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-ink-soft">
+        <span id="progress-label">Step 1 of 5</span>
+        <span class="normal-case tracking-normal">About 3 minutes</span>
+      </div>
+      <div class="h-2 overflow-hidden rounded-full bg-line" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20" aria-labelledby="progress-label">
+        <div id="progress-bar" class="h-full rounded-full bg-navy transition-[width] duration-300 ease-out" style="width: 20%"></div>
+      </div>
+    </div>
+
+    <div class="rounded-2xl border border-line bg-white p-5 shadow-[0_8px_24px_rgba(23,48,68,0.05)] sm:p-7">
+      <!-- Step 1: Credentials -->
+      <section data-step="credentials" class="block space-y-5" aria-labelledby="step-credentials-title">
+        <h2 id="step-credentials-title" tabindex="-1" class="font-display text-2xl font-bold outline-none">Credentials</h2>
+        <p class="text-sm text-ink-soft">Confirm registration and fellowship fundamentals.</p>
+
+        <fieldset>
+          <legend class="text-sm font-semibold">AHPRA registration status <span class="text-green" aria-hidden="true">*</span></legend>
+          <div class="mt-2 grid gap-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="ahpraStatus" value="current" /><span class="text-sm">Current / unrestricted</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="ahpraStatus" value="pending" /><span class="text-sm">Pending / in process</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="ahpraStatus" value="none" /><span class="text-sm">Not currently registered</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="ahpraStatus" role="alert"></p>
+        </fieldset>
+
+        <fieldset>
+          <legend class="text-sm font-semibold">Fellowship <span class="text-green" aria-hidden="true">*</span></legend>
+          <div class="mt-2 grid gap-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="fellowship" value="racgp" /><span class="text-sm">FRACGP</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="fellowship" value="acrrm" /><span class="text-sm">FACRRM</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="fellowship" value="both" /><span class="text-sm">Both</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="fellowship" value="in_progress" /><span class="text-sm">In progress / registrar</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="fellowship" value="none" /><span class="text-sm">Neither yet</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="fellowship" role="alert"></p>
+        </fieldset>
+
+        <fieldset>
+          <legend class="text-sm font-semibold">Professional indemnity cover <span class="text-green" aria-hidden="true">*</span></legend>
+          <div class="mt-2 grid gap-2 sm:grid-cols-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="indemnity" value="yes" /><span class="text-sm">Yes</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="indemnity" value="no" /><span class="text-sm">Not yet</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="indemnity" role="alert"></p>
+        </fieldset>
+      </section>
+
+      <!-- Step 2: Availability -->
+      <section data-step="availability" class="hidden space-y-5" hidden aria-labelledby="step-availability-title">
+        <h2 id="step-availability-title" tabindex="-1" class="font-display text-2xl font-bold outline-none">Availability</h2>
+        <p class="text-sm text-ink-soft">How you would like to consult with us.</p>
+
+        <div>
+          <label for="sessionsPerWeek" class="text-sm font-semibold">Preferred sessions per week <span class="text-green" aria-hidden="true">*</span></label>
+          <input id="sessionsPerWeek" name="sessionsPerWeek" type="number" min="1" max="10" inputmode="numeric" class="mt-2 min-h-12 w-full rounded-xl border border-line px-4 text-base focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" />
+          <p class="mt-1.5 text-xs text-ink-soft">1–10 sessions (half-days).</p>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="sessionsPerWeek" role="alert"></p>
+        </div>
+
+        <fieldset>
+          <legend class="text-sm font-semibold">Preferred start window <span class="text-green" aria-hidden="true">*</span></legend>
+          <div class="mt-2 grid gap-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="startWindow" value="within_1_month" /><span class="text-sm">Within 1 month</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="startWindow" value="1_to_3_months" /><span class="text-sm">1–3 months</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="startWindow" value="3_to_6_months" /><span class="text-sm">3–6 months</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="startWindow" value="exploring" /><span class="text-sm">Still exploring</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="startWindow" role="alert"></p>
+        </fieldset>
+
+        <fieldset>
+          <legend class="text-sm font-semibold">Arrangement of interest <span class="text-green" aria-hidden="true">*</span></legend>
+          <div class="mt-2 grid gap-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="arrangement" value="permanent" /><span class="text-sm">Permanent sessions</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="arrangement" value="part_time" /><span class="text-sm">Part-time</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="arrangement" value="flexible" /><span class="text-sm">Flexible / to discuss</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="arrangement" role="alert"></p>
+        </fieldset>
+      </section>
+
+      <!-- Step 3: Clinical -->
+      <section data-step="clinical" class="hidden space-y-5" hidden aria-labelledby="step-clinical-title">
+        <h2 id="step-clinical-title" tabindex="-1" class="font-display text-2xl font-bold outline-none">Clinical practice</h2>
+        <p class="text-sm text-ink-soft">Experience and interests that shape your consulting.</p>
+
+        <fieldset>
+          <legend class="text-sm font-semibold">GP experience <span class="text-green" aria-hidden="true">*</span></legend>
+          <div class="mt-2 grid gap-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="gpExperience" value="5_plus" /><span class="text-sm">5+ years</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="gpExperience" value="2_to_5" /><span class="text-sm">2–5 years</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="gpExperience" value="under_2" /><span class="text-sm">Under 2 years</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="gpExperience" value="registrar" /><span class="text-sm">GP registrar</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="gpExperience" role="alert"></p>
+        </fieldset>
+
+        <fieldset>
+          <legend class="text-sm font-semibold">Clinical interests <span class="text-green" aria-hidden="true">*</span></legend>
+          <p class="mt-1 text-xs text-ink-soft">Select at least one.</p>
+          <div class="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5 rounded" type="checkbox" name="clinicalInterests" value="womens_health" /><span class="text-sm">Women’s health</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5 rounded" type="checkbox" name="clinicalInterests" value="skin" /><span class="text-sm">Skin checks</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5 rounded" type="checkbox" name="clinicalInterests" value="chronic" /><span class="text-sm">Chronic disease</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5 rounded" type="checkbox" name="clinicalInterests" value="mental" /><span class="text-sm">Mental health</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5 rounded" type="checkbox" name="clinicalInterests" value="paeds" /><span class="text-sm">Children’s health</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5 rounded" type="checkbox" name="clinicalInterests" value="procedural" /><span class="text-sm">Procedural</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="clinicalInterests" role="alert"></p>
+        </fieldset>
+
+        <fieldset>
+          <legend class="text-sm font-semibold">Comfort with longitudinal / continuity care <span class="text-green" aria-hidden="true">*</span></legend>
+          <div class="mt-2 grid gap-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="continuityComfort" value="high" /><span class="text-sm">High — core to how I practise</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="continuityComfort" value="moderate" /><span class="text-sm">Moderate</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="continuityComfort" value="low" /><span class="text-sm">Prefer episodic / acute focus</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="continuityComfort" role="alert"></p>
+        </fieldset>
+      </section>
+
+      <!-- Step 4: Fit -->
+      <section data-step="fit" class="hidden space-y-5" hidden aria-labelledby="step-fit-title">
+        <h2 id="step-fit-title" tabindex="-1" class="font-display text-2xl font-bold outline-none">Practice fit</h2>
+        <p class="text-sm text-ink-soft">Alignment with how Woolloongabba Medical Centre works.</p>
+
+        <fieldset>
+          <legend class="text-sm font-semibold">Do you value continuity of care over high-volume throughput? <span class="text-green" aria-hidden="true">*</span></legend>
+          <div class="mt-2 grid gap-2 sm:grid-cols-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="valuesContinuity" value="yes" /><span class="text-sm">Yes</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="valuesContinuity" value="no" /><span class="text-sm">Not primarily</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="valuesContinuity" role="alert"></p>
+        </fieldset>
+
+        <fieldset>
+          <legend class="text-sm font-semibold">Comfortable working in a team-based practice (nursing, reception, allied health)? <span class="text-green" aria-hidden="true">*</span></legend>
+          <div class="mt-2 grid gap-2 sm:grid-cols-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="teamBasedCare" value="yes" /><span class="text-sm">Yes</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="teamBasedCare" value="no" /><span class="text-sm">Prefer solo-style</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="teamBasedCare" role="alert"></p>
+        </fieldset>
+
+        <fieldset>
+          <legend class="text-sm font-semibold">Interested in community general practice in Brisbane’s inner south? <span class="text-green" aria-hidden="true">*</span></legend>
+          <div class="mt-2 grid gap-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="communityGp" value="yes" /><span class="text-sm">Yes</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="communityGp" value="unsure" /><span class="text-sm">Unsure / exploring</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="communityGp" value="no" /><span class="text-sm">No</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="communityGp" role="alert"></p>
+        </fieldset>
+      </section>
+
+      <!-- Step 5: Practical -->
+      <section data-step="practical" class="hidden space-y-5" hidden aria-labelledby="step-practical-title">
+        <h2 id="step-practical-title" tabindex="-1" class="font-display text-2xl font-bold outline-none">Practical readiness</h2>
+        <p class="text-sm text-ink-soft">Logistics that affect a smooth start.</p>
+
+        <fieldset>
+          <legend class="text-sm font-semibold">Based in / relocating to Greater Brisbane? <span class="text-green" aria-hidden="true">*</span></legend>
+          <div class="mt-2 grid gap-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="brisbaneBased" value="yes" /><span class="text-sm">Yes — already local</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="brisbaneBased" value="relocating" /><span class="text-sm">Relocating</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="brisbaneBased" value="no" /><span class="text-sm">No</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="brisbaneBased" role="alert"></p>
+        </fieldset>
+
+        <fieldset>
+          <legend class="text-sm font-semibold">Right to work in Australia <span class="text-green" aria-hidden="true">*</span></legend>
+          <div class="mt-2 grid gap-2 sm:grid-cols-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="rightToWork" value="yes" /><span class="text-sm">Yes</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="rightToWork" value="no" /><span class="text-sm">Not yet / unsure</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="rightToWork" role="alert"></p>
+        </fieldset>
+
+        <fieldset>
+          <legend class="text-sm font-semibold">CV ready to share with the practice? <span class="text-green" aria-hidden="true">*</span></legend>
+          <div class="mt-2 grid gap-2 sm:grid-cols-2">
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="cvReady" value="yes" /><span class="text-sm">Yes</span></label>
+            <label class="flex min-h-12 items-center gap-3 rounded-xl border border-line px-3 has-[:checked]:border-navy has-[:checked]:bg-mist"><input class="h-5 w-5" type="radio" name="cvReady" value="no" /><span class="text-sm">Not yet</span></label>
+          </div>
+          <p class="mt-1.5 hidden text-sm text-red-700" data-error-for="cvReady" role="alert"></p>
+        </fieldset>
+      </section>
+
+      <!-- Results -->
+      <section data-step="results" class="hidden space-y-6" hidden aria-labelledby="step-results-title">
+        <h2 id="step-results-title" tabindex="-1" class="font-display text-2xl font-bold outline-none">Your readiness</h2>
+
+        <div class="rounded-2xl bg-gradient-to-b from-warm to-mist p-6 text-center">
+          <p class="text-xs font-semibold uppercase tracking-[0.14em] text-ink-soft">Readiness score</p>
+          <p id="readiness-score" class="mt-2 font-display text-6xl font-bold text-navy" aria-live="polite">—</p>
+          <p class="mt-1 text-sm text-ink-soft">out of 100</p>
+          <p id="readiness-band" class="mt-4 text-base font-semibold text-ink"></p>
+        </div>
+
+        <div class="rounded-2xl border border-line p-5">
+          <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Recommended next action</p>
+          <h3 id="next-action-title" class="mt-2 font-display text-xl font-bold"></h3>
+          <p id="next-action-detail" class="mt-2 text-sm leading-relaxed text-ink-soft"></p>
+          <a id="next-action-cta" href="#" class="mt-4 inline-flex min-h-12 items-center justify-center rounded-full bg-navy px-5 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"></a>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-semibold">Score breakdown</h3>
+          <ul id="score-breakdown" class="mt-3 space-y-2 border-t border-line pt-3"></ul>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-semibold">Guidance notes</h3>
+          <ul id="guidance-notes" class="mt-2 list-disc space-y-1 pl-5 text-sm text-ink-soft"></ul>
+        </div>
+
+        <div>
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h3 class="text-sm font-semibold">JSON export</h3>
+            <div class="flex flex-wrap gap-2">
+              <button id="btn-copy-json" type="button" class="min-h-10 rounded-full border border-line px-4 text-sm font-semibold text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">Copy JSON</button>
+              <button id="btn-download-json" type="button" class="min-h-10 rounded-full bg-ink px-4 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">Download JSON</button>
+            </div>
+          </div>
+          <p id="export-status" class="mt-2 text-xs text-ink-soft" role="status" aria-live="polite"></p>
+          <pre id="json-export" class="mt-3 max-h-64 overflow-auto rounded-xl bg-ink p-4 text-xs leading-relaxed text-mist"></pre>
+        </div>
+
+        <button id="btn-restart" type="button" class="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-line text-sm font-semibold text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy sm:w-auto sm:px-6">
+          Retake assessment
+        </button>
+      </section>
+
+      <p id="wizard-status" class="mt-4 text-sm text-red-700" role="status" aria-live="polite"></p>
+
+      <div id="wizard-nav" class="mt-6 flex gap-3 border-t border-line pt-5">
+        <button id="btn-back" type="button" class="inline-flex min-h-12 flex-1 items-center justify-center rounded-full border border-line text-sm font-semibold text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy disabled:cursor-not-allowed">
+          Back
+        </button>
+        <button id="btn-next" type="button" class="inline-flex min-h-12 flex-[1.4] items-center justify-center rounded-full bg-navy text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">
+          Continue
+        </button>
+      </div>
+    </div>
+
+    <p class="mt-6 text-center text-xs text-ink-soft">
+      Localhost proposal ·
+      <a class="underline" href="./scoring-model.json">Scoring model</a>
+      · Draft saved in this browser only
+    </p>
+  </main>
+
+  <script src="./wizard.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Consulting Capacity Planning — Wireframe | WMC</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#173044",
+            "ink-soft": "#596b78",
+            navy: "#163f62",
+            green: "#0f6b45",
+            warm: "#f5f3ee",
+            mist: "#f4f7f7",
+            line: "#dbe4e9",
+          },
+          fontFamily: {
+            display: ['"Libre Baskerville"', "Georgia", "serif"],
+            ui: ["Inter", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-mist font-ui text-ink antialiased">
+  <a href="#planner" class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white">Skip to planner</a>
+
+  <header class="border-b border-line bg-warm">
+    <div class="mx-auto max-w-6xl px-4 py-6 sm:px-6">
+      <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Practice operations · Wireframe</p>
+      <h1 class="mt-2 font-display text-3xl font-bold sm:text-4xl">Consulting capacity planning</h1>
+      <p class="mt-2 max-w-2xl text-sm leading-relaxed text-ink-soft">
+        Internal tool: rooms, hours, GP schedules and nursing support → available sessions, capacity %, recruitment targets.
+        Planning only — not a public recruitment page.
+      </p>
+    </div>
+  </header>
+
+  <main id="planner" class="mx-auto max-w-6xl space-y-6 px-4 py-6 sm:px-6">
+    <!-- Outputs strip -->
+    <section aria-label="Computed outputs" class="grid grid-cols-1 gap-3 sm:grid-cols-3">
+      <div class="rounded-2xl border border-line bg-white p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wide text-ink-soft">Available consulting sessions</p>
+        <p class="mt-2 font-display text-4xl font-bold text-navy" id="out-available">18</p>
+        <p class="mt-1 text-xs text-ink-soft">Room-sessions free after nursing + reserve</p>
+      </div>
+      <div class="rounded-2xl border border-line bg-white p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wide text-ink-soft">Capacity percentage</p>
+        <p class="mt-2 font-display text-4xl font-bold text-navy" id="out-pct">62.5%</p>
+        <div class="mt-3 h-2 overflow-hidden rounded-full bg-line" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62.5" aria-label="Capacity utilised">
+          <div class="h-full w-[62.5%] rounded-full bg-navy"></div>
+        </div>
+      </div>
+      <div class="rounded-2xl border border-emerald-600/30 bg-emerald-50 p-5">
+        <p class="text-[10px] font-semibold uppercase tracking-wide text-emerald-900">Recommended recruitment targets</p>
+        <p class="mt-2 font-display text-4xl font-bold text-emerald-900" id="out-targets">4</p>
+        <p class="mt-1 text-xs text-emerald-900/80">GPs @ 4 sessions each (assumption)</p>
+      </div>
+    </section>
+
+    <div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
+      <!-- Inputs -->
+      <div class="space-y-4">
+        <section class="rounded-2xl border border-line bg-white p-5 sm:p-6" aria-labelledby="inputs-heading">
+          <h2 id="inputs-heading" class="font-display text-xl font-bold">Inputs</h2>
+
+          <div class="mt-5 grid gap-6 sm:grid-cols-2">
+            <div>
+              <label for="room-count" class="text-sm font-semibold">Room count</label>
+              <input id="room-count" type="number" min="1" max="20" value="4" class="mt-2 min-h-11 w-full rounded-xl border border-line px-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" />
+              <p class="mt-1 text-xs text-ink-soft">Active consulting rooms</p>
+            </div>
+            <div>
+              <label for="target-sessions" class="text-sm font-semibold">Target sessions / recruited GP</label>
+              <input id="target-sessions" type="number" min="1" max="14" value="4" class="mt-2 min-h-11 w-full rounded-xl border border-line px-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" />
+              <p class="mt-1 text-xs text-ink-soft">Used for recruitment target math</p>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <h3 class="text-sm font-semibold">Operating hours (wireframe)</h3>
+            <ul class="mt-2 space-y-1 text-sm text-ink-soft">
+              <li>Mon–Thu 07:00–19:00 · Fri 08:00–17:00 · Sat 09:00–17:00 · Sun 09:00–15:00</li>
+            </ul>
+            <p class="mt-2 text-xs text-ink-soft">Session windows M/A/E derived from hours (editable in full build).</p>
+          </div>
+        </section>
+
+        <section class="rounded-2xl border border-line bg-white p-5 sm:p-6" aria-labelledby="schedule-heading">
+          <div class="flex items-center justify-between gap-2">
+            <h2 id="schedule-heading" class="font-display text-xl font-bold">Current GP schedules</h2>
+            <span class="rounded-full bg-mist px-3 py-1 text-[10px] font-semibold uppercase text-ink-soft">Wireframe sample</span>
+          </div>
+          <div class="mt-4 overflow-x-auto">
+            <table class="min-w-full text-left text-sm">
+              <thead>
+                <tr class="border-b border-line text-xs font-semibold uppercase tracking-wide text-ink-soft">
+                  <th class="py-2 pr-3">Doctor</th>
+                  <th class="py-2 pr-3">Room</th>
+                  <th class="py-2 pr-3">Day</th>
+                  <th class="py-2">Session</th>
+                </tr>
+              </thead>
+              <tbody class="text-ink">
+                <tr class="border-b border-line"><td class="py-2 pr-3">Dr Chen</td><td class="py-2 pr-3">Room 1</td><td class="py-2 pr-3">Mon</td><td class="py-2">Morning</td></tr>
+                <tr class="border-b border-line"><td class="py-2 pr-3">Dr Chen</td><td class="py-2 pr-3">Room 1</td><td class="py-2 pr-3">Mon</td><td class="py-2">Afternoon</td></tr>
+                <tr class="border-b border-line"><td class="py-2 pr-3">Dr Patel</td><td class="py-2 pr-3">Room 2</td><td class="py-2 pr-3">Mon</td><td class="py-2">Morning</td></tr>
+                <tr class="border-b border-line"><td class="py-2 pr-3">Dr Nguyen</td><td class="py-2 pr-3">Room 3</td><td class="py-2 pr-3">Tue</td><td class="py-2">Morning</td></tr>
+                <tr><td class="py-2 pr-3 text-ink-soft" colspan="4">+ more assignments in live tool…</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <button type="button" class="mt-4 min-h-11 rounded-full border border-line px-4 text-sm font-semibold text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">Add schedule (wireframe)</button>
+        </section>
+
+        <section class="rounded-2xl border border-line bg-white p-5 sm:p-6" aria-labelledby="nursing-heading">
+          <h2 id="nursing-heading" class="font-display text-xl font-bold">Nursing support</h2>
+          <p class="mt-1 text-sm text-ink-soft">Bottleneck: max concurrent rooms nursing can support per session.</p>
+          <div class="mt-4 grid gap-3 sm:grid-cols-3">
+            <label class="rounded-xl border border-line p-3 text-sm">
+              <span class="font-medium">Mon AM coverage</span>
+              <select class="mt-2 min-h-10 w-full rounded-lg border border-line px-2">
+                <option>Full (4 rooms)</option>
+                <option>Limited (2 rooms)</option>
+                <option>None</option>
+              </select>
+            </label>
+            <label class="rounded-xl border border-line p-3 text-sm">
+              <span class="font-medium">Mon PM coverage</span>
+              <select class="mt-2 min-h-10 w-full rounded-lg border border-line px-2">
+                <option>Full (4 rooms)</option>
+                <option selected>Limited (2 rooms)</option>
+                <option>None</option>
+              </select>
+            </label>
+            <label class="rounded-xl border border-line p-3 text-sm">
+              <span class="font-medium">Mon Eve coverage</span>
+              <select class="mt-2 min-h-10 w-full rounded-lg border border-line px-2">
+                <option>Full (4 rooms)</option>
+                <option>Limited (2 rooms)</option>
+                <option selected>None</option>
+              </select>
+            </label>
+          </div>
+        </section>
+      </div>
+
+      <!-- Heatmap + actions -->
+      <aside class="space-y-4">
+        <section class="rounded-2xl border border-line bg-white p-5" aria-labelledby="matrix-heading">
+          <h2 id="matrix-heading" class="font-display text-lg font-bold">Weekly capacity (wireframe)</h2>
+          <p class="mt-1 text-xs text-ink-soft">Green available · Yellow limited · Red full</p>
+          <div class="mt-4 grid grid-cols-4 gap-1 text-center text-[10px] font-semibold">
+            <div></div><div>Mon</div><div>Tue</div><div>Wed</div>
+            <div class="flex items-center text-left">AM</div>
+            <div class="rounded-lg border border-emerald-600/40 bg-emerald-50 px-1 py-3 text-emerald-900">2/4</div>
+            <div class="rounded-lg border border-amber-500/50 bg-amber-50 px-1 py-3 text-amber-950">1/4</div>
+            <div class="rounded-lg border border-emerald-600/40 bg-emerald-50 px-1 py-3 text-emerald-900">3/4</div>
+            <div class="flex items-center text-left">PM</div>
+            <div class="rounded-lg border border-amber-500/50 bg-amber-50 px-1 py-3 text-amber-950">1/2*</div>
+            <div class="rounded-lg border border-red-500/40 bg-red-50 px-1 py-3 text-red-900">0/4</div>
+            <div class="rounded-lg border border-emerald-600/40 bg-emerald-50 px-1 py-3 text-emerald-900">2/4</div>
+            <div class="flex items-center text-left">Eve</div>
+            <div class="rounded-lg border border-line bg-mist px-1 py-3 text-ink-soft">—</div>
+            <div class="rounded-lg border border-amber-500/50 bg-amber-50 px-1 py-3 text-amber-950">1/3</div>
+            <div class="rounded-lg border border-emerald-600/40 bg-emerald-50 px-1 py-3 text-emerald-900">2/3</div>
+          </div>
+          <p class="mt-3 text-[10px] text-ink-soft">* Nursing-limited capacity below room count</p>
+        </section>
+
+        <section class="rounded-2xl border border-line bg-white p-5">
+          <h2 class="font-display text-lg font-bold">Recruitment guidance</h2>
+          <ul class="mt-3 list-disc space-y-2 pl-5 text-sm text-ink-soft">
+            <li><strong class="text-ink">4 GP targets</strong> if each takes ~4 sessions</li>
+            <li>Reserve 2 sessions for leave/surge (wireframe)</li>
+            <li>Evening Mon blocked by nursing=none</li>
+            <li>Does not create vacancies automatically</li>
+          </ul>
+          <button type="button" class="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-full bg-navy text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">
+            Compute capacity (wireframe)
+          </button>
+          <button type="button" class="mt-2 inline-flex min-h-11 w-full items-center justify-center rounded-full border border-line text-sm font-semibold text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">
+            Save plan JSON
+          </button>
+        </section>
+      </aside>
+    </div>
+
+    <!-- Layout annotation -->
+    <section class="rounded-2xl border border-dashed border-navy/30 bg-white/70 p-5 text-sm text-ink-soft" aria-label="Wireframe notes">
+      <h2 class="font-semibold text-ink">Wireframe regions</h2>
+      <ol class="mt-2 list-decimal space-y-1 pl-5">
+        <li><strong>Output KPIs</strong> — available sessions, capacity %, recruitment targets (always visible)</li>
+        <li><strong>Inputs column</strong> — room count, hours, GP schedules table, nursing per session</li>
+        <li><strong>Matrix</strong> — weekly G/Y/R capacity with nursing asterisks</li>
+        <li><strong>Actions</strong> — compute, save plan, optional link to create Vacancy draft (human-approved)</li>
+      </ol>
+      <p class="mt-3 text-xs">Schema: <code class="text-ink">schema.prisma</code> · API: <code class="text-ink">api-design.json</code></p>
+    </section>
+  </main>
+</body>
+</html>

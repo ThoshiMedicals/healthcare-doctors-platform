@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Practice Experience Content Pack | WMC</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#173044",
+            "ink-soft": "#596b78",
+            navy: "#163f62",
+            green: "#0f6b45",
+            warm: "#f5f3ee",
+            mist: "#f4f7f7",
+            line: "#dbe4e9",
+            amber: "#8a6a2f",
+          },
+          fontFamily: {
+            display: ['"Libre Baskerville"', "Georgia", "serif"],
+            ui: ["Inter", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-mist font-ui text-ink antialiased">
+  <header class="border-b border-line bg-warm">
+    <div class="mx-auto max-w-5xl px-4 py-8 sm:px-6">
+      <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Woolloongabba Medical Centre</p>
+      <h1 class="mt-2 font-display text-3xl font-bold sm:text-4xl">Practice Experience content pack</h1>
+      <p class="mt-3 max-w-2xl text-base text-ink-soft">
+        Production pack for seven hub modules: section outlines, interview guides,
+        photography shot lists, video scripts, caption structures, and pull-quote templates.
+      </p>
+      <aside class="mt-5 rounded-xl border border-navy/20 bg-white p-4 text-sm" role="note">
+        <strong class="text-navy">Voice.</strong> Practice experience — not recruitment.
+        Default honesty line: <em>These accounts describe practice experience. They are not job advertisements.</em>
+      </aside>
+      <nav id="module-nav" class="mt-5 flex flex-wrap gap-2" aria-label="Modules"></nav>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-5xl px-4 py-8 sm:px-6">
+    <p id="status" class="text-sm text-ink-soft">Loading content pack…</p>
+    <div id="modules" class="space-y-12"></div>
+  </main>
+
+  <script>
+    const ARTIFACTS = [
+      ["sectionOutline", "Section outline"],
+      ["interviewGuide", "Interview guide"],
+      ["photographyShotList", "Photography shot list"],
+      ["videoScript", "Video script"],
+      ["captionStructures", "Caption structures"],
+      ["pullQuoteTemplates", "Pull-quote templates"],
+    ];
+
+    function esc(s) {
+      return String(s ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;");
+    }
+
+    function renderModule(m) {
+      const outline = (m.sectionOutline.blocks || [])
+        .map(
+          (b) =>
+            `<div class="rounded-xl border border-line bg-mist p-3"><p class="text-xs font-semibold uppercase tracking-wide text-green">${esc(b.heading)}</p><ul class="mt-2 list-disc space-y-1 pl-4 text-sm text-ink-soft">${(b.points || []).map((p) => `<li>${esc(p)}</li>`).join("")}</ul></div>`
+        )
+        .join("");
+
+      const qs = (m.interviewGuide.coreQuestions || [])
+        .map(
+          (q) =>
+            `<li class="rounded-lg border border-line bg-white p-3"><p class="text-xs font-semibold text-navy">${esc(q.id)}</p><p class="mt-1 text-sm">${esc(q.ask)}</p><p class="mt-1 text-xs text-ink-soft">Probe: ${esc(q.probe)}</p></li>`
+        )
+        .join("");
+
+      const shots = (m.photographyShotList || [])
+        .map(
+          (s) =>
+            `<tr class="border-b border-line"><td class="px-3 py-2 font-medium">${esc(s.shotId)}</td><td class="px-3 py-2">${esc(s.assetRef)}</td><td class="px-3 py-2">${esc(s.frame)}</td><td class="px-3 py-2 text-xs text-ink-soft">${esc(s.alt)}</td></tr>`
+        )
+        .join("");
+
+      const beats = (m.videoScript.beats || [])
+        .map(
+          (b) =>
+            `<li class="grid gap-1 border-b border-line py-3 sm:grid-cols-[100px_1fr]"><span class="text-xs font-semibold text-amber">${esc(b.tc)}</span><span><span class="block text-sm font-medium">${esc(b.visual)}</span><span class="block text-sm text-ink-soft">${esc(b.voOrCaption)}</span></span></li>`
+        )
+        .join("");
+
+      const caps = Object.entries(m.captionStructures || {})
+        .map(([k, v]) => {
+          const body = Array.isArray(v)
+            ? `<ul class="mt-1 list-disc pl-4 text-sm text-ink-soft">${v.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`
+            : `<p class="mt-1 text-sm text-ink-soft">${esc(v)}</p>`;
+          return `<div class="rounded-xl border border-line p-3"><p class="text-xs font-semibold uppercase tracking-wide text-ink-soft">${esc(k)}</p>${body}</div>`;
+        })
+        .join("");
+
+      const quotes = (m.pullQuoteTemplates || [])
+        .map(
+          (q) =>
+            `<blockquote class="rounded-xl border border-navy/15 bg-warm p-4"><p class="font-display text-lg leading-snug">“${esc(q.template)}”</p><p class="mt-2 text-xs text-ink-soft">${esc(q.id)}${q.slots?.length ? " · slots: " + q.slots.join(", ") : ""}</p></blockquote>`
+        )
+        .join("");
+
+      return `
+        <article id="${esc(m.id)}" class="scroll-mt-6 rounded-2xl border border-line bg-white p-5 sm:p-7">
+          <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Module ${esc(String(m.order).padStart(2, "0"))}</p>
+          <h2 class="mt-1 font-display text-2xl font-bold">${esc(m.label)}</h2>
+          <p class="mt-1 text-sm text-ink-soft">Hub H2: ${esc(m.hubTitle)} · ${esc(m.pairingHint)}</p>
+
+          <h3 class="mt-6 font-display text-lg font-bold">Section outline</h3>
+          <p class="mt-1 text-sm text-ink-soft">${esc(m.sectionOutline.ledeBrief)} <span class="text-xs">(${esc(m.sectionOutline.ledeWords)}w lede)</span></p>
+          <div class="mt-3 grid gap-2 sm:grid-cols-2">${outline}</div>
+
+          <h3 class="mt-8 font-display text-lg font-bold">Interview guide</h3>
+          <p class="mt-1 text-sm text-ink-soft">${esc(m.interviewGuide.durationMin)} min · ${esc((m.interviewGuide.roles || []).join(" · "))} · ${esc(m.interviewGuide.consentNote)}</p>
+          <ol class="mt-3 space-y-2">${qs}</ol>
+
+          <h3 class="mt-8 font-display text-lg font-bold">Photography shot list</h3>
+          <div class="mt-3 overflow-x-auto rounded-xl border border-line">
+            <table class="min-w-full text-left text-sm"><thead class="bg-warm text-xs uppercase tracking-wide text-ink-soft"><tr><th class="px-3 py-2">Shot</th><th class="px-3 py-2">Asset</th><th class="px-3 py-2">Frame</th><th class="px-3 py-2">Alt</th></tr></thead><tbody>${shots}</tbody></table>
+          </div>
+
+          <h3 class="mt-8 font-display text-lg font-bold">Video script · ${esc(m.videoScript.title)}</h3>
+          <p class="mt-1 text-sm text-ink-soft">${esc(m.videoScript.durationSec)}s · ${esc(m.videoScript.format)}</p>
+          <ul class="mt-3">${beats}</ul>
+
+          <h3 class="mt-8 font-display text-lg font-bold">Caption structures</h3>
+          <div class="mt-3 grid gap-2 sm:grid-cols-2">${caps}</div>
+
+          <h3 class="mt-8 font-display text-lg font-bold">Pull-quote templates</h3>
+          <div class="mt-3 space-y-3">${quotes}</div>
+        </article>`;
+    }
+
+    async function boot() {
+      const pack = await fetch("./content-pack.json").then((r) => r.json());
+      document.getElementById("status").textContent = `${pack.id} · v${pack.version} · ${pack.modules.length} modules`;
+      document.getElementById("module-nav").innerHTML = pack.modules
+        .map(
+          (m) =>
+            `<a class="min-h-11 inline-flex items-center rounded-lg border border-line bg-white px-3 text-sm font-medium text-navy" href="#${m.id}">${m.label}</a>`
+        )
+        .join("");
+      document.getElementById("modules").innerHTML = pack.modules.map(renderModule).join("");
+    }
+
+    boot().catch((err) => {
+      document.getElementById("status").textContent =
+        `Open via local static server if fetch fails (${err.message}). Or run: npx --yes serve -p 4198 .`;
+    });
+  </script>
+</body>
+</html>

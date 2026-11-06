@@ -1,0 +1,66 @@
+{
+  "page": "docs/proposals/gp-opportunities/index.html",
+  "purpose": "Help GPs decide whether WMC is a suitable practice — employer brand decision page, not a recruitment website.",
+  "accessibility": [
+    {
+      "id": "landmarks",
+      "recommendation": "Use header, main, nav, and footer landmarks; keep a single H1 in the hero."
+    },
+    {
+      "id": "skip-link",
+      "recommendation": "Retain skip link to #main; ensure main is focusable (tabindex=-1) for skip target."
+    },
+    {
+      "id": "focus",
+      "recommendation": "Keep visible focus-visible rings on links, buttons and FAQ summaries; minimum 44px touch targets."
+    },
+    {
+      "id": "faq",
+      "recommendation": "Prefer native details/summary for FAQ; keep visible answer text identical to FAQPage schema."
+    },
+    {
+      "id": "trust-colour",
+      "recommendation": "Do not rely on colour alone for AGPAL/trust — keep the word Accredited in text."
+    },
+    {
+      "id": "cta-names",
+      "recommendation": "Use descriptive CTAs such as Express interest with the practice — avoid Click here / Apply now agency tone."
+    },
+    {
+      "id": "motion",
+      "recommendation": "No essential information in animation; respect prefers-reduced-motion if motion is added later."
+    },
+    {
+      "id": "images",
+      "recommendation": "Hero image needs meaningful alt describing the clinical environment; decorative images use empty alt."
+    }
+  ],
+  "schema": [
+    {
+      "id": "webpage",
+      "recommendation": "WebPage about MedicalClinic (#medical-clinic)."
+    },
+    {
+      "id": "faqpage",
+      "recommendation": "FAQPage for decision FAQs; sync DOM text with JSON-LD acceptedAnswer text."
+    },
+    {
+      "id": "breadcrumb",
+      "recommendation": "BreadcrumbList Home → About Us → Join Our Team."
+    },
+    {
+      "id": "do-not-emit",
+      "recommendation": "Do not emit JobPosting, JobBoard, Occupation, or EmploymentAgency on this page."
+    },
+    {
+      "id": "vacancies",
+      "recommendation": "Active JobPosting belongs only on Join Our Team when CMS injects a live vacancy."
+    }
+  ],
+  "copyGuards": [
+    "No talent community / pipeline / we’re hiring agency language",
+    "No public percentage or earnings claims",
+    "Explicit: practice does not issue Medicare provider numbers",
+    "Frame as suitability decision, not a careers marketplace"
+  ]
+}

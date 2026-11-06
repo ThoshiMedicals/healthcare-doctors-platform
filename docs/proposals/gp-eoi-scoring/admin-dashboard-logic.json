@@ -1,0 +1,148 @@
+{
+  "title": "Admin dashboard logic — GP EOI scoring",
+  "surface": "/admin/careers/applications (GP filter) + /admin/careers/gp-eoi-queue",
+  "principles": [
+    "Score prioritises human review order; it does not change status automatically",
+    "Hard flags surface first even when total score is mid-range",
+    "Practice managers can adjust ±20 with mandatory reason (audited)",
+    "Capacity fit is advisory when Room Capacity API is available"
+  ],
+  "ingestion": {
+    "onGpEoiSubmit": [
+      "Create CareerApplication (roleInterest=General Practitioner, source=gp_eoi)",
+      "Create GpEoiProfile from structured fields",
+      "Run scoreGpEoi(profile, clinicConfig) → GpEoiScore",
+      "Write auditLog career_application.gp_eoi_scored",
+      "Notify practice (existing career application notify) including band + totalScore"
+    ],
+    "onProfileUpdate": [
+      "Recompute score",
+      "Preserve manualAdjustment unless admin clears it",
+      "Recalculate adjustedTotalScore = clamp(totalScore + manualAdjustment, 0, 100)",
+      "Re-derive band from adjustedTotalScore"
+    ]
+  },
+  "queueViews": {
+    "defaultSort": [
+      { "field": "hardFlags.length", "dir": "desc" },
+      { "field": "adjustedTotalScore", "dir": "desc" },
+      { "field": "preferredStartDate", "dir": "asc" },
+      { "field": "createdAt", "dir": "asc" }
+    ],
+    "filters": [
+      "band",
+      "fellowship",
+      "ahpraStatus",
+      "sessionsPerWeek range",
+      "startDate window",
+      "status (CareerApplicationStatus)",
+      "assignedToUserId",
+      "hardFlag present"
+    ],
+    "columns": [
+      "name",
+      "adjustedTotalScore",
+      "band",
+      "ahpraStatus",
+      "fellowship",
+      "sessionsPerWeek",
+      "preferredStartDate",
+      "clinicalInterests (chips)",
+      "hardFlags",
+      "application.status",
+      "assignedTo",
+      "createdAt"
+    ]
+  },
+  "bandActions": {
+    "priority_review": {
+      "slaBusinessDays": 2,
+      "suggestedStatus": "reviewing",
+      "ui": "Highlight row; show 'Offer conversation' primary action"
+    },
+    "standard_review": {
+      "slaBusinessDays": 7,
+      "suggestedStatus": "new",
+      "ui": "Include in weekly triage list"
+    },
+    "nurture": {
+      "slaBusinessDays": 10,
+      "suggestedStatus": "new",
+      "ui": "Show 'Request clarification' template (AHPRA/sessions/start)"
+    },
+    "hold": {
+      "slaBusinessDays": null,
+      "suggestedStatus": "new",
+      "ui": "Acknowledgement only; block interview CTA until hard flags cleared"
+    }
+  },
+  "detailPanel": {
+    "sections": [
+      "Score breakdown bars (6 factors)",
+      "Hard flags callout",
+      "Capacity fit (if computed) vs preferred days/periods",
+      "Manual adjustment control + reason",
+      "Application message / resume",
+      "Status workflow (existing CareerApplication statuses)",
+      "Audit trail of score recomputes and adjustments"
+    ],
+    "forbiddenAutomations": [
+      "Auto-set status=rejected from score",
+      "Auto-create Vacancy",
+      "Auto-send offer",
+      "Display public % commercial terms"
+    ]
+  },
+  "scoringService": {
+    "function": "scoreGpEoi(profile, config, options?: { capacityOverlap?: number })",
+    "returns": {
+      "totalScore": "0-100",
+      "band": "EoiScoreBand",
+      "factorPoints": "record",
+      "hardFlags": "string[]",
+      "capacityFitScore": "0-10 | null",
+      "breakdownJson": "opaque audit payload"
+    },
+    "pseudocode": [
+      "points.ahpra = map[ahpraStatus]",
+      "points.fellowship = map[fellowship]",
+      "points.interests = interestOverlapScore(interests, config.priorityInterestTags)",
+      "points.availability = map[availability]",
+      "points.startDate = startDateRule(preferredStartDate, today)",
+      "points.sessions = sessionCommitmentRule(sessionsPerWeek)",
+      "hardFlags = collect(AHPRA_REQUIRED if not_registered, REGISTRAR_CAPACITY_CHECK if in_progress)",
+      "total = min(100, sum(points))",
+      "band = bandFor(total)",
+      "capacityFitScore = optionalOverlapToTen(capacityOverlap)",
+      "adjusted = clamp(total + manualAdjustment, 0, 100)"
+    ]
+  },
+  "dashboardWidgets": [
+    {
+      "id": "gp_eoi_band_counts",
+      "type": "stat_row",
+      "query": "count by band where application.status in (new, reviewing)"
+    },
+    {
+      "id": "gp_eoi_sla_breach",
+      "type": "list",
+      "query": "priority_review and updatedAt older than 2 business days and status=new"
+    },
+    {
+      "id": "gp_eoi_hard_flags",
+      "type": "list",
+      "query": "hardFlags not empty and status not in (rejected, closed, hired)"
+    },
+    {
+      "id": "gp_eoi_avg_score_7d",
+      "type": "stat",
+      "query": "avg(adjustedTotalScore) created last 7 days"
+    }
+  ],
+  "permissions": {
+    "viewQueue": ["practice_manager", "admin"],
+    "adjustScore": ["practice_manager", "admin"],
+    "changeStatus": ["practice_manager", "admin"],
+    "editWeights": ["admin"]
+  }
+}

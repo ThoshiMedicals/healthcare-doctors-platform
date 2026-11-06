@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Onboarding Support Admin Checklist | WMC</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#173044",
+            "ink-soft": "#596b78",
+            navy: "#163f62",
+            green: "#0f6b45",
+            warm: "#f5f3ee",
+            mist: "#f4f7f7",
+            line: "#dbe4e9",
+            amber: "#8a6a2f",
+          },
+          fontFamily: {
+            display: ['"Libre Baskerville"', "Georgia", "serif"],
+            ui: ["Inter", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-mist font-ui text-ink antialiased">
+  <header class="border-b border-line bg-warm">
+    <div class="mx-auto max-w-2xl px-4 py-8 sm:px-6">
+      <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Internal · Woolloongabba Medical Centre</p>
+      <h1 class="mt-2 font-display text-3xl font-bold">Onboarding support checklist</h1>
+      <p class="mt-3 text-sm leading-relaxed text-ink-soft">
+        Deliver practice support consistently. Tick practice-owned items only.
+        External agency outcomes are tracked — never “approved by WMC”.
+      </p>
+      <a class="mt-4 inline-flex min-h-11 items-center text-sm font-medium text-navy underline-offset-2 hover:underline" href="/">← Doctor-facing matrix</a>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-2xl px-4 py-6 sm:px-6">
+    <aside class="mb-6 rounded-xl border border-amber/40 bg-white p-4 text-sm" role="note">
+      <strong class="text-amber">Boundary reminder.</strong>
+      Do not promise provider numbers, visas, DPA/s19AB outcomes, earnings, or patient volume.
+    </aside>
+    <div id="checklist-root" class="space-y-6" aria-busy="true">
+      <p class="text-sm text-ink-soft">Loading checklist…</p>
+    </div>
+    <section class="mt-8 rounded-xl border border-line bg-white p-5" aria-labelledby="lang-title">
+      <h2 id="lang-title" class="font-display text-lg font-bold">Language guardrails</h2>
+      <div id="language-root" class="mt-3 grid gap-4 sm:grid-cols-2 text-sm"></div>
+    </section>
+  </main>
+
+  <script>
+    (async () => {
+      const root = document.getElementById("checklist-root");
+      const langRoot = document.getElementById("language-root");
+      try {
+        const res = await fetch("/api/admin-checklist");
+        if (!res.ok) throw new Error("Failed to load checklist");
+        const data = await res.json();
+        root.setAttribute("aria-busy", "false");
+        root.innerHTML = data.sections
+          .map((section) => {
+            const items = section.items
+              .map((item) => {
+                const badge =
+                  item.type === "boundary"
+                    ? "border-amber/40 text-amber"
+                    : item.type === "external_track"
+                      ? "border-navy/30 text-navy"
+                      : "border-green/30 text-green";
+                const label =
+                  item.type === "boundary"
+                    ? "Boundary"
+                    : item.type === "external_track"
+                      ? "Track external"
+                      : "Practice";
+                return `<li class="flex gap-3 rounded-xl border border-line bg-white p-3">
+                  <input type="checkbox" class="mt-1 h-5 w-5 shrink-0" id="${item.id}" />
+                  <label for="${item.id}" class="min-w-0 flex-1">
+                    <span class="block text-sm leading-snug">${item.task}</span>
+                    <span class="mt-1 inline-flex rounded-full border px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide ${badge}">${label}</span>
+                    <span class="ml-2 text-[11px] text-ink-soft">${item.owner}</span>
+                  </label>
+                </li>`;
+              })
+              .join("");
+            return `<section aria-labelledby="sec-${section.id}">
+              <h2 id="sec-${section.id}" class="font-display text-xl font-bold">${section.title}</h2>
+              <ul class="mt-3 space-y-2">${items}</ul>
+            </section>`;
+          })
+          .join("");
+
+        langRoot.innerHTML = `
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wide text-amber">Avoid</p>
+            <ul class="mt-2 list-disc space-y-1 pl-4 text-ink-soft">${data.languageDoNotUse.map((t) => `<li>${t}</li>`).join("")}</ul>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wide text-green">Prefer</p>
+            <ul class="mt-2 list-disc space-y-1 pl-4 text-ink-soft">${data.languagePrefer.map((t) => `<li>${t}</li>`).join("")}</ul>
+          </div>`;
+      } catch (err) {
+        root.innerHTML = `<p class="text-sm text-red-700" role="alert">Could not load checklist. Start the local server (<code>node server.mjs</code>).</p>`;
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+// Proposal — DPA / 19AB Eligibility Navigator persistence
+// Stores exploration sessions for optional admin review — NOT eligibility determinations.
+
+enum NavigatorFellowshipStatus {
+  fracgp
+  facrrm
+  both
+  in_progress
+  none
+}
+
+enum PrimaryDegreeCountryGroup {
+  australia_nz
+  competent_authority_comparable
+  other_international
+  unsure
+}
+
+enum NavigatorWorkLocation {
+  brisbane_inner_south
+  greater_brisbane
+  other_qld
+  other_australia
+  overseas
+  not_working
+}
+
+enum NavigatorProviderNumberStatus {
+  active
+  applied
+  none
+  unsure
+}
+
+enum NavigatorMedicareExperience {
+  extensive
+  moderate
+  limited
+  none
+}
+
+enum AustralianTrainingPathway {
+  agpt_or_college_australian
+  otd_img_pathway
+  specialist_pathway
+  unsure
+  not_applicable
+}
+
+enum VisaWorkRightsStatus {
+  citizen_pr
+  temporary_with_work_rights
+  applying
+  unsure
+}
+
+enum DpaAwarenessLevel {
+  reviewed_official
+  heard_of
+  not_familiar
+}
+
+enum NavigatorSessionStatus {
+  in_progress
+  completed
+  shared_with_practice
+  archived
+}
+
+model Dpa19abNavigatorSession {
+  id                       String                       @id @default(cuid())
+  clinicId                 String                       @map("clinic_id")
+  status                   NavigatorSessionStatus       @default(in_progress)
+  /// Explicit acknowledgements — required before result.
+  acknowledgedNonAdvisory  Boolean                      @map("acknowledged_non_advisory")
+  fellowshipStatus         NavigatorFellowshipStatus?   @map("fellowship_status")
+  primaryDegreeCountry     PrimaryDegreeCountryGroup?   @map("primary_degree_country")
+  currentWorkLocation      NavigatorWorkLocation?       @map("current_work_location")
+  providerNumberStatus     NavigatorProviderNumberStatus? @map("provider_number_status")
+  medicareBillingExperience NavigatorMedicareExperience? @map("medicare_billing_experience")
+  australianTrainingPathway AustralianTrainingPathway?  @map("australian_training_pathway")
+  visaWorkRightsStatus     VisaWorkRightsStatus?        @map("visa_work_rights_status")
+  dpaAwareness             DpaAwarenessLevel?           @map("dpa_awareness")
+  pathwayThemes            String[]                     @default([]) @map("pathway_themes")
+  resultJson               Json?                        @map("result_json")
+  /// Optional link if doctor later submits EOI
+  careerApplicationId      String?                      @unique @map("career_application_id")
+  adminNotes               String                       @default("") @map("admin_notes") @db.Text
+  reviewedAt               DateTime?                    @map("reviewed_at")
+  reviewedByUserId         String?                      @map("reviewed_by_user_id")
+  clinic                   Clinic                       @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  createdAt                DateTime                     @default(now()) @map("created_at")
+  updatedAt                DateTime                     @updatedAt @map("updated_at")
+  completedAt              DateTime?                    @map("completed_at")
+
+  @@index([clinicId, status, createdAt])
+  @@index([clinicId, completedAt])
+  @@map("dpa_19ab_navigator_sessions")
+}
+
+// Clinic relation:
+// dpa19abNavigatorSessions Dpa19abNavigatorSession[]

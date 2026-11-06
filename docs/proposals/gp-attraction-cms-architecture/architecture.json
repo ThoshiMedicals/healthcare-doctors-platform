@@ -1,0 +1,42 @@
+{
+  "id": "wmc-gp-attraction-cms-architecture",
+  "version": "1.0.0-phase1",
+  "phase": 1,
+  "productionPublish": false,
+  "models": [
+    "AttractionDocument",
+    "AttractionRevision",
+    "AttractionApprovalEvent",
+    "AttractionSchemaValidation",
+    "AttractionAsset"
+  ],
+  "kinds": [
+    "opportunities",
+    "faq",
+    "practice_experience",
+    "registrar_pathway",
+    "story",
+    "catchment_analysis",
+    "continuity_network",
+    "clinical_interests"
+  ],
+  "states": [
+    "drafting",
+    "in_review",
+    "approved",
+    "scheduled",
+    "published",
+    "review_due",
+    "on_hold",
+    "archived"
+  ],
+  "phase1BlockedStates": ["scheduled", "published"],
+  "humanApprovalsOnly": true,
+  "immutableRevisions": true,
+  "related": {
+    "storyCapture": "docs/proposals/gp-story-capture-system/",
+    "assetLibrary": "docs/proposals/gp-attraction-asset-library/ (planned) + AttractionAsset table",
+    "governance": "docs/proposals/gp-attraction-content-governance/governance.json",
+    "implementation": "docs/WMC-GP-ATTRACTION-CMS-PHASE1.md"
+  }
+}

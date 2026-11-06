@@ -1,0 +1,68 @@
+{
+  "title": "DPA & 19AB Eligibility Navigator — UX journey",
+  "clinic": "Woolloongabba Medical Centre",
+  "version": "1.0.0",
+  "purpose": "Help prospective doctors explore potential pathway questions before an EOI — without determining eligibility or giving legal/migration advice.",
+  "tone": "Professional healthcare · transparent · practice-helpful · non-advisory",
+  "disclaimers": {
+    "alwaysVisible": [
+      "This navigator does not determine your eligibility under DPA or Health Insurance Act s19AB.",
+      "It does not provide legal advice or migration advice.",
+      "Official decisions are made by Services Australia / relevant government programs — not Woolloongabba Medical Centre.",
+      "WMC can share practice location details and discuss onboarding; it cannot grant exemptions or issue provider numbers."
+    ]
+  },
+  "stages": [
+    {
+      "id": "orient",
+      "name": "Orient",
+      "goal": "Set expectations: exploration tool, not an eligibility decision.",
+      "screens": ["landing_disclaimer"],
+      "exitCriteria": "Doctor acknowledges non-advisory notice"
+    },
+    {
+      "id": "capture",
+      "name": "Capture",
+      "goal": "Collect pathway-relevant facts the doctor already knows.",
+      "screens": [
+        "fellowship_status",
+        "primary_degree_country",
+        "current_work_location",
+        "provider_number_status",
+        "medicare_billing_experience",
+        "australian_training_pathway",
+        "visa_work_rights",
+        "dpa_awareness"
+      ],
+      "exitCriteria": "All required fields valid"
+    },
+    {
+      "id": "summarise",
+      "name": "Summarise",
+      "goal": "Show pathway themes, discussion questions, docs, SA links, next action.",
+      "screens": ["result"],
+      "exitCriteria": "Doctor chooses EOI, save JSON, or revisit answers"
+    },
+    {
+      "id": "handoff",
+      "name": "Handoff",
+      "goal": "Optional EOI or call — practice conversation, not automated determination.",
+      "screens": ["express_interest_cta"],
+      "exitCriteria": "EOI started or session ended"
+    }
+  ],
+  "resultModules": [
+    "pathwaySummary",
+    "questionsForWmc",
+    "documentationChecklist",
+    "servicesAustraliaResources",
+    "recommendedNextAction"
+  ],
+  "mobileRules": [
+    "One primary question group per step",
+    "Sticky disclaimer compact on scroll",
+    "Native fieldsets + 44px targets",
+    "Progress = step N of capture count",
+    "Results stacked; CTAs thumb-reachable"
+  ]
+}

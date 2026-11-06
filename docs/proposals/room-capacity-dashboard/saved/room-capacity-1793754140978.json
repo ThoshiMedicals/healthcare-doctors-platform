@@ -1,0 +1,45 @@
+{
+  "formType": "room_capacity_dashboard",
+  "version": "1.0.0",
+  "clinicSlug": "woolloongabba",
+  "exportedAt": "2026-11-04T01:10:00.000Z",
+  "inputs": {
+    "availableRooms": [
+      {
+        "id": "room-1",
+        "name": "Consulting Room 1",
+        "active": true
+      }
+    ],
+    "availableSessions": {
+      "mon": [
+        "morning"
+      ]
+    },
+    "existingDoctorSchedules": []
+  },
+  "outputs": {
+    "availableCapacity": {
+      "activeRooms": 1,
+      "roomSessionSlotsOffered": 1,
+      "roomSessionSlotsUsed": 0,
+      "roomSessionSlotsFree": 1,
+      "utilisationPercent": 0,
+      "slotStatusCounts": {
+        "available": 1,
+        "limited": 0,
+        "full": 0
+      }
+    },
+    "potentialPlacementOptions": {
+      "openPlacements": [],
+      "roomBundles": []
+    },
+    "slotMatrix": []
+  },
+  "legend": {
+    "green": "available",
+    "yellow": "limited",
+    "red": "full"
+  }
+}

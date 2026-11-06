@@ -1,0 +1,216 @@
+{
+  "compatibilityScore": 82,
+  "compatibilityLabel": "82% compatibility",
+  "doctorDisplayName": "Example GP",
+  "enquiryId": null,
+  "preferredSessions": [
+    "Mon PM",
+    "Wed AM",
+    "Fri PM"
+  ],
+  "perSession": [
+    {
+      "key": "monday_afternoon",
+      "label": "Mon PM",
+      "dayOfWeek": "monday",
+      "period": "afternoon",
+      "status": "available",
+      "weight": 1,
+      "freeEffectiveSlots": 3,
+      "offeredSlots": 4,
+      "usedSlots": 1,
+      "existingGps": [
+        "Dr Chen"
+      ],
+      "nursing": "full",
+      "startsAt": "13:00",
+      "endsAt": "17:30"
+    },
+    {
+      "key": "wednesday_morning",
+      "label": "Wed AM",
+      "dayOfWeek": "wednesday",
+      "period": "morning",
+      "status": "limited",
+      "weight": 0.46,
+      "freeEffectiveSlots": 1,
+      "offeredSlots": 2,
+      "usedSlots": 1,
+      "existingGps": [
+        "Dr Lee"
+      ],
+      "nursing": "limited",
+      "startsAt": "08:00",
+      "endsAt": "12:30"
+    },
+    {
+      "key": "friday_afternoon",
+      "label": "Fri PM",
+      "dayOfWeek": "friday",
+      "period": "afternoon",
+      "status": "available",
+      "weight": 1,
+      "freeEffectiveSlots": 3,
+      "offeredSlots": 4,
+      "usedSlots": 1,
+      "existingGps": [
+        "Dr Lee"
+      ],
+      "nursing": "full",
+      "startsAt": "13:00",
+      "endsAt": "17:00"
+    }
+  ],
+  "availableOptions": [
+    {
+      "key": "monday_afternoon",
+      "label": "Mon PM",
+      "status": "available",
+      "freeEffectiveSlots": 3,
+      "reason": "Preferred window has capacity under current room and nursing cover."
+    },
+    {
+      "key": "wednesday_morning",
+      "label": "Wed AM",
+      "status": "limited",
+      "freeEffectiveSlots": 1,
+      "reason": "Preferred window is limited — only one effective slot (or high utilisation)."
+    },
+    {
+      "key": "friday_afternoon",
+      "label": "Fri PM",
+      "status": "available",
+      "freeEffectiveSlots": 3,
+      "reason": "Preferred window has capacity under current room and nursing cover."
+    }
+  ],
+  "alternativeRecommendations": [
+    {
+      "forPreferred": "Wed AM",
+      "key": "wednesday_afternoon",
+      "label": "Wed PM",
+      "status": "available",
+      "freeEffectiveSlots": 4,
+      "rationale": "Wed AM is limited; Wed PM is available the same day."
+    },
+    {
+      "forPreferred": "Wed AM",
+      "key": "tuesday_morning",
+      "label": "Tue AM",
+      "status": "available",
+      "freeEffectiveSlots": 3,
+      "rationale": "Wed AM is limited; Tue AM is a nearby same-period option."
+    },
+    {
+      "forPreferred": "Wed AM",
+      "key": "thursday_morning",
+      "label": "Thu AM",
+      "status": "available",
+      "freeEffectiveSlots": 2,
+      "rationale": "Wed AM is limited; Thu AM is a nearby same-period option."
+    }
+  ],
+  "capacitySummary": [
+    {
+      "key": "monday_morning",
+      "label": "Mon AM",
+      "status": "available",
+      "freeEffectiveSlots": 2,
+      "existingGps": [
+        "Dr Chen",
+        "Dr Lee"
+      ],
+      "nursing": "full"
+    },
+    {
+      "key": "monday_afternoon",
+      "label": "Mon PM",
+      "status": "available",
+      "freeEffectiveSlots": 3,
+      "existingGps": [
+        "Dr Chen"
+      ],
+      "nursing": "full"
+    },
+    {
+      "key": "tuesday_morning",
+      "label": "Tue AM",
+      "status": "available",
+      "freeEffectiveSlots": 3,
+      "existingGps": [
+        "Dr Lee"
+      ],
+      "nursing": "full"
+    },
+    {
+      "key": "tuesday_afternoon",
+      "label": "Tue PM",
+      "status": "limited",
+      "freeEffectiveSlots": 1,
+      "existingGps": [
+        "Dr Chen"
+      ],
+      "nursing": "limited"
+    },
+    {
+      "key": "wednesday_morning",
+      "label": "Wed AM",
+      "status": "limited",
+      "freeEffectiveSlots": 1,
+      "existingGps": [
+        "Dr Lee"
+      ],
+      "nursing": "limited"
+    },
+    {
+      "key": "wednesday_afternoon",
+      "label": "Wed PM",
+      "status": "available",
+      "freeEffectiveSlots": 4,
+      "existingGps": [],
+      "nursing": "full"
+    },
+    {
+      "key": "thursday_morning",
+      "label": "Thu AM",
+      "status": "available",
+      "freeEffectiveSlots": 2,
+      "existingGps": [
+        "Dr Chen",
+        "Dr Lee"
+      ],
+      "nursing": "full"
+    },
+    {
+      "key": "thursday_afternoon",
+      "label": "Thu PM",
+      "status": "available",
+      "freeEffectiveSlots": 3,
+      "existingGps": [
+        "Dr Lee"
+      ],
+      "nursing": "full"
+    },
+    {
+      "key": "friday_morning",
+      "label": "Fri AM",
+      "status": "available",
+      "freeEffectiveSlots": 2,
+      "existingGps": [
+        "Dr Chen"
+      ],
+      "nursing": "full"
+    },
+    {
+      "key": "friday_afternoon",
+      "label": "Fri PM",
+      "status": "available",
+      "freeEffectiveSlots": 3,
+      "existingGps": [
+        "Dr Lee"
+      ],
+      "nursing": "full"
+    }
+  ],
+  "notice": "Advisory only. Compatibility does not allocate rooms or approve hiring. A practice team member confirms session allocation."
+}

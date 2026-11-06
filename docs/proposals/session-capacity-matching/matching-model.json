@@ -1,0 +1,70 @@
+{
+  "id": "wmc-session-capacity-matching-model",
+  "version": "1.0.0",
+  "clinic": "Woolloongabba Medical Centre",
+  "purpose": "Score how well a doctor's preferred sessions fit current room, nursing, and existing GP capacity. Advisory for human session allocation — not an automated hire or roster publish.",
+  "guards": [
+    "Compatibility score does not approve onboarding or hire",
+    "Available options are suggestions pending human confirmation",
+    "Nursing and room constraints can zero a window even if a room appears free",
+    "Do not promise patient volume or earnings from match results"
+  ],
+  "sessionKey": {
+    "format": "{day}_{period}",
+    "days": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"],
+    "periods": ["morning", "afternoon", "evening"],
+    "aliases": {
+      "Mon PM": "monday_afternoon",
+      "Wed AM": "wednesday_morning",
+      "Fri PM": "friday_afternoon",
+      "AM": "morning",
+      "PM": "afternoon"
+    }
+  },
+  "capacityStatus": {
+    "available": {
+      "label": "Available",
+      "weight": 1.0,
+      "rule": "freeEffectiveSlots >= 2 OR (freeEffectiveSlots >= 1 AND utilisation < 0.67)"
+    },
+    "limited": {
+      "label": "Limited",
+      "weight": 0.46,
+      "rule": "freeEffectiveSlots == 1 OR utilisation >= 0.67"
+    },
+    "full": {
+      "label": "Full / unavailable",
+      "weight": 0.0,
+      "rule": "freeEffectiveSlots <= 0 OR nursing coverage none"
+    }
+  },
+  "compatibilityScore": {
+    "formula": "round(100 * mean(weight(status(preferredSession_i))))",
+    "emptyPreferences": 0,
+    "example": {
+      "preferences": ["monday_afternoon", "wednesday_morning", "friday_afternoon"],
+      "statuses": ["available", "limited", "available"],
+      "weights": [1.0, 0.46, 1.0],
+      "compatibilityPercent": 82
+    }
+  },
+  "effectiveSlots": {
+    "definition": "min(activeRooms, nursingMaxSupportedRooms) - existingGpAssignmentsInWindow - reserveSlots",
+    "reserveSlotsDefault": 0
+  },
+  "alternatives": {
+    "strategy": [
+      "Same day, adjacent period if preferred is limited/full and adjacent is available",
+      "Nearest available day same period within ±1 weekday",
+      "Any available window matching doctor's secondary flexibility if provided"
+    ],
+    "maxAlternatives": 5,
+    "preferKeepSessionCount": true
+  },
+  "outputs": {
+    "compatibilityScore": "0–100 integer percent",
+    "availableOptions": "Preferred windows that are available or limited (with status)",
+    "alternativeRecommendations": "Substitute windows when preferred is limited/full",
+    "perSessionBreakdown": "Status, free slots, nursing, existing GPs per preferred key"
+  }
+}

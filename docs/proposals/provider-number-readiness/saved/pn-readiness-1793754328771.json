@@ -1,0 +1,58 @@
+{
+  "formType": "provider_number_readiness_workflow",
+  "version": "1.0.0",
+  "clinicSlug": "woolloongabba",
+  "completedAt": "2026-11-04T01:15:00.000Z",
+  "importantNotice": "Medicare provider numbers are issued by Services Australia. Woolloongabba Medical Centre does not issue, approve, or guarantee provider numbers. This workflow only assesses onboarding preparedness.",
+  "captures": {
+    "currentProviderNumbers": {
+      "hasProviderNumber": "yes",
+      "providerNumberCount": "2",
+      "applicationStatus": null,
+      "locationBoundNotes": null
+    },
+    "previousPractices": {
+      "previousPracticeCount": "2",
+      "mostRecentPracticeType": "general_practice",
+      "practiceHistoryNotes": null
+    },
+    "medicareExperience": {
+      "medicareBillingExperience": "extensive",
+      "bulkBillingFamiliarity": "confident",
+      "mbsItemConfidence": "high"
+    },
+    "dpaEligibility": {
+      "dpaStatus": "not_required",
+      "dpaAwareness": "yes"
+    },
+    "requiredDocuments": {
+      "documentsReady": [
+        "ahpra",
+        "indemnity",
+        "cv",
+        "id",
+        "medicare_provider_letter",
+        "bank_super",
+        "working_rights"
+      ],
+      "docsReviewed": "yes"
+    },
+    "acknowledgements": {
+      "understandsPracticeDoesNotIssueProviderNumbers": true
+    }
+  },
+  "outputs": {
+    "readinessScore": 90,
+    "readinessBand": "ready",
+    "readinessLabel": "Ready for practice onboarding conversation",
+    "missingItems": [],
+    "onboardingChecklist": [
+      {
+        "id": "practice_cannot_issue_pn",
+        "label": "Acknowledgement on file: Woolloongabba Medical Centre does not issue Medicare provider numbers",
+        "owner": "practice",
+        "done": true
+      }
+    ]
+  }
+}

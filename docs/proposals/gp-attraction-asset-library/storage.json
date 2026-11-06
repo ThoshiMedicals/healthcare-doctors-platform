@@ -1,0 +1,22 @@
+{
+  "phase": "ai_placeholders_public_web",
+  "later": "object_storage_masters_plus_derivatives",
+  "folders": {
+    "consent": "attraction-assets/_consent",
+    "imageMasters": "attraction-assets/images/masters",
+    "imageDerivatives": "attraction-assets/images/derivatives",
+    "videoMasters": "attraction-assets/video/masters",
+    "videoDelivers": "attraction-assets/video/delivers",
+    "transcripts": "attraction-assets/transcripts",
+    "testimonials": "attraction-assets/testimonials",
+    "quotes": "attraction-assets/quotes",
+    "quarantine": "attraction-assets/_quarantine",
+    "archive": "attraction-assets/_archive",
+    "publicPlaceholders": "assets/attraction/placeholders"
+  },
+  "filenameRule": "{ASSET_ID}__{kebab-scene}__{yyyy-mm}.{ext}",
+  "replacement": {
+    "keep": ["assetId", "taxonomy", "consent/story links"],
+    "swap": ["storagePath", "contentSha256", "mime", "placeholderKind"]
+  }
+}

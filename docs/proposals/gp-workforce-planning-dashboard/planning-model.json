@@ -1,0 +1,57 @@
+{
+  "id": "wmc-gp-workforce-planning-model",
+  "version": "1.0.0",
+  "clinic": "Woolloongabba Medical Centre",
+  "purpose": "Roll capacity, EOI, session planning, and onboarding into an advisory workforce view. Humans decide recruitment and allocation — the dashboard never auto-hires or auto-rosters.",
+  "guards": [
+    "Human decision-making only",
+    "Recruitment targets are recommendations, not mandates",
+    "EOI scores prioritise review queues, not automated offers",
+    "Forecasts are planning scenarios, not guarantees of patient demand",
+    "No public earnings or percentage claims"
+  ],
+  "inputs": {
+    "capacityPlanningEngine": "offered/used/available consulting sessions; nursing-capped rooms",
+    "eoiScores": "priorityScore, band, hardFlags, status from Admin GP Enquiries",
+    "sessionPlanner": "doctor preferred sessions awaiting match",
+    "roomUtilisation": "per-window utilisation and status (available/limited/full)"
+  },
+  "displays": [
+    "current_gp_capacity",
+    "forecast_shortages",
+    "available_sessions",
+    "recruitment_targets",
+    "eoi_pipeline",
+    "onboarding_pipeline"
+  ],
+  "outputs": [
+    "recruitment_recommendations",
+    "capacity_forecasts",
+    "priority_gaps"
+  ],
+  "formulas": {
+    "offeredSessions": "sum over offered windows of min(activeRooms, nursingMaxSupported)",
+    "usedSessions": "count of active GP assignments in offered windows",
+    "availableSessions": "max(0, offeredSessions - usedSessions - reserveSessions)",
+    "utilisationPercent": "round(100 * usedSessions / offeredSessions, 1)",
+    "recruitmentTargetGps": "ceil(availableSessions / targetSessionsPerGp)",
+    "shortageSessionsHorizon": "max(0, demandSessionsForecast - offeredSessions) for scenario horizon",
+    "priorityGapScore": "weighted blend of full/limited windows + unfilled target sessions + onboarding lag"
+  },
+  "defaults": {
+    "targetSessionsPerGp": 4,
+    "reserveSessions": 1,
+    "forecastHorizonsWeeks": [4, 12, 26],
+    "demandGrowthScenarios": {
+      "stable": 1.0,
+      "moderate": 1.08,
+      "pressure": 1.15
+    }
+  },
+  "priorityGapWeights": {
+    "fullWindows": 3,
+    "limitedWindows": 1.5,
+    "unfilledRecruitmentSlots": 2,
+    "onboardingBlockedAwaitingExternal": 1
+  }
+}

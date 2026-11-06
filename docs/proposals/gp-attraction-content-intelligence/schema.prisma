@@ -1,0 +1,75 @@
+// GP Attraction Content Intelligence — Prisma fragment (proposal)
+// Woolloongabba Medical Centre
+// Advisory content insights for human editors — not automated publishing.
+
+enum ContentPillar {
+  community_care
+  continuity_of_care
+  gp_employer_brand
+}
+
+enum ContentRecPriority {
+  high
+  medium
+  low
+}
+
+enum ContentRecType {
+  new_faq
+  expand_faq
+  new_page_section
+  seo_landing_tweak
+  persona_message
+  clarify_boundary
+}
+
+model ContentIntelligenceSignalDaily {
+  id        String   @id @default(cuid())
+  clinicId  String
+  day       DateTime @db.Date
+  source    String   /// faq_usage | search_keyword | internal_search | eoi_source | persona_engagement
+  key       String
+  value     Float
+  metaJson  Json?
+  createdAt DateTime @default(now())
+
+  @@unique([clinicId, day, source, key])
+  @@index([clinicId, source, day])
+}
+
+model ContentIntelligenceInsightRun {
+  id                 String   @id @default(cuid())
+  clinicId           String
+  periodLabel        String   /// e.g. 2026-11
+  windowDays         Int      @default(28)
+  generatedAt        DateTime @default(now())
+  gapsJson           Json
+  unansweredJson     Json
+  highConvertingJson Json
+  monthlyRecsJson    Json
+  seoOpportunitiesJson Json
+  doctorInfoGapsJson Json
+  brandAlignmentJson Json
+  createdByUserId    String?
+
+  @@index([clinicId, generatedAt])
+}
+
+model ContentIntelligenceRecommendation {
+  id            String            @id @default(cuid())
+  runId         String
+  clinicId      String
+  type          ContentRecType
+  priority      ContentRecPriority
+  pillar        ContentPillar
+  title         String
+  rationale     String
+  suggestedCopy String?
+  targetPath    String?
+  status        String            @default("proposed") /// proposed | accepted | deferred | published
+  editorUserId  String?
+  decidedAt     DateTime?
+  createdAt     DateTime          @default(now())
+
+  @@index([clinicId, status, priority])
+}

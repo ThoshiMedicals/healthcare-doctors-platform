@@ -1,0 +1,312 @@
+{
+  "id": "wmc-gp-attraction-knowledge-graph",
+  "version": "1.0.0",
+  "clinic": "Woolloongabba Medical Centre",
+  "generatedAt": "2026-11-04",
+  "purpose": "Link personas, FAQs, EOIs, search behaviour, readiness results, and content intelligence to surface objections, missing content, high-converting pathways, and emerging attraction patterns.",
+  "privacy": [
+    "Graph uses aggregate / prototype signals only",
+    "No AHPRA, provider numbers, CV text, or document contents as nodes",
+    "Persona is a hint label — not an HR classification",
+    "Insights are advisory for human editors — not auto-publish or auto-reject"
+  ],
+  "nodeTypes": [
+    "persona",
+    "objection",
+    "faq",
+    "search",
+    "readiness",
+    "eoi_path",
+    "content_gap",
+    "intelligence"
+  ],
+  "edgeTypes": [
+    "raises_objection",
+    "opens_faq",
+    "searches",
+    "completes_tool",
+    "follows_path",
+    "submits_eoi",
+    "evidence_for_gap",
+    "recommends",
+    "maps_to_persona"
+  ],
+  "nodes": [
+    { "id": "persona:early_career_gp", "type": "persona", "label": "Early Career GP", "meta": { "eoiRate": 0.19 } },
+    { "id": "persona:established_gp_seeking_change", "type": "persona", "label": "Established · Change", "meta": { "eoiRate": 0.14 } },
+    { "id": "persona:returning_gp", "type": "persona", "label": "Returning GP", "meta": { "eoiRate": 0.11 } },
+    { "id": "persona:part_time_parent_gp", "type": "persona", "label": "Part-Time Parent", "meta": { "eoiRate": 0.16 } },
+    { "id": "persona:special_interest_gp", "type": "persona", "label": "Special Interest", "meta": { "eoiRate": 0.08 } },
+
+    { "id": "obj:provider_number_opacity", "type": "objection", "label": "PN / paperwork opaque" },
+    { "id": "obj:public_percentage", "type": "objection", "label": "Want public % / unclear why private" },
+    { "id": "obj:list_building_speed", "type": "objection", "label": "How fast will my list build?" },
+    { "id": "obj:part_time_second_class", "type": "objection", "label": "Part-time = second-class" },
+    { "id": "obj:continuity_proof", "type": "objection", "label": "Show operating model, not culture words" },
+    { "id": "obj:supervision_capacity", "type": "objection", "label": "Is registrar supervision real?" },
+    { "id": "obj:soft_landing", "type": "objection", "label": "Need staged return, not full book" },
+
+    { "id": "faq:provider-numbers", "type": "faq", "label": "FAQ · Provider numbers", "meta": { "opens": 48, "helpful": 22, "notHelpful": 9 } },
+    { "id": "faq:nursing-support", "type": "faq", "label": "FAQ · Nursing support", "meta": { "opens": 41, "helpful": 31, "notHelpful": 2 } },
+    { "id": "faq:session-flexibility", "type": "faq", "label": "FAQ · Session flexibility", "meta": { "opens": 37, "helpful": 24, "notHelpful": 4 } },
+    { "id": "faq:billing-model", "type": "faq", "label": "FAQ · Billing model", "meta": { "opens": 33, "helpful": 12, "notHelpful": 11 } },
+    { "id": "faq:percentage-arrangements", "type": "faq", "label": "FAQ · Percentage", "meta": { "opens": 29, "helpful": 8, "notHelpful": 14 } },
+    { "id": "faq:registrar-pathway", "type": "faq", "label": "FAQ · Registrar pathway", "meta": { "opens": 14, "helpful": 7, "notHelpful": 3 } },
+
+    { "id": "search:gp_jobs_woolloongabba", "type": "search", "label": "Search · GP jobs Woolloongabba", "meta": { "impressions": 420, "clicks": 38 } },
+    { "id": "search:continuity_brisbane", "type": "search", "label": "Search · Continuity GP Brisbane", "meta": { "impressions": 210, "clicks": 29 } },
+    { "id": "search:provider_number_issue", "type": "search", "label": "Search · Does practice issue PN?", "meta": { "impressions": 140, "clicks": 31 } },
+    { "id": "search:flexible_sessions", "type": "search", "label": "Search · Flexible sessions inner south", "meta": { "impressions": 160, "clicks": 18 } },
+    { "id": "search:dpa_internal", "type": "search", "label": "Internal · DPA", "meta": { "count": 17 } },
+    { "id": "search:list_building_internal", "type": "search", "label": "Internal · List building", "meta": { "count": 12 } },
+
+    { "id": "ready:doctor_readiness", "type": "readiness", "label": "Doctor Readiness results" },
+    { "id": "ready:provider_number_readiness", "type": "readiness", "label": "PN Readiness results" },
+
+    { "id": "path:opp_faq_ready_eoi", "type": "eoi_path", "label": "Path · Opp → FAQ → Readiness → EOI", "meta": { "lift": "high", "personas": ["early_career_gp"] } },
+    { "id": "path:opp_faq_sessions_eoi", "type": "eoi_path", "label": "Path · Opp → FAQ flex → Planner → EOI", "meta": { "lift": "high", "personas": ["part_time_parent_gp"] } },
+    { "id": "path:faq_pn_ready_eoi", "type": "eoi_path", "label": "Path · FAQ PN → PN tool → EOI", "meta": { "lift": "medium", "personas": ["returning_gp", "early_career_gp"] } },
+    { "id": "path:jot_direct_eoi", "type": "eoi_path", "label": "Path · Join Our Team → EOI", "meta": { "lift": "low", "personas": ["established_gp_seeking_change"] } },
+
+    { "id": "gap:continuity_story", "type": "content_gap", "label": "Gap · Continuity employer narrative", "meta": { "score": 92 } },
+    { "id": "gap:list_building", "type": "content_gap", "label": "Gap · List-building / first 90 days", "meta": { "score": 88 } },
+    { "id": "gap:dpa_boundary", "type": "content_gap", "label": "Gap · DPA boundary FAQ", "meta": { "score": 85 } },
+    { "id": "gap:percentage_clarity", "type": "content_gap", "label": "Gap · Percentage FAQ trust", "meta": { "score": 84 } },
+    { "id": "gap:part_time_parent", "type": "content_gap", "label": "Gap · Part-time parent story", "meta": { "score": 74 } },
+
+    { "id": "intel:monthly_recs", "type": "intelligence", "label": "Content intelligence · monthly recs" },
+    { "id": "intel:pattern_watch", "type": "intelligence", "label": "Pattern watch · attraction signals" }
+  ],
+  "edges": [
+    { "from": "persona:early_career_gp", "to": "obj:list_building_speed", "type": "raises_objection" },
+    { "from": "persona:early_career_gp", "to": "obj:provider_number_opacity", "type": "raises_objection" },
+    { "from": "persona:established_gp_seeking_change", "to": "obj:continuity_proof", "type": "raises_objection" },
+    { "from": "persona:established_gp_seeking_change", "to": "obj:public_percentage", "type": "raises_objection" },
+    { "from": "persona:returning_gp", "to": "obj:soft_landing", "type": "raises_objection" },
+    { "from": "persona:returning_gp", "to": "obj:provider_number_opacity", "type": "raises_objection" },
+    { "from": "persona:part_time_parent_gp", "to": "obj:part_time_second_class", "type": "raises_objection" },
+    { "from": "persona:special_interest_gp", "to": "faq:nursing-support", "type": "opens_faq" },
+
+    { "from": "persona:early_career_gp", "to": "faq:nursing-support", "type": "opens_faq" },
+    { "from": "persona:early_career_gp", "to": "faq:provider-numbers", "type": "opens_faq" },
+    { "from": "persona:part_time_parent_gp", "to": "faq:session-flexibility", "type": "opens_faq" },
+    { "from": "persona:returning_gp", "to": "faq:provider-numbers", "type": "opens_faq" },
+    { "from": "persona:established_gp_seeking_change", "to": "faq:percentage-arrangements", "type": "opens_faq" },
+    { "from": "persona:established_gp_seeking_change", "to": "faq:billing-model", "type": "opens_faq" },
+
+    { "from": "persona:early_career_gp", "to": "search:list_building_internal", "type": "searches" },
+    { "from": "persona:early_career_gp", "to": "search:provider_number_issue", "type": "searches" },
+    { "from": "persona:part_time_parent_gp", "to": "search:flexible_sessions", "type": "searches" },
+    { "from": "persona:established_gp_seeking_change", "to": "search:continuity_brisbane", "type": "searches" },
+    { "from": "search:gp_jobs_woolloongabba", "to": "persona:early_career_gp", "type": "maps_to_persona" },
+    { "from": "search:dpa_internal", "to": "obj:provider_number_opacity", "type": "evidence_for_gap" },
+
+    { "from": "faq:provider-numbers", "to": "ready:provider_number_readiness", "type": "completes_tool" },
+    { "from": "obj:list_building_speed", "to": "ready:doctor_readiness", "type": "completes_tool" },
+    { "from": "persona:early_career_gp", "to": "ready:doctor_readiness", "type": "completes_tool" },
+    { "from": "persona:returning_gp", "to": "ready:provider_number_readiness", "type": "completes_tool" },
+
+    { "from": "persona:early_career_gp", "to": "path:opp_faq_ready_eoi", "type": "follows_path" },
+    { "from": "persona:part_time_parent_gp", "to": "path:opp_faq_sessions_eoi", "type": "follows_path" },
+    { "from": "persona:returning_gp", "to": "path:faq_pn_ready_eoi", "type": "follows_path" },
+    { "from": "persona:established_gp_seeking_change", "to": "path:jot_direct_eoi", "type": "follows_path" },
+    { "from": "path:opp_faq_ready_eoi", "to": "faq:nursing-support", "type": "opens_faq" },
+    { "from": "path:opp_faq_ready_eoi", "to": "ready:doctor_readiness", "type": "completes_tool" },
+    { "from": "path:opp_faq_sessions_eoi", "to": "faq:session-flexibility", "type": "opens_faq" },
+    { "from": "path:faq_pn_ready_eoi", "to": "ready:provider_number_readiness", "type": "completes_tool" },
+
+    { "from": "search:continuity_brisbane", "to": "gap:continuity_story", "type": "evidence_for_gap" },
+    { "from": "search:list_building_internal", "to": "gap:list_building", "type": "evidence_for_gap" },
+    { "from": "search:dpa_internal", "to": "gap:dpa_boundary", "type": "evidence_for_gap" },
+    { "from": "faq:percentage-arrangements", "to": "gap:percentage_clarity", "type": "evidence_for_gap" },
+    { "from": "obj:part_time_second_class", "to": "gap:part_time_parent", "type": "evidence_for_gap" },
+    { "from": "obj:list_building_speed", "to": "gap:list_building", "type": "evidence_for_gap" },
+    { "from": "faq:registrar-pathway", "to": "obj:supervision_capacity", "type": "raises_objection" },
+
+    { "from": "gap:continuity_story", "to": "intel:monthly_recs", "type": "recommends" },
+    { "from": "gap:list_building", "to": "intel:monthly_recs", "type": "recommends" },
+    { "from": "gap:dpa_boundary", "to": "intel:monthly_recs", "type": "recommends" },
+    { "from": "gap:percentage_clarity", "to": "intel:monthly_recs", "type": "recommends" },
+    { "from": "path:opp_faq_ready_eoi", "to": "intel:pattern_watch", "type": "recommends" },
+    { "from": "path:opp_faq_sessions_eoi", "to": "intel:pattern_watch", "type": "recommends" },
+    { "from": "search:gp_jobs_woolloongabba", "to": "intel:pattern_watch", "type": "recommends" }
+  ],
+  "derivedInsights": {
+    "commonObjections": [
+      {
+        "id": "obj_cluster_pn",
+        "objection": "Provider-number / paperwork opacity",
+        "strength": "very_high",
+        "evidence": [
+          "FAQ provider-numbers 48 opens",
+          "SEO ‘does practice issue Medicare provider number’ CTR strong",
+          "Early-career + returning personas raise PN concerns",
+          "Internal DPA searches without FAQ mapping"
+        ],
+        "linkedNodes": ["obj:provider_number_opacity", "faq:provider-numbers", "ready:provider_number_readiness", "gap:dpa_boundary"]
+      },
+      {
+        "id": "obj_cluster_commercial",
+        "objection": "Commercial opacity (want % publicly / distrust private-only framing)",
+        "strength": "high",
+        "evidence": [
+          "percentage-arrangements 14 not-helpful vs 8 helpful",
+          "billing-model 11 not-helpful",
+          "Established persona objections"
+        ],
+        "linkedNodes": ["obj:public_percentage", "faq:percentage-arrangements", "faq:billing-model", "gap:percentage_clarity"]
+      },
+      {
+        "id": "obj_cluster_continuity_list",
+        "objection": "Continuity / list-building not proven operationally",
+        "strength": "high",
+        "evidence": [
+          "SEO continuity query demand",
+          "Internal ‘list building’ searches",
+          "Early-career list-speed objection",
+          "Established ‘show operating model’ objection"
+        ],
+        "linkedNodes": ["obj:list_building_speed", "obj:continuity_proof", "gap:continuity_story", "gap:list_building"]
+      },
+      {
+        "id": "obj_cluster_part_time",
+        "objection": "Part-time treated as leftover / unreliable",
+        "strength": "medium_high",
+        "evidence": ["Persona objections", "session-flexibility FAQ engagement", "part-time SEO"],
+        "linkedNodes": ["obj:part_time_second_class", "faq:session-flexibility", "gap:part_time_parent"]
+      },
+      {
+        "id": "obj_cluster_registrar",
+        "objection": "Registrar supervision capacity honesty",
+        "strength": "medium",
+        "evidence": ["FAQ registrar-pathway opens", "content intelligence supervision theme"],
+        "linkedNodes": ["obj:supervision_capacity", "faq:registrar-pathway"]
+      }
+    ],
+    "missingContent": [
+      {
+        "gapId": "gap:continuity_story",
+        "title": "Continuity-of-care employer narrative section",
+        "score": 92,
+        "fillsObjections": ["obj:continuity_proof"],
+        "feedsPaths": ["path:opp_faq_ready_eoi"]
+      },
+      {
+        "gapId": "gap:list_building",
+        "title": "List-building / First 90 Days FAQ + guide link",
+        "score": 88,
+        "fillsObjections": ["obj:list_building_speed", "obj:soft_landing"],
+        "feedsPaths": ["path:opp_faq_ready_eoi"]
+      },
+      {
+        "gapId": "gap:dpa_boundary",
+        "title": "Boundary-safe DPA / location FAQ + navigator link",
+        "score": 85,
+        "fillsObjections": ["obj:provider_number_opacity"],
+        "feedsPaths": ["path:faq_pn_ready_eoi"]
+      },
+      {
+        "gapId": "gap:percentage_clarity",
+        "title": "Rewrite percentage FAQ (still no public %)",
+        "score": 84,
+        "fillsObjections": ["obj:public_percentage"],
+        "feedsPaths": ["path:jot_direct_eoi"]
+      },
+      {
+        "gapId": "gap:part_time_parent",
+        "title": "Part-time / parent reliability callout on Opportunities",
+        "score": 74,
+        "fillsObjections": ["obj:part_time_second_class"],
+        "feedsPaths": ["path:opp_faq_sessions_eoi"]
+      }
+    ],
+    "highConvertingPathways": [
+      {
+        "pathId": "path:opp_faq_ready_eoi",
+        "sequence": ["gp_opportunities", "gp_faq(nursing|provider-numbers)", "doctor_readiness", "gp_eoi"],
+        "primaryPersona": "early_career_gp",
+        "why": "Combines operational proof (nursing) + PN honesty + readiness self-check before EOI; highest early-career EOI rate in prototype (~0.19)",
+        "amplify": "Continuity section + list-building FAQ on Opportunities; keep CTA to Readiness"
+      },
+      {
+        "pathId": "path:opp_faq_sessions_eoi",
+        "sequence": ["gp_opportunities", "faq:session-flexibility", "gp_session_planner", "gp_eoi"],
+        "primaryPersona": "part_time_parent_gp",
+        "why": "Session reliability proof + planner reduces ‘second-class part-time’ fear; strong EOI rate (~0.16)",
+        "amplify": "Explicit part-time membership copy; parking cross-link"
+      },
+      {
+        "pathId": "path:faq_pn_ready_eoi",
+        "sequence": ["gp_faq(provider-numbers)", "provider_number_readiness", "gp_eoi"],
+        "primaryPersona": "returning_gp",
+        "why": "PN anxiety is a blocker; tool completion correlates with EOI among returning / early-career",
+        "amplify": "DPA boundary FAQ; never imply WMC issues numbers"
+      },
+      {
+        "pathId": "path:jot_direct_eoi",
+        "sequence": ["join_our_team", "gp_eoi"],
+        "primaryPersona": "established_gp_seeking_change",
+        "why": "Shorter path but lower lift — Join Our Team under-converts vs Opportunities",
+        "amplify": "Route established GPs into Opportunities decision page before EOI; fix percentage FAQ trust"
+      }
+    ],
+    "emergingRecruitmentPatterns": [
+      {
+        "id": "pattern_jobs_keyword_mismatch",
+        "label": "‘GP jobs’ demand vs practice-voice landing",
+        "signal": "Highest SEO impressions on job-board phrasing; brand requires decision/fit pages not vacancy marketplace",
+        "implication": "Capture intent with Opportunities + pathway honesty; avoid JobPosting unless live vacancy"
+      },
+      {
+        "id": "pattern_pn_honesty_converts",
+        "label": "Provider-number honesty is a conversion asset",
+        "signal": "High FAQ opens + search CTR on ‘does practice issue PN’; readiness tool on path to EOI",
+        "implication": "Keep SA boundary copy prominent; deepen DPA navigator link"
+      },
+      {
+        "id": "pattern_percentage_trust_fail",
+        "label": "Percentage FAQ currently damages trust",
+        "signal": "Worst helpful/not-helpful ratio among billing FAQs",
+        "implication": "Rewrite for clarity without publishing %; established persona risk"
+      },
+      {
+        "id": "pattern_continuity_seo_gap",
+        "label": "Continuity is the differentiator searchers want",
+        "signal": "Strong SEO interest; thin dedicated employer content",
+        "implication": "Ship Continuity at WMC + First 90 Days / list-building FAQ"
+      },
+      {
+        "id": "pattern_part_time_converts",
+        "label": "Part-time/parent path converts when reliability is shown",
+        "signal": "Healthy EOI rate when flex FAQ + planner used",
+        "implication": "Treat part-time as membership in copy and capacity planning"
+      },
+      {
+        "id": "pattern_tools_before_eoi",
+        "label": "Self-serve tools before EOI = higher quality conversations",
+        "signal": "Readiness / PN / planner completions on high-lift paths",
+        "implication": "Promote tools from Opportunities mid-page; analytics never auto-reject"
+      },
+      {
+        "id": "pattern_registrar_capacity_questions",
+        "label": "Registrar interest needs capacity honesty",
+        "signal": "FAQ engagement + supervision search theme in content intelligence",
+        "implication": "Use registrar pathway page; never always-open intake language"
+      }
+    ]
+  },
+  "queries": {
+    "objectionsForPersona": "MATCH persona -raises_objection-> objection; optional expand to faq/search/gap",
+    "gapsByEvidence": "MATCH search|faq|objection -evidence_for_gap-> gap ORDER BY gap.score",
+    "pathsByLift": "FILTER eoi_path WHERE meta.lift in [high, medium]",
+    "intelActions": "MATCH gap|path -recommends-> intelligence"
+  },
+  "sources": [
+    "../gp-personas/wmc-gp-recruitment-personas.json",
+    "../gp-faq/gp-faq-content.json",
+    "../gp-attraction-analytics/event-model.json",
+    "../gp-attraction-analytics/metrics-catalogue.json",
+    "../gp-attraction-content-intelligence/content-intelligence-model.json",
+    "../gp-attraction-content-intelligence/_insights.json"
+  ]
+}

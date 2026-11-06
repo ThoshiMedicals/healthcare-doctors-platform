@@ -1,0 +1,296 @@
+{
+  "title": "WMC GP Recruitment Personas",
+  "clinic": "Woolloongabba Medical Centre",
+  "version": "1.0.0",
+  "createdAt": "2026-11-04",
+  "strategicFrame": {
+    "employerBrand": "Continuity-focused AGPAL-accredited community general practice in Brisbane’s inner south",
+    "voice": "Practice-to-doctor, trust-first; never recruitment-agency tone",
+    "hardGuards": [
+      "Do not publish percentage/earnings claims on public pages",
+      "Do not imply the practice issues Medicare provider numbers",
+      "Do not promise registrar places without capacity confirmation",
+      "Prefer operational proof (nursing, reception, AGPAL, sessions) over perk language"
+    ]
+  },
+  "personas": [
+    {
+      "id": "early_career_gp",
+      "name": "Early Career GP",
+      "shortLabel": "Early Career",
+      "archetype": "Recently fellowed or early post-fellowship GP building a sustainable list",
+      "likelyStage": "0–5 years post-Fellowship / late registrar transition",
+      "motivations": [
+        "Build a patient list with continuity rather than high-volume churn",
+        "Learn sustainable consulting habits with nursing and reception support",
+        "Find a practice with clear onboarding and AGPAL-aligned systems",
+        "Develop clinical confidence across general practice presentations"
+      ],
+      "concerns": [
+        "Will I get enough support without losing clinical autonomy?",
+        "How long will it take to build a viable list?",
+        "Are commercial terms fair for someone still establishing?",
+        "Provider number / location paperwork feel opaque"
+      ],
+      "informationNeeded": [
+        "Onboarding pathway and first-90-day expectations",
+        "Nursing and reception support model",
+        "How patient allocation / continuity works for new GPs",
+        "Session options and growth over time",
+        "What the practice can/cannot do on provider numbers (Services Australia)"
+      ],
+      "preferredContent": [
+        "Why WMC / continuity narrative",
+        "Facilities and support (nursing, rooms, reception)",
+        "Practice growth support / list-building language",
+        "GP FAQ (billing discussed privately; provider number honesty)",
+        "Meet the team / team-based care pages"
+      ],
+      "objections": [
+        "I need more structure than a busy private-billing mill offers",
+        "I’m worried I’ll be left alone without mentorship culture",
+        "I don’t want a practice that only chases throughput",
+        "I’m unsure about paperwork and start timing"
+      ],
+      "recommendedWebsiteMessaging": {
+        "headline": "Build your practice where continuity still matters.",
+        "supportingLine": "Supported consulting, AGPAL-aligned systems, and a team that helps patients return to you — not a high-volume clinic.",
+        "cta": "Express interest as an early-career GP",
+        "proofPoints": [
+          "Nursing and reception support around the consult",
+          "Session growth as your list develops",
+          "Clear onboarding conversation — no agency marketplace"
+        ],
+        "avoid": [
+          "Earn big / high percentage headlines",
+          "Talent community / pipeline jargon",
+          "Over-promising mentorship programs not actually run"
+        ]
+      }
+    },
+    {
+      "id": "established_gp_seeking_change",
+      "name": "Established GP Seeking Change",
+      "shortLabel": "Established · Change",
+      "archetype": "Experienced VR GP leaving a practice culture, workload, or values mismatch",
+      "likelyStage": "5–20+ years in general practice",
+      "motivations": [
+        "Restore clinical meaning and continuity after burnout or throughput pressure",
+        "Join a stable team with professional respect and operational reliability",
+        "Protect consulting quality without giving up income sustainability",
+        "Relocate or reset within Brisbane’s inner south"
+      ],
+      "concerns": [
+        "Will commercial terms match my experience?",
+        "Can I transfer or rebuild a list without starting from zero forever?",
+        "Is the culture genuinely collaborative or just marketed that way?",
+        "Will governance feel bureaucratic rather than enabling?"
+      ],
+      "informationNeeded": [
+        "Honest description of patient community and continuity model",
+        "How private commercial conversations work (no public % claims)",
+        "Room, nursing, and reception capacity for experienced GPs",
+        "AGPAL / quality posture as signal of operational maturity",
+        "Session footprint options for a full or near-full week"
+      ],
+      "preferredContent": [
+        "Why WMC / philosophy of care",
+        "AGPAL accreditation authority",
+        "Clinical autonomy + team-based care balance",
+        "GP FAQ (billing, autonomy, systems)",
+        "Community / location context (inner south)"
+      ],
+      "objections": [
+        "I’ve heard continuity language before — show me the operating model",
+        "I won’t move for vague culture claims",
+        "I need a serious commercial discussion, not a careers brochure",
+        "I’m cautious about network practices diluting local identity"
+      ],
+      "recommendedWebsiteMessaging": {
+        "headline": "A professional home for experienced general practice.",
+        "supportingLine": "If you are seeking a change toward continuity, clinical respect and dependable team support, talk with us directly.",
+        "cta": "Start a confidential conversation with the practice",
+        "proofPoints": [
+          "AGPAL-accredited systems and governance",
+          "Nursing and reception that protect consulting time",
+          "Local Woolloongabba identity within a wider healthcare network"
+        ],
+        "avoid": [
+          "Disruption / hustle language",
+          "Recruitment agency scarcity tactics",
+          "Downplaying commercial seriousness"
+        ]
+      }
+    },
+    {
+      "id": "returning_gp",
+      "name": "Returning GP",
+      "shortLabel": "Returning",
+      "archetype": "GP returning from leave, travel, parental pause, illness, or non-clinical period",
+      "likelyStage": "Variable; often VR with a gap in recent consulting",
+      "motivations": [
+        "Re-enter practice at a sustainable pace",
+        "Rebuild confidence with supportive nursing/reception systems",
+        "Find a practice that respects a staged return",
+        "Reconnect with continuity-based community care"
+      ],
+      "concerns": [
+        "Will my gap be judged harshly?",
+        "Can I start with fewer sessions and grow?",
+        "Are clinical systems and MBS workflows easy to relearn here?",
+        "What documentation and provider-number steps do I need?"
+      ],
+      "informationNeeded": [
+        "Staged session options and start-window flexibility",
+        "Orientation / billing familiarisation support (practice-led, not PN issuance)",
+        "Document checklist for onboarding readiness",
+        "Nursing support for procedures and preventive pathways",
+        "Honest capacity: when rooms and cover allow a return"
+      ],
+      "preferredContent": [
+        "Flexible consulting opportunities",
+        "Facilities and support",
+        "Provider number readiness honesty (Services Australia)",
+        "GP FAQ (sessions, systems, support)",
+        "Expression of interest with space for return context"
+      ],
+      "objections": [
+        "I need a soft landing, not a full book on week one",
+        "I’m anxious about systems after time away",
+        "I don’t want to be treated as a locum temporary fill"
+      ],
+      "recommendedWebsiteMessaging": {
+        "headline": "Return to practice with a staged, supported start.",
+        "supportingLine": "Tell us where you are in your return. We discuss sessions, orientation and timing openly — without treating you as a short-term stopgap.",
+        "cta": "Share your return timeline in an expression of interest",
+        "proofPoints": [
+          "Flexible sessions that can grow over time",
+          "Team support around the consult",
+          "Clear separation: practice onboarding vs Services Australia provider numbers"
+        ],
+        "avoid": [
+          "Comeback warrior / hero narrative",
+          "Assuming every returner wants full-time immediately",
+          "Implying the practice can fast-track provider numbers"
+        ]
+      }
+    },
+    {
+      "id": "part_time_parent_gp",
+      "name": "Part-Time Parent GP",
+      "shortLabel": "Part-Time Parent",
+      "archetype": "VR GP balancing parenting (or caring) with sustainable consulting sessions",
+      "likelyStage": "Often mid-career; strong preference for predictable part-time footprint",
+      "motivations": [
+        "Predictable sessions that fit school / care routines",
+        "Meaningful continuity without full-time burnout",
+        "A practice that treats part-time as real membership, not leftover slots",
+        "Reliable nursing/reception so shorter days still feel clinically complete"
+      ],
+      "concerns": [
+        "Will part-time GPs get poor rooms or leftover patients only?",
+        "Can sessions stay stable term-to-term?",
+        "Will I be pressured to expand hours before I’m ready?",
+        "Is parking / commute workable for school-run timing?"
+      ],
+      "informationNeeded": [
+        "Examples of sustainable part-time session patterns",
+        "How continuity works when consulting fewer days",
+        "Parking and location practicalities (468 Vulture Street)",
+        "Team cover when you are not on site",
+        "Commercial discussion process for part-time arrangements"
+      ],
+      "preferredContent": [
+        "Flexible consulting opportunities (part-time explicit)",
+        "Parking and location FAQ",
+        "Nursing / reception support",
+        "Why WMC continuity narrative",
+        "EOI form prompting preferred sessions / days"
+      ],
+      "objections": [
+        "Part-time often means second-class in other clinics",
+        "I can’t do unpredictable weekend/evening expansion",
+        "I need reliability more than maximum billings language"
+      ],
+      "recommendedWebsiteMessaging": {
+        "headline": "Part-time general practice that still feels like belonging.",
+        "supportingLine": "Stable sessions, team support and continuity for patients — without treating part-time GPs as temporary cover.",
+        "cta": "Tell us your preferred days and session pattern",
+        "proofPoints": [
+          "Part-time arrangements discussed as lasting practice membership",
+          "Inner-south location with parking and transport options",
+          "Nursing and reception that make shorter consulting days workable"
+        ],
+        "avoid": [
+          "Side hustle / mum-job framing",
+          "Flexibility washing without session reliability",
+          "Pressure language about ramping to full-time"
+        ]
+      }
+    },
+    {
+      "id": "special_interest_gp",
+      "name": "Special Interest GP",
+      "shortLabel": "Special Interest",
+      "archetype": "GP wanting to deepen a clinical interest inside community general practice",
+      "likelyStage": "Any career stage with a defined interest area",
+      "motivations": [
+        "Practise broader GP care while developing an interest (e.g. women’s health, skin, mental health, procedural, children’s health)",
+        "Serve local patient need rather than run a boutique specialty shop",
+        "Access nursing/procedure support where relevant",
+        "Join a practice that welcomes interest without forcing a marketplace brand"
+      ],
+      "concerns": [
+        "Will my interest be supported with rooms, nursing and equipment?",
+        "Will I be siloed away from general practice continuity?",
+        "Are credentialing and scope expectations clear?",
+        "Is there genuine community demand here?"
+      ],
+      "informationNeeded": [
+        "How clinical interests are welcomed within scope and credentialing",
+        "Nursing/procedure support for relevant interests",
+        "Balance between interest work and general consulting",
+        "Examples of interests that fit local community care",
+        "EOI pathway to describe interests without a specialty job board feel"
+      ],
+      "preferredContent": [
+        "Clinical interests welcome section",
+        "Services / knowledge pages that show community need",
+        "Nursing support and facilities",
+        "Clinical autonomy messaging",
+        "GP FAQ + EOI with interests field"
+      ],
+      "objections": [
+        "I don’t want a recruitment marketplace for niche roles",
+        "Interest work without nursing support isn’t viable",
+        "I still want to be a GP first, not a single-issue clinician"
+      ],
+      "recommendedWebsiteMessaging": {
+        "headline": "Bring clinical depth that strengthens community care.",
+        "supportingLine": "Special interests are welcome when they serve local patients and sit within safe scope — inside general practice, not instead of it.",
+        "cta": "Share your clinical interests in an expression of interest",
+        "proofPoints": [
+          "Interest areas discussed against patient need and team capacity",
+          "Nursing support for procedures and preventive pathways where appropriate",
+          "Continuity remains the practice centre of gravity"
+        ],
+        "avoid": [
+          "Specialty marketplace / clinic-within-clinic hype",
+          "Listing interests as productised service SKUs for recruitment",
+          "Implying every interest is automatically resourced"
+        ]
+      }
+    }
+  ],
+  "contentMapping": {
+    "joinOurTeamSections": {
+      "why_wmc": ["early_career_gp", "established_gp_seeking_change", "part_time_parent_gp"],
+      "facilities_support": ["early_career_gp", "returning_gp", "special_interest_gp"],
+      "flexible_consulting": ["returning_gp", "part_time_parent_gp", "early_career_gp"],
+      "clinical_interests": ["special_interest_gp"],
+      "practice_growth": ["early_career_gp", "established_gp_seeking_change"],
+      "gp_faq": ["established_gp_seeking_change", "returning_gp", "part_time_parent_gp"],
+      "expression_of_interest": ["early_career_gp", "returning_gp", "special_interest_gp", "part_time_parent_gp", "established_gp_seeking_change"]
+    }
+  }
+}

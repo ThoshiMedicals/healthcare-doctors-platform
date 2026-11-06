@@ -1,0 +1,120 @@
+// Practice Support Capability Matrix — Prisma fragment (proposal)
+// Woolloongabba Medical Centre
+// Tracks onboarding support plans; does NOT store external approvals as practice decisions.
+
+enum PracticeSupportPlanStatus {
+  draft
+  shared
+  active
+  settling
+  complete
+  paused
+  withdrawn
+}
+
+enum PracticeSupportCategoryId {
+  provider_number_support
+  medicare_onboarding_guidance
+  orientation
+  clinical_software_onboarding
+  nursing_introductions
+  reception_workflows
+  practice_systems
+  session_planning
+  team_integration
+}
+
+enum PracticeSupportItemStatus {
+  not_started
+  scheduled
+  draft
+  proposed
+  access_pending
+  in_progress
+  awaiting_external
+  practice_ready
+  agreed
+  live
+  settling
+  complete
+  needs_follow_up
+  deferred
+  under_review
+  blocked
+}
+
+enum PracticeSupportOwnerRole {
+  practice_manager
+  nurse_lead
+  reception_lead
+  principal_gp
+  doctor
+  external
+}
+
+model PracticeSupportOnboardingPlan {
+  id              String                     @id @default(cuid())
+  clinicId        String
+  doctorDisplayName String?
+  /// Optional link to career EOI / application once formalised
+  careerApplicationId String?
+  status          PracticeSupportPlanStatus  @default(draft)
+  matrixVersion   String                     @default("1.0.0")
+  sharedAt        DateTime?
+  targetStartDate DateTime?
+  goLiveNotes     String?
+  /// Never store implied eligibility determinations
+  internalNotes   String?
+  createdAt       DateTime                   @default(now())
+  updatedAt       DateTime                   @updatedAt
+  categories      PracticeSupportCategoryProgress[]
+  auditLogs       PracticeSupportStatusAudit[]
+
+  @@index([clinicId, status])
+  @@index([careerApplicationId])
+}
+
+model PracticeSupportCategoryProgress {
+  id              String                      @id @default(cuid())
+  planId          String
+  plan            PracticeSupportOnboardingPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
+  categoryId      PracticeSupportCategoryId
+  status          PracticeSupportItemStatus   @default(not_started)
+  ownerRole       PracticeSupportOwnerRole    @default(practice_manager)
+  scheduledAt     DateTime?
+  completedAt     DateTime?
+  externalAgency  String?
+  externalRefNote String?
+  blockerOwner    String?                     /// practice | doctor | external
+  notes           String?
+  updatedAt       DateTime                    @updatedAt
+
+  @@unique([planId, categoryId])
+  @@index([status])
+}
+
+model PracticeSupportStatusAudit {
+  id             String   @id @default(cuid())
+  planId         String
+  plan           PracticeSupportOnboardingPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
+  categoryId     PracticeSupportCategoryId?
+  previousStatus String?
+  newStatus      String
+  changedBy      String
+  note           String?
+  externalAgencyRef String?
+  createdAt      DateTime @default(now())
+
+  @@index([planId, createdAt])
+}
+
+/// Immutable published matrix snapshot (optional CMS / versioning)
+model PracticeSupportCapabilityMatrixVersion {
+  id          String   @id @default(cuid())
+  version     String   @unique
+  publishedAt DateTime @default(now())
+  publishedBy String?
+  /// Full JSON document matching capability-matrix.schema.json
+  matrixJson  Json
+  isActive    Boolean  @default(false)
+}

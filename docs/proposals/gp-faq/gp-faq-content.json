@@ -1,0 +1,89 @@
+{
+  "title": "GP FAQ — Woolloongabba Medical Centre",
+  "pagePath": "join-our-team.html#gp-faq",
+  "canonicalUrl": "https://gabbamedicalcentre.com.au/join-our-team.html#gp-faq",
+  "employerBrandNotes": [
+    "Speak as the practice, not a recruiter.",
+    "Do not publish percentage splits or earnings claims on the public page.",
+    "Do not imply the practice issues Medicare provider numbers.",
+    "Prefer continuity, team support and accreditation over perks language."
+  ],
+  "seo": {
+    "targetQueries": [
+      "GP jobs Woolloongabba",
+      "join general practice Brisbane inner south",
+      "AGPAL accredited medical centre GP",
+      "flexible GP sessions Brisbane",
+      "GP nursing support practice Brisbane"
+    ],
+    "h2": "Questions GPs ask about joining Woolloongabba Medical Centre"
+  },
+  "faqs": [
+    {
+      "id": "billing-model",
+      "topic": "Billing model",
+      "question": "What billing model do GPs work under at Woolloongabba Medical Centre?",
+      "answer": "Woolloongabba Medical Centre is a community general practice that supports Medicare billing within everyday patient care. Commercial arrangements for visiting or permanent GPs are discussed privately with suitable candidates so terms can reflect sessions, experience and start timing. We do not publish a one-size public rate card, because clarity matters more than marketing claims."
+    },
+    {
+      "id": "percentage-arrangements",
+      "topic": "Percentage arrangements",
+      "question": "Do you offer a percentage arrangement for GPs?",
+      "answer": "Percentage and service-fee arrangements are common in Australian general practice and can be discussed as part of a private conversation with the practice. We deliberately do not advertise a headline percentage online. Suitable candidates receive a clear explanation of how billings, practice fees and support services work before any commitment."
+    },
+    {
+      "id": "nursing-support",
+      "topic": "Nursing support",
+      "question": "What nursing support is available to GPs?",
+      "answer": "Our nursing team works alongside GPs to support coordinated, patient-centred care. Nurses assist with treatment-room activity, preventive healthcare and vaccination pathways where appropriate, and help with follow-up and care coordination. The aim is practical clinical support around the consultation so you can focus on continuity and clinical judgement."
+    },
+    {
+      "id": "reception-support",
+      "topic": "Reception support",
+      "question": "How does reception support GP consulting?",
+      "answer": "An experienced reception team manages appointments, patient enquiries and the day-to-day flow of the practice. Reception helps patients find the right appointment type, supports check-in, and works with clinical and practice-management teams so consulting time stays protected. Online booking is available through HotDoc alongside phone bookings."
+    },
+    {
+      "id": "session-flexibility",
+      "topic": "Session flexibility",
+      "question": "Are flexible GP sessions available?",
+      "answer": "Yes. We welcome conversations about permanent sessions, part-time arrangements and staged growth of a consulting footprint. Flexibility means a clear agreement on days and reliability for patients and the team — not a casual locum marketplace. Session availability depends on rooms, nursing cover and practice need, and is confirmed individually."
+    },
+    {
+      "id": "clinical-autonomy",
+      "topic": "Clinical autonomy",
+      "question": "Will I have clinical autonomy as a GP at Woolloongabba Medical Centre?",
+      "answer": "Yes. GPs practise with professional clinical autonomy within Australian standards, AHPRA expectations and our practice policies. We value clinical judgement, continuity of care and respectful teamwork. Autonomy sits alongside AGPAL-aligned governance, privacy and safety systems — structure that supports care, rather than replacing your decision-making."
+    },
+    {
+      "id": "technology-systems",
+      "topic": "Technology systems",
+      "question": "What technology systems does the practice use?",
+      "answer": "The practice uses digital systems to support appointments, clinical records and everyday operations, including HotDoc for online booking. We also maintain structured practice information for privacy, recalls and quality processes. Exact clinical software and workflow details are shared during onboarding conversations so you can assess fit with how you prefer to work."
+    },
+    {
+      "id": "agpal-accreditation",
+      "topic": "AGPAL accreditation",
+      "question": "Is Woolloongabba Medical Centre AGPAL accredited?",
+      "answer": "Yes. Woolloongabba Medical Centre is an AGPAL-accredited general practice at 468 Vulture Street, Woolloongabba. Accreditation means independent assessment against RACGP Standards for general practices under the National General Practice Accreditation Scheme. It supports systems for safety, quality, governance, infection prevention, privacy and continuous improvement — not an advertising award."
+    },
+    {
+      "id": "registrars",
+      "topic": "Registrars",
+      "question": "Do you accept GP registrars?",
+      "answer": "Expressions of interest from GP registrars are welcome. Supervision capacity, training alignment and timing vary, so registrar placements are considered against current practice needs rather than as an always-open intake. If you are a registrar, tell us your training stage and preferred sessions in your expression of interest and we will advise honestly."
+    },
+    {
+      "id": "provider-number-support",
+      "topic": "Provider number support",
+      "question": "Can the practice help with my Medicare provider number?",
+      "answer": "Medicare provider numbers are issued by Services Australia — not by Woolloongabba Medical Centre. We do not issue, approve or guarantee provider numbers. What we can do is share accurate practice location details to support your Services Australia application, and help you understand onboarding steps once your provider-number pathway is clear."
+    },
+    {
+      "id": "parking-location",
+      "topic": "Parking and location",
+      "question": "Where is the practice and is parking available for GPs?",
+      "answer": "We are at 468 Vulture Street, Woolloongabba QLD 4102, in Brisbane’s inner south near major hospitals and with Translink public transport options. Patient parking is available near the medical centre, including disability parking. For precise parking and arrival guidance, use 468 Vulture Street as the destination, follow on-site medical-centre signage, or call reception on (07) 3217 3344."
+    }
+  ]
+}

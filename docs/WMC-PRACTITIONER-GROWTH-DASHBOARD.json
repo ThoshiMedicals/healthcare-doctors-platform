@@ -1,0 +1,519 @@
+{
+  "generatedAt": "2026-11-06T03:35:57.091Z",
+  "note": "Most viewed / most booked require analytics wiring — placeholders only.",
+  "acceptingNewPatients": [
+    "Dr Anand Singh",
+    "Dr Debra Larkins",
+    "Dr Golnar Mortezaei",
+    "Dr James Chanaka",
+    "Dr Kooshyar Karimi",
+    "Dr Mary Abadir",
+    "Dr Nirupa Sivathasan",
+    "Dr Sambo Luon",
+    "Dr Steven Chang",
+    "Dr Sumita Singh",
+    "Dr Tanya Goodwill",
+    "Dr Usman Gul",
+    "Dr Wasantha Hettiarchchi",
+    "Dr Yamesha Ranatunga",
+    "Mr Samuel Stafford"
+  ],
+  "activeNewBadges": [
+    "Dr Golnar Mortezaei",
+    "Dr James Chanaka",
+    "Dr Yamesha Ranatunga"
+  ],
+  "lowestCompleteness": [
+    {
+      "name": "Dr Nirupa Sivathasan",
+      "score": 1
+    },
+    {
+      "name": "Mr Samuel Stafford",
+      "score": 1
+    },
+    {
+      "name": "Dr Anand Singh",
+      "score": 2
+    },
+    {
+      "name": "Dr Kooshyar Karimi",
+      "score": 2
+    },
+    {
+      "name": "Dr Mary Abadir",
+      "score": 2
+    },
+    {
+      "name": "Dr Sambo Luon",
+      "score": 2
+    },
+    {
+      "name": "Dr Steven Chang",
+      "score": 2
+    },
+    {
+      "name": "Dr Sumita Singh",
+      "score": 2
+    },
+    {
+      "name": "Dr Usman Gul",
+      "score": 2
+    },
+    {
+      "name": "Dr Wasantha Hettiarchchi",
+      "score": 2
+    }
+  ],
+  "missingSeoAssets": [
+    {
+      "name": "Dr Anand Singh",
+      "missing": [
+        "biography",
+        "qualifications",
+        "languages",
+        "areasOfCare",
+        "relatedServices"
+      ]
+    },
+    {
+      "name": "Dr Debra Larkins",
+      "missing": [
+        "relatedServices"
+      ]
+    },
+    {
+      "name": "Dr Kooshyar Karimi",
+      "missing": [
+        "biography",
+        "qualifications",
+        "languages",
+        "areasOfCare",
+        "relatedServices"
+      ]
+    },
+    {
+      "name": "Dr Mary Abadir",
+      "missing": [
+        "biography",
+        "qualifications",
+        "languages",
+        "areasOfCare",
+        "relatedServices"
+      ]
+    },
+    {
+      "name": "Dr Nirupa Sivathasan",
+      "missing": [
+        "biography",
+        "qualifications",
+        "languages",
+        "areasOfCare",
+        "portrait",
+        "relatedServices"
+      ]
+    },
+    {
+      "name": "Dr Sambo Luon",
+      "missing": [
+        "biography",
+        "qualifications",
+        "languages",
+        "areasOfCare",
+        "relatedServices"
+      ]
+    },
+    {
+      "name": "Dr Steven Chang",
+      "missing": [
+        "biography",
+        "qualifications",
+        "languages",
+        "areasOfCare",
+        "relatedServices"
+      ]
+    },
+    {
+      "name": "Dr Sumita Singh",
+      "missing": [
+        "biography",
+        "qualifications",
+        "languages",
+        "areasOfCare",
+        "relatedServices"
+      ]
+    },
+    {
+      "name": "Dr Tanya Goodwill",
+      "missing": [
+        "relatedServices"
+      ]
+    },
+    {
+      "name": "Dr Usman Gul",
+      "missing": [
+        "biography",
+        "qualifications",
+        "languages",
+        "areasOfCare",
+        "relatedServices"
+      ]
+    },
+    {
+      "name": "Dr Wasantha Hettiarchchi",
+      "missing": [
+        "biography",
+        "qualifications",
+        "languages",
+        "areasOfCare",
+        "relatedServices"
+      ]
+    },
+    {
+      "name": "Dr Yamesha Ranatunga",
+      "missing": [
+        "portrait"
+      ]
+    },
+    {
+      "name": "Mr Samuel Stafford",
+      "missing": [
+        "biography",
+        "qualifications",
+        "languages",
+        "areasOfCare",
+        "portrait",
+        "relatedServices"
+      ]
+    }
+  ],
+  "mostViewedPractitioners": [
+    {
+      "name": "(future)",
+      "note": "Join attraction-analytics / GA4 practitioner profile events"
+    }
+  ],
+  "mostBookedPractitioners": [
+    {
+      "name": "(future)",
+      "note": "HotDoc booking analytics not connected yet"
+    }
+  ],
+  "practitioners": [
+    {
+      "name": "Dr Anand Singh",
+      "slug": "dr-anand-singh",
+      "path": "doctors/dr-anand-singh.html",
+      "acceptingNewPatients": true,
+      "availabilityStatus": "available_this_week",
+      "newBadgeActive": false,
+      "completeness": {
+        "score": 2,
+        "max": 7,
+        "checks": {
+          "biography": false,
+          "qualifications": false,
+          "languages": false,
+          "areasOfCare": false,
+          "portrait": true,
+          "bookingPath": true,
+          "relatedServices": false
+        }
+      }
+    },
+    {
+      "name": "Dr Debra Larkins",
+      "slug": "dr-debra-larkins",
+      "path": "doctors/dr-debra-larkins.html",
+      "acceptingNewPatients": true,
+      "availabilityStatus": "available_this_week",
+      "newBadgeActive": false,
+      "completeness": {
+        "score": 6,
+        "max": 7,
+        "checks": {
+          "biography": true,
+          "qualifications": true,
+          "languages": true,
+          "areasOfCare": true,
+          "portrait": true,
+          "bookingPath": true,
+          "relatedServices": false
+        }
+      }
+    },
+    {
+      "name": "Dr Golnar Mortezaei",
+      "slug": "dr-golnar-mortezaei",
+      "path": "doctors/dr-golnar-mortezaei.html",
+      "acceptingNewPatients": true,
+      "availabilityStatus": "available_this_week",
+      "newBadgeActive": true,
+      "completeness": {
+        "score": 7,
+        "max": 7,
+        "checks": {
+          "biography": true,
+          "qualifications": true,
+          "languages": true,
+          "areasOfCare": true,
+          "portrait": true,
+          "bookingPath": true,
+          "relatedServices": true
+        }
+      }
+    },
+    {
+      "name": "Dr James Chanaka",
+      "slug": "dr-james",
+      "path": "doctors/dr-james.html",
+      "acceptingNewPatients": true,
+      "availabilityStatus": "available_this_week",
+      "newBadgeActive": true,
+      "completeness": {
+        "score": 7,
+        "max": 7,
+        "checks": {
+          "biography": true,
+          "qualifications": true,
+          "languages": true,
+          "areasOfCare": true,
+          "portrait": true,
+          "bookingPath": true,
+          "relatedServices": true
+        }
+      }
+    },
+    {
+      "name": "Dr Kooshyar Karimi",
+      "slug": "dr-kooshyar-karimi",
+      "path": "doctors/dr-kooshyar-karimi.html",
+      "acceptingNewPatients": true,
+      "availabilityStatus": "available_this_week",
+      "newBadgeActive": false,
+      "completeness": {
+        "score": 2,
+        "max": 7,
+        "checks": {
+          "biography": false,
+          "qualifications": false,
+          "languages": false,
+          "areasOfCare": false,
+          "portrait": true,
+          "bookingPath": true,
+          "relatedServices": false
+        }
+      }
+    },
+    {
+      "name": "Dr Mary Abadir",
+      "slug": "dr-mary-abadir",
+      "path": "doctors/dr-mary-abadir.html",
+      "acceptingNewPatients": true,
+      "availabilityStatus": "available_this_week",
+      "newBadgeActive": false,
+      "completeness": {
+        "score": 2,
+        "max": 7,
+        "checks": {
+          "biography": false,
+          "qualifications": false,
+          "languages": false,
+          "areasOfCare": false,
+          "portrait": true,
+          "bookingPath": true,
+          "relatedServices": false
+        }
+      }
+    },
+    {
+      "name": "Dr Nirupa Sivathasan",
+      "slug": "dr-nirupa-sivathasan",
+      "path": "doctors/dr-nirupa-sivathasan.html",
+      "acceptingNewPatients": true,
+      "availabilityStatus": "available_this_week",
+      "newBadgeActive": false,
+      "completeness": {
+        "score": 1,
+        "max": 7,
+        "checks": {
+          "biography": false,
+          "qualifications": false,
+          "languages": false,
+          "areasOfCare": false,
+          "portrait": false,
+          "bookingPath": true,
+          "relatedServices": false
+        }
+      }
+    },
+    {
+      "name": "Dr Sambo Luon",
+      "slug": "dr-sambo-luon",
+      "path": "doctors/dr-sambo-luon.html",
+      "acceptingNewPatients": true,
+      "availabilityStatus": "available_this_week",
+      "newBadgeActive": false,
+      "completeness": {
+        "score": 2,
+        "max": 7,
+        "checks": {
+          "biography": false,
+          "qualifications": false,
+          "languages": false,
+          "areasOfCare": false,
+          "portrait": true,
+          "bookingPath": true,
+          "relatedServices": false
+        }
+      }
+    },
+    {
+      "name": "Dr Steven Chang",
+      "slug": "dr-steven-chang",
+      "path": "doctors/dr-steven-chang.html",
+      "acceptingNewPatients": true,
+      "availabilityStatus": "available_this_week",
+      "newBadgeActive": false,
+      "completeness": {
+        "score": 2,
+        "max": 7,
+        "checks": {
+          "biography": false,
+          "qualifications": false,
+          "languages": false,
+          "areasOfCare": false,
+          "portrait": true,
+          "bookingPath": true,
+          "relatedServices": false
+        }
+      }
+    },
+    {
+      "name": "Dr Sumita Singh",
+      "slug": "dr-sumita-singh",
+      "path": "doctors/dr-sumita-singh.html",
+      "acceptingNewPatients": true,
+      "availabilityStatus": "available_this_week",
+      "newBadgeActive": false,
+      "completeness": {
+        "score": 2,
+        "max": 7,
+        "checks": {
+          "biography": false,
+          "qualifications": false,
+          "languages": false,
+          "areasOfCare": false,
+          "portrait": true,
+          "bookingPath": true,
+          "relatedServices": false
+        }
+      }
+    },
+    {
+      "name": "Dr Tanya Goodwill",
+      "slug": "dr-tanya-goodwill",
+      "path": "doctors/dr-tanya-goodwill.html",
+      "acceptingNewPatients": true,
+      "availabilityStatus": "available_this_week",
+      "newBadgeActive": false,
+      "completeness": {
+        "score": 6,
+        "max": 7,
+        "checks": {
+          "biography": true,
+          "qualifications": true,
+          "languages": true,
+          "areasOfCare": true,
+          "portrait": true,
+          "bookingPath": true,
+          "relatedServices": false
+        }
+      }
+    },
+    {
+      "name": "Dr Usman Gul",
+      "slug": "dr-usman-gul",
+      "path": "doctors/dr-usman-gul.html",
+      "acceptingNewPatients": true,
+      "availabilityStatus": "available_this_week",
+      "newBadgeActive": false,
+      "completeness": {
+        "score": 2,
+        "max": 7,
+        "checks": {
+          "biography": false,
+          "qualifications": false,
+          "languages": false,
+          "areasOfCare": false,
+          "portrait": true,
+          "bookingPath": true,
+          "relatedServices": false
+        }
+      }
+    },
+    {
+      "name": "Dr Wasantha Hettiarchchi",
+      "slug": "dr-wasantha-hettiarchchi",
+      "path": "doctors/dr-wasantha-hettiarchchi.html",
+      "acceptingNewPatients": true,
+      "availabilityStatus": "available_this_week",
+      "newBadgeActive": false,
+      "completeness": {
+        "score": 2,
+        "max": 7,
+        "checks": {
+          "biography": false,
+          "qualifications": false,
+          "languages": false,
+          "areasOfCare": false,
+          "portrait": true,
+          "bookingPath": true,
+          "relatedServices": false
+        }
+      }
+    },
+    {
+      "name": "Dr Yamesha Ranatunga",
+      "slug": "dr-yamesha-ranatunga",
+      "path": "doctors/dr-yamesha-ranatunga.html",
+      "acceptingNewPatients": true,
+      "availabilityStatus": "available_this_week",
+      "newBadgeActive": true,
+      "completeness": {
+        "score": 6,
+        "max": 7,
+        "checks": {
+          "biography": true,
+          "qualifications": true,
+          "languages": true,
+          "areasOfCare": true,
+          "portrait": false,
+          "bookingPath": true,
+          "relatedServices": true
+        }
+      }
+    },
+    {
+      "name": "Mr Samuel Stafford",
+      "slug": "mr-samuel-stafford",
+      "path": "doctors/mr-samuel-stafford.html",
+      "acceptingNewPatients": true,
+      "availabilityStatus": "available_this_week",
+      "newBadgeActive": false,
+      "completeness": {
+        "score": 1,
+        "max": 7,
+        "checks": {
+          "biography": false,
+          "qualifications": false,
+          "languages": false,
+          "areasOfCare": false,
+          "portrait": false,
+          "bookingPath": true,
+          "relatedServices": false
+        }
+      }
+    }
+  ]
+}

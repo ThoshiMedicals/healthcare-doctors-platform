@@ -1,0 +1,346 @@
+{
+  "id": "wmc-gp-story-capture-system",
+  "version": "1.0.0",
+  "clinic": "Woolloongabba Medical Centre",
+  "purpose": "Collect, consent, review, and reuse-control GP practice-experience stories. Human gates only — never auto-publish.",
+  "relatedArtifacts": [
+    "gp-testimonial-framework (interview questions + story structure)",
+    "gp-attraction-content-governance (media consent gate + change classes)",
+    "practice-experience / GP Opportunities public surfaces"
+  ],
+  "principles": [
+    "Stories describe practice experience — they are not job advertisements or earnings claims.",
+    "Every status advance past drafting requires a named human reviewer.",
+    "Consent is versioned and channel-scoped; missing channel = not allowed.",
+    "Material copy or attribution changes require GP re-approval before publish.",
+    "Third-party / agency / job-board reuse is blocked unless a new consent record explicitly allows it.",
+    "Withdrawal is an ops SLA (default 10 business days for live page update), not a soft request.",
+    "Category labels require a real GP in that situation — no forced diversity framing."
+  ],
+  "categories": [
+    {
+      "id": "early_career",
+      "label": "Early Career",
+      "publicChip": "Early career",
+      "pairingHint": "First 90 Days / registrar–early pathway surfaces"
+    },
+    {
+      "id": "established",
+      "label": "Established",
+      "publicChip": "Established",
+      "pairingHint": "Continuity, complex co-management, practice systems"
+    },
+    {
+      "id": "returning",
+      "label": "Returning",
+      "publicChip": "Returning",
+      "pairingHint": "Staged return, rebuild following, pace expectations"
+    },
+    {
+      "id": "part_time",
+      "label": "Part-Time",
+      "publicChip": "Part-time",
+      "pairingHint": "Flexible consulting / session footprint"
+    },
+    {
+      "id": "special_interest",
+      "label": "Special Interest",
+      "publicChip": "Special interest",
+      "pairingHint": "Interest pathway inside ordinary community GP care — state the boundary"
+    }
+  ],
+  "diagram": {
+    "format": "mermaid",
+    "source": "flowchart LR\n  A[1 Invite] --> B[2 Brief + category]\n  B --> C[3 Interview]\n  C --> D[4 Draft]\n  D --> E[5 GP review + consent]\n  E --> F[6 Editorial review]\n  F --> G[7 Approved]\n  G --> H[8 Published]\n  E -.->|changes| D\n  F -.->|changes| D\n  H -.->|withdraw| W[Withdrawn / take-down]\n  B -.->|decline| X[Paused or archived]\n  C -.-> X\n\n  classDef human fill:#163f62,color:#fff,stroke:#173044\n  classDef risk fill:#f5f3ee,color:#173044,stroke:#8a6a2f\n  class A,B,C,D,E,F,G,H human\n  class W,X risk"
+  },
+  "adminWorkflow": {
+    "roles": [
+      {
+        "id": "practice_manager",
+        "duties": ["Invite", "Priority queue", "Gate advances", "Withdrawal SLA owner"]
+      },
+      {
+        "id": "content_editor",
+        "duties": ["Interview support", "Draft from structure", "Format variants", "Placement prep"]
+      },
+      {
+        "id": "brand_governance",
+        "duties": ["Editorial gate", "Reuse-policy check", "Schema / placement compliance"]
+      },
+      {
+        "id": "clinical_lead_or_principal",
+        "duties": ["Special-interest boundary check when clinical claims present"]
+      },
+      {
+        "id": "subject_gp",
+        "duties": ["Category choice", "Draft approval", "Attribution", "Signed consent", "Withdrawal"]
+      }
+    ],
+    "stages": [
+      {
+        "id": "invited",
+        "order": 1,
+        "label": "Invite",
+        "goal": "Private voluntary invitation — no link to commercial terms.",
+        "adminTasks": [
+          { "id": "inv_log", "task": "Create story inventory row with subject + clinic", "required": true },
+          { "id": "inv_send", "task": "Send invite with purpose + time ask (30–40 min)", "required": true },
+          { "id": "inv_voluntary", "task": "Record that participation is voluntary / non-contractual", "required": true }
+        ],
+        "humanGate": {
+          "required": true,
+          "role": "practice_manager",
+          "action": "Mark invite sent, or archive if declined"
+        },
+        "exitCriteria": ["Inventory row exists", "Invite logged with date"]
+      },
+      {
+        "id": "briefed",
+        "order": 2,
+        "label": "Brief + category",
+        "goal": "Share purpose, consent summary, categories; GP selects primary (+ optional secondary).",
+        "adminTasks": [
+          { "id": "br_share_consent", "task": "Share consent summary (scope, identity, withdrawal, commercial silence)", "required": true },
+          { "id": "br_assign_category", "task": "Record primary category + optional secondary", "required": true },
+          { "id": "br_si_label", "task": "If special interest: capture interest label + care boundary note", "required": false }
+        ],
+        "humanGate": {
+          "required": true,
+          "role": "practice_manager",
+          "action": "Confirm category assignment matches real situation"
+        },
+        "exitCriteria": ["Primary category set", "Consent status ≥ summary_shared"]
+      },
+      {
+        "id": "interviewed",
+        "order": 3,
+        "label": "Interview",
+        "goal": "Clinical-literate conversation using core + category questions from testimonial framework.",
+        "adminTasks": [
+          { "id": "in_schedule", "task": "Schedule 30–40 min interview", "required": true },
+          { "id": "in_record_tick", "task": "If recording: separate AV consent tick before capture", "required": true },
+          { "id": "in_attach_source", "task": "Attach audio/video/transcript source asset + retention date", "required": true }
+        ],
+        "humanGate": {
+          "required": true,
+          "role": "content_editor",
+          "action": "Confirm interview complete and sources stored"
+        },
+        "exitCriteria": ["interviewedAt set", "At least one source asset"]
+      },
+      {
+        "id": "drafting",
+        "order": 4,
+        "label": "Draft",
+        "goal": "Build structured story preserving GP phrasing; flag composites; produce format variants as needed.",
+        "adminTasks": [
+          { "id": "dr_structure", "task": "Map to five-part structure (context → close)", "required": true },
+          { "id": "dr_formats", "task": "Create version rows for intended formats", "required": true },
+          { "id": "dr_anti_pattern", "task": "Scan for earnings, hiring CTA, patient ID, ghostwritten sameness", "required": true }
+        ],
+        "humanGate": {
+          "required": true,
+          "role": "content_editor",
+          "action": "Submit draft version for GP review"
+        },
+        "exitCriteria": ["GpStoryVersion created", "Anti-pattern checklist snapshotted"]
+      },
+      {
+        "id": "gp_review",
+        "order": 5,
+        "label": "GP review + consent",
+        "goal": "GP reviews text/video, chooses attribution, signs consent version for allowed channels.",
+        "adminTasks": [
+          { "id": "gp_send_pack", "task": "Send draft + consent form; honour ≥5 business day review window", "required": true },
+          { "id": "gp_attribution", "task": "Record attribution choice and public byline", "required": true },
+          { "id": "gp_channels", "task": "Write reuse policy rows from signed channel allow/deny lists", "required": true }
+        ],
+        "humanGate": {
+          "required": true,
+          "role": "subject_gp",
+          "action": "Approve draft or request changes; sign consent"
+        },
+        "exitCriteria": [
+          "Consent status = signed",
+          "commercialSilenceAck + patientPrivacyAck + editRightsAck",
+          "gpApprovedAt on version"
+        ]
+      },
+      {
+        "id": "editorial_review",
+        "order": 6,
+        "label": "Editorial review",
+        "goal": "Brand + governance gate before approved inventory state.",
+        "adminTasks": [
+          { "id": "ed_consent_match", "task": "Verify consent version matches draft + channels", "required": true },
+          { "id": "ed_reuse", "task": "Verify placement targets ⊆ allowed channels; third-party blocked", "required": true },
+          { "id": "ed_tone", "task": "Confirm operational detail + honesty cue; no JobPosting / ratings schema", "required": true },
+          { "id": "ed_clinical", "task": "If special interest or clinical claim: clinical lead sign-off", "required": false }
+        ],
+        "humanGate": {
+          "required": true,
+          "role": "brand_governance",
+          "action": "Approve for publish queue, request changes, or pause"
+        },
+        "exitCriteria": ["Named editorial ReviewEvent", "Reuse policy green for intended channels"]
+      },
+      {
+        "id": "approved",
+        "order": 7,
+        "label": "Approved",
+        "goal": "Inventory-ready; placement planned but not live until publish gate.",
+        "adminTasks": [
+          { "id": "ap_plan_placement", "task": "Create Placement rows (live=false) with surface paths", "required": true },
+          { "id": "ap_cache_note", "task": "Note cache-bust / OG lag risk for future withdrawal", "required": false }
+        ],
+        "humanGate": {
+          "required": true,
+          "role": "practice_manager",
+          "action": "Approve publish when surface slot is ready"
+        },
+        "exitCriteria": ["Placement plan exists", "approve_publish ReviewEvent"]
+      },
+      {
+        "id": "published",
+        "order": 8,
+        "label": "Published",
+        "goal": "Live on consented surfaces only; inventory shows channel + version.",
+        "adminTasks": [
+          { "id": "pb_go_live", "task": "Set Placement.live=true; stamp publishedAt", "required": true },
+          { "id": "pb_verify", "task": "Verify live HTML shows attribution + honesty cue", "required": true }
+        ],
+        "humanGate": {
+          "required": true,
+          "role": "practice_manager",
+          "action": "Confirm live verification logged"
+        },
+        "exitCriteria": ["At least one live placement", "Status = published"]
+      }
+    ],
+    "withdrawalPath": {
+      "trigger": "Written GP withdrawal",
+      "slaBusinessDays": 10,
+      "steps": [
+        "Create ReviewEvent acknowledge_withdrawal",
+        "Set story status withdrawn; consent status withdrawn",
+        "Set all Placement.live=false with takeDownReason",
+        "Purge/replace owned social assets per policy; note OG cache lag",
+        "Confirm completion to GP within SLA"
+      ]
+    }
+  },
+  "editorialReviewFlow": {
+    "queueName": "GP story editorial",
+    "entryStatus": "editorial_review",
+    "checklist": [
+      {
+        "id": "chk_consent_signed",
+        "label": "Signed consent on file for this draft version",
+        "blocking": true
+      },
+      {
+        "id": "chk_channels",
+        "label": "Intended placements ⊆ channelsAllowed; denied channels empty of placements",
+        "blocking": true
+      },
+      {
+        "id": "chk_third_party",
+        "label": "No job-board / agency / paid network reuse requested",
+        "blocking": true
+      },
+      {
+        "id": "chk_patient",
+        "label": "No identifiable patient detail; composites labelled",
+        "blocking": true
+      },
+      {
+        "id": "chk_commercial",
+        "label": "No earnings, % splits, package, or hiring CTA inside story",
+        "blocking": true
+      },
+      {
+        "id": "chk_attribution",
+        "label": "Public byline matches attribution choice; AHPRA-safe titles only",
+        "blocking": true
+      },
+      {
+        "id": "chk_category",
+        "label": "Primary category accurate; special-interest boundary stated if applicable",
+        "blocking": true
+      },
+      {
+        "id": "chk_honesty",
+        "label": "Honesty cue enabled for public modules",
+        "blocking": false
+      },
+      {
+        "id": "chk_schema",
+        "label": "No Review/AggregateRating employer schema; Person only if named + profile link",
+        "blocking": true
+      },
+      {
+        "id": "chk_material_edit",
+        "label": "If editor changed meaning since GP approval → return to gp_review",
+        "blocking": true
+      }
+    ],
+    "decisions": [
+      {
+        "id": "approve_advance",
+        "toStatus": "approved",
+        "requiresRole": "brand_governance",
+        "requiresAllBlockingChecks": true
+      },
+      {
+        "id": "request_changes",
+        "toStatus": "changes_requested",
+        "requiresRole": "brand_governance",
+        "returnsTo": "drafting"
+      },
+      {
+        "id": "pause",
+        "toStatus": "paused",
+        "requiresRole": "practice_manager"
+      },
+      {
+        "id": "withdraw",
+        "toStatus": "withdrawn",
+        "requiresRole": "subject_gp"
+      }
+    ],
+    "changeClassHint": "Treat publish of a new GP story as B_substantive_copy (or C if clinical interest claims)."
+  },
+  "contentReuseControls": {
+    "defaultDeny": true,
+    "defaultAllowedOnSign": [
+      "practice_experience_web",
+      "gp_opportunities_rail"
+    ],
+    "optInOnly": [
+      "join_our_team_quiet_quote",
+      "owned_social_og",
+      "internal_proposal_pack",
+      "video_embed"
+    ],
+    "hardBlockUnlessNewConsent": [
+      "job_boards",
+      "recruitment_agencies",
+      "paid_testimonial_networks",
+      "third_clinic_sites"
+    ],
+    "materialChangeRule": "Wording that changes clinical claim, attribution, or honesty trade-off → new GpStoryVersion + GP re-approval + consent draft_linked if channels unchanged, else new consent.",
+    "clinicScopeDefault": "flagship_only",
+    "networkNote": "Canon / second-clinic adopt must strip named GP stories unless that clinic has its own consent + reuse policy."
+  },
+  "collectionDashboard": {
+    "widgets": [
+      "inventory_by_status",
+      "inventory_by_category",
+      "consent_risk_aging",
+      "editorial_queue",
+      "reuse_violations",
+      "withdrawal_sla"
+    ],
+    "sortDefault": "priority: gp_review > editorial_review > drafting > interviewed > briefed > invited"
+  }
+}

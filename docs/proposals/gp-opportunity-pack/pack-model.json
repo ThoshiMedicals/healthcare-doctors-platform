@@ -1,0 +1,101 @@
+{
+  "id": "wmc-gp-opportunity-pack-generator",
+  "version": "1.0.0",
+  "clinic": "Woolloongabba Medical Centre",
+  "purpose": "Assemble a complete take-away summary for doctors considering practice fit — not a job advertisement.",
+  "toneRules": [
+    "Practice employer brand — not recruitment agency voice",
+    "No public percentage splits or earnings claims",
+    "Explicit: WMC does not issue Medicare provider numbers",
+    "No JobPosting language in pack titles or CTAs"
+  ],
+  "inputs": {
+    "contentSources": [
+      {
+        "id": "gp_opportunities",
+        "label": "GP Opportunities content",
+        "source": "../gp-opportunities/index.html",
+        "packSection": "opportunities"
+      },
+      {
+        "id": "faq",
+        "label": "FAQ",
+        "source": "../gp-faq/gp-faq-content.json",
+        "packSection": "faq"
+      },
+      {
+        "id": "practice_support",
+        "label": "Practice support",
+        "source": "../practice-support-capability-matrix/capability-matrix.json",
+        "packSection": "support"
+      },
+      {
+        "id": "eligibility",
+        "label": "Eligibility guidance",
+        "source": "../dpa-19ab-navigator/ (boundary-safe summary)",
+        "packSection": "eligibility"
+      },
+      {
+        "id": "facilities",
+        "label": "Practice facilities",
+        "source": "../gp-opportunities/ facilities module",
+        "packSection": "facilities"
+      }
+    ],
+    "generatorControls": [
+      "sectionToggles",
+      "recipientName (optional)",
+      "preparedDate",
+      "doctorNotes (optional, private to pack)",
+      "includeContactPage",
+      "faqSubset (all | decision-critical)"
+    ]
+  },
+  "outputs": {
+    "web": {
+      "format": "HTML preview in generator + downloadable standalone HTML",
+      "features": ["on-this-page nav", "expandable FAQ", "boundary callouts", "related tool links"]
+    },
+    "pdfStructure": {
+      "format": "Paginated outline for print-to-PDF",
+      "pageTarget": "A4",
+      "estimatedPages": "4–6 depending on FAQ subset"
+    },
+    "print": {
+      "format": "@media print stylesheet + Print / Save as PDF action",
+      "features": ["page breaks per major section", "no interactive chrome", "footer with clinic + date + page"]
+    }
+  },
+  "pdfPageMap": [
+    {
+      "page": 1,
+      "blocks": ["cover", "purpose", "trustBoundaries"],
+      "notes": "Keep cover sparse; one H1; contact strip"
+    },
+    {
+      "page": 2,
+      "blocks": ["opportunities", "facilities"],
+      "notes": "Philosophy + how we work + facilities bullets"
+    },
+    {
+      "page": 3,
+      "blocks": ["support"],
+      "notes": "Can assist / cannot approve / external — condensed matrix"
+    },
+    {
+      "page": 4,
+      "blocks": ["eligibility"],
+      "notes": "Provider number + DPA/s19AB boundary-safe guidance only"
+    },
+    {
+      "page": 5,
+      "blocks": ["faq"],
+      "notes": "Decision-critical FAQs; full set may spill to page 6"
+    },
+    {
+      "page": 6,
+      "blocks": ["nextSteps", "contact"],
+      "notes": "Express interest with the practice; phone; related tools"
+    }
+  ]
+}

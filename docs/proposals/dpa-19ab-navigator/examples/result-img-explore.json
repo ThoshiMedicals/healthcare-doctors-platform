@@ -1,0 +1,57 @@
+{
+  "formType": "dpa_19ab_eligibility_navigator",
+  "version": "1.0.0",
+  "clinicSlug": "woolloongabba",
+  "completedAt": "2026-11-04T01:21:00.000Z",
+  "disclaimers": {
+    "notEligibilityDetermination": true,
+    "notLegalAdvice": true,
+    "notMigrationAdvice": true,
+    "decisionMaker": "Services Australia and relevant Australian Government programs — not Woolloongabba Medical Centre"
+  },
+  "answers": {
+    "fellowshipStatus": "in_progress",
+    "primaryDegreeCountry": "other_international",
+    "currentWorkLocation": "overseas",
+    "providerNumberStatus": "none",
+    "medicareBillingExperience": "none",
+    "australianTrainingPathway": "otd_img_pathway",
+    "visaWorkRightsStatus": "applying",
+    "dpaAwareness": "not_familiar"
+  },
+  "outputs": {
+    "pathwayThemes": [
+      "verify_dpa_for_location",
+      "review_19ab_exemptions_officially",
+      "provider_number_with_services_australia",
+      "fellowship_or_training_clarity",
+      "work_rights_confirmation",
+      "medicare_orientation_with_practice"
+    ],
+    "pathwaySummary": [
+      "This summary highlights pathway topics to explore — it is not an eligibility decision.",
+      "Your answers suggest it is worth reviewing official Services Australia / Health information about Medicare arrangements that can involve Health Insurance Act s19AB for some overseas-trained doctors. Only government sources can explain how rules apply to you.",
+      "Provider number status is incomplete or unsure. Provider numbers are issued by Services Australia.",
+      "Work rights should be confirmed through official channels before planning a start date. The practice does not provide migration advice."
+    ],
+    "questionsForWmc": [
+      "Can you share the exact practice location details needed for my Services Australia / provider-number paperwork?",
+      "If I am on a training/registrar pathway, is supervision capacity available in the timeframe I am considering?",
+      "What staged session options are realistic if I am relocating or returning to Australian general practice?"
+    ],
+    "documentationChecklist": [
+      { "id": "ahpra", "label": "AHPRA registration evidence", "owner": "doctor" },
+      { "id": "id_work_rights", "label": "Evidence of identity and work rights (as applicable)", "owner": "doctor", "note": "WMC does not advise on visas." },
+      { "id": "sa_provider", "label": "Services Australia provider number correspondence / application status", "owner": "services_australia" },
+      { "id": "sa_19ab_notes", "label": "Personal notes from official s19AB / OTD Medicare reading", "owner": "doctor" }
+    ],
+    "servicesAustraliaResources": [],
+    "recommendedNextAction": {
+      "id": "confirm_work_rights_then_eoi",
+      "title": "Confirm work rights through official channels, then express interest",
+      "detail": "Resolve work-rights certainty via official sources (or your migration adviser). When ready, share an EOI so WMC can discuss practice fit — not visa outcomes.",
+      "ctaLabel": "Review EOI form",
+      "ctaHref": "../gp-eoi/"
+    }
+  }
+}

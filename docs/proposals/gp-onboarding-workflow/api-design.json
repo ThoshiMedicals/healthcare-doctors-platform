@@ -1,0 +1,115 @@
+{
+  "title": "GP Onboarding Workflow API",
+  "version": "1.0.0",
+  "basePath": "/api/clinics/{clinicSlug}/gp-onboarding",
+  "auth": "Admin session for mutations and dashboard; doctor magic-link or authenticated portal for doctor task updates. Public EOI remains separate.",
+  "coreRule": {
+    "summary": "No automated approvals",
+    "enforcement": [
+      "POST .../gates requires reviewerId, reviewerName, decision, rationale",
+      "Transition to live only via gate decision approve_advance on stage go_live",
+      "EOI score endpoints cannot call gate approve",
+      "Notification webhooks cannot mutate gate_approved or live",
+      "Server rejects gate payloads that claim system/auto as reviewerId"
+    ]
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/api/clinics/{clinicSlug}/gp-onboarding/workflow",
+      "summary": "Return published workflow definition (stages, tasks, transitions)",
+      "auth": "admin_or_internal"
+    },
+    {
+      "method": "GET",
+      "path": "/api/clinics/{clinicSlug}/gp-onboarding/cases",
+      "summary": "List onboarding cases for dashboard (filter by status, stage)",
+      "auth": "admin",
+      "query": ["status", "currentStageId", "q"]
+    },
+    {
+      "method": "POST",
+      "path": "/api/clinics/{clinicSlug}/gp-onboarding/cases",
+      "summary": "Create case from enquiry or link existing EOI",
+      "auth": "admin",
+      "body": {
+        "doctorDisplayName": "Dr Example",
+        "doctorEmail": "doctor@example.com",
+        "careerApplicationId": "optional-eoi-id"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/clinics/{clinicSlug}/gp-onboarding/cases/{caseId}",
+      "summary": "Case detail: stages, tasks, gates, notifications",
+      "auth": "admin_or_case_doctor"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/clinics/{clinicSlug}/gp-onboarding/cases/{caseId}/tasks/{taskKey}",
+      "summary": "Update a single task status (doctor or admin by owner)",
+      "auth": "admin_or_case_doctor",
+      "body": {
+        "status": "done",
+        "notes": "optional"
+      },
+      "sideEffects": [
+        "May set stage to ready_for_gate when required tasks done",
+        "Never sets gate_approved"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/clinics/{clinicSlug}/gp-onboarding/cases/{caseId}/stages/{stageId}/gates",
+      "summary": "Human gate decision — only path to approve stage advance or go-live",
+      "auth": "admin",
+      "body": {
+        "reviewerId": "user_123",
+        "reviewerName": "Practice Manager",
+        "decision": "approve_advance",
+        "rationale": "Documents sighted; sessions agreed; orientation complete."
+      },
+      "responses": {
+        "201": "Gate event recorded; case/stage status updated",
+        "400": "Missing human fields, invalid transition, or incomplete required tasks",
+        "403": "reviewerId reserved for system/automation"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/clinics/{clinicSlug}/gp-onboarding/cases/{caseId}/status",
+      "summary": "Human status change for pause / withdraw / decline (also via gates where applicable)",
+      "auth": "admin",
+      "body": {
+        "status": "paused",
+        "reviewerId": "user_123",
+        "rationale": "Doctor requested later start"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/clinics/{clinicSlug}/gp-onboarding/cases/{caseId}/checklist",
+      "summary": "Computed readiness checklist for go-live review (informational)",
+      "auth": "admin",
+      "note": "Completeness % is advisory. Release still requires gate."
+    },
+    {
+      "method": "GET",
+      "path": "/api/clinics/{clinicSlug}/gp-onboarding/notifications/catalog",
+      "summary": "Notification event catalog",
+      "auth": "admin"
+    }
+  ],
+  "localhostPrototype": {
+    "base": "http://127.0.0.1:4180",
+    "routes": [
+      "GET /api/workflow",
+      "GET /api/notifications",
+      "GET /api/cases",
+      "GET /api/cases/:id",
+      "POST /api/cases",
+      "PATCH /api/cases/:id/tasks/:taskKey",
+      "POST /api/cases/:id/gates"
+    ]
+  }
+}

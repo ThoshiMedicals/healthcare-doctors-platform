@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Join Our Team — GP Recruitment Redesign | Woolloongabba Medical Centre</title>
+  <meta name="description" content="Practise medicine with continuity, nursing support and flexible consulting at Woolloongabba Medical Centre — an AGPAL-accredited Brisbane general practice." />
+  <meta name="robots" content="noindex,nofollow" />
+  <!--
+    DESIGN PROPOSAL — not production golden master.
+    Maps WMC brand tokens to Tailwind utility classes for review.
+    Production site currently uses styles.css; adapt classes or port tokens when implementing via CMS revision / public-ux.
+  -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#173044",
+            "ink-soft": "#596b78",
+            navy: "#163f62",
+            blue: "#1f5c99",
+            warm: "#f5f3ee",
+            mist: "#f4f7f7",
+            line: "#dbe4e9",
+            green: "#0f6b45",
+          },
+          fontFamily: {
+            display: ['"Libre Baskerville"', "Georgia", "serif"],
+            ui: ["Inter", "system-ui", "sans-serif"],
+          },
+          maxWidth: {
+            shell: "1320px",
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!--
+    SCHEMA RECOMMENDATIONS (production head):
+    1. Keep MedicalClinic / MedicalOrganization org entity (@id #medical-clinic).
+    2. Use WebPage + about MedicalClinic (current pattern is fine).
+    3. Add FAQPage for the GP FAQ section (high-intent GP search queries).
+    4. Add JobPosting ONLY when an active vacancy is published (inject from CMS).
+       Do not emit empty JobPosting or agency Occupation aggregates.
+    5. Prefer "hiringOrganization" = MedicalClinic, not a staffing brand.
+    6. BreadcrumbList: Home → About Us → Join Our Team (label “Join Our Team”, not “Careers”, for consistency with primary nav).
+  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["MedicalClinic", "MedicalOrganization"],
+        "@id": "https://gabbamedicalcentre.com.au/#medical-clinic",
+        "name": "Woolloongabba Medical Centre",
+        "url": "https://gabbamedicalcentre.com.au/",
+        "telephone": "+61 7 3217 3344",
+        "email": "reception@gabbamedicalcentre.com.au",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "468 Vulture Street",
+          "addressLocality": "Woolloongabba",
+          "addressRegion": "QLD",
+          "postalCode": "4102",
+          "addressCountry": "AU"
+        },
+        "medicalSpecialty": "https://schema.org/PrimaryCare",
+        "isAcceptingNewPatients": true
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://gabbamedicalcentre.com.au/join-our-team.html#webpage",
+        "url": "https://gabbamedicalcentre.com.au/join-our-team.html",
+        "name": "Join Our Team | General Practitioners — Woolloongabba Medical Centre",
+        "description": "Practise medicine with continuity, nursing support and flexible consulting at Woolloongabba Medical Centre.",
+        "isPartOf": { "@id": "https://gabbamedicalcentre.com.au/#medical-clinic" },
+        "about": { "@id": "https://gabbamedicalcentre.com.au/#medical-clinic" },
+        "mainEntity": { "@id": "https://gabbamedicalcentre.com.au/join-our-team.html#faq" }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://gabbamedicalcentre.com.au/join-our-team.html#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Are you seeking permanent GPs, part-time GPs, or both?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We welcome conversations with vocationally registered GPs interested in permanent or flexible session arrangements that suit the practice and your clinical goals. Session availability is discussed individually."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you support GPs who are building a patient list?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. We support GPs establishing continuity with patients through reception pathways, team introductions and a practice culture that values long-term relationships rather than high-volume throughput alone."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I develop special clinical interests within general practice?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Clinical interests that strengthen community general practice are welcome — for example women’s health, skin checks, chronic disease, mental health, children’s health or procedural work — discussed in the context of patient need, credentialing and team capacity."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I express interest?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Submit an expression of interest on this page with your contact details and a brief professional introduction. Suitable candidates are contacted by the practice for a conversation. You will not be added to a public job board."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://gabbamedicalcentre.com.au/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "About Us",
+            "item": "https://gabbamedicalcentre.com.au/about-us.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Join Our Team",
+            "item": "https://gabbamedicalcentre.com.au/join-our-team.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-white font-ui text-ink antialiased">
+  <a
+    href="#main"
+    class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white"
+  >
+    Skip to content
+  </a>
+
+  <!-- Proposal banner (remove in production) -->
+  <div class="border-b border-line bg-warm px-4 py-3 text-center text-sm text-ink-soft" role="note">
+    <strong class="text-ink">Design proposal</strong>
+    — GP recruitment UX for Join Our Team. Not the live golden master. Tailwind utilities map WMC tokens (ink / navy / green / warm / mist).
+  </div>
+
+  <main id="main" tabindex="-1" class="outline-none">
+    <!-- Hero: practice voice, not agency marketplace -->
+    <header class="border-b border-line bg-gradient-to-b from-warm to-mist">
+      <div class="mx-auto grid max-w-shell gap-10 px-5 py-16 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center lg:px-8 lg:py-20">
+        <div>
+          <p class="font-ui text-xs font-semibold uppercase tracking-[0.14em] text-green">
+            General Practitioners · Woolloongabba
+          </p>
+          <h1 class="mt-4 font-display text-4xl font-bold leading-[1.05] text-ink md:text-5xl lg:text-[3.5rem]">
+            Practise medicine where continuity still matters.
+          </h1>
+          <p class="mt-5 max-w-xl text-lg leading-relaxed text-ink-soft">
+            Woolloongabba Medical Centre is an AGPAL-accredited Brisbane general practice.
+            We invite vocationally registered GPs who value patient relationships, team-based care
+            and a well-supported consulting environment.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a
+              href="#expression-of-interest"
+              class="inline-flex min-h-12 items-center justify-center rounded-full bg-navy px-6 text-sm font-semibold text-white transition hover:bg-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+            >
+              Express your interest
+            </a>
+            <a
+              href="#why-wmc"
+              class="inline-flex min-h-12 items-center justify-center rounded-full border border-line bg-white px-6 text-sm font-semibold text-navy transition hover:border-navy/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+            >
+              Why this practice
+            </a>
+          </div>
+          <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-soft" aria-label="Practice credentials">
+            <li>AGPAL-accredited general practice</li>
+            <li>Inner-south Brisbane · 468 Vulture Street</li>
+            <li>Healthcare Doctors network</li>
+          </ul>
+        </div>
+        <figure class="overflow-hidden rounded-[1.5rem] border border-line bg-white">
+          <img
+            src="../../old-html/assets/careers-editorial.webp"
+            alt="Consulting and team environment at Woolloongabba Medical Centre"
+            width="1600"
+            height="900"
+            class="h-full w-full object-cover"
+            decoding="async"
+            fetchpriority="high"
+          />
+          <figcaption class="sr-only">
+            Collaborative clinical environment at Woolloongabba Medical Centre
+          </figcaption>
+        </figure>
+      </div>
+    </header>
+
+    <!-- On this page: shortened, GP-focused -->
+    <nav
+      aria-label="On this page"
+      class="border-b border-line bg-white"
+    >
+      <div class="mx-auto flex max-w-shell flex-col gap-3 px-5 py-5 lg:flex-row lg:items-center lg:gap-6 lg:px-8">
+        <p class="shrink-0 text-xs font-semibold uppercase tracking-[0.14em] text-ink-soft">On this page</p>
+        <ul class="flex flex-wrap gap-2">
+          <li><a class="rounded-full border border-line px-3 py-1.5 text-sm font-medium text-navy hover:bg-mist focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" href="#why-wmc">Why WMC</a></li>
+          <li><a class="rounded-full border border-line px-3 py-1.5 text-sm font-medium text-navy hover:bg-mist focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" href="#facilities-support">Facilities &amp; support</a></li>
+          <li><a class="rounded-full border border-line px-3 py-1.5 text-sm font-medium text-navy hover:bg-mist focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" href="#flexible-consulting">Flexible consulting</a></li>
+          <li><a class="rounded-full border border-line px-3 py-1.5 text-sm font-medium text-navy hover:bg-mist focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" href="#clinical-interests">Clinical interests</a></li>
+          <li><a class="rounded-full border border-line px-3 py-1.5 text-sm font-medium text-navy hover:bg-mist focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" href="#practice-growth">Practice growth</a></li>
+          <li><a class="rounded-full border border-line px-3 py-1.5 text-sm font-medium text-navy hover:bg-mist focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" href="#gp-faq">GP FAQ</a></li>
+          <li><a class="rounded-full border border-line px-3 py-1.5 text-sm font-medium text-navy hover:bg-mist focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy" href="#expression-of-interest">Expression of interest</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="mx-auto max-w-shell px-5 py-14 lg:px-8 lg:py-16">
+      <div class="grid gap-16 lg:grid-cols-[minmax(0,220px)_minmax(0,1fr)] lg:gap-12">
+        <aside class="hidden lg:block" aria-label="Related practice pages">
+          <div class="sticky top-8 space-y-6">
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-[0.14em] text-ink-soft">Related</p>
+              <ul class="mt-3 space-y-2 text-sm">
+                <li><a class="text-navy underline-offset-2 hover:underline" href="/team-general-practitioners.html">Our GPs</a></li>
+                <li><a class="text-navy underline-offset-2 hover:underline" href="/philosophy-of-care.html">Our philosophy</a></li>
+                <li><a class="text-navy underline-offset-2 hover:underline" href="/agpal-accreditation.html">AGPAL accreditation</a></li>
+                <li><a class="text-navy underline-offset-2 hover:underline" href="/medical-centre-network.html">Medical centre network</a></li>
+                <li><a class="text-navy underline-offset-2 hover:underline" href="/contact.html">Contact the practice</a></li>
+              </ul>
+            </div>
+            <p class="text-sm leading-relaxed text-ink-soft">
+              Nursing, allied health and practice roles are also welcome via the expression of interest form — select your role when you apply.
+            </p>
+          </div>
+        </aside>
+
+        <article class="space-y-20">
+          <!-- 1. Why Woolloongabba Medical Centre -->
+          <section id="why-wmc" aria-labelledby="why-wmc-heading" class="scroll-mt-8">
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Why Woolloongabba Medical Centre</p>
+            <h2 id="why-wmc-heading" class="mt-3 font-display text-3xl font-bold text-ink md:text-[2.125rem]">
+              A professional home for community general practice.
+            </h2>
+            <p class="mt-4 max-w-3xl text-base leading-relaxed text-ink-soft">
+              We are a local practice shaped by continuity, familiarity and long-term relationships —
+              not a high-volume clinic chasing throughput. GPs who join us become part of a multidisciplinary
+              team that already cares for families across Woolloongabba and Brisbane’s inner south.
+            </p>
+            <ul class="mt-8 grid gap-4 sm:grid-cols-2" role="list">
+              <li class="rounded-2xl border border-line bg-mist/60 p-6">
+                <h3 class="font-display text-lg font-bold text-ink">Continuity over churn</h3>
+                <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+                  Patient stories accumulate over years. Your clinical judgement builds on context, not first-visit fragments alone.
+                </p>
+              </li>
+              <li class="rounded-2xl border border-line bg-mist/60 p-6">
+                <h3 class="font-display text-lg font-bold text-ink">Team-based care</h3>
+                <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+                  GPs, nurses, allied health, reception and practice management work as one organisation around each patient.
+                </p>
+              </li>
+              <li class="rounded-2xl border border-line bg-mist/60 p-6">
+                <h3 class="font-display text-lg font-bold text-ink">Accredited standards</h3>
+                <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+                  AGPAL accreditation reflects structured quality, safety, privacy and continuous improvement in everyday practice.
+                </p>
+              </li>
+              <li class="rounded-2xl border border-line bg-mist/60 p-6">
+                <h3 class="font-display text-lg font-bold text-ink">Established community</h3>
+                <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+                  Inner-south location near major hospitals, with an established patient base and practical city access.
+                </p>
+              </li>
+            </ul>
+          </section>
+
+          <!-- 2. Facilities and Support -->
+          <section id="facilities-support" aria-labelledby="facilities-heading" class="scroll-mt-8">
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Facilities and support</p>
+            <h2 id="facilities-heading" class="mt-3 font-display text-3xl font-bold text-ink md:text-[2.125rem]">
+              The operational support that lets you focus on patients.
+            </h2>
+            <p class="mt-4 max-w-3xl text-base leading-relaxed text-ink-soft">
+              Good general practice depends on rooms, nursing, reception and systems that work.
+              We invest in the environment around the consult — so clinical time is protected.
+            </p>
+            <dl class="mt-8 grid gap-6 sm:grid-cols-2">
+              <div class="border-t border-line pt-5">
+                <dt class="font-semibold text-ink">Consulting rooms &amp; clinical space</dt>
+                <dd class="mt-2 text-sm leading-relaxed text-ink-soft">
+                  Dedicated consulting environments suited to continuity-based general practice, with access to shared clinical areas as needed.
+                </dd>
+              </div>
+              <div class="border-t border-line pt-5">
+                <dt class="font-semibold text-ink">Nursing support</dt>
+                <dd class="mt-2 text-sm leading-relaxed text-ink-soft">
+                  Practice nursing support for procedures, chronic disease pathways, immunisations and care coordination where clinically appropriate.
+                </dd>
+              </div>
+              <div class="border-t border-line pt-5">
+                <dt class="font-semibold text-ink">Reception &amp; patient flow</dt>
+                <dd class="mt-2 text-sm leading-relaxed text-ink-soft">
+                  An experienced reception team managing appointments, enquiries and the day-to-day experience patients associate with our practice.
+                </dd>
+              </div>
+              <div class="border-t border-line pt-5">
+                <dt class="font-semibold text-ink">Practice systems &amp; governance</dt>
+                <dd class="mt-2 text-sm leading-relaxed text-ink-soft">
+                  Structured policies for privacy, infection prevention, quality and safety — aligned with AGPAL expectations and local clinical reality.
+                </dd>
+              </div>
+            </dl>
+          </section>
+
+          <!-- 3. Flexible Consulting Opportunities -->
+          <section id="flexible-consulting" aria-labelledby="flexible-heading" class="scroll-mt-8">
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Flexible consulting opportunities</p>
+            <h2 id="flexible-heading" class="mt-3 font-display text-3xl font-bold text-ink md:text-[2.125rem]">
+              Sessions shaped around sustainable practice.
+            </h2>
+            <p class="mt-4 max-w-3xl text-base leading-relaxed text-ink-soft">
+              We understand that many GPs are looking for arrangements that fit family life, portfolio careers
+              or a staged return to fuller consulting. Flexibility here means a clear conversation about sessions —
+              not a casual locum marketplace.
+            </p>
+            <div class="mt-8 grid gap-4 md:grid-cols-3" role="list">
+              <article class="rounded-2xl border border-line bg-white p-6 shadow-[0_8px_24px_rgba(23,48,68,0.05)]" role="listitem">
+                <h3 class="font-display text-lg font-bold text-ink">Permanent sessions</h3>
+                <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+                  Build a stable consulting presence with patients who return to you over time.
+                </p>
+              </article>
+              <article class="rounded-2xl border border-line bg-white p-6 shadow-[0_8px_24px_rgba(23,48,68,0.05)]" role="listitem">
+                <h3 class="font-display text-lg font-bold text-ink">Part-time arrangements</h3>
+                <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+                  Discuss session days that align with your capacity while remaining reliable for the practice team.
+                </p>
+              </article>
+              <article class="rounded-2xl border border-line bg-white p-6 shadow-[0_8px_24px_rgba(23,48,68,0.05)]" role="listitem">
+                <h3 class="font-display text-lg font-bold text-ink">Growth over time</h3>
+                <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+                  Start with a sustainable footprint and expand sessions as your list and clinical interests develop.
+                </p>
+              </article>
+            </div>
+            <p class="mt-6 max-w-3xl text-sm leading-relaxed text-ink-soft">
+              Specific session availability, start dates and commercial terms are discussed privately with suitable candidates —
+              we do not publish generic “earning potential” claims on this page.
+            </p>
+          </section>
+
+          <!-- 4. Clinical Interests Welcome -->
+          <section id="clinical-interests" aria-labelledby="interests-heading" class="scroll-mt-8">
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Clinical interests welcome</p>
+            <h2 id="interests-heading" class="mt-3 font-display text-3xl font-bold text-ink md:text-[2.125rem]">
+              Bring the clinical depth that strengthens community care.
+            </h2>
+            <p class="mt-4 max-w-3xl text-base leading-relaxed text-ink-soft">
+              We are a general practice first. Special clinical interests are encouraged when they serve local patients
+              and sit comfortably within credentialing, team capacity and safe scope of practice.
+            </p>
+            <ul class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" aria-label="Examples of clinical interests">
+              <li class="rounded-xl border border-line bg-warm/70 px-4 py-3 text-sm font-medium text-ink">Women’s health &amp; antenatal care</li>
+              <li class="rounded-xl border border-line bg-warm/70 px-4 py-3 text-sm font-medium text-ink">Skin checks &amp; minor procedures</li>
+              <li class="rounded-xl border border-line bg-warm/70 px-4 py-3 text-sm font-medium text-ink">Chronic disease management</li>
+              <li class="rounded-xl border border-line bg-warm/70 px-4 py-3 text-sm font-medium text-ink">Mental health in primary care</li>
+              <li class="rounded-xl border border-line bg-warm/70 px-4 py-3 text-sm font-medium text-ink">Children’s &amp; adolescent health</li>
+              <li class="rounded-xl border border-line bg-warm/70 px-4 py-3 text-sm font-medium text-ink">Preventive &amp; lifestyle medicine</li>
+            </ul>
+            <p class="mt-6 max-w-3xl text-sm leading-relaxed text-ink-soft">
+              Tell us about your interests in your expression of interest. We will discuss how they fit our community’s needs —
+              without turning this page into a specialty marketplace.
+            </p>
+          </section>
+
+          <!-- 5. Practice Growth Support -->
+          <section id="practice-growth" aria-labelledby="growth-heading" class="scroll-mt-8">
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Practice growth support</p>
+            <h2 id="growth-heading" class="mt-3 font-display text-3xl font-bold text-ink md:text-[2.125rem]">
+              Support to grow a practice — not just fill a roster.
+            </h2>
+            <p class="mt-4 max-w-3xl text-base leading-relaxed text-ink-soft">
+              Joining Woolloongabba Medical Centre means contributing to a living patient community.
+              We help GPs establish continuity, integrate with the team and develop clinically over time.
+            </p>
+            <ol class="mt-8 space-y-5">
+              <li class="flex gap-4">
+                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-navy text-sm font-semibold text-white" aria-hidden="true">1</span>
+                <div>
+                  <h3 class="font-semibold text-ink">Patient list development</h3>
+                  <p class="mt-1 text-sm leading-relaxed text-ink-soft">
+                    Reception pathways and team introductions that help patients find the right GP — and return.
+                  </p>
+                </div>
+              </li>
+              <li class="flex gap-4">
+                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-navy text-sm font-semibold text-white" aria-hidden="true">2</span>
+                <div>
+                  <h3 class="font-semibold text-ink">Clinical collaboration</h3>
+                  <p class="mt-1 text-sm leading-relaxed text-ink-soft">
+                    Colleagues you can ask, share cases with, and co-manage complex presentations alongside nursing and allied health.
+                  </p>
+                </div>
+              </li>
+              <li class="flex gap-4">
+                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-navy text-sm font-semibold text-white" aria-hidden="true">3</span>
+                <div>
+                  <h3 class="font-semibold text-ink">Professional development culture</h3>
+                  <p class="mt-1 text-sm leading-relaxed text-ink-soft">
+                    A practice that values learning, reflection and CPD within the realities of busy primary care.
+                  </p>
+                </div>
+              </li>
+              <li class="flex gap-4">
+                <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-navy text-sm font-semibold text-white" aria-hidden="true">4</span>
+                <div>
+                  <h3 class="font-semibold text-ink">Network without losing local identity</h3>
+                  <p class="mt-1 text-sm leading-relaxed text-ink-soft">
+                    Part of the Healthcare Doctors network for organisational experience — while remaining grounded in Woolloongabba’s community practice.
+                  </p>
+                </div>
+              </li>
+            </ol>
+          </section>
+
+          <!-- Current opportunities (keep CMS inject hook) -->
+          <section id="current-opportunities" aria-labelledby="opportunities-heading" class="scroll-mt-8">
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Current opportunities</p>
+            <h2 id="opportunities-heading" class="mt-3 font-display text-3xl font-bold text-ink md:text-[2.125rem]">
+              Published roles
+            </h2>
+            <p class="mt-4 max-w-3xl text-base leading-relaxed text-ink-soft">
+              When a specific vacancy is open, it appears below. Expressions of interest remain welcome at any time.
+            </p>
+            <!--careers-vacancies:start-->
+            <div class="mt-6 rounded-2xl border border-dashed border-line bg-mist/50 p-6" data-careers-vacancies-root="" role="status">
+              <p class="text-sm text-ink-soft">
+                We are not currently advertising a specific role. GP expressions of interest are welcome year-round.
+              </p>
+            </div>
+            <!--careers-vacancies:end-->
+          </section>
+
+          <!-- 6. GP FAQ -->
+          <section id="gp-faq" aria-labelledby="faq-heading" class="scroll-mt-8">
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">GP FAQ</p>
+            <h2 id="faq-heading" class="mt-3 font-display text-3xl font-bold text-ink md:text-[2.125rem]">
+              Questions GPs usually ask first.
+            </h2>
+            <div class="mt-8 divide-y divide-line border-y border-line">
+              <details class="group py-5">
+                <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-left font-semibold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy [&::-webkit-details-marker]:hidden">
+                  <span>Are you seeking permanent GPs, part-time GPs, or both?</span>
+                  <span class="mt-1 text-ink-soft transition group-open:rotate-45" aria-hidden="true">+</span>
+                </summary>
+                <p class="mt-3 max-w-3xl text-sm leading-relaxed text-ink-soft">
+                  Both. We welcome vocationally registered GPs interested in permanent or flexible session arrangements
+                  that suit the practice and your clinical goals. Availability is discussed individually.
+                </p>
+              </details>
+              <details class="group py-5">
+                <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-left font-semibold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy [&::-webkit-details-marker]:hidden">
+                  <span>Do you support GPs who are building a patient list?</span>
+                  <span class="mt-1 text-ink-soft transition group-open:rotate-45" aria-hidden="true">+</span>
+                </summary>
+                <p class="mt-3 max-w-3xl text-sm leading-relaxed text-ink-soft">
+                  Yes. Continuity is central to how we work. Reception pathways and team introductions help patients
+                  form an ongoing relationship with you — rather than treating every visit as a one-off.
+                </p>
+              </details>
+              <details class="group py-5">
+                <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-left font-semibold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy [&::-webkit-details-marker]:hidden">
+                  <span>What about billing models and commercial terms?</span>
+                  <span class="mt-1 text-ink-soft transition group-open:rotate-45" aria-hidden="true">+</span>
+                </summary>
+                <p class="mt-3 max-w-3xl text-sm leading-relaxed text-ink-soft">
+                  Commercial arrangements are discussed privately with suitable candidates. This page does not publish
+                  percentage splits or earnings claims. Bring your questions — we will answer them directly in conversation.
+                </p>
+              </details>
+              <details class="group py-5">
+                <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-left font-semibold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy [&::-webkit-details-marker]:hidden">
+                  <span>Can I develop special clinical interests here?</span>
+                  <span class="mt-1 text-ink-soft transition group-open:rotate-45" aria-hidden="true">+</span>
+                </summary>
+                <p class="mt-3 max-w-3xl text-sm leading-relaxed text-ink-soft">
+                  Interests that strengthen community general practice are welcome, subject to patient need, credentialing
+                  and team capacity. Share what you care about clinically in your expression of interest.
+                </p>
+              </details>
+              <details class="group py-5">
+                <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-left font-semibold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy [&::-webkit-details-marker]:hidden">
+                  <span>Do you accept GP registrars or non-VR doctors?</span>
+                  <span class="mt-1 text-ink-soft transition group-open:rotate-45" aria-hidden="true">+</span>
+                </summary>
+                <p class="mt-3 max-w-3xl text-sm leading-relaxed text-ink-soft">
+                  Select the most accurate role in the form (including GP Registrar where relevant). Supervision capacity
+                  and timing vary — we will advise based on current practice needs.
+                </p>
+              </details>
+              <details class="group py-5">
+                <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-left font-semibold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy [&::-webkit-details-marker]:hidden">
+                  <span>How does recruitment work — and is this a job board?</span>
+                  <span class="mt-1 text-ink-soft transition group-open:rotate-45" aria-hidden="true">+</span>
+                </summary>
+                <p class="mt-3 max-w-3xl text-sm leading-relaxed text-ink-soft">
+                  No. You submit an expression of interest directly to Woolloongabba Medical Centre. Our practice team
+                  reviews alignment with needs and timing, then contacts suitable candidates for a conversation.
+                  You are not added to a public job board or third-party talent pool.
+                </p>
+              </details>
+            </div>
+          </section>
+
+          <!-- 7. Expression of Interest -->
+          <section id="expression-of-interest" aria-labelledby="eoi-heading" class="scroll-mt-8">
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Expression of interest</p>
+            <h2 id="eoi-heading" class="mt-3 font-display text-3xl font-bold text-ink md:text-[2.125rem]">
+              Start a conversation with the practice.
+            </h2>
+            <p class="mt-4 max-w-3xl text-base leading-relaxed text-ink-soft">
+              Share a brief professional introduction. Suitable candidates are contacted by Woolloongabba Medical Centre —
+              not by a recruitment agency acting on our behalf through this form.
+            </p>
+
+            <form
+              action="/api/clinics/woolloongabba/career-applications"
+              method="post"
+              enctype="multipart/form-data"
+              class="mt-8 max-w-2xl space-y-6 rounded-[1.5rem] border border-line bg-warm/40 p-6 md:p-8"
+              data-clinic-slug="woolloongabba"
+              data-talent-community-form=""
+              novalidate
+              aria-describedby="eoi-privacy"
+            >
+              <input type="hidden" name="vacancyId" value="" data-talent-vacancy-field="" />
+
+              <fieldset class="space-y-5">
+                <legend class="font-display text-xl font-bold text-ink">Your details</legend>
+                <p class="text-sm leading-relaxed text-ink-soft">
+                  <strong class="text-ink">How this works:</strong>
+                  Your details and optional resume are stored securely for the practice recruitment team.
+                </p>
+
+                <div class="grid gap-5 sm:grid-cols-2">
+                  <div class="sm:col-span-2">
+                    <label for="eoi-name" class="block text-sm font-semibold text-ink">
+                      Full name <span class="text-green" aria-hidden="true">*</span>
+                      <span class="sr-only">(required)</span>
+                    </label>
+                    <input
+                      id="eoi-name"
+                      name="name"
+                      type="text"
+                      autocomplete="name"
+                      required
+                      class="mt-2 min-h-12 w-full rounded-xl border border-line bg-white px-4 text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+                    />
+                  </div>
+
+                  <div>
+                    <label for="eoi-email" class="block text-sm font-semibold text-ink">
+                      Email <span class="text-green" aria-hidden="true">*</span>
+                      <span class="sr-only">(required)</span>
+                    </label>
+                    <input
+                      id="eoi-email"
+                      name="email"
+                      type="email"
+                      inputmode="email"
+                      autocomplete="email"
+                      required
+                      class="mt-2 min-h-12 w-full rounded-xl border border-line bg-white px-4 text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+                    />
+                  </div>
+
+                  <div>
+                    <label for="eoi-phone" class="block text-sm font-semibold text-ink">Phone</label>
+                    <input
+                      id="eoi-phone"
+                      name="phone"
+                      type="tel"
+                      inputmode="tel"
+                      autocomplete="tel"
+                      class="mt-2 min-h-12 w-full rounded-xl border border-line bg-white px-4 text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+                    />
+                  </div>
+
+                  <div class="sm:col-span-2">
+                    <label for="eoi-role" class="block text-sm font-semibold text-ink">
+                      Role of interest <span class="text-green" aria-hidden="true">*</span>
+                      <span class="sr-only">(required)</span>
+                    </label>
+                    <select
+                      id="eoi-role"
+                      name="role"
+                      required
+                      class="mt-2 min-h-12 w-full rounded-xl border border-line bg-white px-4 text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+                    >
+                      <option value="">Choose a role</option>
+                      <option selected>General Practitioner</option>
+                      <option>GP Registrar</option>
+                      <option>Practice Nurse</option>
+                      <option>Enrolled Nurse</option>
+                      <option>Medical Receptionist</option>
+                      <option>Practice Manager</option>
+                      <option>Allied Health</option>
+                      <option>Psychologist</option>
+                      <option>Dietitian</option>
+                      <option>Physiotherapist</option>
+                      <option>Student Placement</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+
+                  <div class="sm:col-span-2">
+                    <label for="eoi-resume" class="block text-sm font-semibold text-ink">Resume upload</label>
+                    <input
+                      id="eoi-resume"
+                      name="resume"
+                      type="file"
+                      accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                      class="mt-2 block w-full text-sm text-ink-soft file:mr-4 file:rounded-full file:border-0 file:bg-navy file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white"
+                    />
+                    <p id="eoi-resume-hint" class="mt-2 text-xs text-ink-soft">Optional. PDF or Word, up to 5&nbsp;MB.</p>
+                  </div>
+
+                  <div class="sm:col-span-2">
+                    <label for="eoi-message" class="block text-sm font-semibold text-ink">
+                      Message
+                      <span class="font-normal text-ink-soft"> — sessions of interest, clinical interests, AHPRA status</span>
+                    </label>
+                    <textarea
+                      id="eoi-message"
+                      name="message"
+                      rows="5"
+                      placeholder="Brief introduction: preferred sessions, clinical interests, and anything helpful for our practice team."
+                      class="mt-2 w-full rounded-xl border border-line bg-white px-4 py-3 text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+                    ></textarea>
+                  </div>
+                </div>
+              </fieldset>
+
+              <div id="eoi-privacy" class="rounded-xl border border-line bg-white p-4 text-sm leading-relaxed text-ink-soft">
+                <strong class="text-ink">Privacy:</strong>
+                This expression of interest collects contact and career details only.
+                Do not include patient information or clinical records.
+                Personal information is handled in line with our
+                <a class="font-medium text-navy underline-offset-2 hover:underline" href="/privacy-confidentiality.html">Privacy &amp; Confidentiality</a>
+                practices.
+              </div>
+
+              <label for="eoi-privacy-confirm" class="flex items-start gap-3 text-sm leading-relaxed text-ink">
+                <input
+                  id="eoi-privacy-confirm"
+                  name="privacy_confirm"
+                  type="checkbox"
+                  required
+                  class="mt-1 h-5 w-5 rounded border-line text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+                />
+                <span>
+                  I understand this request is for career and contact details only, and I consent to the practice
+                  storing my details and resume for recruitment.
+                  <span class="text-green" aria-hidden="true">*</span>
+                  <span class="sr-only">(required)</span>
+                </span>
+              </label>
+
+              <div class="flex flex-wrap items-center gap-4">
+                <button
+                  type="submit"
+                  class="inline-flex min-h-12 items-center justify-center rounded-full bg-navy px-6 text-sm font-semibold text-white transition hover:bg-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+                >
+                  Submit expression of interest
+                </button>
+                <a
+                  class="text-sm font-semibold text-navy underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+                  href="tel:+61732173344"
+                >
+                  Or call the practice on (07) 3217 3344
+                </a>
+              </div>
+
+              <p
+                id="eoi-status"
+                class="text-sm text-ink-soft"
+                role="status"
+                aria-live="polite"
+                data-talent-community-status=""
+              ></p>
+
+              <noscript>
+                <p class="text-sm text-ink-soft">
+                  JavaScript is required to submit this form. Call
+                  <a href="tel:+61732173344">(07) 3217 3344</a>
+                  or email
+                  <a href="mailto:reception@gabbamedicalcentre.com.au?subject=Expression%20of%20Interest%20-%20Woolloongabba%20Medical%20Centre">reception@gabbamedicalcentre.com.au</a>.
+                </p>
+              </noscript>
+            </form>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,119 @@
+{
+  "clinicId": "woolloongabba",
+  "periodLabel": "2026-11",
+  "windowDays": 28,
+  "brandPillars": ["community_care", "continuity_of_care", "gp_employer_brand"],
+  "existingFaqs": [
+    "billing-model",
+    "percentage-arrangements",
+    "nursing-support",
+    "reception-support",
+    "session-flexibility",
+    "provider-numbers",
+    "systems-hotdoc",
+    "registrar-pathway"
+  ],
+  "existingPages": [
+    { "path": "/gp-opportunities", "surface": "gp_opportunities", "title": "GP Opportunities" },
+    { "path": "/join-our-team#gp-faq", "surface": "gp_faq", "title": "GP FAQ" },
+    { "path": "/join-our-team", "surface": "join_our_team", "title": "Join Our Team" },
+    { "path": "/doctor-readiness", "surface": "doctor_readiness", "title": "Doctor Readiness" },
+    { "path": "/provider-number-readiness", "surface": "provider_number_readiness", "title": "Provider Number Readiness" },
+    { "path": "/gp-session-planner", "surface": "gp_session_planner", "title": "Session Planner" },
+    { "path": "/gp-eoi", "surface": "gp_eoi", "title": "GP EOI" }
+  ],
+  "faqUsage": [
+    { "faqId": "provider-numbers", "opens": 48, "helpful": 22, "notHelpful": 9 },
+    { "faqId": "nursing-support", "opens": 41, "helpful": 31, "notHelpful": 2 },
+    { "faqId": "session-flexibility", "opens": 37, "helpful": 24, "notHelpful": 4 },
+    { "faqId": "billing-model", "opens": 33, "helpful": 12, "notHelpful": 11 },
+    { "faqId": "percentage-arrangements", "opens": 29, "helpful": 8, "notHelpful": 14 },
+    { "faqId": "systems-hotdoc", "opens": 18, "helpful": 14, "notHelpful": 1 },
+    { "faqId": "reception-support", "opens": 16, "helpful": 13, "notHelpful": 0 },
+    { "faqId": "registrar-pathway", "opens": 14, "helpful": 7, "notHelpful": 3 }
+  ],
+  "searchKeywords": [
+    { "query": "GP jobs Woolloongabba", "impressions": 420, "clicks": 38, "position": 8.2 },
+    { "query": "continuity of care GP practice Brisbane", "impressions": 210, "clicks": 29, "position": 12.4 },
+    { "query": "community medical centre Woolloongabba GP", "impressions": 180, "clicks": 24, "position": 9.1 },
+    { "query": "flexible GP sessions Brisbane inner south", "impressions": 160, "clicks": 18, "position": 14.0 },
+    { "query": "does practice issue Medicare provider number", "impressions": 140, "clicks": 31, "position": 6.5 },
+    { "query": "GP onboarding nursing support Brisbane", "impressions": 95, "clicks": 16, "position": 11.2 },
+    { "query": "FRACGP join practice Woolloongabba", "impressions": 88, "clicks": 9, "position": 18.0 },
+    { "query": "DPA GP Brisbane medical centre", "impressions": 120, "clicks": 22, "position": 15.3 },
+    { "query": "part time GP parent friendly practice Brisbane", "impressions": 75, "clicks": 11, "position": 16.8 },
+    { "query": "GP percentage split Woolloongabba", "impressions": 200, "clicks": 27, "position": 7.4 }
+  ],
+  "internalSearch": [
+    { "term": "provider number", "count": 34 },
+    { "term": "nursing support", "count": 22 },
+    { "term": "sessions", "count": 19 },
+    { "term": "DPA", "count": 17 },
+    { "term": "continuity", "count": 14 },
+    { "term": "percentage", "count": 14 },
+    { "term": "list building", "count": 12 },
+    { "term": "registrar supervision", "count": 11 },
+    { "term": "parking", "count": 9 },
+    { "term": "after hours", "count": 8 },
+    { "term": "indemnity", "count": 7 },
+    { "term": "orientation", "count": 6 }
+  ],
+  "eoiSources": [
+    { "source": "gp_opportunities", "submissions": 7, "label": "GP Opportunities page" },
+    { "source": "gp_faq", "submissions": 4, "label": "GP FAQ" },
+    { "source": "doctor_readiness", "submissions": 3, "label": "Doctor Readiness tool" },
+    { "source": "join_our_team", "submissions": 2, "label": "Join Our Team" },
+    { "source": "organic_search", "submissions": 5, "label": "Organic search (direct to EOI)" },
+    { "source": "referral_colleague", "submissions": 2, "label": "Colleague referral" }
+  ],
+  "pageConversion": [
+    { "path": "/gp-opportunities", "sessions": 120, "eoiSessions": 16, "personaTop": "early_career_gp" },
+    { "path": "/join-our-team#gp-faq", "sessions": 75, "eoiSessions": 12, "personaTop": "established_gp_seeking_change" },
+    { "path": "/doctor-readiness", "sessions": 42, "eoiSessions": 9, "personaTop": "early_career_gp" },
+    { "path": "/provider-number-readiness", "sessions": 36, "eoiSessions": 5, "personaTop": "returning_gp" },
+    { "path": "/gp-session-planner", "sessions": 24, "eoiSessions": 4, "personaTop": "part_time_parent_gp" },
+    { "path": "/join-our-team", "sessions": 90, "eoiSessions": 6, "personaTop": "unknown" }
+  ],
+  "personaEngagement": [
+    {
+      "personaId": "early_career_gp",
+      "label": "Early career",
+      "sessions": 28,
+      "topFaqs": ["nursing-support", "session-flexibility", "provider-numbers"],
+      "topSearches": ["list building", "orientation", "nursing support"],
+      "eoiRate": 0.18
+    },
+    {
+      "personaId": "established_gp_seeking_change",
+      "label": "Established · change",
+      "sessions": 22,
+      "topFaqs": ["billing-model", "continuity", "reception-support"],
+      "topSearches": ["continuity", "percentage", "after hours"],
+      "eoiRate": 0.14
+    },
+    {
+      "personaId": "returning_gp",
+      "label": "Returning",
+      "sessions": 15,
+      "topFaqs": ["provider-numbers", "systems-hotdoc"],
+      "topSearches": ["provider number", "orientation", "indemnity"],
+      "eoiRate": 0.11
+    },
+    {
+      "personaId": "part_time_parent_gp",
+      "label": "Part-time / parent",
+      "sessions": 18,
+      "topFaqs": ["session-flexibility", "nursing-support"],
+      "topSearches": ["sessions", "parking", "part time"],
+      "eoiRate": 0.16
+    },
+    {
+      "personaId": "special_interest_gp",
+      "label": "Special interest",
+      "sessions": 12,
+      "topFaqs": ["systems-hotdoc", "nursing-support"],
+      "topSearches": ["skin checks", "womens health", "procedural"],
+      "eoiRate": 0.08
+    }
+  ]
+}

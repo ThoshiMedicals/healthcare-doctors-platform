@@ -1,0 +1,21 @@
+ID,Type,Current_concept_or_state,Replacement_target,Website_placement,Evidence_status,Assigned_owner,Completion_criteria
+PH-01,Photo,assets/attraction/journey/join-our-team-feature.jpg,WMC arrival threshold still,join-our-team.html hero,Blocked — no That-is-us bundle,PM + Photographer,That-is-us + live hero; concept retired
+PH-02,Photo,assets/attraction/journey/community-catchment-feature.jpg,WMC exterior + neighbourhood,about-us/community-catchment.html feature,Blocked — no That-is-us bundle,PM + Photographer,That-is-us + live feature
+PH-03,Photo,assets/attraction/journey/gp-opportunities-feature.jpg,WMC collegial clinical still,join-our-team/gp-opportunities.html feature,Blocked — no That-is-us bundle,PM + Photographer,That-is-us + live feature
+PH-04,Photo,assets/practice-experience/feature-atmosphere.jpg,WMC atmosphere still,about-us/practice-experience.html feature,Blocked — no That-is-us bundle,PM + Photographer,That-is-us + live feature
+PH-05,Photo,assets/practice-experience/typical-day.jpg,Real typical-day still,PE Typical Day chapter,Blocked — no That-is-us bundle,PM + Photographer,That-is-us + chapter live
+PH-06,Photo,assets/practice-experience/nursing.jpg,Real nursing still,PE Nursing,Blocked — no That-is-us bundle,PM + Photographer,That-is-us + live
+PH-07,Photo,assets/practice-experience/reception.jpg,Real reception still,PE Reception,Blocked — no That-is-us bundle,PM + Photographer,That-is-us + live
+PH-08,Photo,assets/practice-experience/team-interactions.jpg,Real team corridor still,PE Team Interactions,Blocked — no That-is-us bundle,PM + Photographer,That-is-us + live
+PH-09,Photo,assets/practice-experience/community.jpg,Real community/entrance still,PE Community,Blocked — no That-is-us bundle,PM + Photographer,That-is-us + live
+PH-10,Photo,assets/practice-experience/continuity.jpg,Privacy-safe continuity still,PE Continuity,Blocked — no That-is-us bundle,PM + Photographer,That-is-us + live; no unconsented patient ID
+PH-11,Photo,assets/practice-experience/flexible-sessions.jpg (or blank chapter),Session footprint still or signed non-photo treatment,PE Flexible Sessions,Blocked — no That-is-us bundle,PM + Principal,Chapter finished; That-is-us
+V-GP-01,Voice,Composite suppressed (silence),Consented GP day voice,PE Typical Day,Blocked — no approved lines,PM + GP,Consent + approved lines + live
+V-GP-02,Voice,Silence,Consented GP team/nursing voice,PE Nursing or Team,Blocked — no approved lines,PM + GP,Consent + approved lines + live
+V-GP-03,Voice,Silence,Consented GP fit honesty,GP Opportunities,Blocked — no approved lines,PM + GP,Consent + approved lines + live
+V-NU-01,Voice,Silence,Consented nurse pathway,PE Nursing,Blocked — no approved lines,PM + Nurse,Consent + approved lines + live
+V-NU-02,Voice,Silence,Consented nurse cover honesty,PE Nursing,Blocked — no approved lines,PM + Nurse,Consent + approved lines + live
+V-RX-01,Voice,Silence,Consented reception flow,PE Reception,Blocked — no approved lines,PM + Reception,Consent + approved lines + live
+OWN-EOI,Ownership,Anonymous/unclear reader,Approved EOI ownership statement,express-interest.html,Blocked — Pack 03 unsigned,PM,Statement approved + live + Owner informed
+OWN-CALL,Ownership,Unbriefed joining calls,Call-handling script briefed,Reception + sticky tel,Blocked — brief unsigned,PM + Reception lead,Script printed; brief signed
+OWN-SLA,Ownership,None internal,Response-time guideline agreed,Internal (± optional public phrase),Blocked — guideline incomplete,PM,Guideline completed in ownership pack

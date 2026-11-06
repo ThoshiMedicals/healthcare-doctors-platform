@@ -1,0 +1,52 @@
+{
+  "formType": "gp_session_plan",
+  "version": "1.0.0",
+  "clinicSlug": "woolloongabba",
+  "savedAt": "2026-11-04T01:05:00.000Z",
+  "weekView": "fixed_weekdays",
+  "periods": [
+    { "id": "morning", "label": "Morning", "estimatedPatientCapacityPerSession": 12 },
+    { "id": "afternoon", "label": "Afternoon", "estimatedPatientCapacityPerSession": 12 },
+    { "id": "evening", "label": "Evening", "estimatedPatientCapacityPerSession": 8 }
+  ],
+  "selectedSessions": [
+    {
+      "key": "mon:morning",
+      "dayId": "mon",
+      "dayLabel": "Monday",
+      "periodId": "morning",
+      "periodLabel": "Morning",
+      "estimatedPatientCapacity": 12
+    },
+    {
+      "key": "mon:afternoon",
+      "dayId": "mon",
+      "dayLabel": "Monday",
+      "periodId": "afternoon",
+      "periodLabel": "Afternoon",
+      "estimatedPatientCapacity": 12
+    },
+    {
+      "key": "wed:morning",
+      "dayId": "wed",
+      "dayLabel": "Wednesday",
+      "periodId": "morning",
+      "periodLabel": "Morning",
+      "estimatedPatientCapacity": 12
+    },
+    {
+      "key": "fri:evening",
+      "dayId": "fri",
+      "dayLabel": "Friday",
+      "periodId": "evening",
+      "periodLabel": "Evening",
+      "estimatedPatientCapacity": 8
+    }
+  ],
+  "totals": {
+    "totalSessions": 4,
+    "estimatedCapacity": 44,
+    "unit": "estimated_patient_appointments_per_week"
+  },
+  "notes": "Capacity is an estimate for planning only — not a roster or billing commitment."
+}

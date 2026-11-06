@@ -1,0 +1,341 @@
+{
+  "id": "wmc-gp-attraction-content-governance",
+  "version": "1.0.0",
+  "clinic": "Woolloongabba Medical Centre",
+  "title": "GP Attraction Content Governance Framework",
+  "purpose": "Govern all GP attraction content so doctors receive honest practice-experience information — not recruitment-agency marketing.",
+  "appliesTo": [
+    "Join Our Team / GP Opportunities / Practice Experience Hub",
+    "GP FAQ and Opportunity Pack",
+    "EOI, Readiness, Session Planner, DPA/19AB Navigator, Practice Support Matrix",
+    "Registrar & early-career pathway",
+    "First 90 Days / testimonials / photography captions",
+    "Attraction analytics & content-intelligence recommendations (before publish)",
+    "Schema, meta titles, OG, alt text, and CTAs on attraction surfaces"
+  ],
+  "hardRules": {
+    "avoidAgencyLanguage": {
+      "rule": "Avoid agency language",
+      "forbidden": [
+        "talent community",
+        "talent pool",
+        "pipeline",
+        "candidates (as marketplace label)",
+        "we’re hiring / now hiring",
+        "recruitment agency voice",
+        "job board / browse roles / open positions (as primary page framing)",
+        "employer of choice",
+        "EVP slogans",
+        "apply now (agency tone)"
+      ],
+      "preferred": [
+        "express interest with the practice",
+        "practice conversation",
+        "suitability / fit",
+        "doctors considering practice here"
+      ]
+    },
+    "avoidSalaryMarketing": {
+      "rule": "Avoid salary marketing",
+      "forbidden": [
+        "public percentage splits",
+        "earnings claims",
+        "lucrative / top dollar / high income headlines",
+        "rate cards on public pages",
+        "comparison to other clinics’ pay",
+        "guaranteed billings or patient volume"
+      ],
+      "preferred": [
+        "commercial terms discussed privately with suitable doctors",
+        "clarity before commitment",
+        "no one-size public rate card"
+      ]
+    },
+    "avoidProviderNumberPromises": {
+      "rule": "Avoid provider-number promises",
+      "forbidden": [
+        "we issue / approve / guarantee provider numbers",
+        "fast-track your provider number",
+        "practice determines DPA or s19AB outcomes",
+        "guaranteed Medicare billing start date tied to WMC approval"
+      ],
+      "requiredStatement": "Medicare provider numbers are issued by Services Australia. Woolloongabba Medical Centre does not issue, approve or guarantee provider numbers. We can share accurate practice location details to support your application.",
+      "preferred": [
+        "Services Australia is the issuer",
+        "practice supplies location pack",
+        "link to PN Readiness / official resources"
+      ]
+    },
+    "avoidRecruitmentHype": {
+      "rule": "Avoid recruitment hype",
+      "forbidden": [
+        "urgency / scarcity tactics (limited spots — act now)",
+        "rockstar / passion / family / vibe culture jargon",
+        "best workplace / #1 place to work claims",
+        "always-open registrar intake",
+        "volume guarantees",
+        "manufactured testimonials without operational detail"
+      ],
+      "preferred": [
+        "capacity-based honesty",
+        "continuity over churn",
+        "operational proof (nursing, reception, AGPAL, sessions)",
+        "it may not be the right fit — and that clarity helps"
+      ]
+    }
+  },
+  "tone": {
+    "voice": "Practice-to-doctor, trust-first, calm, clinically literate",
+    "person": "We (the practice) speaking to you (the GP)",
+    "register": "Professional Australian general practice English — plain, specific, non-corporate",
+    "pillars": [
+      {
+        "id": "community_care",
+        "label": "Community care",
+        "messaging": "Inner-south community general practice; local, team-based care"
+      },
+      {
+        "id": "continuity_of_care",
+        "label": "Continuity of care",
+        "messaging": "Patients return to a known GP; relationships over high-volume churn"
+      },
+      {
+        "id": "gp_employer_brand",
+        "label": "GP employer brand",
+        "messaging": "Honest practice experience: support, systems, boundaries — no marketplace hype"
+      }
+    ],
+    "do": [
+      "Lead with how practice works (day, nursing, sessions, place)",
+      "State boundaries explicitly (PN, DPA, commercial privacy, capacity)",
+      "Invite self-selection in or out",
+      "Use concrete operational detail"
+    ],
+    "dont": [
+      "Sound like a recruiter or job board",
+      "Over-promise mentorship, volume, or earnings",
+      "Use empty culture adjectives without systems proof"
+    ]
+  },
+  "messaging": {
+    "primaryFrame": "Help doctors decide if Woolloongabba Medical Centre is a fit for how they practise.",
+    "notFrame": "Fill vacancies as fast as possible via marketing pressure.",
+    "approvedCtas": [
+      "Express interest with the practice",
+      "See how we work",
+      "Read questions doctors ask",
+      "Complete Doctor Readiness (optional)",
+      "Download Opportunity Pack",
+      "Call the practice"
+    ],
+    "disallowedCtas": [
+      "Apply now",
+      "Join our talent pool",
+      "Submit your CV to our agency",
+      "Claim your package"
+    ],
+    "mustIncludeWhenRelevant": [
+      "Services Australia issues provider numbers (on PN / eligibility surfaces)",
+      "Session availability depends on rooms, nursing cover and practice need",
+      "Registrar placements depend on supervisor capacity",
+      "Commercial terms are private — no public %"
+    ],
+    "surfaceRoles": {
+      "gp_opportunities": "Decision / fit page — philosophy, facilities, FAQ, soft EOI",
+      "practice_experience": "Immersion — day-to-day practice texture",
+      "join_our_team": "Practice entry; JobPosting only if live vacancy inject",
+      "tools": "Guidance only — never auto-approve placement or eligibility",
+      "testimonials": "Operational practice stories — not workplace ratings"
+    }
+  },
+  "approvals": {
+    "principle": "No attraction content goes live without a named human approver. Tools and intelligence never auto-publish.",
+    "roles": [
+      {
+        "role": "content_author",
+        "responsibility": "Draft against this framework; run self-checklist"
+      },
+      {
+        "role": "practice_manager",
+        "responsibility": "Approve operational accuracy (sessions, nursing, capacity, onboarding)"
+      },
+      {
+        "role": "clinical_lead_or_principal",
+        "responsibility": "Approve clinical claims, supervision, registrar capacity statements"
+      },
+      {
+        "role": "brand_governance",
+        "responsibility": "Approve tone, CTA, photography, testimonial consent, schema"
+      }
+    ],
+    "gates": [
+      {
+        "id": "gate_copy_guards",
+        "label": "Hard-rules scan",
+        "required": true,
+        "checks": [
+          "No agency language",
+          "No salary / % marketing",
+          "No PN promises",
+          "No recruitment hype"
+        ]
+      },
+      {
+        "id": "gate_operational",
+        "label": "Operational truth",
+        "required": true,
+        "checks": [
+          "Capacity statements match current rooms/nursing/supervision",
+          "No volume or start-date guarantees",
+          "Tool links go to current proposals/production URLs"
+        ]
+      },
+      {
+        "id": "gate_schema_a11y",
+        "label": "Schema + accessibility",
+        "required": true,
+        "checks": [
+          "Schema types allowed for surface",
+          "FAQ DOM matches FAQPage text",
+          "Skip link, landmarks, focus, alt, contrast"
+        ]
+      },
+      {
+        "id": "gate_legal_boundary",
+        "label": "External-agency boundaries",
+        "required": true,
+        "when": "PN, DPA, s19AB, visa, or Medicare eligibility mentioned",
+        "checks": [
+          "Services Australia / official decision-maker named",
+          "WMC role limited to assist / locate / orient"
+        ]
+      },
+      {
+        "id": "gate_media_consent",
+        "label": "Media / testimonial consent",
+        "required": true,
+        "when": "People imagery or doctor quotes",
+        "checks": [
+          "Written consent on file",
+          "No identifiable patients",
+          "Operational-detail rule for testimonials"
+        ]
+      }
+    ],
+    "changeClasses": [
+      {
+        "class": "A_minor",
+        "examples": "Typos, cache-bust, non-substantive link fixes",
+        "approvers": ["content_author", "practice_manager"]
+      },
+      {
+        "class": "B_substantive_copy",
+        "examples": "New FAQ, Opportunities section, pathway page, pack content",
+        "approvers": ["practice_manager", "brand_governance"]
+      },
+      {
+        "class": "C_clinical_or_capacity",
+        "examples": "Supervision capacity, registrar intake, clinical interest claims",
+        "approvers": ["clinical_lead_or_principal", "practice_manager", "brand_governance"]
+      },
+      {
+        "class": "D_schema_or_vacancy",
+        "examples": "JobPosting inject, FAQPage graph changes, new WebPage types",
+        "approvers": ["brand_governance", "practice_manager"]
+      }
+    ],
+    "record": "Store approver name, date, change class, surface URL, and checklist result with the release note / CMS revision."
+  },
+  "schemaStandards": {
+    "clinicEntity": {
+      "@type": ["MedicalClinic", "MedicalOrganization"],
+      "@id": "https://gabbamedicalcentre.com.au/#medical-clinic"
+    },
+    "allowedOnAttractionSurfaces": [
+      "WebPage (about MedicalClinic)",
+      "BreadcrumbList",
+      "FAQPage (only if Q&A visible and text-identical)",
+      "MedicalClinic references",
+      "Optional VideoObject / Person for consented doctor stories",
+      "JobPosting — ONLY on Join Our Team when a live vacancy is injected"
+    ],
+    "forbiddenOnDecisionPages": [
+      "JobBoard",
+      "EmploymentAgency",
+      "Occupation aggregates used as hiring bait",
+      "JobPosting on GP Opportunities / Practice Experience / pathway pages by default",
+      "Review / AggregateRating for employer scores",
+      "Fake offer / salary schema"
+    ],
+    "faqSyncRule": "Visible FAQ question/answer text must match FAQPage JSON-LD acceptedAnswer text exactly.",
+    "breadcrumbDefault": "Home → About Us → Join Our Team → [surface]",
+    "metaRules": [
+      "Titles describe practice experience / fit — not ‘GP jobs apply now’ as primary intent when no vacancy",
+      "Meta description: no earnings %, no PN guarantees, no agency verbs",
+      "OG images: place or consulting stills; no ‘We’re hiring’ burned-in text"
+    ]
+  },
+  "accessibilityStandards": {
+    "baseline": "WCAG 2.2 AA intent for attraction surfaces",
+    "requirements": [
+      {
+        "id": "landmarks",
+        "rule": "Use header, main, nav, contentinfo; single H1 per page"
+      },
+      {
+        "id": "skip_link",
+        "rule": "Skip link to #main; main focusable (tabindex=-1) when used as skip target"
+      },
+      {
+        "id": "focus",
+        "rule": "Visible focus-visible rings; minimum 44×44px touch targets for controls"
+      },
+      {
+        "id": "contrast",
+        "rule": "Body text ≥ 4.5:1 on warm/mist/white; UI chrome meets AA"
+      },
+      {
+        "id": "faq",
+        "rule": "Prefer native details/summary; do not remove disclosure without aria-expanded equivalent"
+      },
+      {
+        "id": "cta_names",
+        "rule": "Descriptive link/button names — Express interest with the practice, not Click here / Apply now"
+      },
+      {
+        "id": "colour_not_only",
+        "rule": "Trust signals (e.g. AGPAL) include text — not colour alone"
+      },
+      {
+        "id": "images",
+        "rule": "Meaningful alt for informative images; empty alt for decorative; no text-only-in-image for critical claims"
+      },
+      {
+        "id": "forms",
+        "rule": "Labels associated; errors tied with aria-describedby + role=alert where used"
+      },
+      {
+        "id": "motion",
+        "rule": "No essential information in animation only; honour prefers-reduced-motion"
+      },
+      {
+        "id": "video",
+        "rule": "Captions/transcripts for doctor or practice videos"
+      },
+      {
+        "id": "language",
+        "rule": "lang=en-AU on attraction HTML; plain language over jargon"
+      }
+    ]
+  },
+  "prePublishChecklist": [
+    "Hard rules: agency / salary / PN / hype — all clear",
+    "Tone matches practice-to-doctor pillars",
+    "CTAs from approved list only",
+    "Capacity and boundary statements accurate",
+    "Schema allowed for this surface; FAQ synced if present",
+    "Accessibility requirements checked",
+    "Approvers recorded for change class",
+    "No secrets or draft intelligence pasted into public HTML"
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "status": "hired",
+  "actorUserId": "pm_01",
+  "note": "should fail without humanConfirmation"
+}

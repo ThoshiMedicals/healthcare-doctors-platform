@@ -1,0 +1,183 @@
+{
+  "id": "wmc-practice-support-status-model",
+  "version": "1.0.0",
+  "purpose": "Track onboarding support progress per doctor without implying external approvals are practice-controlled.",
+  "entity": "PracticeSupportOnboardingPlan",
+  "planStatuses": {
+    "draft": {
+      "label": "Draft",
+      "description": "Plan created after mutual interest; categories not yet scheduled.",
+      "doctorVisible": false
+    },
+    "shared": {
+      "label": "Shared with doctor",
+      "description": "Doctor can see capability expectations and category progress.",
+      "doctorVisible": true
+    },
+    "active": {
+      "label": "Active onboarding",
+      "description": "Orientation and systems support underway.",
+      "doctorVisible": true
+    },
+    "settling": {
+      "label": "Settling in",
+      "description": "Core orientation complete; early-week follow-up continues.",
+      "doctorVisible": true
+    },
+    "complete": {
+      "label": "Onboarding complete",
+      "description": "Practice support checklist closed; ongoing team collaboration continues as usual.",
+      "doctorVisible": true
+    },
+    "paused": {
+      "label": "Paused",
+      "description": "Onboarding paused by mutual agreement (timing, documents, capacity).",
+      "doctorVisible": true
+    },
+    "withdrawn": {
+      "label": "Withdrawn",
+      "description": "Plan closed without go-live; retain only as needed for records policy.",
+      "doctorVisible": false
+    }
+  },
+  "categoryStatuses": {
+    "not_started": {
+      "label": "Not started",
+      "progressWeight": 0,
+      "blocksGoLive": false
+    },
+    "scheduled": {
+      "label": "Scheduled",
+      "progressWeight": 0.25,
+      "blocksGoLive": false
+    },
+    "draft": {
+      "label": "Draft (sessions)",
+      "progressWeight": 0.25,
+      "blocksGoLive": false
+    },
+    "proposed": {
+      "label": "Proposed",
+      "progressWeight": 0.4,
+      "blocksGoLive": false
+    },
+    "access_pending": {
+      "label": "Access pending",
+      "progressWeight": 0.35,
+      "blocksGoLive": true,
+      "note": "Often depends on IT / identity checks — not a practice approval of clinical credentials."
+    },
+    "in_progress": {
+      "label": "In progress",
+      "progressWeight": 0.55,
+      "blocksGoLive": false
+    },
+    "awaiting_external": {
+      "label": "Awaiting external agency",
+      "progressWeight": 0.5,
+      "blocksGoLive": true,
+      "note": "Practice cannot clear this status; doctor and external agency own the outcome."
+    },
+    "practice_ready": {
+      "label": "Practice side ready",
+      "progressWeight": 0.75,
+      "blocksGoLive": false,
+      "note": "Practice has supplied what it can; external decision may still be outstanding."
+    },
+    "agreed": {
+      "label": "Agreed",
+      "progressWeight": 0.85,
+      "blocksGoLive": false
+    },
+    "live": {
+      "label": "Live",
+      "progressWeight": 1,
+      "blocksGoLive": false
+    },
+    "settling": {
+      "label": "Settling",
+      "progressWeight": 0.9,
+      "blocksGoLive": false
+    },
+    "complete": {
+      "label": "Complete",
+      "progressWeight": 1,
+      "blocksGoLive": false
+    },
+    "needs_follow_up": {
+      "label": "Needs follow-up",
+      "progressWeight": 0.7,
+      "blocksGoLive": false
+    },
+    "deferred": {
+      "label": "Deferred",
+      "progressWeight": 0.2,
+      "blocksGoLive": false
+    },
+    "under_review": {
+      "label": "Under review",
+      "progressWeight": 0.6,
+      "blocksGoLive": false
+    },
+    "blocked": {
+      "label": "Blocked",
+      "progressWeight": 0.1,
+      "blocksGoLive": true,
+      "note": "Record the blocker owner (practice vs doctor vs external). Never label an external refusal as a practice rejection of the doctor as a person."
+    }
+  },
+  "goLiveGate": {
+    "description": "Suggested internal gate before first patient session — not a public promise.",
+    "requiredCategoryCompleteness": [
+      {
+        "categoryId": "provider_number_support",
+        "acceptableStatuses": ["practice_ready", "complete", "awaiting_external"],
+        "rule": "If awaiting_external, escalate conversation; do not invent a provider number. Billing may be constrained until Services Australia confirms."
+      },
+      {
+        "categoryId": "orientation",
+        "acceptableStatuses": ["complete", "in_progress"]
+      },
+      {
+        "categoryId": "clinical_software_onboarding",
+        "acceptableStatuses": ["complete", "in_progress", "access_pending"]
+      },
+      {
+        "categoryId": "session_planning",
+        "acceptableStatuses": ["agreed", "live"]
+      }
+    ],
+    "hardPrerequisitesOutsideMatrix": [
+      "Current AHPRA registration evidence",
+      "Professional indemnity evidence for intended period",
+      "Working rights evidence",
+      "Mutual commercial / engagement agreement as applicable",
+      "Identity verification for system access"
+    ]
+  },
+  "transitions": [
+    { "from": "draft", "to": ["shared", "withdrawn"] },
+    { "from": "shared", "to": ["active", "paused", "withdrawn"] },
+    { "from": "active", "to": ["settling", "paused", "complete", "withdrawn"] },
+    { "from": "settling", "to": ["complete", "active", "paused"] },
+    { "from": "paused", "to": ["shared", "active", "withdrawn"] },
+    { "from": "complete", "to": ["settling"] },
+    { "from": "withdrawn", "to": [] }
+  ],
+  "auditFields": [
+    "status",
+    "categoryId",
+    "previousStatus",
+    "newStatus",
+    "changedBy",
+    "changedAt",
+    "note",
+    "externalAgencyRef"
+  ],
+  "doctorFacingRules": [
+    "Show can-assist language without guaranteeing outcomes.",
+    "When status is awaiting_external, name the agency plainly.",
+    "Never display 'approved by WMC' for provider numbers, visas, DPA, or s19AB.",
+    "Prefer 'practice side ready' over 'approved' for location documentation support."
+  ]
+}

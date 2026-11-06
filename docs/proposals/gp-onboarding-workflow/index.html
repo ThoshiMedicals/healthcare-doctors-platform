@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GP Onboarding Workflow | Woolloongabba Medical Centre</title>
+  <meta name="description" content="Human-reviewed GP onboarding workflow from discussion to go-live. No automated approvals." />
+  <meta name="robots" content="noindex,nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#173044",
+            "ink-soft": "#596b78",
+            navy: "#163f62",
+            green: "#0f6b45",
+            warm: "#f5f3ee",
+            mist: "#f4f7f7",
+            line: "#dbe4e9",
+            amber: "#8a6a2f",
+          },
+          fontFamily: {
+            display: ['"Libre Baskerville"', "Georgia", "serif"],
+            ui: ["Inter", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: false, theme: "neutral", securityLevel: "strict" });
+    window.__mermaid = mermaid;
+  </script>
+</head>
+<body class="bg-mist font-ui text-ink antialiased">
+  <a href="#workflow" class="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:text-white">Skip to workflow</a>
+
+  <header class="border-b border-line bg-warm">
+    <div class="mx-auto max-w-3xl px-4 py-8 sm:px-6">
+      <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Woolloongabba Medical Centre</p>
+      <h1 class="mt-2 font-display text-3xl font-bold leading-tight sm:text-4xl">GP onboarding workflow</h1>
+      <p class="mt-3 text-base leading-relaxed text-ink-soft">
+        Seven human-reviewed stages from first conversation to go-live.
+        Systems remind and block unsafe shortcuts — they never approve credentials, provider numbers, or first sessions.
+      </p>
+      <aside class="mt-5 rounded-xl border border-navy/20 bg-white p-4 text-sm leading-relaxed" role="note">
+        <strong class="text-navy">Design rule.</strong> No automated approvals.
+        Medicare provider numbers are issued by Services Australia. This workflow tracks preparation and practice readiness only.
+      </aside>
+      <nav class="mt-5 flex flex-wrap gap-3 text-sm" aria-label="Prototype views">
+        <a class="min-h-11 inline-flex items-center rounded-lg bg-navy px-4 font-semibold text-white" href="/dashboard.html">Admin dashboard</a>
+        <a class="min-h-11 inline-flex items-center rounded-lg border border-line bg-white px-4 font-medium text-navy" href="/doctor.html">Doctor task view</a>
+        <a class="min-h-11 inline-flex items-center rounded-lg border border-line bg-white px-4 font-medium text-navy" href="/api/workflow">Workflow JSON</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="workflow" class="mx-auto max-w-3xl px-4 py-8 sm:px-6">
+    <section aria-labelledby="diagram-title">
+      <h2 id="diagram-title" class="font-display text-2xl font-bold">Workflow diagram</h2>
+      <p class="mt-2 text-sm text-ink-soft">Linear path with pause/withdraw exits and an external wait loop on provider-number preparation.</p>
+      <div class="mt-4 overflow-x-auto rounded-2xl border border-line bg-white p-4">
+        <pre id="mermaid-source" class="hidden"></pre>
+        <div id="mermaid-mount" class="min-h-[180px] text-sm" role="img" aria-label="GP onboarding flowchart"></div>
+        <noscript>
+          <ol class="list-decimal space-y-1 pl-5 text-sm">
+            <li>Initial discussion</li>
+            <li>EOI review</li>
+            <li>Credential checks</li>
+            <li>Provider-number preparation</li>
+            <li>Session allocation</li>
+            <li>Orientation</li>
+            <li>Go-live</li>
+          </ol>
+        </noscript>
+      </div>
+    </section>
+
+    <section class="mt-10" aria-labelledby="stages-title">
+      <h2 id="stages-title" class="font-display text-2xl font-bold">Stages at a glance</h2>
+      <div id="stages-root" class="mt-4 space-y-3" aria-busy="true">
+        <p class="text-sm text-ink-soft">Loading stages…</p>
+      </div>
+    </section>
+
+    <section class="mt-10 grid gap-4 sm:grid-cols-2" aria-labelledby="artefacts-title">
+      <h2 id="artefacts-title" class="sr-only">Design artefacts</h2>
+      <a href="/api/notifications" class="rounded-2xl border border-line bg-white p-5 hover:border-navy">
+        <p class="text-xs font-semibold uppercase tracking-wide text-green">Notification model</p>
+        <p class="mt-1 font-display text-lg font-bold">Event catalog JSON</p>
+        <p class="mt-1 text-sm text-ink-soft">Prompts humans; never auto-approves gates.</p>
+      </a>
+      <a href="/dashboard.html" class="rounded-2xl border border-line bg-white p-5 hover:border-navy">
+        <p class="text-xs font-semibold uppercase tracking-wide text-navy">Wireframe</p>
+        <p class="mt-1 font-display text-lg font-bold">Admin dashboard</p>
+        <p class="mt-1 text-sm text-ink-soft">Case board, tasks, human gate form.</p>
+      </a>
+    </section>
+  </main>
+
+  <footer class="border-t border-line py-6">
+    <div class="mx-auto max-w-3xl px-4 text-xs text-ink-soft sm:px-6">Proposal prototype · localhost :4180 · not production</div>
+  </footer>
+
+  <script>
+    (async () => {
+      const root = document.getElementById("stages-root");
+      const source = document.getElementById("mermaid-source");
+      const mount = document.getElementById("mermaid-mount");
+      try {
+        const res = await fetch("/api/workflow");
+        const wf = await res.json();
+        root.setAttribute("aria-busy", "false");
+        root.innerHTML = wf.stages
+          .map(
+            (s) => `<details class="rounded-2xl border border-line bg-white">
+              <summary class="cursor-pointer px-4 py-4 font-display text-lg font-bold">${s.order}. ${s.label}</summary>
+              <div class="space-y-3 border-t border-line px-4 py-4 text-sm">
+                <p class="text-ink-soft">${s.goal}</p>
+                <p><strong>Human gate:</strong> ${s.humanGate.action}</p>
+                <p class="text-xs font-semibold uppercase tracking-wide text-green">Admin</p>
+                <ul class="list-disc pl-5">${s.adminTasks.map((t) => `<li>${t.task}</li>`).join("")}</ul>
+                <p class="text-xs font-semibold uppercase tracking-wide text-navy">Doctor</p>
+                <ul class="list-disc pl-5">${s.doctorTasks.map((t) => `<li>${t.task}</li>`).join("")}</ul>
+                <p class="text-xs font-semibold uppercase tracking-wide text-amber">Dependencies</p>
+                <ul class="list-disc pl-5">${s.dependencies.map((d) => `<li>${d.label}${d.agency ? " (" + d.agency + ")" : ""}</li>`).join("")}</ul>
+              </div>
+            </details>`
+          )
+          .join("");
+
+        source.textContent = wf.diagram.source;
+        const draw = async () => {
+          if (!window.__mermaid) {
+            setTimeout(draw, 50);
+            return;
+          }
+          const { svg } = await window.__mermaid.render("gp-onboarding-flow", wf.diagram.source);
+          mount.innerHTML = svg;
+        };
+        draw();
+      } catch (err) {
+        root.innerHTML = `<p class="text-sm text-red-700" role="alert">Start the server: <code>node server.mjs</code></p>`;
+      }
+    })();
+  </script>
+</body>
+</html>

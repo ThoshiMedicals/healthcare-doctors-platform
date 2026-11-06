@@ -1,0 +1,17 @@
+{
+  "enq_001": {
+    "doctorDisplayName": "Dr A. Nguyen",
+    "preferredSessions": ["Tue AM", "Wed AM", "Thu PM"],
+    "sessionsPerWeek": 4
+  },
+  "enq_005": {
+    "doctorDisplayName": "Dr R. Williams",
+    "preferredSessions": ["Mon PM", "Fri PM"],
+    "sessionsPerWeek": 2
+  },
+  "example": {
+    "doctorDisplayName": "Example GP",
+    "preferredSessions": ["Mon PM", "Wed AM", "Fri PM"],
+    "sessionsPerWeek": 3
+  }
+}

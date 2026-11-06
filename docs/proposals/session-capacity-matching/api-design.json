@@ -1,0 +1,70 @@
+{
+  "title": "Session-to-Capacity Matching Engine API",
+  "version": "1.0.0",
+  "basePath": "/api/clinics/{clinicSlug}/session-capacity-match",
+  "auth": "Admin ClinicMembership for mutations and enquiry-linked matches; internal tools only",
+  "coreRule": {
+    "summary": "Advisory matching — humans confirm allocation",
+    "enforcement": [
+      "POST /match never writes GpSessionAssignment",
+      "compatibilityScore is not a hire signal",
+      "Admin enquiry embed is read-only suggestion until onboarding session_allocation gate"
+    ]
+  },
+  "localhostPrototype": {
+    "base": "http://127.0.0.1:4183",
+    "routes": [
+      "GET /api/capacity",
+      "POST /api/match",
+      "POST /api/match/example",
+      "GET /api/match/enquiry/:enquiryId",
+      "GET /api/admin-integration"
+    ]
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/api/clinics/{clinicSlug}/session-capacity-match/capacity",
+      "summary": "Current windows with computed status (room + nursing + existing GPs)"
+    },
+    {
+      "method": "POST",
+      "path": "/api/clinics/{clinicSlug}/session-capacity-match/match",
+      "summary": "Run match for preferred sessions",
+      "body": {
+        "preferredSessions": [
+          { "dayOfWeek": "monday", "period": "afternoon" },
+          { "day": "Wed", "period": "AM" },
+          "Fri PM"
+        ],
+        "doctorDisplayName": "optional",
+        "enquiryId": "optional",
+        "persist": false
+      },
+      "response": {
+        "compatibilityScore": 82,
+        "compatibilityLabel": "82% compatibility",
+        "perSession": [
+          {
+            "key": "monday_afternoon",
+            "label": "Mon PM",
+            "status": "available",
+            "weight": 1.0,
+            "freeEffectiveSlots": 2,
+            "existingGps": ["Dr Chen"],
+            "nursing": "full"
+          }
+        ],
+        "availableOptions": [],
+        "alternativeRecommendations": [],
+        "notice": "Advisory only. Session allocation requires human confirmation."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/clinics/{clinicSlug}/admin/gp-enquiries/{enquiryId}/session-capacity-match",
+      "summary": "Admin dashboard integration — match using enquiry session preferences",
+      "response": "Same as POST /match plus enquiryId and deepLink"
+    }
+  ]
+}

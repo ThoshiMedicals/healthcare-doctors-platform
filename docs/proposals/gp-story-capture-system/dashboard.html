@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GP Story Collection Dashboard | WMC</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#173044",
+            "ink-soft": "#596b78",
+            navy: "#163f62",
+            green: "#0f6b45",
+            warm: "#f5f3ee",
+            mist: "#f4f7f7",
+            line: "#dbe4e9",
+            amber: "#8a6a2f",
+          },
+          fontFamily: {
+            display: ['"Libre Baskerville"', "Georgia", "serif"],
+            ui: ["Inter", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-mist font-ui text-ink antialiased">
+  <header class="border-b border-line bg-warm">
+    <div class="mx-auto max-w-6xl px-4 py-6 sm:px-6">
+      <div class="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.14em] text-green">Internal dashboard wireframe</p>
+          <h1 class="mt-1 font-display text-3xl font-bold">GP story collection</h1>
+          <p class="mt-2 text-sm text-ink-soft">Inventory · consent · category · reuse. Human publish gates only.</p>
+        </div>
+        <nav class="flex flex-wrap gap-3 text-sm">
+          <a href="/" class="min-h-11 inline-flex items-center text-navy underline-offset-2 hover:underline">System overview</a>
+          <a href="/editorial.html" class="min-h-11 inline-flex items-center rounded-lg bg-navy px-4 font-semibold text-white">Editorial queue</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-6xl px-4 py-6 sm:px-6">
+    <p id="board-live" class="sr-only" aria-live="polite"></p>
+
+    <section class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4" aria-label="Pipeline summary" id="stats"></section>
+
+    <section class="mt-6" aria-labelledby="cat-bar-title">
+      <h2 id="cat-bar-title" class="text-xs font-semibold uppercase tracking-wide text-ink-soft">Inventory by category</h2>
+      <div id="category-bars" class="mt-3 grid gap-2 sm:grid-cols-5"></div>
+    </section>
+
+    <div class="mt-8 grid gap-6 lg:grid-cols-[240px_1fr]">
+      <aside aria-labelledby="filter-title">
+        <h2 id="filter-title" class="text-xs font-semibold uppercase tracking-wide text-ink-soft">Filters</h2>
+        <div class="mt-3 space-y-2" id="status-filters"></div>
+        <h3 class="mt-6 text-xs font-semibold uppercase tracking-wide text-ink-soft">Category</h3>
+        <div class="mt-3 space-y-2" id="category-filters"></div>
+      </aside>
+
+      <section aria-labelledby="inv-title">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <h2 id="inv-title" class="font-display text-xl font-bold">Story inventory</h2>
+          <p id="inv-count" class="text-sm text-ink-soft"></p>
+        </div>
+        <div id="story-table" class="mt-4 overflow-x-auto rounded-2xl border border-line bg-white"></div>
+        <article id="story-detail" class="mt-4 rounded-2xl border border-line bg-white p-5 sm:p-6" aria-live="polite">
+          <p class="text-sm text-ink-soft">Select a story to inspect consent, reuse, and next action.</p>
+        </article>
+      </section>
+    </div>
+
+    <section class="mt-8 rounded-2xl border border-dashed border-line bg-white/70 p-5" aria-labelledby="wire-notes">
+      <h2 id="wire-notes" class="font-display text-lg font-bold">Wireframe notes</h2>
+      <ul class="mt-2 list-disc space-y-1 pl-5 text-sm text-ink-soft">
+        <li>Priority sort: GP review and editorial review surface first.</li>
+        <li>Consent aging: draft_linked past review window highlights amber.</li>
+        <li>Reuse: denied channels never appear as placement targets.</li>
+        <li>Withdrawn stories stay in inventory for audit; placements forced offline.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="./dashboard.js" defer></script>
+</body>
+</html>

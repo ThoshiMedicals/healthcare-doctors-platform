@@ -1,0 +1,49 @@
+{
+  "id": "wmc-gp-attraction-content-intelligence-model",
+  "version": "1.0.0",
+  "clinic": "Woolloongabba Medical Centre",
+  "purpose": "Turn FAQ usage, search, EOI sources, and persona engagement into monthly content recommendations that strengthen WMC’s community care, continuity of care, and GP employer brand — without recruitment-agency tone.",
+  "brandPillars": {
+    "community_care": {
+      "label": "Community care",
+      "messaging": "Inner-south community general practice serving local patients with accessible, team-based care."
+    },
+    "continuity_of_care": {
+      "label": "Continuity of care",
+      "messaging": "Patients return to a known GP; list-building and ongoing relationships over high-volume churn."
+    },
+    "gp_employer_brand": {
+      "label": "GP employer brand",
+      "messaging": "Practice-to-doctor honesty: nursing/reception support, AGPAL systems, clear onboarding boundaries, no marketplace hype."
+    }
+  },
+  "guards": [
+    "Do not recommend publishing earnings % or rate cards",
+    "Do not imply WMC issues Medicare provider numbers",
+    "Do not invent eligibility or migration advice content",
+    "Prefer practice voice over recruiter language",
+    "Recommendations are advisory for human editors"
+  ],
+  "signalSources": {
+    "faqUsage": "faq_open / faq_helpful_vote from attraction analytics",
+    "searchKeywords": "organic search queries / Search Console style keywords (seeded for prototype)",
+    "internalSearch": "on-site search terms on GP decision surfaces",
+    "eoiSources": "EOI entrySurface / channel / referring path",
+    "personaEngagement": "personaHint × page and FAQ engagement"
+  },
+  "identifies": [
+    "content_gaps",
+    "unanswered_questions",
+    "high_converting_pages"
+  ],
+  "outputs": [
+    "monthly_content_recommendations",
+    "seo_opportunities",
+    "doctor_information_gaps"
+  ],
+  "scoring": {
+    "contentGapScore": "searchDemand + internalSearchVolume + unansweredVotes - existingFaqCoverage",
+    "highConvertingPage": "sessions reaching eoi_submit / page_view sessions (min sample)",
+    "unansweredQuestion": "internal search or FAQ vote=not_helpful without matching FAQ id, or keyword with no content mapping"
+  }
+}

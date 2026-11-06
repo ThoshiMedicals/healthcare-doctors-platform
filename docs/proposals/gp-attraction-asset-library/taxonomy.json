@@ -1,0 +1,37 @@
+{
+  "scenes": [
+    "consulting_room",
+    "waiting",
+    "reception",
+    "treatment",
+    "doctor_consulting",
+    "nursing_collab",
+    "team_discussion",
+    "community_exterior",
+    "atmosphere",
+    "abstract",
+    "quote_card"
+  ],
+  "surfaces": [
+    "practice_experience",
+    "gp_opportunities",
+    "join_our_team",
+    "opportunity_pack",
+    "registrar_pathway",
+    "social_og",
+    "internal_only"
+  ],
+  "modules": [
+    "typical_day",
+    "nursing",
+    "reception",
+    "team_interactions",
+    "community",
+    "continuity",
+    "flexible_sessions",
+    "doctor_voices"
+  ],
+  "personas": ["early_career", "established", "returning", "part_time", "special_interest"],
+  "aiPolicies": ["photo_only", "ai_assist", "ai_ok", "ai_ban"],
+  "tagFormat": "kind:value (scene:, surface:, module:, persona:, ai:)"
+}

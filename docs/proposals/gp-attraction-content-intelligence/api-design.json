@@ -1,0 +1,24 @@
+{
+  "title": "GP Attraction Content Intelligence API",
+  "version": "1.0.0",
+  "basePath": "/api/clinics/{clinicSlug}/content-intelligence",
+  "auth": "Admin / content editor session",
+  "coreRule": {
+    "summary": "Recommendations are advisory; publishing is human-only",
+    "enforcement": [
+      "GET /insights never writes public HTML",
+      "POST /recommendations/:id/decision requires editorUserId + rationale",
+      "Reject automated publisher actors",
+      "Flag any recommendation copy that includes earnings % for human review"
+    ]
+  },
+  "localhostPrototype": {
+    "base": "http://127.0.0.1:4185",
+    "routes": [
+      "GET /api/insights",
+      "GET /api/signals",
+      "GET /api/model",
+      "POST /api/recommendations/decision"
+    ]
+  }
+}

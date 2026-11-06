@@ -1,0 +1,323 @@
+{
+  "$schema": "./capability-matrix.schema.json",
+  "meta": {
+    "id": "wmc-practice-support-capability-matrix",
+    "version": "1.0.0",
+    "clinic": "Woolloongabba Medical Centre",
+    "clinicSlug": "woolloongabba",
+    "audience": ["prospective_gp", "practice_admin"],
+    "purpose": "Explain onboarding support available to prospective GPs — what the practice can assist with, what it cannot approve, and what depends on external agencies.",
+    "tone": ["professional", "trust_first", "no_recruitment_agency_language", "no_guarantees"],
+    "disclaimer": {
+      "short": "This matrix describes practice support for onboarding conversations. It is not a guarantee of placement, eligibility, Medicare outcomes, or start dates.",
+      "full": "Woolloongabba Medical Centre shares this capability matrix so prospective GPs can understand how we support onboarding. Support is practical and collaborative. We do not issue Medicare provider numbers, determine DPA or Health Insurance Act s19AB outcomes, approve visas or work rights, or provide legal or migration advice. External agencies make their own decisions on their timelines. Nothing in this matrix constitutes an offer of employment or a commercial commitment."
+    },
+    "relatedTools": [
+      "provider-number-readiness",
+      "dpa-19ab-navigator",
+      "gp-eoi",
+      "doctor-readiness",
+      "gp-session-planner"
+    ]
+  },
+  "boundaryLegend": {
+    "canAssist": {
+      "label": "What WMC can assist with",
+      "description": "Practical practice support we may provide during onboarding preparation and early weeks, subject to mutual agreement and capacity."
+    },
+    "cannotApprove": {
+      "label": "What WMC cannot approve",
+      "description": "Decisions, credentials, or outcomes the practice does not control and must not imply it can grant."
+    },
+    "externalDepends": {
+      "label": "What depends on external agencies",
+      "description": "Steps that rely on Services Australia, AHPRA, colleges, indemnity insurers, Department of Home Affairs, or other external bodies."
+    }
+  },
+  "categories": [
+    {
+      "id": "provider_number_support",
+      "order": 1,
+      "label": "Provider number support",
+      "shortLabel": "Provider numbers",
+      "doctorFacingSummary": "We help you prepare accurate practice details for your Services Australia application. We do not issue or approve provider numbers.",
+      "canAssist": [
+        "Share verified practice name, address, and location identifiers needed for a location-linked provider number application",
+        "Explain the difference between an existing provider number and a location-specific number for this practice",
+        "Coordinate timing so onboarding documents and start planning remain aligned while you await Services Australia correspondence",
+        "Point you to official Services Australia resources and our Provider Number Readiness checklist"
+      ],
+      "cannotApprove": [
+        "Issuing, allocating, or guaranteeing a Medicare provider number",
+        "Approving a provider number application on your behalf as the decision-maker",
+        "Confirming that a number will be granted by a particular date",
+        "Overriding Services Australia processing outcomes"
+      ],
+      "externalDepends": [
+        {
+          "agency": "Services Australia",
+          "dependency": "Issues Medicare provider numbers and processes applications"
+        },
+        {
+          "agency": "Doctor",
+          "dependency": "Lodges and tracks the application; holds responsibility for accuracy of personal details"
+        }
+      ],
+      "typicalTiming": "Before go-live billing; ideally completed or well advanced before first patient session",
+      "adminOwnerRole": "practice_manager",
+      "statusKeys": ["not_started", "in_progress", "awaiting_external", "practice_ready", "complete", "blocked"]
+    },
+    {
+      "id": "medicare_onboarding_guidance",
+      "order": 2,
+      "label": "Medicare onboarding guidance",
+      "shortLabel": "Medicare guidance",
+      "doctorFacingSummary": "We orient you to how Medicare billing is handled in this practice. We do not determine your individual Medicare eligibility or billing rights.",
+      "canAssist": [
+        "Walk through local Medicare billing workflows used at Woolloongabba Medical Centre",
+        "Explain practice preferences for item selection documentation, bulk-billing pathways where used, and private billing coordination",
+        "Share practice contact points for billing questions during early sessions",
+        "Flag common documentation habits that support accurate claiming in everyday general practice"
+      ],
+      "cannotApprove": [
+        "Determining whether you are personally eligible to bill Medicare for specific services",
+        "Approving exemptions, restrictions, or Health Insurance Act arrangements",
+        "Guaranteeing claim acceptance or payment outcomes",
+        "Providing formal Medicare advice as a substitute for Services Australia"
+      ],
+      "externalDepends": [
+        {
+          "agency": "Services Australia",
+          "dependency": "Medicare rules, provider arrangements, and claim processing"
+        },
+        {
+          "agency": "Doctor",
+          "dependency": "Clinical judgement and responsibility for items claimed under your provider number"
+        }
+      ],
+      "typicalTiming": "Orientation week and first consulting fortnight",
+      "adminOwnerRole": "practice_manager",
+      "statusKeys": ["not_started", "scheduled", "in_progress", "complete", "needs_follow_up"]
+    },
+    {
+      "id": "orientation",
+      "order": 3,
+      "label": "Orientation",
+      "shortLabel": "Orientation",
+      "doctorFacingSummary": "A structured introduction to the practice, policies, rooms, emergency processes, and day-to-day expectations.",
+      "canAssist": [
+        "Schedule a practice orientation covering layout, emergency procedures, privacy, and key contacts",
+        "Introduce clinic hours, after-hours arrangements, and escalation pathways",
+        "Provide access to relevant practice policies once onboarding is mutually confirmed",
+        "Clarify how feedback and clinical governance conversations usually work here"
+      ],
+      "cannotApprove": [
+        "Substituting orientation for external registration or credentialing requirements",
+        "Waiving mandatory professional obligations (AHPRA, indemnity, working rights)",
+        "Guaranteeing a start date before documents and mutual agreement are complete"
+      ],
+      "externalDepends": [
+        {
+          "agency": "AHPRA",
+          "dependency": "Current registration status remains a prerequisite for clinical practice"
+        },
+        {
+          "agency": "Indemnity insurer",
+          "dependency": "Adequate professional indemnity cover for the intended start period"
+        }
+      ],
+      "typicalTiming": "Before or at first consulting week",
+      "adminOwnerRole": "practice_manager",
+      "statusKeys": ["not_started", "scheduled", "in_progress", "complete", "deferred"]
+    },
+    {
+      "id": "clinical_software_onboarding",
+      "order": 4,
+      "label": "Clinical software onboarding",
+      "shortLabel": "Clinical software",
+      "doctorFacingSummary": "Hands-on familiarisation with clinical records, prescribing, results, and documentation used at this practice.",
+      "canAssist": [
+        "Provide supervised walkthrough of clinical software used at the practice",
+        "Demonstrate common workflows: notes, results, recalls, referrals, and prescribing patterns used locally",
+        "Arrange login credentials once identity and onboarding checks are complete",
+        "Offer early-week support contacts for software questions"
+      ],
+      "cannotApprove": [
+        "Certifying external software competencies beyond practice use",
+        "Granting system access before required identity and onboarding checks",
+        "Guaranteeing that prior software experience will transfer without orientation"
+      ],
+      "externalDepends": [
+        {
+          "agency": "Software vendor / IT support",
+          "dependency": "Account provisioning, licensing, and technical availability"
+        },
+        {
+          "agency": "Doctor",
+          "dependency": "Completes orientation and asks for clarification on unfamiliar workflows"
+        }
+      ],
+      "typicalTiming": "Orientation day through first fortnight",
+      "adminOwnerRole": "practice_manager",
+      "statusKeys": ["not_started", "access_pending", "in_progress", "complete", "needs_follow_up"]
+    },
+    {
+      "id": "nursing_introductions",
+      "order": 5,
+      "label": "Nursing introductions",
+      "shortLabel": "Nursing team",
+      "doctorFacingSummary": "Meet the nursing team and understand how treatment-room, preventive, and care-coordination support works alongside GP consulting.",
+      "canAssist": [
+        "Introduce you to nursing team members and their usual scopes of support",
+        "Explain how treatment-room activity, vaccinations, and care coordination are requested in practice",
+        "Clarify communication preferences for same-day clinical support",
+        "Share how nursing cover relates to session planning and room use"
+      ],
+      "cannotApprove": [
+        "Promising dedicated nursing support for every session regardless of cover",
+        "Expanding nursing scope beyond practice protocols and professional standards",
+        "Guaranteeing staffing levels that depend on roster capacity"
+      ],
+      "externalDepends": [
+        {
+          "agency": "Nursing roster / capacity",
+          "dependency": "Day-to-day nursing availability is subject to roster and leave"
+        }
+      ],
+      "typicalTiming": "Orientation and first consulting week",
+      "adminOwnerRole": "nurse_lead",
+      "statusKeys": ["not_started", "scheduled", "complete", "deferred"]
+    },
+    {
+      "id": "reception_workflows",
+      "order": 6,
+      "label": "Reception workflows",
+      "shortLabel": "Reception",
+      "doctorFacingSummary": "Understand how appointments, arrivals, messaging, and patient flow are coordinated at reception.",
+      "canAssist": [
+        "Explain appointment booking patterns, HotDoc online booking, and how sessions appear to patients",
+        "Introduce reception contacts for messages, results follow-up, and day-of changes",
+        "Clarify expectations for running late, urgent add-ons, and communication with waiting patients",
+        "Walk through how new patients and returning patients are usually registered"
+      ],
+      "cannotApprove": [
+        "Changing whole-of-practice booking policy unilaterally for one doctor without agreement",
+        "Guaranteeing a particular patient volume or case-mix",
+        "Bypassing privacy and identity verification steps at reception"
+      ],
+      "externalDepends": [
+        {
+          "agency": "HotDoc / booking systems",
+          "dependency": "Online booking availability and patient-facing slots"
+        },
+        {
+          "agency": "Patients",
+          "dependency": "Attendance patterns and preference for online versus phone booking"
+        }
+      ],
+      "typicalTiming": "Orientation and first week",
+      "adminOwnerRole": "reception_lead",
+      "statusKeys": ["not_started", "scheduled", "complete", "needs_follow_up"]
+    },
+    {
+      "id": "practice_systems",
+      "order": 7,
+      "label": "Practice systems",
+      "shortLabel": "Practice systems",
+      "doctorFacingSummary": "An overview of privacy, recalls, quality processes, pathology/radiology preferences, and everyday operational systems.",
+      "canAssist": [
+        "Orient you to privacy, records, and information-handling expectations at the practice",
+        "Explain recall and reminder approaches used for preventive care",
+        "Share preferred pathology and radiology workflows used locally",
+        "Introduce quality and accreditation touchpoints relevant to consulting GPs"
+      ],
+      "cannotApprove": [
+        "Waiving privacy or records obligations",
+        "Approving external accreditation on behalf of the practice without process",
+        "Guaranteeing that every system preference matches every previous practice you have worked in"
+      ],
+      "externalDepends": [
+        {
+          "agency": "Pathology / radiology providers",
+          "dependency": "Ordering portals, result delivery, and local service arrangements"
+        },
+        {
+          "agency": "Accreditation bodies",
+          "dependency": "Practice accreditation cycles and evidence requirements"
+        }
+      ],
+      "typicalTiming": "Orientation; reinforced during early weeks",
+      "adminOwnerRole": "practice_manager",
+      "statusKeys": ["not_started", "in_progress", "complete", "needs_follow_up"]
+    },
+    {
+      "id": "session_planning",
+      "order": 8,
+      "label": "Session planning",
+      "shortLabel": "Sessions",
+      "doctorFacingSummary": "Collaborative planning of consulting days and hours based on rooms, nursing cover, and practice need — not a marketplace listing.",
+      "canAssist": [
+        "Discuss preferred session patterns (days, part-time, staged growth) against current capacity",
+        "Explain how room availability and nursing cover influence what can be offered",
+        "Document a draft session plan for mutual review before go-live",
+        "Review early adjustments once patient demand and team fit are clearer"
+      ],
+      "cannotApprove": [
+        "Guaranteeing a fixed session template before capacity and mutual agreement are confirmed",
+        "Promising patient volumes, earnings, or fill rates",
+        "Overriding safety or coverage limits to add sessions"
+      ],
+      "externalDepends": [
+        {
+          "agency": "Practice capacity",
+          "dependency": "Rooms, nursing cover, and existing GP session commitments"
+        },
+        {
+          "agency": "Doctor",
+          "dependency": "Availability, start timing, and preference clarity"
+        }
+      ],
+      "typicalTiming": "Assessment conversations through first month",
+      "adminOwnerRole": "practice_manager",
+      "statusKeys": ["not_started", "draft", "proposed", "agreed", "live", "under_review"]
+    },
+    {
+      "id": "team_integration",
+      "order": 9,
+      "label": "Team integration",
+      "shortLabel": "Team",
+      "doctorFacingSummary": "Introductions to GPs and the wider team, and practical support for settling into collaborative care.",
+      "canAssist": [
+        "Introduce you to consulting GPs and key non-clinical team members",
+        "Explain how internal clinical questions and collegial support usually work",
+        "Include you in relevant team communications once you have started",
+        "Invite feedback on early weeks so small friction points can be addressed"
+      ],
+      "cannotApprove": [
+        "Guaranteeing a particular mentoring relationship without mutual agreement",
+        "Substituting collegial support for formal supervision where a training pathway requires it",
+        "Promising an immediate full patient list or established continuity panel"
+      ],
+      "externalDepends": [
+        {
+          "agency": "College / training organisation",
+          "dependency": "Where applicable, formal registrar supervision and training requirements"
+        },
+        {
+          "agency": "Team roster",
+          "dependency": "Who is present on your consulting days"
+        }
+      ],
+      "typicalTiming": "First fortnight to first month",
+      "adminOwnerRole": "practice_manager",
+      "statusKeys": ["not_started", "scheduled", "in_progress", "settling", "complete"]
+    }
+  ],
+  "crossCuttingPrinciples": [
+    "Support is offered in good faith and subject to practice capacity.",
+    "External agency decisions are independent of Woolloongabba Medical Centre.",
+    "No public guarantees of eligibility, income, patient volume, or start dates.",
+    "Language remains practice-voice: clear, calm, and free of recruitment-agency framing.",
+    "Doctors remain responsible for their registration, indemnity, work rights, and Medicare applications."
+  ]
+}

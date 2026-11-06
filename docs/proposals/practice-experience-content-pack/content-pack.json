@@ -1,0 +1,1307 @@
+{
+  "id": "wmc-practice-experience-content-pack",
+  "version": "1.0.0",
+  "clinic": "Woolloongabba Medical Centre",
+  "surface": "Practice Experience Hub",
+  "purpose": "Production-ready content pack for seven practice-experience modules — outlines, interviews, photography, video, captions, and pull-quotes.",
+  "voiceRules": {
+    "prefer": [
+      "Consulting day",
+      "Session pattern",
+      "Case mix",
+      "Continuity",
+      "Clinical handover",
+      "Nursing collaboration",
+      "Reception workflow",
+      "Peer discussion",
+      "Clinical autonomy",
+      "Inner south / catchment"
+    ],
+    "avoid": [
+      "We're hiring / apply now / vacancies",
+      "Package / remuneration headlines",
+      "Our vibe / passion / family / rockstars",
+      "Best place to work / employer of choice",
+      "Candidates / pipeline / EVP slogans"
+    ],
+    "honestyLine": "These accounts describe practice experience. They are not job advertisements."
+  },
+  "relatedArtifacts": [
+    "gp-practice-experience-hub",
+    "gp-attraction-visual-asset-plan",
+    "gp-testimonial-framework",
+    "gp-story-capture-system",
+    "gp-attraction-content-governance"
+  ],
+  "globalCaptionStructure": {
+    "stillPhoto": [
+      "{Activity} at Woolloongabba Medical Centre",
+      "Optional clause: place cue (Vulture Street / consulting / treatment room)",
+      "Never: culture adjectives, patient names, PHI, hiring verbs"
+    ],
+    "video": [
+      "WebVTT: speaker labels (GP / Nurse / Reception)",
+      "On-screen lower-third: role only unless full-name consent",
+      "End card: honesty line + Practice Experience URL (no Apply CTA)"
+    ],
+    "socialOg": [
+      "Title = module topic + practice name",
+      "Description mirrors meta; no Apply / hiring verbs",
+      "Image = consented still or exterior; no patient faces"
+    ]
+  },
+  "globalPullQuoteShape": {
+    "length": "12–22 words",
+    "voice": "First person preferred; present tense; one operational detail",
+    "attribution": "Name level per consent · role · optional years at WMC",
+    "mustInclude": "handoff, book mix, session pattern, continuity cue, or place cue",
+    "mustExclude": "salary, % split, hiring, opportunity, culture fit, best workplace"
+  },
+  "modules": [
+    {
+      "id": "typical_day",
+      "label": "Typical Day",
+      "hubTitle": "Typical consulting day",
+      "order": 1,
+      "pairingHint": "Doctor voices · day-shape questions; CR-01 / DC-01 stills",
+      "sectionOutline": {
+        "h2": "Typical consulting day",
+        "ledeWords": "120–180",
+        "ledeBrief": "Walk a GP through morning → midday → afternoon rhythm: case mix, session length, documentation, handovers — paced general practice, not high-energy theatre.",
+        "blocks": [
+          {
+            "id": "td_open",
+            "type": "timeline",
+            "heading": "Open — arrive / list review",
+            "points": [
+              "Arrive, review list, flag known recalls or results needing same-day attention",
+              "Brief check-in with nursing/reception on running late or complex bookings",
+              "Set documentation posture before first patient"
+            ]
+          },
+          {
+            "id": "td_core",
+            "type": "bullets",
+            "heading": "Core — mixed book",
+            "points": [
+              "Acute presentations interleaved with reviews",
+              "Preventive care and mental health within ordinary GP time",
+              "Procedures only where credentialed and roomed",
+              "Session length reflects continuity work, not throughput maximisation"
+            ]
+          },
+          {
+            "id": "td_close",
+            "type": "timeline",
+            "heading": "Close — results, recalls, notes, handover",
+            "points": [
+              "Results and correspondence triage",
+              "Recall actions and nurse handover where needed",
+              "Finish notes while context is fresh"
+            ]
+          },
+          {
+            "id": "td_media",
+            "type": "media_slot",
+            "heading": "Media",
+            "points": ["Primary: day overview video or three-still timeline", "Optional pull-quote from day-shape interview"]
+          },
+          {
+            "id": "td_honesty",
+            "type": "callout",
+            "heading": "Honesty cue",
+            "points": ["Show paced general practice — avoid busy / high-energy framing", "May not suit GPs seeking maximum throughput alone"]
+          }
+        ],
+        "internalLinks": ["Philosophy", "Team", "GP Opportunities (fit)"]
+      },
+      "interviewGuide": {
+        "durationMin": 25,
+        "roles": ["GP (primary)", "optional nurse corroboration 5 min"],
+        "consentNote": "Voluntary; media consent before recording; no link to commercial terms",
+        "warmUp": [
+          "How long have you consulted here, and what is your current session footprint?"
+        ],
+        "coreQuestions": [
+          {
+            "id": "TD-Q1",
+            "ask": "Walk me through a typical consulting day from first patient to last notes — what the book feels like in concrete terms.",
+            "probe": "Morning vs afternoon mix; where documentation sits"
+          },
+          {
+            "id": "TD-Q2",
+            "ask": "What kinds of presentations sit next to each other on a normal list here?",
+            "probe": "Acute / review / preventive / mental health / procedures"
+          },
+          {
+            "id": "TD-Q3",
+            "ask": "When does the day slow or stretch — and what do you do then?",
+            "probe": "Complex patient, results pile, running late norms"
+          },
+          {
+            "id": "TD-Q4",
+            "ask": "What happens in the last 30–45 minutes of your session?",
+            "probe": "Handover, recalls, unfinished notes"
+          },
+          {
+            "id": "TD-Q5",
+            "ask": "Who might find this day shape a poor fit?",
+            "probe": "Honest boundary without disparaging other models"
+          }
+        ],
+        "captureNotes": [
+          "Prefer operational nouns over feelings",
+          "Flag any patient-identifiable detail for composite rewrite",
+          "Extract one 12–22 word pull-quote candidate live"
+        ]
+      },
+      "photographyShotList": [
+        {
+          "shotId": "PE-TD-01",
+          "assetRef": "CR-01",
+          "frame": "Wide consulting room, desk + couch, empty of patients",
+          "specs": "1600×900 WebP master; 1200×800 web",
+          "alt": "Consulting room at Woolloongabba Medical Centre with desk and examination couch ready for a general practice visit",
+          "notes": "Natural side light; door ajar optional; Photo-only"
+        },
+        {
+          "shotId": "PE-TD-02",
+          "assetRef": "DC-01",
+          "frame": "GP at desk reviewing list / notes (consented), screen privacy-blanked",
+          "specs": "1200×800",
+          "alt": "GP reviewing the consulting list at a desk inside Woolloongabba Medical Centre",
+          "notes": "Same lighting family as PE-TD-01; no PHI on screen"
+        },
+        {
+          "shotId": "PE-TD-03",
+          "assetRef": "CR-02",
+          "frame": "End-of-session detail: blanked monitor, clean surfaces, notes posture",
+          "specs": "1200×800",
+          "alt": "Prepared consulting desk and clinical surfaces at Woolloongabba Medical Centre after a session",
+          "notes": "Caption = activity, not culture"
+        },
+        {
+          "shotId": "PE-TD-04",
+          "assetRef": "DC-02",
+          "frame": "Corridor → room threshold B-roll still",
+          "specs": "1200×800",
+          "alt": "Quiet corridor leading to a consulting room at Woolloongabba Medical Centre",
+          "notes": "No staged busy rush"
+        }
+      ],
+      "videoScript": {
+        "id": "VID-TD-01",
+        "title": "Practice day overview",
+        "durationSec": "90–120",
+        "format": "B-roll + VO or on-screen captions; staff-consented walkthrough",
+        "music": "None or very low ambient — not corporate promo bed",
+        "beats": [
+          {
+            "tc": "0:00–0:12",
+            "visual": "Exterior CC-01 → foyer",
+            "voOrCaption": "A consulting day at Woolloongabba Medical Centre starts with the list — not with theatre."
+          },
+          {
+            "tc": "0:12–0:35",
+            "visual": "PE-TD-01 / PE-TD-02 desk review",
+            "voOrCaption": "Mornings often mix acute presentations with reviews. The book is general practice: preventive care, mental health, and procedures where credentialed."
+          },
+          {
+            "tc": "0:35–0:55",
+            "visual": "Quiet corridor / treatment door ajar (no patients)",
+            "voOrCaption": "Nursing and reception sit around the consult — handoffs protect time when the list stretches."
+          },
+          {
+            "tc": "0:55–1:20",
+            "visual": "PE-TD-03 notes / results posture",
+            "voOrCaption": "Sessions close with results, recalls, and documentation while context is fresh. Continuity work needs that finish."
+          },
+          {
+            "tc": "1:20–end",
+            "visual": "Honesty card + exterior still",
+            "voOrCaption": "This describes how practice runs here. It is not a job advertisement."
+          }
+        ],
+        "captions": "Full WebVTT; readable at 1.0×; no burned-in Apply CTA"
+      },
+      "captionStructures": {
+        "moduleLede": "[Day arc in one sentence]. [Case-mix cue]. [Close with documentation or handover].",
+        "stillCaptions": [
+          "PE-TD-01: Consulting room prepared for a general practice session at Woolloongabba Medical Centre.",
+          "PE-TD-02: A GP reviews the consulting list before patients arrive.",
+          "PE-TD-03: End-of-session documentation at the consulting desk."
+        ],
+        "timelineCaptions": [
+          "Open — list review",
+          "Core — mixed book",
+          "Close — results, recalls, notes"
+        ]
+      },
+      "pullQuoteTemplates": [
+        {
+          "id": "PQ-TD-01",
+          "template": "The book here mixes acute work with reviews — the day is paced so notes and handovers still fit.",
+          "slots": ["{acute_or_review_detail}", "{close_ritual}"]
+        },
+        {
+          "id": "PQ-TD-02",
+          "template": "I finish sessions with {close_ritual}; continuity depends on leaving the list clean enough for tomorrow.",
+          "slots": ["{close_ritual}"]
+        },
+        {
+          "id": "PQ-TD-03",
+          "template": "If you want maximum throughput alone, this day shape may not suit — we leave room for context.",
+          "slots": []
+        }
+      ]
+    },
+    {
+      "id": "nursing",
+      "label": "Nursing",
+      "hubTitle": "Nursing collaboration",
+      "order": 2,
+      "pairingHint": "TR-01 / NC-01; immunisation & wound pathways",
+      "sectionOutline": {
+        "h2": "Nursing collaboration",
+        "ledeWords": "120–180",
+        "ledeBrief": "How nurses protect consulting time: treatment room, preventive pathways, recalls, procedure support — clinical partnership, not ‘amazing nursing family’.",
+        "blocks": [
+          {
+            "id": "nu_roles",
+            "type": "bullets",
+            "heading": "Where nursing sits in the day",
+            "points": [
+              "Treatment-room coordination around GP lists",
+              "Immunisation, wound care, chronic-disease pathways",
+              "Recall and preventive work that does not need a full GP slot",
+              "Shared safety cues and escalation back to the GP"
+            ]
+          },
+          {
+            "id": "nu_handoff",
+            "type": "timeline",
+            "heading": "Example handoff",
+            "points": [
+              "Reception or GP flags pathway",
+              "Nurse prepares room / consent / equipment",
+              "GP joins for procedure or reviews outcome",
+              "Documentation and recall closed"
+            ]
+          },
+          {
+            "id": "nu_media",
+            "type": "media_slot",
+            "heading": "Media",
+            "points": ["Nurse–GP treatment still or 45–60s handoff vignette"]
+          },
+          {
+            "id": "nu_honesty",
+            "type": "callout",
+            "heading": "Honesty cue",
+            "points": ["Name roles and handoffs", "Capacity depends on nursing cover for the session"]
+          }
+        ],
+        "internalLinks": ["Team", "Facilities on GP Opportunities"]
+      },
+      "interviewGuide": {
+        "durationMin": 30,
+        "roles": ["GP", "Practice nurse (paired interview preferred)"],
+        "consentNote": "Separate media consent for each speaker; clinical accuracy over polish",
+        "warmUp": [
+          "Describe your usual nursing cover on the days you consult."
+        ],
+        "coreQuestions": [
+          {
+            "id": "NU-Q1",
+            "ask": "When does nursing change how a consult runs? Give one specific example from last month.",
+            "probe": "Wound, immunisation, ECG, chronic disease, procedure support"
+          },
+          {
+            "id": "NU-Q2",
+            "ask": "Walk through a treatment-room handoff from flag → prep → GP join → close.",
+            "probe": "Who documents what"
+          },
+          {
+            "id": "NU-Q3",
+            "ask": "What do you escalate back to the GP rather than complete in nursing time?",
+            "probe": "Safety boundaries"
+          },
+          {
+            "id": "NU-Q4",
+            "ask": "How do recalls and preventive pathways reduce pressure on the consulting list?",
+            "probe": "Concrete pathway name if accurate"
+          },
+          {
+            "id": "NU-Q5",
+            "ask": "What happens on days when nursing cover is thinner?",
+            "probe": "Honesty about capacity constraints"
+          }
+        ],
+        "captureNotes": [
+          "Prefer paired GP + nurse for vignette authenticity",
+          "No patient identifiers; use composite if needed and label"
+        ]
+      },
+      "photographyShotList": [
+        {
+          "shotId": "PE-NU-01",
+          "assetRef": "TR-01",
+          "frame": "Treatment couch + trolley orderly; PPE available; empty of patients",
+          "specs": "1200×800",
+          "alt": "Treatment room prepared for nursing-supported care at Woolloongabba Medical Centre",
+          "notes": "No open sharps; Photo-prefer"
+        },
+        {
+          "shotId": "PE-NU-02",
+          "assetRef": "NC-01",
+          "frame": "Nurse + GP at treatment bench or handover (consented staff)",
+          "specs": "1200×800",
+          "alt": "GP and nurse coordinating care at the treatment bench at Woolloongabba Medical Centre",
+          "notes": "Clinical partnership pose; calm, not staged fun"
+        },
+        {
+          "shotId": "PE-NU-03",
+          "assetRef": "NC-02",
+          "frame": "Hands/equipment detail during prep (optional)",
+          "specs": "1200×800 square crop ok",
+          "alt": "Clinical preparation detail in the treatment room at Woolloongabba Medical Centre",
+          "notes": "No identifiable patient skin lesions"
+        }
+      ],
+      "videoScript": {
+        "id": "VID-NU-01",
+        "title": "Nursing handoff vignette",
+        "durationSec": "45–60",
+        "format": "Staff narration over real workflow B-roll (empty or consented)",
+        "music": "None",
+        "beats": [
+          {
+            "tc": "0:00–0:08",
+            "visual": "PE-NU-01 treatment room",
+            "voOrCaption": "Nursing sits beside consulting — not as decoration, as clinical capacity."
+          },
+          {
+            "tc": "0:08–0:28",
+            "visual": "Prep trolley / consent clipboard blanked",
+            "voOrCaption": "A pathway is flagged. The nurse prepares the room, equipment, and patient information the GP will need."
+          },
+          {
+            "tc": "0:28–0:45",
+            "visual": "PE-NU-02 handoff moment",
+            "voOrCaption": "The GP joins for the procedure or reviews the outcome. Documentation and recall close the loop."
+          },
+          {
+            "tc": "0:45–end",
+            "visual": "Honesty card",
+            "voOrCaption": "Session support depends on nursing cover. That constraint is part of how we plan lists."
+          }
+        ],
+        "captions": "Speaker-labelled WebVTT; clinical terms spelled correctly"
+      },
+      "captionStructures": {
+        "moduleLede": "[Partnership statement]. [Pathway examples]. [Escalation / cover honesty].",
+        "stillCaptions": [
+          "PE-NU-01: Treatment room ready for nursing-supported care.",
+          "PE-NU-02: GP and nurse coordinating a clinical handoff."
+        ],
+        "timelineCaptions": ["Flag", "Prep", "GP join", "Close recall"]
+      },
+      "pullQuoteTemplates": [
+        {
+          "id": "PQ-NU-01",
+          "template": "When a {pathway} is flagged, nursing prepares the room so the consult stays clinical — not logistical.",
+          "slots": ["{pathway}"]
+        },
+        {
+          "id": "PQ-NU-02",
+          "template": "We escalate {safety_boundary} back to the GP; everything else can finish in nursing time.",
+          "slots": ["{safety_boundary}"]
+        },
+        {
+          "id": "PQ-NU-03",
+          "template": "On thinner nursing days the list changes — capacity is planned, not assumed.",
+          "slots": []
+        }
+      ]
+    },
+    {
+      "id": "reception",
+      "label": "Reception",
+      "hubTitle": "Reception workflows",
+      "order": 3,
+      "pairingHint": "RX-01 / RX-02; enquiry routing",
+      "sectionOutline": {
+        "h2": "Reception workflows",
+        "ledeWords": "120–180",
+        "ledeBrief": "Appointment triage, patient flow, results/enquiry routing — systems that protect consulting time.",
+        "blocks": [
+          {
+            "id": "rx_booking",
+            "type": "bullets",
+            "heading": "Booking and triage principles",
+            "points": [
+              "Match appointment type to clinical need and GP session pattern",
+              "Running-late norms communicated calmly",
+              "Urgent same-day cues routed without collapsing the list"
+            ]
+          },
+          {
+            "id": "rx_enquiries",
+            "type": "bullets",
+            "heading": "Enquiries that should not interrupt a consult",
+            "points": [
+              "Results follow-up routing",
+              "Scripts and referral status checks",
+              "Administrative forms and certificates process"
+            ]
+          },
+          {
+            "id": "rx_media",
+            "type": "media_slot",
+            "heading": "Media",
+            "points": ["Staff-side reception still; screens privacy-blanked"]
+          },
+          {
+            "id": "rx_honesty",
+            "type": "callout",
+            "heading": "Honesty cue",
+            "points": ["Describe systems, not ‘front-of-house magic’", "No patient IDs on screens in any frame"]
+          }
+        ],
+        "internalLinks": ["Access & Parking", "Team"]
+      },
+      "interviewGuide": {
+        "durationMin": 25,
+        "roles": ["Reception lead or senior receptionist", "GP (optional 10 min)"],
+        "consentNote": "Screens off or mocked during any filming",
+        "warmUp": [
+          "What does a typical morning look like from the desk before the first patient is called?"
+        ],
+        "coreQuestions": [
+          {
+            "id": "RX-Q1",
+            "ask": "How do you decide what needs a GP same-day versus a routine booking?",
+            "probe": "Triage principles without disclosing protocols that are confidential"
+          },
+          {
+            "id": "RX-Q2",
+            "ask": "Which enquiries do you resolve without interrupting a consult — and which must you pass through?",
+            "probe": "Results, scripts, referrals, certificates"
+          },
+          {
+            "id": "RX-Q3",
+            "ask": "When a GP is running late, what does the desk do for patients and for the rest of the list?",
+            "probe": "Communication norms"
+          },
+          {
+            "id": "RX-Q4",
+            "ask": "How does reception support continuity — same GP preference, family bookings, recalls?",
+            "probe": "Operational, not sentimental"
+          },
+          {
+            "id": "RX-Q5",
+            "ask": "What do GPs misunderstand about reception workflow until they have worked here?",
+            "probe": "Protective systems"
+          }
+        ],
+        "captureNotes": [
+          "Never film identifiable patients in queue",
+          "Blur or angle screens; prefer powered-off monitors"
+        ]
+      },
+      "photographyShotList": [
+        {
+          "shotId": "PE-RX-01",
+          "assetRef": "RX-01",
+          "frame": "Staff-side or three-quarter reception desk; screens blanked",
+          "specs": "1200×800",
+          "alt": "Reception desk at Woolloongabba Medical Centre where appointments and patient enquiries are managed",
+          "notes": "No queue of identifiable patients; Photo-only preferred"
+        },
+        {
+          "shotId": "PE-RX-02",
+          "assetRef": "RX-02",
+          "frame": "Check-in counter edge + phone/headset; no screen content",
+          "specs": "1200×800",
+          "alt": "Reception check-in counter at Woolloongabba Medical Centre with screens kept private",
+          "notes": "Calm grade; square crop for cards"
+        },
+        {
+          "shotId": "PE-RX-03",
+          "assetRef": "WA-01",
+          "frame": "Empty/sparse waiting area looking toward reception (soft background)",
+          "specs": "1200×800",
+          "alt": "Quiet waiting area at Woolloongabba Medical Centre looking toward reception",
+          "notes": "Atmosphere for flow narrative"
+        }
+      ],
+      "videoScript": {
+        "id": "VID-RX-01",
+        "title": "Reception flow vignette",
+        "durationSec": "45–60",
+        "format": "Staff voice; no patient audio; screens off or mocked",
+        "music": "None",
+        "beats": [
+          {
+            "tc": "0:00–0:10",
+            "visual": "PE-RX-01 desk",
+            "voOrCaption": "Reception holds the list together — bookings, triage cues, and enquiries that should not break a consult."
+          },
+          {
+            "tc": "0:10–0:30",
+            "visual": "PE-RX-02 counter detail / phone",
+            "voOrCaption": "Results, scripts, and referral checks are routed. Urgent same-day needs are flagged without collapsing the whole morning."
+          },
+          {
+            "tc": "0:30–0:48",
+            "visual": "PE-RX-03 waiting → reception depth",
+            "voOrCaption": "When a session runs late, patients hear it from the desk. Continuity preferences are noted for the next booking."
+          },
+          {
+            "tc": "0:48–end",
+            "visual": "Honesty card",
+            "voOrCaption": "These are workflows that protect consulting time — not a customer-service slogan."
+          }
+        ],
+        "captions": "WebVTT; no patient names in any caption"
+      },
+      "captionStructures": {
+        "moduleLede": "[Protect consulting time]. [Triage + enquiry routing]. [Continuity preference note].",
+        "stillCaptions": [
+          "PE-RX-01: Reception managing appointments and enquiries.",
+          "PE-RX-02: Check-in counter with private screens.",
+          "PE-RX-03: Waiting area looking toward reception."
+        ],
+        "timelineCaptions": ["Book", "Triage cue", "Route enquiry", "Protect consult"]
+      },
+      "pullQuoteTemplates": [
+        {
+          "id": "PQ-RX-01",
+          "template": "Most {enquiry_type} never need to interrupt a consult — the desk routes them first.",
+          "slots": ["{enquiry_type}"]
+        },
+        {
+          "id": "PQ-RX-02",
+          "template": "When I run late, reception tells patients what is happening so the rest of the list stays honest.",
+          "slots": []
+        },
+        {
+          "id": "PQ-RX-03",
+          "template": "Same-GP preference is a booking habit here — continuity starts at the desk.",
+          "slots": []
+        }
+      ]
+    },
+    {
+      "id": "team_interactions",
+      "label": "Team Interactions",
+      "hubTitle": "Team interactions",
+      "order": 4,
+      "pairingHint": "TD-01 / TD-02; corridor consults + governance",
+      "sectionOutline": {
+        "h2": "Team interactions",
+        "ledeWords": "120–180",
+        "ledeBrief": "Corridor consults, case discussion, practice meetings, clinical autonomy within AGPAL-aligned systems — professional peercraft.",
+        "blocks": [
+          {
+            "id": "tm_peer",
+            "type": "bullets",
+            "heading": "Peer discussion norms",
+            "points": [
+              "When GPs ask each other or nursing — short, clinical, privacy-aware",
+              "Clinical autonomy with accountability to practice systems",
+              "Practice meetings and governance touchpoints (high level)"
+            ]
+          },
+          {
+            "id": "tm_when",
+            "type": "bullets",
+            "heading": "When interaction helps a consult",
+            "points": [
+              "Uncertainty that benefits from a second clinical mind",
+              "Shared patient known to another GP",
+              "Procedure or pathway that needs nursing now"
+            ]
+          },
+          {
+            "id": "tm_media",
+            "type": "media_slot",
+            "heading": "Media",
+            "points": ["Two clinicians in brief corridor discussion (consented)"]
+          },
+          {
+            "id": "tm_honesty",
+            "type": "callout",
+            "heading": "Honesty cue",
+            "points": ["Autonomy + accountability", "No ‘one big happy team’ slogans"]
+          }
+        ],
+        "internalLinks": ["AGPAL / philosophy", "Team profiles"]
+      },
+      "interviewGuide": {
+        "durationMin": 25,
+        "roles": ["GP", "optional second GP or nurse"],
+        "consentNote": "Corridor filming only when empty of patients",
+        "warmUp": [
+          "Who do you usually ask when you are unsure mid-session?"
+        ],
+        "coreQuestions": [
+          {
+            "id": "TM-Q1",
+            "ask": "Describe a recent corridor or doorway discussion that changed what you did next.",
+            "probe": "Clinical specificity without patient ID"
+          },
+          {
+            "id": "TM-Q2",
+            "ask": "How do you keep peer discussion privacy-safe in a busy corridor?",
+            "probe": "Volume, location, identifiable detail"
+          },
+          {
+            "id": "TM-Q3",
+            "ask": "Where does clinical autonomy sit relative to practice protocols and AGPAL systems?",
+            "probe": "Accountability without bureaucracy theatre"
+          },
+          {
+            "id": "TM-Q4",
+            "ask": "What practice meetings or governance touchpoints actually affect day-to-day consulting?",
+            "probe": "Concrete, infrequent is OK"
+          },
+          {
+            "id": "TM-Q5",
+            "ask": "Who thrives with this interaction style — and who might prefer more isolated consulting?",
+            "probe": "Fit honesty"
+          }
+        ],
+        "captureNotes": [
+          "Avoid staged laughter / high-five culture imagery",
+          "Keep language professional and calm"
+        ]
+      },
+      "photographyShotList": [
+        {
+          "shotId": "PE-TM-01",
+          "assetRef": "TD-01",
+          "frame": "Two clinicians brief corridor discussion (consented), empty hallway",
+          "specs": "1200×800",
+          "alt": "Two clinicians in a brief clinical discussion in a corridor at Woolloongabba Medical Centre",
+          "notes": "Professional, calm; avoid fun-team poses"
+        },
+        {
+          "shotId": "PE-TM-02",
+          "assetRef": "TD-02",
+          "frame": "Doorway consult posture — notes or short exchange",
+          "specs": "1200×800",
+          "alt": "Clinicians exchanging a short clinical update between consulting rooms",
+          "notes": "No patient charts visible"
+        },
+        {
+          "shotId": "PE-TM-03",
+          "assetRef": "DC-02",
+          "frame": "Solo GP pause before asking a colleague (optional narrative still)",
+          "specs": "1200×800",
+          "alt": "GP pausing between patients in the practice corridor",
+          "notes": "Supports autonomy narrative"
+        }
+      ],
+      "videoScript": {
+        "id": "VID-TM-01",
+        "title": "Peer discussion — how we ask",
+        "durationSec": "45–60",
+        "format": "Interview cutaways + corridor B-roll (empty)",
+        "music": "None",
+        "beats": [
+          {
+            "tc": "0:00–0:10",
+            "visual": "PE-TM-01",
+            "voOrCaption": "Clinical questions here are short and specific — often between rooms, not in a meeting theatre."
+          },
+          {
+            "tc": "0:10–0:30",
+            "visual": "Interview talking head (consented GP)",
+            "voOrCaption": "[GP] When I am unsure, I ask a colleague or nursing. Autonomy matters — so does a second clinical mind."
+          },
+          {
+            "tc": "0:30–0:48",
+            "visual": "PE-TM-02 doorway",
+            "voOrCaption": "Privacy stays in the exchange: no identifiable detail in the corridor; escalate into a room when needed."
+          },
+          {
+            "tc": "0:48–end",
+            "visual": "Honesty card",
+            "voOrCaption": "This is professional peercraft — not a culture campaign."
+          }
+        ],
+        "captions": "WebVTT with GP label; quote approved before publish"
+      },
+      "captionStructures": {
+        "moduleLede": "[Peercraft statement]. [When we ask]. [Autonomy + AGPAL accountability].",
+        "stillCaptions": [
+          "PE-TM-01: Clinicians in a brief clinical discussion.",
+          "PE-TM-02: Short clinical update between consulting rooms."
+        ],
+        "timelineCaptions": ["Notice uncertainty", "Ask briefly", "Act", "Document"]
+      },
+      "pullQuoteTemplates": [
+        {
+          "id": "PQ-TM-01",
+          "template": "When I am unsure, I ask {colleague_or_nurse} — short, clinical, then back to the room.",
+          "slots": ["{colleague_or_nurse}"]
+        },
+        {
+          "id": "PQ-TM-02",
+          "template": "Autonomy here sits inside AGPAL-aligned systems — you own the consult, and the practice owns the standards.",
+          "slots": []
+        },
+        {
+          "id": "PQ-TM-03",
+          "template": "If you prefer fully isolated consulting with no peer exchange, this setting may feel closer than you want.",
+          "slots": []
+        }
+      ]
+    },
+    {
+      "id": "community",
+      "label": "Community",
+      "hubTitle": "Community demographics",
+      "order": 5,
+      "pairingHint": "CC-01 exterior; published catchment language only",
+      "sectionOutline": {
+        "h2": "Community demographics",
+        "ledeWords": "120–180",
+        "ledeBrief": "Inner-south catchment and life-stage mix that shapes the book — place and case mix without census theatre.",
+        "blocks": [
+          {
+            "id": "cm_place",
+            "type": "bullets",
+            "heading": "Place",
+            "points": [
+              "468 Vulture Street, Woolloongabba — inner south Brisbane",
+              "Catchment suburbs using published community page language only",
+              "Proximity to hospitals / transit as clinical context (not a boast list)"
+            ]
+          },
+          {
+            "id": "cm_mix",
+            "type": "bullets",
+            "heading": "Life-stage mix that shapes the book",
+            "points": [
+              "Families and children’s health",
+              "Working-age adults",
+              "Older adults and chronic disease continuity",
+              "Students and nearby residents where accurate"
+            ]
+          },
+          {
+            "id": "cm_media",
+            "type": "media_slot",
+            "heading": "Media",
+            "points": ["Exterior / street context still"]
+          },
+          {
+            "id": "cm_honesty",
+            "type": "callout",
+            "heading": "Honesty cue",
+            "points": ["No invented census percentages", "Reuse Community page canon wording"]
+          }
+        ],
+        "internalLinks": ["Community", "Local Healthcare Access", "Access & Parking"]
+      },
+      "interviewGuide": {
+        "durationMin": 20,
+        "roles": ["GP with established book", "optional practice manager for catchment facts"],
+        "consentNote": "Facts checked against published Community copy before publish",
+        "warmUp": [
+          "Which suburbs appear most often in your usual book?"
+        ],
+        "coreQuestions": [
+          {
+            "id": "CM-Q1",
+            "ask": "How does practising in Woolloongabba / the inner south shape the case mix you see?",
+            "probe": "Life stages, not stereotypes"
+          },
+          {
+            "id": "CM-Q2",
+            "ask": "What local context (hospitals, transit, housing) shows up clinically in ordinary weeks?",
+            "probe": "Concrete examples, privacy-safe"
+          },
+          {
+            "id": "CM-Q3",
+            "ask": "How do family and multi-generational relationships appear in continuity here?",
+            "probe": "Composite OK if labelled"
+          },
+          {
+            "id": "CM-Q4",
+            "ask": "What should a GP new to this catchment expect in the first three months of list-building?",
+            "probe": "Honest pace — no guarantees"
+          },
+          {
+            "id": "CM-Q5",
+            "ask": "What community detail do we refuse to invent for marketing?",
+            "probe": "Stats, rankings, ‘diverse vibrant’ fluff"
+          }
+        ],
+        "captureNotes": [
+          "Cross-check suburb names with Community page",
+          "No stock ‘diverse crowd’ imagery"
+        ]
+      },
+      "photographyShotList": [
+        {
+          "shotId": "PE-CM-01",
+          "assetRef": "CC-01",
+          "frame": "Institutional exterior / street context of 468 Vulture Street",
+          "specs": "1600×900",
+          "alt": "Woolloongabba Medical Centre on Vulture Street in Brisbane’s inner south",
+          "notes": "Primary place signal; reuse OK"
+        },
+        {
+          "shotId": "PE-CM-02",
+          "assetRef": "WA-02",
+          "frame": "Daylit waiting seats with neighbourhood light through glass if available",
+          "specs": "1200×800",
+          "alt": "Daylit waiting seats at Woolloongabba Medical Centre on Vulture Street",
+          "notes": "No identifiable patients; no TV ads"
+        },
+        {
+          "shotId": "PE-CM-03",
+          "assetRef": "CC-01",
+          "frame": "OG crop 1200×630 from exterior",
+          "specs": "1200×630",
+          "alt": "Woolloongabba Medical Centre exterior",
+          "notes": "Social / OG only"
+        }
+      ],
+      "videoScript": {
+        "id": "VID-CM-01",
+        "title": "Place and case mix",
+        "durationSec": "45–60",
+        "format": "Exterior + quiet interior B-roll; VO from published facts + GP line",
+        "music": "None or soft ambient only",
+        "beats": [
+          {
+            "tc": "0:00–0:12",
+            "visual": "PE-CM-01 exterior",
+            "voOrCaption": "Woolloongabba Medical Centre sits on Vulture Street in Brisbane’s inner south."
+          },
+          {
+            "tc": "0:12–0:32",
+            "visual": "PE-CM-02 daylit waiting / corridor",
+            "voOrCaption": "The book reflects local life stages — families, working adults, older patients — continuity built in one place."
+          },
+          {
+            "tc": "0:32–0:48",
+            "visual": "GP interview line (consented)",
+            "voOrCaption": "[GP] Practising here means the catchment shows up in ordinary weeks — not as a slogan, as case mix."
+          },
+          {
+            "tc": "0:48–end",
+            "visual": "Honesty card",
+            "voOrCaption": "We use published community language. We do not invent statistics for marketing."
+          }
+        ],
+        "captions": "Fact-checked WebVTT; suburb names per Community page"
+      },
+      "captionStructures": {
+        "moduleLede": "[Place one-liner]. [Life-stage mix]. [Clinical context without boast].",
+        "stillCaptions": [
+          "PE-CM-01: Woolloongabba Medical Centre on Vulture Street.",
+          "PE-CM-02: Daylit waiting area looking toward the neighbourhood."
+        ],
+        "timelineCaptions": ["Place", "Catchment", "Case mix", "Continuity"]
+      },
+      "pullQuoteTemplates": [
+        {
+          "id": "PQ-CM-01",
+          "template": "Practising in Woolloongabba shapes the book — {life_stage_mix} in ordinary weeks, not as a slogan.",
+          "slots": ["{life_stage_mix}"]
+        },
+        {
+          "id": "PQ-CM-02",
+          "template": "Local context shows up clinically: {local_cue}. That is catchment, not marketing copy.",
+          "slots": ["{local_cue}"]
+        },
+        {
+          "id": "PQ-CM-03",
+          "template": "List-building here follows relationships over time — pace varies; we do not promise a full book on day one.",
+          "slots": []
+        }
+      ]
+    },
+    {
+      "id": "continuity",
+      "label": "Continuity",
+      "hubTitle": "Continuity stories",
+      "order": 6,
+      "pairingHint": "Atmosphere stills only; composites labelled",
+      "sectionOutline": {
+        "h2": "Continuity stories",
+        "ledeWords": "120–180",
+        "ledeBrief": "Composite, privacy-safe narratives of care over time — the philosophy made concrete.",
+        "blocks": [
+          {
+            "id": "co_vA",
+            "type": "vignette",
+            "heading": "Vignette A — family over years (composite)",
+            "points": [
+              "Label: composite example",
+              "Same GP / practice knowing family context",
+              "What changes in the consult because history is shared"
+            ]
+          },
+          {
+            "id": "co_vB",
+            "type": "vignette",
+            "heading": "Vignette B — chronic disease arc (composite)",
+            "points": [
+              "Label: composite example",
+              "Reviews, nursing pathways, medication and lifestyle over time",
+              "Avoid rare-disease fingerprinting"
+            ]
+          },
+          {
+            "id": "co_effect",
+            "type": "bullets",
+            "heading": "What continuity changes clinically",
+            "points": [
+              "Faster recognition of change from baseline",
+              "Safer prescribing with known history",
+              "Fewer repeated whole-story retellings for the patient"
+            ]
+          },
+          {
+            "id": "co_media",
+            "type": "media_slot",
+            "heading": "Media",
+            "points": ["Abstract / empty waiting or soft-light room — no patient imagery"]
+          },
+          {
+            "id": "co_honesty",
+            "type": "callout",
+            "heading": "Honesty cue",
+            "points": ["Privacy first — composites only", "No identifiable clinical detail"]
+          }
+        ],
+        "internalLinks": ["Philosophy", "Community care"]
+      },
+      "interviewGuide": {
+        "durationMin": 30,
+        "roles": ["Established GP preferred"],
+        "consentNote": "Rewrite any identifiable detail into labelled composite before draft leaves interview room",
+        "warmUp": [
+          "How long have you carried a continuity book at this practice?"
+        ],
+        "coreQuestions": [
+          {
+            "id": "CO-Q1",
+            "ask": "Tell a privacy-safe story of seeing the same person or family over time. What changed clinically because you already knew them?",
+            "probe": "Baseline recognition, trust, adherence"
+          },
+          {
+            "id": "CO-Q2",
+            "ask": "Where does nursing or reception make continuity real between your sessions?",
+            "probe": "Recalls, same-GP booking, results"
+          },
+          {
+            "id": "CO-Q3",
+            "ask": "What breaks continuity — and how do you repair it when it breaks?",
+            "probe": "Leave, part-time footprint, hospital episodes"
+          },
+          {
+            "id": "CO-Q4",
+            "ask": "How do you explain continuity to a GP who has mostly worked high-churn settings?",
+            "probe": "Operational difference"
+          },
+          {
+            "id": "CO-Q5",
+            "ask": "What must never appear in a published continuity story?",
+            "probe": "Identifiers, unusual fingerprints, photos of patients"
+          }
+        ],
+        "captureNotes": [
+          "Mark vignette A/B as composite in CMS field",
+          "Pair with atmosphere still — never patient photo"
+        ]
+      },
+      "photographyShotList": [
+        {
+          "shotId": "PE-CO-01",
+          "assetRef": "WA-01",
+          "frame": "Empty waiting area — atmosphere only",
+          "specs": "1200×800",
+          "alt": "Quiet waiting area at Woolloongabba Medical Centre",
+          "notes": "No patient imagery for vignettes"
+        },
+        {
+          "shotId": "PE-CO-02",
+          "assetRef": "CR-01",
+          "frame": "Soft-light empty consulting room",
+          "specs": "1200×800",
+          "alt": "Empty consulting room ready for continuity-based general practice",
+          "notes": "Editorial calm; no props implying a specific patient"
+        },
+        {
+          "shotId": "PE-CO-03",
+          "assetRef": "—",
+          "frame": "Abstract detail (light on chair / door frame) optional",
+          "specs": "1200×800",
+          "alt": "Quiet interior detail at Woolloongabba Medical Centre",
+          "notes": "AI-ok atmosphere only if labelled illustrative"
+        }
+      ],
+      "videoScript": {
+        "id": "VID-CO-01",
+        "title": "Continuity — what changes in the consult",
+        "durationSec": "60–90",
+        "format": "GP reflection + atmosphere B-roll; no reenactments with actors-as-patients",
+        "music": "None",
+        "beats": [
+          {
+            "tc": "0:00–0:12",
+            "visual": "PE-CO-01 / PE-CO-02",
+            "voOrCaption": "Continuity is not a slogan here. It is recognising change from a baseline you already hold."
+          },
+          {
+            "tc": "0:12–0:40",
+            "visual": "GP talking head",
+            "voOrCaption": "[GP — composite framing] Over years with the same family, the consult starts further along. You spend less time rebuilding the story and more time on what changed."
+          },
+          {
+            "tc": "0:40–1:05",
+            "visual": "Atmosphere stills",
+            "voOrCaption": "Nursing recalls and same-GP booking habits keep the thread between sessions. When continuity breaks, repair is deliberate."
+          },
+          {
+            "tc": "1:05–end",
+            "visual": "On-screen: Composite examples · no patient identities",
+            "voOrCaption": "Published stories are privacy-safe composites. They describe practice — they are not case reports."
+          }
+        ],
+        "captions": "Must include composite disclaimer on screen or in first caption block"
+      },
+      "captionStructures": {
+        "moduleLede": "[Continuity definition in clinical terms]. [What changes]. [Composite disclaimer].",
+        "stillCaptions": [
+          "PE-CO-01: Quiet waiting area — atmosphere for continuity stories.",
+          "PE-CO-02: Consulting room prepared for ongoing general practice care."
+        ],
+        "vignetteCaptions": [
+          "Composite example — family continuity",
+          "Composite example — chronic disease arc",
+          "Not a real patient identity"
+        ]
+      },
+      "pullQuoteTemplates": [
+        {
+          "id": "PQ-CO-01",
+          "template": "Seeing the same person over time means I notice {baseline_change} sooner — the consult starts further along.",
+          "slots": ["{baseline_change}"]
+        },
+        {
+          "id": "PQ-CO-02",
+          "template": "Continuity is operational: same-GP booking, recalls, and notes that assume a shared history.",
+          "slots": []
+        },
+        {
+          "id": "PQ-CO-03",
+          "template": "We publish composite examples only — never identifiable clinical detail.",
+          "slots": []
+        }
+      ]
+    },
+    {
+      "id": "flexible_sessions",
+      "label": "Flexible Sessions",
+      "hubTitle": "Flexible consulting examples",
+      "order": 7,
+      "pairingHint": "CR-02 / diary still; rooms + nursing constraints",
+      "sectionOutline": {
+        "h2": "Flexible consulting examples",
+        "ledeWords": "120–180",
+        "ledeBrief": "Worked session patterns (full days, part-week, staged growth) with constraints: rooms, nursing, reliability.",
+        "blocks": [
+          {
+            "id": "fs_a",
+            "type": "example",
+            "heading": "Example A — four full days",
+            "points": [
+              "Footprint and why it suits continuity-heavy books",
+              "Nursing/reception cover assumptions"
+            ]
+          },
+          {
+            "id": "fs_b",
+            "type": "example",
+            "heading": "Example B — two to three midweek sessions",
+            "points": [
+              "Part-week continuity tactics (recalls, results, buddy cover)",
+              "What patients are told about availability"
+            ]
+          },
+          {
+            "id": "fs_c",
+            "type": "example",
+            "heading": "Example C — staged increase after settling",
+            "points": [
+              "Start smaller; grow when rooms + nursing + demand align",
+              "No guarantee of preferred days"
+            ]
+          },
+          {
+            "id": "fs_constraints",
+            "type": "callout",
+            "heading": "Constraints (always state)",
+            "points": [
+              "Rooms",
+              "Nursing cover",
+              "Patient reliability / list demand",
+              "Supervision capacity when relevant (registrars)"
+            ]
+          },
+          {
+            "id": "fs_media",
+            "type": "media_slot",
+            "heading": "Media",
+            "points": ["Empty consulting room + clock/diary still — no calendar UI screenshots"]
+          }
+        ],
+        "internalLinks": ["GP Opportunities FAQ", "First 90 Days", "Session capacity tools (internal)"]
+      },
+      "interviewGuide": {
+        "durationMin": 25,
+        "roles": ["Part-time GP and/or practice manager", "Full-time GP contrast optional"],
+        "consentNote": "Do not publish roster grids that imply vacant sessions as job ads",
+        "warmUp": [
+          "What is your current session pattern — days and approximate hours?"
+        ],
+        "coreQuestions": [
+          {
+            "id": "FS-Q1",
+            "ask": "Which days or sessions do you work, and how do you keep continuity real on that footprint?",
+            "probe": "Part-week tactics"
+          },
+          {
+            "id": "FS-Q2",
+            "ask": "How are recalls, results, and follow-ups handled when you are not on site?",
+            "probe": "Buddy, nursing, reception"
+          },
+          {
+            "id": "FS-Q3",
+            "ask": "What agreement with the practice makes part-time or staged growth sustainable — for you and for patients?",
+            "probe": "Reliability expectations"
+          },
+          {
+            "id": "FS-Q4",
+            "ask": "When can sessions increase — and what must be true first (rooms, nursing, demand)?",
+            "probe": "No vacancy theatre"
+          },
+          {
+            "id": "FS-Q5",
+            "ask": "Who should not expect unlimited flexible days here?",
+            "probe": "Constraint honesty"
+          }
+        ],
+        "captureNotes": [
+          "Examples are illustrative patterns, not live vacancy inventory",
+          "Always voice rooms + nursing constraints in final copy"
+        ]
+      },
+      "photographyShotList": [
+        {
+          "shotId": "PE-FS-01",
+          "assetRef": "CR-01",
+          "frame": "Empty consulting room — session capacity symbol",
+          "specs": "1200×800",
+          "alt": "Consulting room available for scheduled GP sessions at Woolloongabba Medical Centre",
+          "notes": "No calendar UI"
+        },
+        {
+          "shotId": "PE-FS-02",
+          "assetRef": "CR-02",
+          "frame": "Desk detail with clock or closed diary (no patient names)",
+          "specs": "1200×800",
+          "alt": "Consulting desk and schedule cues without patient information",
+          "notes": "Symbolic flexible-sessions visual"
+        },
+        {
+          "shotId": "PE-FS-03",
+          "assetRef": "TR-01",
+          "frame": "Treatment room — nursing cover constraint visual",
+          "specs": "1200×800",
+          "alt": "Treatment room that supports nursing cover around GP sessions",
+          "notes": "Pairs with constraints callout"
+        }
+      ],
+      "videoScript": {
+        "id": "VID-FS-01",
+        "title": "Session patterns that hold",
+        "durationSec": "60–75",
+        "format": "VO over empty-room B-roll + one GP reflection",
+        "music": "None",
+        "beats": [
+          {
+            "tc": "0:00–0:12",
+            "visual": "PE-FS-01",
+            "voOrCaption": "Session patterns here are planned — full days, part-week footprints, or staged growth after settling."
+          },
+          {
+            "tc": "0:12–0:35",
+            "visual": "PE-FS-02 diary/clock detail",
+            "voOrCaption": "A part-week GP keeps continuity with clear recall and results habits for the days they are away."
+          },
+          {
+            "tc": "0:35–0:55",
+            "visual": "PE-FS-03 + GP line",
+            "voOrCaption": "[GP] Sessions increase when rooms, nursing cover, and demand align. Preferred days are not guaranteed."
+          },
+          {
+            "tc": "0:55–end",
+            "visual": "Constraints card: Rooms · Nursing · Reliability",
+            "voOrCaption": "These are examples of sustainable patterns — not a live vacancy board."
+          }
+        ],
+        "captions": "WebVTT; end card lists constraints explicitly"
+      },
+      "captionStructures": {
+        "moduleLede": "[Pattern overview]. [Three examples named]. [Constraints always stated].",
+        "stillCaptions": [
+          "PE-FS-01: Consulting room for scheduled GP sessions.",
+          "PE-FS-02: Schedule cues without patient information.",
+          "PE-FS-03: Treatment capacity that constrains session planning."
+        ],
+        "exampleCaptions": [
+          "Example A — four full days",
+          "Example B — midweek sessions",
+          "Example C — staged increase",
+          "Constraints — rooms, nursing, reliability"
+        ]
+      },
+      "pullQuoteTemplates": [
+        {
+          "id": "PQ-FS-01",
+          "template": "I work {session_pattern}; continuity holds because {away_day_habit}.",
+          "slots": ["{session_pattern}", "{away_day_habit}"]
+        },
+        {
+          "id": "PQ-FS-02",
+          "template": "Sessions grow when rooms and nursing cover align — not when a marketing page needs a vacancy.",
+          "slots": []
+        },
+        {
+          "id": "PQ-FS-03",
+          "template": "Part-time here is a reliability agreement with patients and the team, not unlimited flexibility.",
+          "slots": []
+        }
+      ]
+    }
+  ],
+  "productionChecklist": [
+    "Media consent on file for every identifiable staff/GP",
+    "Screens privacy-blanked in all reception/consult frames",
+    "Composite vignettes labelled in copy + CMS",
+    "Asset IDs match visual asset plan filenames",
+    "Pull-quotes pass anti-pattern scan (no hiring/earnings/culture fluff)",
+    "Videos ship with WebVTT + honesty end card",
+    "Change class B (or C if clinical claims) before publish",
+    "No JobPosting schema on Practice Experience"
+  ]
+}

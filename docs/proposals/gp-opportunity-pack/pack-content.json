@@ -1,0 +1,202 @@
+{
+  "meta": {
+    "title": "GP Opportunity Pack",
+    "subtitle": "A take-away summary of practice experience at Woolloongabba Medical Centre",
+    "clinic": "Woolloongabba Medical Centre",
+    "address": "468 Vulture Street, Woolloongabba QLD 4102",
+    "phone": "(07) 3217 3344",
+    "phoneTel": "+61732173344",
+    "email": "reception@gabbamedicalcentre.com.au",
+    "web": "https://gabbamedicalcentre.com.au/",
+    "version": "1.0.0",
+    "disclaimer": "This pack helps doctors understand how the practice works. It is not a job advertisement, offer of employment, or guarantee of sessions, patient volume, or Medicare outcomes."
+  },
+  "sections": {
+    "opportunities": {
+      "id": "opportunities",
+      "title": "General practice at Woolloongabba Medical Centre",
+      "eyebrow": "GP Opportunities",
+      "lede": "Woolloongabba Medical Centre is shaped by continuity, familiarity and long-term relationships. This section summarises how we work so you can decide whether a conversation with the practice makes sense.",
+      "philosophy": [
+        "Care that knows patients’ stories — continuity over churn.",
+        "Clinical autonomy within Australian standards and AGPAL-aligned practice policy.",
+        "If throughput-first practice is your preference, this may not be the right fit — and that clarity helps everyone."
+      ],
+      "themes": [
+        {
+          "title": "Community care",
+          "body": "We care for people across Woolloongabba and neighbouring inner-south suburbs — everyday health needs, changing life stages, and relationships that accumulate over years."
+        },
+        {
+          "title": "Flexibility",
+          "body": "Permanent sessions, part-time arrangements and staged growth can be discussed. Flexibility means a clear agreement on days and reliability for patients and the team — confirmed against rooms, nursing cover and practice need."
+        },
+        {
+          "title": "Clinical interests",
+          "body": "Interests that strengthen community general practice are welcome when they fit local need, credentialing and team capacity. We remain a general practice first — interests sit inside continuity care, not instead of it."
+        },
+        {
+          "title": "Professional collaboration",
+          "body": "GPs practise alongside nurses, reception, practice management and allied health where relevant — colleagues you can ask and co-manage with, without replacing your professional judgement."
+        }
+      ]
+    },
+    "facilities": {
+      "id": "facilities",
+      "title": "Practice facilities",
+      "eyebrow": "Environment",
+      "lede": "Facilities exist to protect consulting time: rooms, clinical support and administration that let you focus on patients.",
+      "items": [
+        "Consulting rooms suited to continuity-based general practice",
+        "Nursing support for treatment-room and preventive pathways where appropriate",
+        "Reception managing appointments, enquiries and patient flow",
+        "HotDoc online booking alongside phone bookings",
+        "Policies aligned with AGPAL expectations for privacy, safety and quality",
+        "Inner-south location at 468 Vulture Street — near major hospitals and Translink access",
+        "Patient parking near the medical centre, including disability parking"
+      ]
+    },
+    "support": {
+      "id": "support",
+      "title": "Practice support around GP consulting",
+      "eyebrow": "Team & onboarding support",
+      "lede": "Support is practical. We do not promise placement, start dates, or external agency outcomes.",
+      "boundaries": [
+        {
+          "label": "We can assist",
+          "items": [
+            "Share verified practice location details for Services Australia paperwork",
+            "Orient you to rooms, emergency processes, privacy and day-to-day workflows",
+            "Introduce nursing and reception pathways that protect consulting time",
+            "Discuss session patterns against room and nursing capacity"
+          ]
+        },
+        {
+          "label": "We cannot approve",
+          "items": [
+            "Medicare provider numbers",
+            "DPA or Health Insurance Act s19AB outcomes",
+            "Visas, work rights, or migration outcomes",
+            "Guaranteed patient volume or earnings"
+          ]
+        },
+        {
+          "label": "External agencies",
+          "items": [
+            "Services Australia — provider numbers and Medicare arrangements",
+            "AHPRA — registration",
+            "Colleges and insurers — fellowship and indemnity",
+            "Department of Home Affairs — visas and work rights where relevant"
+          ]
+        }
+      ],
+      "nursing": "Nurses assist with treatment-room activity, preventive healthcare and vaccination pathways where appropriate, and help with follow-up and care coordination.",
+      "reception": "Reception manages appointments, patient enquiries and day-to-day flow so consulting time stays protected."
+    },
+    "eligibility": {
+      "id": "eligibility",
+      "title": "Eligibility guidance (boundary-safe)",
+      "eyebrow": "Credentials & location pathways",
+      "lede": "Woolloongabba Medical Centre does not determine eligibility outcomes. Use official sources for DPA and provider-number decisions.",
+      "points": [
+        {
+          "title": "Medicare provider numbers",
+          "body": "Issued by Services Australia — not by Woolloongabba Medical Centre. We do not issue, approve or guarantee provider numbers. We can share accurate practice location details to support your application."
+        },
+        {
+          "title": "DPA / s19AB",
+          "body": "Distribution Priority Area (DPA) classifications and Health Insurance Act s19AB matters are decided under Australian Government frameworks. Confirm how they apply to your intended location using official tools — not practice marketing claims."
+        },
+        {
+          "title": "What to prepare",
+          "body": "AHPRA registration evidence, indemnity arrangements, Services Australia provider-number status or application pathway, and any training/visa documents that apply to your situation."
+        },
+        {
+          "title": "Related practice tools",
+          "body": "Doctor Readiness Assessment, Provider Number Readiness checklist, and DPA/19AB Navigator (guidance only — not determinations)."
+        }
+      ]
+    },
+    "faq": {
+      "id": "faq",
+      "title": "Questions doctors ask",
+      "eyebrow": "FAQ",
+      "decisionCriticalIds": [
+        "nursing-support",
+        "session-flexibility",
+        "provider-number-support",
+        "agpal-accreditation",
+        "clinical-autonomy",
+        "parking-location"
+      ],
+      "items": [
+        {
+          "id": "billing-model",
+          "question": "What billing model do GPs work under at Woolloongabba Medical Centre?",
+          "answer": "Woolloongabba Medical Centre is a community general practice that supports Medicare billing within everyday patient care. Commercial arrangements for visiting or permanent GPs are discussed privately with suitable doctors so terms can reflect sessions, experience and start timing. We do not publish a one-size public rate card."
+        },
+        {
+          "id": "percentage-arrangements",
+          "question": "Do you offer a percentage arrangement for GPs?",
+          "answer": "Percentage and service-fee arrangements can be discussed privately. We deliberately do not advertise a headline percentage online. Suitable doctors receive a clear explanation of how billings, practice fees and support services work before any commitment."
+        },
+        {
+          "id": "nursing-support",
+          "question": "What nursing support is available to GPs?",
+          "answer": "Our nursing team works alongside GPs to support coordinated care. Nurses assist with treatment-room activity, preventive healthcare and vaccination pathways where appropriate, and help with follow-up and care coordination."
+        },
+        {
+          "id": "reception-support",
+          "question": "How does reception support GP consulting?",
+          "answer": "Reception manages appointments, patient enquiries and the day-to-day flow of the practice, working with clinical and practice-management teams so consulting time stays protected. Online booking is available through HotDoc alongside phone bookings."
+        },
+        {
+          "id": "session-flexibility",
+          "question": "Are flexible GP sessions available?",
+          "answer": "Permanent sessions, part-time arrangements and staged growth can be discussed. Flexibility means a clear agreement on days and reliability — not a casual locum marketplace. Availability depends on rooms, nursing cover and practice need."
+        },
+        {
+          "id": "clinical-autonomy",
+          "question": "Will I have clinical autonomy as a GP at Woolloongabba Medical Centre?",
+          "answer": "Yes. GPs practise with professional clinical autonomy within Australian standards, AHPRA expectations and our practice policies. Autonomy sits alongside AGPAL-aligned governance, privacy and safety systems."
+        },
+        {
+          "id": "technology-systems",
+          "question": "What technology systems does the practice use?",
+          "answer": "The practice uses digital systems for appointments, clinical records and everyday operations, including HotDoc for online booking. Exact clinical software and workflow details are shared during onboarding conversations."
+        },
+        {
+          "id": "agpal-accreditation",
+          "question": "Is Woolloongabba Medical Centre AGPAL accredited?",
+          "answer": "Yes. Independent assessment against RACGP Standards for general practices under the National General Practice Accreditation Scheme — systems for safety, quality, governance, infection prevention, privacy and continuous improvement."
+        },
+        {
+          "id": "registrars",
+          "question": "Do you accept GP registrars?",
+          "answer": "Expressions of interest from GP registrars are welcome. Supervision capacity and timing vary; placements are considered against current practice needs. Include training stage and preferred sessions in your expression of interest."
+        },
+        {
+          "id": "provider-number-support",
+          "question": "Can the practice help with my Medicare provider number?",
+          "answer": "Medicare provider numbers are issued by Services Australia — not by Woolloongabba Medical Centre. We do not issue, approve or guarantee provider numbers. We can share accurate practice location details to support your application."
+        },
+        {
+          "id": "parking-location",
+          "question": "Where is the practice and is parking available?",
+          "answer": "468 Vulture Street, Woolloongabba QLD 4102 — Brisbane’s inner south, near major hospitals, with Translink options. Patient parking is available near the medical centre, including disability parking. Call reception on (07) 3217 3344 for arrival guidance."
+        }
+      ]
+    },
+    "nextSteps": {
+      "id": "nextSteps",
+      "title": "If the fit feels right",
+      "eyebrow": "Next step",
+      "body": "Share a brief professional introduction with Woolloongabba Medical Centre. We respond as a practice — calmly and honestly — not as a recruitment agency.",
+      "actions": [
+        "Express interest with the practice (EOI)",
+        "Call (07) 3217 3344",
+        "Optional tools: Doctor Readiness · Session Planner · Practice Experience Hub"
+      ]
+    }
+  }
+}

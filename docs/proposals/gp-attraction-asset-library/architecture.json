@@ -1,0 +1,67 @@
+{
+  "id": "gp-attraction-asset-library",
+  "title": "GP Attraction Asset Library",
+  "status": "approved-implemented",
+  "kinds": ["image", "video", "transcript", "quote", "testimonial_ref", "consent_document", "other"],
+  "lifecycleStates": [
+    "captured",
+    "catalogued",
+    "in_review",
+    "approved",
+    "published",
+    "review_due",
+    "retired",
+    "withdrawn",
+    "purged"
+  ],
+  "reviewDecisions": [
+    "submit_for_review",
+    "request_changes",
+    "approve",
+    "publish",
+    "mark_review_due",
+    "retire",
+    "withdraw",
+    "purge",
+    "replace_placeholder"
+  ],
+  "rightsClasses": [
+    "no_people",
+    "consented_staff",
+    "consented_gp_named",
+    "role_label_only",
+    "composite_labelled",
+    "ai_placeholder"
+  ],
+  "linkages": {
+    "consent": "AttractionAssetConsent via consentRecordId",
+    "story": "GpStory via relatedStoryId + relatedStoryRef"
+  },
+  "storage": {
+    "publicPlaceholders": "assets/attraction/placeholders",
+    "legacyPePlaceholders": "assets/practice-experience",
+    "mastersRoot": "attraction-assets",
+    "stableId": "assetId unchanged across placeholder → master swap"
+  },
+  "adminRoutes": [
+    "/admin/asset-library",
+    "/admin/asset-library/[id]",
+    "/admin/asset-library/architecture"
+  ],
+  "apiRoutes": [
+    "/api/admin/attraction/assets",
+    "/api/admin/attraction/assets/[id]",
+    "/api/admin/attraction/assets/[id]/reviews",
+    "/api/admin/attraction/assets/[id]/consent"
+  ],
+  "services": [
+    "apps/web/src/asset-library/taxonomy.ts",
+    "apps/web/src/asset-library/storage.ts",
+    "apps/web/src/asset-library/lifecycle.ts",
+    "apps/web/src/asset-library/registry.ts",
+    "apps/web/src/asset-library/reviews.ts",
+    "apps/web/src/asset-library/consent.ts",
+    "apps/web/src/asset-library/seed-placeholders.ts"
+  ],
+  "migration": "apps/web/prisma/migrations/20261104150000_gp_attraction_asset_library"
+}

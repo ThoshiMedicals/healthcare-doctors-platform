@@ -1,0 +1,1570 @@
+{
+  "generatedAt": "2026-11-06T03:39:43.146Z",
+  "base": "http://127.0.0.1:3100",
+  "inventory": {
+    "servicePages": 29,
+    "knowledgeArticles": 87,
+    "knowledgeHubs": 22,
+    "updatesInSitemap": 5,
+    "updatesListedOnIndex": 7,
+    "servicePaths": [
+      "/services/allied-health.html",
+      "/services/childrens-health.html",
+      "/services/chronic-disease-care.html",
+      "/services/family-health.html",
+      "/services/medical-procedures.html",
+      "/services/mens-health.html",
+      "/services/mental-health.html",
+      "/services/preventive-healthcare.html",
+      "/services/skin-checks.html",
+      "/services/telehealth.html",
+      "/services/vaccinations.html",
+      "/services/womens-health.html",
+      "/services/skin-cancer-care.html",
+      "/services/iron-infusions.html",
+      "/services/implanon-insertion-removal.html",
+      "/services/iud-insertion-removal.html",
+      "/services/pap-smear-cervical-screening.html",
+      "/services/breast-check.html",
+      "/services/prostate-care.html",
+      "/services/ear-care-ear-syringing.html",
+      "/services/wound-dressings.html",
+      "/services/ecg.html",
+      "/services/spirometry.html",
+      "/services/nebulising.html",
+      "/services/antenatal-postnatal-care.html",
+      "/services/pre-pregnancy-care.html",
+      "/services/pathology.html",
+      "/services/radiology.html",
+      "/services/pharmacy.html"
+    ],
+    "knowledgeHubPaths": [
+      "/knowledge/index.html",
+      "/knowledge/mental-health.html",
+      "/knowledge/womens-health.html",
+      "/knowledge/mens-health.html",
+      "/knowledge/childrens-health.html",
+      "/knowledge/family-health.html",
+      "/knowledge/preventive-healthcare.html",
+      "/knowledge/vaccinations.html",
+      "/knowledge/healthy-ageing.html",
+      "/knowledge/chronic-disease-management.html",
+      "/knowledge/skin-health-skin-cancer.html",
+      "/knowledge/telehealth-access-to-care.html",
+      "/knowledge/headache.html",
+      "/knowledge/cough.html",
+      "/knowledge/pain.html",
+      "/knowledge/diabetes.html",
+      "/knowledge/heart.html",
+      "/knowledge/pregnancy.html",
+      "/knowledge/weight.html",
+      "/knowledge/sleep.html",
+      "/knowledge/adhd.html",
+      "/knowledge/menopause.html"
+    ]
+  },
+  "intentCoverage": [
+    {
+      "intent": "Family Medicine",
+      "path": "/services/family-health.html",
+      "status": 200,
+      "depth": "strong",
+      "wordCount": 1316,
+      "doctors": 11,
+      "knowledge": 11,
+      "book": true
+    },
+    {
+      "intent": "Women's Health",
+      "path": "/services/womens-health.html",
+      "status": 200,
+      "depth": "strong",
+      "wordCount": 1719,
+      "doctors": 7,
+      "knowledge": 12,
+      "book": true
+    },
+    {
+      "intent": "Men's Health",
+      "path": "/services/mens-health.html",
+      "status": 200,
+      "depth": "strong",
+      "wordCount": 1170,
+      "doctors": 3,
+      "knowledge": 6,
+      "book": true
+    },
+    {
+      "intent": "Mental Health",
+      "path": "/services/mental-health.html",
+      "status": 200,
+      "depth": "strong",
+      "wordCount": 1454,
+      "doctors": 4,
+      "knowledge": 9,
+      "book": true
+    },
+    {
+      "intent": "Chronic Disease",
+      "path": "/services/chronic-disease-care.html",
+      "status": 200,
+      "depth": "strong",
+      "wordCount": 1183,
+      "doctors": 5,
+      "knowledge": 13,
+      "book": true
+    },
+    {
+      "intent": "Skin Checks",
+      "path": "/services/skin-checks.html",
+      "status": 200,
+      "depth": "strong",
+      "wordCount": 2040,
+      "doctors": 5,
+      "knowledge": 7,
+      "book": true
+    },
+    {
+      "intent": "Vaccinations",
+      "path": "/services/vaccinations.html",
+      "status": 200,
+      "depth": "strong",
+      "wordCount": 1359,
+      "doctors": 4,
+      "knowledge": 9,
+      "book": true
+    },
+    {
+      "intent": "Children's Health",
+      "path": "/services/childrens-health.html",
+      "status": 200,
+      "depth": "strong",
+      "wordCount": 1820,
+      "doctors": 3,
+      "knowledge": 9,
+      "book": true
+    },
+    {
+      "intent": "Travel Medicine",
+      "path": null,
+      "status": "MISSING",
+      "depth": "missing"
+    },
+    {
+      "intent": "Sexual Health",
+      "path": null,
+      "status": "MISSING",
+      "depth": "missing"
+    },
+    {
+      "intent": "Preventive Health",
+      "path": "/services/preventive-healthcare.html",
+      "status": 200,
+      "depth": "strong",
+      "wordCount": 1198,
+      "doctors": 3,
+      "knowledge": 11,
+      "book": true
+    }
+  ],
+  "serviceInventory": [
+    {
+      "path": "/services/allied-health.html",
+      "status": 200,
+      "title": "Allied Health | Woolloongabba Medical Centre",
+      "h1": "Allied Health",
+      "descriptionLen": 134,
+      "wordCount": 837,
+      "doctorLinks": [
+        "/doctors/dr-steven-chang.html",
+        "/doctors/mr-samuel-stafford.html",
+        "/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-steven-chang-1",
+        "/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/samuel-stafford-physiotherapist"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/back-pain-when-should-i-see-a-gp.html",
+        "/knowledge/articles/understanding-neck-pain.html",
+        "/knowledge/articles/understanding-gp-chronic-disease-care-plans.html",
+        "/knowledge/articles/understanding-muscle-and-joint-pain.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/childrens-health.html",
+      "status": 200,
+      "title": "Children’s Health | Woolloongabba Medical Centre",
+      "h1": "Children's Health In Woolloongabba",
+      "descriptionLen": 136,
+      "wordCount": 1820,
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-anand-singh.html",
+        "/doctors/dr-james.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/when-should-i-be-concerned-about-a-fever.html",
+        "/knowledge/articles/common-childhood-illnesses.html",
+        "/knowledge/articles/when-should-a-child-with-a-cough-see-a-gp.html",
+        "/knowledge/articles/managing-winter-respiratory-illness.html",
+        "/knowledge/childrens-health.html",
+        "/knowledge/articles/childhood-vaccinations-explained.html",
+        "/knowledge/articles/childrens-preventive-healthcare.html",
+        "/knowledge/articles/preparing-for-your-childs-first-gp-appointment.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba",
+        "South Brisbane",
+        "Kangaroo Point",
+        "East Brisbane",
+        "Dutton Park"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/chronic-disease-care.html",
+      "status": 200,
+      "title": "Chronic Disease Care | Woolloongabba Medical Centre",
+      "h1": "Chronic Disease Care In Woolloongabba",
+      "descriptionLen": 116,
+      "wordCount": 1183,
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-wasantha-hettiarchchi.html",
+        "/doctors/dr-golnar-mortezaei.html",
+        "/doctors/dr-yamesha-ranatunga.html",
+        "/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-wasantha-hettiarachchi-1"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/blood-pressure-explained.html",
+        "/knowledge/articles/diabetes-care-plans-explained.html",
+        "/knowledge/articles/diabetes-monitoring-explained.html",
+        "/knowledge/articles/living-with-diabetes.html",
+        "/knowledge/articles/living-with-diabetes-gp-monitoring-long-term-management.html",
+        "/knowledge/articles/managing-asthma.html",
+        "/knowledge/articles/preventing-diabetes-complications.html",
+        "/knowledge/articles/understanding-cholesterol.html",
+        "/knowledge/articles/understanding-gp-chronic-disease-care-plans.html",
+        "/knowledge/articles/understanding-type-2-diabetes.html",
+        "/knowledge/articles/health-assessments-explained.html",
+        "/knowledge/articles/healthy-ageing-for-men.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba",
+        "South Brisbane",
+        "Kangaroo Point",
+        "East Brisbane",
+        "Dutton Park"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/family-health.html",
+      "status": 200,
+      "title": "Family Health | Woolloongabba Medical Centre",
+      "h1": "Family Healthcare In Woolloongabba",
+      "descriptionLen": 122,
+      "wordCount": 1316,
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-usman-gul.html",
+        "/doctors/dr-wasantha-hettiarchchi.html",
+        "/doctors/dr-kooshyar-karimi.html",
+        "/doctors/dr-debra-larkins.html",
+        "/doctors/dr-sambo-luon.html",
+        "/doctors/dr-anand-singh.html",
+        "/doctors/dr-sumita-singh.html",
+        "/doctors/dr-nirupa-sivathasan.html",
+        "/doctors/dr-james.html",
+        "/doctors/dr-yamesha-ranatunga.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/back-pain-when-should-i-see-a-gp.html",
+        "/knowledge/articles/is-my-sore-throat-viral-or-bacterial.html",
+        "/knowledge/articles/migraine-or-headache-how-do-i-tell-the-difference.html",
+        "/knowledge/articles/sore-throat-when-should-i-see-a-doctor.html",
+        "/knowledge/articles/understanding-neck-pain.html",
+        "/knowledge/articles/what-causes-a-persistent-cough.html",
+        "/knowledge/articles/what-causes-frequent-headaches.html",
+        "/knowledge/articles/when-should-i-be-concerned-about-pain.html",
+        "/knowledge/articles/when-should-i-see-a-gp-about-headaches.html",
+        "/knowledge/articles/childhood-vaccinations-explained.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba",
+        "South Brisbane",
+        "Kangaroo Point",
+        "East Brisbane",
+        "Dutton Park"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/medical-procedures.html",
+      "status": 200,
+      "title": "Medical Procedures | Woolloongabba Medical Centre",
+      "h1": "Medical Procedures",
+      "descriptionLen": 137,
+      "wordCount": 1073,
+      "doctorLinks": [
+        "/doctors/dr-mary-abadir.html",
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-wasantha-hettiarchchi.html",
+        "/doctors/dr-kooshyar-karimi.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/when-should-i-book-a-skin-check.html",
+        "/knowledge/articles/why-skin-checks-matter-in-australia.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/mens-health.html",
+      "status": 200,
+      "title": "Men’s Health | Woolloongabba Medical Centre",
+      "h1": "Men's Health In Woolloongabba",
+      "descriptionLen": 137,
+      "wordCount": 1170,
+      "doctorLinks": [
+        "/doctors/dr-usman-gul.html",
+        "/doctors/dr-wasantha-hettiarchchi.html",
+        "/doctors/dr-yamesha-ranatunga.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/health-checks-every-man-should-consider.html",
+        "/knowledge/articles/healthy-ageing-for-men.html",
+        "/knowledge/articles/heart-health-for-men.html",
+        "/knowledge/articles/understanding-prostate-health.html",
+        "/knowledge/articles/why-preventive-healthcare-matters.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba",
+        "South Brisbane",
+        "Kangaroo Point",
+        "East Brisbane",
+        "Dutton Park"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/mental-health.html",
+      "status": 200,
+      "title": "Mental Health Care | Woolloongabba Medical Centre",
+      "h1": "Mental Health Care In Woolloongabba",
+      "descriptionLen": 123,
+      "wordCount": 1454,
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-sumita-singh.html",
+        "/doctors/dr-james.html",
+        "/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-sumita-singh-does-not-bulk-bill-for-insurance-patients"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/anxiety-vs-stress-what-is-the-difference.html",
+        "/knowledge/articles/how-can-a-gp-support-depression.html",
+        "/knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+        "/knowledge/articles/when-should-i-seek-help-for-burnout.html",
+        "/knowledge/articles/when-should-i-speak-to-a-gp-about-anxiety.html",
+        "/knowledge/articles/adhd-assessment-pathways.html",
+        "/knowledge/articles/understanding-adhd-referrals.html",
+        "/knowledge/articles/understanding-menopause.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba",
+        "South Brisbane",
+        "Kangaroo Point",
+        "East Brisbane",
+        "Dutton Park"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/preventive-healthcare.html",
+      "status": 200,
+      "title": "Preventive Healthcare | Woolloongabba Medical Centre",
+      "h1": "Preventive Healthcare In Woolloongabba",
+      "descriptionLen": 124,
+      "wordCount": 1198,
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-sambo-luon.html",
+        "/doctors/dr-anand-singh.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/cholesterol-explained.html",
+        "/knowledge/articles/health-assessments-explained.html",
+        "/knowledge/articles/healthy-ageing-prevention-falls-vaccination-reviews.html",
+        "/knowledge/articles/heart-health-checks.html",
+        "/knowledge/articles/anxiety-vs-stress-what-is-the-difference.html",
+        "/knowledge/articles/blood-pressure-explained.html",
+        "/knowledge/articles/childrens-preventive-healthcare.html",
+        "/knowledge/articles/health-checks-every-man-should-consider.html",
+        "/knowledge/articles/healthy-ageing-for-men.html",
+        "/knowledge/articles/healthy-weight-management.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba",
+        "South Brisbane",
+        "Kangaroo Point",
+        "East Brisbane",
+        "Dutton Park"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/skin-checks.html",
+      "status": 200,
+      "title": "Skin Checks | Woolloongabba Medical Centre",
+      "h1": "Skin Checks in Woolloongabba",
+      "descriptionLen": 133,
+      "wordCount": 2040,
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-wasantha-hettiarchchi.html",
+        "/doctors/dr-kooshyar-karimi.html",
+        "/doctors/dr-anand-singh.html",
+        "/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-anand-singh-does-not-bulk-bill-for-insurance-patients"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/protecting-your-skin-from-the-queensland-sun.html",
+        "/knowledge/skin-health-skin-cancer.html",
+        "/knowledge/articles/telehealth-vs-face-to-face-appointments.html",
+        "/knowledge/articles/understanding-skin-cancer-risks.html",
+        "/knowledge/articles/when-should-i-book-a-skin-check.html",
+        "/knowledge/articles/why-skin-checks-matter-in-australia.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba",
+        "South Brisbane",
+        "Kangaroo Point",
+        "East Brisbane",
+        "Dutton Park"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/telehealth.html",
+      "status": 200,
+      "title": "Telehealth | Woolloongabba Medical Centre",
+      "h1": "Telehealth With Woolloongabba Medical Centre",
+      "descriptionLen": 111,
+      "wordCount": 1449,
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-sumita-singh.html",
+        "/doctors/dr-anand-singh.html",
+        "/doctors/dr-wasantha-hettiarchchi.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/how-telehealth-works.html",
+        "/knowledge/articles/telehealth-vs-face-to-face-appointments.html",
+        "/knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+        "/knowledge/articles/when-can-i-use-telehealth.html",
+        "/knowledge/articles/when-should-i-seek-help-for-burnout.html",
+        "/knowledge/articles/when-should-i-speak-to-a-gp-about-anxiety.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba",
+        "South Brisbane",
+        "Kangaroo Point",
+        "East Brisbane",
+        "Dutton Park"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/vaccinations.html",
+      "status": 200,
+      "title": "Vaccinations | Woolloongabba Medical Centre",
+      "h1": "Vaccinations in Woolloongabba",
+      "descriptionLen": 124,
+      "wordCount": 1359,
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-wasantha-hettiarchchi.html",
+        "/doctors/dr-sambo-luon.html",
+        "/doctors/dr-anand-singh.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/childhood-vaccinations-explained.html",
+        "/knowledge/articles/childrens-preventive-healthcare.html",
+        "/knowledge/articles/healthy-ageing-prevention-falls-vaccination-reviews.html",
+        "/knowledge/articles/influenza-vaccination-who-should-consider-it.html",
+        "/knowledge/articles/managing-winter-respiratory-illness.html",
+        "/knowledge/articles/preparing-for-your-childs-first-gp-appointment.html",
+        "/knowledge/articles/preventive-womens-healthcare.html",
+        "/knowledge/articles/staying-healthy-as-you-age.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba",
+        "South Brisbane",
+        "Kangaroo Point",
+        "East Brisbane",
+        "Dutton Park"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/womens-health.html",
+      "status": 200,
+      "title": "Women’s Health | Woolloongabba Medical Centre",
+      "h1": "Women's Health In Woolloongabba",
+      "descriptionLen": 122,
+      "wordCount": 1719,
+      "doctorLinks": [
+        "/doctors/dr-mary-abadir.html",
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-wasantha-hettiarchchi.html",
+        "/doctors/dr-debra-larkins.html",
+        "/doctors/dr-anand-singh.html",
+        "/doctors/dr-sumita-singh.html",
+        "/doctors/dr-yamesha-ranatunga.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/menopause.html",
+        "/knowledge/womens-health.html",
+        "/knowledge/pregnancy.html",
+        "/knowledge/articles/breast-health-changes-screening-when-to-see-a-gp.html",
+        "/knowledge/articles/hrt-discussions-with-your-gp.html",
+        "/knowledge/articles/menopause-symptoms-explained.html",
+        "/knowledge/articles/mental-health-and-menopause.html",
+        "/knowledge/articles/preventive-womens-healthcare.html",
+        "/knowledge/articles/understanding-menopause.html",
+        "/knowledge/articles/understanding-perimenopause.html",
+        "/knowledge/articles/when-should-i-have-a-cervical-screening-test.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba",
+        "South Brisbane",
+        "Kangaroo Point",
+        "East Brisbane",
+        "Dutton Park"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/skin-cancer-care.html",
+      "status": 200,
+      "title": "Skin Cancer Care | Woolloongabba Medical Centre",
+      "h1": "Skin Cancer Care in Woolloongabba",
+      "descriptionLen": 130,
+      "wordCount": 1668,
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-wasantha-hettiarchchi.html",
+        "/doctors/dr-kooshyar-karimi.html",
+        "/doctors/dr-anand-singh.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/protecting-your-skin-from-the-queensland-sun.html",
+        "/knowledge/skin-health-skin-cancer.html",
+        "/knowledge/articles/understanding-skin-cancer-risks.html",
+        "/knowledge/articles/when-should-i-book-a-skin-check.html",
+        "/knowledge/articles/why-skin-checks-matter-in-australia.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/iron-infusions.html",
+      "status": 200,
+      "title": "Iron Infusions | Woolloongabba Medical Centre",
+      "h1": "Iron Infusions",
+      "descriptionLen": 115,
+      "wordCount": 1173,
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-wasantha-hettiarchchi.html",
+        "/doctors/dr-kooshyar-karimi.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/why-am-i-always-tired.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/implanon-insertion-removal.html",
+      "status": 200,
+      "title": "Implanon Insertion &amp; Removal | Woolloongabba Medical Centre",
+      "h1": "Implanon Insertion &amp; Removal",
+      "descriptionLen": 115,
+      "wordCount": 886,
+      "doctorLinks": [
+        "/doctors/dr-mary-abadir.html",
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-sumita-singh.html",
+        "/doctors/dr-debra-larkins.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/preventive-womens-healthcare.html",
+        "/knowledge/articles/womens-health-checks-at-different-stages-of-life.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/iud-insertion-removal.html",
+      "status": 200,
+      "title": "IUD Insertion &amp; Removal | Woolloongabba Medical Centre",
+      "h1": "IUD Insertion &amp; Removal",
+      "descriptionLen": 132,
+      "wordCount": 890,
+      "doctorLinks": [
+        "/doctors/dr-mary-abadir.html",
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-sumita-singh.html",
+        "/doctors/dr-debra-larkins.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/preventive-womens-healthcare.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/pap-smear-cervical-screening.html",
+      "status": 200,
+      "title": "Cervical Screening | Woolloongabba Medical Centre",
+      "h1": "Pap Smear &amp; Cervical Screening",
+      "descriptionLen": 122,
+      "wordCount": 1104,
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-wasantha-hettiarchchi.html",
+        "/doctors/dr-anand-singh.html",
+        "/doctors/dr-sumita-singh.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/womens-health.html",
+        "/knowledge/menopause.html",
+        "/knowledge/articles/when-should-i-have-a-cervical-screening-test.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/breast-check.html",
+      "status": 200,
+      "title": "Breast Check | Woolloongabba Medical Centre",
+      "h1": "Breast Check",
+      "descriptionLen": 138,
+      "wordCount": 874,
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-wasantha-hettiarchchi.html",
+        "/doctors/dr-anand-singh.html",
+        "/doctors/dr-sumita-singh.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/breast-health-changes-screening-when-to-see-a-gp.html",
+        "/knowledge/articles/womens-health-checks-at-different-stages-of-life.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/prostate-care.html",
+      "status": 200,
+      "title": "Prostate Care | Woolloongabba Medical Centre",
+      "h1": "Prostate Care",
+      "descriptionLen": 110,
+      "wordCount": 839,
+      "doctorLinks": [
+        "/doctors/dr-usman-gul.html",
+        "/doctors/dr-wasantha-hettiarchchi.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/health-checks-every-man-should-consider.html",
+        "/knowledge/articles/understanding-prostate-health.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/ear-care-ear-syringing.html",
+      "status": 200,
+      "title": "Ear Care &amp; Ear Syringing | Woolloongabba Medical Centre",
+      "h1": "Ear Care &amp; Ear Syringing",
+      "descriptionLen": 103,
+      "wordCount": 1042,
+      "doctorLinks": [
+        "/doctors/dr-anand-singh.html",
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-debra-larkins.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/common-childhood-illnesses.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/wound-dressings.html",
+      "status": 200,
+      "title": "Wound Dressings | Woolloongabba Medical Centre",
+      "h1": "Wound Dressings",
+      "descriptionLen": 99,
+      "wordCount": 914,
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-wasantha-hettiarchchi.html",
+        "/doctors/dr-anand-singh.html",
+        "/doctors/dr-kooshyar-karimi.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/preventing-diabetes-complications.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/ecg.html",
+      "status": 200,
+      "title": "ECG (Electrocardiogram) | Woolloongabba Medical Centre",
+      "h1": "ECG (Electrocardiogram)",
+      "descriptionLen": 131,
+      "wordCount": 950,
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-kooshyar-karimi.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/heart-health-checks.html",
+        "/knowledge/articles/heart-health-for-men.html",
+        "/knowledge/articles/understanding-your-cardiovascular-risk.html",
+        "/knowledge/heart.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/spirometry.html",
+      "status": 200,
+      "title": "Spirometry | Woolloongabba Medical Centre",
+      "h1": "Spirometry",
+      "descriptionLen": 114,
+      "wordCount": 897,
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-kooshyar-karimi.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/what-causes-a-persistent-cough.html",
+        "/knowledge/articles/managing-asthma.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/nebulising.html",
+      "status": 200,
+      "title": "Nebulising | Woolloongabba Medical Centre",
+      "h1": "Nebulising",
+      "descriptionLen": 111,
+      "wordCount": 960,
+      "doctorLinks": [
+        "/doctors/dr-anand-singh.html",
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-kooshyar-karimi.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/what-causes-a-persistent-cough.html",
+        "/knowledge/articles/managing-asthma.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/antenatal-postnatal-care.html",
+      "status": 200,
+      "title": "Antenatal &amp; Postnatal Care | Woolloongabba Medical Centre",
+      "h1": "Antenatal &amp; Postnatal Care",
+      "descriptionLen": 126,
+      "wordCount": 1164,
+      "doctorLinks": [
+        "/doctors/dr-mary-abadir.html",
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-wasantha-hettiarchchi.html",
+        "/doctors/dr-debra-larkins.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/pregnancy.html",
+        "/knowledge/articles/planning-a-pregnancy.html",
+        "/knowledge/articles/what-happens-during-antenatal-care.html",
+        "/knowledge/articles/your-first-pregnancy-gp-appointment.html",
+        "/knowledge/womens-health.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/pre-pregnancy-care.html",
+      "status": 200,
+      "title": "Pre-Pregnancy Care | Woolloongabba Medical Centre",
+      "h1": "Pre-Pregnancy Care",
+      "descriptionLen": 114,
+      "wordCount": 1083,
+      "doctorLinks": [
+        "/doctors/dr-mary-abadir.html",
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-wasantha-hettiarchchi.html",
+        "/doctors/dr-debra-larkins.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/pregnancy.html",
+        "/knowledge/articles/planning-a-pregnancy.html",
+        "/knowledge/articles/your-first-pregnancy-gp-appointment.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba"
+      ],
+      "relatedPractitionersSection": true
+    },
+    {
+      "path": "/services/pathology.html",
+      "status": 200,
+      "title": "Pathology | Woolloongabba Medical Centre",
+      "h1": "Pathology",
+      "descriptionLen": 120,
+      "wordCount": 1060,
+      "doctorLinks": [],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/cholesterol-explained.html",
+        "/knowledge/articles/diabetes-monitoring-explained.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba"
+      ],
+      "relatedPractitionersSection": false
+    },
+    {
+      "path": "/services/radiology.html",
+      "status": 200,
+      "title": "Radiology | Woolloongabba Medical Centre",
+      "h1": "Radiology",
+      "descriptionLen": 132,
+      "wordCount": 1041,
+      "doctorLinks": [],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/back-pain-when-should-i-see-a-gp.html",
+        "/knowledge/articles/understanding-neck-pain.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba"
+      ],
+      "relatedPractitionersSection": false
+    },
+    {
+      "path": "/services/pharmacy.html",
+      "status": 200,
+      "title": "Pharmacy | Woolloongabba Medical Centre",
+      "h1": "Pharmacy",
+      "descriptionLen": 116,
+      "wordCount": 1038,
+      "doctorLinks": [],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/managing-asthma.html",
+        "/knowledge/articles/understanding-gp-chronic-disease-care-plans.html"
+      ],
+      "hasBookCta": true,
+      "localHits": [
+        "Woolloongabba"
+      ],
+      "relatedPractitionersSection": false
+    }
+  ],
+  "practitionerAudit": [
+    {
+      "name": "Tanya",
+      "path": "/doctors/dr-tanya-goodwill.html",
+      "status": 200,
+      "title": "Dr Tanya Goodwill | GP | Woolloongabba Medical Centre",
+      "highlights": [
+        "Women’s health",
+        "Mental health care",
+        "Children’s health"
+      ],
+      "serviceLinks": [
+        "/services/family-health.html",
+        "/services/womens-health.html",
+        "/services/childrens-health.html",
+        "/services/chronic-disease-care.html",
+        "/services/skin-checks.html",
+        "/services/mental-health.html",
+        "/services/allied-health.html",
+        "/services/medical-procedures.html",
+        "/services/antenatal-postnatal-care.html",
+        "/services/skin-cancer-care.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/healthy-ageing.html",
+        "/knowledge/articles/when-should-i-book-a-skin-check.html",
+        "/knowledge/articles/why-skin-checks-matter-in-australia.html",
+        "/knowledge/articles/understanding-skin-cancer-risks.html",
+        "/knowledge/articles/when-should-i-speak-to-a-gp-about-weight.html",
+        "/knowledge/articles/healthy-weight-management.html",
+        "/knowledge/articles/understanding-healthy-lifestyle-changes.html",
+        "/knowledge/weight.html",
+        "/knowledge/articles/back-pain-when-should-i-see-a-gp.html",
+        "/knowledge/articles/is-my-sore-throat-viral-or-bacterial.html",
+        "/knowledge/articles/migraine-or-headache-how-do-i-tell-the-difference.html",
+        "/knowledge/articles/sore-throat-when-should-i-see-a-doctor.html",
+        "/knowledge/articles/understanding-neck-pain.html",
+        "/knowledge/articles/what-causes-frequent-headaches.html",
+        "/knowledge/articles/adhd-assessment-pathways.html",
+        "/knowledge/articles/anxiety-vs-stress-what-is-the-difference.html",
+        "/knowledge/articles/blood-pressure-explained.html",
+        "/knowledge/articles/breast-health-changes-screening-when-to-see-a-gp.html",
+        "/knowledge/articles/when-should-i-be-concerned-about-a-fever.html",
+        "/knowledge/articles/childhood-vaccinations-explained.html"
+      ],
+      "updateLinks": [
+        "/updates/index.html"
+      ],
+      "hasBook": true,
+      "wordCount": 807
+    },
+    {
+      "name": "Debra",
+      "path": "/doctors/dr-debra-larkins.html",
+      "status": 200,
+      "title": "Dr Debra Larkins | GP | Woolloongabba Medical Centre",
+      "highlights": [
+        "General practice",
+        "Shared antenatal care"
+      ],
+      "serviceLinks": [
+        "/services/family-health.html",
+        "/services/antenatal-postnatal-care.html",
+        "/services/womens-health.html",
+        "/services/preventive-healthcare.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/how-telehealth-works.html",
+        "/knowledge/articles/planning-a-pregnancy.html",
+        "/knowledge/articles/what-happens-during-antenatal-care.html",
+        "/knowledge/articles/what-is-preventive-healthcare.html",
+        "/knowledge/articles/why-regular-check-ups-matter.html",
+        "/knowledge/articles/your-first-pregnancy-gp-appointment.html"
+      ],
+      "updateLinks": [
+        "/updates/index.html"
+      ],
+      "hasBook": true,
+      "wordCount": 609
+    },
+    {
+      "name": "Anand",
+      "path": "/doctors/dr-anand-singh.html",
+      "status": 200,
+      "title": "Dr Anand Singh | GP | Woolloongabba Medical Centre",
+      "highlights": [
+        "Child health",
+        "Women’s health",
+        "Dermatology"
+      ],
+      "serviceLinks": [
+        "/services/family-health.html",
+        "/services/childrens-health.html",
+        "/services/skin-checks.html",
+        "/services/womens-health.html",
+        "/services/skin-cancer-care.html",
+        "/services/preventive-healthcare.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/healthy-ageing.html",
+        "/knowledge/articles/is-my-sore-throat-viral-or-bacterial.html",
+        "/knowledge/articles/sore-throat-when-should-i-see-a-doctor.html",
+        "/knowledge/articles/what-causes-a-persistent-cough.html",
+        "/knowledge/articles/why-won-t-my-cough-go-away.html",
+        "/knowledge/articles/when-should-i-be-concerned-about-a-fever.html",
+        "/knowledge/articles/childhood-vaccinations-explained.html",
+        "/knowledge/articles/childrens-preventive-healthcare.html",
+        "/knowledge/articles/common-childhood-illnesses.html"
+      ],
+      "updateLinks": [
+        "/updates/index.html"
+      ],
+      "hasBook": true,
+      "wordCount": 637
+    },
+    {
+      "name": "Sumita",
+      "path": "/doctors/dr-sumita-singh.html",
+      "status": 200,
+      "title": "Dr Sumita Singh | GP | Woolloongabba Medical Centre",
+      "highlights": [
+        "Women’s health",
+        "Mental health",
+        "General practice"
+      ],
+      "serviceLinks": [
+        "/services/family-health.html",
+        "/services/womens-health.html",
+        "/services/mental-health.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/adhd-assessment-pathways.html",
+        "/knowledge/articles/anxiety-vs-stress-what-is-the-difference.html",
+        "/knowledge/articles/breast-health-changes-screening-when-to-see-a-gp.html",
+        "/knowledge/articles/hrt-discussions-with-your-gp.html",
+        "/knowledge/articles/how-can-a-gp-support-depression.html",
+        "/knowledge/articles/menopause-symptoms-explained.html",
+        "/knowledge/articles/mental-health-and-menopause.html"
+      ],
+      "updateLinks": [
+        "/updates/index.html"
+      ],
+      "hasBook": true,
+      "wordCount": 612
+    },
+    {
+      "name": "Golnar",
+      "path": "/doctors/dr-golnar-mortezaei.html",
+      "status": 200,
+      "title": "Dr Golnar Mortezaei | GP | Woolloongabba Medical Centre",
+      "highlights": [
+        "Veterans' health",
+        "Chronic disease management",
+        "Diabetes"
+      ],
+      "serviceLinks": [
+        "/services/chronic-disease-care.html",
+        "/services/family-health.html",
+        "/services/preventive-healthcare.html",
+        "/services/mental-health.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/what-is-preventive-healthcare.html",
+        "/knowledge/articles/why-regular-check-ups-matter.html",
+        "/knowledge/articles/how-telehealth-works.html"
+      ],
+      "updateLinks": [
+        "/updates/index.html",
+        "/updates/welcome-dr-golnar-mortezaei.html"
+      ],
+      "hasBook": true,
+      "wordCount": 632
+    },
+    {
+      "name": "James",
+      "path": "/doctors/dr-james.html",
+      "status": 200,
+      "title": "Dr James Chanaka | GP | Woolloongabba Medical Centre",
+      "highlights": [
+        "Children's health",
+        "Mental health",
+        "Family medicine"
+      ],
+      "serviceLinks": [
+        "/services/childrens-health.html",
+        "/services/mental-health.html",
+        "/services/family-health.html",
+        "/services/preventive-healthcare.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/common-childhood-illnesses.html",
+        "/knowledge/articles/childrens-preventive-healthcare.html",
+        "/knowledge/articles/how-telehealth-works.html",
+        "/knowledge/articles/why-regular-check-ups-matter.html"
+      ],
+      "updateLinks": [
+        "/updates/index.html",
+        "/updates/welcome-dr-james-chanaka.html"
+      ],
+      "hasBook": true,
+      "wordCount": 629
+    },
+    {
+      "name": "Yamesha",
+      "path": "/doctors/dr-yamesha-ranatunga.html",
+      "status": 200,
+      "title": "Dr Yamesha Ranatunga | GP | Woolloongabba Medical Centre",
+      "highlights": [
+        "Women's health",
+        "Adolescent and youth health",
+        "Chronic disease management"
+      ],
+      "serviceLinks": [
+        "/services/womens-health.html",
+        "/services/chronic-disease-care.html",
+        "/services/family-health.html",
+        "/services/preventive-healthcare.html"
+      ],
+      "knowledgeLinks": [
+        "/knowledge/index.html",
+        "/knowledge/articles/why-regular-check-ups-matter.html",
+        "/knowledge/articles/what-is-preventive-healthcare.html",
+        "/knowledge/articles/how-telehealth-works.html"
+      ],
+      "updateLinks": [
+        "/updates/index.html"
+      ],
+      "hasBook": true,
+      "wordCount": 685
+    }
+  ],
+  "knowledgeSample": [
+    {
+      "path": "/knowledge/articles/when-should-i-speak-to-a-gp-about-anxiety.html",
+      "title": "GP Advice for Anxiety | Woolloongabba Medical Centre",
+      "serviceLinks": [
+        "/services/mental-health.html",
+        "/services/family-health.html",
+        "/services/telehealth.html"
+      ],
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-sumita-singh.html"
+      ],
+      "book": true,
+      "wordCount": 1167
+    },
+    {
+      "path": "/knowledge/articles/anxiety-vs-stress-what-is-the-difference.html",
+      "title": "Anxiety vs Stress | Woolloongabba Medical Centre",
+      "serviceLinks": [
+        "/services/mental-health.html",
+        "/services/preventive-healthcare.html"
+      ],
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-sumita-singh.html"
+      ],
+      "book": true,
+      "wordCount": 1129
+    },
+    {
+      "path": "/knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+      "title": "Mental Health Care Plans | Woolloongabba Medical Centre",
+      "serviceLinks": [
+        "/services/mental-health.html",
+        "/services/telehealth.html"
+      ],
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-sumita-singh.html"
+      ],
+      "book": true,
+      "wordCount": 1157
+    },
+    {
+      "path": "/knowledge/articles/how-can-a-gp-support-depression.html",
+      "title": "How a GP Can Help With Depression | Woolloongabba",
+      "serviceLinks": [
+        "/services/mental-health.html",
+        "/services/family-health.html"
+      ],
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-sumita-singh.html"
+      ],
+      "book": true,
+      "wordCount": 1097
+    },
+    {
+      "path": "/knowledge/articles/when-should-i-seek-help-for-burnout.html",
+      "title": "Burnout: When to Seek Help | Woolloongabba Medical Centre",
+      "serviceLinks": [
+        "/services/mental-health.html",
+        "/services/preventive-healthcare.html",
+        "/services/telehealth.html"
+      ],
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-sumita-singh.html"
+      ],
+      "book": true,
+      "wordCount": 1118
+    },
+    {
+      "path": "/knowledge/articles/understanding-menopause.html",
+      "title": "Understanding Menopause | Woolloongabba Medical Centre",
+      "serviceLinks": [
+        "/services/womens-health.html",
+        "/services/preventive-healthcare.html",
+        "/services/mental-health.html"
+      ],
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-sumita-singh.html",
+        "/doctors/dr-wasantha-hettiarchchi.html",
+        "/doctors/dr-mary-abadir.html"
+      ],
+      "book": true,
+      "wordCount": 1169
+    },
+    {
+      "path": "/knowledge/articles/when-should-i-have-a-cervical-screening-test.html",
+      "title": "Cervical Screening Guide | Woolloongabba Medical Centre",
+      "serviceLinks": [
+        "/services/pap-smear-cervical-screening.html",
+        "/services/womens-health.html",
+        "/services/preventive-healthcare.html"
+      ],
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-sumita-singh.html",
+        "/doctors/dr-wasantha-hettiarchchi.html",
+        "/doctors/dr-mary-abadir.html"
+      ],
+      "book": true,
+      "wordCount": 1258
+    },
+    {
+      "path": "/knowledge/articles/womens-health-checks-at-different-stages-of-life.html",
+      "title": "Women's Health by Age | Woolloongabba Medical Centre",
+      "serviceLinks": [
+        "/services/womens-health.html",
+        "/services/preventive-healthcare.html",
+        "/services/breast-check.html",
+        "/services/implanon-insertion-removal.html"
+      ],
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-sumita-singh.html",
+        "/doctors/dr-anand-singh.html",
+        "/doctors/dr-wasantha-hettiarchchi.html"
+      ],
+      "book": true,
+      "wordCount": 1130
+    },
+    {
+      "path": "/knowledge/articles/understanding-perimenopause.html",
+      "title": "Perimenopause Guide | Woolloongabba Medical Centre",
+      "serviceLinks": [
+        "/services/womens-health.html",
+        "/services/mental-health.html",
+        "/services/preventive-healthcare.html"
+      ],
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-sumita-singh.html",
+        "/doctors/dr-wasantha-hettiarchchi.html",
+        "/doctors/dr-mary-abadir.html"
+      ],
+      "book": true,
+      "wordCount": 1121
+    },
+    {
+      "path": "/knowledge/articles/preventive-womens-healthcare.html",
+      "title": "Women's Preventive Care | Woolloongabba Medical Centre",
+      "serviceLinks": [
+        "/services/preventive-healthcare.html",
+        "/services/womens-health.html",
+        "/services/vaccinations.html",
+        "/services/implanon-insertion-removal.html",
+        "/services/iud-insertion-removal.html"
+      ],
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-sumita-singh.html",
+        "/doctors/dr-sambo-luon.html",
+        "/doctors/dr-wasantha-hettiarchchi.html"
+      ],
+      "book": true,
+      "wordCount": 1121
+    },
+    {
+      "path": "/knowledge/articles/health-checks-every-man-should-consider.html",
+      "title": "Men’s Health Checks | Woolloongabba Medical Centre",
+      "serviceLinks": [
+        "/services/mens-health.html",
+        "/services/preventive-healthcare.html",
+        "/services/prostate-care.html"
+      ],
+      "doctorLinks": [
+        "/doctors/dr-usman-gul.html",
+        "/doctors/dr-wasantha-hettiarchchi.html",
+        "/doctors/dr-sambo-luon.html"
+      ],
+      "book": true,
+      "wordCount": 1060
+    },
+    {
+      "path": "/knowledge/articles/understanding-prostate-health.html",
+      "title": "Prostate Health Guide | Woolloongabba Medical Centre",
+      "serviceLinks": [
+        "/services/prostate-care.html",
+        "/services/mens-health.html",
+        "/services/preventive-healthcare.html"
+      ],
+      "doctorLinks": [
+        "/doctors/dr-usman-gul.html",
+        "/doctors/dr-wasantha-hettiarchchi.html"
+      ],
+      "book": true,
+      "wordCount": 1067
+    },
+    {
+      "path": "/knowledge/articles/why-preventive-healthcare-matters.html",
+      "title": "Why Preventive Care Matters | Woolloongabba Medical Centre",
+      "serviceLinks": [
+        "/services/preventive-healthcare.html",
+        "/services/mens-health.html",
+        "/services/vaccinations.html"
+      ],
+      "doctorLinks": [
+        "/doctors/dr-sambo-luon.html",
+        "/doctors/dr-usman-gul.html"
+      ],
+      "book": true,
+      "wordCount": 1034
+    },
+    {
+      "path": "/knowledge/articles/heart-health-for-men.html",
+      "title": "Heart Health For Men | Woolloongabba Medical Centre",
+      "serviceLinks": [
+        "/services/mens-health.html",
+        "/services/chronic-disease-care.html",
+        "/services/ecg.html"
+      ],
+      "doctorLinks": [
+        "/doctors/dr-usman-gul.html",
+        "/doctors/dr-wasantha-hettiarchchi.html"
+      ],
+      "book": true,
+      "wordCount": 1070
+    },
+    {
+      "path": "/knowledge/articles/healthy-ageing-for-men.html",
+      "title": "Healthy Ageing For Men | Woolloongabba Medical Centre",
+      "serviceLinks": [
+        "/services/preventive-healthcare.html",
+        "/services/mens-health.html",
+        "/services/chronic-disease-care.html"
+      ],
+      "doctorLinks": [
+        "/doctors/dr-anand-singh.html",
+        "/doctors/dr-sambo-luon.html"
+      ],
+      "book": true,
+      "wordCount": 991
+    },
+    {
+      "path": "/knowledge/articles/childhood-vaccinations-explained.html",
+      "title": "Childhood Vaccinations | Woolloongabba Medical Centre",
+      "serviceLinks": [
+        "/services/vaccinations.html",
+        "/services/childrens-health.html",
+        "/services/family-health.html"
+      ],
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-anand-singh.html"
+      ],
+      "book": true,
+      "wordCount": 1137
+    },
+    {
+      "path": "/knowledge/articles/when-should-i-be-concerned-about-a-fever.html",
+      "title": "Childhood Fever Guide | Woolloongabba Medical Centre",
+      "serviceLinks": [
+        "/services/childrens-health.html",
+        "/services/family-health.html"
+      ],
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-anand-singh.html"
+      ],
+      "book": true,
+      "wordCount": 1119
+    },
+    {
+      "path": "/knowledge/articles/preparing-for-your-childs-first-gp-appointment.html",
+      "title": "Your Child's First GP Visit | Woolloongabba Medical Centre",
+      "serviceLinks": [
+        "/services/childrens-health.html",
+        "/services/vaccinations.html"
+      ],
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-anand-singh.html"
+      ],
+      "book": true,
+      "wordCount": 1125
+    },
+    {
+      "path": "/knowledge/articles/common-childhood-illnesses.html",
+      "title": "Childhood Illness Guide | Woolloongabba Medical Centre",
+      "serviceLinks": [
+        "/services/childrens-health.html",
+        "/services/family-health.html",
+        "/services/ear-care-ear-syringing.html"
+      ],
+      "doctorLinks": [
+        "/doctors/dr-tanya-goodwill.html",
+        "/doctors/dr-anand-singh.html"
+      ],
+      "book": true,
+      "wordCount": 1113
+    },
+    {
+      "path": "/knowledge/articles/is-a-water-infection-the-same-as-a-uti.html",
+      "title": "Is A Water Infection The Same As A UTI? | Woolloongabba Medical Centre",
+      "serviceLinks": [
+        "/services/family-health.html"
+      ],
+      "doctorLinks": [],
+      "book": true,
+      "wordCount": 935
+    },
+    {
+      "path": "/knowledge/articles/is-hay-fever-a-fever.html",
+      "title": "Is Hay Fever A Fever? | Woolloongabba Medical Centre",
+      "serviceLinks": [
+        "/services/family-health.html"
+      ],
+      "doctorLinks": [],
+      "book": true,
+      "wordCount": 874
+    },
+    {
+      "path": "/knowledge/articles/what-are-school-sores.html",
+      "title": "What Are School Sores? | Woolloongabba Medical Centre",
+      "serviceLinks": [
+        "/services/family-health.html",
+        "/services/childrens-health.html"
+      ],
+      "doctorLinks": [],
+      "book": true,
+      "wordCount": 909
+    },
+    {
+      "path": "/knowledge/articles/is-a-tummy-bug-the-same-as-gastro.html",
+      "title": "Is A Tummy Bug The Same As Gastro? | Woolloongabba Medical Centre",
+      "serviceLinks": [
+        "/services/family-health.html",
+        "/services/childrens-health.html"
+      ],
+      "doctorLinks": [],
+      "book": true,
+      "wordCount": 888
+    },
+    {
+      "path": "/knowledge/articles/is-this-thrush.html",
+      "title": "Is This Thrush? | Woolloongabba Medical Centre",
+      "serviceLinks": [
+        "/services/family-health.html",
+        "/services/womens-health.html"
+      ],
+      "doctorLinks": [],
+      "book": true,
+      "wordCount": 895
+    },
+    {
+      "path": "/knowledge/articles/is-this-sinus.html",
+      "title": "Is This Sinus? | Woolloongabba Medical Centre",
+      "serviceLinks": [
+        "/services/family-health.html"
+      ],
+      "doctorLinks": [],
+      "book": true,
+      "wordCount": 884
+    }
+  ],
+  "updateCards": [
+    "/updates/new-patients-welcome.html",
+    "/updates/welcome-dr-golnar-mortezaei.html",
+    "/updates/welcome-dr-james-chanaka.html",
+    "/updates/current-billing-information.html",
+    "/updates/telehealth-appointments.html",
+    "/updates/open-seven-days.html",
+    "/updates/after-hours-care-options.html"
+  ]
+}

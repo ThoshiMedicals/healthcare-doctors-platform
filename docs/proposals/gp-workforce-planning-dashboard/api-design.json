@@ -1,0 +1,46 @@
+{
+  "title": "GP Workforce Planning Dashboard API",
+  "version": "1.0.0",
+  "basePath": "/api/clinics/{clinicSlug}/workforce-planning",
+  "auth": "Admin ClinicMembership — internal only",
+  "coreRule": {
+    "summary": "Human decision-making only",
+    "enforcement": [
+      "GET plan is read-only advisory",
+      "POST /decisions requires actorUserId + rationale",
+      "No endpoint auto-creates offers, hires, or session assignments",
+      "Changing scenario recalculates forecasts only"
+    ]
+  },
+  "localhostPrototype": {
+    "base": "http://127.0.0.1:4184",
+    "routes": [
+      "GET /api/plan",
+      "GET /api/plan?scenario=pressure",
+      "POST /api/decisions",
+      "GET /api/decisions",
+      "GET /api/inputs",
+      "GET /api/model"
+    ]
+  },
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/api/clinics/{clinicSlug}/workforce-planning/plan",
+      "query": { "scenario": "stable|moderate|pressure" },
+      "summary": "Aggregated dashboard payload from capacity, EOI, onboarding, utilisation"
+    },
+    {
+      "method": "POST",
+      "path": "/api/clinics/{clinicSlug}/workforce-planning/decisions",
+      "summary": "Record a human planning decision against a recommendation",
+      "body": {
+        "actorUserId": "pm_01",
+        "actorName": "Practice Manager",
+        "decisionType": "accept_recommendation|defer|adjust_target|open_recruitment_conversation",
+        "recommendationId": "rec_review_eoi",
+        "rationale": "required"
+      }
+    }
+  ]
+}

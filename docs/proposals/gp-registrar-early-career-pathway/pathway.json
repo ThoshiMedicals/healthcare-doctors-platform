@@ -1,0 +1,398 @@
+{
+  "id": "wmc-gp-registrar-early-career-pathway",
+  "version": "1.0.0",
+  "clinic": "Woolloongabba Medical Centre",
+  "purpose": "Define registrar and early-career GP pathways: training support, supervision conversations, session progression, readiness, and provider-number guidance.",
+  "boundaries": [
+    "Registrar intake is capacity-based — never marketed as always-open",
+    "Readiness tools inform conversations; they never auto-approve placement",
+    "Medicare provider numbers are issued by Services Australia — WMC does not issue, approve, or guarantee them",
+    "College training authorities remain external; WMC provides practice placement support only",
+    "No earnings or patient-volume guarantees"
+  ],
+  "tracks": [
+    {
+      "id": "registrar",
+      "label": "Registrar",
+      "who": "Enrolled in college GP training (e.g. AGPT / ACRRM pathway)",
+      "criticalDependency": "Named supervisor capacity, training term fit, college rules",
+      "intakePosture": "Placement only when supervision + rooms + nursing align"
+    },
+    {
+      "id": "early_career",
+      "label": "Early-career GP",
+      "who": "Recently fellowed or early years of independent consulting",
+      "criticalDependency": "Readiness, list-building support, staged sessions, peer access",
+      "intakePosture": "Continuity philosophy with lighter formal supervision than registrar terms"
+    }
+  ],
+  "journey": [
+    {
+      "id": "discover",
+      "label": "0 · Discover",
+      "tracks": ["registrar", "early_career"],
+      "doctorJob": "Find WMC as a continuity practice; read pathway honesty",
+      "surfaces": ["pathway page", "FAQ", "Opportunity Pack"],
+      "question": "Is supervision / early-career support real here?"
+    },
+    {
+      "id": "orient",
+      "label": "1 · Orient",
+      "tracks": ["registrar", "early_career"],
+      "doctorJob": "Understand training support, sessions, PN boundaries",
+      "surfaces": ["pathway page", "Practice Support Matrix", "PN Readiness", "DPA/19AB Navigator"],
+      "question": "What can WMC assist vs what external bodies decide?"
+    },
+    {
+      "id": "self_check",
+      "label": "2 · Self-check",
+      "tracks": ["registrar", "early_career"],
+      "doctorJob": "Doctor Readiness + training-stage details",
+      "surfaces": ["Doctor Readiness Assessment", "EOI stage fields"],
+      "question": "Am I document-ready enough for a serious conversation?"
+    },
+    {
+      "id": "eoi",
+      "label": "3 · Express interest",
+      "tracks": ["registrar", "early_career"],
+      "doctorJob": "Direct practice EOI — not a job board",
+      "surfaces": ["GP EOI"],
+      "question": "How do I start a practice conversation?"
+    },
+    {
+      "id": "mutual_assess",
+      "label": "4 · Mutual assess",
+      "tracks": ["registrar", "early_career"],
+      "doctorJob": "Fit, credentials, capacity; registrar includes supervisor gate",
+      "surfaces": ["Onboarding workflow", "supervisor calendar"],
+      "question": "Is there capacity this term / these sessions?"
+    },
+    {
+      "id": "pn_prep",
+      "label": "5 · Provider-number prep",
+      "tracks": ["registrar", "early_career"],
+      "doctorJob": "Location pack + Services Australia pathway",
+      "surfaces": ["PN Readiness", "onboarding PN stage"],
+      "question": "Who issues my number? What does WMC supply?"
+    },
+    {
+      "id": "session_plan",
+      "label": "6 · Session plan",
+      "tracks": ["registrar", "early_career"],
+      "doctorJob": "Agree starting footprint; registrar may be term-shaped",
+      "surfaces": ["Session Planner", "capacity matching"],
+      "question": "What days are reliable for patients and training?"
+    },
+    {
+      "id": "supervise_support",
+      "label": "7 · Supervise / support",
+      "tracks": ["registrar", "early_career"],
+      "doctorJob": "Scheduled supervision or peer access plus ad-hoc clinical help",
+      "surfaces": ["Supervision log", "early-career buddy"],
+      "question": "Who do I ask, and when is protected teaching time?"
+    },
+    {
+      "id": "progress_sessions",
+      "label": "8 · Progress sessions",
+      "tracks": ["registrar", "early_career"],
+      "doctorJob": "Staged increase only after reliability and cover",
+      "surfaces": ["First 90 Days", "capacity rules"],
+      "question": "When can I add sessions without breaking continuity?"
+    },
+    {
+      "id": "settle_transition",
+      "label": "9 · Settle / transition",
+      "tracks": ["registrar", "early_career"],
+      "doctorJob": "Term end or early-career BAU; optional stay conversation",
+      "surfaces": ["90-day / term review"],
+      "question": "What does success look like at term end / month 3?"
+    }
+  ],
+  "trainingSupport": [
+    {
+      "element": "Protected teaching / tutorial time",
+      "track": "registrar",
+      "standard": "Rostered where term requires; not stolen from lunch by default"
+    },
+    {
+      "element": "Case discussion access",
+      "track": "both",
+      "standard": "Named supervisor (registrar) or peer buddy (early-career)"
+    },
+    {
+      "element": "Nursing and reception orientation",
+      "track": "both",
+      "standard": "Same Day-1 pathways as First 90 Days"
+    },
+    {
+      "element": "College / training admin liaison",
+      "track": "registrar",
+      "standard": "Practice shares placement logistics; college remains training authority"
+    },
+    {
+      "element": "Clinical interest scaffolding",
+      "track": "both",
+      "standard": "Interests inside continuity GP care; credential before promote"
+    },
+    {
+      "element": "Wellbeing check-ins",
+      "track": "both",
+      "standard": "Term midpoint (registrar); M1/M2 pulse (early-career)"
+    }
+  ],
+  "supervisionConversations": [
+    {
+      "id": "kickoff",
+      "label": "Kick-off",
+      "when": "Week 0 / Day 1",
+      "focus": "Goals, escalation, when to interrupt, documentation expectations",
+      "artefact": "Written supervision agreement note (registrar)"
+    },
+    {
+      "id": "scheduled",
+      "label": "Scheduled supervision",
+      "when": "Weekly or per college requirement",
+      "focus": "Cases, prescriptions, uncertainty, training milestones",
+      "artefact": "Log date, duration, themes (no patient identifiers)"
+    },
+    {
+      "id": "adhoc",
+      "label": "Ad-hoc clinical access",
+      "when": "Same-day consulting",
+      "focus": "Urgent uncertainty / safety",
+      "artefact": "Backup supervisor named when primary away"
+    },
+    {
+      "id": "midpoint",
+      "label": "Mid-term / Month 1 review",
+      "when": "Term midpoint or Month 1",
+      "focus": "Progress, session load, learning needs, wellbeing",
+      "artefact": "Adjust sessions only with capacity rules"
+    },
+    {
+      "id": "end",
+      "label": "End-term / Month 3 review",
+      "when": "Term end or Day 90",
+      "focus": "Continuity habits, observed practice strengths, next stage",
+      "artefact": "College paperwork separate from WMC stay conversation"
+    },
+    {
+      "id": "early_career_variant",
+      "label": "Early-career peer conversations",
+      "when": "Fortnightly in Month 1, then monthly",
+      "focus": "Peer discussion rather than formal training supervision",
+      "artefact": "Optional — not a shadow registrar program"
+    }
+  ],
+  "sessionProgression": [
+    {
+      "step": "Start",
+      "footprint": "Agreed minimum reliable footprint (often fewer sessions)",
+      "gate": "Rooms + nursing + (registrar) supervisor presence"
+    },
+    {
+      "step": "Stabilise",
+      "footprint": "Hold footprint through Week 1–Month 1",
+      "gate": "No unilateral add; reliability at practice threshold"
+    },
+    {
+      "step": "Signal",
+      "footprint": "Month 2: unmet demand or training need noted",
+      "gate": "Capacity dashboard — planning only"
+    },
+    {
+      "step": "Expand",
+      "footprint": "Month 3 or new term: staged add (e.g. +1 half-day)",
+      "gate": "Supervisor/buddy available; nursing cover; continuity preserved"
+    },
+    {
+      "step": "Hold / reduce",
+      "footprint": "If overload or training conflict",
+      "gate": "Honest reset preferred to burnout or unsafe lists"
+    }
+  ],
+  "readinessSignals": [
+    {
+      "signal": "AHPRA registration pathway clear",
+      "applies": "both",
+      "tool": "Doctor Readiness / credential stage"
+    },
+    {
+      "signal": "Fellowship / training stage declared",
+      "applies": "registrar: term & stage · early_career: fellowship status",
+      "tool": "EOI + Readiness"
+    },
+    {
+      "signal": "Indemnity adequate for intended work",
+      "applies": "both",
+      "tool": "Credential checks"
+    },
+    {
+      "signal": "Provider-number pathway understood",
+      "applies": "both",
+      "tool": "PN Readiness"
+    },
+    {
+      "signal": "DPA / s19AB awareness if relevant",
+      "applies": "as applicable",
+      "tool": "DPA/19AB Navigator (not a determination)"
+    },
+    {
+      "signal": "Supervision capacity confirmed",
+      "applies": "registrar gate",
+      "tool": "Supervisor calendar before term dates offered"
+    },
+    {
+      "signal": "Session preferences realistic vs capacity",
+      "applies": "both",
+      "tool": "Session Planner + matching"
+    },
+    {
+      "signal": "Philosophy fit (continuity over churn)",
+      "applies": "both",
+      "tool": "GP Opportunities / Practice Experience"
+    }
+  ],
+  "providerNumberGuidance": {
+    "issuer": "Services Australia only",
+    "practiceRole": [
+      "Supply verified practice location pack",
+      "Explain location-linked vs existing numbers",
+      "Track application status as the doctor reports it"
+    ],
+    "cannotDo": [
+      "Issue, approve, or guarantee a provider number",
+      "Override Services Australia timelines or outcomes"
+    ],
+    "registrarNote": "Training placement does not replace Services Australia requirements. Confirm any training-specific billing rules with official sources.",
+    "earlyCareerNote": "A new practice location often needs a location-linked number even if a number already exists elsewhere.",
+    "goLiveConstraint": "Billing go-live waits on Services Australia outcome where required; orientation may complete earlier.",
+    "tools": ["provider-number-readiness", "practice-support-capability-matrix", "gp-onboarding-workflow"]
+  },
+  "website": {
+    "suggestedPath": "/join-our-team/registrar-early-career-pathway.html",
+    "title": "Registrar and early-career pathways | Woolloongabba Medical Centre",
+    "h1": "Registrar and early-career pathways at Woolloongabba Medical Centre",
+    "lede": "If you are training in general practice or recently finding your consulting feet, this page explains how support, supervision conversations, sessions and provider-number preparation work here — so you can decide if a conversation with the practice makes sense.",
+    "blocks": [
+      { "id": "tracks", "heading": "Two pathways", "job": "Self-select registrar vs early-career" },
+      { "id": "training", "heading": "Training support", "job": "What support looks like day to day" },
+      { "id": "supervision", "heading": "Supervision conversations", "job": "Cadence and purpose" },
+      { "id": "sessions", "heading": "Session progression", "job": "Start, stabilise, staged expand" },
+      { "id": "readiness", "heading": "Readiness", "job": "CTA to Doctor Readiness — not an offer" },
+      { "id": "provider", "heading": "Provider numbers", "job": "Boundary-safe Services Australia guidance" },
+      { "id": "faq", "heading": "Questions doctors ask", "job": "Visible FAQ synced to FAQPage schema" },
+      { "id": "next", "heading": "If the fit feels right", "job": "Express interest with the practice" }
+    ],
+    "trackCards": {
+      "registrar": "Expressions of interest from GP registrars are welcome. Placements depend on supervisor capacity, rooms, nursing cover and timing — considered against current practice need, not as an always-open intake.",
+      "earlyCareer": "Early-career GPs who value continuity can discuss staged sessions, nursing partnership and peer access. Formal college supervision is not assumed; reliable consulting support is."
+    },
+    "providerLine": "Medicare provider numbers are issued by Services Australia. Woolloongabba Medical Centre does not issue, approve or guarantee provider numbers. We can share accurate practice location details to support your application.",
+    "cta": [
+      "Express interest with the practice",
+      "Complete Doctor Readiness (optional)",
+      "Read Practice Support boundaries"
+    ],
+    "schemaNotes": [
+      "WebPage about MedicalClinic",
+      "FAQPage only for visible FAQs",
+      "Breadcrumb Home → About Us → Join Our Team → Registrar & early-career pathway",
+      "Do not emit JobPosting for open-ended registrar intake"
+    ]
+  },
+  "operationalWorkflow": [
+    {
+      "id": "A",
+      "label": "Enquiry intake",
+      "actions": [
+        "Tag EOI: registrar | early_career | unspecified",
+        "Capture training stage / fellowship / preferred term or sessions"
+      ]
+    },
+    {
+      "id": "B",
+      "label": "Capacity screen",
+      "actions": [
+        "Registrar: check supervisor FTE and leave for term window",
+        "Both: rooms and nursing for proposed sessions"
+      ]
+    },
+    {
+      "id": "C",
+      "label": "Human gate",
+      "actions": [
+        "Practice manager + (registrar) supervisor decide progress / waitlist / decline politely",
+        "No auto-approve from readiness score"
+      ]
+    },
+    {
+      "id": "D",
+      "label": "Readiness pack",
+      "actions": [
+        "Doctor completes Readiness and PN checklist",
+        "Practice sends location pack and support matrix"
+      ]
+    },
+    {
+      "id": "E",
+      "label": "Credentials and PN track",
+      "actions": [
+        "Run onboarding credential and PN stages",
+        "Keep external waits visible on dashboard"
+      ]
+    },
+    {
+      "id": "F",
+      "label": "Session agreement",
+      "actions": [
+        "Written starting footprint; registrar term dates",
+        "HotDoc visibility equals agreed sessions only"
+      ]
+    },
+    {
+      "id": "G",
+      "label": "Supervision setup",
+      "actions": [
+        "Book kick-off conversation; name backup supervisor",
+        "Early-career: name buddy; optional fortnightly slot"
+      ]
+    },
+    {
+      "id": "H",
+      "label": "Go-live to First 90 / term",
+      "actions": [
+        "Day 1 checklist; start supervision log",
+        "Progression reviews at Week 1, Month 1, Month 2, Month 3 / mid-term"
+      ]
+    },
+    {
+      "id": "I",
+      "label": "Close / transition",
+      "actions": [
+        "Term-end or 90-day written review",
+        "Stay / finish / staged growth — college outcomes remain separate"
+      ]
+    }
+  ],
+  "raci": [
+    { "role": "Supervisor (registrar)", "duty": "Teaching, case review, safety escalation, term feedback" },
+    { "role": "Practice manager", "duty": "Capacity, credentials sighting, PN location pack, roster" },
+    { "role": "Nursing lead", "duty": "Treatment-room integration, procedural support within scope" },
+    { "role": "Reception lead", "duty": "Booking rules, continuity offers, interrupt protocol" },
+    { "role": "Early-career buddy", "duty": "Peer access and local systems tips — not college supervisor" },
+    { "role": "Doctor", "duty": "Documents, SA application, supervision attendance, honest load feedback" }
+  ],
+  "relatedTools": [
+    "gp-eoi",
+    "doctor-readiness",
+    "provider-number-readiness",
+    "dpa-19ab-navigator",
+    "practice-support-capability-matrix",
+    "gp-onboarding-workflow",
+    "gp-session-planner",
+    "gp-first-90-days",
+    "gp-opportunity-pack",
+    "gp-faq"
+  ]
+}

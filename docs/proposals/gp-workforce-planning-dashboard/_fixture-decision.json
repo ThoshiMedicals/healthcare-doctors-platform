@@ -1,0 +1,7 @@
+{
+  "actorUserId": "pm_01",
+  "actorName": "Practice Manager",
+  "decisionType": "open_recruitment_conversation",
+  "recommendationId": "rec_review_eoi",
+  "rationale": "Human-led review of priority EOIs against spare session capacity; no auto-offer."
+}

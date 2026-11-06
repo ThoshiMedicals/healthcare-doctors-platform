@@ -1,0 +1,670 @@
+{
+  "id": "wmc-gp-attraction-visual-asset-inventory",
+  "version": "1.0.0-launch-placeholders",
+  "clinic": "Woolloongabba Medical Centre",
+  "sources": [
+    "canvases/wmc-gp-attraction-visual-asset-plan.canvas.tsx",
+    "docs/proposals/practice-experience-content-pack/content-pack.json",
+    "apps/web/src/asset-library/taxonomy.ts"
+  ],
+  "honesty": {
+    "contentClass": "ai_placeholder",
+    "internalLabel": "AI PLACEHOLDER — replace with consented / real WMC photography per Visual Asset Plan AI policy before production documentary claims.",
+    "aiBan": ["NC-01", "DC-01", "TD-01"],
+    "aiBanRule": "Never present synthetic identifiable clinicians as WMC staff. Those IDs ship environment / silhouette bridges only until Phase 2 people shoot."
+  },
+  "taxonomyHints": {
+    "scenes": [
+      "consulting_room",
+      "waiting",
+      "reception",
+      "treatment",
+      "nursing_collab",
+      "team_discussion",
+      "community_exterior",
+      "atmosphere",
+      "quote_card"
+    ],
+    "surfaces": [
+      "practice_experience",
+      "gp_opportunities",
+      "join_our_team",
+      "opportunity_pack",
+      "social_og"
+    ],
+    "modules": [
+      "typical_day",
+      "nursing",
+      "reception",
+      "team_interactions",
+      "community",
+      "continuity",
+      "flexible_sessions",
+      "doctor_voices"
+    ]
+  },
+  "stills": [
+    {
+      "assetId": "PE-TD-01",
+      "planRef": "CR-01",
+      "module": "typical_day",
+      "category": "consulting_rooms",
+      "aiPolicy": "ai_ok_placeholder_bridge",
+      "planAi": "Photo-only",
+      "filename": "PE-TD-01__consulting-room__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/PE-TD-01__consulting-room__2026-11.jpg",
+      "hubPath": "/assets/practice-experience/typical-day.jpg",
+      "alt": "Consulting room at Woolloongabba Medical Centre with desk and examination couch ready for a general practice visit",
+      "caption": "Consulting room prepared for a general practice session at Woolloongabba Medical Centre.",
+      "imagePrompt": "Photorealistic empty Australian general practice consulting room, warm natural side light from a window, wooden desk with blank privacy-screened monitor powered off, examination couch with clean paper roll, chair for patient empty, calm clinical but not hospital-theatre, no people, no logos, no readable text or PHI, 16:9 editorial photography, Woolloongabba Medical Centre practice experience placeholder"
+    },
+    {
+      "assetId": "PE-TD-02",
+      "planRef": "DC-01",
+      "module": "typical_day",
+      "category": "gp_lifestyle",
+      "aiPolicy": "ai_ban_people_bridge_environment",
+      "planAi": "AI-ban",
+      "filename": "PE-TD-02__desk-list-review__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/PE-TD-02__desk-list-review__2026-11.jpg",
+      "alt": "Consulting desk with privacy-blanked screen prepared for list review at Woolloongabba Medical Centre",
+      "caption": "List-review posture at the consulting desk — screen privacy-blanked; people photography pending consent shoot (DC-01).",
+      "imagePrompt": "Photorealistic close three-quarter view of an empty GP consulting desk in Australia, open notebook with blank pages, privacy-blanked computer monitor, soft warm lamp light, empty doctor chair pushed slightly back suggesting recent presence, no people faces, no readable names, calm unhurried atmosphere, 16:9",
+      "peopleShootNote": "Replace with consented DC-01 still — real clinician only."
+    },
+    {
+      "assetId": "PE-TD-03",
+      "planRef": "CR-02",
+      "module": "typical_day",
+      "category": "consulting_rooms",
+      "aiPolicy": "ai_assist_placeholder",
+      "planAi": "AI-assist",
+      "filename": "PE-TD-03__session-close-desk__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/PE-TD-03__session-close-desk__2026-11.jpg",
+      "alt": "Prepared consulting desk and clinical surfaces at Woolloongabba Medical Centre after a session",
+      "caption": "End-of-session documentation posture at the consulting desk.",
+      "imagePrompt": "Tight photorealistic detail of a prepared consulting desk after a GP session, blanked monitor, clean clinical surfaces, stethoscope optional, soft late-afternoon light, no papers with names, no people, Australian general practice interior, 16:9"
+    },
+    {
+      "assetId": "PE-TD-04",
+      "planRef": "DC-02",
+      "module": "typical_day",
+      "category": "consulting_rooms",
+      "aiPolicy": "ai_ok_placeholder_bridge",
+      "planAi": "Photo-only",
+      "filename": "PE-TD-04__corridor-threshold__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/PE-TD-04__corridor-threshold__2026-11.jpg",
+      "hubPath": "/assets/practice-experience/team-interactions.jpg",
+      "alt": "Quiet corridor leading to a consulting room at Woolloongabba Medical Centre",
+      "caption": "Quiet corridor toward a consulting room — B-roll for day-arc and team interactions.",
+      "imagePrompt": "Quiet empty medical clinic corridor in Australia leading to a consulting room door slightly ajar, soft natural light, calm depth of field, no people, no signage with names, not a busy hospital rush, 16:9 editorial"
+    },
+    {
+      "assetId": "PE-NU-01",
+      "planRef": "TR-01",
+      "module": "nursing",
+      "category": "nursing_collaboration",
+      "aiPolicy": "ai_ok_placeholder_bridge",
+      "planAi": "Photo-only",
+      "filename": "PE-NU-01__treatment-room__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/PE-NU-01__treatment-room__2026-11.jpg",
+      "hubPath": "/assets/practice-experience/nursing.jpg",
+      "alt": "Treatment room prepared for nursing-supported care at Woolloongabba Medical Centre",
+      "caption": "Treatment room prepared for nursing-supported procedures.",
+      "imagePrompt": "Empty Australian GP treatment room, examination couch with trolley orderly, PPE available sealed, no open sharps, clean clinical lighting, no people, no brand endorsements, 16:9"
+    },
+    {
+      "assetId": "PE-NU-02",
+      "planRef": "NC-01",
+      "module": "nursing",
+      "category": "nursing_collaboration",
+      "aiPolicy": "ai_ban_people_bridge_environment",
+      "planAi": "AI-ban",
+      "filename": "PE-NU-02__handoff-bench__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/PE-NU-02__handoff-bench__2026-11.jpg",
+      "alt": "Treatment bench prepared for a GP–nurse clinical handoff at Woolloongabba Medical Centre",
+      "caption": "Handoff-ready treatment bench — staff collaboration still pending consented NC-01 shoot.",
+      "imagePrompt": "Treatment bench in a GP clinic prepared for clinical handoff, two empty stools, sealed tray, blank clipboard face-down, doorway light, no people, no faces, Australian primary care, 16:9",
+      "peopleShootNote": "Replace with consented NC-01 — real GP and nurse only."
+    },
+    {
+      "assetId": "PE-NU-03",
+      "planRef": "NC-02",
+      "module": "nursing",
+      "category": "nursing_collaboration",
+      "aiPolicy": "ai_ok",
+      "planAi": "AI-ok",
+      "filename": "PE-NU-03__hands-prep__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/PE-NU-03__hands-prep__2026-11.jpg",
+      "alt": "Clinical preparation detail in the treatment room at Woolloongabba Medical Centre",
+      "caption": "Hands-and-equipment preparation detail — illustrative, not identifiable staff.",
+      "imagePrompt": "Close-up of two pairs of gloved clinical hands preparing a sealed treatment tray on a trolley, blank tablet screen, no faces, no PHI, soft clinical light, anonymous illustration for nursing collaboration, 16:9"
+    },
+    {
+      "assetId": "PE-RX-01",
+      "planRef": "RX-01",
+      "module": "reception",
+      "category": "reception_workflows",
+      "aiPolicy": "ai_ok_placeholder_bridge",
+      "planAi": "Photo-only",
+      "filename": "PE-RX-01__reception-desk__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/PE-RX-01__reception-desk__2026-11.jpg",
+      "hubPath": "/assets/practice-experience/reception.jpg",
+      "alt": "Reception desk at Woolloongabba Medical Centre where appointments and patient enquiries are managed",
+      "caption": "Reception desk anchoring appointments and enquiry routing.",
+      "imagePrompt": "Australian GP clinic reception desk three-quarter view, empty of patients, computer screens privacy-blanked or angled away, calm orderly front desk, soft daylight, no readable PHI, no people faces, 16:9"
+    },
+    {
+      "assetId": "PE-RX-02",
+      "planRef": "RX-02",
+      "module": "reception",
+      "category": "reception_workflows",
+      "aiPolicy": "ai_ok",
+      "planAi": "AI-ok",
+      "filename": "PE-RX-02__check-in-counter__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/PE-RX-02__check-in-counter__2026-11.jpg",
+      "alt": "Reception check-in counter at Woolloongabba Medical Centre with screens kept private",
+      "caption": "Check-in counter detail — screens kept private.",
+      "imagePrompt": "Close crop of a GP clinic check-in counter edge with desk phone and headset, blanked screen glow, calm colour grade, no people, no readable text, 1:1 friendly 16:9 frame"
+    },
+    {
+      "assetId": "PE-RX-03",
+      "planRef": "WA-01",
+      "module": "reception",
+      "category": "reception_workflows",
+      "aiPolicy": "ai_ok_placeholder_bridge",
+      "planAi": "Photo-only",
+      "filename": "PE-RX-03__waiting-to-reception__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/PE-RX-03__waiting-to-reception__2026-11.jpg",
+      "alt": "Quiet waiting area at Woolloongabba Medical Centre looking toward reception",
+      "caption": "Quiet waiting area looking toward reception.",
+      "imagePrompt": "Empty quiet waiting area in an Australian medical centre looking toward a soft-focus reception desk, sparsely arranged seats, calm depth of field, no people, no TV ads, 16:9"
+    },
+    {
+      "assetId": "PE-TM-01",
+      "planRef": "TD-01",
+      "module": "team_interactions",
+      "category": "gp_lifestyle",
+      "aiPolicy": "ai_ban_people_bridge_environment",
+      "planAi": "AI-ban",
+      "filename": "PE-TM-01__corridor-discussion-space__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/PE-TM-01__corridor-discussion-space__2026-11.jpg",
+      "alt": "Quiet practice corridor suitable for brief clinical discussion at Woolloongabba Medical Centre",
+      "caption": "Corridor space for brief peer discussion — people still pending consented TD-01 shoot.",
+      "imagePrompt": "Empty Australian GP clinic corridor with two consulting room doors, soft natural light, space where two clinicians might pause mid-distance, no people, no whiteboards with names, calm professional, 16:9",
+      "peopleShootNote": "Replace with consented TD-01."
+    },
+    {
+      "assetId": "PE-TM-02",
+      "planRef": "TD-02",
+      "module": "team_interactions",
+      "category": "gp_lifestyle",
+      "aiPolicy": "ai_ok_placeholder_bridge",
+      "planAi": "Photo-only",
+      "filename": "PE-TM-02__doorway-exchange__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/PE-TM-02__doorway-exchange__2026-11.jpg",
+      "alt": "Doorway between consulting rooms at Woolloongabba Medical Centre for short clinical updates",
+      "caption": "Doorway threshold for short clinical updates between rooms.",
+      "imagePrompt": "Doorway between two consulting rooms in a calm GP practice, empty threshold, soft light, notes shelf blanked, no people, Australian interior, 16:9"
+    },
+    {
+      "assetId": "PE-TM-03",
+      "planRef": "DC-02",
+      "module": "team_interactions",
+      "category": "gp_lifestyle",
+      "aiPolicy": "ai_ok_placeholder_bridge",
+      "planAi": "Photo-only",
+      "filename": "PE-TM-03__pause-between-patients__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/PE-TM-03__pause-between-patients__2026-11.jpg",
+      "alt": "Quiet pause point in the practice corridor between consulting sessions",
+      "caption": "Pause between patients — continuity of peer access without meeting theatre.",
+      "imagePrompt": "Empty GP clinic corridor niche with a small ledge and soft window light, suggesting a brief pause between patients, no people, calm unhurried, 16:9"
+    },
+    {
+      "assetId": "PE-CM-01",
+      "planRef": "CC-01",
+      "module": "community",
+      "category": "community_environments",
+      "aiPolicy": "ai_ok_placeholder_bridge",
+      "planAi": "Photo-only",
+      "filename": "PE-CM-01__vulture-street-context__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/PE-CM-01__vulture-street-context__2026-11.jpg",
+      "hubPath": "/assets/practice-experience/community.jpg",
+      "alt": "Street context near Woolloongabba Medical Centre on Vulture Street in Brisbane’s inner south",
+      "caption": "Inner-south place context for community demographics — replace with institutional exterior master (CC-01) when publishing documentary claims.",
+      "imagePrompt": "Daytime Brisbane inner-south streetscape near a low-rise medical centre entrance, Queensland light, footpath and modest clinic facade language, no readable business names invented, no identifiable faces, documentary editorial, 16:9",
+      "note": "Production should reuse institutional-exterior-consistent.webp as CC-01 master."
+    },
+    {
+      "assetId": "PE-CM-02",
+      "planRef": "WA-02",
+      "module": "community",
+      "category": "community_environments",
+      "aiPolicy": "ai_assist_placeholder",
+      "planAi": "AI-assist",
+      "filename": "PE-CM-02__daylit-waiting__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/PE-CM-02__daylit-waiting__2026-11.jpg",
+      "alt": "Daylit waiting seats at Woolloongabba Medical Centre on Vulture Street",
+      "caption": "Daylit waiting seats with neighbourhood light.",
+      "imagePrompt": "Daylit empty waiting seats in an Australian medical centre with soft street light through glass, no people, calm local atmosphere, 16:9"
+    },
+    {
+      "assetId": "PE-CM-03",
+      "planRef": "CC-01",
+      "module": "community",
+      "category": "community_environments",
+      "aiPolicy": "ai_ok_placeholder_bridge",
+      "planAi": "Photo-only",
+      "filename": "PE-CM-03__og-exterior__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/PE-CM-03__og-exterior__2026-11.jpg",
+      "alt": "Woolloongabba Medical Centre exterior for social and OG previews",
+      "caption": "OG crop candidate from exterior place proof.",
+      "imagePrompt": "Wide 1200x630 style exterior of an Australian suburban medical centre entrance in daylight, calm institutional, no invented logos, no hiring text, 16:9"
+    },
+    {
+      "assetId": "PE-CO-01",
+      "planRef": "WA-01",
+      "module": "continuity",
+      "category": "continuity_imagery",
+      "aiPolicy": "ai_ok_placeholder_bridge",
+      "planAi": "Photo-only",
+      "filename": "PE-CO-01__waiting-atmosphere__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/PE-CO-01__waiting-atmosphere__2026-11.jpg",
+      "hubPath": "/assets/practice-experience/continuity.jpg",
+      "alt": "Quiet waiting area at Woolloongabba Medical Centre",
+      "caption": "Atmosphere still for continuity — empty of patients.",
+      "imagePrompt": "Soft-focus empty waiting area in a continuity-focused Australian GP clinic, gentle light, no people, mood without marketing theatre, 16:9"
+    },
+    {
+      "assetId": "PE-CO-02",
+      "planRef": "CR-01",
+      "module": "continuity",
+      "category": "continuity_imagery",
+      "aiPolicy": "ai_ok_placeholder_bridge",
+      "planAi": "Photo-only",
+      "filename": "PE-CO-02__empty-consult-soft__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/PE-CO-02__empty-consult-soft__2026-11.jpg",
+      "alt": "Empty consulting room ready for continuity-based general practice",
+      "caption": "Soft-light empty consulting room for continuity vignettes.",
+      "imagePrompt": "Soft-light empty consulting room ready for continuity-based GP care, desk and couch in one calm frame, no people, Australian practice, 16:9"
+    },
+    {
+      "assetId": "PE-CO-03",
+      "planRef": "CC-03",
+      "module": "continuity",
+      "category": "continuity_imagery",
+      "aiPolicy": "ai_ok",
+      "planAi": "AI-ok",
+      "filename": "PE-CO-03__abstract-light__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/PE-CO-03__abstract-light__2026-11.jpg",
+      "alt": "Quiet interior detail at Woolloongabba Medical Centre",
+      "caption": "Abstract light on chair and door frame — continuity atmosphere.",
+      "imagePrompt": "Abstract quiet clinical interior detail, soft light falling on an empty waiting chair and door frame, high negative space for quote overlays, no people, Australian GP clinic mood, 16:9"
+    },
+    {
+      "assetId": "PE-FS-01",
+      "planRef": "CR-01",
+      "module": "flexible_sessions",
+      "category": "flexible_session_imagery",
+      "aiPolicy": "ai_ok_placeholder_bridge",
+      "planAi": "Photo-only",
+      "filename": "PE-FS-01__session-room__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/PE-FS-01__session-room__2026-11.jpg",
+      "hubPath": "/assets/practice-experience/flexible-sessions.jpg",
+      "alt": "Consulting room available for scheduled GP sessions at Woolloongabba Medical Centre",
+      "caption": "Consulting room as session-capacity symbol.",
+      "imagePrompt": "Empty consulting room symbolising scheduled GP session capacity, calm and ready, desk tidy, no people, Australian general practice, 16:9"
+    },
+    {
+      "assetId": "PE-FS-02",
+      "planRef": "CR-02",
+      "module": "flexible_sessions",
+      "category": "flexible_session_imagery",
+      "aiPolicy": "ai_assist_placeholder",
+      "planAi": "AI-assist",
+      "filename": "PE-FS-02__schedule-cues__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/PE-FS-02__schedule-cues__2026-11.jpg",
+      "alt": "Consulting desk and schedule cues without patient information",
+      "caption": "Desk detail with clock and closed diary — no patient names.",
+      "imagePrompt": "Consulting desk detail with analog clock and closed blank diary, no patient names, soft light, session-planning cue for flexible GP footprints, 16:9"
+    },
+    {
+      "assetId": "PE-FS-03",
+      "planRef": "TR-01",
+      "module": "flexible_sessions",
+      "category": "flexible_session_imagery",
+      "aiPolicy": "ai_ok_placeholder_bridge",
+      "planAi": "Photo-only",
+      "filename": "PE-FS-03__nursing-cover-constraint__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/PE-FS-03__nursing-cover-constraint__2026-11.jpg",
+      "alt": "Treatment room that supports nursing cover around GP sessions",
+      "caption": "Treatment room visualising nursing-cover constraints on session growth.",
+      "imagePrompt": "Treatment room interior emphasising orderly capacity for nursing cover around GP sessions, empty of patients, Australian clinic, 16:9"
+    },
+    {
+      "assetId": "LS-01",
+      "planRef": "DC-02",
+      "module": "doctor_voices",
+      "category": "gp_lifestyle",
+      "aiPolicy": "ai_ok",
+      "planAi": "AI-ok",
+      "filename": "LS-01__end-of-session-calm__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/LS-01__end-of-session-calm__2026-11.jpg",
+      "alt": "Calm end-of-session consulting desk atmosphere for GP lifestyle storytelling",
+      "caption": "Illustrative GP lifestyle cue — finishing notes while context is fresh (no identifiable clinician).",
+      "imagePrompt": "Lifestyle editorial of a calm GP consulting desk at end of day, warm lamp, blanked screen, closed notebook, jacket on chair back empty of person, Queensland evening light through blinds, no faces, not stock corporate hustle, 16:9"
+    },
+    {
+      "assetId": "LS-02",
+      "planRef": "CR-01",
+      "module": "flexible_sessions",
+      "category": "gp_lifestyle",
+      "aiPolicy": "ai_ok",
+      "planAi": "AI-ok",
+      "filename": "LS-02__part-week-footprint__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/LS-02__part-week-footprint__2026-11.jpg",
+      "alt": "Part-week consulting footprint atmosphere with clear session boundaries",
+      "caption": "Part-week continuity lifestyle — reliability over casual locum theatre.",
+      "imagePrompt": "Morning light in an empty consulting room with a clearly set desk for a part-week GP session, tote bag and closed laptop on side chair, calm professional lifestyle, no people faces, Australian GP clinic, 16:9"
+    },
+    {
+      "assetId": "LS-03",
+      "planRef": "CC-02",
+      "module": "community",
+      "category": "gp_lifestyle",
+      "aiPolicy": "ai_assist_placeholder",
+      "planAi": "AI-assist",
+      "filename": "LS-03__neighbourhood-approach__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/LS-03__neighbourhood-approach__2026-11.jpg",
+      "alt": "Street approach toward a local medical centre in Brisbane’s inner south",
+      "caption": "Neighbourhood approach — place lifestyle without tourist marketing.",
+      "imagePrompt": "Footpath approach toward a low-rise medical centre entrance in Brisbane inner south, Queensland daylight, anonymous passers-by blurred or absent, practical not touristy, 16:9"
+    },
+    {
+      "assetId": "WA-01",
+      "planRef": "WA-01",
+      "module": "continuity",
+      "category": "continuity_imagery",
+      "aiPolicy": "ai_ok_placeholder_bridge",
+      "planAi": "Photo-only",
+      "filename": "WA-01__waiting-primary__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/WA-01__waiting-primary__2026-11.jpg",
+      "alt": "Quiet waiting area at Woolloongabba Medical Centre looking toward reception",
+      "caption": "Primary waiting-area master ID from Visual Asset Plan.",
+      "imagePrompt": "Primary waiting area still for Woolloongabba Medical Centre language: empty orderly seats, soft depth toward reception, calm, no people, 16:9"
+    },
+    {
+      "assetId": "TR-02",
+      "planRef": "TR-02",
+      "module": "nursing",
+      "category": "nursing_collaboration",
+      "aiPolicy": "ai_assist_placeholder",
+      "planAi": "AI-assist",
+      "filename": "TR-02__supplies-tray__2026-11.jpg",
+      "publicPath": "/assets/attraction/placeholders/TR-02__supplies-tray__2026-11.jpg",
+      "alt": "Clinical supplies arranged in the treatment room at Woolloongabba Medical Centre",
+      "caption": "Immunisation / wound-care readiness tray detail.",
+      "imagePrompt": "Overhead 45-degree view of sealed clinical supplies tray in a GP treatment room, no brand endorsements, no people, clean, 1:1 friendly 16:9"
+    }
+  ],
+  "videos": [
+    {
+      "assetId": "VID-TD-01",
+      "module": "typical_day",
+      "title": "Practice day overview",
+      "durationSec": "90–120",
+      "posterStill": "PE-TD-01",
+      "transcriptAssetId": "TRN-TD-01",
+      "format": "B-roll + VO or on-screen captions; staff-consented walkthrough later",
+      "music": "None or very low ambient — not corporate promo bed",
+      "videoPrompt": "Documentary B-roll sequence of an Australian GP practice day without patients or identifiable staff faces in placeholder cut: exterior approach, empty consulting room, desk list-review atmosphere, quiet corridor, treatment door ajar, end-of-session blanked desk, honesty end card. Natural light, calm pace, no hiring CTAs, no stock hustle music.",
+      "beats": [
+        {
+          "tc": "0:00–0:12",
+          "visual": "Exterior CC-01 / PE-CM-01 → foyer",
+          "voOrCaption": "A consulting day at Woolloongabba Medical Centre starts with the list — not with theatre."
+        },
+        {
+          "tc": "0:12–0:35",
+          "visual": "PE-TD-01 / PE-TD-02 desk review",
+          "voOrCaption": "Mornings often mix acute presentations with reviews. The book is general practice: preventive care, mental health, and procedures where credentialed."
+        },
+        {
+          "tc": "0:35–0:55",
+          "visual": "Quiet corridor / treatment door ajar (no patients)",
+          "voOrCaption": "Nursing and reception sit around the consult — handoffs protect time when the list stretches."
+        },
+        {
+          "tc": "0:55–1:20",
+          "visual": "PE-TD-03 notes / results posture",
+          "voOrCaption": "Sessions close with results, recalls, and documentation while context is fresh. Continuity work needs that finish."
+        },
+        {
+          "tc": "1:20–end",
+          "visual": "Honesty card + exterior still",
+          "voOrCaption": "This describes how practice runs here. It is not a job advertisement."
+        }
+      ],
+      "captionsNote": "Full WebVTT; readable at 1.0×; no burned-in Apply CTA"
+    },
+    {
+      "assetId": "VID-NU-01",
+      "module": "nursing",
+      "title": "Nursing handoff vignette",
+      "durationSec": "45–60",
+      "posterStill": "PE-NU-01",
+      "videoPrompt": "45–60s B-roll: empty treatment room, sealed tray prep, doorway handoff space without faces, honesty card about nursing cover constraints. No synthetic clinician faces labelled as WMC.",
+      "beats": [
+        {
+          "tc": "0:00–0:08",
+          "visual": "PE-NU-01 treatment room",
+          "voOrCaption": "Nursing sits beside consulting — not as decoration, as clinical capacity."
+        },
+        {
+          "tc": "0:08–0:28",
+          "visual": "Prep trolley / consent clipboard blanked",
+          "voOrCaption": "A pathway is flagged. The nurse prepares the room, equipment, and patient information the GP will need."
+        },
+        {
+          "tc": "0:28–0:45",
+          "visual": "PE-NU-02 handoff moment (consented staff later)",
+          "voOrCaption": "The GP joins for the procedure or reviews the outcome. Documentation and recall close the loop."
+        },
+        {
+          "tc": "0:45–end",
+          "visual": "Honesty card",
+          "voOrCaption": "Session support depends on nursing cover. That constraint is part of how we plan lists."
+        }
+      ]
+    },
+    {
+      "assetId": "VID-RX-01",
+      "module": "reception",
+      "title": "Reception flow vignette",
+      "durationSec": "45–60",
+      "posterStill": "PE-RX-01",
+      "videoPrompt": "Reception workflow B-roll: desk, check-in counter detail, waiting-to-reception depth, honesty card. Screens blanked. No PHI.",
+      "beats": [
+        {
+          "tc": "0:00–0:10",
+          "visual": "PE-RX-01 desk",
+          "voOrCaption": "Reception holds the list together — bookings, triage cues, and enquiries that should not break a consult."
+        },
+        {
+          "tc": "0:10–0:30",
+          "visual": "PE-RX-02 counter detail / phone",
+          "voOrCaption": "Results, scripts, and referral checks are routed. Urgent same-day needs are flagged without collapsing the whole morning."
+        },
+        {
+          "tc": "0:30–0:48",
+          "visual": "PE-RX-03 waiting → reception depth",
+          "voOrCaption": "When a session runs late, patients hear it from the desk. Continuity preferences are noted for the next booking."
+        },
+        {
+          "tc": "0:48–end",
+          "visual": "Honesty card",
+          "voOrCaption": "These are workflows that protect consulting time — not a customer-service slogan."
+        }
+      ]
+    },
+    {
+      "assetId": "VID-TM-01",
+      "module": "team_interactions",
+      "title": "Peer discussion — how we ask",
+      "durationSec": "45–60",
+      "posterStill": "PE-TM-01",
+      "videoPrompt": "Peer discussion vignette using corridor/doorway B-roll; talking-head beat reserved for consented GP later. Placeholder cut uses environment only.",
+      "beats": [
+        {
+          "tc": "0:00–0:10",
+          "visual": "PE-TM-01",
+          "voOrCaption": "Clinical questions here are short and specific — often between rooms, not in a meeting theatre."
+        },
+        {
+          "tc": "0:10–0:30",
+          "visual": "Interview talking head (consented GP — later)",
+          "voOrCaption": "When I am unsure, I ask a colleague or nursing. Autonomy matters — so does a second clinical mind."
+        },
+        {
+          "tc": "0:30–0:48",
+          "visual": "PE-TM-02 doorway",
+          "voOrCaption": "Privacy stays in the exchange: no identifiable detail in the corridor; escalate into a room when needed."
+        },
+        {
+          "tc": "0:48–end",
+          "visual": "Honesty card",
+          "voOrCaption": "This is professional peercraft — not a culture campaign."
+        }
+      ]
+    },
+    {
+      "assetId": "VID-CM-01",
+      "module": "community",
+      "title": "Place and case mix",
+      "durationSec": "45–60",
+      "posterStill": "PE-CM-01",
+      "videoPrompt": "Place-and-case-mix film: exterior, daylit waiting, honesty about published community language and no invented statistics.",
+      "beats": [
+        {
+          "tc": "0:00–0:12",
+          "visual": "PE-CM-01 exterior",
+          "voOrCaption": "Woolloongabba Medical Centre sits on Vulture Street in Brisbane’s inner south."
+        },
+        {
+          "tc": "0:12–0:32",
+          "visual": "PE-CM-02 daylit waiting / corridor",
+          "voOrCaption": "The book reflects local life stages — families, working adults, older patients — continuity built in one place."
+        },
+        {
+          "tc": "0:32–0:48",
+          "visual": "GP interview line (consented — later)",
+          "voOrCaption": "Practising here means the catchment shows up in ordinary weeks — not as a slogan, as case mix."
+        },
+        {
+          "tc": "0:48–end",
+          "visual": "Honesty card",
+          "voOrCaption": "We use published community language. We do not invent statistics for marketing."
+        }
+      ]
+    },
+    {
+      "assetId": "VID-CO-01",
+      "module": "continuity",
+      "title": "Continuity — what changes in the consult",
+      "durationSec": "60–90",
+      "posterStill": "PE-CO-01",
+      "videoPrompt": "Continuity film: waiting + empty consult atmosphere, composite framing honesty, no patient identities.",
+      "beats": [
+        {
+          "tc": "0:00–0:12",
+          "visual": "PE-CO-01 / PE-CO-02",
+          "voOrCaption": "Continuity is not a slogan here. It is recognising change from a baseline you already hold."
+        },
+        {
+          "tc": "0:12–0:40",
+          "visual": "GP talking head (consented — later)",
+          "voOrCaption": "Over years with the same family, the consult starts further along. You spend less time rebuilding the story and more time on what changed."
+        },
+        {
+          "tc": "0:40–1:05",
+          "visual": "Atmosphere stills PE-CO-03",
+          "voOrCaption": "Nursing recalls and same-GP booking habits keep the thread between sessions. When continuity breaks, repair is deliberate."
+        },
+        {
+          "tc": "1:05–end",
+          "visual": "On-screen: Composite examples · no patient identities",
+          "voOrCaption": "Published stories are privacy-safe composites. They describe practice — they are not case reports."
+        }
+      ]
+    },
+    {
+      "assetId": "VID-FS-01",
+      "module": "flexible_sessions",
+      "title": "Session patterns that hold",
+      "durationSec": "60–75",
+      "posterStill": "PE-FS-01",
+      "videoPrompt": "Flexible sessions film: room capacity, schedule cues, nursing cover constraint, constraints card Rooms · Nursing · Reliability.",
+      "beats": [
+        {
+          "tc": "0:00–0:12",
+          "visual": "PE-FS-01",
+          "voOrCaption": "Session patterns here are planned — full days, part-week footprints, or staged growth after settling."
+        },
+        {
+          "tc": "0:12–0:35",
+          "visual": "PE-FS-02 diary/clock detail",
+          "voOrCaption": "A part-week GP keeps continuity with clear recall and results habits for the days they are away."
+        },
+        {
+          "tc": "0:35–0:55",
+          "visual": "PE-FS-03 + GP line (consented — later)",
+          "voOrCaption": "Sessions increase when rooms, nursing cover, and demand align. Preferred days are not guaranteed."
+        },
+        {
+          "tc": "0:55–end",
+          "visual": "Constraints card: Rooms · Nursing · Reliability",
+          "voOrCaption": "These are examples of sustainable patterns — not a live vacancy board."
+        }
+      ]
+    },
+    {
+      "assetId": "VID-LS-01",
+      "module": "doctor_voices",
+      "title": "GP lifestyle — paced practice",
+      "durationSec": "45–60",
+      "posterStill": "LS-01",
+      "videoPrompt": "Lifestyle montage without faces: end-of-session desk, part-week footprint cues, neighbourhood approach, honesty that this is practice experience not a recruitment ad.",
+      "beats": [
+        {
+          "tc": "0:00–0:15",
+          "visual": "LS-01",
+          "voOrCaption": "The day ends with notes while context is still fresh."
+        },
+        {
+          "tc": "0:15–0:35",
+          "visual": "LS-02",
+          "voOrCaption": "Part-week footprints hold when reliability for patients is explicit."
+        },
+        {
+          "tc": "0:35–0:50",
+          "visual": "LS-03",
+          "voOrCaption": "Inner-south place is part of how the book feels — not a tourist brochure."
+        },
+        {
+          "tc": "0:50–end",
+          "visual": "Honesty card",
+          "voOrCaption": "Lifestyle cues describe practice rhythm. They are not job advertisements."
+        }
+      ]
+    }
+  ],
+  "hubModuleMap": [
+    { "module": "typical_day", "primaryStill": "PE-TD-01", "video": "VID-TD-01" },
+    { "module": "nursing", "primaryStill": "PE-NU-01", "video": "VID-NU-01" },
+    { "module": "reception", "primaryStill": "PE-RX-01", "video": "VID-RX-01" },
+    { "module": "team_interactions", "primaryStill": "PE-TM-01", "video": "VID-TM-01" },
+    { "module": "community", "primaryStill": "PE-CM-01", "video": "VID-CM-01" },
+    { "module": "continuity", "primaryStill": "PE-CO-01", "video": "VID-CO-01" },
+    { "module": "flexible_sessions", "primaryStill": "PE-FS-01", "video": "VID-FS-01" }
+  ]
+}
