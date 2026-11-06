@@ -54,8 +54,21 @@ describe("super admin grant workflow", () => {
     assert.ok(admin);
     assert.equal(admin.memberships.some((membership) => membership.role === "super_admin" && membership.clinicId === clinic.id), true);
     const practiceManagerRole = practiceManager?.memberships[0]?.role ?? null;
+    // Park extra enabled Super Admins (leftover trials / local ops) so the
+    // last-admin refusal path can still be exercised against `admin` alone.
+    const parkedExtras = await prisma.user.findMany({
+      where: {
+        disabledAt: null,
+        id: { not: admin.id },
+        memberships: { some: { clinicId: clinic.id, role: "super_admin" } },
+      },
+      select: { id: true, username: true },
+    });
+    for (const extra of parkedExtras) {
+      await prisma.user.update({ where: { id: extra.id }, data: { disabledAt: new Date() } });
+    }
     const before = await enabledSuperAdminCount(clinic.id);
-    assert.equal(before >= 1, true);
+    assert.equal(before, 1);
 
     const stamp = Date.now().toString(36);
     const deputyName = `gw.deputy.${stamp}`;
@@ -87,9 +100,7 @@ describe("super admin grant workflow", () => {
         targetRole: "super_admin",
         enabledSuperAdminCount: before,
       });
-      if (lastRefusal === "ok") {
-        throw new Error("The last Super Admin refusal was not tested because more than one is already active.");
-      }
+      assert.notEqual(lastRefusal, "ok");
       assert.equal(
         await setOtherStaffEnabled({
           actorId: editor.userId,
@@ -252,8 +263,14 @@ describe("super admin grant workflow", () => {
         await prisma.auditLog.deleteMany({ where: { entityId: { in: createdIds } } });
         await prisma.user.deleteMany({ where: { id: { in: createdIds } } });
       }
+      if (parkedExtras.length > 0) {
+        await prisma.user.updateMany({
+          where: { id: { in: parkedExtras.map((extra) => extra.id) } },
+          data: { disabledAt: null },
+        });
+      }
       const after = await enabledSuperAdminCount(clinic!.id);
-      assert.equal(after, before);
+      assert.equal(after, before + parkedExtras.length);
       const adminAfter = await prisma.user.findUnique({
         where: { id: admin!.id },
         select: { disabledAt: true, memberships: { select: { role: true } } },

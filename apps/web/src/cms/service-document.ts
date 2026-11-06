@@ -134,15 +134,24 @@ function readSection(id: string, inner: string, pagePath: string): ServiceSectio
       answer: textOf(match[2]),
     })),
     references: referencesIn(inner),
-    practitioners:
-      id === "related-practitioners"
-        ? [...inner.matchAll(/<a class="resource-link" href="([^"]+)"><span>([\s\S]*?)<\/span><span>([\s\S]*?)<\/span><\/a>/gi)].map((match) => ({
-            href: resolveSitePath(pagePath, match[1]) ?? match[1],
-            label: textOf(match[2]),
-            note: textOf(match[3]),
-          }))
-        : [],
+    practitioners: id === "related-practitioners" ? readPractitioners(inner, pagePath) : [],
   };
+}
+
+function readPractitioners(inner: string, pagePath: string): ServicePractitioner[] {
+  const knowledge = [...inner.matchAll(
+    /<a class="practitioner-knowledge-link" href="([^"]+)"><strong>([\s\S]*?)<\/strong><span>([\s\S]*?)<\/span>/gi,
+  )].map((match) => ({
+    href: resolveSitePath(pagePath, match[1]) ?? match[1],
+    label: textOf(match[2]),
+    note: textOf(match[3]),
+  }));
+  if (knowledge.length > 0) return knowledge;
+  return [...inner.matchAll(/<a class="resource-link" href="([^"]+)"><span>([\s\S]*?)<\/span><span>([\s\S]*?)<\/span><\/a>/gi)].map((match) => ({
+    href: resolveSitePath(pagePath, match[1]) ?? match[1],
+    label: textOf(match[2]),
+    note: textOf(match[3]),
+  }));
 }
 
 function applySection(inner: string, section: ServiceSection, pagePath: string): { inner: string; errors: string[] } {
@@ -196,7 +205,7 @@ function applySection(inner: string, section: ServiceSection, pagePath: string):
   );
   if (section.practitioners.length > 0) {
     let practitionerIndex = 0;
-    next = next.replace(/<a class="resource-link" href="([^"]+)"><span>([\s\S]*?)<\/span><span>([\s\S]*?)<\/span><\/a>/gi, (match, href: string, label: string, note: string) => {
+    const applyPractitioner = (match: string, label: string, note: string, render: (href: string, labelHtml: string, noteHtml: string) => string) => {
       const practitioner = section.practitioners[practitionerIndex];
       practitionerIndex += 1;
       if (!practitioner) return match;
@@ -207,8 +216,23 @@ function applySection(inner: string, section: ServiceSection, pagePath: string):
       }
       const nextLabel = sameText(label, practitioner.label) ? label : escapeText(practitioner.label);
       const nextNote = sameText(note, practitioner.note) ? note : escapeText(practitioner.note);
-      return `<a class="resource-link" href="${nextHref}"><span>${nextLabel}</span><span>${nextNote}</span></a>`;
-    });
+      return render(nextHref, nextLabel, nextNote);
+    };
+    if (/class="practitioner-knowledge-link"/i.test(next)) {
+      next = next.replace(
+        /<a class="practitioner-knowledge-link" href="([^"]+)"><strong>([\s\S]*?)<\/strong><span>([\s\S]*?)<\/span>(<em>[\s\S]*?<\/em>)?<\/a>/gi,
+        (match, _href: string, label: string, note: string, em = "") =>
+          applyPractitioner(match, label, note, (href, labelHtml, noteHtml) =>
+            `<a class="practitioner-knowledge-link" href="${href}"><strong>${labelHtml}</strong><span>${noteHtml}</span>${em || "<em>View practitioner profile →</em>"}</a>`,
+          ),
+      );
+    } else {
+      next = next.replace(/<a class="resource-link" href="([^"]+)"><span>([\s\S]*?)<\/span><span>([\s\S]*?)<\/span><\/a>/gi, (match, _href: string, label: string, note: string) =>
+        applyPractitioner(match, label, note, (href, labelHtml, noteHtml) =>
+          `<a class="resource-link" href="${href}"><span>${labelHtml}</span><span>${noteHtml}</span></a>`,
+        ),
+      );
+    }
   }
   return { inner: next, errors };
 }
@@ -265,7 +289,7 @@ function maskBlocks(inner: string): string {
   let next = inner
     .replace(/<details\b[\s\S]*?<\/details>/gi, (block) => " ".repeat(block.length))
     .replace(/<ul\b[\s\S]*?<\/ul>/gi, (block) => " ".repeat(block.length));
-  for (const className of ["resource-links", "care-journey-grid", "external-info"]) {
+  for (const className of ["resource-links", "practitioner-knowledge-links", "care-journey-grid", "external-info"]) {
     next = maskDiv(next, className);
   }
   return next;

@@ -1,6 +1,6 @@
 /**
  * QA2 — Practitioner profile template audit.
- * Live UAT review + static scan of all `old-html/doctors/*.html` (13 templates).
+ * Live UAT review + static scan of all `old-html/doctors/*.html` (12 templates; Gemunu removed).
  */
 
 export type PractitionerQaDimension =

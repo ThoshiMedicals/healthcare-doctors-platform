@@ -13,7 +13,7 @@ export const CATCHMENT_ANALYSIS_BODY: Prisma.InputJsonValue = {
   metaDescription:
     "Where Woolloongabba Medical Centre sits in Brisbane, who we look after nearby, and how that shapes the consulting book for GPs considering joining.",
   honestyLine:
-    "We describe place and community in plain language only. We do not invent census percentages, patient volumes or earnings claims.",
+    "We describe place and community in qualitative plain language only. We do not invent fabricated census percentages, patient volumes or earnings claims.",
   copy: "How Woolloongabba and neighbouring inner-south Brisbane communities shape the consulting book — place and case-mix awareness for doctors assessing fit.",
   h1: "Who we look after around here",
   lede: "Where we are in Brisbane, who lives and works nearby, and how that shapes the consulting book — so you can sense whether this practice matches how you want to practise.",

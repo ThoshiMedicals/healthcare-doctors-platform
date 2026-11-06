@@ -12,7 +12,7 @@ export const CONTINUITY_NETWORK_BODY: Prisma.InputJsonValue = {
   metaDescription:
     "How continuity operates at Woolloongabba Medical Centre with nearby hospitals, specialists, allied health and community services — workflow, not a directory.",
   honestyLine:
-    "This explains how continuity works day to day. It is not a specialist directory or a promise of guaranteed access.",
+    "This explains how continuity works day to day. It is not a referral marketplace, specialist directory, or a promise of guaranteed access.",
   copy: "Care coordination patterns around an inner-south general practice — hospitals nearby, correspondence load, allied health and community services — for doctors assessing fit.",
   h1: "How continuity works here",
   lede: "Same-GP booking habits, recalls, notes that assume shared history, and clear handoffs when care moves outside the practice.",

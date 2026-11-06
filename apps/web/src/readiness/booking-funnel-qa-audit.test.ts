@@ -48,10 +48,12 @@ const GOLDEN_JS = fs.readFileSync(path.resolve(process.cwd(), "../../old-html/si
 it("public and golden scripts parse, keeping all 12 valid peer records", () => {
   for (const source of [SITE_JS, GOLDEN_JS]) {
     assert.doesNotThrow(() => new Function(source));
-    const start = source.indexOf("  const PEERS = ");
-    const end = source.indexOf(";\n\n  const path =", start);
+    // Normalise CRLF so the PEERS marker parse is stable on Windows checkouts.
+    const normalised = source.replace(/\r\n/g, "\n");
+    const start = normalised.indexOf("  const PEERS = ");
+    const end = normalised.indexOf(";\n\n  const path =", start);
     assert.ok(start > 0 && end > start);
-    const peers = JSON.parse(source.slice(start + "  const PEERS = ".length, end));
+    const peers = JSON.parse(normalised.slice(start + "  const PEERS = ".length, end));
     assert.equal(Object.keys(peers.practitioners).length, 12);
     assert.equal(peers.practitioners["doctors/dr-mary-abadir.html"].name, "Dr Mary Abadir, Gynaecologist");
   }

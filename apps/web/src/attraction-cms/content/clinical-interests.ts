@@ -131,7 +131,7 @@ export const CLINICAL_INTERESTS_BODY: Prisma.InputJsonValue = {
   metaDescription:
     "How clinical interests — women’s health, mental health, skin and chronic disease — sit inside continuity general practice at Woolloongabba Medical Centre.",
   honestyLine:
-    "Clinical interests sit inside ordinary community general practice here — not as a specialty shopfront or vacancy list.",
+    "Clinical interests sit inside ordinary community general practice here — not as a specialty marketplace, shopfront, or vacancy list.",
   copy: "Framework for clinical interests that strengthen community care — credentials, support, nursing impact, room impact and growth pathway with capacity honesty.",
   h1: "Clinical interests inside general practice",
   lede: "We are a general practice first. Special interests are welcome when they help local patients and fit credentialing, team capacity and safe scope.",

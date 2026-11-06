@@ -531,6 +531,7 @@ body.ev-pe-page .pe-media--chapter img,body.pe-hub-page .pe-media--chapter img{
       pagePath,
     );
   // Mark recruitment surfaces before sticky CSS so body attribute checks stay accurate.
+  const isExpressInterestPage = /express-interest\.html$/i.test(pagePath);
   if (isRecruitmentSurface) {
     if (!/<body\b[^>]*\bdata-attraction-surface=/i.test(next)) {
       next = next.replace(/<body\b/i, '<body data-attraction-surface="true"');
@@ -541,15 +542,19 @@ body.ev-pe-page .pe-media--chapter img,body.pe-hub-page .pe-media--chapter img{
     // Strip before sticky rewrite so final inject order stays sticky → mobile.
     next = next.replace(/<style\b[^>]*id="wmc-recruit-mobile"[\s\S]*?<\/style>\s*/i, "");
   }
+  // EOI removes the sticky bar — strip leftover sticky injects so re-apply stays idempotent.
+  if (isExpressInterestPage) {
+    next = next.replace(/<style\b[^>]*id="wmc-recruit-sticky"[\s\S]*?<\/style>\s*/i, "");
+    next = next.replace(/<script\b[^>]*id="wmc-recruit-sticky-suppress"[\s\S]*?<\/script>\s*/i, "");
+  }
   // Only rewrite when a sticky <nav> exists — avoid matching class names inside CSS on EOI.
-  if (isRecruitmentSurface && /<nav\b[^>]*persistent-care-actions/i.test(next)) {
+  if (isRecruitmentSurface && !isExpressInterestPage && /<nav\b[^>]*persistent-care-actions/i.test(next)) {
     const eoiHref = pagePath.startsWith("join-our-team/")
       ? "express-interest.html"
       : pagePath.startsWith("about-us/")
         ? "../join-our-team/express-interest.html"
         : "join-our-team/express-interest.html";
-    const isExpressInterestPage = /express-interest\.html$/i.test(pagePath);
-    const stickyEoiHref = isExpressInterestPage ? "#eoi-form" : eoiHref;
+    const stickyEoiHref = eoiHref;
     const recruitContact = resolveRecruitmentContact(undefined, eoiHref);
     const isJoinLanding = pagePath === "join-our-team.html";
     const readinessHref = isJoinLanding
@@ -1020,17 +1025,11 @@ function refineHomepageHeroAuthority(html: string, branding: ClinicBranding): st
   let next = html.replace(/<section\b[^>]*\bid="home"[^>]*>[\s\S]*?<\/section>/i, hero);
   next = next.replace(/<style id="wmc-hero-desktop-split">[\s\S]*?<\/style>/i, "");
   next = next.replace(/<style id="wmc-hero-authority-v[345]">[\s\S]*?<\/style>/i, "");
+  // Always strip then append before </head> so a second apply keeps stable style order.
+  next = next.replace(/<style id="wmc-hero-authority-v6">[\s\S]*?<\/style>\s*/i, "");
+  next = next.replace(/<\/head>/i, `${HOMEPAGE_HERO_AUTHORITY_STYLE}</head>`);
 
-  if (next.includes('id="wmc-hero-authority-v6"')) {
-    next = next.replace(
-      /<style id="wmc-hero-authority-v6">[\s\S]*?<\/style>/i,
-      HOMEPAGE_HERO_AUTHORITY_STYLE,
-    );
-  } else {
-    next = next.replace(/<\/head>/i, `${HOMEPAGE_HERO_AUTHORITY_STYLE}</head>`);
-  }
-
-  next = next.replace(/<script id="wmc-hero-authority-actions">[\s\S]*?<\/script>/i, "");
+  next = next.replace(/<script id="wmc-hero-authority-actions">[\s\S]*?<\/script>\s*/i, "");
   next = next.replace(/<\/body>/i, `${HOMEPAGE_HERO_AUTHORITY_SCRIPT}</body>`);
 
   return next;

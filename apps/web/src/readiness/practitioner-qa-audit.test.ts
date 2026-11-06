@@ -11,8 +11,8 @@ describe("practitioner QA audit (QA2)", () => {
   it("exposes consistency, visual, and functional scores for all templates", () => {
     const audit = getPractitionerQaAudit();
     assert.equal(audit.promptId, "QA2");
-    assert.equal(audit.templateCount, 13);
-    assert.equal(audit.templatePaths.length, 13);
+    assert.equal(audit.templateCount, 12);
+    assert.equal(audit.templatePaths.length, 12);
     assert.equal(getPractitionerConsistencyScore(), audit.consistencyScore);
     assert.equal(getPractitionerVisualScore(), audit.visualScore);
     assert.equal(getPractitionerFunctionalScore(), audit.functionalScore);

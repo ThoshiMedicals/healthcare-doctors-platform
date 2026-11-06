@@ -17,7 +17,7 @@ export const PRACTICE_EXPERIENCE_HUB_CONTENT: PracticeExperienceHubContent = {
   lede:
     "How a consulting week runs at this inner-south practice — day shape, nursing, reception, continuity and sessions — so you can judge fit for yourself.",
   honestyLine:
-    "This describes how the practice works. It is not a job advertisement.",
+    "This practice experience page describes how the practice works. These are not job advertisements.",
   modules: [
     {
       id: "typical_day",
