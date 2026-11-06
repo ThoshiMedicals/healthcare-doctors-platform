@@ -79,6 +79,17 @@ export async function storeCareerResume(input: {
     throw new Error("Resume PDF content is invalid.");
   }
 
+  const { putPrivateObject, privateObjectStoreMode } = await import("@/storage/private-object-store");
+  if (privateObjectStoreMode() === "postgres") {
+    return putPrivateObject({
+      clinicId: input.clinicId,
+      purpose: "career_resume",
+      fileName,
+      mimeType: input.mimeType || "application/octet-stream",
+      bytes: input.bytes,
+    });
+  }
+
   const relativeDir = path.join(input.clinicId, input.applicationId);
   const absoluteDir = path.join(careersStorageRoot(), relativeDir);
   await mkdir(absoluteDir, { recursive: true });

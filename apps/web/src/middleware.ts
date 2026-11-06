@@ -4,6 +4,12 @@ import { foreignOrigin } from "@/auth/same-origin";
 import { ACTIVITY_COOKIE, activityCookieOptions, idleExpired } from "@/auth/session-policy";
 import { CLINIC_HOST_HEADER, developmentRequestOrigin, hostnameFromHostHeader, prefersSecureCookie } from "@/clinics/host";
 import { publicHostRedirectUrl } from "@/http/public-host";
+import {
+  STAGING_ROBOTS_DIRECTIVE,
+  isStagingNoIndexHost,
+  stagingRobotsTxt,
+  stagingSitemapXml,
+} from "@/seo/staging-noindex";
 import { resolveWordpressLegacyRedirect } from "@/seo/wordpress-legacy-redirects";
 
 function clearAdminSession(response: NextResponse) {
@@ -13,10 +19,14 @@ function clearAdminSession(response: NextResponse) {
   return response;
 }
 
-/** Staff and API responses must not be indexed. Public pages are left unchanged. */
-function keepOutOfIndex(response: NextResponse, pathname: string) {
-  if (pathname.startsWith("/admin") || pathname.startsWith("/api/")) {
-    response.headers.set("X-Robots-Tag", "noindex, nofollow");
+/** Staff/API always noindex; staging preview hosts noindex all routes. */
+function keepOutOfIndex(response: NextResponse, pathname: string, hostHeader: string | null = null) {
+  if (
+    isStagingNoIndexHost(hostHeader) ||
+    pathname.startsWith("/admin") ||
+    pathname.startsWith("/api/")
+  ) {
+    response.headers.set("X-Robots-Tag", STAGING_ROBOTS_DIRECTIVE);
   }
   return response;
 }
@@ -38,6 +48,29 @@ async function sessionToken(request: NextRequest) {
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const host = request.headers.get("x-forwarded-host") ?? request.headers.get("host");
+
+  // Staging must not serve production robots/sitemap from public/ static files.
+  if (isStagingNoIndexHost(host) && pathname === "/robots.txt") {
+    return new NextResponse(stagingRobotsTxt(), {
+      status: 200,
+      headers: {
+        "content-type": "text/plain; charset=utf-8",
+        "X-Robots-Tag": STAGING_ROBOTS_DIRECTIVE,
+        "cache-control": "no-store",
+      },
+    });
+  }
+  if (isStagingNoIndexHost(host) && pathname === "/sitemap.xml") {
+    return new NextResponse(stagingSitemapXml(), {
+      status: 200,
+      headers: {
+        "content-type": "application/xml; charset=utf-8",
+        "X-Robots-Tag": STAGING_ROBOTS_DIRECTIVE,
+        "cache-control": "no-store",
+      },
+    });
+  }
+
   const hostRedirect = publicHostRedirectUrl({
     hostHeader: host,
     protocol: request.nextUrl.protocol,
@@ -46,7 +79,7 @@ export async function middleware(request: NextRequest) {
     search: request.nextUrl.search,
   });
   if (hostRedirect) {
-    return keepOutOfIndex(NextResponse.redirect(hostRedirect, 301), pathname);
+    return keepOutOfIndex(NextResponse.redirect(hostRedirect, 301), pathname, host);
   }
 
   // WordPress pretty URLs → approved .html destinations (single-hop 301, same host).
@@ -55,7 +88,7 @@ export async function middleware(request: NextRequest) {
     // Build an absolute URL so Next does not append a trailing slash to `.html` targets.
     const dest = new URL(legacyTarget, request.nextUrl.origin);
     dest.search = request.nextUrl.search;
-    return keepOutOfIndex(NextResponse.redirect(dest, 301), pathname);
+    return keepOutOfIndex(NextResponse.redirect(dest, 301), pathname, host);
   }
   if (foreignOrigin(request.method, request.headers.get("origin"), host)) {
     return keepOutOfIndex(
@@ -64,6 +97,7 @@ export async function middleware(request: NextRequest) {
         headers: { "content-type": "text/plain; charset=utf-8" },
       }),
       pathname,
+      host,
     );
   }
   const isAdmin = pathname.startsWith("/admin");
@@ -76,7 +110,7 @@ export async function middleware(request: NextRequest) {
     request.nextUrl.origin;
 
   if (isAdmin && !isPublicAdmin && !signedIn) {
-    return keepOutOfIndex(NextResponse.redirect(new URL("/admin/login", origin)), pathname);
+    return keepOutOfIndex(NextResponse.redirect(new URL("/admin/login", origin)), pathname, host);
   }
 
   const requestHeaders = new Headers(request.headers);
@@ -93,12 +127,16 @@ export async function middleware(request: NextRequest) {
     const issuedAt = typeof token?.iat === "number" ? token.iat * 1000 : 0;
     const freshSignIn = lastActivity == null && issuedAt > 0 && now - issuedAt <= 2 * 60 * 1000;
     if (lastActivity == null ? !freshSignIn : idleExpired(lastActivity, now)) {
-      return keepOutOfIndex(clearAdminSession(NextResponse.redirect(new URL("/admin/login", origin))), pathname);
+      return keepOutOfIndex(
+        clearAdminSession(NextResponse.redirect(new URL("/admin/login", origin))),
+        pathname,
+        host,
+      );
     }
     response.cookies.set(ACTIVITY_COOKIE, String(now), activityCookieOptions(secureRequest(request)));
   }
 
-  return keepOutOfIndex(response, pathname);
+  return keepOutOfIndex(response, pathname, host);
 }
 
 export const config = {

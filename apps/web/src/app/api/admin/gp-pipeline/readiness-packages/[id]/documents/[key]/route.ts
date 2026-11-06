@@ -35,6 +35,24 @@ export async function GET(
   if (!doc?.storagePath) return NextResponse.json({ error: "Document not found" }, { status: 404 });
 
   const storagePath = String(doc.storagePath);
+  const fileName = String(doc.fileName || path.basename(storagePath));
+
+  if (storagePath.startsWith("pg:")) {
+    const { getPrivateObjectBytes } = await import("@/storage/private-object-store");
+    try {
+      const bytes = await getPrivateObjectBytes({ storagePath });
+      return new NextResponse(new Uint8Array(bytes), {
+        headers: {
+          "Content-Type": contentTypeFor(fileName),
+          "Content-Disposition": `attachment; filename="${fileName.replace(/"/g, "")}"`,
+          "Cache-Control": "private, no-store",
+        },
+      });
+    } catch {
+      return NextResponse.json({ error: "File missing" }, { status: 404 });
+    }
+  }
+
   const absolute = path.isAbsolute(storagePath)
     ? storagePath
     : path.join(careersReadinessStorageRoot(), storagePath);
@@ -43,7 +61,6 @@ export async function GET(
   }
 
   const bytes = await readFile(absolute);
-  const fileName = String(doc.fileName || path.basename(absolute));
   return new NextResponse(bytes, {
     headers: {
       "Content-Type": contentTypeFor(absolute),

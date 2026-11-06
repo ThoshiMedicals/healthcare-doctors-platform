@@ -35,5 +35,10 @@ uploads/
 
 # Local database and generated image files
 .pgdata/
-storage/
+# Local filesystem private uploads (not src/storage code modules)
+/storage/
 backups/
+
+.tmp-staging*
+.tmp-migrate-chunks/
+.tmp-local-migration-checksums.json

@@ -216,6 +216,7 @@ model Clinic {
   contentIntelSignals  ContentIntelligenceSignalDaily[]
   contentIntelRuns     ContentIntelligenceInsightRun[]
   knowledgeGraphSnaps  AttractionKnowledgeGraphSnapshot[]
+  privateObjects       PrivateObject[]
   linkedLocations      NetworkLocation[]  @relation("LinkedClinic")
   createdAt            DateTime           @default(now()) @map("created_at")
   updatedAt            DateTime           @updatedAt @map("updated_at")
@@ -2309,4 +2310,22 @@ model AttractionKnowledgeGraphSnapshot {
 
   @@index([clinicId, generatedAt])
   @@map("attraction_knowledge_graph_snapshots")
+}
+
+/// Server-only private blobs (CVs, GP readiness docs). Not exposed via Data API.
+/// Used when PRIVATE_OBJECT_STORE=postgres so Hostinger redeploys do not wipe files.
+model PrivateObject {
+  id         String   @id @default(cuid())
+  clinicId   String   @map("clinic_id")
+  purpose    String
+  objectKey  String   @unique @map("object_key")
+  fileName   String   @map("file_name")
+  mimeType   String   @map("mime_type")
+  sizeBytes  Int      @map("size_bytes")
+  bytes      Bytes
+  clinic     Clinic   @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@index([clinicId, purpose, createdAt])
+  @@map("private_objects")
 }

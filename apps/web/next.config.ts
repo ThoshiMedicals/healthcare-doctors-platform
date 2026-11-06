@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 import { withSecurityHeaders } from "./security-headers";
 
 const uatQuickTunnel = process.env.UAT_QUICK_TUNNEL === "true";
+const stagingNoIndex = process.env.STAGING_NOINDEX === "true";
 
 const nextConfig: NextConfig = {
   distDir: uatQuickTunnel ? ".next-uat" : ".next",
@@ -45,9 +46,9 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
-      ...(uatQuickTunnel ? [{
+      ...(uatQuickTunnel || stagingNoIndex ? [{
         source: "/:path*",
-        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" }],
       }] : []),
       // Ensure browsers revalidate icon files after brand-mark revisions.
       ...["/favicon.ico", "/favicon-16x16.png", "/favicon-32x32.png", "/apple-touch-icon.png"]

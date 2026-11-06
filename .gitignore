@@ -43,7 +43,11 @@ canvases/
 # Local database, generated uploads, and backup copies
 .pgdata/
 apps/web/.pgdata/
-storage/
+# Local upload dirs only — do not ignore apps/web/src/storage source modules
+/storage/
+apps/web/storage/
+!apps/web/src/storage/
+!apps/web/src/storage/**
 backups/
 
 # Operating system and bytecode

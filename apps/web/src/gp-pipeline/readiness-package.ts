@@ -150,6 +150,24 @@ export async function storeReadinessUpload(input: {
     throw new Error("Supporting documents must be PDF, Word, JPG, PNG, or WEBP.");
   }
 
+  const { putPrivateObject, privateObjectStoreMode } = await import("@/storage/private-object-store");
+  if (privateObjectStoreMode() === "postgres") {
+    const stored = await putPrivateObject({
+      clinicId: input.clinicId,
+      purpose: "gp_readiness",
+      fileName: `${input.key}-${fileName}`,
+      mimeType: input.mimeType || "application/octet-stream",
+      bytes: input.bytes,
+    });
+    return {
+      key: input.key,
+      storagePath: stored.storagePath,
+      fileName,
+      mimeType: stored.mimeType,
+      sizeBytes: stored.sizeBytes,
+    };
+  }
+
   const relativeDir = path.join(input.clinicId, input.packageId);
   const absoluteDir = path.join(careersReadinessStorageRoot(), relativeDir);
   await mkdir(absoluteDir, { recursive: true });
