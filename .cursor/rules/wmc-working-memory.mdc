@@ -13,15 +13,13 @@ alwaysApply: true
 - **Homepage hero + landing presentation FROZEN (2026-11-05):** authority v6 in `apps/web/src/documents/public-ux.ts` (`hero--authority-v6`, practitioner strip, linked stats, HotDoc benefit cards, `#team` carousel removed). Do not iterate hero/landing layout, copy hierarchy, or those homepage sections unless the operator explicitly asks. Cache bust token currently `wmc-hero-authority-v6f-20261105`.
 - Production deploy guide is `deployment/LAUNCH.md` only. Hostinger and Cloudflare Pages are superseded/fail paths.
 
-## Repo and release tip (as of 2026-11-03)
+## Repo and release tip (as of 2026-11-07)
 
 - Repo: `ThoshiMedicals/healthcare-doctors-platform` (local folder `WMC-Master-Project`).
-- Active release branch: `rg01-release-gate-repairs`.
-- Tip SHA to ship: **`3875dc3`** (Phase 1B/1C authority artifact + insurance-notice gate alignment; `placeRestriction` removed). Homepage hero freeze commit on branch: **`6874998`** (authority v6 / landing presentation) — not yet promoted as cutover ship tip. Local uncommitted: multi-tenant Phase 1; tier pills removed; draft EMP clinic exercise (`eight-mile-plains` status=draft, no DNS/pages). Reports: `docs/WMC-MULTI-TENANT-FOUNDATION-PHASE1.md`, `docs/WMC-DRAFT-SECOND-CLINIC-EXERCISE.md`. Second-clinic readiness **64/100**.
-- Older tips `09b7d78` / `e305e87` are **ancestors** — do not treat them as current tip.
-- Cutover status: **NO-GO** — 8/8 ops evidence items FAIL (2026-11-03). See `docs/WMC-PRODUCTION-READINESS-EVIDENCE.md` and `deployment/DNS-CUTOVER-CHECKLIST.md`.
-- Related hotfix branch merged in: `hotfix/wmc-phone-only-practitioner-booking-20261101`.
-- Commit style in practice often uses `fix(wmc): …` / `merge(wmc): …`.
+- Hostinger RC branch: `release/wmc-hostinger-rc1` tip **`0e237a3`** (public HTML cache + query cuts; pooler fix `ad172cb` ancestor). Staging: `mediumslateblue-eagle-960503.hostingersite.com`. Perf report: `docs/WMC-HOSTINGER-PERFORMANCE-REMEDIATION.md` — **PASS** (warm Hostinger nav ~200 ms HIT).
+- Older ship-tip notes for `rg01-release-gate-repairs` / `3875dc3` / hero freeze `6874998` remain historical for that line — do not confuse with Hostinger RC tip.
+- Cutover status: **NO-GO** for DNS/production; **GO FOR CUTOVER PLANNING** per final RC gate. See `docs/WMC-FINAL-RELEASE-CANDIDATE-GATE.md`, `docs/WMC-PRODUCTION-READINESS-EVIDENCE.md`, `deployment/DNS-CUTOVER-CHECKLIST.md`.
+- Commit style in practice often uses `fix(wmc): …` / `merge(wmc): …` / `docs(wmc): …`.
 
 ## How `next.` is hosted (critical)
 
