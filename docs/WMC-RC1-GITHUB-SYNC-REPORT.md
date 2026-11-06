@@ -231,3 +231,9 @@ Rationale: the complete approved local platform is now in a reproducible Git bra
 5. Staging acceptance pack from Hostinger readiness doc  
 
 *Local UAT and WordPress production were not modified for deploy.*
+
+
+## Tip amendment
+
+Final tip after including pending public-ux polish: `8faac0af2cbf76ecf28cdb36baacc53498fea0d4` ($short). Prior tip `ef6e85f` remains an ancestor.
+
