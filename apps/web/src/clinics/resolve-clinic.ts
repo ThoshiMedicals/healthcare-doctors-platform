@@ -2,6 +2,10 @@ import { headers } from "next/headers";
 import type { Clinic, ClinicProfile, ClinicStatus } from "@prisma/client";
 import { prisma } from "@/db/prisma";
 import { CLINIC_HOST_HEADER, hostnameFromHostHeader, isLocalHost, isQuickTunnelHost } from "@/clinics/host";
+import {
+  getCachedClinicByHost,
+  setCachedClinicByHost,
+} from "@/documents/public-html-cache";
 
 export { CLINIC_HOST_HEADER, hostnameFromHostHeader };
 
@@ -13,12 +17,17 @@ export async function resolveClinicByHost(hostname: string): Promise<ResolvedCli
   const host = hostnameFromHostHeader(hostname);
   if (!host) return null;
 
+  const cached = getCachedClinicByHost<ResolvedClinic | null>(host);
+  if (cached !== undefined) return cached;
+
   if (isLocalHost(host) || isQuickTunnelHost(host)) {
     const slug = process.env.DEFAULT_CLINIC_SLUG || "woolloongabba";
-    return prisma.clinic.findUnique({
+    const clinic = await prisma.clinic.findUnique({
       where: { slug },
       include: { profile: true },
     });
+    setCachedClinicByHost(host, clinic);
+    return clinic;
   }
 
   const domain = await prisma.clinicDomain.findUnique({
@@ -26,8 +35,11 @@ export async function resolveClinicByHost(hostname: string): Promise<ResolvedCli
     include: { clinic: { include: { profile: true } } },
   });
 
-  if (!domain) return null;
-  if (domain.clinic.status !== "live") return null;
+  if (!domain || domain.clinic.status !== "live") {
+    setCachedClinicByHost(host, null);
+    return null;
+  }
+  setCachedClinicByHost(host, domain.clinic);
   return domain.clinic;
 }
 

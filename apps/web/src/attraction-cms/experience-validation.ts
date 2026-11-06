@@ -4,6 +4,7 @@
  * NEVER calls publishAttractionDocumentToProduction().
  */
 import { prisma } from "@/db/prisma";
+import { invalidatePublicHtmlCache } from "@/documents/public-html-cache";
 import { PRACTICE_EXPERIENCE_HUB_CONTENT } from "@/practice-experience/hub-content";
 import { renderPracticeExperienceHubHtml } from "@/practice-experience/render-hub-html";
 import { assertPracticeExperienceSchema } from "@/practice-experience/schema-guards";
@@ -422,6 +423,8 @@ export async function promoteAttractionExperienceValidation(input: {
       }),
     );
   }
+
+  invalidatePublicHtmlCache(input.clinicId);
 
   return {
     clinicSlug: input.clinicSlug,

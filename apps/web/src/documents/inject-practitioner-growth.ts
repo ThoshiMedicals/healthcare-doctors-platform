@@ -199,6 +199,16 @@ export async function injectPractitionerGrowth(
   pagePath: string,
   html: string,
 ): Promise<string> {
+  // Growth badges / filters only apply to team directories and doctor profiles.
+  // Skip the practitioner list query on every other public path.
+  if (
+    pagePath !== "team.html" &&
+    pagePath !== "team-general-practitioners.html" &&
+    !pagePath.startsWith("doctors/")
+  ) {
+    return html;
+  }
+
   const cards = await listPublishedPractitionerGrowth(clinicId);
   if (!cards.length) return html;
   const index = byPath(cards);

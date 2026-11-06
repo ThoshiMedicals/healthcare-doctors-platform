@@ -15,6 +15,7 @@ import { goldenHtmlRoot, webRoot } from "@/importer/golden-root";
 import { fingerprintContent } from "@/governance/fingerprint";
 import { governanceCompletionGaps } from "@/governance/status";
 import { writePublishedGovernanceRegistry } from "@/governance/write-published-registry";
+import { invalidatePublicHtmlCache } from "@/documents/public-html-cache";
 
 export type ReleaseEntity =
   | "practitioner"
@@ -101,6 +102,7 @@ export async function publishEntity(entry: {
     entityType: entry.entityType,
     entityId: entry.entityId,
   });
+  invalidatePublicHtmlCache(entry.clinicId);
   return { ok: true };
 }
 

@@ -366,6 +366,7 @@ export async function saveUpdate(formData: FormData) {
 export async function saveVacancy(formData: FormData) {
   const { clinic } = await requireAction("edit");
   const { isVacancyRoleCategory, isVacancyStatus, linesToList } = await import("@/cms/careers-vacancies");
+  const { invalidatePublicHtmlCache } = await import("@/documents/public-html-cache");
   const id = text(formData, "id");
   const statusRaw = text(formData, "status");
   const roleRaw = text(formData, "roleCategory");
@@ -402,20 +403,24 @@ export async function saveVacancy(formData: FormData) {
     const current = await prisma.vacancy.findFirst({ where: { id, clinicId: clinic.id } });
     if (!current) redirect("/admin/careers/vacancies");
     await prisma.vacancy.update({ where: { id }, data });
+    invalidatePublicHtmlCache(clinic.id);
     redirect(`/admin/careers/vacancies/${id}?saved=1`);
   }
   const created = await prisma.vacancy.create({
     data: { clinicId: clinic.id, ...data },
   });
+  invalidatePublicHtmlCache(clinic.id);
   redirect(`/admin/careers/vacancies/${created.id}?saved=1`);
 }
 
 export async function deleteVacancy(formData: FormData) {
   const { clinic } = await requireAction("edit");
+  const { invalidatePublicHtmlCache } = await import("@/documents/public-html-cache");
   const id = text(formData, "id");
   const current = await prisma.vacancy.findFirst({ where: { id, clinicId: clinic.id } });
   if (!current) redirect("/admin/careers/vacancies");
   await prisma.vacancy.delete({ where: { id } });
+  invalidatePublicHtmlCache(clinic.id);
   redirect("/admin/careers/vacancies?deleted=1");
 }
 

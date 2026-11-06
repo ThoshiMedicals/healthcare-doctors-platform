@@ -6,6 +6,7 @@ import type {
   Practitioner,
 } from "@prisma/client";
 import { prisma } from "@/db/prisma";
+import { invalidatePublicHtmlCache } from "@/documents/public-html-cache";
 import type { ReadinessPackagePayload } from "./readiness-package";
 
 export const GP_DOCTOR_PROFILE_STATUS_LABEL: Record<GpDoctorProfileStatus, string> = {
@@ -656,6 +657,7 @@ export async function publishDoctorProfileToPractitioner(input: {
           note: `Published to practitioner ${practitioner.slug}`,
         });
 
+  invalidatePublicHtmlCache(input.clinicId);
   return { profile: updatedProfile, practitioner: updatedPractitioner };
 }
 

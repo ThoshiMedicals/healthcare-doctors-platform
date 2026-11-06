@@ -34,6 +34,24 @@ export type RenderedPage = {
   status: number;
   html: string;
   path: string;
+  /** Stage timings in ms for Server-Timing (no secrets). */
+  timings?: Record<string, number>;
+};
+
+export type RenderClinicContext = {
+  slug: string;
+  practiceName: string;
+  profile: {
+    phoneDisplay: string;
+    phoneTel: string;
+    email: string;
+    streetAddress: string;
+    suburb: string;
+    state: string;
+    postcode: string;
+    hotdocUrl: string | null;
+    logoPath: string | null;
+  } | null;
 };
 
 /**
@@ -82,11 +100,11 @@ export async function getPublishedDocument(
   const withMedia = isExperienceValidation
     ? overlaid.html
     : await applyOtherPractitionerMedia(clinicId, page.practitioner?.id ?? null, overlaid.html);
-  const withRepeats = isExperienceValidation
+  // Careers vacancy inject runs once in renderStoredPage after public UX (Join Our Team
+  // rebuilds <main> and would wipe an earlier inject).
+  const html = isExperienceValidation
     ? withMedia
     : await applyStoredRepeats(clinicId, withMedia);
-  // Careers vacancy inject still runs on join-our-team (EV or golden).
-  const html = await injectCareersVacancies(withRepeats, page.path, clinicId);
 
   return {
     path: page.path,
@@ -188,28 +206,45 @@ async function welcomeBookingHref(clinicId: string, pagePath: string): Promise<s
   return fromPayload || row.bookingUrl || null;
 }
 
+function mark(timings: Record<string, number>, key: string, started: number): void {
+  timings[key] = Math.max(0, Date.now() - started);
+}
+
 /** Serves a stored page. Unknown paths receive the approved 404.html document with status 404. */
-export async function renderStoredPage(clinicId: string, storagePath: string): Promise<RenderedPage | null> {
-  const clinic = await prisma.clinic.findUnique({
-    where: { id: clinicId },
-    select: {
-      slug: true,
-      practiceName: true,
-      profile: {
-        select: {
-          phoneDisplay: true,
-          phoneTel: true,
-          email: true,
-          streetAddress: true,
-          suburb: true,
-          state: true,
-          postcode: true,
-          hotdocUrl: true,
-          logoPath: true,
+export async function renderStoredPage(
+  clinicId: string,
+  storagePath: string,
+  clinicContext?: RenderClinicContext | null,
+): Promise<RenderedPage | null> {
+  const timings: Record<string, number> = {};
+  const renderStarted = Date.now();
+
+  let clinic = clinicContext ?? null;
+  if (!clinic) {
+    const clinicStarted = Date.now();
+    clinic = await prisma.clinic.findUnique({
+      where: { id: clinicId },
+      select: {
+        slug: true,
+        practiceName: true,
+        profile: {
+          select: {
+            phoneDisplay: true,
+            phoneTel: true,
+            email: true,
+            streetAddress: true,
+            suburb: true,
+            state: true,
+            postcode: true,
+            hotdocUrl: true,
+            logoPath: true,
+          },
         },
       },
-    },
-  });
+    });
+    mark(timings, "clinic", clinicStarted);
+  }
+
   const branding = clinic
     ? brandingFromClinic(clinic)
     : brandingFromClinic({
@@ -218,10 +253,15 @@ export async function renderStoredPage(clinicId: string, storagePath: string): P
         profile: null,
       });
   const uxOptions = { clinicSlug: branding.clinicSlug, branding };
+
+  const documentStarted = Date.now();
   const document = await getPublishedDocument(clinicId, storagePath);
+  mark(timings, "document", documentStarted);
+
   if (document) {
-    // Vacancy inject also runs after public UX: Join Our Team rebuilds <main> and would
-    // otherwise wipe the careers-vacancies markers inserted earlier in getPublishedDocument.
+    const injectStarted = Date.now();
+    // Vacancy inject runs after public UX: Join Our Team rebuilds <main> and would
+    // otherwise wipe careers-vacancies markers inserted before UX refinements.
     const withImportedTeam = await injectCmsPractitionersIntoTeamHtml(
       clinicId,
       document.path,
@@ -254,6 +294,9 @@ export async function renderStoredPage(clinicId: string, storagePath: string): P
     const withGrowth = withPractitionerGrowthStyle(
       await injectPractitionerGrowth(clinicId, document.path, withProfileWelcome),
     );
+    mark(timings, "inject", injectStarted);
+
+    const uxStarted = Date.now();
     const refined = applyFaviconLinks(
       applyPublicUxRefinements(
         optimiseHomepageDelivery(applyAccessibilityClosure(withGrowth, document.path), document.path),
@@ -261,21 +304,30 @@ export async function renderStoredPage(clinicId: string, storagePath: string): P
         uxOptions,
       ),
     );
+    const html = await injectCareersVacancies(refined, document.path, clinicId);
+    mark(timings, "ux", uxStarted);
+    mark(timings, "total", renderStarted);
+
     return {
       status: 200,
-      html: await injectCareersVacancies(refined, document.path, clinicId),
+      html,
       path: document.path,
+      timings,
     };
   }
 
   if (storagePath === "404.html") return null;
+  const notFoundStarted = Date.now();
   const notFound = await getPublishedDocument(clinicId, "404.html");
+  mark(timings, "document404", notFoundStarted);
   if (!notFound) return null;
+  mark(timings, "total", renderStarted);
   return {
     status: 404,
     html: applyFaviconLinks(
       applyPublicUxRefinements(applyAccessibilityClosure(notFound.html, "404.html"), "404.html", uxOptions),
     ),
     path: "404.html",
+    timings,
   };
 }
