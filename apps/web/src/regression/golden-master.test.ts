@@ -23,8 +23,9 @@ test("navigation, header, footer, schema, accessibility, and Digital Reception m
   const failures: string[] = [];
 
   for (const relativePath of listHtmlFiles(root)) {
-    const goldenHtml = fs.readFileSync(path.join(root, relativePath), "utf8");
-    const platformHtml = rendered.get(relativePath);
+    // Normalise CRLF so Windows autocrlf checkouts compare equal to LF DB revisions.
+    const goldenHtml = fs.readFileSync(path.join(root, relativePath), "utf8").replace(/\r\n/g, "\n");
+    const platformHtml = rendered.get(relativePath)?.replace(/\r\n/g, "\n") ?? null;
     if (platformHtml == null) {
       failures.push(`${relativePath}: published HTML is missing`);
       continue;
