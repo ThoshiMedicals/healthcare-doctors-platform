@@ -16,9 +16,10 @@ test("production URLs keep the approved paths and the 404 document", () => {
 test("approved sitemap and robots are served unchanged", () => {
   const root = goldenHtmlRoot();
   const published = webRoot();
+  // Kept under public/seo-approved so Hostinger static short-circuit cannot serve them at /robots.txt|/sitemap.xml.
   for (const file of ["robots.txt", "sitemap.xml"]) {
     const approved = fs.readFileSync(path.join(root, file));
-    const served = fs.readFileSync(path.join(published, "public", file));
+    const served = fs.readFileSync(path.join(published, "public", "seo-approved", file));
     assert.equal(approved.equals(served), true, file);
   }
   const robots = fs.readFileSync(path.join(root, "robots.txt"), "utf8");
