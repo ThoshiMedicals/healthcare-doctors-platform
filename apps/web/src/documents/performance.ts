@@ -51,6 +51,30 @@ function optimiseImages(html: string, isHomepage: boolean): string {
   });
 }
 
+function deferGoogleFontsStylesheet(html: string): string {
+  // Keep display=swap fonts, but stop the Google CSS from blocking first paint / LCP.
+  return html.replace(
+    /<link\b(?=[^>]*fonts\.googleapis\.com\/css2)(?![^>]*data-wmc-font-defer="true")[^>]*>/gi,
+    (tag) => {
+      if (!/\brel="stylesheet"/i.test(tag)) return tag;
+      const attrs = tag
+        .replace(/^<link\b/i, "")
+        .replace(/\/?>$/i, "")
+        .replace(/\srel="stylesheet"/i, "")
+        .replace(/\s+/g, " ")
+        .trim();
+      return `<link ${attrs} rel="preload" as="style" data-wmc-font-defer="true" onload="this.onload=null;this.rel='stylesheet'"/><noscript><link ${attrs} rel="stylesheet"/></noscript>`;
+    },
+  );
+}
+
+function ensureHeroPhotoSizes(html: string): string {
+  return html.replace(/<img\b[^>]*\bclass="[^"]*\bhero-photo\b[^"]*"[^>]*>/gi, (tag) => {
+    if (/\bsizes\s*=/.test(tag)) return tag;
+    return tag.replace(/\s*\/?>$/, ' sizes="(max-width: 700px) 100vw, (max-width: 1024px) 100vw, min(56vw, 920px)">');
+  });
+}
+
 export function optimiseHomepageDelivery(html: string, pagePath: string): string {
   let next = html;
   const isHomepage = pagePath === "index.html";
@@ -68,6 +92,8 @@ export function optimiseHomepageDelivery(html: string, pagePath: string): string
         'href="assets/hero-final-desktop.webp" media="(max-width: 700px)"',
         'href="assets/hero-final-mobile.webp" media="(max-width: 700px)"',
       );
+    next = ensureHeroPhotoSizes(next);
+    next = deferGoogleFontsStylesheet(next);
   }
   return optimiseImages(next, isHomepage);
 }

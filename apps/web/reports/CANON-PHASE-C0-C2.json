@@ -1,0 +1,108 @@
+{
+  "phase": "C0-C2",
+  "completedAt": "2026-11-03T12:39:26.351Z",
+  "pagesChanged": [
+    "apps/web/public/governance-published.js",
+    "governance-published.js",
+    "knowledge/articles/anxiety-vs-stress-what-is-the-difference.html",
+    "knowledge/articles/childhood-vaccinations-explained.html",
+    "knowledge/articles/diabetes-care-plans-explained.html",
+    "knowledge/articles/how-can-a-gp-support-depression.html",
+    "knowledge/articles/living-with-diabetes.html",
+    "knowledge/articles/understanding-menopause.html",
+    "knowledge/articles/understanding-your-cardiovascular-risk.html",
+    "knowledge/articles/what-happens-during-a-mental-health-care-plan.html",
+    "knowledge/articles/when-should-i-book-a-skin-check.html",
+    "knowledge/articles/when-should-i-have-a-cervical-screening-test.html",
+    "knowledge/articles/when-should-i-speak-to-a-gp-about-anxiety.html",
+    "knowledge/articles/why-skin-checks-matter-in-australia.html",
+    "knowledge/childrens-health.html",
+    "knowledge/chronic-disease-management.html",
+    "knowledge/diabetes.html",
+    "knowledge/heart.html",
+    "knowledge/menopause.html",
+    "knowledge/mental-health.html",
+    "knowledge/skin-health-skin-cancer.html",
+    "knowledge/womens-health.html",
+    "services/childrens-health.html",
+    "services/chronic-disease-care.html",
+    "services/mental-health.html",
+    "services/preventive-healthcare.html",
+    "services/skin-checks.html",
+    "services/vaccinations.html",
+    "services/womens-health.html"
+  ],
+  "pageCount": 29,
+  "readiness": {
+    "lockedAt": "2026-11-03",
+    "phase": "C0-C2",
+    "components": {
+      "C0_inventoryLock": {
+        "score": 25,
+        "max": 25,
+        "note": "Registry JSON+MD locked"
+      },
+      "C1_p0Hubs": {
+        "score": 40,
+        "max": 40,
+        "detail": {
+          "knowledge/womens-health.html": {
+            "pts": 10,
+            "max": 10
+          },
+          "knowledge/menopause.html": {
+            "pts": 10,
+            "max": 10
+          },
+          "knowledge/skin-health-skin-cancer.html": {
+            "pts": 10,
+            "max": 10
+          },
+          "knowledge/mental-health.html": {
+            "pts": 10,
+            "max": 10
+          },
+          "knowledge/diabetes.html": {
+            "pts": 10,
+            "max": 10
+          },
+          "knowledge/heart.html": {
+            "pts": 10,
+            "max": 10
+          },
+          "knowledge/chronic-disease-management.html": {
+            "pts": 10,
+            "max": 10
+          },
+          "knowledge/childrens-health.html": {
+            "pts": 10,
+            "max": 10
+          }
+        },
+        "assetGaps": []
+      },
+      "C2_triangles": {
+        "score": 25,
+        "max": 25,
+        "trianglesPresent": 19,
+        "trianglesExpected": 19
+      },
+      "extractionCandidatesDocumented": {
+        "score": 10,
+        "max": 10,
+        "count": 28
+      }
+    },
+    "total": 100,
+    "max": 100,
+    "percent": 100
+  },
+  "extractionCandidates": 28,
+  "assetGaps": [],
+  "outputs": [
+    "docs/WMC-CANON-REGISTRY.md",
+    "docs/WMC-CANON-REGISTRY.json",
+    "apps/web/reports/CANON-PHASE-C0-C2.json",
+    "docs/WMC-CANON-PHASE-C0-C2-REPORT.md"
+  ]
+}

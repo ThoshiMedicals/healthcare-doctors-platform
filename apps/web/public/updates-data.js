@@ -17,6 +17,163 @@ window.UPDATE_CATEGORIES = [
 
 window.PRACTICE_UPDATES = [
   {
+    id: "welcome-dr-golnar-mortezaei",
+    title: "Welcome Dr Golnar Mortezaei to Woolloongabba Medical Centre",
+    category: "Practice Updates",
+    published: "2026-11-06",
+    dateLabel: "6 November 2026",
+    summary: "We are pleased to welcome Dr Golnar Mortezaei to Woolloongabba Medical Centre. Dr Mortezaei is now accepting new patients and appointments can be booked online or by contacting our reception team.",
+    metaTitle: "Welcome Dr Golnar Mortezaei | Woolloongabba Medical Centre",
+    metaDescription: "Now welcoming new patients. Learn more about Dr Golnar Mortezaei and book an appointment online with Woolloongabba Medical Centre.",
+    image: "welcome-dr-golnar-mortezaei",
+    imageAlt: "Welcome Dr Golnar Mortezaei to Woolloongabba Medical Centre",
+    author: "Practice Team",
+    featured: true,
+    tags: ["New Doctor", "General Practice", "Women's Health", "Woolloongabba Medical Centre"],
+    sections: [
+      {
+        heading: "Introducing Dr Golnar Mortezaei",
+        paragraphs: [
+          "Dr Golnar Mortezaei (MD, FRACGP) is a General Practitioner at Woolloongabba Medical Centre. She is an experienced General Practitioner with over 25 years of medical experience and is dedicated to providing personalised, compassionate healthcare through a collaborative, patient-centred approach.",
+          "Dr Golnar speaks English and Persian (Farsi)."
+        ]
+      },
+      {
+        heading: "Areas of Interest",
+        list: [
+          "Veterans' health",
+          "Chronic disease management and prevention",
+          "Diabetes",
+          "Heart disease",
+          "COPD",
+          "Osteoarthritis and osteoporosis"
+        ]
+      },
+      {
+        heading: "Welcoming New Patients",
+        paragraphs: [
+          "Dr Golnar Mortezaei is accepting new patients at Woolloongabba Medical Centre. If you are looking for a GP who can support ongoing primary care, chronic disease management or veterans' health needs, our reception team can help you book a suitable appointment."
+        ]
+      },
+      {
+        heading: "Booking Appointments",
+        paragraphs: [
+          "Appointments can be booked online through HotDoc or by contacting our reception team on (07) 3217 3344. Reception can also help you choose the most appropriate appointment type."
+        ],
+        ctas: [
+          {
+            href: "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors?wp=w_lightbox",
+            label: "Book Appointment Online"
+          },
+          {
+            href: "tel:+61732173344",
+            label: "Call Reception",
+            style: "text-link"
+          },
+          {
+            href: "../contact.html",
+            label: "Contact the practice",
+            style: "text-link"
+          }
+        ]
+      },
+      {
+        heading: "Learn More About Dr Golnar",
+        paragraphs: [
+          "Read Dr Golnar Mortezaei’s practitioner profile for qualifications, languages and clinical interests, or browse the full GP directory to explore the wider team."
+        ],
+        ctas: [
+          {
+            href: "../doctors/dr-golnar-mortezaei.html",
+            label: "View Dr Golnar’s profile"
+          },
+          {
+            href: "../team-general-practitioners.html",
+            label: "Doctor directory",
+            style: "text-link"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "welcome-dr-james-chanaka",
+    title: "Welcome Dr James Chanaka to Woolloongabba Medical Centre",
+    category: "Practice Updates",
+    published: "2026-11-06",
+    dateLabel: "6 November 2026",
+    summary: "We are pleased to welcome Dr James Chanaka to Woolloongabba Medical Centre. Dr Chanaka is now accepting new patients and appointments can be booked online or by contacting our reception team.",
+    metaTitle: "Welcome Dr James Chanaka | Woolloongabba Medical Centre",
+    metaDescription: "Now welcoming new patients. Learn more about Dr James Chanaka and book an appointment online with Woolloongabba Medical Centre.",
+    image: "welcome-dr-james-chanaka",
+    imageAlt: "Welcome Dr James Chanaka to Woolloongabba Medical Centre",
+    author: "Practice Team",
+    featured: true,
+    tags: ["New Doctor", "General Practice", "Family Medicine", "Woolloongabba Medical Centre"],
+    sections: [
+      {
+        heading: "Introducing Dr James Chanaka",
+        paragraphs: [
+          "Dr James is an experienced General Practitioner who holds a Bachelor of Medicine from the University of Zimbabwe and is a Fellow of the Royal Australian College of General Practitioners (FRACGP). He focuses on comprehensive, compassionate and patient-centred medical care for individuals and families.",
+          "Fluent in English and Shona, Dr James is committed to providing accessible and culturally sensitive healthcare to patients from diverse backgrounds."
+        ]
+      },
+      {
+        heading: "Areas of Interest",
+        list: [
+          "Children's health",
+          "Mental health",
+          "Family medicine"
+        ]
+      },
+      {
+        heading: "Welcoming New Patients",
+        paragraphs: [
+          "Dr James Chanaka is accepting new patients at Woolloongabba Medical Centre. Families and individuals looking for ongoing GP care — including children’s health and mental health support — are welcome to book with our team."
+        ]
+      },
+      {
+        heading: "Booking Appointments",
+        paragraphs: [
+          "Appointments can be booked online through HotDoc or by contacting our reception team on (07) 3217 3344. Reception can also help you choose the most appropriate appointment type."
+        ],
+        ctas: [
+          {
+            href: "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors?wp=w_lightbox",
+            label: "Book Appointment Online"
+          },
+          {
+            href: "tel:+61732173344",
+            label: "Call Reception",
+            style: "text-link"
+          },
+          {
+            href: "../contact.html",
+            label: "Contact the practice",
+            style: "text-link"
+          }
+        ]
+      },
+      {
+        heading: "Learn More About Dr James",
+        paragraphs: [
+          "Read Dr James Chanaka’s practitioner profile for qualifications, languages and clinical interests, or browse the full GP directory to explore the wider team."
+        ],
+        ctas: [
+          {
+            href: "../doctors/dr-james.html",
+            label: "View Dr James’s profile"
+          },
+          {
+            href: "../team-general-practitioners.html",
+            label: "Doctor directory",
+            style: "text-link"
+          }
+        ]
+      }
+    ]
+  },
+  {
     id: "new-patients-welcome",
     title: "New patients are welcome",
     category: "Patient Education",
@@ -26,7 +183,7 @@ window.PRACTICE_UPDATES = [
     image: "new-patients-welcome",
     imageAlt: "New patients are welcome at Woolloongabba Medical Centre",
     author: "Practice Team",
-    featured: true,
+    featured: false,
     sections: [
       {
         heading: "Starting care with us",

@@ -4,10 +4,24 @@ import { practiceDocumentFrom } from "@/cms/practice-document";
 import { publishedRepeats } from "@/cms/repeat-bindings";
 import { applyOverlay, applyRepeatBinding, practitionerFromPayload, type ClinicContent, type HourRow, type TextContent } from "@/cms/overlay";
 import { prisma } from "@/db/prisma";
+import { injectCareersVacancies } from "@/cms/careers-vacancies";
+import { brandingFromClinic } from "@/clinics/branding";
 import { applyAccessibilityClosure } from "@/documents/accessibility";
 import { optimiseHomepageDelivery } from "@/documents/performance";
 import { applyFaviconLinks } from "@/documents/favicon";
 import { applyPublicUxRefinements } from "@/documents/public-ux";
+import { injectCmsPractitionersIntoTeamHtml } from "@/documents/inject-cms-practitioners";
+import { injectCmsPractitionersIntoServiceHtml } from "@/documents/inject-cms-service-practitioners";
+import {
+  injectCmsUpdatesIntoIndexHtml,
+  injectProfileWelcomeUpdateLink,
+  injectWelcomeUpdateAuthorityLinks,
+  PROFILE_WELCOME_UPDATE,
+} from "@/documents/inject-cms-updates";
+import {
+  injectPractitionerGrowth,
+  withPractitionerGrowthStyle,
+} from "@/documents/inject-practitioner-growth";
 import { Prisma } from "@prisma/client";
 
 export type PublishedDocument = {
@@ -46,16 +60,33 @@ export async function getPublishedDocument(
   if (!page || page.status !== "published" || page.publishedRevision?.html == null) return null;
   if (!page.publishedRevision.immutable) return null;
 
-  const overlaid = applyOverlay(page.publishedRevision.html, {
-    practitioner: practitionerFromPayload(page.practitioner?.publishedPayload),
-    service: textContent(page.service?.publishedPayload, page.path),
-    article: textContent(page.knowledgeArticle?.publishedPayload, page.path),
-    update: textContent(page.practiceUpdate?.publishedPayload),
-    practice: textContent(page.practicePage?.publishedPayload, page.path),
-    clinic: clinicContent(page.clinic.profile?.publishedPayload),
-  });
-  const withMedia = await applyOtherPractitionerMedia(clinicId, page.practitioner?.id ?? null, overlaid.html);
-  const html = await applyStoredRepeats(clinicId, withMedia);
+  // Experience Validation PageRevisions are authoritative HTML — do not re-apply
+  // golden PracticePage title/lede overlays that would undo journey hub copy.
+  const revisionBody = page.publishedRevision.body;
+  const isExperienceValidation =
+    !!revisionBody &&
+    typeof revisionBody === "object" &&
+    !Array.isArray(revisionBody) &&
+    (revisionBody as { source?: string }).source === "attraction-experience-validation";
+
+  const overlaid = isExperienceValidation
+    ? { html: page.publishedRevision.html, errors: [] as string[] }
+    : applyOverlay(page.publishedRevision.html, {
+        practitioner: practitionerFromPayload(page.practitioner?.publishedPayload),
+        service: textContent(page.service?.publishedPayload, page.path),
+        article: textContent(page.knowledgeArticle?.publishedPayload, page.path),
+        update: textContent(page.practiceUpdate?.publishedPayload),
+        practice: textContent(page.practicePage?.publishedPayload, page.path),
+        clinic: clinicContent(page.clinic.profile?.publishedPayload),
+      });
+  const withMedia = isExperienceValidation
+    ? overlaid.html
+    : await applyOtherPractitionerMedia(clinicId, page.practitioner?.id ?? null, overlaid.html);
+  const withRepeats = isExperienceValidation
+    ? withMedia
+    : await applyStoredRepeats(clinicId, withMedia);
+  // Careers vacancy inject still runs on join-our-team (EV or golden).
+  const html = await injectCareersVacancies(withRepeats, page.path, clinicId);
 
   return {
     path: page.path,
@@ -141,13 +172,98 @@ async function applyStoredRepeats(clinicId: string, html: string): Promise<strin
   return bindings.reduce((current, binding) => applyRepeatBinding(current, binding), html);
 }
 
+async function welcomeBookingHref(clinicId: string, pagePath: string): Promise<string | null> {
+  const profilePath =
+    PROFILE_WELCOME_UPDATE[pagePath] != null
+      ? pagePath
+      : Object.entries(PROFILE_WELCOME_UPDATE).find(([, welcome]) => welcome === pagePath)?.[0];
+  if (!profilePath) return null;
+  const slug = profilePath.replace(/^doctors\//, "").replace(/\.html$/, "");
+  const row = await prisma.practitioner.findFirst({
+    where: { clinicId, slug },
+    select: { bookingUrl: true, publishedPayload: true },
+  });
+  if (!row) return null;
+  const fromPayload = practitionerFromPayload(row.publishedPayload)?.bookingUrl;
+  return fromPayload || row.bookingUrl || null;
+}
+
 /** Serves a stored page. Unknown paths receive the approved 404.html document with status 404. */
 export async function renderStoredPage(clinicId: string, storagePath: string): Promise<RenderedPage | null> {
+  const clinic = await prisma.clinic.findUnique({
+    where: { id: clinicId },
+    select: {
+      slug: true,
+      practiceName: true,
+      profile: {
+        select: {
+          phoneDisplay: true,
+          phoneTel: true,
+          email: true,
+          streetAddress: true,
+          suburb: true,
+          state: true,
+          postcode: true,
+          hotdocUrl: true,
+          logoPath: true,
+        },
+      },
+    },
+  });
+  const branding = clinic
+    ? brandingFromClinic(clinic)
+    : brandingFromClinic({
+        slug: process.env.DEFAULT_CLINIC_SLUG || "woolloongabba",
+        practiceName: "Woolloongabba Medical Centre",
+        profile: null,
+      });
+  const uxOptions = { clinicSlug: branding.clinicSlug, branding };
   const document = await getPublishedDocument(clinicId, storagePath);
   if (document) {
+    // Vacancy inject also runs after public UX: Join Our Team rebuilds <main> and would
+    // otherwise wipe the careers-vacancies markers inserted earlier in getPublishedDocument.
+    const withImportedTeam = await injectCmsPractitionersIntoTeamHtml(
+      clinicId,
+      document.path,
+      document.html,
+    );
+    const withServiceDoctors = await injectCmsPractitionersIntoServiceHtml(
+      clinicId,
+      document.path,
+      withImportedTeam,
+    );
+    const withUpdatesIndex = await injectCmsUpdatesIntoIndexHtml(
+      clinicId,
+      document.path,
+      withServiceDoctors,
+    );
+    const welcomeBooking =
+      document.path in PROFILE_WELCOME_UPDATE || document.path.startsWith("updates/welcome-dr-")
+        ? await welcomeBookingHref(clinicId, document.path)
+        : null;
+    const withWelcomeLinks = injectWelcomeUpdateAuthorityLinks(
+      document.path,
+      withUpdatesIndex,
+      welcomeBooking,
+    );
+    const withProfileWelcome = injectProfileWelcomeUpdateLink(
+      document.path,
+      withWelcomeLinks,
+      PROFILE_WELCOME_UPDATE[document.path] ?? null,
+    );
+    const withGrowth = withPractitionerGrowthStyle(
+      await injectPractitionerGrowth(clinicId, document.path, withProfileWelcome),
+    );
+    const refined = applyFaviconLinks(
+      applyPublicUxRefinements(
+        optimiseHomepageDelivery(applyAccessibilityClosure(withGrowth, document.path), document.path),
+        document.path,
+        uxOptions,
+      ),
+    );
     return {
       status: 200,
-      html: applyFaviconLinks(applyPublicUxRefinements(optimiseHomepageDelivery(applyAccessibilityClosure(document.html, document.path), document.path), document.path)),
+      html: await injectCareersVacancies(refined, document.path, clinicId),
       path: document.path,
     };
   }
@@ -155,5 +271,11 @@ export async function renderStoredPage(clinicId: string, storagePath: string): P
   if (storagePath === "404.html") return null;
   const notFound = await getPublishedDocument(clinicId, "404.html");
   if (!notFound) return null;
-  return { status: 404, html: applyFaviconLinks(applyPublicUxRefinements(applyAccessibilityClosure(notFound.html, "404.html"), "404.html")), path: "404.html" };
+  return {
+    status: 404,
+    html: applyFaviconLinks(
+      applyPublicUxRefinements(applyAccessibilityClosure(notFound.html, "404.html"), "404.html", uxOptions),
+    ),
+    path: "404.html",
+  };
 }

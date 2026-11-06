@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { saveService } from "@/cms/actions";
 import { requireAction } from "@/cms/context";
+import { mediaLibraryPickerHref } from "@/cms/media-library-shared";
 import { readServiceDocument, serviceDocumentFrom, type ServiceSection } from "@/cms/service-document";
 import { prisma } from "@/db/prisma";
 import { publicPageName } from "@/cms/staff-labels";
@@ -39,6 +41,16 @@ export default async function ServiceEditPage({
     <main>
       <h1 className="text-2xl font-semibold">{document.title || row.title}</h1>
       <ViewPublicPage path={pagePath} />
+      <p className="mt-2 text-sm text-slate-600">
+        Service imagery is locked to published paths.{" "}
+        <Link
+          href={mediaLibraryPickerHref({ category: "Services", returnTo, field: "service-image" })}
+          className="underline"
+        >
+          Browse Media Library (Services)
+        </Link>{" "}
+        to inspect usage and replacements.
+      </p>
       <SavedNotice saved={query.saved} published={query.published} status={row.status} />
       <GateNotice error={query.error} reason={query.reason} />
       <form action={saveService} className="mt-6 grid max-w-3xl gap-4">

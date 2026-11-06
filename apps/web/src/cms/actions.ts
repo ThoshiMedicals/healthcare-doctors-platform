@@ -3,7 +3,9 @@
 import { redirect } from "next/navigation";
 import { Prisma, type DayOfWeek, type MembershipRole, type PublicationStatus } from "@prisma/client";
 import { hashPassword, passwordProblems, verifyPassword } from "@/auth/password";
+import { canAccessClinic } from "@/auth/permissions";
 import { writeAuditLog } from "@/cms/audit";
+import { writeActiveClinicCookie } from "@/cms/active-clinic";
 import { editorContext, requireAction } from "@/cms/context";
 import { createStaffAccount, grantSuperAdminAccount, resetOtherStaffPassword, setOtherStaffEnabled, setOtherStaffRole } from "@/cms/staff-accounts";
 import { applyArticleDocument, articleDocumentFrom, articleFromForm, readArticleDocument } from "@/cms/article-document";
@@ -38,6 +40,18 @@ function list(formData: FormData, key: string): string[] {
 
 function jsonEqual(left: unknown, right: unknown): boolean {
   return JSON.stringify(left) === JSON.stringify(right);
+}
+
+/** Persist active clinic for Network Admin / Super Admin. Clinic-scoped roles cannot switch. */
+export async function switchActiveClinic(formData: FormData) {
+  const { memberships } = await requireAction("switch_clinic");
+  const slug = text(formData, "clinicSlug");
+  const clinic = await prisma.clinic.findUnique({ where: { slug }, select: { id: true, slug: true, status: true } });
+  const { isAdminSwitchableClinicStatus } = await import("@/clinics/resolve-clinic");
+  if (!clinic || !isAdminSwitchableClinicStatus(clinic.status)) redirect("/admin");
+  if (!canAccessClinic(memberships, clinic.id)) redirect("/admin");
+  await writeActiveClinicCookie(clinic.slug);
+  redirect("/admin");
 }
 
 async function revise(options: {
@@ -155,6 +169,23 @@ export async function savePractitioner(formData: FormData) {
   if (problems.length > 0) {
     redirect(`/admin/practitioners/${id}?error=gate&reason=${encodeURIComponent(problems.join(" "))}`);
   }
+  const availabilityStatus = text(formData, "availabilityStatus") || "available_this_week";
+  const acceptingNewPatients =
+    availabilityStatus === "not_accepting" ? false : formData.get("acceptingNewPatients") === "on";
+  const newToPracticeRaw = text(formData, "newToPracticeAt");
+  const clearNewBadge = formData.get("clearNewBadge") === "on";
+  const newToPracticeAt = clearNewBadge
+    ? null
+    : newToPracticeRaw
+      ? new Date(newToPracticeRaw)
+      : current.newToPracticeAt;
+  const relatedServices = list(formData, "relatedServices").map((item) =>
+    item.replace(/^\//, "").startsWith("services/")
+      ? item.replace(/^\//, "")
+      : item
+          ? `services/${item.replace(/^\//, "").replace(/^services\//, "")}`
+          : "",
+  ).filter(Boolean);
   const previous = practitionerSnapshot(current);
   const next = {
     ...previous,
@@ -166,6 +197,10 @@ export async function savePractitioner(formData: FormData) {
     professionalInterests: list(formData, "professionalInterests"),
     portraitPath: portraitFile,
     bookingUrl,
+    acceptingNewPatients,
+    newToPracticeAt: newToPracticeAt ? newToPracticeAt.toISOString() : null,
+    availabilityStatus,
+    relatedServices,
     status: "drafting" as PublicationStatus,
   };
   await prisma.practitioner.update({
@@ -179,6 +214,10 @@ export async function savePractitioner(formData: FormData) {
       professionalInterests: next.professionalInterests,
       portraitPath: next.portraitPath,
       bookingUrl: next.bookingUrl,
+      acceptingNewPatients,
+      newToPracticeAt,
+      availabilityStatus,
+      relatedServices,
       status: next.status,
     },
   });
@@ -324,6 +363,208 @@ export async function saveUpdate(formData: FormData) {
   redirect(`/admin/updates/${id}?saved=1`);
 }
 
+export async function saveVacancy(formData: FormData) {
+  const { clinic } = await requireAction("edit");
+  const { isVacancyRoleCategory, isVacancyStatus, linesToList } = await import("@/cms/careers-vacancies");
+  const id = text(formData, "id");
+  const statusRaw = text(formData, "status");
+  const roleRaw = text(formData, "roleCategory");
+  if (!isVacancyStatus(statusRaw) || !isVacancyRoleCategory(roleRaw)) {
+    redirect(id ? `/admin/careers/vacancies/${id}?error=1` : "/admin/careers/vacancies/new?error=1");
+  }
+  const publishedRaw = text(formData, "publishedAt");
+  const expiresRaw = text(formData, "expiresAt");
+  const data = {
+    title: text(formData, "title"),
+    status: statusRaw,
+    location:
+      text(formData, "location") ||
+      [clinic.profile?.suburb, clinic.profile?.state].filter(Boolean).join(", ") ||
+      "Local clinic",
+    employmentType: text(formData, "employmentType"),
+    roleCategory: roleRaw,
+    shortSummary: text(formData, "shortSummary"),
+    fullDescription: text(formData, "fullDescription"),
+    remunerationNote: text(formData, "remunerationNote"),
+    offerHighlights: linesToList(String(formData.get("offerHighlights") ?? "")),
+    requirements: linesToList(String(formData.get("requirements") ?? "")),
+    applyUrl: text(formData, "applyUrl"),
+    featured: formData.get("featured") === "on" || formData.get("featured") === "true",
+    displayOrder: Number.parseInt(text(formData, "displayOrder") || "0", 10) || 0,
+    active: formData.get("active") === "on" || formData.get("active") === "true",
+    publishedAt: publishedRaw ? new Date(publishedRaw) : null,
+    expiresAt: expiresRaw ? new Date(expiresRaw) : null,
+  };
+  if (!data.title) {
+    redirect(id ? `/admin/careers/vacancies/${id}?error=1` : "/admin/careers/vacancies/new?error=1");
+  }
+  if (id) {
+    const current = await prisma.vacancy.findFirst({ where: { id, clinicId: clinic.id } });
+    if (!current) redirect("/admin/careers/vacancies");
+    await prisma.vacancy.update({ where: { id }, data });
+    redirect(`/admin/careers/vacancies/${id}?saved=1`);
+  }
+  const created = await prisma.vacancy.create({
+    data: { clinicId: clinic.id, ...data },
+  });
+  redirect(`/admin/careers/vacancies/${created.id}?saved=1`);
+}
+
+export async function deleteVacancy(formData: FormData) {
+  const { clinic } = await requireAction("edit");
+  const id = text(formData, "id");
+  const current = await prisma.vacancy.findFirst({ where: { id, clinicId: clinic.id } });
+  if (!current) redirect("/admin/careers/vacancies");
+  await prisma.vacancy.delete({ where: { id } });
+  redirect("/admin/careers/vacancies?deleted=1");
+}
+
+export async function saveCareerApplication(formData: FormData) {
+  const { user, clinic } = await requireAction("edit");
+  const { isCareerApplicationStatus } = await import("@/cms/careers-applications");
+  const id = text(formData, "id");
+  const statusRaw = text(formData, "status");
+  if (!id || !isCareerApplicationStatus(statusRaw)) {
+    redirect(id ? `/admin/careers/applications/${id}?error=1` : "/admin/careers/applications");
+  }
+  const current = await prisma.careerApplication.findFirst({ where: { id, clinicId: clinic.id } });
+  if (!current) redirect("/admin/careers/applications");
+
+  const assignedRaw = text(formData, "assignedToUserId");
+  let assignedToUserId: string | null = null;
+  if (assignedRaw) {
+    const member = await prisma.clinicMembership.findFirst({
+      where: { clinicId: clinic.id, userId: assignedRaw },
+      select: { userId: true },
+    });
+    assignedToUserId = member?.userId ?? null;
+  }
+
+  const previous = {
+    status: current.status,
+    notes: current.notes,
+    assignedToUserId: current.assignedToUserId,
+  };
+  const next = {
+    status: statusRaw,
+    notes: text(formData, "notes"),
+    assignedToUserId,
+  };
+
+  await prisma.careerApplication.update({
+    where: { id },
+    data: next,
+  });
+
+  await revise({
+    clinicId: clinic.id,
+    authorId: user.id,
+    entityType: "career_application",
+    entityId: id,
+    previous,
+    next,
+  });
+
+  redirect(`/admin/careers/applications/${id}?saved=1`);
+}
+
+export async function savePatientRequest(formData: FormData) {
+  const { user, clinic } = await requireAction("edit");
+  const {
+    appendFormRequestHistory,
+    isFormRequestStatus,
+  } = await import("@/cms/patient-requests");
+  const id = text(formData, "id");
+  const statusRaw = text(formData, "status");
+  if (!id || !isFormRequestStatus(statusRaw)) {
+    redirect(id ? `/admin/operations/patient-requests/${id}?error=1` : "/admin/operations/patient-requests");
+  }
+
+  const current = await prisma.formRequest.findFirst({ where: { id, clinicId: clinic.id } });
+  if (!current) redirect("/admin/operations/patient-requests");
+
+  const assignedRaw = text(formData, "assignedToUserId");
+  let assignedToUserId: string | null = null;
+  if (assignedRaw) {
+    const member = await prisma.clinicMembership.findFirst({
+      where: { clinicId: clinic.id, userId: assignedRaw },
+      select: { userId: true },
+    });
+    assignedToUserId = member?.userId ?? null;
+  }
+
+  // Auto-promote New → Assigned when staff is selected.
+  let status = statusRaw;
+  if (assignedToUserId && status === "new") status = "assigned";
+
+  const notes = text(formData, "notes");
+  const actorName = user.name || user.email || "Staff";
+  let history = current.history;
+  const stamp = new Date().toISOString();
+
+  if (status !== current.status) {
+    history = appendFormRequestHistory(history, {
+      at: stamp,
+      actorId: user.id,
+      actorName,
+      action: "status",
+      from: current.status,
+      to: status,
+    });
+  }
+  if (assignedToUserId !== current.assignedToUserId) {
+    history = appendFormRequestHistory(history, {
+      at: stamp,
+      actorId: user.id,
+      actorName,
+      action: "assign",
+      from: current.assignedToUserId,
+      to: assignedToUserId,
+    });
+  }
+  if (notes !== current.notes) {
+    history = appendFormRequestHistory(history, {
+      at: stamp,
+      actorId: user.id,
+      actorName,
+      action: "notes",
+      note: notes.slice(0, 500),
+    });
+  }
+
+  const previous = {
+    status: current.status,
+    notes: current.notes,
+    assignedToUserId: current.assignedToUserId,
+  };
+  const next = { status, notes, assignedToUserId };
+
+  await prisma.formRequest.update({
+    where: { id },
+    data: { ...next, history: history as Prisma.InputJsonValue },
+  });
+
+  await revise({
+    clinicId: clinic.id,
+    authorId: user.id,
+    entityType: "form_request",
+    entityId: id,
+    previous,
+    next,
+  });
+
+  await writeAuditLog({
+    clinicId: clinic.id,
+    actorId: user.id,
+    action: "form_request.updated",
+    entityType: "FormRequest",
+    entityId: id,
+    metadata: { previous, next },
+  });
+
+  redirect(`/admin/operations/patient-requests/${id}?saved=1`);
+}
+
 export async function savePracticePage(formData: FormData) {
   const { user, clinic } = await requireAction("edit");
   const id = text(formData, "id");
@@ -387,14 +628,134 @@ export async function saveImageGovernance(formData: FormData) {
   redirect(`/admin/image-governance/${id}?saved=1`);
 }
 
-export async function saveMedia(_formData: FormData) {
-  await requireAction("edit");
-  redirect("/admin");
+export async function saveMedia(formData: FormData) {
+  const { user, clinic } = await requireAction("edit");
+  const { isMediaLibraryCategory } = await import("@/cms/media-library");
+  const id = text(formData, "id");
+  const current = await prisma.mediaAsset.findFirst({ where: { id, clinicId: clinic.id } });
+  if (!current) redirect("/admin/media");
+
+  const categoryRaw = text(formData, "category");
+  const category = isMediaLibraryCategory(categoryRaw) ? categoryRaw : current.category;
+  const nextFields = {
+    title: text(formData, "title") || null,
+    altText: text(formData, "altText"),
+    uploadedBy: text(formData, "uploadedBy") || null,
+    category,
+  };
+  const previous = {
+    title: current.title,
+    altText: current.altText,
+    uploadedBy: current.uploadedBy,
+    category: current.category,
+  };
+  if (!jsonEqual(previous, nextFields)) {
+    await prisma.mediaAsset.update({ where: { id }, data: nextFields });
+    await revise({
+      clinicId: clinic.id,
+      authorId: user.id,
+      entityType: "media_asset",
+      entityId: id,
+      previous,
+      next: nextFields,
+    });
+    await writeAuditLog({
+      clinicId: clinic.id,
+      actorId: user.id,
+      action: "media.updated",
+      entityType: "MediaAsset",
+      entityId: id,
+      metadata: { previous, next: nextFields },
+    });
+  }
+  redirect(`/admin/media/${id}?saved=1`);
 }
 
-export async function uploadMedia(_formData: FormData) {
-  await requireAction("edit");
-  redirect("/admin");
+export async function uploadMedia(formData: FormData) {
+  const { user, clinic } = await requireAction("edit");
+  const {
+    isMediaLibraryCategory,
+    inferMediaCategory,
+  } = await import("@/cms/media-library");
+  const { publicAssetPath } = await import("@/cms/image-store");
+  const { assetKind, imageTitle } = await import("@/cms/image-governance");
+  const file = formData.get("file");
+  if (!(file instanceof File) || file.size <= 0) {
+    redirect("/admin/media?error=gate&reason=" + encodeURIComponent("Choose an image file to upload."));
+  }
+  const original = file.name.replace(/[^a-zA-Z0-9._-]+/g, "-").replace(/^\.+/, "") || "upload.bin";
+  if (!/\.(webp|png|jpe?g|gif|avif)$/i.test(original)) {
+    redirect(
+      "/admin/media?error=gate&reason=" +
+        encodeURIComponent("Upload WebP, PNG, JPEG, GIF, or AVIF only. SVG is not accepted via this form."),
+    );
+  }
+  if (file.size > 8 * 1024 * 1024) {
+    redirect("/admin/media?error=gate&reason=" + encodeURIComponent("File must be 8 MB or smaller."));
+  }
+
+  const categoryRaw = text(formData, "category");
+  const category = isMediaLibraryCategory(categoryRaw) ? categoryRaw : "General";
+  const bytes = Buffer.from(await file.arrayBuffer());
+  const storagePath = `assets/library/${Date.now()}-${original.toLowerCase()}`;
+  const absolute = publicAssetPath(storagePath);
+  const fs = await import("node:fs");
+  const path = await import("node:path");
+  fs.mkdirSync(path.dirname(absolute), { recursive: true });
+  fs.writeFileSync(absolute, bytes);
+
+  let width: number | null = null;
+  let height: number | null = null;
+  try {
+    const sharp = (await import("sharp")).default;
+    const meta = await sharp(bytes, { failOn: "none" }).metadata();
+    width = meta.width ?? null;
+    height = meta.height ?? null;
+  } catch {
+    /* metadata optional */
+  }
+
+  const created = await prisma.mediaAsset.create({
+    data: {
+      clinicId: clinic.id,
+      filename: original,
+      storagePath,
+      assetType: assetKind(storagePath),
+      category: category || inferMediaCategory(storagePath),
+      title: text(formData, "title") || imageTitle(storagePath),
+      altText: text(formData, "altText"),
+      uploadedBy: user.name || user.email || "Staff",
+      usage: [],
+      byteSize: bytes.length,
+      width,
+      height,
+    },
+  });
+
+  await revise({
+    clinicId: clinic.id,
+    authorId: user.id,
+    entityType: "media_asset",
+    entityId: created.id,
+    previous: {},
+    next: {
+      storagePath: created.storagePath,
+      title: created.title,
+      category: created.category,
+      altText: created.altText,
+      byteSize: created.byteSize,
+    },
+  });
+  await writeAuditLog({
+    clinicId: clinic.id,
+    actorId: user.id,
+    action: "media.uploaded",
+    entityType: "MediaAsset",
+    entityId: created.id,
+    metadata: { storagePath: created.storagePath, category: created.category, byteSize: created.byteSize },
+  });
+
+  redirect(`/admin/media/${created.id}?uploaded=1`);
 }
 
 export async function saveGovernance(formData: FormData) {
@@ -651,6 +1012,10 @@ function practitionerSnapshot(current: {
   portraitPath: string | null;
   bookingUrl: string | null;
   professionalInterests: string[];
+  acceptingNewPatients?: boolean;
+  newToPracticeAt?: Date | null;
+  availabilityStatus?: string;
+  relatedServices?: string[];
   publishedPayload: Prisma.JsonValue | null;
   status: PublicationStatus;
 }) {
@@ -663,6 +1028,10 @@ function practitionerSnapshot(current: {
     professionalInterests: current.professionalInterests,
     portraitPath: current.portraitPath,
     bookingUrl: current.bookingUrl,
+    acceptingNewPatients: current.acceptingNewPatients ?? true,
+    newToPracticeAt: current.newToPracticeAt ? current.newToPracticeAt.toISOString() : null,
+    availabilityStatus: current.availabilityStatus ?? "available_this_week",
+    relatedServices: current.relatedServices ?? [],
     status: current.status,
     publishedPayload: current.publishedPayload ?? null,
   };
@@ -772,6 +1141,9 @@ async function applySnapshot(entityType: string, entityId: string, snapshot: Pri
   const data = alignRestoredSnapshot(entityType, snapshot as Record<string, unknown>);
   const restoredStatus = snapshotStatus(data);
   if (entityType === "practitioner") {
+    const newAt = typeof data.newToPracticeAt === "string" && data.newToPracticeAt
+      ? new Date(data.newToPracticeAt)
+      : null;
     await prisma.practitioner.update({
       where: { id: entityId },
       data: {
@@ -783,6 +1155,10 @@ async function applySnapshot(entityType: string, entityId: string, snapshot: Pri
         professionalInterests: asStringList(data.professionalInterests),
         portraitPath: stringOrNull(data.portraitPath),
         bookingUrl: stringOrNull(data.bookingUrl),
+        acceptingNewPatients: data.acceptingNewPatients === false ? false : true,
+        newToPracticeAt: newAt && !Number.isNaN(newAt.getTime()) ? newAt : null,
+        availabilityStatus: String(data.availabilityStatus ?? "available_this_week"),
+        relatedServices: asStringList(data.relatedServices),
         status: String(data.status ?? "drafting") as PublicationStatus,
         ...payloadUpdate(data),
       },

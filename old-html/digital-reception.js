@@ -223,10 +223,27 @@
     }
     return 'other';
   };
-  let lastSearchMeta={intent_bucket:'unmatched',result_type:'',result_count:0};
+  let lastSearchMeta={intent_bucket:'unmatched',result_type:'',result_count:0,term:''};
+  const clinicSlug=()=>document.documentElement.getAttribute('data-clinic-slug')||window.WMC_CLINIC_SLUG||'woolloongabba';
+  const postSearchSignal=(payload)=>{
+    try{
+      const endpoint=`/api/clinics/${clinicSlug()}/search-signals`;
+      const body=JSON.stringify(payload);
+      if(navigator.sendBeacon){
+        navigator.sendBeacon(endpoint,new Blob([body],{type:'application/json'}));
+        return;
+      }
+      fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body,credentials:'same-origin',keepalive:true}).catch(()=>{});
+    }catch(_){}
+  };
+  const practitionerFromHref=(href)=>{
+    const match=String(href||'').match(/doctors\/([^/?#]+)/i);
+    return match?decodeURIComponent(match[1]):'';
+  };
   const recordSearch=(raw,resultType,resultCount)=>{
     const bucket=measureIntent(raw);
-    lastSearchMeta={intent_bucket:bucket,result_type:resultType,result_count:resultCount};
+    const term=String(raw||'').trim();
+    lastSearchMeta={intent_bucket:bucket,result_type:resultType,result_count:resultCount,term};
     measure('digital_reception_search',{
       intent_bucket:bucket,
       result_type:resultType,
@@ -238,6 +255,17 @@
         intent_bucket:bucket,
         result_type:resultType,
         result_count:resultCount
+      });
+    }
+    if(term){
+      postSearchSignal({
+        kind:'search',
+        term,
+        intentBucket:bucket,
+        resultType,
+        resultCount,
+        noResult:resultType==='no_result'||resultCount===0,
+        pagePath:location.pathname||''
       });
     }
   };
@@ -783,10 +811,29 @@
     if(!results.contains(event.target))return;
     const hit=event.target.closest('a[href], .digital-reception-show-more, .digital-reception-journey-book, .digital-reception-care-book');
     if(hit){
+      const step=resultStep(hit);
+      const href=hit.getAttribute&&hit.getAttribute('href')||'';
+      const path=href?String(href).split(/[?#]/)[0]:'';
+      const practitioner=practitionerFromHref(href);
       measure('digital_reception_result_click',{
-        step:resultStep(hit),
-        intent_bucket:lastSearchMeta.intent_bucket
+        step,
+        intent_bucket:lastSearchMeta.intent_bucket,
+        destination:path||undefined,
+        practitioner:practitioner||undefined
       });
+      if(lastSearchMeta.term && path && !hit.classList.contains('digital-reception-show-more')){
+        postSearchSignal({
+          kind:'result_click',
+          term:lastSearchMeta.term,
+          intentBucket:lastSearchMeta.intent_bucket,
+          resultType:lastSearchMeta.result_type,
+          resultCount:lastSearchMeta.result_count,
+          clickedResultPath:path,
+          clickedStep:step,
+          practitionerSlug:practitioner||undefined,
+          pagePath:location.pathname||''
+        });
+      }
     }
   },true);
   results.addEventListener('click',event=>{

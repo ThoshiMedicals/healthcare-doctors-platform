@@ -21,6 +21,8 @@ export function sanitizeMeasurementEvent(raw: RawMeasurementEvent | null | undef
   };
 
   if (raw.session_id) cleaned.session_id = String(raw.session_id);
+  if (raw.clinic_id) cleaned.clinic_id = String(raw.clinic_id);
+  if (raw.clinic_slug) cleaned.clinic_slug = String(raw.clinic_slug);
   if (raw.placement) cleaned.placement = String(raw.placement);
   if (raw.destination) cleaned.destination = String(raw.destination);
   if (raw.practitioner) cleaned.practitioner = String(raw.practitioner);

@@ -1,19 +1,32 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { parseImporterCliArgs } from "../src/importer/golden-root";
 import { importGoldenHtml } from "../src/importer/import-golden-html";
 import { validateGoldenImport, writeReports } from "../src/importer/validate-golden-html";
 
 loadEnv(path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../.env"));
 
 async function main() {
-  const imported = await importGoldenHtml();
-  const { importReport, renderingReport } = await validateGoldenImport();
+  const { clinicSlug, dryRun, goldenRoot } = parseImporterCliArgs();
+  const imported = await importGoldenHtml({ clinicSlug, dryRun, goldenRoot });
+
+  if (dryRun) {
+    console.log(JSON.stringify({ imported, dryRun: true, validated: false }, null, 2));
+    return;
+  }
+
+  const { importReport, renderingReport } = await validateGoldenImport({ clinicSlug, goldenRoot });
   const directory = writeReports(importReport, renderingReport);
 
   console.log(
     JSON.stringify(
-      { imported, reports: directory, importPassed: importReport.passed, renderingAccepted: renderingReport.accepted },
+      {
+        imported,
+        reports: directory,
+        importPassed: importReport.passed,
+        renderingAccepted: renderingReport.accepted,
+      },
       null,
       2,
     ),

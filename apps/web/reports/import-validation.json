@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-10-26T02:40:00.000Z",
+  "generatedAt": "2026-11-03T12:32:23.504Z",
   "goldenRoot": "C:\\Users\\RoshanSamarawickrema\\Desktop\\WMC-Master-Project\\old-html",
   "pageCount": {
-    "htmlFiles": 208,
+    "htmlFiles": 207,
     "imported": 208,
     "expected": 208,
-    "match": true
+    "match": false
   },
   "collections": {
     "pages": 208,
@@ -34,8 +34,8 @@
     "missingCanonical": []
   },
   "jsonLd": {
-    "pagesWithSchema": 208,
-    "blocks": 607,
+    "pagesWithSchema": 207,
+    "blocks": 605,
     "invalid": []
   },
   "links": {
@@ -49,14 +49,13 @@
     "hashMismatches": []
   },
   "hotDoc": {
-    "pagesWithWidget": 207,
-    "pagesWithScript": 208
+    "pagesWithWidget": 206,
+    "pagesWithScript": 207
   },
   "digitalReception": {
-    "pagesWithScript": 208,
+    "pagesWithScript": 207,
     "manifestCopied": true,
     "manifestHashMatch": true
   },
-  "passed": true,
-  "l1Note": "Prompt L1: closed 6 navigation-ownership gaps; search-index/manifest.json resynced from golden (206 routes). Full prisma import:golden refresh recommended when DB available."
+  "passed": false
 }

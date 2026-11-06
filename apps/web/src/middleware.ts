@@ -3,6 +3,8 @@ import { NextResponse, type NextRequest } from "next/server";
 import { foreignOrigin } from "@/auth/same-origin";
 import { ACTIVITY_COOKIE, activityCookieOptions, idleExpired } from "@/auth/session-policy";
 import { CLINIC_HOST_HEADER, developmentRequestOrigin, hostnameFromHostHeader, prefersSecureCookie } from "@/clinics/host";
+import { publicHostRedirectUrl } from "@/http/public-host";
+import { resolveWordpressLegacyRedirect } from "@/seo/wordpress-legacy-redirects";
 
 function clearAdminSession(response: NextResponse) {
   for (const name of ["authjs.session-token", "__Secure-authjs.session-token", ACTIVITY_COOKIE]) {
@@ -36,6 +38,25 @@ async function sessionToken(request: NextRequest) {
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const host = request.headers.get("x-forwarded-host") ?? request.headers.get("host");
+  const hostRedirect = publicHostRedirectUrl({
+    hostHeader: host,
+    protocol: request.nextUrl.protocol,
+    forwardedProto: request.headers.get("x-forwarded-proto"),
+    pathname,
+    search: request.nextUrl.search,
+  });
+  if (hostRedirect) {
+    return keepOutOfIndex(NextResponse.redirect(hostRedirect, 301), pathname);
+  }
+
+  // WordPress pretty URLs → approved .html destinations (single-hop 301, same host).
+  const legacyTarget = resolveWordpressLegacyRedirect(pathname);
+  if (legacyTarget) {
+    // Build an absolute URL so Next does not append a trailing slash to `.html` targets.
+    const dest = new URL(legacyTarget, request.nextUrl.origin);
+    dest.search = request.nextUrl.search;
+    return keepOutOfIndex(NextResponse.redirect(dest, 301), pathname);
+  }
   if (foreignOrigin(request.method, request.headers.get("origin"), host)) {
     return keepOutOfIndex(
       new NextResponse("Forbidden", {

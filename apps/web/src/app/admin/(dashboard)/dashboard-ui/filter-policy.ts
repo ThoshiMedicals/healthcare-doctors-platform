@@ -53,7 +53,7 @@ export type InsightsDashboardPolicy = Readonly<{
   legacyFocusAs: InsightsLegacyFocus;
 }>;
 
-/** Exactly the ten Insights destinations. Unknown admin/CMS routes fail closed. */
+/** Exactly the known Insights destinations. Unknown admin/CMS routes fail closed. */
 export const INSIGHTS_DASHBOARD_POLICIES = {
   "/admin": {
     family: "briefing", ownedFilters: ["range", "data"], reportingPeriod: "range", legacyFocusAs: null,
@@ -66,6 +66,9 @@ export const INSIGHTS_DASHBOARD_POLICIES = {
   },
   "/admin/digital-reception": {
     family: "search", ownedFilters: ["range", "data", "service", "intent", "health", "from"], reportingPeriod: "range", legacyFocusAs: null,
+  },
+  "/admin/search-opportunities": {
+    family: "search", ownedFilters: ["range", "data", "from"], reportingPeriod: "range", legacyFocusAs: null,
   },
   "/admin/practitioner-authority": {
     family: "authority", ownedFilters: ["range", "data", "practitioner", "tier", "health", "from"], reportingPeriod: "range", legacyFocusAs: "practitioner",

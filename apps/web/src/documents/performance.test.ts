@@ -5,8 +5,10 @@ import { applyAccessibilityClosure } from "./accessibility";
 
 test("home delivery keeps the approved hero and reserves dimensions", () => {
   const source = [
+    '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;display=swap" rel="stylesheet"/>',
     '<link href="assets/hero-final-desktop.webp" media="(max-width: 700px)" rel="preload"/>',
     '<source media="(max-width: 700px)" srcset="assets/hero-final-desktop.webp"/>',
+    '<img class="hero-photo" decoding="async" fetchpriority="high" height="941" src="assets/hero-final-desktop.webp" width="1672"/>',
     '<img src="assets/clinic-reception.png"/>',
     '<img src="assets/location-storefront-polished.webp"/>',
     '<img src="assets/brand/agpal-mark.webp"/>',
@@ -16,6 +18,9 @@ test("home delivery keeps the approved hero and reserves dimensions", () => {
   const result = optimiseHomepageDelivery(source, "index.html");
   assert.match(result, /srcset="assets\/hero-final-mobile\.webp"/);
   assert.match(result, /href="assets\/hero-final-mobile\.webp"/);
+  assert.match(result, /class="hero-photo"[^>]*sizes="/);
+  assert.match(result, /data-wmc-font-defer="true"/);
+  assert.match(result, /rel="preload" as="style"/);
   assert.match(result, /width="1080" height="870"/);
   assert.match(result, /width="1800" height="1013"/);
   assert.match(result, /width="386" height="386"/);
@@ -52,4 +57,17 @@ test("alt text stays meaningful without duplicating the full HotDoc poster copy"
   const result = applyAccessibilityClosure(source, "index.html");
   assert.match(result, /alt="Book appointments with Woolloongabba Medical Centre using HotDoc"/);
   assert.equal(result.includes("App Store and Google Play badges"), false);
+});
+
+test("hero trust logos receive informative alt text", () => {
+  const source = [
+    '<span class="hero-trust-logo hero-trust-logo-agpal">',
+    '<img alt="" data-local-asset="agpal-mark" src="assets/brand/agpal-mark.webp"/>',
+    "</span>",
+    '<span class="hero-trust-logo hero-trust-logo-bulk"><img alt="" src="assets/brand/bulk-billing-practice.png"/></span>',
+  ].join("");
+  const result = applyAccessibilityClosure(source, "index.html");
+  assert.match(result, /alt="Accredited General Practice"/);
+  assert.match(result, /alt="Medicare Bulk Billing Practice"/);
+  assert.equal(result.includes('alt=""'), false);
 });

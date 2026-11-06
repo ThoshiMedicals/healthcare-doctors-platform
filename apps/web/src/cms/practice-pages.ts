@@ -1,6 +1,10 @@
 import { prisma } from "@/db/prisma";
 
-const ABOUT_PATHS = ["medical-centre-network.html", "agpal-accreditation.html"];
+const ABOUT_PATHS = [
+  "medical-centre-network.html",
+  "agpal-accreditation.html",
+  "about-us/practice-experience.html",
+];
 const PATIENT_PATHS = ["faqs.html"];
 
 export async function ensurePracticePages(clinicId: string, sectionKey: "about" | "patient-info") {

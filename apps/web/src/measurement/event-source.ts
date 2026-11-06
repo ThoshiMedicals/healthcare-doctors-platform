@@ -9,6 +9,7 @@ import {
   parseInsightsDataMode,
   type InsightsDataMode,
 } from "@/measurement/insights-data-mode";
+import { filterEventsForClinic } from "@/measurement/clinic-filter";
 import type { RawMeasurementEvent } from "@/measurement/types";
 
 export type MeasurementEventSourceKind =
@@ -27,6 +28,14 @@ export type MeasurementEventSource = {
   isDemo: boolean;
   path?: string;
   datasetId?: string;
+  clinicSlug?: string;
+};
+
+export type LoadMeasurementEventsOptions = {
+  mode?: InsightsDataMode | string | null;
+  /** When set, warehouse/demo events are filtered to this clinic slug. */
+  clinicSlug?: string | null;
+  clinicId?: string | null;
 };
 
 const WAREHOUSE_RELATIVE = path.join("data", "measurement-events.json");
@@ -60,14 +69,22 @@ export async function warehouseFeedAvailable(): Promise<boolean> {
 /**
  * Load Insights dashboard events for Live / Demo / Empty (C9).
  * Demo datasets are never written into the warehouse path.
+ * Optional clinicSlug/clinicId prepare multi-tenant Insights without changing public sites.
  */
 export async function loadMeasurementEvents(
-  modeOrOptions?: InsightsDataMode | string | null | { mode?: InsightsDataMode | string | null },
+  modeOrOptions?: InsightsDataMode | string | null | LoadMeasurementEventsOptions,
 ): Promise<MeasurementEventSource> {
-  const requested =
+  const options: LoadMeasurementEventsOptions =
     typeof modeOrOptions === "string" || modeOrOptions == null
-      ? modeOrOptions
-      : modeOrOptions.mode;
+      ? { mode: modeOrOptions }
+      : modeOrOptions;
+  const requested = options.mode;
+  const clinicRef = { clinicSlug: options.clinicSlug, clinicId: options.clinicId };
+  const scope = (events: RawMeasurementEvent[]) =>
+    options.clinicSlug || options.clinicId
+      ? filterEventsForClinic(events, clinicRef)
+      : events;
+
   const warehouse = await readWarehouseEvents();
   const warehouseAvailable = warehouse !== null;
   const mode =
@@ -81,30 +98,33 @@ export async function loadMeasurementEvents(
       mode,
       feedLabel: "Empty mode · zero activity",
       isDemo: false,
+      clinicSlug: options.clinicSlug || undefined,
     };
   }
 
   if (mode === "demo") {
     return {
-      events: buildHealthcareDemoEvents(),
+      events: scope(buildHealthcareDemoEvents()),
       source: "demo_dataset",
       mode,
       feedLabel: `Demo data · ${HEALTHCARE_DEMO_DATASET_META.label}`,
       isDemo: true,
       datasetId: HEALTHCARE_DEMO_DATASET_META.id,
       path: HEALTHCARE_DEMO_DATASET_META.storage,
+      clinicSlug: options.clinicSlug || undefined,
     };
   }
 
   // Live
   if (warehouse) {
     return {
-      events: warehouse.events,
+      events: scope(warehouse.events),
       source: "warehouse_file",
       mode: "live",
       feedLabel: "Live · warehouse feed",
       isDemo: false,
       path: warehouse.path,
+      clinicSlug: options.clinicSlug || undefined,
     };
   }
 
@@ -114,5 +134,6 @@ export async function loadMeasurementEvents(
     mode: "live",
     feedLabel: "Live · no warehouse traffic yet",
     isDemo: false,
+    clinicSlug: options.clinicSlug || undefined,
   };
 }

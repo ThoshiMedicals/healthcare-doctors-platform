@@ -1,0 +1,32 @@
+{
+  "changed": [
+    "apps/web/public/governance-published.js",
+    "governance-published.js",
+    "knowledge/childrens-health.html",
+    "knowledge/chronic-disease-management.html",
+    "knowledge/cough.html",
+    "knowledge/diabetes.html",
+    "knowledge/headache.html",
+    "knowledge/heart.html",
+    "knowledge/menopause.html",
+    "knowledge/mental-health.html",
+    "knowledge/pain.html",
+    "knowledge/skin-health-skin-cancer.html",
+    "knowledge/sleep.html",
+    "knowledge/vaccinations.html",
+    "knowledge/weight.html",
+    "knowledge/womens-health.html",
+    "services/antenatal-postnatal-care.html",
+    "services/ear-care-ear-syringing.html",
+    "services/implanon-insertion-removal.html",
+    "services/iron-infusions.html",
+    "services/iud-insertion-removal.html",
+    "services/mental-health.html",
+    "services/pap-smear-cervical-screening.html",
+    "services/pre-pregnancy-care.html",
+    "services/skin-checks.html",
+    "services/telehealth.html",
+    "services/womens-health.html"
+  ],
+  "count": 27
+}

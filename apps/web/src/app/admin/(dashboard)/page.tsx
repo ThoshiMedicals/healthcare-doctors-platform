@@ -30,6 +30,14 @@ import { buildRecommendedActions, type RecommendedAction } from "@/measurement/r
 import { buildPracticeServiceAuthorityDashboardFromIndex } from "@/measurement/service-authority-report";
 import { PLATFORM_HEALTH_STATE_LABEL } from "@/measurement/platform-health-score";
 import { getPlatformReadinessScorecard } from "@/readiness/platform-readiness";
+import { careerApplicationDashboardStats } from "@/cms/careers-applications";
+import { mediaLibraryDashboardStatsForClinic } from "@/cms/media-library";
+import { patientRequestDashboardStats } from "@/cms/patient-requests";
+import { buildPracticeOperationsSnapshot } from "@/cms/practice-operations-dashboard";
+import {
+  buildSearchOpportunityDashboard,
+} from "@/measurement/search-opportunity-report";
+import { PracticeActionCentre, PracticeKpiStrip } from "./practice-action-centre";
 import { RecommendedActionsPanel } from "./recommended-actions-panel";
 import {
   COLOUR_ACCESSIBILITY_AUDIT,
@@ -652,6 +660,57 @@ export default async function AdminCommandCentrePage({
     governanceFeedLabel = dataset.feedLabel;
   }
 
+  const careersStats = clinic ? await careerApplicationDashboardStats(clinic.id) : null;
+  const patientRequestStats = clinic ? await patientRequestDashboardStats(clinic.id) : null;
+  const mediaLibraryStats = clinic ? await mediaLibraryDashboardStatsForClinic(clinic.id) : null;
+  let searchOpsKpis: {
+    topSearches: number;
+    risingSearches: number;
+    noResults: number;
+    highestOpportunityScore: number;
+    opportunityQueue: number;
+    pagesDue: number;
+    reviewsOverdue: number;
+    pagesUpdatedThisMonth: number;
+  } | null = null;
+  if (clinic) {
+    const [signals, reviews] = await Promise.all([
+      prisma.searchDemandSignal.findMany({
+        where: { clinicId: clinic.id },
+        orderBy: { occurredAt: "desc" },
+        take: 3000,
+      }),
+      prisma.clinicalReview.findMany({
+        where: { clinicId: clinic.id },
+        include: { page: { select: { path: true, title: true, updatedAt: true } } },
+      }),
+    ]);
+    const sco = buildSearchOpportunityDashboard({
+      signals,
+      events: loaded.events,
+      reviews,
+      range,
+      preferDemoWhenEmpty: mode !== "live" || signals.length === 0,
+    });
+    searchOpsKpis = {
+      topSearches: sco.top_searches[0]?.searches ?? 0,
+      risingSearches: sco.rising_searches.length,
+      noResults: sco.kpis.no_result_searches,
+      highestOpportunityScore: sco.opportunity_queue[0]?.opportunity_score ?? 0,
+      opportunityQueue: sco.kpis.opportunity_queue,
+      pagesDue: sco.freshness.needs_review,
+      reviewsOverdue: sco.freshness.review_overdue,
+      pagesUpdatedThisMonth: sco.freshness.recently_updated,
+    };
+  }
+
+  const practiceOps = buildPracticeOperationsSnapshot({
+    careers: careersStats,
+    patients: patientRequestStats,
+    media: mediaLibraryStats,
+    search: searchOpsKpis,
+  });
+
   const snapshot = buildCommandCentreSnapshot({
     executive,
     digitalReception,
@@ -775,7 +834,7 @@ export default async function AdminCommandCentrePage({
       <InsightsFilterSync filters={active} />
       <DashboardHeader
         title="Practice briefing"
-        description={`${layout.blurb} Start here each day — health score, recommended actions, then any alerts. No technical background required.`}
+        description={`${layout.blurb} Start with Needs attention today, then module KPIs, then health and recommended actions.`}
         meta={
           <>
             View · {layout.label}
@@ -791,6 +850,52 @@ export default async function AdminCommandCentrePage({
             ) : null}
           </>
         }
+      />
+
+      <PracticeActionCentre
+        items={practiceOps.actionCentre}
+        needsAttentionTotal={practiceOps.needsAttentionTotal}
+      />
+
+      <PracticeKpiStrip
+        id="recruitment-kpis-heading"
+        title="Recruitment"
+        description="Vacancies and talent community pipeline."
+        href="/admin/careers"
+        hrefLabel="Open Careers →"
+        cards={practiceOps.recruitment}
+      />
+      <PracticeKpiStrip
+        id="patient-ops-kpis-heading"
+        title="Patient operations"
+        description="Website form requests for reception and administration."
+        href="/admin/operations/patient-requests"
+        hrefLabel="Open inbox →"
+        cards={practiceOps.patientOps}
+      />
+      <PracticeKpiStrip
+        id="content-kpis-heading"
+        title="Content"
+        description="Clinical review freshness and scored content opportunities."
+        href="/admin/governance"
+        hrefLabel="Open reviews →"
+        cards={practiceOps.content}
+      />
+      <PracticeKpiStrip
+        id="search-kpis-heading"
+        title="Search intelligence"
+        description="Patient demand signals — no charts, only actionable counts."
+        href="/admin/search-opportunities"
+        hrefLabel="Open opportunities →"
+        cards={practiceOps.search}
+      />
+      <PracticeKpiStrip
+        id="media-kpis-heading"
+        title="Media"
+        description="Image catalogue health for editors and reception."
+        href="/admin/media"
+        hrefLabel="Open library →"
+        cards={practiceOps.media}
       />
 
       <div className="mt-6 space-y-3">

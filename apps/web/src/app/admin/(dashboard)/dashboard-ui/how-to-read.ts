@@ -255,6 +255,47 @@ export const HOW_TO_READ_GUIDES: Record<InsightsDestination | "monthly-executive
       },
     ],
   },
+  "search-opportunities": {
+    id: "search-opportunities",
+    title: "Search & content opportunities",
+    inSixtySeconds:
+      "Start with the opportunity queue and no-result searches. Those terms show where patient demand exceeds website coverage — then check freshness for pages that need a clinical review.",
+    whatGoodLooksLike:
+      "A shrinking opportunity queue, fewer no-result terms week to week, and review-due pages worked through before they go overdue.",
+    statusKey: [
+      { level: "healthy", meaning: "Demand is covered — few High Demand / Low Coverage items." },
+      { level: "watch", meaning: "Rising or no-result terms need new advice, service, or doctor content." },
+      { level: "critical", meaning: "Repeated no-result demand or many overdue reviews — prioritise content work." },
+    ],
+    scanOrder: [
+      "Opportunity queue (scored gaps)",
+      "No-result and rising searches",
+      "Pages due for review / overdue",
+      "Practitioner topic gaps",
+    ],
+    metrics: [
+      {
+        id: "opportunity_queue",
+        label: "Opportunity queue",
+        meaning: "Normalised search terms with enough demand and gap signal to act on.",
+        guidance: "Create or strengthen service, advice, or practitioner pages for High Demand and Low Coverage items.",
+        target: "Work the queue weekly; aim for fewer open high-score items",
+      },
+      {
+        id: "no_result_searches",
+        label: "No-result searches",
+        meaning: "Searches that found no useful website match.",
+        guidance: "These are the strongest content-gap signals — not ranking vanity metrics.",
+        target: "Trend down as coverage improves",
+      },
+      {
+        id: "pages_due_for_review",
+        label: "Pages due for review",
+        meaning: "Published pages approaching or past their clinical next-review date.",
+        guidance: "Stale pages under search demand should be refreshed first.",
+      },
+    ],
+  },
   "practitioner-authority": {
     id: "practitioner-authority",
     title: "Doctor profile strength",

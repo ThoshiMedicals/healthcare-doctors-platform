@@ -20,6 +20,11 @@ export type PractitionerContent = {
   sourceBookingUrl?: string;
   /** False on listing cards, so only the name, photo, and booking link are written. */
   profileText?: boolean;
+  /** Patient-acquisition flags (CMS). Safe extras in publishedPayload. */
+  acceptingNewPatients?: boolean;
+  newToPracticeAt?: string | null;
+  availabilityStatus?: string;
+  relatedServices?: string[];
 };
 
 export type TextContent = {
@@ -90,6 +95,16 @@ export function practitionerFromPayload(value: unknown): PractitionerContent | n
     sourcePortraitFile: data.sourcePortraitFile ? String(data.sourcePortraitFile) : undefined,
     bookingUrl: data.bookingUrl ? String(data.bookingUrl) : undefined,
     sourceBookingUrl: data.sourceBookingUrl ? String(data.sourceBookingUrl) : undefined,
+    acceptingNewPatients:
+      typeof data.acceptingNewPatients === "boolean" ? data.acceptingNewPatients : undefined,
+    newToPracticeAt:
+      typeof data.newToPracticeAt === "string"
+        ? data.newToPracticeAt
+        : data.newToPracticeAt == null
+          ? null
+          : undefined,
+    availabilityStatus: data.availabilityStatus ? String(data.availabilityStatus) : undefined,
+    relatedServices: stringList(data.relatedServices),
   };
 }
 

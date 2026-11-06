@@ -47,3 +47,21 @@ export async function listLiveClinics(): Promise<Array<{ id: string; slug: strin
     orderBy: { practiceName: "asc" },
   });
 }
+
+/**
+ * Clinics Network/Super Admin may switch into for CMS work.
+ * Includes draft tenants (no public site / DNS). Excludes external stubs.
+ */
+export async function listAdminSwitchableClinics(): Promise<
+  Array<{ id: string; slug: string; practiceName: string; status: ClinicStatus }>
+> {
+  return prisma.clinic.findMany({
+    where: { status: { in: ["live", "draft"] } },
+    select: { id: true, slug: true, practiceName: true, status: true },
+    orderBy: [{ status: "asc" }, { practiceName: "asc" }],
+  });
+}
+
+export function isAdminSwitchableClinicStatus(status: ClinicStatus): boolean {
+  return status === "live" || status === "draft";
+}

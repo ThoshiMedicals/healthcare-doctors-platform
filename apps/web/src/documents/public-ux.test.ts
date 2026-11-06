@@ -104,14 +104,229 @@ test("About Us hub receives Practice Experience card without golden-master edit"
   assert.equal(applyPublicUxRefinements(result, "about-us.html"), result);
 });
 
+test("Contact moves network callout after the map without golden-master edit", () => {
+  const content = readFileSync(path.resolve(process.cwd(), "../../old-html/contact.html"), "utf8");
+  const result = applyPublicUxRefinements(content, "contact.html");
+  const article = result.match(/<article\b[^>]*\bclass="[^"]*\barticle\b[^"]*"[^>]*>[\s\S]*?<\/article>/i)?.[0] ?? "";
+  assert.match(
+    article,
+    /Find us\.[\s\S]*network-authority-callout[\s\S]*Plan your visit and access care/i,
+  );
+  assert.doesNotMatch(
+    article,
+    /network-authority-callout[\s\S]*Find us\./i,
+  );
+  assert.equal(applyPublicUxRefinements(result, "contact.html"), result);
+});
+
+test("Join Our Team becomes a GP recruitment prospectus without golden-master edit", () => {
+  const content = readFileSync(path.resolve(process.cwd(), "../../old-html/join-our-team.html"), "utf8");
+  const result = applyPublicUxRefinements(content, "join-our-team.html");
+  assert.match(result, /data-gp-recruit-layout="true"/);
+  assert.match(result, /data-recruitment-evidence-panel="true"/);
+  assert.match(result, /Opportunity Snapshot/);
+  assert.match(result, /Current Opportunity/);
+  assert.match(result, /VR General Practitioner/);
+  assert.match(result, /Request Callback/);
+  assert.match(result, /Current employer will not be contacted/);
+  assert.match(result, /class="gp-recruit-hero"/);
+  assert.match(
+    result,
+    /A Supported VR GP Role at an Established Inner-South Practice\./,
+  );
+  assert.match(result, /No CV required for an initial discussion/);
+  assert.match(result, /Request a Confidential Discussion/);
+  assert.match(result, /Roshan Samarawickrema/);
+  assert.match(result, /Confidential Means Confidential/);
+  assert.match(result, /recruitment representatives/);
+  assert.match(result, /id="commercial-opportunity"/);
+  assert.match(result, /gp-recruit-stat-value--xl">75%/);
+  assert.match(result, /Minimum Guarantee/);
+  assert.match(result, /id="why-demand-exists"/);
+  assert.match(result, /Why Demand Exists/);
+  assert.match(result, /Demand Is Already On The Books/);
+  assert.match(result, /id="wmc-gp-recruitment"/);
+  assert.match(result, /styles\.css\?v=wmc-gp-recruit-20261105at/);
+  assert.match(result, /top:calc\(10rem \+ env\(safe-area-inset-top/);
+  assert.match(result, /GP Readiness &amp; Onboarding Portal/);
+  assert.match(result, /data-gp-readiness-open="true"/);
+  assert.match(result, /Call About Joining/);
+  assert.match(result, /gp-readiness-portal\.js\?v=wmc-gp-readiness-20261105c/);
+  assert.match(result, /id="gp-readiness-portal"/);
+  assert.match(
+    result,
+    /gp-recruit-actions--inline[\s\S]*?GP Readiness &amp; Onboarding Portal[\s\S]*?Request a Confidential Discussion[\s\S]*?Call About Joining/,
+  );
+  assert.match(result, /persistent-care-readiness[^>]*>GP Portal</);
+  assert.match(result, /persistent-care-book[^>]*>Discuss</);
+  assert.match(
+    result,
+    /persistent-care-actions--recruitment[\s\S]*?persistent-care-readiness[\s\S]*?data-gp-readiness-open="true"[\s\S]*?persistent-care-book[\s\S]*?persistent-care-call[^>]*>Call</,
+  );
+  assert.match(result, /grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
+  assert.match(result, /100% Medicare Bulk Billing/);
+  assert.match(result, /tel:\+61481706474/);
+  assert.match(result, /mailto:roshan@tmedicals\.com\.au\?subject=GP%20opportunity%20%E2%80%94%20Woolloongabba/);
+  assert.match(result, /body=Hi%20Roshan/);
+  assert.doesNotMatch(result, /mailto:reception@gabbamedicalcentre\.com\.au\?subject=Confidential%20GP%20enquiry/);
+  assert.doesNotMatch(result, /subject=Confidential%20GP%20enquiry/);
+  assert.match(result, /Onsite pathology/);
+  assert.match(result, /gp-recruit-stat-value">10\+/);
+  assert.match(result, /gp-recruit-stat-value">5\+/);
+  assert.match(result, /max-height:calc\(100vh - 12rem/);
+  assert.match(result, /scroll-margin-top:calc\(5\.5rem \+ env\(safe-area-inset-top/);
+  assert.match(result, /position:relative;z-index:1;top:auto/);
+  assert.doesNotMatch(result, /position:static!important;top:auto!important/);
+  assert.match(result, /gp-recruit-opportunity-follow/);
+  assert.match(result, /gp-recruit-hero-aside-card/);
+  assert.match(result, /Hero opportunity summary/);
+  assert.match(result, /Next to The Gabba stadium/);
+  assert.match(result, /Onsite chemist &amp; radiology/);
+  assert.match(result, /Dr Wasantha Hettiarchchi/);
+  assert.doesNotMatch(result, /Dr Steven Chang/);
+  assert.match(result, /What happens next/);
+  assert.match(result, /Explore Practice Experience in detail/);
+  assert.match(result, /Explore Practice Support in detail/);
+  assert.match(result, /footer-trust[\s\S]*?bulk-billing-practice\.png/);
+  assert.match(result, /gp-recruit-vacancy-featured-points\{[\s\S]*?grid-template-columns:1fr 1fr/);
+  assert.ok(
+    result.indexOf('class="gp-recruit-hero"') <
+      result.indexOf('aria-label="Hero opportunity summary"') &&
+      result.indexOf('aria-label="Hero opportunity summary"') <
+        result.indexOf('id="commercial-opportunity"'),
+  );
+  assert.doesNotMatch(result, /gp-recruit-breadcrumb/);
+  assert.match(result, /gp-recruit-team-trust/);
+  assert.match(result, /id="current-opportunities"/);
+  assert.match(result, /Current Opportunities/);
+  assert.match(result, /careers-vacancies:start/);
+  assert.match(result, /data-gp-recruit-vacancies/);
+  assert.match(result, /id="understanding-the-opportunity"/);
+  assert.match(result, /Understanding the Opportunity/);
+  assert.match(result, /How does the 75% arrangement work/);
+  assert.match(result, /How are patients allocated/);
+  assert.match(result, /Is weekend work required/);
+  assert.match(result, /Can sessions be part-time/);
+  assert.match(result, /What support is available/);
+  assert.match(result, /What software does the clinic use/);
+  assert.match(result, /What is onboarding like/);
+  assert.match(result, /Who responds to recruitment enquiries/);
+  assert.match(result, /Is This Opportunity Right For You/);
+  assert.match(result, /id="confidential-conversation"/);
+  assert.match(result, /gp-recruit-final-actions/);
+  assert.match(result, /Call Roshan Samarawickrema/);
+  assert.match(result, /exploring future opportunities/);
+  assert.match(result, /established patient community already on the books/);
+  assert.match(result, /id="at-a-glance"/);
+  assert.match(result, /Practice scale/);
+  assert.doesNotMatch(result, /Supported by an established patient community/);
+  assert.doesNotMatch(result, /Billing Split/);
+  assert.match(result, /gp-recruit-final-copy/);
+  assert.match(result, /gp-recruit-differentiator-aside/);
+  assert.doesNotMatch(result, /id="visual-proof"|Verified practice photography/);
+  assert.ok(
+    result.indexOf('id="why-different"') < result.indexOf('id="current-opportunities"') &&
+      result.indexOf('id="current-opportunities"') < result.indexOf('id="understanding-the-opportunity"') &&
+      result.indexOf('id="understanding-the-opportunity"') < result.indexOf('id="why-gps-choose"'),
+  );
+  assert.ok(
+    result.indexOf('class="gp-recruit-hero"') < result.indexOf("data-recruitment-evidence-panel") &&
+      result.indexOf("data-recruitment-evidence-panel") < result.indexOf('id="at-a-glance"') &&
+      result.indexOf('class="gp-recruit-hero"') < result.indexOf('id="at-a-glance"'),
+  );
+  assert.match(result, /\$250\/hr Minimum/);
+  assert.doesNotMatch(result, /<\s*1 Month|Typical Time to Build a Busy Patient List/);
+  assert.doesNotMatch(result, /clinic-reception\.png/);
+  assert.doesNotMatch(result, /institutional-exterior-consistent/);
+  assert.doesNotMatch(result, /figcaption>Reception</);
+  assert.doesNotMatch(result, /careers-page-hero/);
+  assert.doesNotMatch(result, /Designed for Long-Term GP Success/);
+  assert.doesNotMatch(result, /We Are Looking For GPs Who/);
+  assert.doesNotMatch(result, /on-this-page-shell|data-ev-journey-nav|Am I ready to talk/i);
+  assert.equal(applyPublicUxRefinements(result, "join-our-team.html"), result);
+});
+
+test("recruitment mobile polish styles shared contact channels on related pages", () => {
+  const html = `<html><head></head><body class="has-persistent-care-actions" data-ev="true">
+<main><article><h1>GP Opportunities</h1></article></main>
+<nav class="persistent-care-actions persistent-care-actions--recruitment"><a href="#">Discuss</a></nav>
+</body></html>`;
+  const result = applyPublicUxRefinements(html, "join-our-team/gp-opportunities.html");
+  assert.match(result, /id="wmc-recruit-mobile"/);
+  assert.match(result, /\.gp-recruit-contact-channels a/);
+  assert.match(result, /min-height:44px/);
+  assert.match(result, /\.attraction-matrix/);
+  assert.match(result, /Stack support\/checklist matrices/);
+  assert.match(result, /data-recruitment-contact="true"/);
+  assert.match(result, /gp-recruit-shared-trust/);
+  assert.equal(applyPublicUxRefinements(result, "join-our-team/gp-opportunities.html"), result);
+});
+
+test("Express Interest enquiry stage is contact, confidentiality, form, submit only", () => {
+  const html = `<html><head></head><body class="has-persistent-care-actions">
+<section class="page-hero"><div class="shell"><p class="eyebrow">Ready for a conversation?</p><h1>Introduce yourself</h1><p class="lede">Explore opportunities first.</p></div></section>
+<aside class="page-nav" id="related-pages"><div class="nav-title">For doctors joining</div><a href="doctor-readiness.html">Am I ready to talk?</a><a href="gp-opportunities.html">GP Opportunities</a></aside>
+<article data-ev-article="true">
+<section class="attraction-next-step" data-attraction-next="true"><h2>We’ll take it from here</h2><p>Explore our opportunities</p></section>
+<form id="eoi-form" class="attraction-tool-panel" data-clinic-slug="woolloongabba">
+<div class="eoi-field-grid">
+<label><span class="attr-field-label">Name</span><input name="name" required/></label>
+<label><span class="attr-field-label">Email</span><input name="email" type="email" required/></label>
+<label><span class="attr-field-label">Phone</span><input name="phone" type="tel"/></label>
+</div>
+<label><span class="attr-field-label">Your message</span><textarea name="availabilityNotes"></textarea></label>
+<fieldset class="eoi-optional-details"><legend>Optional</legend>
+<input name="ahpraRegistration"/><input name="medicareProviderNumber"/><input name="currentPractice"/>
+</fieldset>
+<button class="button" type="submit">Send my note</button>
+</form>
+</article>
+<nav class="persistent-care-actions persistent-care-actions--recruitment"><a href="#eoi-form">Express Interest</a></nav>
+<div class="footer-nav footer-nav-explore"><h3>Explore for GPs</h3><a href="gp-opportunities.html">GP Opportunities</a></div>
+</body></html>`;
+  const result = applyPublicUxRefinements(html, "join-our-team/express-interest.html");
+  assert.match(result, /data-eoi-focus="true"/);
+  assert.match(result, /data-recruitment-contact="true"/);
+  assert.match(result, /Roshan Samarawickrema/);
+  assert.match(result, /Confidential Means Confidential/);
+  assert.match(result, /name="phone"[^>]*required/);
+  assert.match(result, /name="preferredContact"/);
+  assert.match(result, /Optional message/);
+  assert.match(result, /Request a Confidential Discussion/);
+  assert.match(result, /Request a confidential discussion/);
+  assert.doesNotMatch(result, /name="ahpraRegistration"/);
+  assert.doesNotMatch(result, /name="medicareProviderNumber"/);
+  assert.doesNotMatch(result, /name="currentPractice"/);
+  assert.doesNotMatch(result, /id="related-pages"/);
+  assert.doesNotMatch(result, /Am I ready to talk/);
+  assert.doesNotMatch(result, /<section[^>]*attraction-next-step/);
+  assert.doesNotMatch(result, /We’ll take it from here/);
+  assert.doesNotMatch(result, /Explore for GPs/);
+  assert.doesNotMatch(result, /Introduce yourself/);
+  assert.doesNotMatch(result, /<nav[^>]*persistent-care-actions/);
+  const contactIdx = result.indexOf("data-recruitment-contact");
+  const trustIdx = result.indexOf("Confidential Means Confidential");
+  const formIdx = result.indexOf('id="eoi-form"');
+  assert.ok(contactIdx >= 0 && trustIdx > contactIdx && formIdx > trustIdx);
+  assert.equal(applyPublicUxRefinements(result, "join-our-team/express-interest.html"), result);
+});
+
 test("the real homepage opening-hours block includes both links", () => {
   const content = readFileSync(path.resolve(process.cwd(), "../../old-html/index.html"), "utf8");
   const result = applyPublicUxRefinements(content, "index.html");
   assert.match(result, /class="hero-hours-actions"/);
   assert.match(result, /href="contact\.html">View all hours/);
   assert.match(result, /href="after-hours-care\.html">After Hours Care/);
-  assert.match(result, /styles\.css\?v=wmc-hero-authority-v6f-20261105/);
-  assert.match(result, /site\.js\?v=wmc-hero-authority-v6f-20261105/);
+  assert.match(result, /styles\.css\?v=wmc-hero-authority-v6j-20261105/);
+  assert.match(result, /site\.js\?v=wmc-hero-authority-v6j-20261105/);
+  assert.match(result, /class="brand"[^>]*href="\/"/);
+  assert.doesNotMatch(result, /class="brand"[^>]*href="index\.html"/);
+  assert.match(result, /#patient-information \.info-trust-logos a\{[\s\S]*?width:136px!important/);
+  assert.match(result, /@media \(min-width:1025px\)\{[\s\S]*?\.hero-picture \.hero-photo\{[\s\S]*?object-fit:cover!important/);
+  assert.match(result, /#story a\.trust-line[\s\S]*?border-top:0!important/);
+  assert.match(result, /info-trust-logos[\s\S]*?agpal-mark\.webp" width="192"/);
+  assert.match(result, /info-trust-logos[\s\S]*?bulk-billing-practice\.png" width="256"/);
+  assert.match(result, /#patient-information \.info-trust-logos img[\s\S]*?object-fit:contain!important/);
   assert.match(result, /#hotdoc-app \.hotdoc-benefits a\{[\s\S]*?text-decoration:none!important/);
   assert.match(result, /\.hero-visual\{[\s\S]*?order:1!important/);
   assert.match(result, /hero-content-panel>h1\{[\s\S]*?text-align:center!important/);

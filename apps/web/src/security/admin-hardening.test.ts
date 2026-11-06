@@ -138,9 +138,24 @@ const APPROVED_MODULES = [
   { href: "/admin/pages", label: "Pages", action: "edit", group: "content" },
   { href: "/admin/practitioners", label: "Practitioners", action: "edit", group: "content" },
   { href: "/admin/services", label: "Services", action: "edit", group: "content" },
+  { href: "/admin/careers/vacancies", label: "Vacancies", action: "edit", group: "content" },
+  { href: "/admin/careers/applications", label: "Applications", action: "edit", group: "content" },
+  { href: "/admin/media", label: "Media Library", action: "edit", group: "content" },
+  {
+    href: "/admin/operations/patient-requests",
+    label: "Patient Requests",
+    action: "edit",
+    group: "operations",
+  },
   { href: "/admin", label: "Practice briefing", action: "manage_settings", group: "insights" },
   { href: "/admin/executive", label: "Website overview", action: "manage_settings", group: "insights" },
   { href: "/admin/digital-reception", label: "Online search", action: "manage_settings", group: "insights" },
+  {
+    href: "/admin/search-opportunities",
+    label: "Search & content opportunities",
+    action: "manage_settings",
+    group: "insights",
+  },
   { href: "/admin/practitioner-authority", label: "Doctor profiles", action: "manage_settings", group: "insights" },
   { href: "/admin/service-authority", label: "Service pages", action: "manage_settings", group: "insights" },
   { href: "/admin/conversion-intelligence", label: "Booking journey", action: "manage_settings", group: "insights" },
@@ -151,8 +166,10 @@ const APPROVED_MODULES = [
 ] as const satisfies readonly CmsModule[];
 
 const CONTENT_MODULES = APPROVED_MODULES.filter((item) => item.group === "content");
+const OPERATIONS_MODULES = APPROVED_MODULES.filter((item) => item.group === "operations");
 const INSIGHTS_MODULES = APPROVED_MODULES.filter((item) => item.group === "insights");
 const GOVERNANCE_MODULES = APPROVED_MODULES.filter((item) => item.group === "governance");
+const EDITOR_MODULES = APPROVED_MODULES.filter((item) => item.action === "edit");
 
 const ALL_ACTIONS: readonly CmsAction[] = [
   "edit", "submit_for_review", "clinical_signoff", "practice_approve",
@@ -200,8 +217,8 @@ describe("role menus", () => {
       { role: "super_admin", expected: APPROVED_MODULES },
       { role: "network_admin", expected: APPROVED_MODULES },
       { role: "clinic_admin", expected: APPROVED_MODULES },
-      { role: "content_editor", expected: CONTENT_MODULES },
-      { role: "editor", expected: CONTENT_MODULES },
+      { role: "content_editor", expected: EDITOR_MODULES },
+      { role: "editor", expected: EDITOR_MODULES },
       { role: "clinical_reviewer", expected: [] },
       { role: "practice_approver", expected: [] },
       { role: "publisher", expected: [] },
@@ -216,18 +233,23 @@ describe("role menus", () => {
         }
       }
     }
-    assert.equal(visibleModules("content_editor").every((item) => item.group === "content"), true);
+    assert.equal(
+      visibleModules("content_editor").every((item) => item.group === "content" || item.group === "operations"),
+      true,
+    );
     assert.equal(visibleModules("clinic_admin").some((item) => item.href === "/admin/image-governance"), true);
   });
 
-  it("preserves content, insights, and governance grouping and restrictions", () => {
+  it("preserves content, operations, insights, and governance grouping and restrictions", () => {
     assert.deepEqual(visibleNavGroups("clinic_admin"), [
       { id: "content", label: "Content", modules: CONTENT_MODULES },
+      { id: "operations", label: "Operations", modules: OPERATIONS_MODULES },
       { id: "insights", label: "Insights", modules: INSIGHTS_MODULES },
       { id: "governance", label: "Governance", modules: GOVERNANCE_MODULES },
     ]);
     assert.deepEqual(visibleNavGroups("content_editor"), [
       { id: "content", label: "Content", modules: CONTENT_MODULES },
+      { id: "operations", label: "Operations", modules: OPERATIONS_MODULES },
     ]);
     assert.deepEqual(visibleNavGroups("editor"), visibleNavGroups("content_editor"));
     assert.deepEqual(visibleNavGroups("super_admin"), visibleNavGroups("clinic_admin"));

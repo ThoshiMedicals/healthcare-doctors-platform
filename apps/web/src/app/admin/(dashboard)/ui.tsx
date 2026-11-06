@@ -14,20 +14,24 @@ export function SavedNotice({
   rolled?: string;
   published?: string;
   status?: string;
-  kind?: "content" | "governance" | "image";
+  kind?: "content" | "governance" | "image" | "media";
 }) {
   if (saved !== "1" && rolled !== "1" && published !== "1") return null;
   const message =
     published === "1"
-      ? "Published. The public page now uses this version. The page structure is unchanged."
+      ? kind === "media"
+        ? "Uploaded. The file is in the Media Library. Public pages are unchanged until an editor places it."
+        : "Published. The public page now uses this version. The page structure is unchanged."
       : rolled === "1"
         ? kind === "image"
           ? "Restored. This version is now the current image. The filename and page layout are unchanged."
           : kind === "governance"
             ? "Restored. The governance record matches this revision. The public website is unchanged."
             : "Restored. A published version matches the public website. A restored draft stays off the public website until you publish."
-        : kind === "governance"
-          ? "Saved. Governance stays in the CMS and does not change the public website."
+        : kind === "governance" || kind === "media"
+          ? kind === "media"
+            ? "Saved. Media Library metadata stays in the CMS and does not change the public website."
+            : "Saved. Governance stays in the CMS and does not change the public website."
           : status === "clinical_review"
             ? "Submitted for review. The public website is unchanged."
             : status === "approved"

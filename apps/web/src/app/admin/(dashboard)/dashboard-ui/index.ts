@@ -27,6 +27,7 @@ export {
   governanceReviewHref,
   insightsNavItems,
   practitionerAuthorityHref,
+  searchOpportunitiesHref,
   serviceAuthorityHref,
   type GovernanceQueue,
   type InsightsDestination,

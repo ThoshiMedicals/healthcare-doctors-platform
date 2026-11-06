@@ -44,3 +44,15 @@ source,target,regex,code
 /services/pathology-doctors/,https://gabbamedicalcentre.com.au/services/pathology.html,0,301
 /services/womens-health-doctors/,https://gabbamedicalcentre.com.au/services/womens-health.html,0,301
 /treatments/,https://gabbamedicalcentre.com.au/services.html,0,301
+/doctor/dr-golnar-mortezaei-gp-fracgp/,https://gabbamedicalcentre.com.au/doctors/dr-golnar-mortezaei.html,0,301
+/doctor/dr-james-general-practitioner/,https://gabbamedicalcentre.com.au/doctors/dr-james.html,0,301
+/bulk-billing-doctors-woolloongabba/,https://gabbamedicalcentre.com.au/bulk-billing.html,0,301
+/family-doctors-woolloongabba/,https://gabbamedicalcentre.com.au/services/family-health.html,0,301
+/skin-cancer-clinic-doctors-brisbane/,https://gabbamedicalcentre.com.au/services/skin-checks.html,0,301
+/your-complete-guide-to-a-skin-check-at-gabba-medical-centre/,https://gabbamedicalcentre.com.au/knowledge/articles/when-should-i-book-a-skin-check.html,0,301
+/free-flu-vaccine-woolloongabba-2026/,https://gabbamedicalcentre.com.au/services/vaccinations.html,0,301
+/diabetes-doctor-woolloongabba/,https://gabbamedicalcentre.com.au/services/chronic-disease-care.html,0,301
+/local-gp-woolloongabba/,https://gabbamedicalcentre.com.au/team-general-practitioners.html,0,301
+/find-the-best-doctor-near-me-in-brisbane/,https://gabbamedicalcentre.com.au/team-general-practitioners.html,0,301
+/services/sexual-health-doctors/,https://gabbamedicalcentre.com.au/services/family-health.html,0,301
+/services/travel-health-doctors/,https://gabbamedicalcentre.com.au/services/vaccinations.html,0,301

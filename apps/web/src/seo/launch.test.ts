@@ -4,6 +4,7 @@ import path from "node:path";
 import test from "node:test";
 import { goldenHtmlRoot, listHtmlFiles, webRoot } from "@/importer/golden-root";
 import { toStoragePath } from "@/documents/paths";
+import { SITEMAP_CMS_PRACTITIONER_PATHS } from "@/seo/wordpress-legacy-redirects";
 
 test("production URLs keep the approved paths and the 404 document", () => {
   assert.equal(toStoragePath(undefined), "index.html");
@@ -35,9 +36,13 @@ test("approved sitemap and robots are served unchanged", () => {
     }),
   );
   const missing = [...html].filter((file) => !listed.has(file)).sort();
-  const extra = [...listed].filter((file) => !html.has(file)).sort();
+  const cmsExtras = new Set<string>(SITEMAP_CMS_PRACTITIONER_PATHS);
+  const extra = [...listed].filter((file) => !html.has(file) && !cmsExtras.has(file)).sort();
   assert.deepEqual(missing, ["updates/article.html"]);
   assert.deepEqual(extra, []);
+  for (const cmsPath of SITEMAP_CMS_PRACTITIONER_PATHS) {
+    assert.equal(listed.has(cmsPath), true, `sitemap must list ${cmsPath}`);
+  }
 });
 
 test("approved pages keep canonicals on the production host, and the 404 page stays out of the index", () => {

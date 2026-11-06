@@ -1,0 +1,248 @@
+{
+  "phase": "1B",
+  "purpose": "Phase 1B educational diagrams for approved knowledge hubs and one sun-protection article. One diagram per page. No heroes. No service pages.",
+  "assetRootHub": "../assets/knowledge/authority/",
+  "assetRootArticle": "../../assets/knowledge/authority/",
+  "variants": [640, 960],
+  "pages": [
+    {
+      "file": "old-html/knowledge/skin-health-skin-cancer.html",
+      "assetRoot": "../assets/knowledge/authority/",
+      "insertAfterSectionId": "understanding-skin-health-and-skin-cancer",
+      "onThisPage": {
+        "from": "<a href=\"#understanding-skin-health-and-skin-cancer\">Understanding Skin Health &amp; Skin Cancer</a><a href=\"#patient-guides\">Patient guides</a>",
+        "to": "<a href=\"#understanding-skin-health-and-skin-cancer\">Understanding Skin Health &amp; Skin Cancer</a><a href=\"#what-a-skin-check-covers\">What a skin check covers</a><a href=\"#patient-guides\">Patient guides</a>"
+      },
+      "section": {
+        "id": "what-a-skin-check-covers",
+        "eyebrow": "Educational overview",
+        "heading": "What a skin check covers",
+        "paragraphs": [
+          "A skin check is a clinical assessment of your skin and areas of concern. Your practitioner usually discusses your history, examines relevant areas, explains findings and plans next steps such as monitoring, a procedure or referral when appropriate.",
+          "This is a simplified educational overview. It does not replace individual assessment."
+        ],
+        "note": "Simplified educational illustration.",
+        "guideLink": { "href": "#patient-guides", "label": "Read the skin health patient guides" },
+        "figure": {
+          "file": "skin-check-education.webp",
+          "alt": "Diagram titled What a Skin Check Covers, showing four steps: discuss concerns and history, examine areas of concern, explain findings, and plan next steps such as monitoring, a procedure or referral.",
+          "caption": "Educational diagram of what a skin check covers."
+        }
+      }
+    },
+    {
+      "file": "old-html/knowledge/articles/protecting-your-skin-from-the-queensland-sun.html",
+      "assetRoot": "../../assets/knowledge/authority/",
+      "insertInsideSectionId": "use-several-forms-of-sun-protection-together",
+      "section": {
+        "id": "use-several-forms-of-sun-protection-together",
+        "figureOnly": true,
+        "figure": {
+          "file": "queensland-sun-education.webp",
+          "alt": "Diagram titled Protecting Skin from the Queensland Sun, showing five protections used together: shade, clothing, sunscreen, hat and sunglasses.",
+          "caption": "Educational diagram of sun protection used together."
+        }
+      }
+    },
+    {
+      "file": "old-html/knowledge/womens-health.html",
+      "assetRoot": "../assets/knowledge/authority/",
+      "insertAfterSectionId": "understanding-women-s-health",
+      "onThisPage": {
+        "from": "<a href=\"#understanding-women-s-health\">Understanding Women&#x27;s Health</a><a href=\"#patient-guides\">Patient guides</a>",
+        "to": "<a href=\"#understanding-women-s-health\">Understanding Women&#x27;s Health</a><a href=\"#womens-health-across-life-stages\">Women's health across life stages</a><a href=\"#patient-guides\">Patient guides</a>"
+      },
+      "section": {
+        "id": "womens-health-across-life-stages",
+        "eyebrow": "Educational overview",
+        "heading": "Women's health across life stages",
+        "paragraphs": [
+          "Women's healthcare needs can change across life stages. Discussions may cover reproductive health, screening, pregnancy-related care, menopause and midlife health, and ongoing preventive care.",
+          "What is discussed depends on individual needs and circumstances."
+        ],
+        "note": "Simplified educational illustration.",
+        "guideLink": { "href": "#patient-guides", "label": "Read the women's health patient guides" },
+        "figure": {
+          "file": "womens-life-stages-education.webp",
+          "alt": "Diagram titled Women's Health Across Life Stages, showing five stages from contraception and reproductive health through screening discussions, pregnancy and postnatal care, menopause and midlife health, and ongoing preventive care.",
+          "caption": "Educational diagram of women's health across life stages."
+        }
+      }
+    },
+    {
+      "file": "old-html/knowledge/menopause.html",
+      "assetRoot": "../assets/knowledge/authority/",
+      "insertAfterSectionId": "about-this-topic",
+      "onThisPage": {
+        "from": "<a href=\"#about-this-topic\">About this topic</a><a href=\"#patient-guides\">Patient guides</a>",
+        "to": "<a href=\"#about-this-topic\">About this topic</a><a href=\"#understanding-menopause-care\">Understanding menopause care</a><a href=\"#patient-guides\">Patient guides</a>"
+      },
+      "section": {
+        "id": "understanding-menopause-care",
+        "eyebrow": "Educational overview",
+        "heading": "Understanding menopause care",
+        "paragraphs": [
+          "A menopause discussion can help you recognise life-stage changes, talk about symptoms and concerns, review overall health and plan follow-up support.",
+          "Care is tailored to the individual. This overview does not describe a specific treatment plan."
+        ],
+        "note": "Simplified educational illustration.",
+        "guideLink": { "href": "#patient-guides", "label": "Read the menopause patient guides" },
+        "figure": {
+          "file": "menopause-education.webp",
+          "alt": "Diagram titled Understanding Menopause Care, showing four steps: recognise life-stage changes, discuss symptoms and concerns, review overall health, and plan follow-up and support.",
+          "caption": "Educational diagram of menopause care discussions."
+        }
+      }
+    },
+    {
+      "file": "old-html/knowledge/pregnancy.html",
+      "assetRoot": "../assets/knowledge/authority/",
+      "insertAfterSectionId": "about-this-topic",
+      "onThisPage": {
+        "from": "<a href=\"#about-this-topic\">About this topic</a><a href=\"#patient-guides\">Patient guides</a>",
+        "to": "<a href=\"#about-this-topic\">About this topic</a><a href=\"#how-antenatal-care-is-organised\">How antenatal care is organised</a><a href=\"#patient-guides\">Patient guides</a>"
+      },
+      "section": {
+        "id": "how-antenatal-care-is-organised",
+        "eyebrow": "Educational overview",
+        "heading": "How antenatal care is organised",
+        "paragraphs": [
+          "Antenatal care is usually organised around you and your GP. It may include early pregnancy booking, regular reviews, tests or referrals when needed, and postnatal follow-up.",
+          "Shared maternity care may also involve hospital teams when arranged."
+        ],
+        "note": "Simplified educational illustration.",
+        "guideLink": { "href": "#patient-guides", "label": "Read the pregnancy patient guides" },
+        "figure": {
+          "file": "pregnancy-care-education.webp",
+          "alt": "Diagram titled How Antenatal Care Is Organised, with a central you-and-your-GP hub connected to early pregnancy booking, regular antenatal reviews, tests and referrals when needed, and postnatal follow-up.",
+          "caption": "Educational diagram of how antenatal care is organised."
+        }
+      }
+    },
+    {
+      "file": "old-html/knowledge/childrens-health.html",
+      "assetRoot": "../assets/knowledge/authority/",
+      "insertAfterSectionId": "understanding-children-s-health",
+      "onThisPage": {
+        "from": "<a href=\"#understanding-children-s-health\">Understanding Children&#x27;s Health</a><a href=\"#patient-questions\">Patient questions</a>",
+        "to": "<a href=\"#understanding-children-s-health\">Understanding Children&#x27;s Health</a><a href=\"#preparing-for-a-childs-gp-visit\">Preparing for a child's GP visit</a><a href=\"#patient-questions\">Patient questions</a>"
+      },
+      "section": {
+        "id": "preparing-for-a-childs-gp-visit",
+        "eyebrow": "Educational overview",
+        "heading": "Preparing for a child's GP visit",
+        "paragraphs": [
+          "It can help to bring health and vaccination records, note symptoms or development questions, discuss concerns with the GP, and agree next steps and follow-up.",
+          "Longer appointments can help when several issues need time."
+        ],
+        "note": "Simplified educational illustration.",
+        "guideLink": { "href": "#patient-guides", "label": "Read the children's health patient guides" },
+        "figure": {
+          "file": "childrens-gp-visit-education.webp",
+          "alt": "Diagram titled Preparing for a Child's GP Visit, showing four steps: bring health and vaccination records, note symptoms or development questions, discuss concerns with the GP, and agree next steps and follow-up.",
+          "caption": "Educational diagram of preparing for a child's GP visit."
+        }
+      }
+    },
+    {
+      "file": "old-html/knowledge/vaccinations.html",
+      "assetRoot": "../assets/knowledge/authority/",
+      "insertAfterSectionId": "understanding-vaccinations",
+      "onThisPage": {
+        "from": "<a href=\"#understanding-vaccinations\">Understanding Vaccinations</a><a href=\"#patient-guides\">Patient guides</a>",
+        "to": "<a href=\"#understanding-vaccinations\">Understanding Vaccinations</a><a href=\"#vaccination-across-life-stages\">Vaccination across life stages</a><a href=\"#patient-guides\">Patient guides</a>"
+      },
+      "section": {
+        "id": "vaccination-across-life-stages",
+        "eyebrow": "Educational overview",
+        "heading": "Vaccination across life stages",
+        "paragraphs": [
+          "Vaccination needs can change across childhood, adolescence, adulthood and older age. Travel recommendations may also be relevant for some people.",
+          "Recommendations depend on age, history and individual circumstances."
+        ],
+        "note": "Simplified educational illustration.",
+        "guideLink": { "href": "#patient-guides", "label": "Read the vaccination patient guides" },
+        "figure": {
+          "file": "vaccination-life-stages-education.webp",
+          "alt": "Diagram titled Vaccination Across Life Stages, showing childhood, adolescence, adulthood, older age and travel when relevant.",
+          "caption": "Educational diagram of vaccination across life stages."
+        }
+      }
+    },
+    {
+      "file": "old-html/knowledge/preventive-healthcare.html",
+      "assetRoot": "../assets/knowledge/authority/",
+      "insertAfterSectionId": "understanding-preventive-healthcare",
+      "onThisPage": {
+        "from": "<a href=\"#understanding-preventive-healthcare\">Understanding Preventive Healthcare</a><a href=\"#patient-guides\">Patient guides</a>",
+        "to": "<a href=\"#understanding-preventive-healthcare\">Understanding Preventive Healthcare</a><a href=\"#the-preventive-healthcare-cycle\">The preventive healthcare cycle</a><a href=\"#patient-guides\">Patient guides</a>"
+      },
+      "section": {
+        "id": "the-preventive-healthcare-cycle",
+        "eyebrow": "Educational overview",
+        "heading": "The preventive healthcare cycle",
+        "paragraphs": [
+          "Preventive care is often a repeating cycle: review history and risks, discuss screening and prevention, arrange checks or vaccinations when appropriate, then follow up and plan again.",
+          "What is recommended varies for each person."
+        ],
+        "note": "Simplified educational illustration.",
+        "guideLink": { "href": "#patient-guides", "label": "Read the preventive healthcare patient guides" },
+        "figure": {
+          "file": "preventive-cycle-education.webp",
+          "alt": "Diagram titled The Preventive Healthcare Cycle, showing four repeating steps: review history and risks, discuss screening and prevention, arrange checks or vaccinations when appropriate, and follow up and plan again.",
+          "caption": "Educational diagram of the preventive healthcare cycle."
+        }
+      }
+    },
+    {
+      "file": "old-html/knowledge/healthy-ageing.html",
+      "assetRoot": "../assets/knowledge/authority/",
+      "insertAfterSectionId": "understanding-healthy-ageing",
+      "onThisPage": {
+        "from": "<a href=\"#understanding-healthy-ageing\">Understanding Healthy Ageing</a><a href=\"#patient-guides\">Patient guides</a>",
+        "to": "<a href=\"#understanding-healthy-ageing\">Understanding Healthy Ageing</a><a href=\"#healthy-ageing-care-over-time\">Healthy ageing care over time</a><a href=\"#patient-guides\">Patient guides</a>"
+      },
+      "section": {
+        "id": "healthy-ageing-care-over-time",
+        "eyebrow": "Educational overview",
+        "heading": "Healthy ageing care over time",
+        "paragraphs": [
+          "Healthy ageing care can bring together preventive reviews, falls and mobility discussion, vaccination review, medicines review and regular GP follow-up.",
+          "Priorities change with individual health needs."
+        ],
+        "note": "Simplified educational illustration.",
+        "guideLink": { "href": "#patient-guides", "label": "Read the healthy ageing patient guides" },
+        "figure": {
+          "file": "healthy-ageing-education.webp",
+          "alt": "Diagram titled Healthy Ageing: Care Over Time, linking healthy ageing with preventive reviews, falls and mobility discussion, vaccination review, medicines review and regular GP follow-up.",
+          "caption": "Educational diagram of healthy ageing care over time."
+        }
+      }
+    },
+    {
+      "file": "old-html/knowledge/telehealth-access-to-care.html",
+      "assetRoot": "../assets/knowledge/authority/",
+      "insertAfterSectionId": "understanding-telehealth-and-access-to-care",
+      "onThisPage": {
+        "from": "<a href=\"#understanding-telehealth-and-access-to-care\">Understanding Telehealth &amp; Access To Care</a><a href=\"#patient-guides\">Patient guides</a>",
+        "to": "<a href=\"#understanding-telehealth-and-access-to-care\">Understanding Telehealth &amp; Access To Care</a><a href=\"#when-a-telehealth-consultation-may-fit\">When a telehealth consultation may fit</a><a href=\"#patient-guides\">Patient guides</a>"
+      },
+      "section": {
+        "id": "when-a-telehealth-consultation-may-fit",
+        "eyebrow": "Educational overview",
+        "heading": "When a telehealth consultation may fit",
+        "paragraphs": [
+          "Telehealth may suit some concerns when a phone or video consultation is clinically appropriate. It helps to have a private space, a clear connection, and your medicines and questions ready.",
+          "In-person care is needed when examination, testing or treatment cannot be provided safely by telehealth. Telehealth is not for emergencies."
+        ],
+        "note": "Simplified educational illustration.",
+        "guideLink": { "href": "#patient-guides", "label": "Read the telehealth patient guides" },
+        "figure": {
+          "file": "telehealth-education.webp",
+          "alt": "Diagram titled When a Telehealth Consultation May Fit, covering suitable phone or video concerns, private space and clear connection, having medicines and questions ready, and in-person care if examination is needed.",
+          "caption": "Educational diagram of when a telehealth consultation may fit."
+        }
+      }
+    }
+  ]
+}

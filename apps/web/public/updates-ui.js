@@ -18,52 +18,27 @@
     if (image === "telehealth-poster") {
       return `${base}assets/patient-information/telehealth-consultations-poster.webp`;
     }
+    if (image === "welcome-dr-golnar-mortezaei" || image === "welcome-dr-golnar-mortezaei.webp") {
+      return `${base}assets/updates/welcome-dr-golnar-mortezaei.webp`;
+    }
+    if (image === "welcome-dr-james-chanaka" || image === "welcome-dr-james-chanaka.webp") {
+      return `${base}assets/updates/welcome-dr-james-chanaka.webp`;
+    }
     if (image === "hotdoc-app-booking.webp" || image === "hotdoc-bookings-poster.webp") {
       return `${base}assets/location-storefront-polished.webp`;
     }
+    if (String(image).startsWith("updates/")) return `${base}assets/${image}`;
     return `${base}assets/${image}`;
   };
 
   const articleUrl = update => `${base}updates/${encodeURIComponent(update.id)}.html`;
-
-  const imageDimensions = {
-    "assets/clinic-reception.png": [1080, 870],
-    "assets/location-storefront-polished.webp": [1800, 1013],
-    "assets/patient-information/new-patients-welcome-hero.webp": [1200, 900],
-    "assets/patient-information/telehealth-consultations-poster.webp": [1200, 900],
-  };
-  const imageSize = src => {
-    const asset = String(src).replace(/^(?:\.\.\/|\.\/|\/)+/, "");
-    const size = imageDimensions[asset];
-    return size ? ` width="${size[0]}" height="${size[1]}"` : "";
-  };
-
-  // Avoid replacing identical server-rendered cards, which causes layout shifts.
-  const cardSignature = parent => JSON.stringify(
-    [...parent.querySelectorAll(".health-update-card")].map(card => {
-      const img = card.querySelector(".health-update-image img");
-      const link = card.querySelector(".health-update-image");
-      const heading = card.querySelector("h3 a");
-      const meta = card.querySelector(".health-update-meta span");
-      const time = card.querySelector("time");
-      const summary = card.querySelector(".health-update-copy > p");
-      const action = card.querySelector(".editorial-link");
-      return [
-        link?.getAttribute("href"), img?.getAttribute("src"), img?.getAttribute("alt"),
-        heading?.textContent.trim(), meta?.textContent.trim(),
-        time?.getAttribute("datetime"), time?.textContent.trim(),
-        summary?.textContent.trim(), action?.getAttribute("href"),
-        action?.textContent.trim(),
-      ];
-    })
-  );
 
   data.sort((a,b) => (b.published || "").localeCompare(a.published || ""));
 
   const cardMarkup = update => `
     <article class="health-update-card">
       <a class="health-update-image" href="${articleUrl(update)}" aria-label="${esc(update.title)}">
-        <img src="${esc(imageUrl(update.image))}" alt="${esc(update.imageAlt || "")}"${imageSize(imageUrl(update.image))} loading="lazy" decoding="async">
+        <img src="${esc(imageUrl(update.image))}" alt="${esc(update.imageAlt || "")}" loading="lazy" decoding="async">
       </a>
       <div class="health-update-copy">
         <div class="health-update-meta">
@@ -76,45 +51,40 @@
       </div>
     </article>`;
 
+  const featuredUpdates = data.filter(item => item.featured);
   const latest = document.querySelector("[data-latest-health-updates]");
   if (latest) {
-    const feverHref = `${base}knowledge/articles/when-should-i-be-concerned-about-a-fever.html`;
-    const feverCard = `
-    <article class="health-update-card">
-      <a class="health-update-image" href="${feverHref}" aria-label="When Should I Be Concerned About A Fever?">
-        <img src="${esc(imageUrl("clinic-reception"))}" alt="Reception at Woolloongabba Medical Centre"${imageSize(imageUrl("clinic-reception"))} loading="lazy" decoding="async">
-      </a>
-      <div class="health-update-copy">
-        <div class="health-update-meta">
-          <span>Children's Health</span>
-          <time datetime="2026-10-08">8 October 2026</time>
-        </div>
-        <h3><a href="${feverHref}">When Should I Be Concerned About A Fever?</a></h3>
-        <p>Understand fever in children, warning signs that need urgent assessment and when a GP review may be appropriate.</p>
-        <a class="editorial-link" href="${feverHref}">Read guide</a>
-      </div>
-    </article>`;
-    const preferredSupporting = ["new-patients-welcome", "telehealth-appointments"];
-    const supporting = preferredSupporting
+    const preferredSupporting = [
+      "welcome-dr-golnar-mortezaei",
+      "welcome-dr-james-chanaka",
+      "new-patients-welcome",
+      "telehealth-appointments",
+    ];
+    const primary =
+      featuredUpdates[0] ||
+      preferredSupporting.map(id => data.find(item => item.id === id)).find(Boolean) ||
+      data[0];
+    const supportingPreferred = preferredSupporting
       .map(id => data.find(item => item.id === id))
-      .filter(Boolean);
-    const fallback = data.filter(item => !preferredSupporting.includes(item.id)).slice(0, Math.max(0, 2 - supporting.length));
+      .filter(item => item && (!primary || item.id !== primary.id));
+    const supportingFeatured = featuredUpdates.filter(item => !primary || item.id !== primary.id);
+    const supporting = [...supportingFeatured, ...supportingPreferred]
+      .filter((item, index, all) => all.findIndex(row => row.id === item.id) === index)
+      .slice(0, 2);
+    const fallback = data
+      .filter(item => (!primary || item.id !== primary.id) && !supporting.some(row => row.id === item.id))
+      .slice(0, Math.max(0, 2 - supporting.length));
     const supportingCards = [...supporting, ...fallback].slice(0, 2);
-    if (supportingCards.length) {
-      const nextMarkup = `
-        <div class="latest-featured-column" aria-label="Featured update">${feverCard}</div>
+    if (primary) {
+      latest.innerHTML = `
+        <div class="latest-featured-column" aria-label="Featured update">${cardMarkup(primary)}</div>
         <div class="latest-supporting-column" aria-label="Supporting updates">${supportingCards.map(cardMarkup).join("")}</div>`;
-      const proposed = document.createElement("div");
-      proposed.innerHTML = nextMarkup;
-      if (cardSignature(latest) !== cardSignature(proposed)) {
-        latest.innerHTML = nextMarkup;
-      }
     }
   }
 
   const featuredHost = document.querySelector("[data-featured-update]");
   if (featuredHost) {
-    const featured = data.find(item => item.featured) || data[0];
+    const featured = featuredUpdates[0] || data[0];
     if (featured) {
       featuredHost.innerHTML = `
         <article class="featured-health-update" aria-label="Featured update">
@@ -197,11 +167,16 @@
       return;
     }
 
-    const previewTitle = ({"open-seven-days":"Open 7 Days", "after-hours-care-options":"After-Hours Care Options"})[update.id] || update.title;
-    document.title = `${previewTitle} | Woolloongabba Medical Centre`;
-    const previewDescription = update.id === "current-billing-information"
-      ? "Our Medicare bulk billing approach for eligible standard GP consultations, with clear information about separately charged services."
-      : update.summary;
+    const previewTitle = update.metaTitle
+      || ({"open-seven-days":"Open 7 Days", "after-hours-care-options":"After-Hours Care Options"})[update.id]
+      || update.title;
+    document.title = /\| Woolloongabba Medical Centre$/i.test(previewTitle)
+      ? previewTitle
+      : `${previewTitle} | Woolloongabba Medical Centre`;
+    const previewDescription = update.metaDescription
+      || (update.id === "current-billing-information"
+        ? "Our Medicare bulk billing approach for eligible standard GP consultations, with clear information about separately charged services."
+        : update.summary);
 
     const canonicalUrl = `https://gabbamedicalcentre.com.au/updates/${encodeURIComponent(update.id)}.html`;
     const ensureMeta = (selector, attrs) => {
@@ -248,8 +223,23 @@
       const list = (section.list || []).length
         ? `<ul>${section.list.map(item => `<li>${esc(item)}</li>`).join("")}</ul>`
         : "";
-      return `<section class="update-article-section"><h2>${esc(section.heading || "")}</h2>${paras}${list}</section>`;
+      const ctas = Array.isArray(section.ctas) && section.ctas.length
+        ? `<div class="service-cta-actions">${section.ctas.map(cta => {
+            const href = String(cta.href || "");
+            const label = String(cta.label || "Learn more");
+            const isBook = /hotdoc\.com\.au/i.test(href);
+            const cls = cta.style === "text-link" ? "text-link" : "button";
+            const attrs = isBook
+              ? ` class="${cls} wmc-book-appointment" data-hotdoc-button="" data-hotdoc-widget="lightbox" href="${esc(href)}" rel="noopener"`
+              : ` class="${cls}" href="${esc(href)}"`;
+            return `<a${attrs}>${esc(label)}</a>`;
+          }).join("")}</div>`
+        : "";
+      return `<section class="update-article-section"><h2>${esc(section.heading || "")}</h2>${paras}${list}${ctas}</section>`;
     }).join("");
+    const tagsMarkup = Array.isArray(update.tags) && update.tags.length
+      ? `<p class="update-tags" aria-label="Topics">${update.tags.map(tag => `<span>${esc(tag)}</span>`).join("")}</p>`
+      : "";
 
     articleHost.innerHTML = `
       <header class="update-article-header">
@@ -260,6 +250,7 @@
         <h1>${esc(update.title)}</h1>
         <p class="update-article-summary">${esc(update.summary)}</p>
         <p class="update-author">By ${esc(update.author || "Practice Team")}</p>
+        ${tagsMarkup}
       </header>
       <figure class="update-article-image">
         <img src="${esc(imageUrl(update.image))}" alt="${esc(update.imageAlt || "")}">

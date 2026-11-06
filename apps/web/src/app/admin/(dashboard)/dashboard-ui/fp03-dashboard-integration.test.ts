@@ -29,6 +29,7 @@ const pageByRoute: Record<InsightsDashboardRoute, string> = {
   "/admin/executive": "executive/page.tsx",
   "/admin/executive/monthly": "executive/monthly/page.tsx",
   "/admin/digital-reception": "digital-reception/page.tsx",
+  "/admin/search-opportunities": "search-opportunities/page.tsx",
   "/admin/practitioner-authority": "practitioner-authority/page.tsx",
   "/admin/service-authority": "service-authority/page.tsx",
   "/admin/conversion-intelligence": "conversion-intelligence/page.tsx",
@@ -41,8 +42,8 @@ const readDashboard = (relative: string) =>
 const parsedUrl = (href: string) => new URL(href, "https://test.invalid");
 
 describe("FP-03 Phase 6 dashboard integration and cross-layer regression", () => {
-  it("wires all ten dashboard routes to the explicitly owned resolver path", () => {
-    assert.equal(Object.keys(pageByRoute).length, 10);
+  it("wires all dashboard routes to the explicitly owned resolver path", () => {
+    assert.equal(Object.keys(pageByRoute).length, INSIGHTS_DASHBOARD_ROUTES.length);
     for (const route of INSIGHTS_DASHBOARD_ROUTES) {
       const source = readDashboard(pageByRoute[route]);
       assert.ok(
@@ -71,7 +72,7 @@ describe("FP-03 Phase 6 dashboard integration and cross-layer regression", () =>
       practitioner: "dr-a", service: "telehealth", tier: "Thin",
       health: "governance", intent: "vaccination", from: "queue",
     });
-    assert.equal(links.length, 9);
+    assert.equal(links.length, 10);
     for (const link of links) {
       const url = parsedUrl(link.href);
       for (const key of ["queue", "practitioner", "service", "tier", "health", "intent", "from", "focus"]) {

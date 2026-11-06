@@ -9,6 +9,7 @@ const envSchema = z.object({
   SEED_ADMIN_EMAIL: z.string().email().optional().or(z.literal("")),
   SEED_ADMIN_PASSWORD: z.string().optional().or(z.literal("")),
   FORM_REQUEST_NOTIFY_EMAIL: z.string().email().optional().or(z.literal("")),
+  CAREER_APPLICATION_NOTIFY_EMAIL: z.string().email().optional().or(z.literal("")),
 });
 
 export type AppEnv = z.infer<typeof envSchema>;
@@ -23,5 +24,6 @@ export function getEnv(): AppEnv {
     SEED_ADMIN_EMAIL: process.env.SEED_ADMIN_EMAIL,
     SEED_ADMIN_PASSWORD: process.env.SEED_ADMIN_PASSWORD,
     FORM_REQUEST_NOTIFY_EMAIL: process.env.FORM_REQUEST_NOTIFY_EMAIL,
+    CAREER_APPLICATION_NOTIFY_EMAIL: process.env.CAREER_APPLICATION_NOTIFY_EMAIL,
   });
 }

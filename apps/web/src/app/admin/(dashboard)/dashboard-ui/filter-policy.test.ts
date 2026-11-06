@@ -17,12 +17,12 @@ import {
 } from "./filter-policy";
 
 describe("FP-03 Phase 1 dashboard filter ownership", () => {
-  it("declares six families and exactly ten known Insights routes", () => {
+  it("declares six families and the known Insights routes", () => {
     assert.deepEqual(INSIGHTS_DASHBOARD_FAMILIES, [
       "briefing", "executive", "search", "authority", "conversion", "governance",
     ]);
-    assert.equal(INSIGHTS_DASHBOARD_ROUTES.length, 10);
-    assert.equal(new Set(INSIGHTS_DASHBOARD_ROUTES).size, 10);
+    assert.equal(INSIGHTS_DASHBOARD_ROUTES.length, 11);
+    assert.equal(new Set(INSIGHTS_DASHBOARD_ROUTES).size, 11);
     assert.deepEqual(new Set(INSIGHTS_DASHBOARD_ROUTES.map((path) => INSIGHTS_DASHBOARD_POLICIES[path].family)), new Set(INSIGHTS_DASHBOARD_FAMILIES));
   });
 

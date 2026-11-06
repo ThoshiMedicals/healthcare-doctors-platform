@@ -126,10 +126,10 @@ export const CMS_COLLECTIONS: readonly CmsCollection[] = [
   {
     key: "media",
     label: "Media",
-    description: "Asset register. Photography approval evidence stays outside the web root.",
+    description: "Media Library catalogue with usage, categories, and replacement governance.",
     collection: "media",
     template: null,
-    fields: ["filename", "assetType", "altText", "subject", "source", "authenticityStatus", "usage"],
+    fields: ["filename", "title", "category", "assetType", "altText", "usage", "byteSize", "authenticityStatus"],
   },
   {
     key: "navigation",

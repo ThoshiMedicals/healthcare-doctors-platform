@@ -30,9 +30,18 @@ export type PracticeUpdateSource = {
 
 export type GoldenImportResult = {
   goldenRoot: string;
+  clinicSlug: string;
   pageCount: number;
   collections: Record<string, number>;
   runtimeFilesCopied: number;
+  dryRun: boolean;
+};
+
+export type GoldenImportOptions = {
+  clinicSlug?: string;
+  dryRun?: boolean;
+  /** Absolute or relative golden HTML root; defaults to GOLDEN_HTML_ROOT / old-html. */
+  goldenRoot?: string | null;
 };
 
 function readOwnership(root: string): OwnershipFile {
@@ -64,19 +73,42 @@ function copyRuntimeFiles(root: string): string[] {
   return files;
 }
 
-export async function importGoldenHtml(): Promise<GoldenImportResult> {
-  const root = goldenHtmlRoot();
-  const clinic = await prisma.clinic.findUnique({ where: { slug: "woolloongabba" } });
+export async function importGoldenHtml(options: GoldenImportOptions = {}): Promise<GoldenImportResult> {
+  const clinicSlug = options.clinicSlug || process.env.DEFAULT_CLINIC_SLUG || "woolloongabba";
+  const dryRun = Boolean(options.dryRun);
+  const clinic = await prisma.clinic.findUnique({ where: { slug: clinicSlug } });
   if (!clinic) {
-    throw new Error("Woolloongabba clinic is missing. Run npm run db:seed before importing pages.");
+    throw new Error(
+      `Clinic "${clinicSlug}" is missing. Run npm run db:seed before importing pages, or pass --clinic=<slug> for an existing tenant.`,
+    );
   }
 
+  // Prefer CLI → Clinic.goldenHtmlRoot → GOLDEN_HTML_ROOT / old-html.
+  const clinicRoot = (clinic as { goldenHtmlRoot?: string | null }).goldenHtmlRoot;
+  const root = goldenHtmlRoot(options.goldenRoot || clinicRoot);
   const ownership = readOwnership(root);
   const updates = readPracticeUpdates(root);
   const updatesById = new Map(updates.map((item) => [item.id, item]));
   const htmlFiles = listHtmlFiles(root);
-  const runtimeFiles = copyRuntimeFiles(root);
   const counts: Record<string, number> = {};
+
+  if (dryRun) {
+    for (const relativePath of htmlFiles) {
+      const classified = classifyPage(relativePath);
+      const key = classified.collection ?? classified.template;
+      counts[key] = (counts[key] || 0) + 1;
+    }
+    return {
+      goldenRoot: root,
+      clinicSlug: clinic.slug,
+      pageCount: htmlFiles.length,
+      collections: counts,
+      runtimeFilesCopied: listRuntimeFiles(root).length,
+      dryRun: true,
+    };
+  }
+
+  const runtimeFiles = copyRuntimeFiles(root);
 
   for (const [index, section] of ownership.sections.entries()) {
     await prisma.navigationItem.upsert({
@@ -181,9 +213,11 @@ export async function importGoldenHtml(): Promise<GoldenImportResult> {
 
   return {
     goldenRoot: root,
+    clinicSlug: clinic.slug,
     pageCount: htmlFiles.length,
     collections: counts,
     runtimeFilesCopied: runtimeFiles.length,
+    dryRun: false,
   };
 }
 

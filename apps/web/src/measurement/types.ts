@@ -89,6 +89,10 @@ export type RawMeasurementEvent = {
   session_id?: string;
   page_path?: string;
   page_group?: string;
+  /** Multi-tenant clinic key (preferred). */
+  clinic_id?: string;
+  /** Multi-tenant clinic slug (browser / warehouse). */
+  clinic_slug?: string;
   placement?: string;
   destination?: string;
   practitioner?: string;
@@ -111,6 +115,8 @@ export type MeasurementEvent = {
   session_id?: string;
   page_path: string;
   page_group: PageGroup | string;
+  clinic_id?: string;
+  clinic_slug?: string;
   placement?: string;
   destination?: string;
   practitioner?: string;

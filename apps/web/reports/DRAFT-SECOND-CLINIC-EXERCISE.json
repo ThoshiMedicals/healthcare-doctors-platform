@@ -1,0 +1,109 @@
+{
+  "exercise": "draft-second-clinic",
+  "generatedAt": "2026-11-03T11:53:07.053Z",
+  "clinic": {
+    "id": "cmw0mpb830001vydccoqayy19",
+    "slug": "eight-mile-plains",
+    "practiceName": "Eight Mile Plains Doctors",
+    "status": "draft",
+    "domains": 0,
+    "pages": 0
+  },
+  "markers": {
+    "vacancyId": "cmw0mpija000lvya8dvmi1deu",
+    "applicationId": "cmw0mpijd000nvya8ze5lyo0w",
+    "formRequestId": "cmw0mpijg000pvya869bzz95q",
+    "mediaAssetId": "cmw0mpijk000rvya87ofa3hoo",
+    "searchDemandSignalId": "cmw0mpiju000tvya81jc221wk"
+  },
+  "publicGuards": {
+    "statusNotLive": true,
+    "noClinicDomain": true,
+    "noPages": true,
+    "note": "Public APIs require status=live; host resolve requires ClinicDomain + live."
+  },
+  "checks": [
+    {
+      "id": 1,
+      "name": "Clinic provisioning",
+      "pass": true,
+      "detail": "status=draft; domains=0; pages=0 (must be draft, zero domains, zero pages)"
+    },
+    {
+      "id": 2,
+      "name": "Clinic switcher",
+      "pass": true,
+      "detail": "adminSwitchable includes EMP=true; live list excludes EMP=true; liveCount=1; adminCount=2"
+    },
+    {
+      "id": 3,
+      "name": "Clinic profile",
+      "pass": true,
+      "detail": "suburb=Eight Mile Plains; phone=(07) 3000 0000; hours=7"
+    },
+    {
+      "id": 4,
+      "name": "Clinic branding",
+      "pass": true,
+      "detail": "practiceName=Eight Mile Plains Doctors; hotdoc=https://www.hotdoc.com.au/example-eight-mile-plains-draft-only; logo=/assets/brand/healthcare-doctors-network-mark.png"
+    },
+    {
+      "id": 5,
+      "name": "Vacancy isolation",
+      "pass": true,
+      "detail": "EMP vacancies=2; WMC rows with EMP title=0"
+    },
+    {
+      "id": 6,
+      "name": "Applications isolation",
+      "pass": true,
+      "detail": "EMP has application=true; leaked to WMC=false"
+    },
+    {
+      "id": 7,
+      "name": "Patient request isolation",
+      "pass": true,
+      "detail": "EMP has form=true; leaked to WMC=false"
+    },
+    {
+      "id": 8,
+      "name": "Media isolation",
+      "pass": true,
+      "detail": "row isolation OK; storagePath=assets/library/draft-emp-draft-emp-1793706786837.png; shared public/assets tree still assumed=true"
+    },
+    {
+      "id": 9,
+      "name": "Search signal isolation",
+      "pass": true,
+      "detail": "EMP signal present=true; leaked to WMC=false"
+    },
+    {
+      "id": 10,
+      "name": "Dashboard scoping",
+      "pass": true,
+      "detail": "EMP activeVacancies=2 signals=1; WMC activeVacancies=4 signals=1"
+    }
+  ],
+  "scorecard": {
+    "checksPassed": 10,
+    "checksTotal": 10,
+    "passRate": "10/10"
+  },
+  "stillAssumesWmc": [
+    "DEFAULT_CLINIC_SLUG / local+tunnel host resolve → woolloongabba",
+    "site.js HotDoc/tel last-resort fallbacks remain Gabba URLs",
+    "Media sync walks shared public/assets (row-scoped, disk shared)",
+    "governance-published.js single shared artifact",
+    "Measurement warehouse file not partitioned by clinic until events carry clinic_slug",
+    "Admin root metadata title still Clinic CMS | Woolloongabba Medical Centre",
+    "Vacancy location soft default still needs profile suburb in UI empty state"
+  ],
+  "phase2Required": [
+    "Approved golden HTML corpus for EMP",
+    "ClinicDomain + DNS + HotDoc/AGPAL production values",
+    "Per-clinic media/storage root",
+    "Per-clinic governance publish path",
+    "Promote draft → live only after import + QA",
+    "UAT multi-host beyond DEFAULT_CLINIC_SLUG"
+  ]
+}

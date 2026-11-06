@@ -1,10 +1,11 @@
 import type { MembershipRole } from "@prisma/client";
 import { roleAllows, type CmsAction } from "@/auth/permissions";
 
-export type CmsNavGroup = "content" | "insights" | "governance";
+export type CmsNavGroup = "content" | "operations" | "insights" | "governance";
 
 export const CMS_NAV_GROUPS: ReadonlyArray<{ id: CmsNavGroup; label: string }> = [
   { id: "content", label: "Content" },
+  { id: "operations", label: "Operations" },
   { id: "insights", label: "Insights" },
   { id: "governance", label: "Governance" },
 ];
@@ -21,11 +22,70 @@ export const CMS_MODULES: ReadonlyArray<CmsModule> = [
   { href: "/admin/pages", label: "Pages", action: "edit", group: "content" },
   { href: "/admin/practitioners", label: "Practitioners", action: "edit", group: "content" },
   { href: "/admin/services", label: "Services", action: "edit", group: "content" },
+  { href: "/admin/careers/vacancies", label: "Vacancies", action: "edit", group: "content" },
+  { href: "/admin/careers/applications", label: "Applications", action: "edit", group: "content" },
+  {
+    href: "/admin/practice-experience",
+    label: "Practice Experience",
+    action: "edit",
+    group: "content",
+  },
+  {
+    href: "/admin/attraction",
+    label: "Attraction CMS",
+    action: "edit",
+    group: "content",
+  },
+  {
+    href: "/admin/story-capture",
+    label: "Story Capture",
+    action: "edit",
+    group: "content",
+  },
+  {
+    href: "/admin/asset-library",
+    label: "Asset Library",
+    action: "edit",
+    group: "content",
+  },
+  {
+    href: "/admin/gp-pipeline",
+    label: "GP Pipeline",
+    action: "edit",
+    group: "operations",
+  },
+  {
+    href: "/admin/recruitment/gp-readiness",
+    label: "GP Readiness Ops",
+    action: "edit",
+    group: "operations",
+  },
+  { href: "/admin/media", label: "Media Library", action: "edit", group: "content" },
+
+  // Operations — reception / admin patient request inbox
+  {
+    href: "/admin/operations/patient-requests",
+    label: "Patient Requests",
+    action: "edit",
+    group: "operations",
+  },
 
   // Insights — practice-friendly labels (C10); analytics stay separate from editing
   { href: "/admin", label: "Practice briefing", action: "manage_settings", group: "insights" },
+  {
+    href: "/admin/attraction-analytics",
+    label: "Attraction Analytics",
+    action: "manage_settings",
+    group: "insights",
+  },
   { href: "/admin/executive", label: "Website overview", action: "manage_settings", group: "insights" },
   { href: "/admin/digital-reception", label: "Online search", action: "manage_settings", group: "insights" },
+  {
+    href: "/admin/search-opportunities",
+    label: "Search & content opportunities",
+    action: "manage_settings",
+    group: "insights",
+  },
   {
     href: "/admin/practitioner-authority",
     label: "Doctor profiles",
@@ -78,7 +138,21 @@ export const ABOUT_PATHS = [
   "local-healthcare-access.html",
   "agpal-accreditation.html",
   "medical-centre-network.html",
+  "about-us/practice-experience.html",
+  "about-us/community-catchment.html",
+  "about-us/continuity-in-practice.html",
+  "about-us/clinical-interests.html",
   "join-our-team.html",
+  "join-our-team/gp-opportunities.html",
+  "join-our-team/gp-faq.html",
+  "join-our-team/practice-support.html",
+  "join-our-team/doctor-readiness.html",
+  "join-our-team/provider-number-readiness.html",
+  "join-our-team/dpa-navigator.html",
+  "join-our-team/session-planner.html",
+  "join-our-team/registrar-pathway.html",
+  "join-our-team/opportunity-pack.html",
+  "join-our-team/express-interest.html",
   "why-team-based-care-matters.html",
 ];
 

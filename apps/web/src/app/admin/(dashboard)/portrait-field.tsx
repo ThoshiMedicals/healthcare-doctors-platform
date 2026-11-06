@@ -1,9 +1,19 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
+import { mediaLibraryPickerHref } from "@/cms/media-library-shared";
 import { publicPageName } from "@/cms/staff-labels";
 
-export function PortraitField({ current, portraits }: { current: string; portraits: string[] }) {
+export function PortraitField({
+  current,
+  portraits,
+  returnTo,
+}: {
+  current: string;
+  portraits: string[];
+  returnTo?: string;
+}) {
   const [file, setFile] = useState(current);
   const choices = portraits.includes(file) || !file ? portraits : [file, ...portraits];
 
@@ -29,6 +39,16 @@ export function PortraitField({ current, portraits }: { current: string; portrai
           </option>
         ))}
       </select>
+      <Link
+        href={mediaLibraryPickerHref({
+          category: "Practitioners",
+          returnTo: returnTo || "/admin/practitioners",
+          field: "portraitFile",
+        })}
+        className="text-xs font-medium text-slate-700 underline underline-offset-2"
+      >
+        Browse Media Library (Practitioners)
+      </Link>
     </label>
   );
 }

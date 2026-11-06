@@ -40,13 +40,20 @@ export type RenderingValidationReport = {
 
 const EXPECTED_PAGES = 208;
 
-export async function validateGoldenImport(): Promise<{
+export type GoldenValidateOptions = {
+  clinicSlug?: string;
+  goldenRoot?: string | null;
+};
+
+export async function validateGoldenImport(options: GoldenValidateOptions = {}): Promise<{
   importReport: ImportValidationReport;
   renderingReport: RenderingValidationReport;
 }> {
-  const root = goldenHtmlRoot();
-  const clinic = await prisma.clinic.findUnique({ where: { slug: "woolloongabba" } });
-  if (!clinic) throw new Error("Woolloongabba clinic is missing.");
+  const clinicSlug = options.clinicSlug || process.env.DEFAULT_CLINIC_SLUG || "woolloongabba";
+  const clinic = await prisma.clinic.findUnique({ where: { slug: clinicSlug } });
+  if (!clinic) throw new Error(`Clinic "${clinicSlug}" is missing.`);
+  const clinicRoot = (clinic as { goldenHtmlRoot?: string | null }).goldenHtmlRoot;
+  const root = goldenHtmlRoot(options.goldenRoot || clinicRoot);
 
   const htmlFiles = listHtmlFiles(root);
   const htmlSet = new Set(htmlFiles);

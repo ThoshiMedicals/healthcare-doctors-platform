@@ -392,6 +392,10 @@ async function loadDraft(
       sourcePortraitFile,
       bookingUrl,
       sourceBookingUrl,
+      acceptingNewPatients: row.acceptingNewPatients,
+      newToPracticeAt: row.newToPracticeAt ? row.newToPracticeAt.toISOString() : null,
+      availabilityStatus: row.availabilityStatus,
+      relatedServices: row.relatedServices,
     };
     return {
       status: row.status,
@@ -615,6 +619,10 @@ async function workingSnapshot(clinicId: string, entityType: ReleaseEntity, enti
       professionalInterests: row.professionalInterests,
       portraitPath: row.portraitPath,
       bookingUrl: row.bookingUrl,
+      acceptingNewPatients: row.acceptingNewPatients,
+      newToPracticeAt: row.newToPracticeAt ? row.newToPracticeAt.toISOString() : null,
+      availabilityStatus: row.availabilityStatus,
+      relatedServices: row.relatedServices,
       status: row.status,
       publishedPayload: row.publishedPayload ?? null,
       governance: await reviewFor(row.pageId),

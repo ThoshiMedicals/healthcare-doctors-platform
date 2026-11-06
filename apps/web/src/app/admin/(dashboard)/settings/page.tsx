@@ -40,8 +40,8 @@ export default async function SettingsPage({
     <main>
       <h1 className="text-2xl font-semibold">Clinic settings</h1>
       <p className="mt-2 max-w-2xl text-sm text-slate-600">
-        Contact details, the shared HotDoc booking link, and opening hours appear on the public pages after
-        approval and publication. The page structure stays as approved.
+        Contact details, the shared HotDoc booking link, and opening hours come from the clinic profile and
+        appear on public pages after approval and publication. The page structure stays as approved.
       </p>
       <ViewPublicPage path="/" />
       <SavedNotice saved={params.saved} published={params.published} status={profile?.contentStatus} />
@@ -49,6 +49,20 @@ export default async function SettingsPage({
       {!profile ? <ErrorNotice error="missing" /> : null}
       {profile ? (
         <>
+        <dl className="mt-6 grid max-w-2xl gap-2 rounded border border-slate-200 bg-white p-4 text-sm">
+          <div className="grid gap-1 sm:grid-cols-[8rem_1fr]">
+            <dt className="font-medium text-slate-600">Practice name</dt>
+            <dd>{clinic.practiceName}</dd>
+          </div>
+          <div className="grid gap-1 sm:grid-cols-[8rem_1fr]">
+            <dt className="font-medium text-slate-600">Slug</dt>
+            <dd className="font-mono text-xs">{clinic.slug}</dd>
+          </div>
+          <div className="grid gap-1 sm:grid-cols-[8rem_1fr]">
+            <dt className="font-medium text-slate-600">Logo path</dt>
+            <dd className="font-mono text-xs">{profile.logoPath || "—"}</dd>
+          </div>
+        </dl>
         <form action={saveClinicSettings} className="mt-6 grid max-w-2xl gap-4">
           <Field label="Address" name="streetAddress" defaultValue={values?.streetAddress} required impact={["Contact line", "Footer", "Schema"]} />
           <div className="grid gap-4 sm:grid-cols-3">

@@ -156,12 +156,24 @@ export type InsightsDestination =
   | "command-centre"
   | "executive"
   | "digital-reception"
+  | "search-opportunities"
   | "practitioner-authority"
   | "service-authority"
   | "conversion-intelligence"
   | "governance-review"
   | "governance-management"
   | "governance-expiry";
+
+export function searchOpportunitiesHref(
+  rangeOrFilters?: ExecutiveRange | InsightsFilters,
+  filters?: InsightsFilters,
+): string {
+  const merged =
+    typeof rangeOrFilters === "string" || rangeOrFilters === undefined
+      ? baseFilters(rangeOrFilters, filters)
+      : rangeOrFilters;
+  return withInsightsQuery("/admin/search-opportunities", merged);
+}
 
 export function commandCentreHref(
   rangeOrFilters?: ExecutiveRange | InsightsFilters,
@@ -194,6 +206,11 @@ export function insightsNavItems(
     { id: "command-centre", label: "Briefing", href: commandCentreHref(overview) },
     { id: "executive", label: "Website", href: executiveHref(overview) },
     { id: "digital-reception", label: "Search", href: digitalReceptionHref(overview) },
+    {
+      id: "search-opportunities",
+      label: "Opportunities",
+      href: searchOpportunitiesHref(overview),
+    },
     {
       id: "practitioner-authority",
       label: "Doctors",

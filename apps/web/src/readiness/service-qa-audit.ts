@@ -109,9 +109,9 @@ const TEMPLATE_DEVIATIONS: ServiceQaIssue[] = [
     severity: "P2",
     kind: "template-deviation",
     dimension: "hero",
-    title: "Two hero badges: Service hub vs Focused service",
-    detail: "Intentional family split is clear live, but static HTML alone does not declare the family — badge/copy come from runtime/content conventions.",
-    evidence: "UAT Family Health (SERVICE HUB) vs ECG (FOCUSED SERVICE)",
+    title: "Authority family split without patient-facing tier pills",
+    detail: "Hub vs focused families remain via data-service-tier / body classes and pathway rails; public Service hub / Connected / Focused pills are removed.",
+    evidence: "site.js 4F marks data-service-tier only; chips stripped on directory and service pages",
   },
   {
     id: "S-T2",

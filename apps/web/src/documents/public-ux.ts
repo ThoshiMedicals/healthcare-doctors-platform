@@ -10,6 +10,16 @@ import {
   type ClinicBranding,
 } from "@/clinics/branding";
 import { injectAttractionNavigation } from "@/attraction-cms/inject-nav";
+import {
+  refineExpressInterestFriction,
+  refineJoinOurTeamRecruitment,
+} from "@/documents/join-our-team-recruitment";
+import {
+  eoiHrefForPage,
+  renderConfidentialityPanelHtml,
+  renderRecruitmentContactHtml,
+  resolveRecruitmentContact,
+} from "@/recruitment";
 import { injectPracticeExperienceAboutLinks } from "@/practice-experience/inject-about";
 
 export type PublicUxOptions = {
@@ -65,11 +75,30 @@ function injectClinicDataAttrs(html: string, branding: ClinicBranding): string {
 function enrichQualitySafetySections(html: string, pagePath: string): string {
   if (!/philosophy-of-care\.html$|story\.html$/i.test(pagePath)) return html;
   const agpalHref = pagePath.includes("/") ? "../agpal-accreditation.html" : "agpal-accreditation.html";
-  const markSrc = pagePath.includes("/") ? "../assets/brand/agpal-mark.webp" : "assets/brand/agpal-mark.webp";
+  const markSrc = pagePath.includes("/")
+    ? "../assets/brand/agpal-mark.webp?v=20261106a"
+    : "assets/brand/agpal-mark.webp?v=20261106a";
   return html.replace(
     /<section class="article-section">\s*<h2>Quality and safety\.?<\/h2>\s*<div class="logo-lockup-page">[\s\S]*?<\/div>(?:\s*<p>\s*<a class="text-link"[^>]*>[\s\S]*?<\/a>\s*<\/p>)?\s*<\/section>/i,
     `<section class="article-section"><h2>Quality and safety</h2><div class="logo-lockup-page"><img alt="Accredited General Practice" data-local-asset="agpal-mark" src="${markSrc}" width="92" height="92"/><div><p>AGPAL accreditation provides independent recognition that our practice meets applicable national general practice standards. It supports a structured approach to safety, governance, privacy, infection prevention and continuous improvement.</p><p><a class="text-link" href="${agpalHref}">Why accreditation matters →</a></p></div></div></section>`,
   );
+}
+
+/**
+ * Contact page: keep the network callout after the map (Find us), not between
+ * reception details and the map — without editing golden-master HTML.
+ */
+function refineContactPageSections(html: string, pagePath: string): string {
+  if (!/(^|\/)contact\.html$/i.test(pagePath)) return html;
+  const networkRe =
+    /<section\b[^>]*\bclass="[^"]*\bnetwork-authority-callout\b[^"]*"[^>]*>[\s\S]*?<\/section>/i;
+  const network = html.match(networkRe)?.[0];
+  if (!network) return html;
+  const withoutNetwork = html.replace(networkRe, "");
+  const findUsRe =
+    /(<section\b[^>]*\bclass="[^"]*\barticle-section\b[^"]*"[^>]*>\s*<h2>Find us\.?<\/h2>[\s\S]*?<\/section>)/i;
+  if (!findUsRe.test(withoutNetwork)) return html;
+  return withoutNetwork.replace(findUsRe, `$1${network}`);
 }
 
 export function applyPublicUxRefinements(
@@ -83,14 +112,258 @@ export function applyPublicUxRefinements(
   // Topic cross-link bar under the hero (for example "Need ongoing diabetes care?").
   next = next.replace(/<nav\b[^>]*\bclass="topic-wayfinding"[^>]*>[\s\S]*?<\/nav>/gi, "");
   // A new URL bypasses stale browser/Cloudflare CSS after visual-polish deployment.
-  next = next.replace(/styles\.css(?=")/g, "styles.css?v=wmc-hero-authority-v6f-20261105");
+  next = next.replace(/styles\.css(?=")/g, "styles.css?v=wmc-team-updates-mobile-20261106b");
   // site.js is otherwise cached for hours (CDN max-age); bust so mobile-nav fixes ship.
-  next = next.replace(/site\.js(?=")/g, "site.js?v=wmc-hero-authority-v6f-20261105");
+  next = next.replace(/site\.js(?=")/g, "site.js?v=wmc-practitioner-growth-20261106");
+  next = next.replace(/updates-data\.js(?=")/g, "updates-data.js?v=wmc-doctor-welcome-20261106a");
+  next = next.replace(/updates-ui\.js(?=")/g, "updates-ui.js?v=wmc-doctor-welcome-20261106a");
+  // Circular AGPAL mark: keep transparent on light cards, restore white pad on dark footers.
+  next = next.replace(/<style\b[^>]*id="wmc-agpal-mark-fix"[\s\S]*?<\/style>\s*/i, "");
+  next = next.replace(/<style\b[^>]*id="wmc-team-authority-list-fix"[\s\S]*?<\/style>\s*/i, "");
+  next = next.replace(/<style\b[^>]*id="wmc-about-laptop-fix"[\s\S]*?<\/style>\s*/i, "");
+  next = next.replace(/<style\b[^>]*id="wmc-update-tags"[\s\S]*?<\/style>\s*/i, "");
+  next = next.replace(/<style\b[^>]*id="wmc-update-article-header-fix"[\s\S]*?<\/style>\s*/i, "");
+  next = next.replace(/<style\b[^>]*id="wmc-team-updates-laptop"[\s\S]*?<\/style>\s*/i, "");
+  next = next.replace(/<style\b[^>]*id="wmc-team-updates-mobile"[\s\S]*?<\/style>\s*/i, "");
+  next = next.replace(
+    /<\/head>/i,
+    `<style id="wmc-agpal-mark-fix">
+img[data-local-asset="agpal-mark"]{object-fit:contain!important;object-position:center!important}
+.footer-trust img[data-local-asset="agpal-mark"],
+.footer-trust a img[data-local-asset="agpal-mark"]{
+  background:#fff!important;border-radius:8px!important;object-fit:contain!important;object-position:center!important
+}
+</style>
+<style id="wmc-update-article-header-fix">
+/* Global styles.css uses header{position:sticky} for site chrome only.
+   Article page headers must scroll away with the document. */
+header.update-article-header{
+  position:static!important;
+  top:auto!important;
+  z-index:auto!important;
+  background:transparent!important;
+  border-bottom:0!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+</style>
+<style id="wmc-update-tags">
+.update-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin:.85rem 0 0}
+.update-tags span{display:inline-flex;align-items:center;padding:.28rem .62rem;border:1px solid rgba(15,61,62,.18);border-radius:999px;font-size:.78rem;line-height:1.2;color:#0f3d3e;background:#f7fbfb}
+.update-article-section .service-cta-actions{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;margin-top:1rem}
+</style>
+<style id="wmc-team-updates-laptop">
+/* Laptop (≈1025–1440): team directory + updates landing polish. No content removed. */
+.team-directory-grid .credentials,
+.team-directory-grid .focus,
+.gp-discovery-qualifications{
+  overflow-wrap:anywhere!important;
+  word-break:normal!important;
+}
+.team-directory-grid .practitioner-meta{align-content:start!important}
+.team-ecosystem-nav a{
+  min-width:0!important;
+  box-sizing:border-box!important;
+}
+.team-ecosystem-nav strong,
+.team-ecosystem-nav span{
+  overflow-wrap:anywhere!important;
+}
+/* Square doctor-welcome banners: keep full artwork readable in 16:10 frames. */
+.featured-update-image img[src*="welcome-dr-"],
+.health-update-image img[src*="welcome-dr-"],
+.update-article-image img[src*="welcome-dr-"]{
+  object-fit:contain!important;
+  object-position:center!important;
+  background:#eef2f3!important;
+}
+.featured-health-update{
+  align-items:start!important;
+}
+@media (min-width:1025px) and (max-width:1440px){
+  .team-ecosystem-nav a{padding:18px 12px!important;gap:6px!important}
+  .team-ecosystem-nav strong{font-size:12.5px!important;line-height:1.3!important}
+  .team-ecosystem-nav span{font-size:11px!important;line-height:1.4!important}
+  .team-directory-grid{gap:36px 22px!important}
+  .featured-update-copy h2{font-size:clamp(1.7rem,2.5vw,2.2rem)!important;line-height:1.18!important}
+  .update-article-layout{gap:48px!important}
+  .update-article-header h1{font-size:clamp(2rem,3.2vw,2.75rem)!important}
+  .gp-discovery-list{gap:18px!important}
+}
+</style>
+<style id="wmc-team-updates-mobile">
+/* Phone / small tablet: team + updates polish. No content removed. */
+.team-directory-grid .practitioner,
+.team-directory-grid .practitioner-meta,
+.team-directory-grid .credentials,
+.team-directory-grid .focus,
+.gp-discovery-info,
+.gp-discovery-qualifications{
+  min-width:0!important;
+}
+.team-directory-grid .credentials,
+.team-directory-grid .focus,
+.gp-discovery-qualifications,
+nav[aria-label="Breadcrumb"],
+.breadcrumb{
+  overflow-wrap:anywhere!important;
+  word-break:normal!important;
+}
+@media (max-width:700px){
+  /* Override styles.css 2-col team grid (≤700) so cards are readable full-width. */
+  .team-directory-grid{
+    grid-template-columns:1fr!important;
+    gap:28px!important;
+  }
+  .team-directory-grid .portrait,
+  .team-directory-grid .team-authority-photo-unavailable,
+  .team-directory-grid a.portrait{
+    width:100%!important;
+    max-width:100%!important;
+  }
+  .team-directory-grid .practitioner h3,
+  .team-directory-grid .practitioner h3 a{
+    font-size:clamp(1.15rem,5vw,1.35rem)!important;
+    line-height:1.25!important;
+  }
+  .team-directory-grid .credentials{font-size:13px!important;line-height:1.45!important}
+  .team-directory-grid .focus{font-size:14px!important;line-height:1.45!important}
+  .team-authority-subpage .gp-discovery-card .gp-discovery-info{min-width:0!important}
+  .team-authority-subpage .gp-discovery-qualifications{
+    overflow-wrap:anywhere!important;
+    word-break:normal!important;
+  }
+  .team-authority-subpage .gp-discovery-actions{
+    grid-column:1/-1!important;
+    width:100%!important;
+  }
+  .team-authority-subpage .gp-discovery-profile,
+  .team-authority-subpage .gp-discovery-book{
+    min-height:44px!important;
+    font-size:12.5px!important;
+    padding:10px 8px!important;
+    text-align:center!important;
+  }
+  .featured-update-copy h2{
+    font-size:clamp(1.4rem,6vw,1.85rem)!important;
+    line-height:1.2!important;
+  }
+  .featured-health-update{gap:28px!important}
+  .update-filters{
+    flex-wrap:nowrap!important;
+    overflow-x:auto!important;
+    -webkit-overflow-scrolling:touch!important;
+    overscroll-behavior-x:contain!important;
+    gap:8px!important;
+    padding-bottom:8px!important;
+    scrollbar-width:thin!important;
+  }
+  .update-filter{flex:0 0 auto!important}
+  .updates-archive-grid{gap:28px!important}
+  .health-update-copy h3{
+    font-size:clamp(1.05rem,4.8vw,1.2rem)!important;
+    line-height:1.3!important;
+  }
+  .update-article-header h1{
+    font-size:clamp(1.55rem,6.4vw,2rem)!important;
+    line-height:1.18!important;
+  }
+  .update-article-layout{gap:28px!important}
+  .update-article-section .service-cta-actions{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    gap:.65rem!important;
+  }
+  .update-article-section .service-cta-actions a,
+  .update-article-section .service-cta-actions .button{
+    width:100%!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
+    justify-content:center!important;
+    text-align:center!important;
+  }
+  .doctor-profile-heading h1{
+    font-size:clamp(1.7rem,7vw,2.25rem)!important;
+    line-height:1.15!important;
+  }
+  .doctor-profile-actions{
+    width:100%!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+  }
+  .doctor-profile-actions .button,
+  .doctor-profile-actions a.button{
+    width:100%!important;
+    box-sizing:border-box!important;
+    text-align:center!important;
+    justify-content:center!important;
+  }
+  .on-this-page-links{
+    max-width:100%!important;
+    overscroll-behavior-x:contain!important;
+  }
+}
+@media (max-width:390px){
+  /* Keep photo + info side-by-side; reset explicit rows so CTAs stay under the body copy. */
+  .team-authority-subpage .gp-discovery-card{
+    grid-template-columns:80px minmax(0,1fr)!important;
+    grid-template-rows:auto auto!important;
+    gap:10px 12px!important;
+  }
+  .team-authority-subpage .gp-discovery-card .team-authority-photo,
+  .team-authority-subpage .gp-discovery-card .team-authority-photo-unavailable{
+    width:80px!important;
+    grid-row:1!important;
+  }
+  .team-authority-subpage .gp-discovery-card .gp-discovery-info{
+    grid-row:1!important;
+    grid-column:2!important;
+  }
+  .team-authority-subpage .gp-discovery-actions{
+    grid-column:1/-1!important;
+    grid-row:2!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:7px!important;
+  }
+}
+</style>
+<style id="wmc-team-authority-list-fix">
+/* Authority list rows without portraits must not use the 96px photo column.
+   Exclude .gp-discovery-card so GP discovery keeps its 116px grid. */
+.team-authority-person:has(.team-authority-photo):not(.gp-discovery-card){grid-template-columns:96px minmax(0,1fr) auto!important;gap:22px!important}
+.team-authority-person:not(:has(.team-authority-photo)){grid-template-columns:minmax(0,1fr) auto!important;gap:22px!important}
+.team-authority-person:not(:has(.team-authority-photo))>div{min-width:0}
+.team-authority-person:not(.gp-discovery-card) small{overflow-wrap:anywhere;word-break:normal}
+/* Keep empty credential spans in the DOM but collapse the blank middle column. */
+.team-authority-person:not(.gp-discovery-card)>div>span:empty{display:none!important}
+.team-authority-person:not(.gp-discovery-card)>div:has(>span:empty){grid-template-columns:minmax(190px,.9fr) minmax(0,1.6fr)!important}
+@media(max-width:1024px){
+  .team-authority-person:has(.team-authority-photo):not(.gp-discovery-card){grid-template-columns:86px minmax(0,1fr) auto!important}
+}
+@media(max-width:700px){
+  .team-authority-person:has(.team-authority-photo):not(.gp-discovery-card){grid-template-columns:74px minmax(0,1fr)!important;align-items:start!important}
+  .team-authority-person:has(.team-authority-photo):not(.gp-discovery-card)>.text-link{grid-column:2!important;justify-self:start!important}
+}
+</style>
+<style id="wmc-about-laptop-fix">
+/* Practice Experience chapter photos: avoid ultra-wide laptop crops from max-height alone. */
+body.ev-pe-page .pe-media--chapter img,body.pe-hub-page .pe-media--chapter img{
+  aspect-ratio:16/9!important;max-height:360px!important;width:100%!important;height:auto!important;
+  object-fit:cover!important;object-position:center 28%!important
+}
+@media(max-width:700px){
+  body.ev-pe-page .pe-media--chapter img,body.pe-hub-page .pe-media--chapter img{max-height:200px!important;object-position:center 24%!important}
+}
+</style></head>`,
+  );
   // Digital Reception demand capture script — bust when search-signal posting changes.
   next = next.replace(
     /digital-reception\.js(?:\?[^"]*)?(?=")/g,
     "digital-reception.js?v=wmc-search-signals-20261103",
   );
+  // Site-root home links must hit `/` (live public-ux), not static public/index.html.
+  next = next.replace(/\bhref="(?:\.\/)*(?:\.\.\/)*index\.html"/g, 'href="/"');
   // Clinic identity for public APIs and client measurement (careers, forms, search signals).
   next = injectClinicDataAttrs(next, branding);
   // Patient forms → operations inbox (keep golden HTML, update handoff + endpoint at render).
@@ -117,6 +390,8 @@ export function applyPublicUxRefinements(
 
   // Philosophy / Story: fill sparse Quality & safety lockup (copy + sized AGPAL mark).
   next = enrichQualitySafetySections(next, pagePath);
+  // Contact: network callout after map; details alignment is CSS-only.
+  next = refineContactPageSections(next, pagePath);
 
   // Practice Experience Hub — About Us card + side-nav (CMS page; not golden-master edit).
   next = injectPracticeExperienceAboutLinks(next, pagePath);
@@ -130,7 +405,19 @@ export function applyPublicUxRefinements(
     /^(about-us\/)?(practice-experience|community-catchment|continuity-in-practice|clinical-interests)\.html$/i.test(
       pagePath,
     );
-  if (isRecruitmentSurface && /persistent-care-actions/i.test(next)) {
+  // Mark recruitment surfaces before sticky CSS so body attribute checks stay accurate.
+  if (isRecruitmentSurface) {
+    if (!/<body\b[^>]*\bdata-attraction-surface=/i.test(next)) {
+      next = next.replace(/<body\b/i, '<body data-attraction-surface="true"');
+    }
+    if (!/\bdata-ev="true"/i.test(next) && /data-ev-surface|attraction-experience-validation|data-attraction-type/i.test(next)) {
+      next = next.replace(/<body\b([^>]*)>/i, '<body$1 data-ev="true">');
+    }
+    // Strip before sticky rewrite so final inject order stays sticky → mobile.
+    next = next.replace(/<style\b[^>]*id="wmc-recruit-mobile"[\s\S]*?<\/style>\s*/i, "");
+  }
+  // Only rewrite when a sticky <nav> exists — avoid matching class names inside CSS on EOI.
+  if (isRecruitmentSurface && /<nav\b[^>]*persistent-care-actions/i.test(next)) {
     const eoiHref = pagePath.startsWith("join-our-team/")
       ? "express-interest.html"
       : pagePath.startsWith("about-us/")
@@ -138,23 +425,269 @@ export function applyPublicUxRefinements(
         : "join-our-team/express-interest.html";
     const isExpressInterestPage = /express-interest\.html$/i.test(pagePath);
     const stickyEoiHref = isExpressInterestPage ? "#eoi-form" : eoiHref;
-    const stickyHtml = `<nav aria-label="GP recruitment actions" class="persistent-care-actions persistent-care-actions--recruitment" data-audience="gp-attraction"><div class="persistent-care-actions-inner"><a class="persistent-care-book" href="${stickyEoiHref}">Express Interest</a><a aria-label="Call Woolloongabba Medical Centre about joining on (07) 3217 3344" class="persistent-care-call" href="tel:+61732173344">Call about joining</a></div></nav>`;
+    const recruitContact = resolveRecruitmentContact(undefined, eoiHref);
+    const isJoinLanding = pagePath === "join-our-team.html";
+    const readinessHref = isJoinLanding
+      ? "#gp-readiness-portal"
+      : pagePath.startsWith("join-our-team/") || pagePath.startsWith("about-us/")
+        ? "../join-our-team.html#gp-readiness-portal"
+        : "join-our-team.html#gp-readiness-portal";
+    // Only wire modal open on the landing page (portal script lives there).
+    const readinessOpenAttr = isJoinLanding ? ` data-gp-readiness-open="true"` : "";
+    const stickyHtml = `<nav aria-label="GP recruitment actions" class="persistent-care-actions persistent-care-actions--recruitment" data-audience="gp-attraction"><div class="persistent-care-actions-inner"><a class="persistent-care-readiness" href="${readinessHref}"${readinessOpenAttr}>GP Portal</a><a class="persistent-care-book" href="${stickyEoiHref}">Discuss</a><a aria-label="Call ${recruitContact.name} about joining on ${recruitContact.phoneDisplay}" class="persistent-care-call" href="tel:${recruitContact.phoneTel}">Call</a></div></nav>`;
     next = next.replace(
       /<nav\b[^>]*class="[^"]*persistent-care-actions[^"]*"[^>]*>[\s\S]*?<\/nav>/i,
       stickyHtml,
     );
+    // Always refresh sticky CSS/script so layout fixes are not stuck behind an older inject.
+    next = next.replace(/<style\b[^>]*id="wmc-recruit-sticky"[\s\S]*?<\/style>\s*/i, "");
+    next = next.replace(/<script\b[^>]*id="wmc-recruit-sticky-suppress"[\s\S]*?<\/script>\s*/i, "");
+    next = next.replace(
+      /<\/head>/i,
+      `<style id="wmc-recruit-sticky">
+body.has-persistent-care-actions:has(.persistent-care-actions--recruitment){padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))!important}
+.persistent-care-actions.persistent-care-actions--recruitment{
+left:auto!important;right:22px!important;bottom:22px!important;width:auto!important;
+max-width:calc(100vw - 28px)!important;padding:0!important
+}
+body[data-attraction-surface] .persistent-care-actions--recruitment .persistent-care-actions-inner,
+body[data-attraction-type] .persistent-care-actions--recruitment .persistent-care-actions-inner,
+body[data-ev="true"] .persistent-care-actions--recruitment .persistent-care-actions-inner,
+.persistent-care-actions.persistent-care-actions--recruitment .persistent-care-actions-inner{
+display:flex!important;flex-wrap:nowrap!important;align-items:center!important;justify-content:center!important;gap:8px!important;
+width:auto!important;max-width:min(52rem,calc(100vw - 28px))!important;
+grid-template-columns:none!important;border-radius:0!important;padding:0!important;
+background:transparent!important;box-shadow:none!important;border:0!important;overflow:visible!important
+}
+.persistent-care-actions.persistent-care-actions--recruitment .persistent-care-readiness{
+display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:42px!important;
+padding:.5rem 1.05rem!important;border-radius:999px!important;font-size:.84rem!important;font-weight:700!important;
+color:#fff!important;text-decoration:none!important;border:1px solid #007A87!important;background:#007A87!important;
+box-shadow:0 8px 20px rgba(0,122,135,.28)!important;white-space:nowrap!important;box-sizing:border-box!important;
+width:auto!important;flex:0 1 auto!important;line-height:1.2!important
+}
+.persistent-care-actions.persistent-care-actions--recruitment .persistent-care-readiness:hover{background:#066f7a!important;border-color:#066f7a!important}
+.persistent-care-actions.persistent-care-actions--recruitment .persistent-care-book{
+display:inline-flex!important;align-items:center!important;justify-content:center!important;
+background:#fff!important;color:var(--navy,#163D68)!important;border:1px solid rgba(22,61,104,.22)!important;
+box-shadow:0 6px 18px rgba(18,50,79,.16)!important;font-weight:650!important;white-space:nowrap!important;box-sizing:border-box!important;
+width:auto!important;flex:0 1 auto!important;font-size:.82rem!important;line-height:1.2!important;min-height:42px!important;
+border-radius:999px!important
+}
+.persistent-care-actions.persistent-care-actions--recruitment .persistent-care-call{
+display:inline-flex!important;align-items:center!important;justify-content:center!important;
+white-space:nowrap!important;box-sizing:border-box!important;width:auto!important;flex:0 1 auto!important;
+font-size:.82rem!important;line-height:1.2!important;min-height:42px!important;padding:.5rem .9rem!important;
+border-radius:999px!important;background:#fff!important;border:1px solid rgba(22,61,104,.22)!important;
+box-shadow:0 6px 18px rgba(18,50,79,.16)!important;color:var(--navy,#163D68)!important;text-decoration:none!important
+}
+.persistent-care-actions.persistent-care-actions--recruitment .persistent-care-book::before,
+.persistent-care-actions.persistent-care-actions--recruitment .persistent-care-call::before{display:none!important}
+@media(max-width:767px){
+body.has-persistent-care-actions:has(.persistent-care-actions--recruitment){padding-bottom:calc(88px + env(safe-area-inset-bottom,0px))!important}
+.persistent-care-actions.persistent-care-actions--recruitment{
+left:10px!important;right:10px!important;bottom:calc(10px + env(safe-area-inset-bottom,0px))!important;
+width:auto!important;max-width:none!important;padding:0!important
+}
+body[data-attraction-surface] .persistent-care-actions--recruitment .persistent-care-actions-inner,
+body[data-attraction-type] .persistent-care-actions--recruitment .persistent-care-actions-inner,
+body[data-ev="true"] .persistent-care-actions--recruitment .persistent-care-actions-inner,
+.persistent-care-actions.persistent-care-actions--recruitment .persistent-care-actions-inner{
+display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;
+width:100%!important;max-width:none!important;align-items:stretch!important;justify-content:stretch!important;
+border-radius:0!important;padding:0!important;background:transparent!important;box-shadow:none!important;border:0!important
+}
+.persistent-care-actions.persistent-care-actions--recruitment .persistent-care-readiness,
+.persistent-care-actions.persistent-care-actions--recruitment .persistent-care-book,
+.persistent-care-actions.persistent-care-actions--recruitment .persistent-care-call{
+width:100%!important;max-width:100%!important;min-width:0!important;min-height:48px!important;
+padding:.55rem .35rem!important;border-radius:12px!important;font-size:.78rem!important;line-height:1.15!important;
+white-space:normal!important;text-align:center!important;justify-content:center!important;align-items:center!important;
+overflow:hidden!important;flex:none!important;
+box-shadow:0 6px 18px rgba(18,50,79,.18)!important
+}
+}
+</style>
+<script id="wmc-recruit-sticky-suppress">
+(function(){
+  function bind(){
+    var bar=document.querySelector(".persistent-care-actions--recruitment");
+    var heroCtas=document.querySelector(".gp-recruit-hero-convert");
+    if(!bar||!heroCtas||!("IntersectionObserver" in window)) return;
+    var io=new IntersectionObserver(function(entries){
+      var hit=entries.some(function(e){ return e.isIntersecting && e.intersectionRatio >= 0.15; });
+      bar.classList.toggle("is-suppressed", hit);
+    },{threshold:[0,0.15,0.35,0.6]});
+    io.observe(heroCtas);
   }
-  // P0-2 marker for Attraction chrome demotion (header Book outline; sticky dominant).
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", bind);
+  else bind();
+})();
+</script></head>`,
+    );
+  }
+
+  // Serve-time mobile polish for attraction pages baked with older EV shell CSS.
+  // Injected after sticky so re-apply order stays sticky → mobile (idempotent).
   if (isRecruitmentSurface) {
-    if (!/data-attraction-surface=/i.test(next)) {
-      next = next.replace(/<body\b/i, '<body data-attraction-surface="true"');
-    }
-    if (!/\bdata-ev="true"/i.test(next) && /data-ev-surface|attraction-experience-validation|data-attraction-type/i.test(next)) {
-      next = next.replace(/<body\b([^>]*)>/i, '<body$1 data-ev="true">');
-    }
+    next = next.replace(
+      /<\/head>/i,
+      `<style id="wmc-recruit-mobile">
+body[data-attraction-surface] details.attraction-tool-panel summary,
+body[data-attraction-type] details.attraction-tool-panel summary,
+body[data-ev="true"] details.attraction-tool-panel summary{
+display:block!important;min-height:44px!important;padding:.45rem 0!important;line-height:1.35!important;
+font-size:1rem!important;font-weight:650!important;cursor:pointer
+}
+body[data-attraction-surface] .page-nav .nav-group-title,
+body[data-attraction-type] .page-nav .nav-group-title,
+body[data-ev="true"] .page-nav .nav-group-title,
+body[data-attraction-surface] .page-nav .nav-title,
+body[data-attraction-type] .page-nav .nav-title,
+body[data-ev="true"] .page-nav .nav-title,
+body[data-attraction-surface] #related-pages .nav-title,
+body[data-attraction-type] #related-pages .nav-title,
+body[data-ev="true"] #related-pages .nav-title{font-size:.75rem!important;letter-spacing:.05em!important}
+body[data-attraction-surface] .eyebrow,
+body[data-attraction-type] .eyebrow,
+body[data-ev="true"] .eyebrow,
+body[data-attraction-type] .page-hero .eyebrow,
+body[data-attraction-surface] .attraction-next-step .eyebrow,
+body[data-ev="true"] .attraction-next-step .eyebrow{font-size:.75rem!important;letter-spacing:.05em!important}
+/* Shared trust inject (related pages) — contact/confidentiality cards without join-hub CSS */
+body[data-attraction-surface] .gp-recruit-contact-card,
+body[data-ev="true"] .gp-recruit-contact-card{
+padding:1.15rem 1.1rem;border-radius:18px;border:1px solid rgba(22,61,104,.12);
+background:#fff;box-shadow:0 8px 22px rgba(22,61,104,.08);box-sizing:border-box;max-width:100%
+}
+body[data-attraction-surface] .gp-recruit-contact-label,
+body[data-ev="true"] .gp-recruit-contact-label{
+margin:0 0 .35rem;color:#007a87;font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase
+}
+body[data-attraction-surface] .gp-recruit-contact-name,
+body[data-ev="true"] .gp-recruit-contact-name{margin:0;font-size:1.15rem;font-weight:750;color:#163d68;line-height:1.25}
+body[data-attraction-surface] .gp-recruit-contact-role,
+body[data-ev="true"] .gp-recruit-contact-role{margin:.15rem 0 .55rem;color:#4a5d6c;font-size:.9rem;font-weight:600}
+body[data-attraction-surface] .gp-recruit-contact-note,
+body[data-ev="true"] .gp-recruit-contact-note{margin:0 0 .75rem;color:#4a5d6c;font-size:.9rem;line-height:1.45}
+body[data-attraction-surface] .gp-recruit-contact-channels,
+body[data-ev="true"] .gp-recruit-contact-channels{margin:0;padding:0;list-style:none;display:grid;gap:.45rem}
+body[data-attraction-surface] .gp-recruit-contact-channels a,
+body[data-ev="true"] .gp-recruit-contact-channels a{color:#007a87;font-weight:650;text-decoration:underline;text-underline-offset:3px;font-size:.92rem}
+body[data-attraction-surface] .gp-recruit-trust-panel,
+body[data-ev="true"] .gp-recruit-trust-panel{
+padding:1rem 1.05rem;border-radius:16px;border:1px solid rgba(0,122,135,.18);
+background:linear-gradient(180deg,#f3fbfb,#eef7f8);box-sizing:border-box;max-width:100%
+}
+body[data-attraction-surface] .gp-recruit-trust-panel h3,
+body[data-ev="true"] .gp-recruit-trust-panel h3{margin:0 0 .55rem;font-size:.95rem;color:#163d68}
+body[data-attraction-surface] .gp-recruit-trust-panel ul,
+body[data-ev="true"] .gp-recruit-trust-panel ul{margin:0;padding:0;list-style:none;display:grid;gap:.4rem}
+body[data-attraction-surface] .gp-recruit-trust-panel li,
+body[data-ev="true"] .gp-recruit-trust-panel li{
+position:relative;padding-left:1.1rem;color:#3f5360;font-size:.88rem;line-height:1.4
+}
+body[data-attraction-surface] .gp-recruit-trust-panel li::before,
+body[data-ev="true"] .gp-recruit-trust-panel li::before{content:"✓";position:absolute;left:0;color:#2f7d4a;font-weight:700}
+body[data-attraction-surface] .gp-recruit-shared-trust,
+body[data-ev="true"] .gp-recruit-shared-trust{box-sizing:border-box;max-width:100%;min-width:0}
+@media(max-width:900px){
+body[data-attraction-surface] .attraction-tool-panel input:not([type=checkbox]):not([type=radio]),
+body[data-attraction-surface] .attraction-tool-panel select,
+body[data-attraction-surface] .attraction-tool-panel textarea{font-size:16px!important;min-height:44px}
+body[data-attraction-surface] .careers-opportunity-actions .button-secondary,
+body[data-attraction-surface] .careers-opportunity-actions a.button-secondary,
+body[data-attraction-surface] .join-hub-cta-row .button-secondary,
+body[data-attraction-surface] .join-hub-cta-row a.button-secondary{min-height:44px!important}
+body[data-attraction-surface] .careers-status-badge,
+body[data-attraction-type] .careers-status-badge{font-size:.75rem!important;letter-spacing:.04em!important}
+body[data-attraction-surface] .on-this-page{overflow-x:auto;-webkit-overflow-scrolling:touch}
+body[data-attraction-surface] .on-this-page-links{display:flex;flex-wrap:wrap;gap:.45rem}
+body[data-attraction-surface] .on-this-page a,
+body[data-ev="true"] .on-this-page a{min-height:44px;display:inline-flex;align-items:center;box-sizing:border-box}
+body[data-attraction-surface] .page-nav a,
+body[data-attraction-surface] #related-pages a,
+body[data-ev="true"] .page-nav a,
+body[data-ev="true"] #related-pages a{
+min-height:44px;display:inline-flex;align-items:center;box-sizing:border-box
+}
+body[data-attraction-surface] .gp-recruit-contact-channels a,
+body[data-ev="true"] .gp-recruit-contact-channels a{
+display:inline-flex;align-items:center;min-height:44px;padding:.35rem .15rem;box-sizing:border-box
+}
+body[data-attraction-surface] .gp-recruit-contact-channels li,
+body[data-ev="true"] .gp-recruit-contact-channels li{min-height:44px;display:flex;align-items:center}
+body[data-attraction-surface] .gp-recruit-contact-channels,
+body[data-ev="true"] .gp-recruit-contact-channels{gap:4px}
+body[data-attraction-surface] .careers-opportunity-actions,
+body[data-attraction-surface] .join-hub-cta-row{
+display:flex;flex-wrap:wrap;gap:8px;max-width:100%;box-sizing:border-box
+}
+body[data-attraction-surface] .careers-opportunity-actions .button,
+body[data-attraction-surface] .careers-opportunity-actions a.button,
+body[data-attraction-surface] .join-hub-cta-row .button,
+body[data-attraction-surface] .join-hub-cta-row a.button{
+flex:1 1 auto;min-width:0;max-width:100%;box-sizing:border-box
+}
+/* Stack support/checklist matrices — keep all cells, avoid 3-col squeeze */
+body[data-attraction-surface] .attraction-matrix,
+body[data-ev="true"] .attraction-matrix{
+display:block;width:100%;max-width:100%;box-sizing:border-box
+}
+body[data-attraction-surface] .attraction-matrix thead,
+body[data-ev="true"] .attraction-matrix thead{
+position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0
+}
+body[data-attraction-surface] .attraction-matrix tbody,
+body[data-attraction-surface] .attraction-matrix tr,
+body[data-attraction-surface] .attraction-matrix th,
+body[data-attraction-surface] .attraction-matrix td,
+body[data-ev="true"] .attraction-matrix tbody,
+body[data-ev="true"] .attraction-matrix tr,
+body[data-ev="true"] .attraction-matrix th,
+body[data-ev="true"] .attraction-matrix td{
+display:block;width:100%!important;max-width:100%;box-sizing:border-box;white-space:normal!important
+}
+body[data-attraction-surface] .attraction-matrix tr,
+body[data-ev="true"] .attraction-matrix tr{
+margin:0 0 .75rem;padding:.85rem .9rem;border:1px solid rgba(22,61,104,.12);border-radius:14px;background:#fff;
+box-shadow:0 4px 14px rgba(22,61,104,.06)
+}
+body[data-attraction-surface] .attraction-matrix th[scope=row],
+body[data-ev="true"] .attraction-matrix th[scope=row]{
+border:0;padding:0 0 .35rem;font-size:1rem;font-weight:700;color:#163d68
+}
+body[data-attraction-surface] .attraction-matrix td.matrix-means,
+body[data-ev="true"] .attraction-matrix td.matrix-means{
+border:0;padding:0 0 .55rem;font-size:.9rem;line-height:1.45
+}
+body[data-attraction-surface] .attraction-matrix td:last-child,
+body[data-ev="true"] .attraction-matrix td:last-child{
+border:0;padding:.35rem 0 0;width:100%!important;white-space:normal!important
+}
+body[data-attraction-surface] .attraction-matrix .matrix-ask,
+body[data-ev="true"] .attraction-matrix .matrix-ask{
+min-height:44px;width:100%;box-sizing:border-box;padding:.35rem 0;gap:.55rem;font-size:.92rem
+}
+body[data-attraction-surface] .attraction-matrix .matrix-ask input[type=checkbox],
+body[data-ev="true"] .attraction-matrix .matrix-ask input[type=checkbox]{
+width:1.15rem;height:1.15rem;min-width:1.15rem;min-height:1.15rem;max-width:none
+}
+body[data-attraction-surface] .attraction-matrix .matrix-ask-hint,
+body[data-ev="true"] .attraction-matrix .matrix-ask-hint{max-width:none;font-size:.82rem;line-height:1.4}
+body[data-attraction-surface] .attraction-tool-panel .button,
+body[data-attraction-surface] .attraction-tool-panel button,
+body[data-ev="true"] .attraction-tool-panel .button,
+body[data-ev="true"] .attraction-tool-panel button{
+min-height:44px;width:100%;max-width:100%;box-sizing:border-box
+}
+}
+</style></head>`,
+    );
   }
 
   // Attraction analytics beacon (anonymous) — all EV attraction surfaces.
+  // Inject before Join Our Team portal shell so re-apply order stays idempotent.
   if (
     /practice-experience|join-our-team|community-catchment|continuity-in-practice|clinical-interests|gp-opportunities|gp-faq|doctor-readiness|opportunity-pack|express-interest|dpa-navigator|session-planner|provider-number|registrar-pathway|practice-support/i.test(
       pagePath,
@@ -165,6 +698,35 @@ export function applyPublicUxRefinements(
       /<\/body>/i,
       `<script src="/attraction-track.js?v=wmc-attr-opp-20261105b" defer></script></body>`,
     );
+  }
+
+  if (pagePath === "join-our-team.html") {
+    next = refineJoinOurTeamRecruitment(next, branding);
+  }
+  if (/express-interest\.html$/i.test(pagePath)) {
+    next = refineExpressInterestFriction(next, branding);
+  }
+  // Shared recruitment contact + confidentiality — identical across attraction surfaces.
+  // Place after page content (end of main), never above the hero.
+  // Express Interest places both in the focus stack (contact → confidentiality → form).
+  if (
+    /^(join-our-team\/)?(gp-opportunities|gp-faq|opportunity-pack|practice-support)\.html$/i.test(
+      pagePath,
+    ) &&
+    !/data-recruitment-contact="true"/i.test(next)
+  ) {
+    const contact = renderRecruitmentContactHtml(
+      resolveRecruitmentContact(branding, eoiHrefForPage(pagePath)),
+    );
+    const confidentiality = /data-recruitment-confidentiality="true"/i.test(next)
+      ? ""
+      : renderConfidentialityPanelHtml("light");
+    const sharedTrust = `<div class="shell gp-recruit-shared-trust" style="padding:1.5rem 0 2rem;display:grid;gap:1rem;max-width:40rem">${contact}${confidentiality}</div>`;
+    if (/<\/main>/i.test(next)) {
+      next = next.replace(/<\/main>/i, `${sharedTrust}</main>`);
+    } else {
+      next = next.replace(/(<main\b[^>]*>)/i, `$1${sharedTrust}`);
+    }
   }
 
   // Add Join Our Team in every public primary navigation using the Updates
@@ -216,8 +778,20 @@ export function applyPublicUxRefinements(
   next = refineHomepageHeroAuthority(next, branding);
   // Trust strip under the hero replaces the large homepage Our Team carousel.
   next = next.replace(/<section\b[^>]*\bid="team"[^>]*>[\s\S]*?<\/section>/i, "");
+  next = refineHomepageInfoTrustLogos(next);
 
   return next;
+}
+
+/** Keep homepage AGPAL + bulk-billing marks sharp (contain, retina attrs). */
+function refineHomepageInfoTrustLogos(html: string): string {
+  const logos =
+    '<div class="info-trust-logos">' +
+    '<a href="agpal-accreditation.html"><img alt="Accredited General Practice" data-local-asset="agpal-mark" decoding="async" height="192" loading="lazy" src="assets/brand/agpal-mark.webp?v=20261106a" width="192"/></a>' +
+    '<a href="bulk-billing.html"><img alt="Medicare Bulk Billing Practice" decoding="async" height="256" loading="lazy" src="assets/brand/bulk-billing-practice.png" width="256"/></a>' +
+    "</div>";
+  if (!/<div class="info-trust-logos">/i.test(html)) return html;
+  return html.replace(/<div class="info-trust-logos">[\s\S]*?<\/div>/i, logos);
 }
 
 const DEFAULT_HOTDOC_BOOKING_URL =
@@ -284,7 +858,7 @@ function refineHomepageHeroAuthority(html: string, branding: ClinicBranding): st
 </div>
 </div>
 <div class="hero-visual">
-<picture class="hero-picture"><source media="(max-width: 700px)" srcset="assets/hero-final-mobile.webp"/><source media="(max-width: 1024px)" srcset="assets/hero-final-tablet.webp"/><img alt="Woolloongabba Medical Centre on Vulture Street — established local general practice" class="hero-photo" decoding="async" fetchpriority="high" height="941" src="assets/hero-final-desktop.webp" width="1672"/></picture>
+<picture class="hero-picture"><source media="(max-width: 700px)" srcset="assets/hero-final-mobile.webp"/><source media="(max-width: 1024px)" srcset="assets/hero-final-tablet.webp"/><img alt="Woolloongabba Medical Centre on Vulture Street — established local general practice" class="hero-photo" decoding="async" fetchpriority="high" height="941" sizes="(max-width: 700px) 100vw, (max-width: 1024px) 100vw, min(56vw, 920px)" src="assets/hero-final-desktop.webp" width="1672"/></picture>
 </div>
 </div>
 <div class="hero-practitioner-strip">
@@ -303,7 +877,7 @@ function refineHomepageHeroAuthority(html: string, branding: ClinicBranding): st
 <li><a class="hero-practitioner-face" href="doctors/dr-sambo-luon.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" src="assets/team/dr-sambo-luon-640.webp" width="96"/><span>Dr Sambo Luon</span></a></li>
 <li><a class="hero-practitioner-face" href="doctors/dr-usman-gul.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" src="assets/team/dr-usman-gul-640.webp" width="96"/><span>Dr Usman Gul</span></a></li>
 <li><a class="hero-practitioner-face" href="doctors/dr-mary-abadir.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" src="assets/team/dr-mary-abadir-640.webp" width="96"/><span>Dr Mary Abadir</span></a></li>
-<li><a class="hero-practitioner-face" href="doctors/dr-steven-chang.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" src="assets/team/dr-steven-chang-640.webp" width="96"/><span>Dr Steven Chang</span></a></li>
+<li><a class="hero-practitioner-face" href="doctors/dr-golnar-mortezaei.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" src="assets/team/dr-golnar-mortezaei-640.webp" width="96"/><span>Dr Golnar Mortezaei</span></a></li>
 </ul>
 </div>
 </div>
@@ -760,19 +1334,20 @@ const HOMEPAGE_HERO_AUTHORITY_STYLE = `<style id="wmc-hero-authority-v6">
 }
 .home-page #home.hero.hero--authority-v6 .hero-stats-inner{
   display:grid!important;
-  grid-template-columns:1fr 1fr!important;
+  /* Narrow phones: one clean column — avoids cramped 2-col wraps + orphaned last chip. */
+  grid-template-columns:1fr!important;
   justify-items:stretch!important;
-  gap:12px 14px!important;
+  gap:8px!important;
   width:100%!important;
   max-width:var(--max,1320px)!important;
   margin:0 auto!important;
   padding:0!important;
 }
 .home-page #home.hero.hero--authority-v6 .hero-stat:last-child{
-  grid-column:1 / -1!important;
-  justify-self:center!important;
-  width:max-content!important;
-  max-width:100%!important;
+  grid-column:auto!important;
+  justify-self:stretch!important;
+  width:auto!important;
+  max-width:none!important;
 }
 .home-page #home.hero.hero--authority-v6 .hero-stat{
   display:flex!important;
@@ -886,13 +1461,15 @@ const HOMEPAGE_HERO_AUTHORITY_STYLE = `<style id="wmc-hero-authority-v6">
 }
 .home-page #home.hero.hero--authority-v6 .hero-trust-badge{font-size:.78rem!important;padding:.5rem .8rem .5rem .55rem!important}
 .home-page #home.hero.hero--authority-v6 .hero-stats-inner{
+  /* Tablet: 3 + 2 left-aligned — no centered orphan row. */
   grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:10px 16px!important;
 }
 .home-page #home.hero.hero--authority-v6 .hero-stat:last-child{
-  grid-column:1 / -1!important;
-  justify-self:center!important;
+  grid-column:auto!important;
+  justify-self:stretch!important;
 }
-.home-page #home.hero.hero--authority-v6 .hero-stat-label{font-size:1rem!important}
+.home-page #home.hero.hero--authority-v6 .hero-stat-label{font-size:.92rem!important}
 }
 .home-page #hotdoc-app .hotdoc-benefits{
   display:flex!important;
@@ -957,6 +1534,94 @@ const HOMEPAGE_HERO_AUTHORITY_STYLE = `<style id="wmc-hero-authority-v6">
   outline-offset:2px!important;
   transform:translateY(-1px)!important;
 }
+/* Inline trust-line + border-top draws lines through wrapped accreditation copy. */
+.home-page #story a.trust-line,
+.home-page #story a.trust-line.trust-line-link{
+  display:block!important;
+  width:100%!important;
+  max-width:42rem!important;
+  margin-top:16px!important;
+  padding-top:0!important;
+  border-top:0!important;
+  color:#64737f!important;
+  font-size:.78rem!important;
+  line-height:1.55!important;
+  text-decoration:none!important;
+  box-decoration-break:clone!important;
+  -webkit-box-decoration-break:clone!important;
+}
+.home-page #story a.trust-line span,
+.home-page #story a.trust-line.trust-line-link span{
+  text-decoration:none!important;
+}
+.home-page #story a.trust-line.trust-line-link:hover span,
+.home-page #story a.trust-line.trust-line-link:focus-visible span{
+  color:#163D68!important;
+  text-decoration:underline!important;
+  text-underline-offset:3px!important;
+}
+/* Patient-info trust logos: undo crop/hide cascade; keep marks readable. */
+.home-page #patient-information .information-note{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  gap:14px!important;
+  margin-top:22px!important;
+  padding-top:0!important;
+  border-top:0!important;
+}
+.home-page #patient-information .info-trust-logos,
+.home-page #patient-information .information-note>span{
+  display:flex!important;
+}
+.home-page #patient-information .info-trust-logos{
+  flex-wrap:wrap!important;
+  align-items:center!important;
+  gap:16px!important;
+  margin:0!important;
+}
+.home-page #patient-information .info-trust-logos a{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+  width:136px!important;
+  height:136px!important;
+  min-width:136px!important;
+  min-height:136px!important;
+  padding:12px!important;
+  border:1px solid rgba(22,61,104,.1)!important;
+  border-radius:14px!important;
+  background:#fff!important;
+  box-shadow:0 4px 14px rgba(22,61,104,.08)!important;
+  text-decoration:none!important;
+}
+.home-page #patient-information .info-trust-logos a:hover,
+.home-page #patient-information .info-trust-logos a:focus-visible{
+  border-color:rgba(0,122,135,.35)!important;
+  outline:2px solid #007A87!important;
+  outline-offset:2px!important;
+}
+.home-page #patient-information .info-trust-logos img,
+.home-page #patient-information .info-trust-logos img:first-child,
+.home-page #patient-information .info-trust-logos img:last-child,
+.home-page #patient-information .info-trust-logos img[data-local-asset="agpal-mark"],
+.home-page #patient-information .info-trust-logos a[href*="bulk-billing"] img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:112px!important;
+  max-height:112px!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  background:transparent!important;
+  image-rendering:auto!important;
+}
+.home-page #patient-information .information-note>span{
+  color:#667681!important;
+  font-size:.82rem!important;
+  line-height:1.45!important;
+}
 @media (min-width:1025px){
 .home-page #home.hero.hero--authority-v6{
   padding:36px 28px 0!important;
@@ -964,7 +1629,7 @@ const HOMEPAGE_HERO_AUTHORITY_STYLE = `<style id="wmc-hero-authority-v6">
 .home-page #home.hero.hero--authority-v6 .shell.hero-grid{
   display:grid!important;
   grid-template-columns:minmax(280px,520px) minmax(0,1fr)!important;
-  align-items:center!important;
+  align-items:stretch!important;
   gap:28px 32px!important;
   width:100%!important;
   max-width:var(--max,1320px)!important;
@@ -974,15 +1639,22 @@ const HOMEPAGE_HERO_AUTHORITY_STYLE = `<style id="wmc-hero-authority-v6">
   overflow:visible!important;
 }
 .home-page #home.hero.hero--authority-v6 .hero-copy{
+  display:flex!important;
+  flex-direction:column!important;
   align-items:stretch!important;
-  justify-content:center!important;
+  justify-content:stretch!important;
   width:100%!important;
   min-height:0!important;
   height:auto!important;
+  align-self:stretch!important;
 }
 .home-page #home.hero.hero--authority-v6 .hero-content-panel{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
   max-width:520px;
   width:100%;
+  height:100%!important;
   margin:0 0 0 auto;
   padding:1.85rem 1.75rem 1.55rem;
 }
@@ -1019,18 +1691,45 @@ const HOMEPAGE_HERO_AUTHORITY_STYLE = `<style id="wmc-hero-authority-v6">
   bottom:auto!important;
   left:auto!important;
   order:2!important;
+  align-self:stretch!important;
+  display:block!important;
   width:100%!important;
   height:auto!important;
-  min-height:0!important;
+  min-height:100%!important;
   border-radius:24px!important;
+  overflow:hidden!important;
+  background:#d5dee4!important;
 }
-.home-page #home.hero.hero--authority-v6 .hero-picture,
+.home-page #home.hero.hero--authority-v6 .hero-picture{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:100%!important;
+}
 .home-page #home.hero.hero--authority-v6 .hero-picture .hero-photo{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:100%!important;
+  max-height:none!important;
+  /* Fill the card; centre the fascia so “Woolloongabba Medical Centre” stays in frame */
+  object-fit:cover!important;
+  object-position:50% 42%!important;
+}
+/* Story storefront: 720px tall frame was cropping the clinic banner on laptop */
+.home-page #story .story-image{
+  min-height:0!important;
+  height:auto!important;
+  max-height:none!important;
+  aspect-ratio:16 / 10!important;
+}
+.home-page #story .story-image img{
+  width:100%!important;
+  height:100%!important;
   min-height:0!important;
   max-height:none!important;
-  height:auto!important;
-  object-fit:contain!important;
-  object-position:center center!important;
+  object-fit:cover!important;
+  object-position:42% 48%!important;
 }
 .home-page #home.hero.hero--authority-v6 .hero-practitioner-strip{
   margin:26px 0 0!important;

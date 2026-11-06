@@ -1,7 +1,9 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { saveKnowledgeArticle } from "@/cms/actions";
 import { articleDocumentFrom, readArticleDocument } from "@/cms/article-document";
 import { requireAction } from "@/cms/context";
+import { mediaLibraryPickerHref } from "@/cms/media-library-shared";
 import { prisma } from "@/db/prisma";
 import { publicPageName } from "@/cms/staff-labels";
 import { Area, Field, GateNotice, Impact, SavedNotice, SaveBar, ViewPublicPage } from "../../ui";
@@ -42,6 +44,15 @@ export default async function ArticleEditPage({
     <main>
       <h1 className="text-2xl font-semibold">{document.title || row.title}</h1>
       <ViewPublicPage path={pagePath} />
+      <p className="mt-2 text-sm text-slate-600">
+        Article images stay on published paths.{" "}
+        <Link
+          href={mediaLibraryPickerHref({ category: "Knowledge Hub", returnTo, field: "article-image" })}
+          className="underline"
+        >
+          Browse Media Library (Knowledge Hub)
+        </Link>
+      </p>
       <SavedNotice saved={query.saved} published={query.published} status={row.status} />
       <GateNotice error={query.error} reason={query.reason} />
       <form action={saveKnowledgeArticle} className="mt-6 grid max-w-3xl gap-4">

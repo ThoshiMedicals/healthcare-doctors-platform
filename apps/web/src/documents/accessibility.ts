@@ -39,6 +39,16 @@ export function applyAccessibilityClosure(html: string, pagePath: string): strin
     'alt="Book your favourite doctor any time in the HotDoc app. Woolloongabba Medical Centre, (07) 3217 3344. App Store and Google Play badges."',
     'alt="Book appointments with Woolloongabba Medical Centre using HotDoc"',
   );
-  if (pagePath !== "404.html") return namesCorrected;
-  return namesCorrected.replace(/<footer\b[\s\S]*<\/footer>/i, (footer) => footer.replace(/<h3>/g, '<h3 aria-level="2">'));
+  // Hero trust logos: same marks elsewhere use informative alt; empty alt was flagged as Missing Alt Text.
+  const heroTrustAlts = namesCorrected
+    .replace(
+      /(<span class="hero-trust-logo hero-trust-logo-agpal">\s*<img )alt=""/,
+      '$1alt="Accredited General Practice"',
+    )
+    .replace(
+      /(<span class="hero-trust-logo hero-trust-logo-bulk"><img )alt=""/,
+      '$1alt="Medicare Bulk Billing Practice"',
+    );
+  if (pagePath !== "404.html") return heroTrustAlts;
+  return heroTrustAlts.replace(/<footer\b[\s\S]*<\/footer>/i, (footer) => footer.replace(/<h3>/g, '<h3 aria-level="2">'));
 }

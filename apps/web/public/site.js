@@ -267,6 +267,24 @@
     } catch (_) {}
   }
 
+  function clinicSlugFromDom() {
+    try {
+      var rootEl = document.documentElement;
+      return (rootEl && rootEl.getAttribute('data-clinic-slug')) || root.WMC_CLINIC_SLUG || 'woolloongabba';
+    } catch (_) {
+      return 'woolloongabba';
+    }
+  }
+
+  function clinicHotdocUrl() {
+    try {
+      var rootEl = document.documentElement;
+      var fromDom = rootEl && rootEl.getAttribute('data-hotdoc-url');
+      if (fromDom) return fromDom;
+    } catch (_) {}
+    return 'https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors?wp=w_lightbox';
+  }
+
   function record(eventName, fields) {
     var name = String(eventName || '').trim();
     if (!name) return null;
@@ -276,7 +294,8 @@
       ts: nowIso(),
       session_id: sessionId(),
       page_path: pathFromLocation(),
-      page_group: pageGroup()
+      page_group: pageGroup(),
+      clinic_slug: clinicSlugFromDom()
     }, fields || {});
     /* Hard privacy rule: never leave a raw query on the outbound event. */
     if (Object.prototype.hasOwnProperty.call(payload, 'query')) delete payload.query;
@@ -405,6 +424,8 @@
     pageGroup: pageGroup,
     intentBucket: intentBucket,
     pathFromLocation: pathFromLocation,
+    clinicSlug: clinicSlugFromDom,
+    clinicHotdocUrl: clinicHotdocUrl,
     record: record,
     retainDebugQuery: retainDebugQuery,
     readDebugStore: readDebugStore,
@@ -619,7 +640,7 @@
   // The bottom care dock stays visible. Page padding keeps the footer and
   // in-page actions above it, so the dock is not hidden as those regions scroll in.
 
-  // Static-site form requests collect administrative contact details only and open the patient's email client.
+  // Patient form requests collect administrative contact details only and POST to the clinic inbox.
   // Clinical information is deliberately excluded from this workflow.
   const formRequest = document.querySelector('[data-patient-form-request]');
   if (formRequest) {
@@ -632,8 +653,6 @@
       delivery: formRequest.querySelector('[name="delivery"]'),
       consent: formRequest.querySelector('[name="privacy_confirm"]')
     };
-    // Pair a shared live status with field-specific errors so a screen reader
-    // announces what needs correcting when the visitor returns to a field.
     const setInvalid = (field, invalid, message = '') => {
       if (!field) return;
       const errorId = 'wmc-form-error-' + field.name;
@@ -671,7 +690,7 @@
       field.addEventListener('input', clear);
       field.addEventListener('change', clear);
     });
-    formRequest.addEventListener('submit', event => {
+    formRequest.addEventListener('submit', async event => {
       event.preventDefault();
       Object.values(fields).forEach(f => setInvalid(f, false));
       const missing = [];
@@ -689,31 +708,187 @@
         missing.forEach(([field, message]) => setInvalid(field, true, message));
         if (status) {
           status.setAttribute('role', 'alert');
-          status.textContent = 'Please correct the highlighted fields before opening the email request.';
+          status.textContent = 'Please correct the highlighted fields before submitting.';
         }
         missing[0][0].focus({ preventScroll: true });
         missing[0][0].scrollIntoView({ block: 'center', behavior: 'instant' });
         return;
       }
-      if (status) status.setAttribute('role', 'status');
-      const subject = `Patient form request - ${fields.type.value.trim()}`;
-      const body = [
-        'Patient form request',
-        '',
-        `Name: ${fields.name.value.trim()}`,
-        `Form requested: ${fields.type.value.trim()}`,
-        `Preferred delivery: ${fields.delivery?.value.trim() || 'Not specified'}`,
-        `Email: ${fields.email?.value.trim() || 'Not provided'}`,
-        `Phone: ${fields.phone?.value.trim() || 'Not provided'}`,
-        '',
-        'No clinical information has been entered in this request.'
-      ].join('\n');
-      if (status) status.textContent = 'Your email application is opening with an administrative request prepared. Nothing has been submitted by this website. Review the email before sending it.';
-      window.location.href = `mailto:reception@gabbamedicalcentre.com.au?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      const clinicSlug = formRequest.getAttribute('data-clinic-slug')
+        || document.documentElement.getAttribute('data-clinic-slug')
+        || 'woolloongabba';
+      const endpoint = formRequest.getAttribute('action') || `/api/clinics/${clinicSlug}/form-requests`;
+      const submitButton = formRequest.querySelector('button[type="submit"]');
+      if (submitButton) submitButton.disabled = true;
+      if (status) {
+        status.setAttribute('role', 'status');
+        status.textContent = 'Submitting your request…';
+      }
+      try {
+        const body = new FormData(formRequest);
+        const response = await fetch(endpoint, { method: 'POST', body, credentials: 'same-origin' });
+        if (!response.ok) {
+          let message = 'We could not submit your request. Please try again or call the practice.';
+          try {
+            const payload = await response.json();
+            if (payload && payload.error) message = payload.error;
+          } catch (_) { /* keep default */ }
+          if (status) {
+            status.setAttribute('role', 'alert');
+            status.textContent = message;
+          }
+          return;
+        }
+        formRequest.reset();
+        if (status) {
+          status.setAttribute('role', 'status');
+          status.textContent = 'Thank you. Your request has been received by the practice team.';
+        }
+      } catch (_) {
+        if (status) {
+          status.setAttribute('role', 'alert');
+          status.textContent = 'We could not submit your request. Please try again or call the practice.';
+        }
+      } finally {
+        if (submitButton) submitButton.disabled = false;
+      }
     });
   }
 
+  // Vacancy "Register Interest" links preselect Role of Interest and vacancy id.
+  document.querySelectorAll('[data-talent-role], [data-talent-vacancy-id]').forEach(link => {
+    link.addEventListener('click', () => {
+      const role = link.getAttribute('data-talent-role') || '';
+      const vacancyId = link.getAttribute('data-talent-vacancy-id') || '';
+      const form = document.querySelector('[data-talent-community-form]');
+      if (!form) return;
+      const select = form.querySelector('[name="role"]');
+      const vacancyField = form.querySelector('[data-talent-vacancy-field], [name="vacancyId"]');
+      if (select && role) {
+        const match = [...select.options].find(option => option.value === role || option.textContent === role);
+        if (match) select.value = match.value;
+      }
+      if (vacancyField) vacancyField.value = vacancyId;
+    });
+  });
 
+  // Talent community EOIs POST securely to the clinic careers API (resume optional).
+  const talentForm = document.querySelector('[data-talent-community-form]');
+  if (talentForm) {
+    const status = talentForm.querySelector('[data-talent-community-status]');
+    const fields = {
+      name: talentForm.querySelector('[name="name"]'),
+      email: talentForm.querySelector('[name="email"]'),
+      phone: talentForm.querySelector('[name="phone"]'),
+      role: talentForm.querySelector('[name="role"]'),
+      resume: talentForm.querySelector('[name="resume"]'),
+      message: talentForm.querySelector('[name="message"]'),
+      consent: talentForm.querySelector('[name="privacy_confirm"]')
+    };
+    const setInvalid = (field, invalid, message = '') => {
+      if (!field) return;
+      const errorId = 'wmc-talent-error-' + field.name;
+      let error = document.getElementById(errorId);
+      const described = new Set((field.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean));
+      if (invalid) {
+        if (!error) {
+          error = document.createElement('span');
+          error.id = errorId;
+          error.className = 'wmc-visually-hidden';
+          (field.closest('.form-field,.form-consent') || field.parentElement).appendChild(error);
+        }
+        error.textContent = message || 'Please check this field.';
+        described.add(errorId);
+        if (status && status.id) described.add(status.id);
+        field.setAttribute('aria-invalid', 'true');
+        field.setAttribute('aria-errormessage', errorId);
+      } else {
+        field.removeAttribute('aria-invalid');
+        field.removeAttribute('aria-errormessage');
+        described.delete(errorId);
+        if (status && status.id) described.delete(status.id);
+        if (error) error.remove();
+      }
+      if (described.size) field.setAttribute('aria-describedby', [...described].join(' '));
+      else field.removeAttribute('aria-describedby');
+    };
+    if (fields.consent) {
+      const described = (fields.consent.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean);
+      if (!described.includes('talent-privacy')) described.push('talent-privacy');
+      fields.consent.setAttribute('aria-describedby', described.join(' '));
+    }
+    Object.values(fields).filter(Boolean).forEach(field => {
+      const clear = () => { if (field.getAttribute('aria-invalid') === 'true') setInvalid(field, false); };
+      field.addEventListener('input', clear);
+      field.addEventListener('change', clear);
+    });
+    talentForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      Object.values(fields).forEach(f => setInvalid(f, false));
+      const missing = [];
+      const note = (field, reason) => { if (field) missing.push([field, reason]); };
+      if (!fields.name?.value.trim()) note(fields.name, 'Enter your full name.');
+      if (!fields.email?.value.trim()) note(fields.email, 'Enter an email address.');
+      else if (!fields.email.validity.valid) note(fields.email, 'Enter a valid email address.');
+      if (!fields.role?.value.trim()) note(fields.role, 'Choose a role of interest.');
+      if (!fields.consent?.checked) note(fields.consent, 'Confirm the privacy notice before continuing.');
+      const resumeFile = fields.resume?.files?.[0];
+      if (resumeFile && resumeFile.size > 5 * 1024 * 1024) {
+        note(fields.resume, 'Resume must be 5 MB or smaller.');
+      }
+      if (missing.length) {
+        missing.forEach(([field, message]) => setInvalid(field, true, message));
+        if (status) {
+          status.setAttribute('role', 'alert');
+          status.textContent = 'Please correct the highlighted fields before submitting.';
+        }
+        missing[0][0].focus({ preventScroll: true });
+        missing[0][0].scrollIntoView({ block: 'center', behavior: 'instant' });
+        return;
+      }
+
+      const clinicSlug = talentForm.getAttribute('data-clinic-slug') || 'woolloongabba';
+      const endpoint = talentForm.getAttribute('action') || `/api/clinics/${clinicSlug}/career-applications`;
+      const submitButton = talentForm.querySelector('button[type="submit"]');
+      if (submitButton) submitButton.disabled = true;
+      if (status) {
+        status.setAttribute('role', 'status');
+        status.textContent = 'Submitting your expression of interest…';
+      }
+
+      try {
+        const body = new FormData(talentForm);
+        const response = await fetch(endpoint, { method: 'POST', body, credentials: 'same-origin' });
+        if (!response.ok) {
+          let message = 'We could not submit your expression of interest. Please try again or call the practice.';
+          try {
+            const payload = await response.json();
+            if (payload && payload.error) message = payload.error;
+          } catch (_) { /* keep default */ }
+          if (status) {
+            status.setAttribute('role', 'alert');
+            status.textContent = message;
+          }
+          return;
+        }
+        talentForm.reset();
+        const vacancyField = talentForm.querySelector('[data-talent-vacancy-field], [name="vacancyId"]');
+        if (vacancyField) vacancyField.value = '';
+        if (status) {
+          status.setAttribute('role', 'status');
+          status.textContent = 'Thank you. Your expression of interest has been received by the practice recruitment team.';
+        }
+      } catch (_) {
+        if (status) {
+          status.setAttribute('role', 'alert');
+          status.textContent = 'We could not submit your expression of interest. Please try again or call the practice.';
+        }
+      } finally {
+        if (submitButton) submitButton.disabled = false;
+      }
+    });
+  }
 
   // FAQ category filtering complements text search without changing the FAQ hierarchy.
   const faqFilters = document.querySelector('[data-faq-filters]');
@@ -755,65 +930,15 @@
   }
 
 
-  // Evidence-controlled governance presentation. The published registry is generated
-  // from approved records by cms/tools/build_clinical_governance.py, never from page dates.
-  const governanceHost = document.querySelector('[data-governance-review][data-governance-page]');
-  if (governanceHost) {
-    const pageKey = governanceHost.getAttribute('data-governance-page');
-    const records = window.WMC_APPROVED_GOVERNANCE;
-    const record = records && Object.prototype.hasOwnProperty.call(records, pageKey) ? records[pageKey] : null;
-    governanceHost.hidden = true;
-    governanceHost.replaceChildren();
-    governanceHost.classList.remove('governance-review');
-    if (record && record.status === 'approved' &&
-        [record.reviewedBy, record.lastReviewed, record.nextReview, record.contentOwner].every(x => typeof x === 'string' && x.trim())) {
-      const isISO = s => /^\d{4}-\d{2}-\d{2}$/.test(s) &&
-        !Number.isNaN(Date.parse(s)) && new Date(s + 'T00:00:00Z').toISOString().slice(0, 10) === s;
-      // Prevent a previously approved public bundle from displaying an outdated
-      // review as current after the next review due date has passed in Brisbane.
-      const brisbaneParts = new Intl.DateTimeFormat('en-AU', {
-        timeZone: 'Australia/Brisbane', year: 'numeric', month: '2-digit', day: '2-digit'
-      }).formatToParts(new Date());
-      const datePart = name => brisbaneParts.find(part => part.type === name)?.value || '';
-      const todayInBrisbane = `${datePart('year')}-${datePart('month')}-${datePart('day')}`;
-      if (isISO(record.lastReviewed) && isISO(record.nextReview) &&
-          record.nextReview > record.lastReviewed && record.nextReview >= todayInBrisbane) {
-        const formatDate = iso => new Intl.DateTimeFormat('en-AU', {
-          day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC'
-        }).format(new Date(iso + 'T00:00:00Z'));
-        const fields = [
-          ['Reviewed by', record.reviewedBy],
-          ['Last Reviewed', formatDate(record.lastReviewed)],
-          ['Next Review Due', formatDate(record.nextReview)],
-          ['Content Owner', record.contentOwner]
-        ];
-        fields.forEach(([label, value]) => {
-          const wrapper = document.createElement('div');
-          const dl = document.createElement('dl');
-          const dt = document.createElement('dt');
-          const dd = document.createElement('dd');
-          dt.textContent = label;
-          dd.textContent = value;
-          dl.append(dt, dd);
-          wrapper.appendChild(dl);
-          governanceHost.appendChild(wrapper);
-        });
-        // Place the approved review statement within the existing content column,
-        // rather than beneath the page layout at full viewport width.
-        const article = document.querySelector('main .article');
-        const serviceHubContent = document.querySelector('main .services-page-main .shell');
-        const location = article || serviceHubContent;
-        if (article && article.querySelector('.knowledge-byline')) {
-          article.querySelector('.knowledge-byline').insertAdjacentElement('afterend', governanceHost);
-        } else if (location && !location.contains(governanceHost)) {
-          location.appendChild(governanceHost);
-        }
-        governanceHost.classList.add('governance-review');
-        governanceHost.setAttribute('aria-label', 'Content governance and review information');
-        governanceHost.hidden = false;
-      }
+  // Public pages no longer show governance-review / knowledge-byline strips.
+  // Keep any host node hidden and empty so approved registry data does not reappear.
+  document.querySelectorAll('[data-governance-review][data-governance-page], .governance-review, .knowledge-byline').forEach((node) => {
+    node.hidden = true;
+    if (node.hasAttribute('data-governance-review')) {
+      node.replaceChildren();
+      node.classList.remove('governance-review');
     }
-  }
+  });
 
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
@@ -902,6 +1027,31 @@
   })();
 
   // One booking destination at a time. Practitioner links stay on that
+  /* GP Attraction recruitment sticky — demote patient Book on join / attraction
+     About surfaces. Prefer Express Interest + call about joining. */
+  (() => {
+    const path = (location.pathname || '').replace(/\\/g, '/');
+    const recruitment =
+      /join-our-team(\.html|\/)/i.test(path) ||
+      /\/(practice-experience|community-catchment|continuity-in-practice|clinical-interests)\.html?$/i.test(path);
+    if (!recruitment) return;
+    const bar = document.querySelector('.persistent-care-actions');
+    if (!bar || bar.getAttribute('data-audience') === 'gp-attraction') return;
+    const eoi = path.includes('/join-our-team/')
+      ? 'express-interest.html'
+      : path.includes('/about-us/')
+        ? '../join-our-team/express-interest.html'
+        : 'join-our-team/express-interest.html';
+    bar.setAttribute('aria-label', 'GP recruitment actions');
+    bar.classList.add('persistent-care-actions--recruitment');
+    bar.setAttribute('data-audience', 'gp-attraction');
+    const inner = bar.querySelector('.persistent-care-actions-inner') || bar;
+    inner.innerHTML =
+      '<a class="persistent-care-book" href="' +
+      eoi +
+      '">Express Interest</a><a aria-label="Call Woolloongabba Medical Centre about joining on (07) 3217 3344" class="persistent-care-call" href="tel:+61732173344">Call about joining</a>';
+  })();
+
   // practitioner. Clinic links share one label. The bottom dock stays on
   // screen, and steps aside only while Digital Reception or HotDoc is open.
   (() => {
@@ -1019,8 +1169,31 @@
         if (link.classList.contains('persistent-care-book')) return;
         if (link.closest('.digital-reception-actions') || link.classList.contains('digital-reception-journey-book')) return;
         if (link.closest('.hero-actions-polished')) return;
+        // Network location cards keep their own Book CTA (parity with other clinic cards).
+        if (link.classList.contains('network-location-book') || link.closest('.network-location-card')) {
+          showControl(link);
+          return;
+        }
         // Mid-page conversion bands keep their Book CTA — they are the in-content next step.
         if (link.closest('.conversion-band, .critical-action-band')) {
+          showControl(link);
+          return;
+        }
+        // Patient hub / article resource rows and FAQ answers keep in-content Book CTAs.
+        if (
+          link.classList.contains('resource-link') ||
+          link.closest('.resource-links, #ready-to-book, .faq, details, .page-context-faq')
+        ) {
+          showControl(link);
+          return;
+        }
+        // Knowledge Centre final support CTAs keep Book beside Call.
+        if (link.closest('.knowledge-final-cta, #get-support, .service-cta-actions')) {
+          showControl(link);
+          return;
+        }
+        // Contact / visit action rows keep Book beside Call and Directions.
+        if (link.closest('.journey-actions')) {
           showControl(link);
           return;
         }
@@ -1060,13 +1233,44 @@
   /* 4C — Reusable mid-page conversion bands.
      Extends the new-patients critical-action-band pattern onto long pages. */
   (() => {
-    const CLINIC_BOOK = 'https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors?wp=w_lightbox';
-    const TEL = 'tel:+61732173344';
+    const CLINIC_BOOK =
+      (typeof window.WMCMeasurement === 'object' && window.WMCMeasurement.clinicHotdocUrl
+        ? window.WMCMeasurement.clinicHotdocUrl()
+        : null) ||
+      document.documentElement.getAttribute('data-hotdoc-url') ||
+      'https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors?wp=w_lightbox';
+    const phoneTel = document.documentElement.getAttribute('data-practice-phone-tel');
+    const TEL = phoneTel ? `tel:+${String(phoneTel).replace(/\D/g, '')}` : 'tel:+61732173344';
     const path = (location.pathname || '').replace(/\\/g, '/');
 
     document.querySelectorAll('.critical-action-band:not(.conversion-band)').forEach(band => {
-      band.classList.add('conversion-band', 'conversion-band--book');
+      const primary = band.querySelector('.critical-action-primary, .critical-action-link');
+      const href = (primary && (primary.getAttribute('href') || '')) || '';
+      const isCallBand =
+        /^tel:/i.test(href) ||
+        band.querySelector('.critical-action-emergency') ||
+        /after-hours/i.test(location.pathname);
+      band.classList.add('conversion-band', isCallBand ? 'conversion-band--call' : 'conversion-band--book');
     });
+
+    // GP Attraction surfaces — never inject patient Book mid-bands; remove any that exist.
+    const isAttractionSurface =
+      document.documentElement.hasAttribute('data-ev-surface') ||
+      document.body?.hasAttribute('data-ev') ||
+      Boolean(document.body?.getAttribute('data-attraction-type')) ||
+      Boolean(document.querySelector('[data-audience="gp-attraction"]')) ||
+      /(^|\/)join-our-team(\.html|\/)/i.test(path) ||
+      /(^|\/)about-us\/(practice-experience|community-catchment|continuity-in-practice|clinical-interests)\.html/i.test(
+        path,
+      );
+    if (isAttractionSurface) {
+      document
+        .querySelectorAll(
+          'article .conversion-band--mid, article .critical-action-band, article [data-conversion-band="book"]',
+        )
+        .forEach((el) => el.remove());
+      return;
+    }
 
     // Pages that already author a critical band (e.g. new-patients) keep that
     // as the conversion surface — do not inject a second mid-page band.
@@ -1152,7 +1356,8 @@
       if (service) {
         const label = (service.querySelector('strong')?.textContent || service.textContent || 'Related Service')
           .replace(/\s+/g, ' ').trim().replace(/→.*$/, '').trim() || 'Related Service';
-        links.splice(1, 0, { href: service.getAttribute('href'), label: label.slice(0, 28), related: true });
+        // Keep the full published service title — do not truncate mid-label.
+        links.splice(1, 0, { href: service.getAttribute('href'), label, related: true });
       }
     } else {
       type = 'book';
@@ -1387,12 +1592,10 @@
 
   const byUrl = Object.fromEntries((TIERS.services || []).map(s => [s.url, s]));
 
-  const tierLabel = tier =>
-    tier === 'Hub' ? 'Service hub' : tier === 'Developing' ? 'Connected service' : 'Focused service';
   const tierClass = tier =>
     tier === 'Hub' ? 'service-tier-hub' : tier === 'Developing' ? 'service-tier-developing' : 'service-tier-thin';
 
-  // Directory listing: mark rows by tier for visual scanning.
+  // Directory listing: mark rows by tier (data attrs / classes only — no patient-facing pills).
   if (isDirectory) {
     document.body.classList.add('services-directory-page');
     document.querySelectorAll('a.service-directory-row[href]').forEach(a => {
@@ -1402,14 +1605,7 @@
       if (!row) return;
       a.classList.add('service-tier-link', tierClass(row.tier));
       a.setAttribute('data-service-tier', row.tier.toLowerCase());
-      if (!a.querySelector('.service-tier-chip')) {
-        const chip = document.createElement('span');
-        chip.className = 'service-tier-chip';
-        chip.textContent = tierLabel(row.tier);
-        const strong = a.querySelector('strong');
-        if (strong) strong.append(chip);
-        else a.prepend(chip);
-      }
+      a.querySelectorAll('.service-tier-chip').forEach(chip => chip.remove());
     });
     return;
   }
@@ -1431,18 +1627,8 @@
     article.setAttribute('data-service-tier', row.tier.toLowerCase());
   }
 
-  // Hero chip — patient-facing labels, not internal scores.
-  const hero =
-    document.querySelector('.service-authority-hero .page-hero-inner, .page-hero .page-hero-inner, .page-hero');
-  if (hero && !hero.querySelector('.service-tier-chip')) {
-    const chip = document.createElement('p');
-    chip.className = 'service-tier-chip service-tier-chip--hero';
-    chip.textContent = tierLabel(row.tier);
-    chip.setAttribute('title', 'Based on published links across guides, practitioners and related services.');
-    const eyebrow = hero.querySelector('.eyebrow');
-    if (eyebrow) eyebrow.after(chip);
-    else hero.prepend(chip);
-  }
+  // Strip any legacy patient-facing tier pills; keep pathway rail below.
+  document.querySelectorAll('.service-tier-chip').forEach(chip => chip.remove());
 
   if (document.querySelector('[data-service-pathways]')) return;
 
@@ -1451,6 +1637,10 @@
   const bookSection = document.querySelector('#book, .service-booking-cta');
   const bookHref =
     document.querySelector('#book a.wmc-book-appointment, .service-booking-cta a.wmc-book-appointment, a.wmc-book-appointment')?.getAttribute('href') ||
+    (typeof window.WMCMeasurement === 'object' && window.WMCMeasurement.clinicHotdocUrl
+      ? window.WMCMeasurement.clinicHotdocUrl()
+      : null) ||
+    document.documentElement.getAttribute('data-hotdoc-url') ||
     'https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors?wp=w_lightbox';
 
   const guideLinks = [
@@ -1554,16 +1744,60 @@
     '</article>' +
     '</div></div>';
 
-  // Prefer after breadcrumb so the page chrome stays: hero → topics → crumbs → pathways.
-  const insertAfter =
-    document.querySelector('.breadcrumb-bar') ||
-    document.querySelector('.topic-wayfinding') ||
-    document.querySelector('.page-hero, .service-authority-hero');
-  if (insertAfter) insertAfter.insertAdjacentElement('afterend', rail);
-  else if (article) article.insertAdjacentElement('afterbegin', rail);
+  // Content-first: hero → crumbs → article, then pathways.
+  // After-breadcrumb insertion put Related Guides / Practitioners / Booking
+  // above the page body on mobile and read as the page itself.
+  const pageMain = document.querySelector('.page-main');
+  if (pageMain) {
+    pageMain.insertAdjacentElement('afterend', rail);
+  } else if (article) {
+    article.insertAdjacentElement('afterend', rail);
+  } else {
+    const fallback =
+      document.querySelector('.breadcrumb-bar') ||
+      document.querySelector('.topic-wayfinding') ||
+      document.querySelector('.page-hero, .service-authority-hero');
+    if (fallback) fallback.insertAdjacentElement('afterend', rail);
+  }
 
   // Mark existing destination sections for standardised hub styling.
   guideSection?.classList.add('service-hub-destination', 'service-hub-destination--guides');
   practitionerSection?.classList.add('service-hub-destination', 'service-hub-destination--practitioners');
   bookSection?.classList.add('service-hub-destination', 'service-hub-destination--book');
+})();
+
+// GP discovery filters (team + GP directory) — metadata-driven; no layout redesign.
+(function initGpCareFilters() {
+  const root = document.querySelector('[data-gp-care-filters]');
+  if (!root) return;
+  const buttons = [...root.querySelectorAll('[data-gp-filter]')];
+  const status = root.querySelector('[data-gp-filter-status]');
+  const cards = [
+    ...document.querySelectorAll('.gp-discovery-card[data-care-tags], .practitioner-directory-card[data-care-tags]'),
+  ];
+  if (!buttons.length || !cards.length) return;
+
+  function applyFilter(filterId) {
+    let visible = 0;
+    cards.forEach((card) => {
+      const tags = (card.getAttribute('data-care-tags') || '').split(/\s+/).filter(Boolean);
+      const show = filterId === 'all' || tags.includes(filterId);
+      card.classList.toggle('is-gp-filter-hidden', !show);
+      if (show) visible += 1;
+    });
+    buttons.forEach((button) => {
+      const active = button.getAttribute('data-gp-filter') === filterId;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+    if (status) {
+      status.hidden = filterId === 'all';
+      const label = (buttons.find((b) => b.getAttribute('data-gp-filter') === filterId) || {}).textContent || filterId;
+      status.textContent = `${visible} practitioner${visible === 1 ? '' : 's'} for ${label.trim()}.`;
+    }
+  }
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => applyFilter(button.getAttribute('data-gp-filter') || 'all'));
+  });
 })();

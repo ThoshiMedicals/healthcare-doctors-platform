@@ -2,6 +2,11 @@ import { redirect } from "next/navigation";
 import type { MembershipRole } from "@prisma/client";
 import { requireUser } from "@/auth/session";
 import { assertRole, canAccessClinic, highestRoleForClinic, PermissionDeniedError, type CmsAction } from "@/auth/permissions";
+import {
+  canSwitchClinic,
+  readActiveClinicCookie,
+  resolveActiveClinicSlug,
+} from "@/cms/active-clinic";
 import { prisma } from "@/db/prisma";
 
 export async function editorContext() {
@@ -10,14 +15,32 @@ export async function editorContext() {
     where: { userId: user.id },
     select: { clinicId: true, role: true },
   });
-  const slug = process.env.DEFAULT_CLINIC_SLUG || "woolloongabba";
+
+  // Provisional role from any membership so switch_clinic holders can resolve cookie clinic.
+  const provisionalRole =
+    memberships.find((m) => canSwitchClinic(m.role))?.role ??
+    memberships[0]?.role ??
+    null;
+
+  const slug = await resolveActiveClinicSlug(
+    memberships,
+    provisionalRole,
+    await readActiveClinicCookie(),
+  );
+
   const clinic = await prisma.clinic.findUnique({
     where: { slug },
     include: { profile: true, openingHours: { orderBy: { dayOfWeek: "asc" } } },
   });
   const role = clinic ? highestRoleForClinic(memberships, clinic.id) : null;
   const allowed = clinic ? canAccessClinic(memberships, clinic.id) : false;
-  return { user, memberships, clinic, role: allowed ? role : null };
+  return {
+    user,
+    memberships,
+    clinic,
+    role: allowed ? role : null,
+    canSwitchClinic: canSwitchClinic(allowed ? role : provisionalRole),
+  };
 }
 
 export async function requireAction(action: CmsAction) {

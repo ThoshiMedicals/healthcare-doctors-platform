@@ -3,13 +3,17 @@ import { signOut } from "@/auth";
 import { isSuperAdmin, ROLE_LABEL, roleAllows } from "@/auth/permissions";
 import { editorContext } from "@/cms/context";
 import { visibleNavGroups } from "@/cms/modules";
+import { listAdminSwitchableClinics } from "@/clinics/resolve-clinic";
 import { AdminShellFrame } from "./admin-shell-frame";
+import { ClinicSwitcher } from "./clinic-switcher";
 import "../admin.css";
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const { user, role } = await editorContext();
+  const { user, role, clinic, canSwitchClinic: showSwitcher } = await editorContext();
   const groups = visibleNavGroups(role);
   const canManageSettings = role ? roleAllows(role, "manage_settings") : false;
+  const practiceName = clinic?.practiceName ?? "Clinic CMS";
+  const switcherClinics = showSwitcher ? await listAdminSwitchableClinics() : [];
 
   return (
     <AdminShellFrame
@@ -18,10 +22,23 @@ export default async function DashboardLayout({ children }: { children: React.Re
           <div>
             <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Clinic admin</p>
             <Link href="/admin" className="text-lg font-semibold">
-              Clinic CMS
+              {practiceName}
+              {clinic?.status === "draft" ? (
+                <span className="ml-2 text-xs font-medium uppercase tracking-wide text-amber-700">Draft</span>
+              ) : null}
             </Link>
           </div>
-          <div className="flex items-center gap-4 text-sm">
+          <div className="flex flex-wrap items-center justify-end gap-3 text-sm sm:gap-4">
+            {showSwitcher ? (
+              <ClinicSwitcher
+                clinics={switcherClinics.map((row) => ({
+                  slug: row.slug,
+                  practiceName:
+                    row.status === "draft" ? `${row.practiceName} (draft)` : row.practiceName,
+                }))}
+                activeSlug={clinic?.slug ?? ""}
+              />
+            ) : null}
             <span>{user.name || user.email}</span>
             {role ? <span className="text-slate-500">{ROLE_LABEL[role]}</span> : null}
             <form
