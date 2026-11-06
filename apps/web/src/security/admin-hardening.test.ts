@@ -140,6 +140,42 @@ const APPROVED_MODULES = [
   { href: "/admin/services", label: "Services", action: "edit", group: "content" },
   { href: "/admin/careers/vacancies", label: "Vacancies", action: "edit", group: "content" },
   { href: "/admin/careers/applications", label: "Applications", action: "edit", group: "content" },
+  {
+    href: "/admin/practice-experience",
+    label: "Practice Experience",
+    action: "edit",
+    group: "content",
+  },
+  {
+    href: "/admin/attraction",
+    label: "Attraction CMS",
+    action: "edit",
+    group: "content",
+  },
+  {
+    href: "/admin/story-capture",
+    label: "Story Capture",
+    action: "edit",
+    group: "content",
+  },
+  {
+    href: "/admin/asset-library",
+    label: "Asset Library",
+    action: "edit",
+    group: "content",
+  },
+  {
+    href: "/admin/gp-pipeline",
+    label: "GP Pipeline",
+    action: "edit",
+    group: "operations",
+  },
+  {
+    href: "/admin/recruitment/gp-readiness",
+    label: "GP Readiness Ops",
+    action: "edit",
+    group: "operations",
+  },
   { href: "/admin/media", label: "Media Library", action: "edit", group: "content" },
   {
     href: "/admin/operations/patient-requests",
@@ -148,6 +184,12 @@ const APPROVED_MODULES = [
     group: "operations",
   },
   { href: "/admin", label: "Practice briefing", action: "manage_settings", group: "insights" },
+  {
+    href: "/admin/attraction-analytics",
+    label: "Attraction Analytics",
+    action: "manage_settings",
+    group: "insights",
+  },
   { href: "/admin/executive", label: "Website overview", action: "manage_settings", group: "insights" },
   { href: "/admin/digital-reception", label: "Online search", action: "manage_settings", group: "insights" },
   {

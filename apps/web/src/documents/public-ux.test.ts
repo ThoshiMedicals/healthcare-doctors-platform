@@ -146,7 +146,7 @@ test("Join Our Team becomes a GP recruitment prospectus without golden-master ed
   assert.match(result, /Why Demand Exists/);
   assert.match(result, /Demand Is Already On The Books/);
   assert.match(result, /id="wmc-gp-recruitment"/);
-  assert.match(result, /styles\.css\?v=wmc-gp-recruit-20261105at/);
+  assert.match(result, /styles\.css\?v=wmc-gp-recruit-20261106b/);
   assert.match(result, /top:calc\(10rem \+ env\(safe-area-inset-top/);
   assert.match(result, /GP Readiness &amp; Onboarding Portal/);
   assert.match(result, /data-gp-readiness-open="true"/);
@@ -317,14 +317,14 @@ test("the real homepage opening-hours block includes both links", () => {
   assert.match(result, /class="hero-hours-actions"/);
   assert.match(result, /href="contact\.html">View all hours/);
   assert.match(result, /href="after-hours-care\.html">After Hours Care/);
-  assert.match(result, /styles\.css\?v=wmc-hero-authority-v6j-20261105/);
-  assert.match(result, /site\.js\?v=wmc-hero-authority-v6j-20261105/);
+  assert.match(result, /styles\.css\?v=wmc-team-updates-mobile-20261106b/);
+  assert.match(result, /site\.js\?v=wmc-practitioner-growth-20261106/);
   assert.match(result, /class="brand"[^>]*href="\/"/);
   assert.doesNotMatch(result, /class="brand"[^>]*href="index\.html"/);
   assert.match(result, /#patient-information \.info-trust-logos a\{[\s\S]*?width:136px!important/);
   assert.match(result, /@media \(min-width:1025px\)\{[\s\S]*?\.hero-picture \.hero-photo\{[\s\S]*?object-fit:cover!important/);
   assert.match(result, /#story a\.trust-line[\s\S]*?border-top:0!important/);
-  assert.match(result, /info-trust-logos[\s\S]*?agpal-mark\.webp" width="192"/);
+  assert.match(result, /info-trust-logos[\s\S]*?agpal-mark\.webp(?:\?[^"]*)?" width="192"/);
   assert.match(result, /info-trust-logos[\s\S]*?bulk-billing-practice\.png" width="256"/);
   assert.match(result, /#patient-information \.info-trust-logos img[\s\S]*?object-fit:contain!important/);
   assert.match(result, /#hotdoc-app \.hotdoc-benefits a\{[\s\S]*?text-decoration:none!important/);
