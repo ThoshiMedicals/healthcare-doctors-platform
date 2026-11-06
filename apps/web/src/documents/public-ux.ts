@@ -112,7 +112,7 @@ export function applyPublicUxRefinements(
   // Topic cross-link bar under the hero (for example "Need ongoing diabetes care?").
   next = next.replace(/<nav\b[^>]*\bclass="topic-wayfinding"[^>]*>[\s\S]*?<\/nav>/gi, "");
   // A new URL bypasses stale browser/Cloudflare CSS after visual-polish deployment.
-  next = next.replace(/styles\.css(?=")/g, "styles.css?v=wmc-team-updates-mobile-20261106b");
+  next = next.replace(/styles\.css(?=")/g, "styles.css?v=wmc-updates-dr-mobile-20261106c");
   // site.js is otherwise cached for hours (CDN max-age); bust so mobile-nav fixes ship.
   next = next.replace(/site\.js(?=")/g, "site.js?v=wmc-practitioner-growth-20261106");
   next = next.replace(/updates-data\.js(?=")/g, "updates-data.js?v=wmc-doctor-welcome-20261106a");
@@ -125,6 +125,7 @@ export function applyPublicUxRefinements(
   next = next.replace(/<style\b[^>]*id="wmc-update-article-header-fix"[\s\S]*?<\/style>\s*/i, "");
   next = next.replace(/<style\b[^>]*id="wmc-team-updates-laptop"[\s\S]*?<\/style>\s*/i, "");
   next = next.replace(/<style\b[^>]*id="wmc-team-updates-mobile"[\s\S]*?<\/style>\s*/i, "");
+  next = next.replace(/<style\b[^>]*id="wmc-digital-reception-mobile"[\s\S]*?<\/style>\s*/i, "");
   next = next.replace(
     /<\/head>/i,
     `<style id="wmc-agpal-mark-fix">
@@ -249,17 +250,44 @@ nav[aria-label="Breadcrumb"],
     line-height:1.2!important;
   }
   .featured-health-update{gap:28px!important}
+  /* Square doctor-welcome artworks: fill phone width (no side letterbox in 16:10). */
+  .health-update-image:has(img[src*="welcome-dr-"]){
+    aspect-ratio:1/1!important;
+  }
+  .featured-update-image img[src*="welcome-dr-"],
+  .update-article-image img[src*="welcome-dr-"],
+  .health-update-image img[src*="welcome-dr-"]{
+    aspect-ratio:1/1!important;
+    width:100%!important;
+    height:100%!important;
+    object-fit:contain!important;
+    object-position:center!important;
+    background:#eef2f3!important;
+  }
+  .updates-archive-heading h2{
+    font-size:clamp(1.55rem,6.2vw,2rem)!important;
+    line-height:1.18!important;
+  }
+  .updates-page-hero .page-hero-inner h1{
+    font-size:clamp(1.55rem,6.6vw,2.05rem)!important;
+    line-height:1.18!important;
+  }
   .update-filters{
     flex-wrap:nowrap!important;
     overflow-x:auto!important;
     -webkit-overflow-scrolling:touch!important;
     overscroll-behavior-x:contain!important;
     gap:8px!important;
-    padding-bottom:8px!important;
-    scrollbar-width:thin!important;
+    padding-bottom:4px!important;
+    margin-right:-6px!important;
+    padding-right:18px!important;
+    scrollbar-width:none!important;
   }
-  .update-filter{flex:0 0 auto!important}
+  .update-filters::-webkit-scrollbar{display:none!important;height:0!important;width:0!important}
+  .update-filter{flex:0 0 auto!important;min-height:44px!important}
+  .update-count{margin-bottom:22px!important}
   .updates-archive-grid{gap:28px!important}
+  .updates-archive-section{padding-bottom:calc(100px + env(safe-area-inset-bottom,0px))!important}
   .health-update-copy h3{
     font-size:clamp(1.05rem,4.8vw,1.2rem)!important;
     line-height:1.3!important;
@@ -269,6 +297,7 @@ nav[aria-label="Breadcrumb"],
     line-height:1.18!important;
   }
   .update-article-layout{gap:28px!important}
+  .update-article-shell{padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))!important}
   .update-article-section .service-cta-actions{
     display:flex!important;
     flex-direction:column!important;
@@ -282,6 +311,15 @@ nav[aria-label="Breadcrumb"],
     box-sizing:border-box!important;
     justify-content:center!important;
     text-align:center!important;
+  }
+  .update-tags{gap:.4rem!important}
+  .update-tags span{
+    max-width:100%!important;
+    overflow-wrap:anywhere!important;
+  }
+  nav[aria-label="Breadcrumb"] li:last-child,
+  .breadcrumb li:last-child{
+    overflow-wrap:anywhere!important;
   }
   .doctor-profile-heading h1{
     font-size:clamp(1.7rem,7vw,2.25rem)!important;
@@ -302,6 +340,12 @@ nav[aria-label="Breadcrumb"],
   .on-this-page-links{
     max-width:100%!important;
     overscroll-behavior-x:contain!important;
+  }
+  /* Homepage latest-updates strip stays readable on phone. */
+  .latest-health-updates .latest-health-grid{gap:22px!important}
+  .latest-supporting-column .health-update-copy h3,
+  .latest-supporting-column .health-update-card:first-child .health-update-copy h3{
+    overflow-wrap:anywhere!important;
   }
 }
 @media (max-width:390px){
@@ -326,6 +370,87 @@ nav[aria-label="Breadcrumb"],
     grid-template-columns:1fr 1fr!important;
     gap:7px!important;
   }
+}
+</style>
+<style id="wmc-digital-reception-mobile">
+/* Digital Reception phone polish. No content removed. */
+.digital-reception-result,
+.digital-reception-practitioner,
+.digital-reception-step,
+.digital-reception-results-heading{
+  min-width:0!important;
+  overflow-wrap:anywhere!important;
+}
+.digital-reception-result span,
+.digital-reception-disclosure,
+.digital-reception-status,
+.digital-reception-confirm{
+  overflow-wrap:anywhere!important;
+}
+@media (max-width:700px){
+  .digital-reception-search-row{
+    align-items:stretch!important;
+    gap:8px!important;
+  }
+  .digital-reception-input,
+  .digital-reception-search{
+    min-height:48px!important;
+    height:48px!important;
+    box-sizing:border-box!important;
+  }
+  .digital-reception-search{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    padding-top:0!important;
+    padding-bottom:0!important;
+  }
+  /* Keep last result clear of sticky Book / Call bar inside the panel. */
+  .digital-reception-results,
+  .digital-reception-journey{
+    padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))!important;
+  }
+  .digital-reception-results-heading{
+    display:flex!important;
+    flex-wrap:wrap!important;
+    align-items:baseline!important;
+    justify-content:space-between!important;
+    gap:6px 12px!important;
+  }
+  .digital-reception-quick{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  .digital-reception-quick button{
+    overflow-wrap:anywhere!important;
+    hyphens:auto!important;
+  }
+  .digital-reception-actions{
+    grid-template-columns:1fr 1fr!important;
+  }
+  .digital-reception-actions a{
+    overflow-wrap:anywhere!important;
+    line-height:1.25!important;
+  }
+  body.has-persistent-care-actions .digital-reception-panel{
+    max-height:calc(100dvh - 176px)!important;
+  }
+  .digital-reception-panel{
+    max-height:calc(100dvh - 96px)!important;
+  }
+  .digital-reception-head{
+    gap:12px!important;
+  }
+  .digital-reception-title{
+    font-size:clamp(1.05rem,4.6vw,1.2rem)!important;
+  }
+}
+@media (max-width:380px){
+  .digital-reception-quick{grid-template-columns:1fr!important}
+  .digital-reception-actions{grid-template-columns:1fr!important}
+  .digital-reception-search-row{
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+  .digital-reception-search{width:100%!important}
 }
 </style>
 <style id="wmc-team-authority-list-fix">
