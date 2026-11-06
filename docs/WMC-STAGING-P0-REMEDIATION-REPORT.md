@@ -95,10 +95,15 @@ Deferred until code SHA is live with `PRIVATE_OBJECT_STORE=postgres`. Synthetic-
 | --- | --- |
 | Restored pages HTTP 200 | **PASS** (content already live via DB) |
 | Attraction link destinations | **PASS** (spot-checked restored paths) |
-| Staging noindex live headers | **PENDING redeploy** of SEO code (host rule activates on middleware deploy) |
-| Storage durability end-to-end | **PENDING** `PRIVATE_OBJECT_STORE=postgres` + redeploy + synthetic upload cycle |
+| Staging HTML X-Robots + meta | **PASS** on live `369cd06` (`noindex, nofollow, noarchive`) |
+| Staging sitemap.xml | **PASS** — empty urlset + X-Robots |
+| Staging robots.txt | **PARTIAL** — Hostinger CDN (`hcdn`) injects platform robots for `*.hostingersite.com` (Googlebot Disallow; `*` Allow). App route is correct; CDN may override `/robots.txt` only |
+| Production canonicals | **PASS** — preserved on HTML (e.g. services, practitioners) |
+| Storage durability end-to-end | **PENDING** operator `PRIVATE_OBJECT_STORE=postgres` (agent lacks `DATABASE_URL` for safe full env replace) |
+| CMS / recruitment synthetic AT | **PENDING** after private-store env |
 | Automated tests | **PASS** — 351/351 |
-| Production build | **PASS** (`next build`; local `prisma generate` EPERM if engine locked — client already includes `PrivateObject`) |
+| Production build | **PASS** |
+| Hostinger deploy | **PASS** — auto-deploy `369cd06` completed |
 | Production WordPress / DNS / CF | **Unchanged** |
 | Local UAT | **Unchanged** |
 
@@ -109,20 +114,19 @@ Deferred until code SHA is live with `PRIVATE_OBJECT_STORE=postgres`. Synthetic-
 | Item | Value |
 | --- | --- |
 | Pre-fix deployed SHA | `a545991` |
-| Remediation commit | *(recorded after push)* |
-| Hostinger post-deploy SHA | *(verify after auto-deploy completes)* |
+| Remediation commits | `ee05803` (noindex + private_objects), `369cd06` (robots/sitemap app routes) |
+| Hostinger post-deploy SHA | **`369cd06261dfe5c830a703734fadbd2512e8e6a1`** |
 
 ---
 
 ## Remaining launch blockers
 
-1. Redeploy SEO + storage code to Hostinger; confirm `X-Robots-Tag` / meta / staging robots+empty sitemap on live host.
-2. Operator adds `PRIVATE_OBJECT_STORE=postgres` (+ optional `STAGING_NOINDEX=true`) without wiping `DATABASE_URL`.
-3. Complete synthetic CMS + recruitment + private-doc durability tests on staging.
-4. Existing production cutover ops checklist items (VPS backup, Formal smoke, Cloudflare Full strict, etc.) — out of scope for this staging P0.
+1. Operator adds `PRIVATE_OBJECT_STORE=postgres` (and optionally `STAGING_NOINDEX=true`) in hPanel **without** deleting `DATABASE_URL` / auth vars — Hostinger replace API is full-replace and agent cannot read masked secrets.
+2. Complete synthetic CMS + recruitment + private-doc durability tests on staging after env is set.
+3. Existing production cutover ops checklist (VPS backup, formal smoke, Cloudflare Full strict, etc.).
 
 ---
 
 ## Verdict
 
-**PARTIAL PASS** — content parity restored; SEO/storage code ready and tested locally; live SEO headers and durable storage AT await Hostinger redeploy + env.
+**PARTIAL PASS** — approved local content parity restored (226/15); live HTML noindex + empty sitemap verified on Hostinger tip `369cd06`; private storage code shipped but durability AT blocked on env; CMS/recruitment AT pending.

@@ -7,7 +7,7 @@
 - [`WMC-STAGING-CONTENT-PARITY-REPORT.md`](./WMC-STAGING-CONTENT-PARITY-REPORT.md)  
 - [`WMC-STAGING-POST-IMPORT-ACCEPTANCE.md`](./WMC-STAGING-POST-IMPORT-ACCEPTANCE.md)  
 
-**Verdict:** **PARTIAL PASS** — approved local content parity restored (226 pages / 15 practitioners); SEO + durable private-storage code ready; live noindex headers and storage AT pending Hostinger redeploy + env.
+**Verdict:** **PARTIAL PASS** — approved local content parity restored (226 pages / 15 practitioners); live HTML noindex + empty sitemap verified on tip `369cd06`; private-storage durability AT pending `PRIVATE_OBJECT_STORE=postgres` env.
 
 ---
 
@@ -16,13 +16,15 @@
 | Layer | Result |
 | --- | --- |
 | Staging hostname | **PASS** — `mediumslateblue-eagle-960503.hostingersite.com` |
-| Pre-remediation SHA | `a545991` |
-| `/api/health` | **PASS** — `database: up` (spot-check prior) |
+| Deployed SHA | **`369cd06`** (`369cd06261dfe5c830a703734fadbd2512e8e6a1`) |
+| `/api/health` | **PASS** — `database: up` |
 | Migrations | **PASS** — includes `20261106210000_private_objects` on staging |
 | Published pages | **226** (207 golden + 19 approved local deltas) |
 | Published practitioners | **15** (Golnar, James, Yamesha restored; Gemunu kept unpublished) |
 | Attraction destinations | **PASS** — restored paths HTTP 200 |
-| Staging public noindex | **PENDING** code redeploy (host rule in middleware) |
+| Staging HTML noindex | **PASS** — X-Robots + meta |
+| Staging sitemap | **PASS** — empty urlset |
+| Staging robots.txt | **PARTIAL** — Hostinger CDN platform robots for preview host |
 | Persistent private storage | **CODE READY** — needs `PRIVATE_OBJECT_STORE=postgres` + synthetic AT |
 | Automated tests | **PASS** — 351/351 |
 | Production build | **PASS** |
