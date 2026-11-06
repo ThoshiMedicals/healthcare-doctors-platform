@@ -13,6 +13,8 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return {
       beforeFiles: [
+        // Prefer the live CMS/public-ux homepage over static public/index.html.
+        { source: "/index.html", destination: "/" },
         { source: "/styles.css", destination: "/styles.min.css" },
         { source: "/digital-reception-index.js", destination: "/api/reception-index" },
         {

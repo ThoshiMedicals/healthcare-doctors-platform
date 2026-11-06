@@ -183,6 +183,9 @@ async function main() {
       create: { userId: user.id, clinicId: clinic.id, role },
     });
   }
+
+  // Initial Join Our Team vacancies are seeded by scripts/seed-careers-vacancies.ts
+  // after migrations so local UAT can refresh roles without a full clinic reseed.
 }
 
 main()

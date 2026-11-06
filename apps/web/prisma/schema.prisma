@@ -107,6 +107,47 @@ enum UpdateCategory {
   community_health_information
 }
 
+enum VacancyStatus {
+  now_hiring
+  expression_of_interest
+  future_opportunity
+  closed
+}
+
+enum VacancyRoleCategory {
+  general_practitioner
+  gp_registrar
+  practice_nurse
+  enrolled_nurse
+  reception
+  practice_manager
+  allied_health
+  psychologist
+  dietitian
+  physiotherapist
+  student_placement
+  other
+}
+
+enum CareerApplicationStatus {
+  new
+  reviewing
+  interview
+  offer
+  hired
+  rejected
+  closed
+}
+
+enum FormRequestStatus {
+  new
+  assigned
+  in_progress
+  waiting_for_patient
+  completed
+  closed
+}
+
 enum MediaAuthenticity {
   unverified
   verified
@@ -132,6 +173,8 @@ model Clinic {
   practiceName     String             @map("practice_name")
   legalName        String?            @map("legal_name")
   status           ClinicStatus       @default(draft)
+  /** Optional per-clinic golden HTML corpus root. Null → GOLDEN_HTML_ROOT / old-html. */
+  goldenHtmlRoot   String?            @map("golden_html_root")
   network          Network            @relation(fields: [networkId], references: [id], onDelete: Restrict)
   domains          ClinicDomain[]
   profile          ClinicProfile?
@@ -146,16 +189,36 @@ model Clinic {
   practiceUpdates  PracticeUpdate[]
   faqs             Faq[]
   practicePages    PracticePage[]
-  mediaAssets      MediaAsset[]
-  editorialItems   EditorialItem[]
-  searchDocuments  SearchDocument[]
-  formRequests     FormRequest[]
-  auditLogs        AuditLog[]
-  clinicalReviews  ClinicalReview[]
-  contentRevisions ContentRevision[]
-  linkedLocations  NetworkLocation[]  @relation("LinkedClinic")
-  createdAt        DateTime           @default(now()) @map("created_at")
-  updatedAt        DateTime           @updatedAt @map("updated_at")
+  vacancies            Vacancy[]
+  careerApplications   CareerApplication[]
+  searchDemandSignals  SearchDemandSignal[]
+  mediaAssets          MediaAsset[]
+  editorialItems       EditorialItem[]
+  searchDocuments      SearchDocument[]
+  formRequests         FormRequest[]
+  auditLogs            AuditLog[]
+  clinicalReviews      ClinicalReview[]
+  contentRevisions     ContentRevision[]
+  attractionDocuments  AttractionDocument[]
+  attractionAssets     AttractionAsset[]
+  gpStories            GpStory[]
+  gpEnquiries          GpEnquiry[]
+  gpOnboardingCases    GpOnboardingCase[]
+  gpDoctorReadiness    GpDoctorReadinessResult[]
+  gpReadinessPackages  GpReadinessPackage[]
+  gpDoctorProfileDrafts GpDoctorProfileDraft[]
+  sessionMatchRuns     SessionCapacityMatchRun[]
+  capacityWindows      CapacitySessionWindow[]
+  gpFirst90Cases       GpFirst90SettlingCase[]
+  attractionEvents     GpAttractionEvent[]
+  attractionDailyRollups GpAttractionDailyRollup[]
+  attractionPathRollups  GpAttractionPathRollup[]
+  contentIntelSignals  ContentIntelligenceSignalDaily[]
+  contentIntelRuns     ContentIntelligenceInsightRun[]
+  knowledgeGraphSnaps  AttractionKnowledgeGraphSnapshot[]
+  linkedLocations      NetworkLocation[]  @relation("LinkedClinic")
+  createdAt            DateTime           @default(now()) @map("created_at")
+  updatedAt            DateTime           @updatedAt @map("updated_at")
 
   @@index([networkId])
   @@map("clinics")
@@ -230,10 +293,26 @@ model User {
   disabledAt    DateTime?          @map("disabled_at")
   accounts      Account[]
   sessions      Session[]
-  memberships   ClinicMembership[]
-  revisions     PageRevision[]
-  contentRevisions ContentRevision[]
-  auditLogs     AuditLog[]
+  memberships          ClinicMembership[]
+  revisions            PageRevision[]
+  contentRevisions     ContentRevision[]
+  attractionRevisions  AttractionRevision[]
+  attractionApprovals  AttractionApprovalEvent[]
+  attractionAssetReviews AttractionAssetReviewEvent[]
+  gpStoryReviews       GpStoryReviewEvent[]
+  gpStoriesCreated     GpStory[]            @relation("GpStoryCreator")
+  gpOnboardingGates    GpOnboardingGateEvent[]
+  gpEnquiryNotes       GpEnquiryNote[]
+  gpEnquiryAudits      GpEnquiryStatusAudit[]
+  gpDoctorProfileAudits GpDoctorProfileStatusAudit[]
+  gpReadinessPackageNotes GpReadinessPackageNote[]
+  gpReadinessPackageAudits GpReadinessPackageStatusAudit[]
+  gpReadinessPackageTasksAssigned GpReadinessPackageTask[] @relation("GpReadinessPackageTaskAssignee")
+  gpReadinessPackageTasksCreated  GpReadinessPackageTask[] @relation("GpReadinessPackageTaskCreator")
+  auditLogs            AuditLog[]
+  assignedApplications CareerApplication[] @relation("CareerApplicationAssignee")
+  assignedFormRequests FormRequest[]       @relation("FormRequestAssignee")
+  assignedGpEnquiries  GpEnquiry[]         @relation("GpEnquiryAssignee")
   createdAt     DateTime           @default(now()) @map("created_at")
   updatedAt     DateTime           @updatedAt @map("updated_at")
 
@@ -397,10 +476,18 @@ model Practitioner {
   relatedServices       String[]          @default([]) @map("related_services")
   bookingUrl            String?           @map("booking_url")
   portraitPath          String?           @map("portrait_path")
+  /** Patient-acquisition: show Accepting New Patients across directory/profile/search. */
+  acceptingNewPatients  Boolean           @default(true) @map("accepting_new_patients")
+  /** When set, "New to Woolloongabba Medical Centre" badge shows for 60 days from this instant. */
+  newToPracticeAt       DateTime?         @map("new_to_practice_at")
+  /** Admin availability signal — not live HotDoc. */
+  availabilityStatus    String            @default("available_this_week") @map("availability_status")
   publishedPayload      Json?             @map("published_payload")
   status                PublicationStatus @default(planned)
   clinic                Clinic            @relation(fields: [clinicId], references: [id], onDelete: Cascade)
   page                  Page?             @relation(fields: [pageId], references: [id], onDelete: SetNull)
+  gpStories             GpStory[]
+  doctorProfileDrafts   GpDoctorProfileDraft[]
   createdAt             DateTime          @default(now()) @map("created_at")
   updatedAt             DateTime          @updatedAt @map("updated_at")
 
@@ -540,6 +627,66 @@ model Faq {
   @@map("faqs")
 }
 
+model Vacancy {
+  id               String              @id @default(cuid())
+  clinicId         String              @map("clinic_id")
+  title            String
+  status           VacancyStatus       @default(expression_of_interest)
+  location         String              @default("")
+  employmentType   String              @default("") @map("employment_type")
+  roleCategory     VacancyRoleCategory @map("role_category")
+  shortSummary     String              @default("") @map("short_summary") @db.Text
+  fullDescription  String              @default("") @map("full_description") @db.Text
+  remunerationNote String              @default("") @map("remuneration_note")
+  offerHighlights  String[]            @default([]) @map("offer_highlights")
+  requirements     String[]            @default([])
+  applyUrl         String              @default("") @map("apply_url")
+  featured         Boolean             @default(false)
+  displayOrder     Int                 @default(0) @map("display_order")
+  active           Boolean             @default(true)
+  publishedAt      DateTime?           @map("published_at")
+  expiresAt        DateTime?           @map("expires_at")
+  clinic           Clinic              @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  applications     CareerApplication[]
+  createdAt        DateTime            @default(now()) @map("created_at")
+  updatedAt        DateTime            @updatedAt @map("updated_at")
+
+  @@index([clinicId, active, featured, displayOrder])
+  @@index([clinicId, status])
+  @@map("vacancies")
+}
+
+model CareerApplication {
+  id                 String                  @id @default(cuid())
+  clinicId           String                  @map("clinic_id")
+  vacancyId          String?                 @map("vacancy_id")
+  name               String
+  email              String
+  phone              String                  @default("")
+  roleInterest       String                  @map("role_interest")
+  message            String                  @default("") @db.Text
+  status             CareerApplicationStatus @default(new)
+  notes              String                  @default("") @db.Text
+  assignedToUserId   String?                 @map("assigned_to_user_id")
+  resumeFileName     String?                 @map("resume_file_name")
+  resumeStoragePath  String?                 @map("resume_storage_path")
+  resumeMimeType     String?                 @map("resume_mime_type")
+  resumeSizeBytes    Int?                    @map("resume_size_bytes")
+  privacyConfirmedAt DateTime                @map("privacy_confirmed_at")
+  source             String                  @default("talent_community")
+  clinic             Clinic                  @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  vacancy            Vacancy?                @relation(fields: [vacancyId], references: [id], onDelete: SetNull)
+  assignedTo         User?                   @relation("CareerApplicationAssignee", fields: [assignedToUserId], references: [id], onDelete: SetNull)
+  gpStories          GpStory[]
+  createdAt          DateTime                @default(now()) @map("created_at")
+  updatedAt          DateTime                @updatedAt @map("updated_at")
+
+  @@index([clinicId, status, createdAt])
+  @@index([clinicId, vacancyId])
+  @@index([clinicId, assignedToUserId])
+  @@map("career_applications")
+}
+
 model PracticePage {
   id           String            @id @default(cuid())
   clinicId     String            @map("clinic_id")
@@ -567,6 +714,8 @@ model MediaAsset {
   filename            String
   storagePath         String             @map("storage_path")
   assetType           String             @map("asset_type")
+  category            String?
+  title               String?
   altText             String             @default("") @map("alt_text")
   uploadedBy          String?            @map("uploaded_by")
   approvedAt          DateTime?          @map("approved_at")
@@ -581,11 +730,16 @@ model MediaAsset {
   authenticityStatus  MediaAuthenticity  @default(unverified) @map("authenticity_status")
   usage               String[]           @default([])
   contentSha256       String?            @map("content_sha256")
+  byteSize            Int?               @map("byte_size")
+  width               Int?
+  height              Int?
+  lastUsedAt          DateTime?          @map("last_used_at")
   clinic              Clinic             @relation(fields: [clinicId], references: [id], onDelete: Cascade)
   createdAt           DateTime           @default(now()) @map("created_at")
   updatedAt           DateTime           @updatedAt @map("updated_at")
 
   @@unique([clinicId, storagePath])
+  @@index([clinicId, category])
   @@map("media_assets")
 }
 
@@ -689,19 +843,53 @@ model SearchDocument {
   @@map("search_documents")
 }
 
-model FormRequest {
+/// Privacy-scoped Digital Reception demand signal for content opportunity planning.
+/// Terms are practice-operations data (not clinical records). Retain ~90 days.
+model SearchDemandSignal {
   id                 String   @id @default(cuid())
   clinicId           String   @map("clinic_id")
-  name               String
-  email              String?
-  phone              String?
-  formType           String   @map("form_type")
-  delivery           String?
-  privacyConfirmedAt DateTime @map("privacy_confirmed_at")
+  occurredAt         DateTime @default(now()) @map("occurred_at")
+  normalizedTerm     String   @map("normalized_term")
+  intentBucket       String   @default("unmatched") @map("intent_bucket")
+  resultType         String   @default("") @map("result_type")
+  resultCount        Int      @default(0) @map("result_count")
+  noResult           Boolean  @default(false) @map("no_result")
+  clickedResultPath  String?  @map("clicked_result_path")
+  clickedStep        String?  @map("clicked_step")
+  practitionerSlug   String?  @map("practitioner_slug")
+  pagePath           String   @default("") @map("page_path")
+  sessionKey         String?  @map("session_key")
   clinic             Clinic   @relation(fields: [clinicId], references: [id], onDelete: Cascade)
   createdAt          DateTime @default(now()) @map("created_at")
 
+  @@index([clinicId, occurredAt])
+  @@index([clinicId, normalizedTerm, occurredAt])
+  @@index([clinicId, noResult, occurredAt])
+  @@index([clinicId, practitionerSlug, occurredAt])
+  @@map("search_demand_signals")
+}
+
+model FormRequest {
+  id                 String            @id @default(cuid())
+  clinicId           String            @map("clinic_id")
+  name               String
+  email              String?
+  phone              String?
+  formType           String            @map("form_type")
+  delivery           String?
+  status             FormRequestStatus @default(new)
+  notes              String            @default("") @db.Text
+  assignedToUserId   String?           @map("assigned_to_user_id")
+  history            Json              @default("[]")
+  privacyConfirmedAt DateTime          @map("privacy_confirmed_at")
+  clinic             Clinic            @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  assignedTo         User?             @relation("FormRequestAssignee", fields: [assignedToUserId], references: [id], onDelete: SetNull)
+  createdAt          DateTime          @default(now()) @map("created_at")
+  updatedAt          DateTime          @updatedAt @map("updated_at")
+
   @@index([clinicId, createdAt])
+  @@index([clinicId, status, createdAt])
+  @@index([clinicId, assignedToUserId])
   @@map("form_requests")
 }
 
@@ -735,4 +923,1390 @@ model AuditLog {
 
   @@index([clinicId, createdAt])
   @@map("audit_logs")
+}
+
+// ---------------------------------------------------------------------------
+// GP Attraction CMS — Phase 1
+// Human approvals only; immutable revisions; production publish blocked in services.
+// Domains: opportunities, faq, practice_experience, registrar_pathway, story
+// ---------------------------------------------------------------------------
+
+enum AttractionDocumentKind {
+  opportunities
+  faq
+  practice_experience
+  registrar_pathway
+  story
+  catchment_analysis
+  continuity_network
+  clinical_interests
+}
+
+enum AttractionPublishState {
+  drafting
+  in_review
+  approved
+  scheduled
+  published
+  review_due
+  on_hold
+  archived
+}
+
+enum AttractionChangeClass {
+  A_minor
+  B_substantive_copy
+  C_clinical_or_capacity
+  D_schema_or_vacancy
+}
+
+enum AttractionApprovalDecision {
+  submit_for_review
+  request_changes
+  approve
+  pause
+  archive
+  /// Recorded intent only in Phase 1 — services refuse production publish.
+  approve_publish_intent
+}
+
+enum AttractionAssetKind {
+  image
+  video
+  transcript
+  quote
+  testimonial_ref
+  consent_document
+  other
+}
+
+enum AttractionAssetStatus {
+  captured
+  catalogued
+  in_review
+  approved
+  published
+  review_due
+  retired
+  withdrawn
+  purged
+}
+
+enum AttractionAssetReviewDecision {
+  submit_for_review
+  request_changes
+  approve
+  publish
+  mark_review_due
+  retire
+  withdraw
+  purge
+  replace_placeholder
+}
+
+enum AttractionAssetRightsClass {
+  no_people
+  consented_staff
+  consented_gp_named
+  role_label_only
+  composite_labelled
+  ai_placeholder
+}
+
+/// Clinic-scoped attraction content unit (section, FAQ set, hub, pathway, story).
+model AttractionDocument {
+  id                   String                 @id @default(cuid())
+  clinicId             String                 @map("clinic_id")
+  kind                 AttractionDocumentKind
+  /// Stable slug within clinic+kind (e.g. hub, gp-faq, typical-day, registrar-pathway, story-demo-001)
+  slug                 String
+  title                String
+  summary              String                 @default("") @db.Text
+  publishState         AttractionPublishState @default(drafting) @map("publish_state")
+  changeClassDefault   AttractionChangeClass  @default(B_substantive_copy) @map("change_class_default")
+  /// Public surface path when applicable (e.g. about-us/practice-experience.html)
+  surfacePath          String?                @map("surface_path")
+  /// Schema rule set key from attraction schema-rules.json
+  schemaRuleSetKey     String                 @map("schema_rule_set_key")
+  publishedRevisionId  String?                @unique @map("published_revision_id")
+  /// Optional story-capture case id (external until GpStory migrates)
+  storyCaptureRef      String?                @map("story_capture_ref")
+  /// Working body draft (mutable). Published body lives only on AttractionRevision.
+  draftBody            Json                   @map("draft_body")
+  clinic               Clinic                 @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  publishedRevision    AttractionRevision?    @relation("AttractionPublishedRevision", fields: [publishedRevisionId], references: [id], onDelete: SetNull)
+  revisions            AttractionRevision[]   @relation("AttractionDocumentRevisions")
+  approvalEvents       AttractionApprovalEvent[]
+  schemaValidations    AttractionSchemaValidation[]
+  createdAt            DateTime               @default(now()) @map("created_at")
+  updatedAt            DateTime               @updatedAt @map("updated_at")
+
+  @@unique([clinicId, kind, slug])
+  @@index([clinicId, publishState])
+  @@index([clinicId, kind])
+  @@map("attraction_documents")
+}
+
+/// Append-only immutable revision — mirrors PageRevision semantics.
+model AttractionRevision {
+  id             String             @id @default(cuid())
+  documentId     String             @map("document_id")
+  versionNumber  Int                @map("version_number")
+  body           Json
+  contentSha256  String             @map("content_sha256")
+  changeClass    AttractionChangeClass @map("change_class")
+  authorId       String?            @map("author_id")
+  immutable      Boolean            @default(true)
+  note           String             @default("")
+  document       AttractionDocument @relation("AttractionDocumentRevisions", fields: [documentId], references: [id], onDelete: Cascade)
+  author         User?              @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  publishedFor   AttractionDocument? @relation("AttractionPublishedRevision")
+  approvalEvents AttractionApprovalEvent[]
+  schemaValidations AttractionSchemaValidation[]
+  createdAt      DateTime           @default(now()) @map("created_at")
+
+  @@unique([documentId, versionNumber])
+  @@index([documentId, createdAt])
+  @@index([contentSha256])
+  @@map("attraction_revisions")
+}
+
+/// Immutable human gate — reviewerId required; never system/auto.
+model AttractionApprovalEvent {
+  id                    String                     @id @default(cuid())
+  documentId            String                     @map("document_id")
+  revisionId            String                     @map("revision_id")
+  fromState             AttractionPublishState     @map("from_state")
+  toState               AttractionPublishState     @map("to_state")
+  decision              AttractionApprovalDecision
+  changeClass           AttractionChangeClass      @map("change_class")
+  reviewerId            String                     @map("reviewer_id")
+  reviewerName          String                     @map("reviewer_name")
+  reviewerRole          String                     @map("reviewer_role")
+  rationale             String                     @db.Text
+  checklistSnapshot     Json?                      @map("checklist_snapshot")
+  reviewedContentSha256 String                     @map("reviewed_content_sha256")
+  document              AttractionDocument         @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  revision              AttractionRevision         @relation(fields: [revisionId], references: [id], onDelete: Restrict)
+  reviewer              User                       @relation(fields: [reviewerId], references: [id], onDelete: Restrict)
+  createdAt             DateTime                   @default(now()) @map("created_at")
+
+  @@index([documentId, createdAt])
+  @@index([revisionId])
+  @@index([decision])
+  @@map("attraction_approval_events")
+}
+
+/// Schema validation hook result attached to a revision (fail-closed before publish).
+model AttractionSchemaValidation {
+  id             String             @id @default(cuid())
+  documentId     String             @map("document_id")
+  revisionId     String             @map("revision_id")
+  ruleSetKey     String             @map("rule_set_key")
+  passed         Boolean
+  violations     Json               @default("[]")
+  checkedAt      DateTime           @default(now()) @map("checked_at")
+  document       AttractionDocument @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  revision       AttractionRevision @relation(fields: [revisionId], references: [id], onDelete: Cascade)
+
+  @@index([documentId, revisionId])
+  @@index([passed])
+  @@map("attraction_schema_validations")
+}
+
+/// GP Attraction Asset Library — registry for images, video, transcripts, quotes.
+/// AI placeholders allowed; replaceablePath points at future consented masters.
+model AttractionAsset {
+  id                   String                     @id @default(cuid())
+  clinicId             String                     @map("clinic_id")
+  assetId              String                     @map("asset_id")
+  kind                 AttractionAssetKind
+  status               AttractionAssetStatus      @default(captured)
+  title                String                     @default("")
+  /// Public or object-store path for current deliverable (may be AI placeholder).
+  storagePath          String?                    @map("storage_path")
+  /// Future consented master path — swap without changing assetId.
+  replaceablePath      String?                    @map("replaceable_path")
+  placeholderKind      String?                    @map("placeholder_kind") /// ai | none | pending_shoot
+  mime                 String?
+  width                Int?
+  height               Int?
+  durationSec          Int?                       @map("duration_sec")
+  byteSize             Int?                       @map("byte_size")
+  contentSha256        String?                    @map("content_sha256")
+  altText              String                     @default("") @map("alt_text")
+  caption              String                     @default("")
+  quoteText            String?                    @map("quote_text") @db.Text
+  derivativesJson      Json?                      @map("derivatives_json")
+  taxonomyTags         String[]                   @default([]) @map("taxonomy_tags")
+  scene                String?
+  surfaceHints         String[]                   @default([]) @map("surface_hints")
+  moduleHints          String[]                   @default([]) @map("module_hints")
+  personaHints         String[]                   @default([]) @map("persona_hints")
+  rightsClass          AttractionAssetRightsClass @default(ai_placeholder) @map("rights_class")
+  aiPolicy             String                     @default("ai_ok") @map("ai_policy")
+  clinicScope          String                     @default("flagship_only") @map("clinic_scope")
+  channelsAllowedJson  Json                       @default("[]") @map("channels_allowed_json")
+  channelsDeniedJson   Json                       @default("[]") @map("channels_denied_json")
+  /// Legacy string refs kept for Phase 1 rows
+  consentRef           String?                    @map("consent_ref")
+  relatedStoryRef      String?                    @map("related_story_ref")
+  sourceShotId         String?                    @map("source_shot_id")
+  relatedDocumentKind  String?                    @map("related_document_kind")
+  transcriptOfAssetId  String?                    @map("transcript_of_asset_id")
+  parentAssetId        String?                    @map("parent_asset_id")
+  relatedStoryId       String?                    @map("related_story_id")
+  consentRecordId      String?                    @map("consent_record_id")
+  reviewCadenceDays    Int                        @default(730) @map("review_cadence_days")
+  lastReviewedAt       DateTime?                  @map("last_reviewed_at")
+  nextReviewAt         DateTime?                  @map("next_review_at")
+  withdrawnAt          DateTime?                  @map("withdrawn_at")
+  ownerUserId          String?                    @map("owner_user_id")
+  clinic               Clinic                     @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  relatedStory         GpStory?                   @relation(fields: [relatedStoryId], references: [id], onDelete: SetNull)
+  consentRecord        AttractionAssetConsent?    @relation(fields: [consentRecordId], references: [id], onDelete: SetNull)
+  reviewEvents         AttractionAssetReviewEvent[]
+  createdAt            DateTime                   @default(now()) @map("created_at")
+  updatedAt            DateTime                   @updatedAt @map("updated_at")
+
+  @@unique([clinicId, assetId])
+  @@index([clinicId, status])
+  @@index([clinicId, kind])
+  @@index([relatedStoryId])
+  @@index([nextReviewAt])
+  @@map("attraction_assets")
+}
+
+/// Versioned media consent for identifiable people in assets.
+model AttractionAssetConsent {
+  id                  String    @id @default(cuid())
+  clinicId            String    @map("clinic_id")
+  consentVersion      String    @map("consent_version")
+  subjectDisplayName  String    @map("subject_display_name")
+  status              String    @default("draft") /// draft | signed | withdrawn | expired | superseded
+  channelsAllowedJson Json      @default("[]") @map("channels_allowed_json")
+  channelsDeniedJson  Json      @default("[]") @map("channels_denied_json")
+  documentUri         String?   @map("document_uri")
+  signedAt            DateTime? @map("signed_at")
+  signedByName        String?   @map("signed_by_name")
+  withdrawnAt         DateTime? @map("withdrawn_at")
+  withdrawalReason    String?   @map("withdrawal_reason") @db.Text
+  retentionUntil      DateTime? @map("retention_until")
+  relatedStoryId      String?   @map("related_story_id")
+  notes               String?   @db.Text
+  assets              AttractionAsset[]
+  createdAt           DateTime  @default(now()) @map("created_at")
+  updatedAt           DateTime  @updatedAt @map("updated_at")
+
+  @@index([clinicId, status])
+  @@index([relatedStoryId])
+  @@map("attraction_asset_consents")
+}
+
+/// Immutable human review / lifecycle events for assets.
+model AttractionAssetReviewEvent {
+  id           String                        @id @default(cuid())
+  assetId      String                        @map("asset_row_id")
+  fromStatus   AttractionAssetStatus         @map("from_status")
+  toStatus     AttractionAssetStatus         @map("to_status")
+  decision     AttractionAssetReviewDecision
+  reviewerId   String                        @map("reviewer_id")
+  reviewerName String                        @map("reviewer_name")
+  rationale    String                        @db.Text
+  checklistJson Json?                        @map("checklist_json")
+  asset        AttractionAsset               @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  reviewer     User                          @relation(fields: [reviewerId], references: [id], onDelete: Restrict)
+  createdAt    DateTime                      @default(now()) @map("created_at")
+
+  @@index([assetId, createdAt])
+  @@index([decision])
+  @@map("attraction_asset_review_events")
+}
+
+// ---------------------------------------------------------------------------
+// GP Story Capture System — approved proposal models
+// Human gates only; default-deny reuse; versioned consent; placement tracking.
+// ---------------------------------------------------------------------------
+
+enum GpStoryCategory {
+  early_career
+  established
+  returning
+  part_time
+  special_interest
+}
+
+enum GpStoryStatus {
+  invited
+  briefed
+  interviewed
+  drafting
+  gp_review
+  editorial_review
+  changes_requested
+  approved
+  published
+  paused
+  withdrawn
+  archived
+}
+
+enum GpStoryFormat {
+  pull_quote
+  short_story
+  long_story
+  video
+}
+
+enum GpStoryAttribution {
+  full_name
+  first_name_only
+  initials
+  role_label_only
+}
+
+enum GpStoryConsentStatus {
+  not_started
+  summary_shared
+  draft_linked
+  signed
+  expired
+  withdrawn
+  superseded
+}
+
+/// Explicit allow-list channels. Missing / denied = not allowed (default deny).
+enum GpStoryReuseChannel {
+  practice_experience_web
+  gp_opportunities_rail
+  join_our_team_quiet_quote
+  owned_social_og
+  internal_proposal_pack
+  video_embed
+}
+
+enum GpStoryReviewDecision {
+  approve_advance
+  request_changes
+  pause
+  withdraw
+  archive
+  approve_publish
+  acknowledge_withdrawal
+}
+
+enum GpStoryReviewRole {
+  practice_manager
+  content_editor
+  brand_governance
+  clinical_lead_or_principal
+  subject_gp
+}
+
+model GpStory {
+  id                   String            @id @default(cuid())
+  clinicId             String            @map("clinic_id")
+  practitionerId       String?           @map("practitioner_id")
+  careerApplicationId  String?           @map("career_application_id")
+  workingTitle         String            @map("working_title")
+  subjectDisplayName   String            @map("subject_display_name")
+  subjectEmail         String?           @map("subject_email")
+  primaryCategory      GpStoryCategory   @map("primary_category")
+  status               GpStoryStatus     @default(invited)
+  workflowVersion      String            @default("1.0.0") @map("workflow_version")
+  interviewScheduledAt DateTime?         @map("interview_scheduled_at")
+  interviewedAt        DateTime?         @map("interviewed_at")
+  publishedAt          DateTime?         @map("published_at")
+  withdrawnAt          DateTime?         @map("withdrawn_at")
+  archivedAt           DateTime?         @map("archived_at")
+  specialInterestLabel String?           @map("special_interest_label")
+  honestyCueEnabled    Boolean           @default(true) @map("honesty_cue_enabled")
+  compositeExampleFlag Boolean           @default(false) @map("composite_example_flag")
+  internalNotes        String?           @map("internal_notes") @db.Text
+  attractionDocumentId String?           @map("attraction_document_id")
+  createdByUserId      String?           @map("created_by_user_id")
+  clinic               Clinic            @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  practitioner         Practitioner?     @relation(fields: [practitionerId], references: [id], onDelete: SetNull)
+  careerApplication    CareerApplication? @relation(fields: [careerApplicationId], references: [id], onDelete: SetNull)
+  createdBy            User?             @relation("GpStoryCreator", fields: [createdByUserId], references: [id], onDelete: SetNull)
+  categories           GpStoryCategoryAssignment[]
+  versions             GpStoryVersion[]
+  consents             GpStoryConsent[]
+  reusePolicies        GpStoryReusePolicy[]
+  placements           GpStoryPlacement[]
+  reviews              GpStoryReviewEvent[]
+  sourceAssets         GpStorySourceAsset[]
+  attractionAssets     AttractionAsset[]
+  createdAt            DateTime          @default(now()) @map("created_at")
+  updatedAt            DateTime          @updatedAt @map("updated_at")
+
+  @@index([clinicId, status])
+  @@index([clinicId, primaryCategory])
+  @@index([practitionerId])
+  @@index([publishedAt])
+  @@map("gp_stories")
+}
+
+model GpStoryCategoryAssignment {
+  id         String          @id @default(cuid())
+  storyId    String          @map("story_id")
+  category   GpStoryCategory
+  isPrimary  Boolean         @default(false) @map("is_primary")
+  assignedAt DateTime        @default(now()) @map("assigned_at")
+  assignedBy String?         @map("assigned_by")
+  story      GpStory         @relation(fields: [storyId], references: [id], onDelete: Cascade)
+
+  @@unique([storyId, category])
+  @@index([category])
+  @@map("gp_story_category_assignments")
+}
+
+model GpStoryVersion {
+  id                  String            @id @default(cuid())
+  storyId             String            @map("story_id")
+  versionNumber       Int               @map("version_number")
+  format              GpStoryFormat
+  statusSnapshot      GpStoryStatus     @map("status_snapshot")
+  bodyText            String            @map("body_text") @db.Text
+  pullQuoteText       String?           @map("pull_quote_text")
+  transcriptText      String?           @map("transcript_text") @db.Text
+  attribution         GpStoryAttribution
+  publicByline        String?           @map("public_byline")
+  structureJson       Json?             @map("structure_json")
+  editorUserId        String?           @map("editor_user_id")
+  gpApprovedAt        DateTime?         @map("gp_approved_at")
+  editorialApprovedAt DateTime?         @map("editorial_approved_at")
+  story               GpStory           @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  placements          GpStoryPlacement[]
+  createdAt           DateTime          @default(now()) @map("created_at")
+
+  @@unique([storyId, versionNumber, format])
+  @@index([storyId, format])
+  @@map("gp_story_versions")
+}
+
+model GpStoryConsent {
+  id                   String               @id @default(cuid())
+  storyId              String               @map("story_id")
+  consentVersion       String               @map("consent_version")
+  status               GpStoryConsentStatus @default(not_started)
+  attributionChosen    GpStoryAttribution?  @map("attribution_chosen")
+  recordingAudioVideo  Boolean              @default(false) @map("recording_audio_video")
+  retentionUntil       DateTime?            @map("retention_until")
+  storageLocationNote  String?              @map("storage_location_note")
+  channelsAllowedJson  Json                 @default("[]") @map("channels_allowed_json")
+  channelsDeniedJson   Json                 @default("[]") @map("channels_denied_json")
+  commercialSilenceAck Boolean              @default(false) @map("commercial_silence_ack")
+  patientPrivacyAck    Boolean              @default(false) @map("patient_privacy_ack")
+  editRightsAck        Boolean              @default(false) @map("edit_rights_ack")
+  reviewWindowDays     Int                  @default(5) @map("review_window_days")
+  withdrawalSlaDays    Int                  @default(10) @map("withdrawal_sla_days")
+  linkedVersionId      String?              @map("linked_version_id")
+  signedAt             DateTime?            @map("signed_at")
+  signedByName         String?              @map("signed_by_name")
+  signedByEmail        String?              @map("signed_by_email")
+  documentUri          String?              @map("document_uri")
+  withdrawnAt          DateTime?            @map("withdrawn_at")
+  withdrawalReason     String?              @map("withdrawal_reason") @db.Text
+  supersededById       String?              @map("superseded_by_id")
+  story                GpStory              @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  createdAt            DateTime             @default(now()) @map("created_at")
+  updatedAt            DateTime             @updatedAt @map("updated_at")
+
+  @@index([storyId, status])
+  @@index([consentVersion])
+  @@map("gp_story_consents")
+}
+
+model GpStoryReusePolicy {
+  id                   String              @id @default(cuid())
+  storyId              String              @map("story_id")
+  channel              GpStoryReuseChannel
+  allowed              Boolean             @default(false)
+  requiresFreshConsent Boolean             @default(false) @map("requires_fresh_consent")
+  clinicScope          String              @default("flagship_only") @map("clinic_scope")
+  notes                String?
+  effectiveFrom        DateTime            @default(now()) @map("effective_from")
+  effectiveUntil       DateTime?           @map("effective_until")
+  createdByUserId      String?             @map("created_by_user_id")
+  story                GpStory             @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  createdAt            DateTime            @default(now()) @map("created_at")
+
+  @@unique([storyId, channel])
+  @@index([channel, allowed])
+  @@map("gp_story_reuse_policies")
+}
+
+model GpStoryPlacement {
+  id             String              @id @default(cuid())
+  storyId        String              @map("story_id")
+  versionId      String              @map("version_id")
+  channel        GpStoryReuseChannel
+  surfacePath    String              @map("surface_path")
+  moduleKey      String?             @map("module_key")
+  live           Boolean             @default(false)
+  wentLiveAt     DateTime?           @map("went_live_at")
+  takenDownAt    DateTime?           @map("taken_down_at")
+  takeDownReason String?             @map("take_down_reason")
+  story          GpStory             @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  version        GpStoryVersion      @relation(fields: [versionId], references: [id], onDelete: Restrict)
+  createdAt      DateTime            @default(now()) @map("created_at")
+
+  @@index([storyId, live])
+  @@index([channel, live])
+  @@index([surfacePath])
+  @@map("gp_story_placements")
+}
+
+model GpStoryReviewEvent {
+  id                String                @id @default(cuid())
+  storyId           String                @map("story_id")
+  fromStatus        GpStoryStatus         @map("from_status")
+  toStatus          GpStoryStatus         @map("to_status")
+  decision          GpStoryReviewDecision
+  reviewerRole      GpStoryReviewRole     @map("reviewer_role")
+  reviewerId        String                @map("reviewer_id")
+  reviewerName      String                @map("reviewer_name")
+  rationale         String                @db.Text
+  checklistSnapshot Json?                 @map("checklist_snapshot")
+  versionId         String?               @map("version_id")
+  story             GpStory               @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  reviewer          User                  @relation(fields: [reviewerId], references: [id], onDelete: Restrict)
+  createdAt         DateTime              @default(now()) @map("created_at")
+
+  @@index([storyId, createdAt])
+  @@index([decision])
+  @@map("gp_story_review_events")
+}
+
+model GpStorySourceAsset {
+  id             String    @id @default(cuid())
+  storyId        String    @map("story_id")
+  kind           String
+  uri            String
+  capturedAt     DateTime? @map("captured_at")
+  retentionUntil DateTime? @map("retention_until")
+  notes          String?
+  story          GpStory   @relation(fields: [storyId], references: [id], onDelete: Cascade)
+  createdAt      DateTime  @default(now()) @map("created_at")
+
+  @@index([storyId, kind])
+  @@map("gp_story_source_assets")
+}
+
+// ---------------------------------------------------------------------------
+// GP Operational Pipeline — Doctor Readiness → EOI → Session Matching →
+// Onboarding → First 90 Days (proposal models only; no new workflow concepts)
+// ---------------------------------------------------------------------------
+
+enum GpEnquiryStatus {
+  new_submission
+  triage
+  reviewing
+  awaiting_doctor
+  in_conversation
+  onboarding
+  nurture
+  declined
+  withdrawn
+  hired
+}
+
+enum GpEnquiryScoreBand {
+  priority_review
+  strong_fit
+  possible_fit
+  nurture
+  incomplete
+}
+
+enum GpEnquiryCapacityFit {
+  strong
+  limited
+  uncertain
+  unknown
+}
+
+enum GpEligibilityDiscussionStatus {
+  not_started
+  in_discussion
+  practice_location_shared
+  doctor_seeking_external_advice
+  paused
+  closed_no_determination
+}
+
+enum GpOnboardingCaseStatus {
+  enquiry
+  eoi_received
+  in_review
+  awaiting_doctor
+  awaiting_external
+  ready_for_go_live
+  live
+  settling
+  paused
+  withdrawn
+  declined
+}
+
+enum GpOnboardingStageId {
+  initial_discussion
+  eoi_review
+  credential_checks
+  provider_number_preparation
+  session_allocation
+  orientation
+  go_live
+}
+
+enum GpOnboardingStageStatus {
+  not_started
+  in_progress
+  awaiting_doctor
+  awaiting_external
+  ready_for_gate
+  gate_approved
+  skipped_with_rationale
+  blocked
+}
+
+enum GpOnboardingTaskOwner {
+  admin
+  doctor
+  external
+}
+
+enum GpOnboardingTaskStatus {
+  pending
+  in_progress
+  done
+  waived_with_rationale
+  blocked
+}
+
+enum GpOnboardingGateDecision {
+  approve_advance
+  request_changes
+  pause
+  decline
+  withdraw
+  acknowledge_awaiting_external
+}
+
+enum SessionDayOfWeek {
+  monday
+  tuesday
+  wednesday
+  thursday
+  friday
+  saturday
+}
+
+enum SessionPeriod {
+  morning
+  afternoon
+  evening
+}
+
+enum MatchRunSource {
+  admin_manual
+  enquiry_session_prefs
+  session_planner
+  onboarding_allocation
+}
+
+enum GpFirst90Phase {
+  day1
+  week1
+  month1
+  month2
+  month3
+}
+
+enum GpFirst90CaseStatus {
+  active
+  review_due
+  closed_bau
+  closed_staged_growth
+  withdrawn
+}
+
+/// Standalone Doctor Readiness Assessment result (advisory only).
+model GpDoctorReadinessResult {
+  id              String    @id @default(cuid())
+  clinicId        String    @map("clinic_id")
+  applicantEmail  String?   @map("applicant_email")
+  applicantName   String?   @map("applicant_name")
+  overallBand     String
+  totalScore      Int       @map("total_score")
+  maxScore        Int       @default(100) @map("max_score")
+  nextActionId    String?   @map("next_action_id")
+  answersJson     Json      @map("answers_json")
+  themeScoresJson Json      @default("{}") @map("theme_scores_json")
+  summaryJson     Json?     @map("summary_json")
+  advisoryOnly    Boolean   @default(true) @map("advisory_only")
+  enquiryId       String?   @unique @map("enquiry_id")
+  clinic          Clinic    @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  enquiry         GpEnquiry? @relation(fields: [enquiryId], references: [id], onDelete: SetNull)
+  createdAt       DateTime  @default(now()) @map("created_at")
+
+  @@index([clinicId, createdAt])
+  @@index([applicantEmail])
+  @@map("gp_doctor_readiness_results")
+}
+
+/// Pipeline stage for GP Readiness & Onboarding Portal packages (separate from EOI).
+enum GpReadinessPackageStatus {
+  new_lead
+  confidential_discussion
+  recruitment_review
+  applicant
+  onboarding_candidate
+  provider_number_support
+  website_profile_preparation
+  offer_extended
+  ready_to_start
+  active_gp
+  on_hold
+  not_proceeding
+}
+
+enum GpRecruitmentSource {
+  practice_website
+  seek
+  linkedin
+  indeed
+  referral
+  recruitment_agency
+  existing_gp
+  google_search
+  other
+}
+
+enum GpReadinessPackageTaskStatus {
+  pending
+  in_progress
+  completed
+  cancelled
+}
+
+/// Full GP Readiness & Onboarding Portal submission — not an EOI / job application.
+model GpReadinessPackage {
+  id                       String                   @id @default(cuid())
+  clinicId                 String                   @map("clinic_id")
+  status                   GpReadinessPackageStatus @default(new_lead)
+  statusChangedAt          DateTime                 @default(now()) @map("status_changed_at")
+  firstName                String                   @map("first_name")
+  lastName                 String                   @map("last_name")
+  email                    String
+  mobile                   String?
+  preferredContactMethod   String?                  @map("preferred_contact_method")
+  preferredStartDate       DateTime?                @map("preferred_start_date")
+  payloadJson              Json                     @map("payload_json")
+  documentsJson            Json                     @default("[]") @map("documents_json")
+  providerReadinessJson    Json?                    @map("provider_readiness_json")
+  section19abJson          Json?                    @map("section_19ab_json")
+  spousalAssessmentJson    Json?                    @map("spousal_assessment_json")
+  spousalOutcome           String?                  @map("spousal_outcome")
+  providerNumberPath       String?                  @map("provider_number_path")
+  /// Technical intake channel (portal form). Distinct from recruitmentSource marketing attribution.
+  source                   String                   @default("join_our_team_readiness_portal")
+  recruitmentSource        GpRecruitmentSource?     @map("recruitment_source")
+  enquiryId                String?                  @unique @map("enquiry_id")
+  submittedAt              DateTime                 @default(now()) @map("submitted_at")
+  updatedAt                DateTime                 @updatedAt @map("updated_at")
+  /// Future: secure save/resume token hash (Phase save-progress). Not used yet.
+  resumeTokenHash          String?                  @map("resume_token_hash")
+  resumeTokenExpiresAt     DateTime?                @map("resume_token_expires_at")
+  /// Future: in-progress draft payload before final submit.
+  draftPayloadJson         Json?                    @map("draft_payload_json")
+  clinic                   Clinic                   @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  enquiry                  GpEnquiry?               @relation(fields: [enquiryId], references: [id], onDelete: SetNull)
+  doctorProfileDraft       GpDoctorProfileDraft?
+  notes                    GpReadinessPackageNote[]
+  tasks                    GpReadinessPackageTask[]
+  statusAudits             GpReadinessPackageStatusAudit[]
+
+  @@index([clinicId, status, submittedAt])
+  @@index([clinicId, email])
+  @@index([clinicId, recruitmentSource])
+  @@index([email])
+  @@index([resumeTokenHash])
+  @@map("gp_readiness_packages")
+}
+
+model GpReadinessPackageNote {
+  id           String             @id @default(cuid())
+  packageId    String             @map("package_id")
+  authorUserId String             @map("author_user_id")
+  authorName   String?            @map("author_name")
+  body         String             @db.Text
+  package      GpReadinessPackage @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  author       User               @relation(fields: [authorUserId], references: [id], onDelete: Restrict)
+  createdAt    DateTime           @default(now()) @map("created_at")
+
+  @@index([packageId, createdAt])
+  @@map("gp_readiness_package_notes")
+}
+
+model GpReadinessPackageTask {
+  id               String                       @id @default(cuid())
+  packageId        String                       @map("package_id")
+  title            String
+  taskKey          String?                      @map("task_key")
+  status           GpReadinessPackageTaskStatus @default(pending)
+  assignedToUserId String?                      @map("assigned_to_user_id")
+  createdByUserId  String?                      @map("created_by_user_id")
+  dueAt            DateTime?                    @map("due_at")
+  completedAt      DateTime?                    @map("completed_at")
+  notes            String?                      @db.Text
+  package          GpReadinessPackage           @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  assignedTo       User?                        @relation("GpReadinessPackageTaskAssignee", fields: [assignedToUserId], references: [id], onDelete: SetNull)
+  createdBy        User?                        @relation("GpReadinessPackageTaskCreator", fields: [createdByUserId], references: [id], onDelete: SetNull)
+  createdAt        DateTime                     @default(now()) @map("created_at")
+  updatedAt        DateTime                     @updatedAt @map("updated_at")
+
+  @@index([packageId, status, dueAt])
+  @@index([assignedToUserId, status])
+  @@map("gp_readiness_package_tasks")
+}
+
+model GpReadinessPackageStatusAudit {
+  id          String             @id @default(cuid())
+  packageId   String             @map("package_id")
+  actorUserId String?            @map("actor_user_id")
+  actorName   String?            @map("actor_name")
+  fromStatus  String?            @map("from_status")
+  toStatus    String             @map("to_status")
+  note        String?            @db.Text
+  package     GpReadinessPackage @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  actor       User?              @relation(fields: [actorUserId], references: [id], onDelete: SetNull)
+  createdAt   DateTime           @default(now()) @map("created_at")
+
+  @@index([packageId, createdAt])
+  @@map("gp_readiness_package_status_audits")
+}
+
+/// Doctor website/booking profile draft collected via Professional Profile Builder.
+enum GpDoctorProfileStatus {
+  draft
+  awaiting_review
+  approved
+  published
+  archived
+}
+
+enum GpDoctorProfileSource {
+  portal_submission
+  practitioner_import
+  manual_seed
+}
+
+model GpDoctorProfileDraft {
+  id                     String                 @id @default(cuid())
+  clinicId               String                 @map("clinic_id")
+  readinessPackageId     String?                @unique @map("readiness_package_id")
+  practitionerId         String?                @map("practitioner_id")
+  enquiryId              String?                @map("enquiry_id")
+  status                 GpDoctorProfileStatus  @default(draft)
+  source                 GpDoctorProfileSource  @default(portal_submission)
+  title                  String                 @default("Dr")
+  preferredPublishedName String                 @map("preferred_published_name")
+  credentials            String[]               @default([])
+  biography              String                 @default("") @db.Text
+  shortIntroduction      String                 @default("") @map("short_introduction") @db.Text
+  qualifications         String[]               @default([])
+  specialInterests       String[]               @default([]) @map("special_interests")
+  languages              String[]               @default([])
+  yearsPractising        String?                @map("years_practising")
+  memberships            String[]               @default([])
+  headshotPath           String?                @map("headshot_path")
+  headshotMetaJson       Json?                  @map("headshot_meta_json")
+  completenessScore      Int                    @default(0) @map("completeness_score")
+  reviewNotes            String?                @map("review_notes") @db.Text
+  submittedAt            DateTime?              @map("submitted_at")
+  approvedAt             DateTime?              @map("approved_at")
+  publishedAt            DateTime?              @map("published_at")
+  archivedAt             DateTime?              @map("archived_at")
+  createdAt              DateTime               @default(now()) @map("created_at")
+  updatedAt              DateTime               @updatedAt @map("updated_at")
+  clinic                 Clinic                 @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  readinessPackage       GpReadinessPackage?    @relation(fields: [readinessPackageId], references: [id], onDelete: SetNull)
+  practitioner           Practitioner?          @relation(fields: [practitionerId], references: [id], onDelete: SetNull)
+  enquiry                GpEnquiry?             @relation(fields: [enquiryId], references: [id], onDelete: SetNull)
+  statusAudits           GpDoctorProfileStatusAudit[]
+
+  @@index([clinicId, status, updatedAt])
+  @@index([clinicId, preferredPublishedName])
+  @@index([practitionerId])
+  @@map("gp_doctor_profile_drafts")
+}
+
+model GpDoctorProfileStatusAudit {
+  id          String               @id @default(cuid())
+  profileId   String               @map("profile_id")
+  actorUserId String?              @map("actor_user_id")
+  actorName   String?              @map("actor_name")
+  fromStatus  String?              @map("from_status")
+  toStatus    String               @map("to_status")
+  note        String?              @db.Text
+  profile     GpDoctorProfileDraft @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  actor       User?                @relation(fields: [actorUserId], references: [id], onDelete: SetNull)
+  createdAt   DateTime             @default(now()) @map("created_at")
+
+  @@index([profileId, createdAt])
+  @@map("gp_doctor_profile_status_audits")
+}
+
+/// Admin GP Enquiries / EOI spine — human-reviewed queue.
+model GpEnquiry {
+  id                          String                         @id @default(cuid())
+  clinicId                    String                         @map("clinic_id")
+  careerApplicationId         String?                        @unique @map("career_application_id")
+  doctorDisplayName           String                         @map("doctor_display_name")
+  email                       String
+  phone                       String?
+  status                      GpEnquiryStatus                @default(new_submission)
+  assignedToUserId            String?                        @map("assigned_to_user_id")
+  assignedToName              String?                        @map("assigned_to_name")
+  priorityScore               Int                            @default(0) @map("priority_score")
+  scoreBand                   GpEnquiryScoreBand             @default(incomplete) @map("score_band")
+  hardFlagsJson               Json                           @default("[]") @map("hard_flags_json")
+  capacityFit                 GpEnquiryCapacityFit           @default(unknown) @map("capacity_fit")
+  capacityFitNote             String?                        @map("capacity_fit_note")
+  eligibilityDiscussionStatus GpEligibilityDiscussionStatus  @default(not_started) @map("eligibility_discussion_status")
+  eligibilityDiscussionSummary String?                       @map("eligibility_discussion_summary") @db.Text
+  preferredStartDate          DateTime?                      @map("preferred_start_date")
+  sessionsPerWeek             Float?                         @map("sessions_per_week")
+  source                      String                         @default("join_our_team")
+  submittedAt                 DateTime                       @default(now()) @map("submitted_at")
+  clinic                      Clinic                         @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  assignedTo                  User?                          @relation("GpEnquiryAssignee", fields: [assignedToUserId], references: [id], onDelete: SetNull)
+  onboardingCase              GpOnboardingCase?
+  eoiSnapshot                 GpEnquiryEoiSnapshot?
+  readinessLink               GpDoctorReadinessResult?
+  readinessPackage            GpReadinessPackage?
+  doctorProfileDrafts         GpDoctorProfileDraft[]
+  sessionPreferences          GpEnquirySessionPreferences?
+  notes                       GpEnquiryNote[]
+  statusAudits                GpEnquiryStatusAudit[]
+  matchRuns                   SessionCapacityMatchRun[]
+  notifications               GpPipelineNotificationLog[]
+  updatedAt                   DateTime                       @updatedAt @map("updated_at")
+
+  @@index([clinicId, status, priorityScore])
+  @@index([clinicId, assignedToUserId])
+  @@index([clinicId, submittedAt])
+  @@index([email])
+  @@map("gp_enquiries")
+}
+
+model GpEnquiryEoiSnapshot {
+  id                String    @id @default(cuid())
+  enquiryId         String    @unique @map("enquiry_id")
+  ahpraStatus       String?   @map("ahpra_status")
+  fellowship        String?
+  clinicalInterests Json      @default("[]") @map("clinical_interests")
+  availabilityNotes String?   @map("availability_notes") @db.Text
+  rawSummaryJson    Json?     @map("raw_summary_json")
+  enquiry           GpEnquiry @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+  createdAt         DateTime  @default(now()) @map("created_at")
+
+  @@map("gp_enquiry_eoi_snapshots")
+}
+
+model GpEnquirySessionPreferences {
+  id                String    @id @default(cuid())
+  enquiryId         String    @unique @map("enquiry_id")
+  preferredDaysJson Json      @default("[]") @map("preferred_days_json")
+  sessionsPerWeek   Float?    @map("sessions_per_week")
+  startFlexibility  String?   @map("start_flexibility")
+  notes             String?   @db.Text
+  planJson          Json?     @map("plan_json")
+  completedAt       DateTime? @map("completed_at")
+  enquiry           GpEnquiry @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+
+  @@map("gp_enquiry_session_preferences")
+}
+
+model GpEnquiryNote {
+  id           String    @id @default(cuid())
+  enquiryId    String    @map("enquiry_id")
+  authorUserId String    @map("author_user_id")
+  authorName   String?   @map("author_name")
+  body         String    @db.Text
+  visibility   String    @default("internal")
+  enquiry      GpEnquiry @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+  author       User      @relation(fields: [authorUserId], references: [id], onDelete: Restrict)
+  createdAt    DateTime  @default(now()) @map("created_at")
+
+  @@index([enquiryId, createdAt])
+  @@map("gp_enquiry_notes")
+}
+
+model GpEnquiryStatusAudit {
+  id          String    @id @default(cuid())
+  enquiryId   String    @map("enquiry_id")
+  actorUserId String    @map("actor_user_id")
+  actorName   String?   @map("actor_name")
+  fromStatus  String?   @map("from_status")
+  toStatus    String?   @map("to_status")
+  field       String?
+  fromValue   String?   @map("from_value")
+  toValue     String?   @map("to_value")
+  note        String?   @db.Text
+  enquiry     GpEnquiry @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+  actor       User      @relation(fields: [actorUserId], references: [id], onDelete: Restrict)
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  @@index([enquiryId, createdAt])
+  @@map("gp_enquiry_status_audits")
+}
+
+model CapacitySessionWindow {
+  id           String           @id @default(cuid())
+  clinicId     String           @map("clinic_id")
+  dayOfWeek    SessionDayOfWeek @map("day_of_week")
+  period       SessionPeriod
+  startsAt     String           @map("starts_at")
+  endsAt       String           @map("ends_at")
+  isOffered    Boolean          @default(true) @map("is_offered")
+  activeRooms  Int              @default(0) @map("active_rooms")
+  reserveSlots Int              @default(0) @map("reserve_slots")
+  nursingJson  Json             @default("{}") @map("nursing_json")
+  existingGpsJson Json          @default("[]") @map("existing_gps_json")
+  clinic       Clinic           @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  createdAt    DateTime         @default(now()) @map("created_at")
+  updatedAt    DateTime         @updatedAt @map("updated_at")
+
+  @@unique([clinicId, dayOfWeek, period])
+  @@index([clinicId, isOffered])
+  @@map("capacity_session_windows")
+}
+
+model SessionCapacityMatchRun {
+  id                   String         @id @default(cuid())
+  clinicId             String         @map("clinic_id")
+  source               MatchRunSource @default(admin_manual)
+  enquiryId            String?        @map("enquiry_id")
+  onboardingCaseId     String?        @map("onboarding_case_id")
+  doctorDisplayName    String?        @map("doctor_display_name")
+  preferredKeysJson    Json           @map("preferred_keys_json")
+  compatibilityScore   Int            @map("compatibility_score")
+  breakdownJson        Json           @map("breakdown_json")
+  availableOptionsJson Json           @map("available_options_json")
+  alternativesJson     Json           @map("alternatives_json")
+  capacitySnapshotJson Json?          @map("capacity_snapshot_json")
+  notice               String         @default("Advisory only. Session allocation requires human confirmation.")
+  createdByUserId      String?        @map("created_by_user_id")
+  clinic               Clinic         @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  enquiry              GpEnquiry?     @relation(fields: [enquiryId], references: [id], onDelete: SetNull)
+  createdAt            DateTime       @default(now()) @map("created_at")
+
+  @@index([clinicId, createdAt])
+  @@index([enquiryId])
+  @@map("session_capacity_match_runs")
+}
+
+model GpOnboardingCase {
+  id                   String                 @id @default(cuid())
+  clinicId             String                 @map("clinic_id")
+  doctorDisplayName    String                 @map("doctor_display_name")
+  doctorEmail          String?                @map("doctor_email")
+  enquiryId            String?                @unique @map("enquiry_id")
+  careerApplicationId  String?                @map("career_application_id")
+  status               GpOnboardingCaseStatus @default(enquiry)
+  currentStageId       GpOnboardingStageId    @default(initial_discussion) @map("current_stage_id")
+  workflowVersion      String                 @default("1.0.0") @map("workflow_version")
+  targetStartDate      DateTime?              @map("target_start_date")
+  firstSessionAt       DateTime?              @map("first_session_at")
+  dayOneSupportContact String?                @map("day_one_support_contact")
+  providerNumberNote   String?                @map("provider_number_note")
+  internalNotes        String?                @map("internal_notes") @db.Text
+  clinic               Clinic                 @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  enquiry              GpEnquiry?             @relation(fields: [enquiryId], references: [id], onDelete: SetNull)
+  stages               GpOnboardingStageState[]
+  tasks                GpOnboardingTask[]
+  gates                GpOnboardingGateEvent[]
+  notifications        GpPipelineNotificationLog[]
+  first90Case          GpFirst90SettlingCase?
+  createdAt            DateTime               @default(now()) @map("created_at")
+  updatedAt            DateTime               @updatedAt @map("updated_at")
+
+  @@index([clinicId, status])
+  @@map("gp_onboarding_cases")
+}
+
+model GpOnboardingStageState {
+  id             String                  @id @default(cuid())
+  caseId         String                  @map("case_id")
+  stageId        GpOnboardingStageId     @map("stage_id")
+  status         GpOnboardingStageStatus @default(not_started)
+  startedAt      DateTime?               @map("started_at")
+  readyForGateAt DateTime?               @map("ready_for_gate_at")
+  gateApprovedAt DateTime?               @map("gate_approved_at")
+  externalAgency String?                 @map("external_agency")
+  blockerSummary String?                 @map("blocker_summary")
+  case           GpOnboardingCase        @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  updatedAt      DateTime                @updatedAt @map("updated_at")
+
+  @@unique([caseId, stageId])
+  @@index([status])
+  @@map("gp_onboarding_stage_states")
+}
+
+model GpOnboardingTask {
+  id          String                 @id @default(cuid())
+  caseId      String                 @map("case_id")
+  stageId     GpOnboardingStageId    @map("stage_id")
+  taskKey     String                 @map("task_key")
+  owner       GpOnboardingTaskOwner
+  label       String
+  required    Boolean                @default(true)
+  status      GpOnboardingTaskStatus @default(pending)
+  completedAt DateTime?              @map("completed_at")
+  completedBy String?                @map("completed_by")
+  notes       String?
+  case        GpOnboardingCase       @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  updatedAt   DateTime               @updatedAt @map("updated_at")
+
+  @@unique([caseId, taskKey])
+  @@index([caseId, stageId, status])
+  @@map("gp_onboarding_tasks")
+}
+
+model GpOnboardingGateEvent {
+  id                String                   @id @default(cuid())
+  caseId            String                   @map("case_id")
+  stageId           GpOnboardingStageId      @map("stage_id")
+  decision          GpOnboardingGateDecision
+  reviewerId        String                   @map("reviewer_id")
+  reviewerName      String                   @map("reviewer_name")
+  rationale         String                   @db.Text
+  checklistSnapshot Json?                    @map("checklist_snapshot")
+  case              GpOnboardingCase         @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  reviewer          User                     @relation(fields: [reviewerId], references: [id], onDelete: Restrict)
+  createdAt         DateTime                 @default(now()) @map("created_at")
+
+  @@index([caseId, stageId, createdAt])
+  @@map("gp_onboarding_gate_events")
+}
+
+/// First 90 Days settling — extends onboarding after Stage 7 Go-live.
+model GpFirst90SettlingCase {
+  id                String              @id @default(cuid())
+  clinicId          String              @map("clinic_id")
+  onboardingCaseId  String              @unique @map("onboarding_case_id")
+  doctorDisplayName String              @map("doctor_display_name")
+  status            GpFirst90CaseStatus @default(active)
+  currentPhase      GpFirst90Phase      @default(day1) @map("current_phase")
+  goLiveAt          DateTime            @map("go_live_at")
+  reviewDueAt       DateTime?           @map("review_due_at")
+  closedAt          DateTime?           @map("closed_at")
+  closeSummary      String?             @map("close_summary") @db.Text
+  clinic            Clinic              @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  onboardingCase    GpOnboardingCase    @relation(fields: [onboardingCaseId], references: [id], onDelete: Cascade)
+  checklistItems    GpFirst90ChecklistItem[]
+  createdAt         DateTime            @default(now()) @map("created_at")
+  updatedAt         DateTime            @updatedAt @map("updated_at")
+
+  @@index([clinicId, status])
+  @@map("gp_first90_settling_cases")
+}
+
+model GpFirst90ChecklistItem {
+  id          String              @id @default(cuid())
+  caseId      String              @map("case_id")
+  itemKey     String              @map("item_key")
+  phase       GpFirst90Phase
+  owner       String
+  theme       String
+  label       String
+  done        Boolean             @default(false)
+  doneAt      DateTime?           @map("done_at")
+  doneBy      String?             @map("done_by")
+  notes       String?
+  case        GpFirst90SettlingCase @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  updatedAt   DateTime            @updatedAt @map("updated_at")
+
+  @@unique([caseId, itemKey])
+  @@index([caseId, phase, done])
+  @@map("gp_first90_checklist_items")
+}
+
+/// Shared notification log for pipeline events (onboarding catalog + enquiry events).
+model GpPipelineNotificationLog {
+  id               String            @id @default(cuid())
+  clinicId         String            @map("clinic_id")
+  eventId          String            @map("event_id")
+  channel          String            @default("in_app")
+  recipientRole    String            @map("recipient_role")
+  payload          Json
+  enquiryId        String?           @map("enquiry_id")
+  onboardingCaseId String?           @map("onboarding_case_id")
+  /// Explicit: notification ack is never an approval
+  countsAsApproval Boolean           @default(false) @map("counts_as_approval")
+  enquiry          GpEnquiry?        @relation(fields: [enquiryId], references: [id], onDelete: SetNull)
+  onboardingCase   GpOnboardingCase? @relation(fields: [onboardingCaseId], references: [id], onDelete: SetNull)
+  sentAt           DateTime          @default(now()) @map("sent_at")
+
+  @@index([clinicId, sentAt])
+  @@index([enquiryId])
+  @@index([onboardingCaseId])
+  @@map("gp_pipeline_notification_logs")
+}
+
+// ---------------------------------------------------------------------------
+// GP Attraction Analytics — proposal event model (no automated decisions)
+// ---------------------------------------------------------------------------
+
+enum GpAttractionSurface {
+  gp_opportunities
+  gp_faq
+  doctor_readiness
+  provider_number_readiness
+  gp_session_planner
+  gp_eoi
+  dpa_19ab_navigator
+  practice_support_matrix
+  join_our_team
+  practice_experience
+  opportunity_pack
+}
+
+enum GpAttractionPersonaHint {
+  early_career_gp
+  established_gp_seeking_change
+  returning_gp
+  part_time_parent_gp
+  special_interest_gp
+  unknown
+}
+
+enum GpAttractionChannel {
+  direct
+  organic_search
+  referral
+  email
+  social
+  unknown
+}
+
+model GpAttractionEvent {
+  id                 String                  @id @default(cuid())
+  clinicId           String                  @map("clinic_id")
+  occurredAt         DateTime                @default(now()) @map("occurred_at")
+  name               String
+  anonymousSessionId String                  @map("anonymous_session_id")
+  surface            GpAttractionSurface?
+  toolId             String?                 @map("tool_id")
+  path               String?
+  referrerPath       String?                 @map("referrer_path")
+  faqId              String?                 @map("faq_id")
+  ctaId              String?                 @map("cta_id")
+  stepId             String?                 @map("step_id")
+  stepIndex          Int?                    @map("step_index")
+  lastStepId         String?                 @map("last_step_id")
+  fromSurface        GpAttractionSurface?    @map("from_surface")
+  toSurface          GpAttractionSurface?    @map("to_surface")
+  vote               String?
+  eoiSubmissionId    String?                 @map("eoi_submission_id")
+  moduleId           String?                 @map("module_id")
+  packId             String?                 @map("pack_id")
+  personaHint        GpAttractionPersonaHint @default(unknown) @map("persona_hint")
+  channel            GpAttractionChannel     @default(unknown)
+  deviceClass        String?                 @map("device_class")
+  durationMs         Int?                    @map("duration_ms")
+  props              Json?
+  clinic             Clinic                  @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  createdAt          DateTime                @default(now()) @map("created_at")
+
+  @@index([clinicId, occurredAt])
+  @@index([clinicId, name, occurredAt])
+  @@index([anonymousSessionId, occurredAt])
+  @@index([toolId, name])
+  @@index([personaHint, occurredAt])
+  @@map("gp_attraction_events")
+}
+
+model GpAttractionDailyRollup {
+  id        String   @id @default(cuid())
+  clinicId  String   @map("clinic_id")
+  day       DateTime @db.Date
+  metricId  String   @map("metric_id")
+  dimension String   @default("_all")
+  value     Float
+  clinic    Clinic   @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([clinicId, day, metricId, dimension])
+  @@index([clinicId, day])
+  @@map("gp_attraction_daily_rollups")
+}
+
+model GpAttractionPathRollup {
+  id          String   @id @default(cuid())
+  clinicId    String   @map("clinic_id")
+  windowDays  Int      @map("window_days")
+  pathKey     String   @map("path_key")
+  sessions    Int
+  eoiSessions Int      @map("eoi_sessions")
+  liftToEoi   Float?   @map("lift_to_eoi")
+  clinic      Clinic   @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@unique([clinicId, windowDays, pathKey])
+  @@map("gp_attraction_path_rollups")
+}
+
+model ContentIntelligenceSignalDaily {
+  id        String   @id @default(cuid())
+  clinicId  String   @map("clinic_id")
+  day       DateTime @db.Date
+  source    String
+  key       String
+  value     Float
+  metaJson  Json?    @map("meta_json")
+  clinic    Clinic   @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@unique([clinicId, day, source, key])
+  @@index([clinicId, source, day])
+  @@map("content_intelligence_signal_daily")
+}
+
+model ContentIntelligenceInsightRun {
+  id                   String   @id @default(cuid())
+  clinicId             String   @map("clinic_id")
+  periodLabel          String   @map("period_label")
+  windowDays           Int      @default(28) @map("window_days")
+  generatedAt          DateTime @default(now()) @map("generated_at")
+  gapsJson             Json     @map("gaps_json")
+  unansweredJson       Json     @map("unanswered_json")
+  highConvertingJson   Json     @map("high_converting_json")
+  monthlyRecsJson      Json     @map("monthly_recs_json")
+  seoOpportunitiesJson Json     @map("seo_opportunities_json")
+  doctorInfoGapsJson   Json     @map("doctor_info_gaps_json")
+  brandAlignmentJson   Json     @map("brand_alignment_json")
+  createdByUserId      String?  @map("created_by_user_id")
+  clinic               Clinic   @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+
+  @@index([clinicId, generatedAt])
+  @@map("content_intelligence_insight_runs")
+}
+
+/// Snapshot of knowledge-graph nodes/edges derived from analytics (advisory).
+model AttractionKnowledgeGraphSnapshot {
+  id          String   @id @default(cuid())
+  clinicId    String   @map("clinic_id")
+  windowDays  Int      @map("window_days")
+  generatedAt DateTime @default(now()) @map("generated_at")
+  nodesJson   Json     @map("nodes_json")
+  edgesJson   Json     @map("edges_json")
+  summaryJson Json?    @map("summary_json")
+  clinic      Clinic   @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+
+  @@index([clinicId, generatedAt])
+  @@map("attraction_knowledge_graph_snapshots")
 }

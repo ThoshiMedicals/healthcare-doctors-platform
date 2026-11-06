@@ -16,6 +16,20 @@ logs/
 tmp/
 uploads/
 *.log
+.tmp*/
+.tmp-*
+.tmp-pdf-convert/
+.tmp-content-maturity-*.csv
+apps/web/.tmp*/
+apps/web/.tmp-*
+apps/web/.tmp-uat-detached.err
+
+# Local scratch inventories (not release artifacts)
+branches.txt
+git-history.txt
+repo-files.txt
+repo-structure.txt
+canvases/
 
 # Secrets and local environment files
 .env
