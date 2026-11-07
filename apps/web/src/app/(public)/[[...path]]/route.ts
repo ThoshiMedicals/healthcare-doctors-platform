@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { headers } from "next/headers";
 import { resolveClinicFromRequest } from "@/clinics/resolve-clinic";
 import { toStoragePath } from "@/documents/paths";
@@ -29,27 +30,50 @@ function serverTimingHeader(
   return parts.join(", ");
 }
 
+function weakEtag(body: string): string {
+  return `W/"${createHash("sha1").update(body).digest("hex").slice(0, 16)}"`;
+}
+
 function htmlResponse(
   body: string,
   status: number,
   staging: boolean,
   cache: "HIT" | "MISS",
-  timings?: Record<string, number>,
+  timings: Record<string, number> | undefined,
+  request: Request,
 ) {
+  const etag = weakEtag(body);
   const headersInit: Record<string, string> = {
     "content-type": "text/html; charset=utf-8",
     "x-wmc-cache": cache,
     "server-timing": serverTimingHeader(cache, timings),
-    // Public HTML is clinic+path cached in-process; browsers/CDNs must not share
-    // personalised or auth responses — these routes are anonymous public only.
-    "cache-control": "private, no-store",
+    // Anonymous public HTML only. private = never shared CDN/auth bleed.
+    // max-age=0 + must-revalidate keeps CMS freshness; avoids no-store which
+    // blocks bfcache and forces full re-download of the document body.
+    "cache-control": "private, max-age=0, must-revalidate",
+    etag,
   };
   if (staging) headersInit["X-Robots-Tag"] = STAGING_ROBOTS_DIRECTIVE;
+
+  const inm = request.headers.get("if-none-match");
+  if (inm && inm === etag) {
+    return new Response(null, {
+      status: 304,
+      headers: {
+        etag,
+        "x-wmc-cache": cache,
+        "server-timing": serverTimingHeader(cache, timings),
+        "cache-control": headersInit["cache-control"],
+        ...(staging ? { "X-Robots-Tag": STAGING_ROBOTS_DIRECTIVE } : {}),
+      },
+    });
+  }
+
   return new Response(body, { status, headers: headersInit });
 }
 
 export async function GET(
-  _request: Request,
+  request: Request,
   context: { params: Promise<{ path?: string[] }> },
 ) {
   const headerStore = await headers();
@@ -82,7 +106,7 @@ export async function GET(
   const cached = getPublicHtmlCache(clinic.id, storagePath);
   if (cached) {
     const html = staging ? applyStagingNoIndexMeta(cached.html) : cached.html;
-    return htmlResponse(html, cached.status, staging, "HIT", { total: 0 });
+    return htmlResponse(html, cached.status, staging, "HIT", { total: 0 }, request);
   }
 
   const rendered = await renderStoredPage(clinic.id, storagePath, {
@@ -120,5 +144,5 @@ export async function GET(
   });
 
   const html = staging ? applyStagingNoIndexMeta(rendered.html) : rendered.html;
-  return htmlResponse(html, rendered.status, staging, "MISS", rendered.timings);
+  return htmlResponse(html, rendered.status, staging, "MISS", rendered.timings, request);
 }

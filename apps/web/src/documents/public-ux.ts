@@ -111,20 +111,24 @@ export function applyPublicUxRefinements(
   let next = html;
   // Topic cross-link bar under the hero (for example "Need ongoing diabetes care?").
   next = next.replace(/<nav\b[^>]*\bclass="topic-wayfinding"[^>]*>[\s\S]*?<\/nav>/gi, "");
-  // Prefer styles.min.css directly: Hostinger static short-circuit can serve the
-  // unminified public/styles.css and bypass next.config rewrite → layout drift vs NEXT.
-  next = next.replace(/styles\.css(?=")/g, "styles.min.css?v=wmc-updates-dr-mobile-20261106d");
-  next = next.replace(/styles\.min\.css(?:\?[^"]*)?(?=")/g, "styles.min.css?v=wmc-updates-dr-mobile-20261106d");
+  // Serve CSS/JS via /wmc-cache/* (Next route) so Hostinger cannot short-circuit
+  // public/*.css/*.js without Cache-Control. Absolute paths work from nested pages.
+  const styleHref = "/wmc-cache/styles.min.css?v=wmc-updates-dr-mobile-20261106e";
+  const siteJsHref = "/wmc-cache/site.js?v=wmc-nav-prefetch-20261107";
+  const updatesDataHref = "/wmc-cache/updates-data.js?v=wmc-doctor-welcome-20261106a";
+  const updatesUiHref = "/wmc-cache/updates-ui.js?v=wmc-doctor-welcome-20261106a";
+  // Include optional existing /wmc-cache/ prefix so re-application is idempotent.
+  next = next.replace(/(?:\/wmc-cache\/)?(?:\.\.\/)*styles(?:\.min)?\.css(?:\?[^"]*)?(?=")/g, styleHref);
   // Normalise contact/footer clock meridians (7:00am → 7:00 AM) so Hostinger matches NEXT layout.
   next = next.replace(
     /(<div\b[^>]*class="(?:contact-hours-detail|footer-hours)"[^>]*>)([\s\S]*?)(<\/div>)/gi,
     (_match, open: string, inner: string, close: string) =>
       `${open}${inner.replace(/\b(\d{1,2}:\d{2})\s*([AaPp][Mm])\b/g, (_t, clock: string, mer: string) => `${clock} ${mer.toUpperCase()}`)}${close}`,
   );
-  // site.js is otherwise cached for hours (CDN max-age); bust so mobile-nav fixes ship.
-  next = next.replace(/site\.js(?=")/g, "site.js?v=wmc-practitioner-growth-20261106");
-  next = next.replace(/updates-data\.js(?=")/g, "updates-data.js?v=wmc-doctor-welcome-20261106a");
-  next = next.replace(/updates-ui\.js(?=")/g, "updates-ui.js?v=wmc-doctor-welcome-20261106a");
+  // site.js / updates scripts: immutable cache via /wmc-cache + query bust on change.
+  next = next.replace(/(?:\/wmc-cache\/)?(?:\.\.\/)*site\.js(?:\?[^"]*)?(?=")/g, siteJsHref);
+  next = next.replace(/(?:\/wmc-cache\/)?(?:\.\.\/)*updates-data\.js(?:\?[^"]*)?(?=")/g, updatesDataHref);
+  next = next.replace(/(?:\/wmc-cache\/)?(?:\.\.\/)*updates-ui\.js(?:\?[^"]*)?(?=")/g, updatesUiHref);
   // Circular AGPAL mark: keep transparent on light cards, restore white pad on dark footers.
   next = next.replace(/<style\b[^>]*id="wmc-agpal-mark-fix"[\s\S]*?<\/style>\s*/i, "");
   next = next.replace(/<style\b[^>]*id="wmc-team-authority-list-fix"[\s\S]*?<\/style>\s*/i, "");
@@ -547,8 +551,8 @@ body.ev-pe-page .pe-media--chapter img,body.pe-hub-page .pe-media--chapter img{
   );
   // Digital Reception demand capture script — bust when scrim / search-signal behaviour changes.
   next = next.replace(
-    /digital-reception\.js(?:\?[^"]*)?(?=")/g,
-    "digital-reception.js?v=wmc-dr-scrim-20261106",
+    /(?:\/wmc-cache\/)?(?:\.\.\/)*digital-reception\.js(?:\?[^"]*)?(?=")/g,
+    "/wmc-cache/digital-reception.js?v=wmc-dr-scrim-20261106",
   );
   // Site-root home links must hit `/` (live public-ux), not static public/index.html.
   next = next.replace(/\bhref="(?:\.\/)*(?:\.\.\/)*index\.html"/g, 'href="/"');

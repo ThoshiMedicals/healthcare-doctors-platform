@@ -1801,3 +1801,62 @@
     button.addEventListener('click', () => applyFilter(button.getAttribute('data-gp-filter') || 'all'));
   });
 })();
+
+/* Same-origin document prefetch on intent — warms public HTML cache + browser HTTP cache
+   without turning the site into an SPA. Skips external, hash, tel, mailto, and admin URLs. */
+(function () {
+  'use strict';
+  if (window.__wmcNavPrefetch) return;
+  window.__wmcNavPrefetch = true;
+  var seen = Object.create(null);
+  function shouldPrefetch(href) {
+    if (!href || href.charAt(0) === '#' || /^(mailto:|tel:|javascript:)/i.test(href)) return false;
+    try {
+      var u = new URL(href, location.href);
+      if (u.origin !== location.origin) return false;
+      if (u.pathname.indexOf('/admin') === 0 || u.pathname.indexOf('/api/') === 0) return false;
+      if (u.pathname === location.pathname && u.search === location.search) return false;
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+  function prefetch(href) {
+    if (!shouldPrefetch(href)) return;
+    var abs;
+    try {
+      abs = new URL(href, location.href);
+    } catch (e) {
+      return;
+    }
+    var key = abs.pathname + abs.search;
+    if (seen[key]) return;
+    seen[key] = 1;
+    var link = document.createElement('link');
+    link.rel = 'prefetch';
+    link.as = 'document';
+    link.href = key;
+    document.head.appendChild(link);
+  }
+  document.addEventListener(
+    'pointerover',
+    function (event) {
+      var t = event.target;
+      if (!t || !t.closest) return;
+      var a = t.closest('a[href]');
+      if (a) prefetch(a.getAttribute('href'));
+    },
+    { passive: true, capture: true },
+  );
+  function warmNav() {
+    var nodes = document.querySelectorAll('header a[href], nav a[href], .main-nav a[href], .site-nav a[href]');
+    for (var i = 0; i < nodes.length && i < 24; i += 1) {
+      prefetch(nodes[i].getAttribute('href'));
+    }
+  }
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(warmNav, { timeout: 2500 });
+  } else {
+    setTimeout(warmNav, 1200);
+  }
+})();

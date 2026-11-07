@@ -113,8 +113,11 @@ export function refineJoinOurTeamRecruitment(html: string, _branding: ClinicBran
   next = next.replace(/<style\b[^>]*id="wmc-gp-recruitment"[\s\S]*?<\/style>/i, "");
   next = next.replace(/<\/head>/i, `${JOIN_OUR_TEAM_RECRUIT_STYLE}</head>`);
 
-  // styles.min.css: Hostinger serves unminified styles.css statically and skips Next rewrites.
-  next = next.replace(/styles(?:\.min)?\.css(?:\?[^"]*)?(?=")/g, `styles.min.css?v=${STYLE_BUST}`);
+  // styles.min.css via /wmc-cache so Hostinger applies immutable Cache-Control (not static short-circuit).
+  next = next.replace(
+    /(?:\/wmc-cache\/)?(?:\.\.\/)*styles(?:\.min)?\.css(?:\?[^"]*)?(?=")/g,
+    `/wmc-cache/styles.min.css?v=${STYLE_BUST}`,
+  );
 
   // Evidence panel replaces page-directory / journey / on-this-page chrome.
   next = next.replace(/<div\b[^>]*class="[^"]*\bbreadcrumb-bar\b[^"]*"[^>]*>[\s\S]*?<\/div>\s*/i, "");
