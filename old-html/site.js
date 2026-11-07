@@ -1802,7 +1802,7 @@
   });
 })();
 
-/* Same-origin document prefetch on intent — warms public HTML cache + browser HTTP cache
+/* Same-origin document prefetch on intent â€” warms public HTML cache + browser HTTP cache
    without turning the site into an SPA. Skips external, hash, tel, mailto, and admin URLs. */
 (function () {
   'use strict';
@@ -1860,4 +1860,3 @@
     setTimeout(warmNav, 1200);
   }
 })();
-

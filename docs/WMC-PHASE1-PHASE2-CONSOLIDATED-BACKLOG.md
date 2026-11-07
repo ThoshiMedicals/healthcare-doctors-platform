@@ -1,9 +1,10 @@
 # WMC — Combined Phase 1 + Phase 2 Production Release Backlog
 
 **Role:** Principal Release Manager / Next.js Architect / Healthcare UX / Clinical Governance  
-**Date:** 2026-11-07  
-**Mode:** Consolidation only — **no code, CMS, database, or deploy changes** in this pass.  
-**Git baseline:** `ae202f2` on `release/wmc-hostinger-rc1`  
+**Date:** 2026-11-07 (updated after Phase 3)  
+**Original mode:** Consolidation only.  
+**Phase 3 follow-up:** Controlled pre-launch remediation — see [`docs/WMC-PHASE3-PRELAUNCH-REMEDIATION.md`](./WMC-PHASE3-PRELAUNCH-REMEDIATION.md).  
+**Git rollback tip:** `ae202f2` · **Evidence commit:** `af2f53e`  
 **Authority UX/content:** https://next.gabbamedicalcentre.com.au  
 **Hostinger staging:** https://mediumslateblue-eagle-960503.hostingersite.com  
 
@@ -16,15 +17,29 @@
 
 ---
 
+## Phase 3 status snapshot (2026-11-07)
+
+| Backlog ID | Phase 3 outcome |
+|------------|-----------------|
+| BL-P0-01 Ops evidence | Still **BLOCKED** (LAUNCH E-table) |
+| BL-P0-02 Prod env noindex | Staging hostname lock OK; **prod attestation BLOCKED** |
+| BL-P1-01 Hostinger robots CDN | Still **BLOCKED** (hCDN shadows `/robots.txt`) |
+| BL-P1-02 UAT robots/sitemap 400 | **DONE** — `:3100` + `next.` return 200 |
+| BL-P1-03 Usman notice | **PREVIEW READY** — clinical approval required; not published |
+| BL-P1-04/05 Recruitment authenticity + Index Gate | **HOLD** unchanged |
+| BL-P3-01 site.js golden drift | **DONE** — byte-synced |
+
+---
+
 ## Executive readiness decisions
 
 | Gate | Decision | Rationale |
 |------|----------|-----------|
-| **Technical deployment readiness** | **CONDITIONAL GO FOR CUTOVER PLANNING** | Public routes, canonicals/OG, approved SEO assets, and Hostinger RC app tip are largely sound. Residual: Hostinger CDN `robots.txt` short-circuit, UAT SEO route gap, warm-host hardcodes, ops evidence missing. |
-| **Patient website readiness** | **CONDITIONAL GO** | Homepage authority v6, HotDoc/Mary/insurance paths, mobile nav, trust/NAP pass. **F1 Usman notice** is a clinical-clarity **P1** (not automatic DNS P0). Photos/PEERS are P2. |
-| **GP recruitment readiness** | **HOLD / NO-GO for production recruitment surface** | Join chrome works; Attraction authenticity (photography, voices, Flexible Sessions, EOI ownership, Index Gate) still **HOLD** per Attraction gap report. |
-| **SEO readiness** | **CONDITIONAL** | Approved `seo-approved/*` correct for apex. Staging empty sitemap + HTML noindex OK. Hostinger edge `robots.txt` wrong for app intent. `next.`/UAT `:3100` **400** on robots/sitemap is **UAT build gap**, not Cloudflare inventing a bad app design (dev `:3000` returns 200). |
-| **Overall production DNS cutover** | **NO-GO** | Unchanged. Ops evidence FAIL (`WMC-PRODUCTION-READINESS-EVIDENCE.md`). Do not change apex DNS. |
+| **Technical deployment readiness** | **CONDITIONAL GO FOR CUTOVER PLANNING** | LAUNCH.md now matches Hostinger + Supabase. UAT SEO routes repaired. Residual: ops evidence, Hostinger CDN robots, Git auto-deploy. |
+| **Patient website readiness** | **CONDITIONAL GO** | Homepage authority v6, HotDoc/Mary/insurance paths pass. Usman notice awaits clinical sign-off (preview only). |
+| **GP recruitment readiness** | **HOLD** | Join chrome works; Attraction authenticity + Index Gate still HOLD. |
+| **SEO readiness** | **CONDITIONAL GO** | UAT/`next.` robots+sitemap **PASS**. Staging sitemap + HTML noindex **PASS**. Hostinger `/robots.txt` CDN shadow **BLOCKED**. |
+| **Overall production DNS cutover** | **NO-GO** | Ops evidence still BLOCKED. Do not change apex DNS. |
 
 **Important classification rule used here:** Phase 2 “P1 Critical” UX items are **not** automatically DNS cutover blockers. Only items that make an unsafe or non-indexable apex, or that leave production ops unproven, are **P0** for cutover.
 

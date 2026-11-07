@@ -11,7 +11,7 @@ alwaysApply: true
 - Preserve SEO, schema, HotDoc, governance, and approved public layout. No Phase 1B redesign unless asked.
 - Public HTML is served from DB-imported immutable page revisions; presentation tweaks go through `apps/web/src/documents/public-ux.ts` (and related modules), not ad-hoc page rewrites.
 - **Homepage hero + landing presentation FROZEN (2026-11-05):** authority v6 in `apps/web/src/documents/public-ux.ts` (`hero--authority-v6`, practitioner strip, linked stats, HotDoc benefit cards, `#team` carousel removed). Do not iterate hero/landing layout, copy hierarchy, or those homepage sections unless the operator explicitly asks. Cache bust token currently `wmc-hero-authority-v6f-20261105`.
-- Production deploy guide is `deployment/LAUNCH.md` only. Hostinger and Cloudflare Pages are superseded/fail paths.
+- Production deploy guide is `deployment/LAUNCH.md` (Phase 3: Hostinger Web App + Supabase Postgres; historical VPS/Docker in Appendix H only). Cloudflare Pages remains a fail path.
 
 ## Repo and release tip (as of 2026-11-07)
 
