@@ -195,6 +195,10 @@ export function getPublicHtmlCache(clinicId: string, pathKey: string): PublicHtm
   return { ...durable, source: "disk", generation: clinicGeneration(clinicId) };
 }
 
+export function peekPublicHtmlGeneration(clinicId: string): number {
+  return clinicGeneration(clinicId);
+}
+
 export function setPublicHtmlCache(
   clinicId: string,
   pathKey: string,
@@ -211,6 +215,28 @@ export function setPublicHtmlCache(
   entries.set(key, entry);
   pruneIfNeeded();
   writeDurablePage(clinicId, pathKey, value);
+}
+
+/**
+ * Store a MISS render only if no publish/invalidation happened during rendering.
+ * Prevents an in-flight pre-publish render from rewriting durable/memory cache
+ * after invalidatePublicHtmlCache deleted snapshots.
+ */
+export function setPublicHtmlCacheIfGeneration(
+  clinicId: string,
+  pathKey: string,
+  value: { status: number; html: string; path: string },
+  generationAtStart: number,
+): boolean {
+  if (clinicGeneration(clinicId) !== generationAtStart) return false;
+  setPublicHtmlCache(clinicId, pathKey, value);
+  // Re-check after write in case invalidation raced the disk write.
+  if (clinicGeneration(clinicId) !== generationAtStart) {
+    entries.delete(entryKey(clinicId, pathKey));
+    deleteClinicDurable(clinicId);
+    return false;
+  }
+  return true;
 }
 
 /** Bump clinic generation and drop derived caches. Safe to call from any publish path. */

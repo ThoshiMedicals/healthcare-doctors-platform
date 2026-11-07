@@ -5,7 +5,8 @@ import { toStoragePath } from "@/documents/paths";
 import { renderStoredPage } from "@/documents/render-published-document";
 import {
   getPublicHtmlCache,
-  setPublicHtmlCache,
+  peekPublicHtmlGeneration,
+  setPublicHtmlCacheIfGeneration,
 } from "@/documents/public-html-cache";
 import {
   STAGING_ROBOTS_DIRECTIVE,
@@ -112,6 +113,10 @@ export async function GET(
     return htmlResponse(html, cached.status, staging, state, { total: 0 }, request);
   }
 
+  // Capture generation before render so a concurrent CMS publish cannot let this
+  // response re-seed durable/memory cache with pre-publish HTML.
+  const generationAtStart = peekPublicHtmlGeneration(clinic.id);
+
   const rendered = await renderStoredPage(clinic.id, storagePath, {
     slug: clinic.slug,
     practiceName: clinic.practiceName,
@@ -140,11 +145,16 @@ export async function GET(
   }
 
   // Cache the pre-staging HTML so staging noindex meta is applied per request host.
-  setPublicHtmlCache(clinic.id, storagePath, {
-    status: rendered.status,
-    html: rendered.html,
-    path: rendered.path,
-  });
+  setPublicHtmlCacheIfGeneration(
+    clinic.id,
+    storagePath,
+    {
+      status: rendered.status,
+      html: rendered.html,
+      path: rendered.path,
+    },
+    generationAtStart,
+  );
 
   const html = staging ? applyStagingNoIndexMeta(rendered.html) : rendered.html;
   return htmlResponse(html, rendered.status, staging, "MISS", rendered.timings, request);
