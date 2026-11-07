@@ -7,9 +7,11 @@ export const CARE_AREA_SERVICE_MAP: ReadonlyArray<{
   servicePath: string;
   serviceLabel: string;
 }> = [
-  { match: /women'?s\s+health/i, servicePath: "services/womens-health.html", serviceLabel: "Women's Health" },
-  { match: /men'?s\s+health/i, servicePath: "services/mens-health.html", serviceLabel: "Men's Health" },
-  { match: /child(ren)?('?s)?\s+health|child\s+health/i, servicePath: "services/childrens-health.html", serviceLabel: "Children's Health" },
+  // Accept ASCII or typographic apostrophes in care-area labels.
+  { match: /women[''\u2019]?s\s+health/i, servicePath: "services/womens-health.html", serviceLabel: "Women's Health" },
+  // Do not match the "men's" substring inside "women's health".
+  { match: /(^|[^a-z])men[''\u2019]?s\s+health/i, servicePath: "services/mens-health.html", serviceLabel: "Men's Health" },
+  { match: /child(ren)?([''\u2019]?s)?\s+health|child\s+health/i, servicePath: "services/childrens-health.html", serviceLabel: "Children's Health" },
   { match: /mental\s+health/i, servicePath: "services/mental-health.html", serviceLabel: "Mental Health" },
   { match: /family\s+(health|medicine)|general\s+practice/i, servicePath: "services/family-health.html", serviceLabel: "Family Health" },
   {

@@ -115,6 +115,12 @@ export function applyPublicUxRefinements(
   // unminified public/styles.css and bypass next.config rewrite → layout drift vs NEXT.
   next = next.replace(/styles\.css(?=")/g, "styles.min.css?v=wmc-updates-dr-mobile-20261106d");
   next = next.replace(/styles\.min\.css(?:\?[^"]*)?(?=")/g, "styles.min.css?v=wmc-updates-dr-mobile-20261106d");
+  // Normalise contact/footer clock meridians (7:00am → 7:00 AM) so Hostinger matches NEXT layout.
+  next = next.replace(
+    /(<div\b[^>]*class="(?:contact-hours-detail|footer-hours)"[^>]*>)([\s\S]*?)(<\/div>)/gi,
+    (_match, open: string, inner: string, close: string) =>
+      `${open}${inner.replace(/\b(\d{1,2}:\d{2})\s*([AaPp][Mm])\b/g, (_t, clock: string, mer: string) => `${clock} ${mer.toUpperCase()}`)}${close}`,
+  );
   // site.js is otherwise cached for hours (CDN max-age); bust so mobile-nav fixes ship.
   next = next.replace(/site\.js(?=")/g, "site.js?v=wmc-practitioner-growth-20261106");
   next = next.replace(/updates-data\.js(?=")/g, "updates-data.js?v=wmc-doctor-welcome-20261106a");

@@ -26,3 +26,10 @@ test("maps James care areas to children, mental, and family", () => {
     "services/mental-health.html",
   ]);
 });
+
+test("Women's health does not also map to men's health", () => {
+  const straight = servicesForCareAreas(["Women's health"]).map((s) => s.path);
+  const curly = servicesForCareAreas(["Women\u2019s health"]).map((s) => s.path);
+  assert.deepEqual(straight, ["services/womens-health.html"]);
+  assert.deepEqual(curly, ["services/womens-health.html"]);
+});
