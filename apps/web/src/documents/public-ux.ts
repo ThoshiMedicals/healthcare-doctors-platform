@@ -111,8 +111,10 @@ export function applyPublicUxRefinements(
   let next = html;
   // Topic cross-link bar under the hero (for example "Need ongoing diabetes care?").
   next = next.replace(/<nav\b[^>]*\bclass="topic-wayfinding"[^>]*>[\s\S]*?<\/nav>/gi, "");
-  // A new URL bypasses stale browser/Cloudflare CSS after visual-polish deployment.
-  next = next.replace(/styles\.css(?=")/g, "styles.css?v=wmc-updates-dr-mobile-20261106c");
+  // Prefer styles.min.css directly: Hostinger static short-circuit can serve the
+  // unminified public/styles.css and bypass next.config rewrite → layout drift vs NEXT.
+  next = next.replace(/styles\.css(?=")/g, "styles.min.css?v=wmc-updates-dr-mobile-20261106d");
+  next = next.replace(/styles\.min\.css(?:\?[^"]*)?(?=")/g, "styles.min.css?v=wmc-updates-dr-mobile-20261106d");
   // site.js is otherwise cached for hours (CDN max-age); bust so mobile-nav fixes ship.
   next = next.replace(/site\.js(?=")/g, "site.js?v=wmc-practitioner-growth-20261106");
   next = next.replace(/updates-data\.js(?=")/g, "updates-data.js?v=wmc-doctor-welcome-20261106a");
@@ -347,6 +349,21 @@ nav[aria-label="Breadcrumb"],
   .latest-supporting-column .health-update-card:first-child .health-update-copy h3{
     overflow-wrap:anywhere!important;
   }
+  /* Beat home-page 15/8 photographic footprint for square welcome banners. */
+  .home-page .latest-health-updates .health-update-card:first-child .health-update-image:has(img[src*="welcome-dr-"]),
+  .home-page .latest-health-updates .health-update-image:has(img[src*="welcome-dr-"]),
+  .home-page .latest-featured-column .health-update-image:has(img[src*="welcome-dr-"]),
+  .home-page .latest-supporting-column .health-update-image:has(img[src*="welcome-dr-"]){
+    aspect-ratio:1/1!important;
+    height:auto!important;
+    max-height:none!important;
+  }
+  .home-page .latest-health-updates .health-update-image img[src*="welcome-dr-"]{
+    width:100%!important;
+    height:100%!important;
+    object-fit:contain!important;
+    object-position:center!important;
+  }
 }
 @media (max-width:390px){
   /* Keep photo + info side-by-side; reset explicit rows so CTAs stay under the body copy. */
@@ -373,7 +390,39 @@ nav[aria-label="Breadcrumb"],
 }
 </style>
 <style id="wmc-digital-reception-mobile">
-/* Digital Reception phone polish. No content removed. */
+/* Digital Reception polish. No content removed. */
+/* Scrim separates the dialog from the live page behind it. */
+.digital-reception-backdrop{
+  position:fixed!important;
+  inset:0!important;
+  z-index:93!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:rgba(12,32,48,.48)!important;
+  -webkit-backdrop-filter:blur(2px)!important;
+  backdrop-filter:blur(2px)!important;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  cursor:pointer;
+  transition:opacity .2s ease,visibility 0s linear .2s;
+}
+.digital-reception-backdrop.is-open{
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+  transition:opacity .2s ease,visibility 0s linear 0s;
+}
+body.digital-reception-open{
+  overflow:hidden!important;
+}
+.digital-reception-panel.is-open{
+  z-index:95!important;
+  border-color:rgba(23,48,68,.28)!important;
+  box-shadow:0 28px 80px rgba(8,28,42,.38)!important;
+}
 .digital-reception-result,
 .digital-reception-practitioner,
 .digital-reception-step,
@@ -386,6 +435,14 @@ nav[aria-label="Breadcrumb"],
 .digital-reception-status,
 .digital-reception-confirm{
   overflow-wrap:anywhere!important;
+}
+@media (prefers-reduced-motion:reduce){
+  .digital-reception-backdrop,
+  .digital-reception-backdrop.is-open{
+    transition:none!important;
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+  }
 }
 @media (max-width:700px){
   .digital-reception-search-row{
@@ -482,10 +539,10 @@ body.ev-pe-page .pe-media--chapter img,body.pe-hub-page .pe-media--chapter img{
 }
 </style></head>`,
   );
-  // Digital Reception demand capture script — bust when search-signal posting changes.
+  // Digital Reception demand capture script — bust when scrim / search-signal behaviour changes.
   next = next.replace(
     /digital-reception\.js(?:\?[^"]*)?(?=")/g,
-    "digital-reception.js?v=wmc-search-signals-20261103",
+    "digital-reception.js?v=wmc-dr-scrim-20261106",
   );
   // Site-root home links must hit `/` (live public-ux), not static public/index.html.
   next = next.replace(/\bhref="(?:\.\/)*(?:\.\.\/)*index\.html"/g, 'href="/"');

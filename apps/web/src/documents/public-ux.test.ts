@@ -146,7 +146,7 @@ test("Join Our Team becomes a GP recruitment prospectus without golden-master ed
   assert.match(result, /Why Demand Exists/);
   assert.match(result, /Demand Is Already On The Books/);
   assert.match(result, /id="wmc-gp-recruitment"/);
-  assert.match(result, /styles\.css\?v=wmc-gp-recruit-20261106b/);
+  assert.match(result, /styles\.min\.css\?v=wmc-gp-recruit-20261106b/);
   assert.match(result, /top:calc\(10rem \+ env\(safe-area-inset-top/);
   assert.match(result, /GP Readiness &amp; Onboarding Portal/);
   assert.match(result, /data-gp-readiness-open="true"/);
@@ -317,7 +317,7 @@ test("the real homepage opening-hours block includes both links", () => {
   assert.match(result, /class="hero-hours-actions"/);
   assert.match(result, /href="contact\.html">View all hours/);
   assert.match(result, /href="after-hours-care\.html">After Hours Care/);
-  assert.match(result, /styles\.css\?v=wmc-updates-dr-mobile-20261106c/);
+  assert.match(result, /styles\.min\.css\?v=wmc-updates-dr-mobile-20261106d/);
   assert.match(result, /site\.js\?v=wmc-practitioner-growth-20261106/);
   assert.match(result, /class="brand"[^>]*href="\/"/);
   assert.doesNotMatch(result, /class="brand"[^>]*href="index\.html"/);
@@ -334,7 +334,7 @@ test("the real homepage opening-hours block includes both links", () => {
   assert.match(result, /href="book-appointment\.html#booking-help">Reschedule appointments/);
   assert.match(result, /href="book-appointment\.html#using-the-hotdoc-app">Manage family bookings/);
   assert.match(result, /href="book-appointment\.html">Book appointments/);
-  assert.match(result, /digital-reception\.js\?v=wmc-search-signals-20261103/);
+  assert.match(result, /digital-reception\.js\?v=wmc-dr-scrim-20261106/);
   assert.match(result, /data-clinic-slug="woolloongabba"/);
   assert.match(result, /hero hero--authority-v6/);
   assert.match(result, /#home\.hero\.hero--authority-v6/);
