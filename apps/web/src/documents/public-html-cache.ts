@@ -9,15 +9,15 @@
  *   navigations do not re-run Prisma when a snapshot already exists.
  */
 
-import { createHash } from "node:crypto";
+import { createHash } from "crypto";
 import {
   existsSync,
   mkdirSync,
   readFileSync,
   rmSync,
   writeFileSync,
-} from "node:fs";
-import path from "node:path";
+} from "fs";
+import path from "path";
 
 export type CachedPublicHtml = {
   status: number;
