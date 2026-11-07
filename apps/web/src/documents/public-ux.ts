@@ -41,6 +41,44 @@ function resolveBranding(options?: PublicUxOptions | string): ClinicBranding {
   };
 }
 
+/**
+ * Prevent sticky-dock CLS: first paint must already use the final has-action-dock
+ * full-width layout, with the Digital Reception launcher in place. digital-reception.js
+ * then binds behaviour without changing dock geometry.
+ */
+function stabilisePersistentCareDock(html: string): string {
+  if (!/<nav\b[^>]*\bpersistent-care-actions\b/i.test(html)) return html;
+  let next = html;
+  next = next.replace(/<body\b([^>]*)>/i, (tag, attrs: string) => {
+    if (/\bhas-action-dock\b/.test(attrs)) return tag;
+    if (/\bclass="/i.test(attrs)) {
+      return `<body${attrs.replace(/\bclass="/i, 'class="has-action-dock ')}>`;
+    }
+    return `<body class="has-action-dock"${attrs}>`;
+  });
+
+  const launcherHtml =
+    '<button type="button" class="digital-reception-launcher digital-reception-dock-action" aria-expanded="false" aria-controls="digital-reception-panel" aria-haspopup="dialog" aria-label="Open Digital Reception — ask for information"><span class="digital-reception-launcher-full">Digital Reception</span><span class="digital-reception-launcher-compact">Ask us</span></button>';
+
+  if (!/\bdigital-reception-launcher\b/.test(next)) {
+    next = next.replace(
+      /(<div\b[^>]*\bclass="[^"]*\bpersistent-care-actions-inner\b[^"]*"[^>]*>)([\s\S]*?)(<\/div>\s*<\/nav>)/i,
+      (_match, open: string, inner: string, close: string) => {
+        if (/\bdigital-reception-launcher\b/.test(inner)) return `${open}${inner}${close}`;
+        return `${open}${inner}${launcherHtml}${close}`;
+      },
+    );
+  }
+
+  // Match post-DR aria-label for patient docks only (leave GP recruitment label alone).
+  next = next.replace(
+    /(<nav\b(?=[^>]*\bpersistent-care-actions\b)(?![^>]*persistent-care-actions--recruitment)[^>]*\baria-label=")[^"]*(")/i,
+    "$1Book, call, and reception$2",
+  );
+
+  return next;
+}
+
 function injectClinicDataAttrs(html: string, branding: ClinicBranding): string {
   const attrs = [
     `data-clinic-slug="${escapeHtmlAttr(branding.clinicSlug)}"`,
@@ -552,7 +590,7 @@ body.ev-pe-page .pe-media--chapter img,body.pe-hub-page .pe-media--chapter img{
   // Digital Reception demand capture script — bust when scrim / search-signal behaviour changes.
   next = next.replace(
     /(?:\/wmc-cache\/)?(?:\.\.\/)*digital-reception\.js(?:\?[^"]*)?(?=")/g,
-    "/wmc-cache/digital-reception.js?v=wmc-dr-scrim-20261106",
+    "/wmc-cache/digital-reception.js?v=wmc-dr-dock-cls-20261107",
   );
   // Site-root home links must hit `/` (live public-ux), not static public/index.html.
   next = next.replace(/\bhref="(?:\.\/)*(?:\.\.\/)*index\.html"/g, 'href="/"');
@@ -926,6 +964,9 @@ min-height:44px;width:100%;max-width:100%;box-sizing:border-box
     }
   }
 
+  // CLS: paint sticky booking dock in final has-action-dock geometry (with DR launcher).
+  next = stabilisePersistentCareDock(next);
+
   // Add Join Our Team in every public primary navigation using the Updates
   // link's existing relative prefix (works for nested services/knowledge pages).
   next = next.replace(/<nav\b[^>]*\bid="primary-nav"[^>]*>[\s\S]*?<\/nav>/i, (nav) => {
@@ -1065,16 +1106,16 @@ function refineHomepageHeroAuthority(html: string, branding: ClinicBranding): st
 <a class="hero-practitioner-more" href="team.html">View full team</a>
 </div>
 <ul class="hero-practitioner-faces" aria-label="Our doctors">
-<li><a class="hero-practitioner-face" href="doctors/dr-tanya-goodwill.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" src="assets/team/dr-tanya-goodwill-640.webp" width="96"/><span>Dr Tanya Goodwill</span></a></li>
-<li><a class="hero-practitioner-face" href="doctors/dr-sumita-singh.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" src="assets/team/dr-sumita-singh-640.webp" width="96"/><span>Dr Sumita Singh</span></a></li>
-<li><a class="hero-practitioner-face" href="doctors/dr-wasantha-hettiarchchi.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" src="assets/team/dr-wasantha-hettiarchchi-640.webp" width="96"/><span>Dr Wasantha Hettiarchchi</span></a></li>
-<li><a class="hero-practitioner-face" href="doctors/dr-anand-singh.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" src="assets/team/dr-anand-singh-640.webp" width="96"/><span>Dr Anand Singh</span></a></li>
-<li><a class="hero-practitioner-face" href="doctors/dr-debra-larkins.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" src="assets/team/dr-debra-larkins-640.webp" width="96"/><span>Dr Debra Larkins</span></a></li>
-<li><a class="hero-practitioner-face" href="doctors/dr-kooshyar-karimi.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" src="assets/team/dr-kooshyar-karimi-640.webp" width="96"/><span>Dr Kooshyar Karimi</span></a></li>
-<li><a class="hero-practitioner-face" href="doctors/dr-sambo-luon.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" src="assets/team/dr-sambo-luon-640.webp" width="96"/><span>Dr Sambo Luon</span></a></li>
-<li><a class="hero-practitioner-face" href="doctors/dr-usman-gul.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" src="assets/team/dr-usman-gul-640.webp" width="96"/><span>Dr Usman Gul</span></a></li>
-<li><a class="hero-practitioner-face" href="doctors/dr-mary-abadir.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" src="assets/team/dr-mary-abadir-640.webp" width="96"/><span>Dr Mary Abadir</span></a></li>
-<li><a class="hero-practitioner-face" href="doctors/dr-golnar-mortezaei.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" src="assets/team/dr-golnar-mortezaei-640.webp" width="96"/><span>Dr Golnar Mortezaei</span></a></li>
+<li><a class="hero-practitioner-face" href="doctors/dr-tanya-goodwill.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" sizes="96px" src="assets/team/dr-tanya-goodwill-96.webp" srcset="assets/team/dr-tanya-goodwill-96.webp 96w, assets/team/dr-tanya-goodwill-192.webp 192w" width="96"/><span>Dr Tanya Goodwill</span></a></li>
+<li><a class="hero-practitioner-face" href="doctors/dr-sumita-singh.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" sizes="96px" src="assets/team/dr-sumita-singh-96.webp" srcset="assets/team/dr-sumita-singh-96.webp 96w, assets/team/dr-sumita-singh-192.webp 192w" width="96"/><span>Dr Sumita Singh</span></a></li>
+<li><a class="hero-practitioner-face" href="doctors/dr-wasantha-hettiarchchi.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" sizes="96px" src="assets/team/dr-wasantha-hettiarchchi-96.webp" srcset="assets/team/dr-wasantha-hettiarchchi-96.webp 96w, assets/team/dr-wasantha-hettiarchchi-192.webp 192w" width="96"/><span>Dr Wasantha Hettiarchchi</span></a></li>
+<li><a class="hero-practitioner-face" href="doctors/dr-anand-singh.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" sizes="96px" src="assets/team/dr-anand-singh-96.webp" srcset="assets/team/dr-anand-singh-96.webp 96w, assets/team/dr-anand-singh-192.webp 192w" width="96"/><span>Dr Anand Singh</span></a></li>
+<li><a class="hero-practitioner-face" href="doctors/dr-debra-larkins.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" sizes="96px" src="assets/team/dr-debra-larkins-96.webp" srcset="assets/team/dr-debra-larkins-96.webp 96w, assets/team/dr-debra-larkins-192.webp 192w" width="96"/><span>Dr Debra Larkins</span></a></li>
+<li><a class="hero-practitioner-face" href="doctors/dr-kooshyar-karimi.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" sizes="96px" src="assets/team/dr-kooshyar-karimi-96.webp" srcset="assets/team/dr-kooshyar-karimi-96.webp 96w, assets/team/dr-kooshyar-karimi-192.webp 192w" width="96"/><span>Dr Kooshyar Karimi</span></a></li>
+<li><a class="hero-practitioner-face" href="doctors/dr-sambo-luon.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" sizes="96px" src="assets/team/dr-sambo-luon-96.webp" srcset="assets/team/dr-sambo-luon-96.webp 96w, assets/team/dr-sambo-luon-192.webp 192w" width="96"/><span>Dr Sambo Luon</span></a></li>
+<li><a class="hero-practitioner-face" href="doctors/dr-usman-gul.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" sizes="96px" src="assets/team/dr-usman-gul-96.webp" srcset="assets/team/dr-usman-gul-96.webp 96w, assets/team/dr-usman-gul-192.webp 192w" width="96"/><span>Dr Usman Gul</span></a></li>
+<li><a class="hero-practitioner-face" href="doctors/dr-mary-abadir.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" sizes="96px" src="assets/team/dr-mary-abadir-96.webp" srcset="assets/team/dr-mary-abadir-96.webp 96w, assets/team/dr-mary-abadir-192.webp 192w" width="96"/><span>Dr Mary Abadir</span></a></li>
+<li><a class="hero-practitioner-face" href="doctors/dr-golnar-mortezaei.html"><img alt="" class="hero-practitioner-avatar" decoding="async" height="96" loading="lazy" sizes="96px" src="assets/team/dr-golnar-mortezaei-96.webp" srcset="assets/team/dr-golnar-mortezaei-96.webp 96w, assets/team/dr-golnar-mortezaei-192.webp 192w" width="96"/><span>Dr Golnar Mortezaei</span></a></li>
 </ul>
 </div>
 </div>

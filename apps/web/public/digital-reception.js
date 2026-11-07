@@ -2,7 +2,9 @@
   let searchable = null;
   let indexPromise = null;
   let searchSerial = 0;
-  if (document.querySelector('.digital-reception-launcher') || /404\.html$/.test(location.pathname)) return;
+  // 404 has no booking dock; skip entirely. An SSR-injected launcher is OK —
+  // reuse it so first paint already matches the final has-action-dock layout (CLS).
+  if (/404\.html$/.test(location.pathname)) return;
   const SCRIPT_NODE=document.currentScript||[...document.scripts].find(node=>/digital-reception\.js(?:[?#].*)?$/.test(node.src||''));
   const SCRIPT_URL=(SCRIPT_NODE&&SCRIPT_NODE.src)?SCRIPT_NODE.src:location.href;
   const SITE_ROOT=new URL('.',SCRIPT_URL);
@@ -175,15 +177,42 @@
     return sum;
   };
   const esc = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const launcher=document.createElement('button'); launcher.type='button'; launcher.className='digital-reception-launcher'; launcher.setAttribute('aria-expanded','false'); launcher.setAttribute('aria-controls','digital-reception-panel'); launcher.setAttribute('aria-haspopup','dialog'); launcher.setAttribute('aria-label','Open Digital Reception — ask for information');   launcher.innerHTML='<span class="digital-reception-launcher-full">Digital Reception</span><span class="digital-reception-launcher-compact">Ask us</span>';
-  const panel=document.createElement('section'); panel.id='digital-reception-panel'; panel.className='digital-reception-panel'; panel.setAttribute('role','dialog'); panel.setAttribute('aria-modal','true'); panel.setAttribute('aria-labelledby','digital-reception-title'); panel.setAttribute('aria-describedby','digital-reception-disclosure'); panel.setAttribute('aria-hidden','true'); panel.setAttribute('tabindex','-1');
-  panel.innerHTML=`<div class="digital-reception-head"><div><h2 class="digital-reception-title" id="digital-reception-title">Digital Reception</h2><p>Find information and the next step</p></div><button type="button" class="digital-reception-close" aria-label="Close Digital Reception">Close</button></div><div class="digital-reception-body"><p class="digital-reception-disclosure" id="digital-reception-disclosure">I use information published on this website only. I do not access medical records or search the public internet, and I cannot provide medical advice. Please do not enter personal or health information.</p><label class="digital-reception-label" for="digital-reception-query">How can we help you today?</label><div class="digital-reception-search-row"><input class="digital-reception-input" id="digital-reception-query" type="search" autocomplete="off" placeholder="e.g. headache, referral, appointment"><button class="digital-reception-search" type="button">Search</button></div><div class="digital-reception-quick" aria-label="Common topics"><button type="button">Book Appointment</button><button type="button">Parking</button><button type="button">Test results</button><button type="button">Fees</button><button type="button">After hours</button><button type="button">AI transcription</button></div><div class="digital-reception-results" aria-live="polite"></div><p class="digital-reception-status">If you cannot find what you need, reception can help.</p><div class="digital-reception-actions"><a class="wmc-book-appointment" href="https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors?wp=w_lightbox" data-hotdoc-widget="lightbox" data-hotdoc-button>Book Appointment</a><a href="tel:+61732173344">Call Reception</a></div></div>`;
+  // Prefer SSR-stabilised launcher (public-ux) so the dock never morphs after paint.
+  let launcher=document.querySelector('.digital-reception-launcher');
+  if(!launcher){
+    launcher=document.createElement('button');
+    launcher.type='button';
+    launcher.className='digital-reception-launcher';
+    launcher.setAttribute('aria-expanded','false');
+    launcher.setAttribute('aria-controls','digital-reception-panel');
+    launcher.setAttribute('aria-haspopup','dialog');
+    launcher.setAttribute('aria-label','Open Digital Reception — ask for information');
+    launcher.innerHTML='<span class="digital-reception-launcher-full">Digital Reception</span><span class="digital-reception-launcher-compact">Ask us</span>';
+  }else{
+    launcher.setAttribute('aria-expanded', launcher.getAttribute('aria-expanded')||'false');
+    launcher.setAttribute('aria-controls','digital-reception-panel');
+    launcher.setAttribute('aria-haspopup','dialog');
+    if(!launcher.getAttribute('aria-label')) launcher.setAttribute('aria-label','Open Digital Reception — ask for information');
+  }
+  let panel=document.getElementById('digital-reception-panel');
+  if(!panel){
+    panel=document.createElement('section');
+    panel.id='digital-reception-panel';
+    panel.className='digital-reception-panel';
+    panel.setAttribute('role','dialog');
+    panel.setAttribute('aria-modal','true');
+    panel.setAttribute('aria-labelledby','digital-reception-title');
+    panel.setAttribute('aria-describedby','digital-reception-disclosure');
+    panel.setAttribute('aria-hidden','true');
+    panel.setAttribute('tabindex','-1');
+    panel.innerHTML=`<div class="digital-reception-head"><div><h2 class="digital-reception-title" id="digital-reception-title">Digital Reception</h2><p>Find information and the next step</p></div><button type="button" class="digital-reception-close" aria-label="Close Digital Reception">Close</button></div><div class="digital-reception-body"><p class="digital-reception-disclosure" id="digital-reception-disclosure">I use information published on this website only. I do not access medical records or search the public internet, and I cannot provide medical advice. Please do not enter personal or health information.</p><label class="digital-reception-label" for="digital-reception-query">How can we help you today?</label><div class="digital-reception-search-row"><input class="digital-reception-input" id="digital-reception-query" type="search" autocomplete="off" placeholder="e.g. headache, referral, appointment"><button class="digital-reception-search" type="button">Search</button></div><div class="digital-reception-quick" aria-label="Common topics"><button type="button">Book Appointment</button><button type="button">Parking</button><button type="button">Test results</button><button type="button">Fees</button><button type="button">After hours</button><button type="button">AI transcription</button></div><div class="digital-reception-results" aria-live="polite"></div><p class="digital-reception-status">If you cannot find what you need, reception can help.</p><div class="digital-reception-actions"><a class="wmc-book-appointment" href="https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors?wp=w_lightbox" data-hotdoc-widget="lightbox" data-hotdoc-button>Book Appointment</a><a href="tel:+61732173344">Call Reception</a></div></div>`;
+  }
   const dock=document.querySelector('.persistent-care-actions');
   const dockInner=dock&&dock.querySelector('.persistent-care-actions-inner');
   if(dockInner){
     launcher.classList.add('digital-reception-dock-action');
-    dockInner.append(launcher);
-    dock.setAttribute('aria-label','Book, call, and reception');
+    if(launcher.parentElement!==dockInner) dockInner.append(launcher);
+    if(!dock.getAttribute('data-audience')) dock.setAttribute('aria-label','Book, call, and reception');
     document.body.classList.add('has-action-dock');
     const syncDockClearance=()=>{
       const height=Math.ceil(dock.getBoundingClientRect().height);
@@ -192,9 +221,10 @@
     syncDockClearance();
     if(typeof ResizeObserver==='function') new ResizeObserver(syncDockClearance).observe(dock);
     window.addEventListener('resize', syncDockClearance, {passive:true});
-    document.body.append(panel);
+    if(!panel.isConnected) document.body.append(panel);
   }else{
-    document.body.append(launcher,panel);
+    if(!launcher.isConnected) document.body.append(launcher);
+    if(!panel.isConnected) document.body.append(panel);
   }
   const close=panel.querySelector('.digital-reception-close'), input=panel.querySelector('.digital-reception-input'), find=panel.querySelector('.digital-reception-search'), results=panel.querySelector('.digital-reception-results');
   let returnFocus=null;

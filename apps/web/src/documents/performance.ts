@@ -9,6 +9,9 @@ const imageDimensions: Record<string, readonly [number, number]> = {
   "assets/patient-information/telehealth-consultations-poster.webp": [1200, 900],
 };
 
+const APPROVED_GOOGLE_FONTS_HREF =
+  "https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&amp;family=Inter:wght@400;500;600&amp;display=swap";
+
 function optimiseImages(html: string, isHomepage: boolean): string {
   return html.replace(/<img\b[^>]*>/gi, tag => {
     const src = tag.match(/\bsrc\s*=\s*(["'])(.*?)\1/i)?.[2];
@@ -51,21 +54,32 @@ function optimiseImages(html: string, isHomepage: boolean): string {
   });
 }
 
-function deferGoogleFontsStylesheet(html: string): string {
-  // Keep display=swap fonts, but stop the Google CSS from blocking first paint / LCP.
-  return html.replace(
-    /<link\b(?=[^>]*fonts\.googleapis\.com\/css2)(?![^>]*data-wmc-font-defer="true")[^>]*>/gi,
-    (tag) => {
-      if (!/\brel="stylesheet"/i.test(tag)) return tag;
-      const attrs = tag
-        .replace(/^<link\b/i, "")
-        .replace(/\/?>$/i, "")
-        .replace(/\srel="stylesheet"/i, "")
-        .replace(/\s+/g, " ")
-        .trim();
-      return `<link ${attrs} rel="preload" as="style" data-wmc-font-defer="true" onload="this.onload=null;this.rel='stylesheet'"/><noscript><link ${attrs} rel="stylesheet"/></noscript>`;
-    },
+/**
+ * Exactly one deferred Google Fonts stylesheet path (Inter + Libre Baskerville).
+ * Idempotent: strips prior css2 links / stale noscript wrappers before inject.
+ */
+export function deferGoogleFontsStylesheet(html: string): string {
+  let next = html.replace(
+    /<noscript>\s*<link\b[^>]*fonts\.googleapis\.com\/css2[^>]*>\s*<\/noscript>\s*/gi,
+    "",
   );
+  next = next.replace(/<link\b[^>]*fonts\.googleapis\.com\/css2[^>]*>\s*/gi, "");
+
+  const deferred =
+    `<link href="${APPROVED_GOOGLE_FONTS_HREF}" rel="preload" as="style" data-wmc-font-defer="true" onload="this.onload=null;this.rel='stylesheet'"/>` +
+    `<noscript><link href="${APPROVED_GOOGLE_FONTS_HREF}" rel="stylesheet"/></noscript>`;
+
+  if (/fonts\.gstatic\.com[^>]*>/i.test(next)) {
+    return next.replace(/(<link\b[^>]*fonts\.gstatic\.com[^>]*>)/i, `$1${deferred}`);
+  }
+  if (/fonts\.googleapis\.com"[^>]*>/i.test(next)) {
+    return next.replace(/(<link\b[^>]*fonts\.googleapis\.com"[^>]*>)/i, `$1${deferred}`);
+  }
+  if (/<\/head>/i.test(next)) {
+    return next.replace(/<\/head>/i, `${deferred}</head>`);
+  }
+  // Fixture / partial HTML without a head — keep fonts at the start.
+  return `${deferred}${next}`;
 }
 
 function ensureHeroPhotoSizes(html: string): string {
@@ -78,6 +92,9 @@ function ensureHeroPhotoSizes(html: string): string {
 export function optimiseHomepageDelivery(html: string, pagePath: string): string {
   let next = html;
   const isHomepage = pagePath === "index.html";
+  // Fonts: homepage previously deferred; always enforce a single deferred path so
+  // re-application cannot leave a duplicate blocking stylesheet.
+  next = deferGoogleFontsStylesheet(next);
   if (isHomepage) {
     next = next
       .replace(
@@ -93,7 +110,6 @@ export function optimiseHomepageDelivery(html: string, pagePath: string): string
         'href="assets/hero-final-mobile.webp" media="(max-width: 700px)"',
       );
     next = ensureHeroPhotoSizes(next);
-    next = deferGoogleFontsStylesheet(next);
   }
   return optimiseImages(next, isHomepage);
 }

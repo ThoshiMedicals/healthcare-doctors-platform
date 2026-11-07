@@ -44,7 +44,8 @@ export function replacementTarget(storagePath: string): ReplacementTarget | null
 
 export function managedPublicPath(relative: string): string | null {
   if (replacementTarget(relative)) return relative;
-  const thumb = relative.match(/^assets\/team\/([a-z0-9-]+)-640\.webp$/);
+  // Card thumbs (640) and homepage strip derivatives (96 / 192) for existing portraits.
+  const thumb = relative.match(/^assets\/team\/([a-z0-9-]+)-(640|192|96)\.webp$/);
   if (!thumb || !existingPortrait(`${thumb[1]}.webp`)) return null;
   return relative;
 }

@@ -4,7 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import { after, before, describe, it } from "node:test";
 import { revisionChanges } from "./revision-summary";
-import { pngSize, prepareReplacement, replacementInstruction, replacementProblems, replacementTarget, replacementTransition, webpSize } from "./image-replacement";
+import { managedPublicPath, pngSize, prepareReplacement, replacementInstruction, replacementProblems, replacementTarget, replacementTransition, webpSize } from "./image-replacement";
 import { readServedBytes, restoreServed, servedSha, writeLive } from "./image-store";
 
 const logo = "assets/brand/healthcare-doctors-woolloongabba-logo.png";
@@ -33,6 +33,13 @@ describe("replaceable images", () => {
     assert.equal(replacementTarget("assets/brand/agpal-mark.webp"), null);
     assert.equal(replacementTarget("assets/brand/bulk-billing-practice.png"), null);
     assert.equal(replacementTarget("assets/knowledge/article.webp"), null);
+  });
+
+  it("serves homepage strip derivatives for existing portraits only", () => {
+    assert.equal(managedPublicPath("assets/team/dr-tanya-goodwill-96.webp"), "assets/team/dr-tanya-goodwill-96.webp");
+    assert.equal(managedPublicPath("assets/team/dr-tanya-goodwill-192.webp"), "assets/team/dr-tanya-goodwill-192.webp");
+    assert.equal(managedPublicPath("assets/team/dr-tanya-goodwill-640.webp"), "assets/team/dr-tanya-goodwill-640.webp");
+    assert.equal(managedPublicPath("assets/team/dr-nobody-96.webp"), null);
   });
 
   it("rejects a logo that is not the current PNG size", () => {

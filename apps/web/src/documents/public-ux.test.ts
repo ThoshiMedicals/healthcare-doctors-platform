@@ -334,8 +334,11 @@ test("the real homepage opening-hours block includes both links", () => {
   assert.match(result, /href="book-appointment\.html#booking-help">Reschedule appointments/);
   assert.match(result, /href="book-appointment\.html#using-the-hotdoc-app">Manage family bookings/);
   assert.match(result, /href="book-appointment\.html">Book appointments/);
-  assert.match(result, /digital-reception\.js\?v=wmc-dr-scrim-20261106/);
+  assert.match(result, /digital-reception\.js\?v=wmc-dr-dock-cls-20261107/);
   assert.match(result, /data-clinic-slug="woolloongabba"/);
+  assert.match(result, /<body[^>]*\bhas-action-dock\b/);
+  assert.match(result, /digital-reception-launcher digital-reception-dock-action/);
+  assert.match(result, /aria-label="Book, call, and reception"/);
   assert.match(result, /hero hero--authority-v6/);
   assert.match(result, /#home\.hero\.hero--authority-v6/);
   assert.match(result, /hero-content-panel/);
@@ -359,8 +362,10 @@ test("the real homepage opening-hours block includes both links", () => {
   assert.match(result, /object-fit:contain!important/);
   assert.match(result, /hero-practitioner-strip/);
   assert.match(result, /Doctors who take the time to know you/);
-  assert.match(result, /dr-tanya-goodwill-640\.webp/);
-  assert.match(result, /dr-mary-abadir-640\.webp/);
+  assert.match(result, /assets\/team\/dr-tanya-goodwill-96\.webp/);
+  assert.match(result, /assets\/team\/dr-tanya-goodwill-192\.webp 192w/);
+  assert.match(result, /assets\/team\/dr-mary-abadir-96\.webp/);
+  assert.doesNotMatch(result, /hero-practitioner-avatar[^>]*dr-tanya-goodwill-640\.webp/);
   assert.match(result, /hero-visual[\s\S]*?hero-final-desktop\.webp/);
   assert.match(result, /as="image"[^>]*hero-final-desktop\.webp/);
   assert.doesNotMatch(result, /id="team"/);

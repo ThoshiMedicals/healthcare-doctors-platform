@@ -30,6 +30,27 @@ test("home delivery keeps the approved hero and reserves dimensions", () => {
   assert.match(result, /srcset="assets\/performance\/new-patients-welcome-600\.webp 600w,/);
 });
 
+test("google fonts delivery keeps a single deferred stylesheet path", () => {
+  const source = [
+    "<head>",
+    '<link href="https://fonts.googleapis.com" rel="preconnect"/>',
+    '<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>',
+    '<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="preload" as="style" data-wmc-font-defer="true" onload="this.onload=null;this.rel=\'stylesheet\'"/>',
+    '<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>',
+    "</head><body></body>",
+  ].join("");
+  const once = optimiseHomepageDelivery(source, "index.html");
+  const twice = optimiseHomepageDelivery(once, "index.html");
+  const css2 = twice.match(/fonts\.googleapis\.com\/css2/g) || [];
+  // One preload + one noscript stylesheet = two mentions, never a live duplicate stylesheet.
+  assert.equal(css2.length, 2);
+  assert.match(twice, /data-wmc-font-defer="true"/);
+  assert.equal((twice.match(/rel="stylesheet"/g) || []).length, 1);
+  assert.match(twice, /Libre\+Baskerville:wght@400;700/);
+  assert.match(twice, /Inter:wght@400;500;600/);
+  assert.equal(twice, optimiseHomepageDelivery(twice, "index.html"));
+});
+
 test("delivery changes reserve shared image dimensions without touching page copy", () => {
   const source = '<h1>Patient care</h1><img src="../assets/brand/bulk-billing-practice.png"/>';
   const result = optimiseHomepageDelivery(source, "services/family-health.html");
