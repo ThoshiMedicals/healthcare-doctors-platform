@@ -16,8 +16,10 @@ import {
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
+type PublicCacheState = "HIT" | "HIT-DISK" | "MISS";
+
 function serverTimingHeader(
-  cache: "HIT" | "MISS",
+  cache: PublicCacheState,
   timings?: Record<string, number>,
 ): string {
   const parts = [`cache;desc="${cache}"`];
@@ -38,7 +40,7 @@ function htmlResponse(
   body: string,
   status: number,
   staging: boolean,
-  cache: "HIT" | "MISS",
+  cache: PublicCacheState,
   timings: Record<string, number> | undefined,
   request: Request,
 ) {
@@ -106,7 +108,8 @@ export async function GET(
   const cached = getPublicHtmlCache(clinic.id, storagePath);
   if (cached) {
     const html = staging ? applyStagingNoIndexMeta(cached.html) : cached.html;
-    return htmlResponse(html, cached.status, staging, "HIT", { total: 0 }, request);
+    const state: PublicCacheState = cached.source === "disk" ? "HIT-DISK" : "HIT";
+    return htmlResponse(html, cached.status, staging, state, { total: 0 }, request);
   }
 
   const rendered = await renderStoredPage(clinic.id, storagePath, {

@@ -1,10 +1,13 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
+  clearMemoryPublicHtmlCacheForTests,
+  getCachedClinicByHost,
   getCachedPublishedRepeats,
   getPublicHtmlCache,
   invalidatePublicHtmlCache,
   resetPublicHtmlCacheForTests,
+  setCachedClinicByHost,
   setCachedPublishedRepeats,
   setPublicHtmlCache,
 } from "./public-html-cache";
@@ -19,6 +22,7 @@ test("public HTML cache hits until clinic invalidation", () => {
   const hit = getPublicHtmlCache("clinic-a", "index.html");
   assert.equal(hit?.html, "<html>home</html>");
   assert.equal(hit?.status, 200);
+  assert.equal(hit?.source, "memory");
 
   invalidatePublicHtmlCache("clinic-a");
   assert.equal(getPublicHtmlCache("clinic-a", "index.html"), null);
@@ -39,4 +43,31 @@ test("published repeats share clinic generation", () => {
   assert.deepEqual(getCachedPublishedRepeats("clinic-a"), [{ pagePath: "services/x.html" }]);
   invalidatePublicHtmlCache("clinic-a");
   assert.equal(getCachedPublishedRepeats("clinic-a"), null);
+});
+
+test("durable disk snapshot promotes after memory clear", () => {
+  resetPublicHtmlCacheForTests();
+  setPublicHtmlCache("clinic-disk", "index.html", {
+    status: 200,
+    html: "<html>durable</html>",
+    path: "index.html",
+  });
+  clearMemoryPublicHtmlCacheForTests();
+  const hit = getPublicHtmlCache("clinic-disk", "index.html");
+  assert.equal(hit?.source, "disk");
+  assert.equal(hit?.html, "<html>durable</html>");
+  // Second read should be memory after promotion.
+  assert.equal(getPublicHtmlCache("clinic-disk", "index.html")?.source, "memory");
+});
+
+test("host clinic cache is durable and cleared on invalidation", () => {
+  resetPublicHtmlCacheForTests();
+  setCachedClinicByHost("staging.example", { id: "clinic-disk", slug: "woolloongabba" });
+  clearMemoryPublicHtmlCacheForTests();
+  assert.deepEqual(getCachedClinicByHost("staging.example"), {
+    id: "clinic-disk",
+    slug: "woolloongabba",
+  });
+  invalidatePublicHtmlCache("clinic-disk");
+  assert.equal(getCachedClinicByHost("staging.example"), undefined);
 });

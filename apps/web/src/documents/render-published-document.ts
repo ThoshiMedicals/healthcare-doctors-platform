@@ -61,7 +61,9 @@ export type RenderClinicContext = {
 export async function getPublishedDocument(
   clinicId: string,
   path: string,
+  timings?: Record<string, number>,
 ): Promise<PublishedDocument | null> {
+  const pageStarted = Date.now();
   const page = await prisma.page.findUnique({
     where: { clinicId_path: { clinicId, path } },
     include: {
@@ -74,6 +76,7 @@ export async function getPublishedDocument(
       clinic: { include: { profile: true } },
     },
   });
+  if (timings) mark(timings, "page", pageStarted);
 
   if (!page || page.status !== "published" || page.publishedRevision?.html == null) return null;
   if (!page.publishedRevision.immutable) return null;
@@ -97,14 +100,18 @@ export async function getPublishedDocument(
         practice: textContent(page.practicePage?.publishedPayload, page.path),
         clinic: clinicContent(page.clinic.profile?.publishedPayload),
       });
+  const mediaStarted = Date.now();
   const withMedia = isExperienceValidation
     ? overlaid.html
     : await applyOtherPractitionerMedia(clinicId, page.practitioner?.id ?? null, overlaid.html);
+  if (timings) mark(timings, "media", mediaStarted);
   // Careers vacancy inject runs once in renderStoredPage after public UX (Join Our Team
   // rebuilds <main> and would wipe an earlier inject).
+  const repeatsStarted = Date.now();
   const html = isExperienceValidation
     ? withMedia
     : await applyStoredRepeats(clinicId, withMedia);
+  if (timings) mark(timings, "repeats", repeatsStarted);
 
   return {
     path: page.path,
@@ -255,7 +262,7 @@ export async function renderStoredPage(
   const uxOptions = { clinicSlug: branding.clinicSlug, branding };
 
   const documentStarted = Date.now();
-  const document = await getPublishedDocument(clinicId, storagePath);
+  const document = await getPublishedDocument(clinicId, storagePath, timings);
   mark(timings, "document", documentStarted);
 
   if (document) {

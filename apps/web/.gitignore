@@ -14,6 +14,7 @@ dist/
 out/
 coverage/
 .cache/
+.data/
 .turbo/
 .parcel-cache/
 *.tsbuildinfo
