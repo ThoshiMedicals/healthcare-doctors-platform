@@ -16,9 +16,10 @@ alwaysApply: true
 ## Repo and release tip (as of 2026-11-07)
 
 - Repo: `ThoshiMedicals/healthcare-doctors-platform` (local folder `WMC-Master-Project`).
-- Hostinger RC branch: `release/wmc-hostinger-rc1` tip **`0e237a3`** (public HTML cache + query cuts; pooler fix `ad172cb` ancestor). Staging: `mediumslateblue-eagle-960503.hostingersite.com`. Perf report: `docs/WMC-HOSTINGER-PERFORMANCE-REMEDIATION.md` — **PASS** (warm Hostinger nav ~200 ms HIT).
-- Older ship-tip notes for `rg01-release-gate-repairs` / `3875dc3` / hero freeze `6874998` remain historical for that line — do not confuse with Hostinger RC tip.
-- Cutover status: **NO-GO** for DNS/production; **GO FOR CUTOVER PLANNING** per final RC gate. See `docs/WMC-FINAL-RELEASE-CANDIDATE-GATE.md`, `docs/WMC-PRODUCTION-READINESS-EVIDENCE.md`, `deployment/DNS-CUTOVER-CHECKLIST.md`.
+- Hostinger RC branch: `release/wmc-hostinger-rc1` tip **`ae202f2`** (durable-cache race guard + staging public-cache-bust; deployed via archive build `01a1b48c-…` after Git auto-deploy disconnect). Ancestors: cold-start `767d844`/`b7ad2e8`; nav `/wmc-cache` `30d2441`/`8735373`; parity `fedafac`. Staging: `mediumslateblue-eagle-960503.hostingersite.com`. Durable acceptance: `docs/WMC-DURABLE-CACHE-ACCEPTANCE.md` — **PASS** (stop perf rem; proceed ops readiness). Cold: `docs/WMC-COLD-START-PERFORMANCE-REPAIR.md` PASS. Nav: `docs/WMC-FINAL-NAVIGATION-PERFORMANCE.md`.
+- Older ship-tip notes for `rg01-release-gate-repairs` / `3875dc3` / hero freeze `6874998` / live `767d844` remain historical for that line — do not confuse with Hostinger RC tip.
+- Cutover status: **NO-GO** for DNS/production; **GO FOR CUTOVER PLANNING** / ops readiness next. See `docs/WMC-FINAL-RELEASE-CANDIDATE-GATE.md`, `docs/WMC-PRODUCTION-READINESS-EVIDENCE.md`, `deployment/DNS-CUTOVER-CHECKLIST.md`, `deployment/LAUNCH.md`. Reconnect Hostinger Git auto-deploy (`gitAutoDeployment` was null during acceptance).
+- **NEXT vs Hostinger visual/content certification (2026-11-07):** authority = live `next.gabbamedicalcentre.com.au` (not localhost). Inventory **224** public pages (+2 published orphans `404.html`, `updates/article.html` → **226** CMS); **1,120** viewport pairs. Baseline was **NOT MATCHED**; after Hostinger repair tip **`fedafac`** → **MATCH WITH DOCUMENTED EXCEPTIONS** (home CSS via `styles.min.css`, Tanya/Debra areas + heading, women’s≠men’s care-area regex, hours meridian). Reports: `docs/WMC-NEXT-VS-HOSTINGER-PARITY-REPORT.md`, `docs/WMC-FINAL-THREE-PAGE-REPAIR.md`. Dashboard/artifacts under `apps/web/.tmp-next-hostinger-audit/` (gitignored).
 - Commit style in practice often uses `fix(wmc): …` / `merge(wmc): …` / `docs(wmc): …`.
 
 ## How `next.` is hosted (critical)
