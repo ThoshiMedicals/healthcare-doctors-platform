@@ -4,6 +4,7 @@ import {
   submitGpReadinessPackage,
   type ReadinessPackagePayload,
 } from "@/gp-pipeline/readiness-package";
+import { canOperateRecruitmentPublicWorkflows } from "@/importer/recruitment-hold";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -11,11 +12,19 @@ export const runtime = "nodejs";
 /**
  * Public GP Readiness & Onboarding Portal submit.
  * Separate from Express Interest EOI — stores a readiness package for human review.
+ * Blocked while recruitment HOLD is active.
  */
 export async function POST(
   request: Request,
   context: { params: Promise<{ clinicSlug: string }> },
 ) {
+  if (!canOperateRecruitmentPublicWorkflows()) {
+    return NextResponse.json(
+      { error: "Recruitment workflows are on HOLD and are not accepting public readiness packages." },
+      { status: 403 },
+    );
+  }
+
   const { clinicSlug } = await context.params;
   const clinic = await prisma.clinic.findUnique({
     where: { slug: clinicSlug },

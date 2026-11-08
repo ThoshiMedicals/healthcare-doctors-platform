@@ -18,14 +18,21 @@ export function goldenHtmlRoot(override?: string | null): string {
 export function parseImporterCliArgs(argv: string[] = process.argv.slice(2)): {
   clinicSlug: string;
   dryRun: boolean;
+  /** Explicit opt-in to copy runtime files into apps/web/public (also requires IMPORT_ALLOW_RUNTIME_COPY=true). */
+  allowRuntimeCopy: boolean;
   goldenRoot?: string;
 } {
   let clinicSlug = process.env.DEFAULT_CLINIC_SLUG || "woolloongabba";
   let dryRun = false;
+  let allowRuntimeCopy = false;
   let goldenRoot: string | undefined;
   for (const arg of argv) {
     if (arg === "--dry-run" || arg === "--dryRun") {
       dryRun = true;
+      continue;
+    }
+    if (arg === "--allow-runtime-copy" || arg === "--allowRuntimeCopy") {
+      allowRuntimeCopy = true;
       continue;
     }
     const clinicMatch = arg.match(/^--clinic(?:=(.*))?$/);
@@ -47,7 +54,7 @@ export function parseImporterCliArgs(argv: string[] = process.argv.slice(2)): {
       goldenRoot = argv[i + 1].trim();
     }
   }
-  return { clinicSlug, dryRun, goldenRoot };
+  return { clinicSlug, dryRun, allowRuntimeCopy, goldenRoot };
 }
 
 export function webRoot(): string {

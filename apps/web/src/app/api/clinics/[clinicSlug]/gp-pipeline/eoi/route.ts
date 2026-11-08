@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/db/prisma";
 import { submitGpEoi } from "@/gp-pipeline/eoi";
+import { canOperateRecruitmentPublicWorkflows } from "@/importer/recruitment-hold";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -8,11 +9,19 @@ export const runtime = "nodejs";
 /**
  * Public EOI submit — creates enquiry + notification.
  * Never auto-approves or auto-advances workflow gates.
+ * Blocked while recruitment HOLD is active (RECRUITMENT_HOLD_LIFTED must be true).
  */
 export async function POST(
   request: Request,
   context: { params: Promise<{ clinicSlug: string }> },
 ) {
+  if (!canOperateRecruitmentPublicWorkflows()) {
+    return NextResponse.json(
+      { error: "Recruitment workflows are on HOLD and are not accepting public submissions." },
+      { status: 403 },
+    );
+  }
+
   const { clinicSlug } = await context.params;
   const clinic = await prisma.clinic.findUnique({
     where: { slug: clinicSlug },

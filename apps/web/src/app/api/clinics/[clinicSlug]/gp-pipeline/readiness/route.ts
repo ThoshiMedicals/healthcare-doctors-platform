@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/db/prisma";
 import { recordDoctorReadiness } from "@/gp-pipeline/readiness";
+import { canOperateRecruitmentPublicWorkflows } from "@/importer/recruitment-hold";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -8,11 +9,19 @@ export const runtime = "nodejs";
 /**
  * Public advisory readiness save — creates a record + notification.
  * Never auto-approves hiring or advances onboarding gates.
+ * Blocked while recruitment HOLD is active.
  */
 export async function POST(
   request: Request,
   context: { params: Promise<{ clinicSlug: string }> },
 ) {
+  if (!canOperateRecruitmentPublicWorkflows()) {
+    return NextResponse.json(
+      { error: "Recruitment workflows are on HOLD and are not accepting public readiness submissions." },
+      { status: 403 },
+    );
+  }
+
   const { clinicSlug } = await context.params;
   const clinic = await prisma.clinic.findUnique({
     where: { slug: clinicSlug },

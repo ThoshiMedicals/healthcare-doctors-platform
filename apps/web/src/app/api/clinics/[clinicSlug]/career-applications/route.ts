@@ -5,6 +5,7 @@ import { notifyCareerApplicationCreated } from "@/cms/careers-application-notify
 import { storeCareerResume } from "@/cms/careers-applications";
 import { prisma } from "@/db/prisma";
 import { parseCareerApplicationForm } from "@/forms/career-application";
+import { canOperateRecruitmentPublicWorkflows } from "@/importer/recruitment-hold";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -13,6 +14,13 @@ export async function POST(
   request: Request,
   context: { params: Promise<{ clinicSlug: string }> },
 ) {
+  if (!canOperateRecruitmentPublicWorkflows()) {
+    return Response.json(
+      { error: "Recruitment workflows are on HOLD and are not accepting public applications." },
+      { status: 403 },
+    );
+  }
+
   const { clinicSlug } = await context.params;
   const clinic = await prisma.clinic.findUnique({
     where: { slug: clinicSlug },

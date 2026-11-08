@@ -23,6 +23,11 @@ import {
   withPractitionerGrowthStyle,
 } from "@/documents/inject-practitioner-growth";
 import { Prisma } from "@prisma/client";
+import {
+  canServeRecruitmentPathPublicly,
+  mustNoIndexRecruitmentPath,
+} from "@/importer/recruitment-hold";
+import { applyStagingNoIndexMeta } from "@/seo/staging-noindex";
 
 export type PublishedDocument = {
   path: string;
@@ -81,6 +86,9 @@ export async function getPublishedDocument(
   if (!page || page.status !== "published" || page.publishedRevision?.html == null) return null;
   if (!page.publishedRevision.immutable) return null;
 
+  // Recruitment HOLD: DB rows may exist, but child Attraction paths must not be publicly served.
+  if (!canServeRecruitmentPathPublicly(path)) return null;
+
   // Experience Validation PageRevisions are authoritative HTML — do not re-apply
   // golden PracticePage title/lede overlays that would undo journey hub copy.
   const revisionBody = page.publishedRevision.body;
@@ -113,10 +121,12 @@ export async function getPublishedDocument(
     : await applyStoredRepeats(clinicId, withMedia);
   if (timings) mark(timings, "repeats", repeatsStarted);
 
+  const heldHtml = mustNoIndexRecruitmentPath(page.path) ? applyStagingNoIndexMeta(html) : html;
+
   return {
     path: page.path,
     template: page.template,
-    html,
+    html: heldHtml,
   };
 }
 

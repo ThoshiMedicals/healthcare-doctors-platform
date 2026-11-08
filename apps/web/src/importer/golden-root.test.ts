@@ -6,6 +6,7 @@ test("parses --clinic=slug and --dry-run", () => {
   const parsed = parseImporterCliArgs(["--clinic=example-clinic", "--dry-run"]);
   assert.equal(parsed.clinicSlug, "example-clinic");
   assert.equal(parsed.dryRun, true);
+  assert.equal(parsed.allowRuntimeCopy, false);
 });
 
 test("parses two-token --clinic and --golden-root", () => {
@@ -13,4 +14,5 @@ test("parses two-token --clinic and --golden-root", () => {
   assert.equal(parsed.clinicSlug, "gabba");
   assert.equal(parsed.goldenRoot, "C:/tmp/golden");
   assert.equal(parsed.dryRun, false);
+  assert.equal(parsed.allowRuntimeCopy, false);
 });

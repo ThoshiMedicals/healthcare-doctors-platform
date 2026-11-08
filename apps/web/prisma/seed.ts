@@ -68,6 +68,22 @@ async function main() {
     { hostname: "www.gabbamedicalcentre.com.au", isPrimary: false },
   ];
 
+  const previewHostname = process.env.PRODUCTION_PREVIEW_HOSTNAME?.trim().toLowerCase() || "";
+  if (previewHostname) {
+    if (!previewHostname.endsWith(".hostingersite.com")) {
+      throw new Error(
+        "PRODUCTION_PREVIEW_HOSTNAME must be a *.hostingersite.com hostname (temporary pre-cutover preview only).",
+      );
+    }
+    if (
+      previewHostname === "gabbamedicalcentre.com.au" ||
+      previewHostname === "www.gabbamedicalcentre.com.au"
+    ) {
+      throw new Error("PRODUCTION_PREVIEW_HOSTNAME must not be the public apex/www domain.");
+    }
+    domains.push({ hostname: previewHostname, isPrimary: false });
+  }
+
   for (const domain of domains) {
     await prisma.clinicDomain.upsert({
       where: { hostname: domain.hostname },

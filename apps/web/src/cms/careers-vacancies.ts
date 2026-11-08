@@ -333,6 +333,10 @@ const VACANCY_INJECT_PATHS = new Set(["join-our-team.html", "join-our-team/gp-op
 export async function injectCareersVacancies(html: string, pagePath: string, clinicId: string): Promise<string> {
   if (!VACANCY_INJECT_PATHS.has(pagePath)) return html;
 
+  // Recruitment HOLD: do not inject public vacancy listings or enhance EOI forms.
+  const { canOperateRecruitmentPublicWorkflows } = await import("@/importer/recruitment-hold");
+  if (!canOperateRecruitmentPublicWorkflows()) return html;
+
   const clinic = await prisma.clinic.findUnique({
     where: { id: clinicId },
     select: { slug: true, practiceName: true },

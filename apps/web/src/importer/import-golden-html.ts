@@ -5,7 +5,8 @@ import type { Prisma } from "@prisma/client";
 import { prisma } from "@/db/prisma";
 import { fingerprintContent } from "@/governance/fingerprint";
 import { classifyPage, isSectionHub, textBetween, toUpdateCategory } from "@/importer/classify-page";
-import { goldenHtmlRoot, listHtmlFiles, listRuntimeFiles, webRoot } from "@/importer/golden-root";
+import { goldenHtmlRoot, listHtmlFiles, listRuntimeFiles } from "@/importer/golden-root";
+import { maybeCopyRuntimeFiles, resolveRuntimeCopyPolicy } from "@/importer/runtime-copy";
 import { parseDocument } from "@/importer/parse-document";
 
 export type OwnershipFile = {
@@ -33,13 +34,22 @@ export type GoldenImportResult = {
   clinicSlug: string;
   pageCount: number;
   collections: Record<string, number>;
+  /** Always 0 unless runtime copy was explicitly enabled. */
   runtimeFilesCopied: number;
+  /** Count of golden runtime files that would be eligible to copy when opt-in is used. */
+  runtimeFilesAvailable: number;
+  runtimeCopyEnabled: boolean;
   dryRun: boolean;
 };
 
 export type GoldenImportOptions = {
   clinicSlug?: string;
   dryRun?: boolean;
+  /**
+   * When true (and IMPORT_ALLOW_RUNTIME_COPY=true), copy golden runtime assets into apps/web/public.
+   * Default false — production / ordinary imports are DB-only and must not mutate the release tree.
+   */
+  allowRuntimeCopy?: boolean;
   /** Absolute or relative golden HTML root; defaults to GOLDEN_HTML_ROOT / old-html. */
   goldenRoot?: string | null;
 };
@@ -55,27 +65,12 @@ function readPracticeUpdates(root: string): PracticeUpdateSource[] {
   return sandbox.window.PRACTICE_UPDATES ?? [];
 }
 
-function copyRuntimeFiles(root: string): string[] {
-  const publicDir = path.join(webRoot(), "public");
-  const files = listRuntimeFiles(root);
-  for (const relativePath of files) {
-    const target = path.join(publicDir, relativePath);
-    fs.mkdirSync(path.dirname(target), { recursive: true });
-    const source = path.join(root, relativePath);
-    try {
-      fs.copyFileSync(source, target);
-    } catch (error) {
-      const sourceBytes = fs.readFileSync(source);
-      const currentBytes = fs.existsSync(target) ? fs.readFileSync(target) : Buffer.alloc(0);
-      if (!sourceBytes.equals(currentBytes)) throw error;
-    }
-  }
-  return files;
-}
-
 export async function importGoldenHtml(options: GoldenImportOptions = {}): Promise<GoldenImportResult> {
   const clinicSlug = options.clinicSlug || process.env.DEFAULT_CLINIC_SLUG || "woolloongabba";
   const dryRun = Boolean(options.dryRun);
+  const allowRuntimeCopy = Boolean(options.allowRuntimeCopy);
+  // Fail closed on ambiguous runtime-copy configuration before any DB work.
+  const runtimePolicy = resolveRuntimeCopyPolicy(allowRuntimeCopy);
   const clinic = await prisma.clinic.findUnique({ where: { slug: clinicSlug } });
   if (!clinic) {
     throw new Error(
@@ -91,6 +86,7 @@ export async function importGoldenHtml(options: GoldenImportOptions = {}): Promi
   const updatesById = new Map(updates.map((item) => [item.id, item]));
   const htmlFiles = listHtmlFiles(root);
   const counts: Record<string, number> = {};
+  const runtimeFilesAvailable = listRuntimeFiles(root).length;
 
   if (dryRun) {
     for (const relativePath of htmlFiles) {
@@ -103,12 +99,14 @@ export async function importGoldenHtml(options: GoldenImportOptions = {}): Promi
       clinicSlug: clinic.slug,
       pageCount: htmlFiles.length,
       collections: counts,
-      runtimeFilesCopied: listRuntimeFiles(root).length,
+      runtimeFilesCopied: 0,
+      runtimeFilesAvailable,
+      runtimeCopyEnabled: runtimePolicy.enabled,
       dryRun: true,
     };
   }
 
-  const runtimeFiles = copyRuntimeFiles(root);
+  const runtimeFiles = maybeCopyRuntimeFiles(root, allowRuntimeCopy);
 
   for (const [index, section] of ownership.sections.entries()) {
     await prisma.navigationItem.upsert({
@@ -217,6 +215,8 @@ export async function importGoldenHtml(options: GoldenImportOptions = {}): Promi
     pageCount: htmlFiles.length,
     collections: counts,
     runtimeFilesCopied: runtimeFiles.length,
+    runtimeFilesAvailable,
+    runtimeCopyEnabled: runtimePolicy.enabled,
     dryRun: false,
   };
 }
