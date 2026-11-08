@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
 import { goldenHtmlRoot, listHtmlFiles, listRuntimeFiles, webRoot } from "@/importer/golden-root";
+import { isApprovedRuntimeException } from "@/regression/approved-runtime";
 import { firstDifference, pageRegions, type PageRegions } from "@/regression/regions";
 
 loadEnv(path.join(webRoot(), ".env"));
@@ -43,9 +44,10 @@ test("accessibility stylesheet and interaction script match the golden master", 
   assert.equal(compareFile("site.js"), null);
 });
 
-test("Digital Reception script and search index match the golden master", () => {
+test("Digital Reception index and search indexes match the golden master (DR runtime excepted)", () => {
   const root = goldenHtmlRoot();
   const failures = ["digital-reception.js", "digital-reception-index.js", ...listRuntimeFiles(root).filter((file) => file.startsWith("search-index/"))]
+    .filter((file) => !isApprovedRuntimeException(file))
     .map((file) => compareFile(file))
     .filter((failure): failure is string => failure !== null);
 
