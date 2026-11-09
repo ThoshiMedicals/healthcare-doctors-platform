@@ -22,9 +22,9 @@ window.PRACTICE_UPDATES = [
     category: "Practice Updates",
     published: "2026-11-06",
     dateLabel: "6 November 2026",
-    summary: "We are pleased to welcome Dr Golnar Mortezaei to Woolloongabba Medical Centre. Dr Mortezaei is now accepting new patients and appointments can be booked online or by contacting our reception team.",
+    summary: "We are pleased to welcome Dr Golnar Mortezaei to Woolloongabba Medical Centre. Dr Mortezaei is now accepting new patients. To arrange an appointment, please contact our reception team.",
     metaTitle: "Welcome Dr Golnar Mortezaei | Woolloongabba Medical Centre",
-    metaDescription: "Now welcoming new patients. Learn more about Dr Golnar Mortezaei and book an appointment online with Woolloongabba Medical Centre.",
+    metaDescription: "Now welcoming new patients. Learn more about Dr Golnar Mortezaei and contact reception to arrange an appointment at Woolloongabba Medical Centre.",
     image: "welcome-dr-golnar-mortezaei",
     imageAlt: "Welcome Dr Golnar Mortezaei to Woolloongabba Medical Centre",
     author: "Practice Team",
@@ -58,17 +58,12 @@ window.PRACTICE_UPDATES = [
       {
         heading: "Booking Appointments",
         paragraphs: [
-          "Appointments can be booked online through HotDoc or by contacting our reception team on (07) 3217 3344. Reception can also help you choose the most appropriate appointment type."
+          "To arrange an appointment with Dr Golnar Mortezaei, please contact our reception team on (07) 3217 3344. Reception can help you choose the most appropriate appointment type."
         ],
         ctas: [
           {
-            href: "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors?wp=w_lightbox",
-            label: "Book Appointment Online"
-          },
-          {
             href: "tel:+61732173344",
-            label: "Call Reception",
-            style: "text-link"
+            label: "Call Reception to Book"
           },
           {
             href: "../contact.html",

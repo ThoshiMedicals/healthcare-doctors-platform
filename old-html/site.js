@@ -1161,8 +1161,39 @@
     // Do not clone booking notes into the sticky care bar — keep notices beside
     // profile / lead booking CTAs only (see ensureInsuranceNotice + public-ux HTML).
 
+    // Phone-only practitioner profiles: clinic HotDoc chrome must not imply
+    // online booking for that doctor. Align header / mobile / sticky Book to tel.
+    const alignPhoneOnlyChrome = () => {
+      const profile = document.querySelector('.doctor-profile-actions a.wmc-book-appointment');
+      if (!profile) return;
+      const profileHref = profile.getAttribute('href') || '';
+      if (!/^tel:/i.test(profileHref)) return;
+      document.querySelectorAll(
+        '.header-cta a.wmc-book-appointment, a.mobile-header-book, nav.persistent-care-actions:not([data-recruitment]) a.persistent-care-book',
+      ).forEach((link) => {
+        const href = link.getAttribute('href') || '';
+        const isHotdoc = link.hasAttribute('data-hotdoc-button') || /hotdoc\.com\.au/i.test(href);
+        if (!isHotdoc && !/^tel:/i.test(href)) return;
+        link.removeAttribute('data-hotdoc-button');
+        link.removeAttribute('data-hotdoc-widget');
+        link.setAttribute('href', profileHref);
+        const label = (link.textContent || '').replace(/\s+/g, ' ').trim();
+        if (!label || /^Book(\s|&nbsp;)+Appointment$/i.test(label) || /Book Appointment Online/i.test(label)) {
+          link.textContent = 'Call Reception to Book';
+        }
+        if (!link.getAttribute('aria-label') || /Book/i.test(link.getAttribute('aria-label') || '')) {
+          link.setAttribute('aria-label', 'Call Reception to Book');
+        }
+      });
+      document.querySelectorAll('a[href="#book"]').forEach((link) => {
+        const label = (link.textContent || '').replace(/\s+/g, ' ').trim();
+        if (label === 'Book Appointment') link.textContent = 'Call Reception to Book';
+      });
+    };
+
     const applyDuplicates = () => {
       standardise();
+      alignPhoneOnlyChrome();
       const keep = keeper();
       const keepKey = keep ? destination(keep) : '';
       controls().forEach(link => {

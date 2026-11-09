@@ -14,6 +14,7 @@ import {
   refineExpressInterestFriction,
   refineJoinOurTeamRecruitment,
 } from "@/documents/join-our-team-recruitment";
+import { alignPhoneOnlyPractitionerChrome } from "@/documents/phone-only-booking";
 import {
   eoiHrefForPage,
   renderConfidentialityPanelHtml,
@@ -152,8 +153,8 @@ export function applyPublicUxRefinements(
   // Serve CSS/JS via /wmc-cache/* (Next route) so Hostinger cannot short-circuit
   // public/*.css/*.js without Cache-Control. Absolute paths work from nested pages.
   const styleHref = "/wmc-cache/styles.min.css?v=wmc-updates-dr-mobile-20261106e";
-  const siteJsHref = "/wmc-cache/site.js?v=wmc-nav-prefetch-20261107";
-  const updatesDataHref = "/wmc-cache/updates-data.js?v=wmc-doctor-welcome-20261106a";
+  const siteJsHref = "/wmc-cache/site.js?v=wmc-phone-only-chrome-20261109a";
+  const updatesDataHref = "/wmc-cache/updates-data.js?v=wmc-golnar-phone-only-20261109a";
   const updatesUiHref = "/wmc-cache/updates-ui.js?v=wmc-doctor-welcome-20261106a";
   // Include optional existing /wmc-cache/ prefix so re-application is idempotent.
   next = next.replace(/(?:\/wmc-cache\/)?(?:\.\.\/)*styles(?:\.min)?\.css(?:\?[^"]*)?(?=")/g, styleHref);
@@ -966,6 +967,9 @@ min-height:44px;width:100%;max-width:100%;box-sizing:border-box
 
   // CLS: paint sticky booking dock in final has-action-dock geometry (with DR launcher).
   next = stabilisePersistentCareDock(next);
+
+  // Phone-only doctor profiles: TOC / header / dock must not imply HotDoc for that GP.
+  next = alignPhoneOnlyPractitionerChrome(next, pagePath);
 
   // Add Join Our Team in every public primary navigation using the Updates
   // link's existing relative prefix (works for nested services/knowledge pages).

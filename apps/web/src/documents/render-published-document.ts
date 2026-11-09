@@ -18,6 +18,7 @@ import {
   injectWelcomeUpdateAuthorityLinks,
   PROFILE_WELCOME_UPDATE,
 } from "@/documents/inject-cms-updates";
+import { alignPhoneOnlyBookingProse } from "@/documents/phone-only-booking";
 import {
   injectPractitionerGrowth,
   withPractitionerGrowthStyle,
@@ -298,9 +299,13 @@ export async function renderStoredPage(
       document.path in PROFILE_WELCOME_UPDATE || document.path.startsWith("updates/welcome-dr-")
         ? await welcomeBookingHref(clinicId, document.path)
         : null;
+    const withWelcomeProse =
+      document.path.startsWith("updates/welcome-dr-")
+        ? alignPhoneOnlyBookingProse(withUpdatesIndex, welcomeBooking)
+        : withUpdatesIndex;
     const withWelcomeLinks = injectWelcomeUpdateAuthorityLinks(
       document.path,
-      withUpdatesIndex,
+      withWelcomeProse,
       welcomeBooking,
     );
     const withProfileWelcome = injectProfileWelcomeUpdateLink(

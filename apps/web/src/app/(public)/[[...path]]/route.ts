@@ -8,6 +8,7 @@ import {
   peekPublicHtmlGeneration,
   setPublicHtmlCacheIfGeneration,
 } from "@/documents/public-html-cache";
+import { canServeRecruitmentPathPublicly } from "@/importer/recruitment-hold";
 import {
   STAGING_ROBOTS_DIRECTIVE,
   applyStagingNoIndexMeta,
@@ -106,6 +107,47 @@ export async function GET(
     });
   }
 
+  // Recruitment HOLD must win over durable/memory HTML cache. A pre-HOLD 200
+  // snapshot must never bypass mayServePublicly fail-closed serving.
+  if (!canServeRecruitmentPathPublicly(storagePath)) {
+    const hold404 = await renderStoredPage(clinic.id, storagePath, {
+      slug: clinic.slug,
+      practiceName: clinic.practiceName,
+      profile: clinic.profile
+        ? {
+            phoneDisplay: clinic.profile.phoneDisplay,
+            phoneTel: clinic.profile.phoneTel,
+            email: clinic.profile.email,
+            streetAddress: clinic.profile.streetAddress,
+            suburb: clinic.profile.suburb,
+            state: clinic.profile.state,
+            postcode: clinic.profile.postcode,
+            hotdocUrl: clinic.profile.hotdocUrl,
+            logoPath: clinic.profile.logoPath,
+          }
+        : null,
+    });
+    if (!hold404) {
+      return new Response("Not found.", {
+        status: 404,
+        headers: {
+          "content-type": "text/plain; charset=utf-8",
+          "cache-control": "private, no-store",
+          ...(staging ? { "X-Robots-Tag": STAGING_ROBOTS_DIRECTIVE } : {}),
+        },
+      });
+    }
+    // Do not seed public HTML cache for held paths (prevents stale reopen).
+    return htmlResponse(
+      staging ? applyStagingNoIndexMeta(hold404.html) : hold404.html,
+      hold404.status,
+      staging,
+      "MISS",
+      hold404.timings,
+      request,
+    );
+  }
+
   const cached = getPublicHtmlCache(clinic.id, storagePath);
   if (cached) {
     const html = staging ? applyStagingNoIndexMeta(cached.html) : cached.html;
@@ -158,4 +200,16 @@ export async function GET(
 
   const html = staging ? applyStagingNoIndexMeta(rendered.html) : rendered.html;
   return htmlResponse(html, rendered.status, staging, "MISS", rendered.timings, request);
+}
+
+/** HEAD must obey the same HOLD / cache rules as GET (no body). */
+export async function HEAD(
+  request: Request,
+  context: { params: Promise<{ path?: string[] }> },
+) {
+  const response = await GET(request, context);
+  return new Response(null, {
+    status: response.status,
+    headers: response.headers,
+  });
 }
