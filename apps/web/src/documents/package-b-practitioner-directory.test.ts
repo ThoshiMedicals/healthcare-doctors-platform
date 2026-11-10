@@ -22,8 +22,9 @@ test("wrapExcessGpDiscoveryAreas leaves short lists unchanged", () => {
 
 test("public UX injects practitioner directory card layout stylesheet", () => {
   const html =
-    '<html><head><title>Team</title></head><body class="has-persistent-care-actions"><div class="team-directory-grid"><article class="practitioner practitioner-directory-card"><a class="portrait" href="#"><img alt="" width="800" height="1000" src="x.webp"/></a><div class="practitioner-meta"><h3>Dr Example</h3><p class="credentials">FRACGP</p><p class="focus">Family health</p><a class="text-link" href="#">View profile</a></div></article></div></body></html>';
+    '<html><head><title>Team</title></head><body class="has-persistent-care-actions"><a class="brand"><img class="institution-logo-lockup" src="assets/brand/healthcare-doctors-woolloongabba-logo.png" width="475" height="71"/></a><div class="team-directory-grid"><article class="practitioner practitioner-directory-card"><a class="portrait" href="#"><img alt="" width="800" height="1000" src="x.webp"/></a><div class="practitioner-meta"><h3>Dr Example</h3><p class="credentials">FRACGP</p><p class="focus">Family health</p><a class="text-link" href="#">View profile</a></div></article></div></body></html>';
   const actual = applyPublicUxRefinements(html, "team.html");
+  assert.match(actual, /healthcare-doctors-woolloongabba-logo\.png\?v=wmc-logo-lockup-/);
   assert.match(actual, /id="wmc-practitioner-directory-cards"/);
   assert.match(actual, /\.team-directory-grid\{[^}]*align-items:stretch/);
   assert.match(actual, /\.team-directory-grid\{[^}]*grid-auto-rows:auto/);
