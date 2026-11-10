@@ -64,7 +64,7 @@ test("HOLD EOI hygiene rewrites child route to join hub stack", () => {
   const html =
     '<a class="button" href="join-our-team/express-interest.html">Express Interest</a>';
   const held = applyRecruitmentEoiHoldHygiene(html, "join-our-team.html", true);
-  assert.match(held, /href="#express-interest"/);
+  assert.match(held, /href="#confidential-conversation"/);
   assert.doesNotMatch(held, /express-interest\.html/);
 
   const nested = applyRecruitmentEoiHoldHygiene(
@@ -72,7 +72,7 @@ test("HOLD EOI hygiene rewrites child route to join hub stack", () => {
     "join-our-team/gp-opportunities.html",
     true,
   );
-  assert.match(nested, /href="\.\.\/join-our-team\.html#express-interest"/);
+  assert.match(nested, /href="\.\.\/join-our-team\.html#confidential-conversation"/);
 });
 
 test("applyLaunchSeoRefinements is idempotent for allied H1", () => {

@@ -138,8 +138,8 @@ export function applyRecruitmentEoiHoldHygiene(html: string, pagePath: string, h
   const onJoinHub = normalized === "join-our-team.html";
   const depth = Math.max(0, normalized.split("/").length - 1);
   const hubHref = onJoinHub
-    ? "#express-interest"
-    : `${depth > 0 ? "../".repeat(depth) : ""}join-our-team.html#express-interest`;
+    ? "#confidential-conversation"
+    : `${depth > 0 ? "../".repeat(depth) : ""}join-our-team.html#confidential-conversation`;
 
   let next = html.replace(
     /(href=["'])(?:\.\.\/)*(?:join-our-team\/)?express-interest\.html(?:#[^"']*)?(["'])/gi,

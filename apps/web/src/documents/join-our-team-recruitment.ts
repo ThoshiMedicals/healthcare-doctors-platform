@@ -12,13 +12,13 @@ import {
   resolveRecruitmentContact,
 } from "@/recruitment";
 
-/** Under HOLD, keep CTAs on the join hub stack (avoids crawlable EOI 404). */
+/** Under HOLD, keep CTAs on the join hub final stack (avoids crawlable EOI 404). */
 function eoiHrefForHold(): string {
   return isRecruitmentHoldActive()
-    ? "#express-interest"
+    ? "#confidential-conversation"
     : "join-our-team/express-interest.html";
 }
-const STYLE_BUST = "wmc-gp-recruit-20261110c";
+const STYLE_BUST = "wmc-gp-recruit-20261110d";
 const PORTAL_SCRIPT_BUST = "wmc-gp-readiness-20261110a";
 const READINESS_HASH = "#gp-readiness-portal";
 const OFFER = WMC_RECRUITMENT_OFFER;

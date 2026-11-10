@@ -1527,12 +1527,12 @@ body.ev-pe-page .pe-media--chapter img,body.pe-hub-page .pe-media--chapter img{
   }
   // Only rewrite when a sticky <nav> exists — avoid matching class names inside CSS on EOI.
   if (isRecruitmentSurface && !isExpressInterestPage && /<nav\b[^>]*persistent-care-actions/i.test(next)) {
-    // HOLD-safe: keep Discuss on the join hub EOI stack until express-interest is publicly served.
+    // HOLD-safe: keep Discuss on the join hub final stack until express-interest is publicly served.
     const eoiHref = pagePath === "join-our-team.html"
-      ? "#express-interest"
+      ? "#confidential-conversation"
       : pagePath.startsWith("join-our-team/") || pagePath.startsWith("about-us/")
-        ? "../join-our-team.html#express-interest"
-        : "join-our-team.html#express-interest";
+        ? "../join-our-team.html#confidential-conversation"
+        : "join-our-team.html#confidential-conversation";
     const stickyEoiHref = eoiHref;
     const recruitContact = resolveRecruitmentContact(undefined, eoiHref);
     const isJoinLanding = pagePath === "join-our-team.html";
