@@ -73,9 +73,25 @@ const JOIN_CHILD_PATHS = [
   "join-our-team/session-planner.html",
 ] as const;
 
+/** EOI + readiness form surfaces — stay unpublished under HOLD even when authority pages serve. */
 const WORKFLOW_FORM_PATHS = new Set<string>([
   "join-our-team/express-interest.html",
   "join-our-team/doctor-readiness.html",
+]);
+
+/**
+ * Informational Attraction pages may be served under HOLD (noindex) so Join Our Team /
+ * Practice Experience hubs do not dead-end into crawlable 404s. Forms stay blocked.
+ */
+const INFORMATIONAL_SERVE_UNDER_HOLD = new Set<string>([
+  "join-our-team/dpa-navigator.html",
+  "join-our-team/gp-faq.html",
+  "join-our-team/gp-opportunities.html",
+  "join-our-team/opportunity-pack.html",
+  "join-our-team/practice-support.html",
+  "join-our-team/provider-number-readiness.html",
+  "join-our-team/registrar-pathway.html",
+  "join-our-team/session-planner.html",
 ]);
 
 export function isRecruitmentPath(path: string): boolean {
@@ -84,7 +100,7 @@ export function isRecruitmentPath(path: string): boolean {
 
 /**
  * HOLD defaults for production until Attraction Index Gate + operator GO.
- * Hub may exist for patient-facing "VR GP role" messaging; child Attraction tools stay restricted.
+ * Hub + informational children may serve (noindex); EOI/readiness form routes stay private.
  */
 export function recruitmentHoldForPath(path: string): RecruitmentHoldPolicy | null {
   if (!isRecruitmentPath(path)) return null;
@@ -92,6 +108,7 @@ export function recruitmentHoldForPath(path: string): RecruitmentHoldPolicy | nu
   const isHub = path === JOIN_HUB;
   const isChild = (JOIN_CHILD_PATHS as readonly string[]).includes(path);
   const forms = WORKFLOW_FORM_PATHS.has(path);
+  const informational = INFORMATIONAL_SERVE_UNDER_HOLD.has(path);
 
   if (isHub) {
     return {
@@ -118,7 +135,7 @@ export function recruitmentHoldForPath(path: string): RecruitmentHoldPolicy | nu
     return {
       path,
       mayExistInProductionDb: true,
-      mayServePublicly: false,
+      mayServePublicly: informational,
       mayIndex: false,
       mayOperateFormsAndWorkflows: false,
       approvalToLiftHold: [
@@ -130,10 +147,12 @@ export function recruitmentHoldForPath(path: string): RecruitmentHoldPolicy | nu
       holdActive: true,
       notes: [
         "Class B non-golden Attraction page — DB row allowed only under HOLD.",
-        "Public serve and indexing remain OFF until HOLD lifted.",
+        informational
+          ? "Informational Attraction page may serve under HOLD with noindex to avoid hub dead-ends."
+          : "Form/workflow Attraction route remains unpublished until HOLD lifted.",
         forms
           ? "Form/workflow endpoints must stay disabled or non-routable on production until explicit GO."
-          : "Informational Attraction page — still not publicly served under HOLD.",
+          : "Indexing remains OFF until Index Gate PASS.",
       ],
     };
   }

@@ -1,4 +1,5 @@
 import type { ClinicBranding } from "@/clinics/branding";
+import { isRecruitmentHoldActive } from "@/importer/recruitment-hold";
 import { WMC_RECRUITMENT_OFFER } from "./offer-config";
 
 export type RecruitmentContactConfig = {
@@ -128,6 +129,13 @@ export function renderConfidentialityPanelHtml(variant: "light" | "dark" = "ligh
 }
 
 export function eoiHrefForPage(pagePath: string): string {
+  // Under HOLD the EOI form route stays unpublished — point to the join hub stack.
+  if (isRecruitmentHoldActive()) {
+    if (pagePath === "join-our-team.html") return "#confidential-conversation";
+    if (pagePath.startsWith("join-our-team/")) return "../join-our-team.html#confidential-conversation";
+    if (pagePath.startsWith("about-us/")) return "../join-our-team.html#confidential-conversation";
+    return "join-our-team.html#confidential-conversation";
+  }
   if (pagePath.startsWith("join-our-team/")) return "express-interest.html";
   if (pagePath.startsWith("about-us/")) return "../join-our-team/express-interest.html";
   return "join-our-team/express-interest.html";

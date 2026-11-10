@@ -146,7 +146,8 @@ test("Join Our Team becomes a GP recruitment prospectus without golden-master ed
   assert.doesNotMatch(result, /Why Demand Exists/);
   assert.match(result, /Demand Is Already On The Books/);
   assert.match(result, /id="wmc-gp-recruitment"/);
-  assert.match(result, /\/wmc-cache\/styles\.min\.css\?v=wmc-gp-recruit-20261110c/);
+  assert.match(result, /\/wmc-cache\/styles\.min\.css\?v=wmc-gp-recruit-20261110e/);
+  assert.match(result, /id="gp-joining-map"/);
   assert.match(result, /top:calc\(10rem \+ env\(safe-area-inset-top/);
   assert.match(result, /GP Readiness &amp; Onboarding Portal/);
   assert.match(result, /data-gp-readiness-open="true"/);
@@ -254,8 +255,9 @@ test("Join Our Team becomes a GP recruitment prospectus without golden-master ed
   assert.doesNotMatch(result, /We Are Looking For GPs Who/);
   assert.doesNotMatch(
     result,
-    /class="[^"]*\bon-this-page-shell\b|data-ev-journey-nav="true"|Am I ready to talk/i,
+    /class="[^"]*\bon-this-page-shell\b|data-ev-journey-nav="true"/i,
   );
+  assert.match(result, /Am I ready to talk\?/);
   assert.equal(applyPublicUxRefinements(result, "join-our-team.html"), result);
 });
 

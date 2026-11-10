@@ -60,19 +60,22 @@ test("consolidates telehealth utility links to the service canonical", () => {
   assert.match(nested, /href="\.\.\/services\/telehealth\.html"/);
 });
 
-test("HOLD EOI hygiene rewrites child route to join hub stack", () => {
+test("HOLD EOI hygiene rewrites form child routes to join hub anchors", () => {
   const html =
-    '<a class="button" href="join-our-team/express-interest.html">Express Interest</a>';
+    '<a class="button" href="join-our-team/express-interest.html">Express Interest</a>' +
+    '<a href="join-our-team/doctor-readiness.html">Am I ready?</a>';
   const held = applyRecruitmentEoiHoldHygiene(html, "join-our-team.html", true);
   assert.match(held, /href="#confidential-conversation"/);
-  assert.doesNotMatch(held, /express-interest\.html/);
+  assert.match(held, /href="#gp-readiness-portal"/);
+  assert.doesNotMatch(held, /express-interest\.html|doctor-readiness\.html/);
 
   const nested = applyRecruitmentEoiHoldHygiene(
-    '<a href="express-interest.html">EOI</a>',
+    '<a href="express-interest.html">EOI</a><a href="doctor-readiness.html">Ready</a>',
     "join-our-team/gp-opportunities.html",
     true,
   );
   assert.match(nested, /href="\.\.\/join-our-team\.html#confidential-conversation"/);
+  assert.match(nested, /href="\.\.\/join-our-team\.html#gp-readiness-portal"/);
 });
 
 test("applyLaunchSeoRefinements is idempotent for allied H1", () => {

@@ -12,9 +12,11 @@ test("HOLD is active by default", () => {
   assert.equal(isRecruitmentHoldActive({ RECRUITMENT_HOLD_LIFTED: "true" }), false);
 });
 
-test("Attraction child pages are not publicly served under HOLD", () => {
+test("Attraction form children stay unpublished under HOLD; informational pages may serve", () => {
   assert.equal(canServeRecruitmentPathPublicly("join-our-team/express-interest.html", {}), false);
-  assert.equal(canServeRecruitmentPathPublicly("join-our-team/gp-opportunities.html", {}), false);
+  assert.equal(canServeRecruitmentPathPublicly("join-our-team/doctor-readiness.html", {}), false);
+  assert.equal(canServeRecruitmentPathPublicly("join-our-team/gp-opportunities.html", {}), true);
+  assert.equal(canServeRecruitmentPathPublicly("join-our-team/gp-faq.html", {}), true);
   assert.equal(canServeRecruitmentPathPublicly("join-our-team.html", {}), true);
   assert.equal(canServeRecruitmentPathPublicly("index.html", {}), true);
 });

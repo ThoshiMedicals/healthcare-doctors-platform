@@ -5,10 +5,13 @@ import {
   listRecruitmentHoldPolicies,
 } from "@/importer/recruitment-hold";
 
-const HOLD_CHILDREN = [
+const FORM_CHILDREN = [
   "join-our-team/doctor-readiness.html",
-  "join-our-team/dpa-navigator.html",
   "join-our-team/express-interest.html",
+] as const;
+
+const INFORMATIONAL_CHILDREN = [
+  "join-our-team/dpa-navigator.html",
   "join-our-team/gp-faq.html",
   "join-our-team/gp-opportunities.html",
   "join-our-team/opportunity-pack.html",
@@ -18,19 +21,25 @@ const HOLD_CHILDREN = [
   "join-our-team/session-planner.html",
 ] as const;
 
-test("UX-001: all ten recruitment children fail-closed while HOLD is active", () => {
+test("UX-001: form children fail-closed while HOLD is active", () => {
   const env = {};
   assert.equal(process.env.RECRUITMENT_HOLD_LIFTED, undefined);
-  for (const path of HOLD_CHILDREN) {
+  for (const path of FORM_CHILDREN) {
     assert.equal(canServeRecruitmentPathPublicly(path, env), false, path);
   }
   assert.equal(canServeRecruitmentPathPublicly("join-our-team.html", env), true);
-  assert.equal(HOLD_CHILDREN.length, 10);
+});
+
+test("UX-001: informational Attraction children may serve under HOLD (noindex)", () => {
+  const env = {};
+  for (const path of INFORMATIONAL_CHILDREN) {
+    assert.equal(canServeRecruitmentPathPublicly(path, env), true, path);
+  }
 });
 
 test("UX-001: HOLD lift is explicit env only", () => {
   const lifted = { RECRUITMENT_HOLD_LIFTED: "true" };
-  for (const path of HOLD_CHILDREN) {
+  for (const path of [...FORM_CHILDREN, ...INFORMATIONAL_CHILDREN]) {
     assert.equal(canServeRecruitmentPathPublicly(path, lifted), true, path);
   }
 });
@@ -41,6 +50,6 @@ test("UX-001: policy inventory covers hub + ten children", () => {
   assert.ok(policies.every((p) => p.holdActive));
   assert.equal(
     policies.filter((p) => !p.mayServePublicly).length,
-    10,
+    FORM_CHILDREN.length,
   );
 });

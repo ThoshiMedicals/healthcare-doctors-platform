@@ -129,25 +129,29 @@ export function consolidateTelehealthInternalLinks(html: string, pagePath: strin
 }
 
 /**
- * Under recruitment HOLD, point EOI CTAs at the join hub in-page stack instead of the
- * unpublished express-interest child route (avoids crawlable 404s without inventing a form).
+ * Under recruitment HOLD, rewrite unpublished form-route CTAs to join-hub anchors
+ * (confidential conversation + readiness portal) so hubs never dead-end into 404s.
  */
 export function applyRecruitmentEoiHoldHygiene(html: string, pagePath: string, holdActive: boolean): string {
   if (!holdActive) return html;
   const normalized = pagePath.replace(/^\/+/, "").replace(/\\/g, "/");
   const onJoinHub = normalized === "join-our-team.html";
   const depth = Math.max(0, normalized.split("/").length - 1);
-  const hubHref = onJoinHub
-    ? "#confidential-conversation"
-    : `${depth > 0 ? "../".repeat(depth) : ""}join-our-team.html#confidential-conversation`;
+  const hubPrefix = onJoinHub ? "" : `${depth > 0 ? "../".repeat(depth) : ""}join-our-team.html`;
+  const eoiHref = onJoinHub ? "#confidential-conversation" : `${hubPrefix}#confidential-conversation`;
+  const readinessHref = onJoinHub ? "#gp-readiness-portal" : `${hubPrefix}#gp-readiness-portal`;
 
   let next = html.replace(
     /(href=["'])(?:\.\.\/)*(?:join-our-team\/)?express-interest\.html(?:#[^"']*)?(["'])/gi,
-    `$1${hubHref}$2`,
+    `$1${eoiHref}$2`,
   );
-  // Soften crawl signals on remaining EOI mentions when still absolute.
   next = next.replace(
-    /(<a\b[^>]*href=["'][^"']*express-interest\.html[^"']*["'][^>]*)(>)/gi,
+    /(href=["'])(?:\.\.\/)*(?:join-our-team\/)?doctor-readiness\.html(?:#[^"']*)?(["'])/gi,
+    `$1${readinessHref}$2`,
+  );
+  // Soften crawl signals on any remaining form-route mentions.
+  next = next.replace(
+    /(<a\b[^>]*href=["'][^"']*(?:express-interest|doctor-readiness)\.html[^"']*["'][^>]*)(>)/gi,
     (full, open: string, close: string) => {
       if (/\brel=/i.test(open)) return full;
       return `${open} rel="nofollow"${close}`;

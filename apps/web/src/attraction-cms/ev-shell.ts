@@ -3,6 +3,7 @@
  * Does not edit golden master files. No JobPosting schema.
  */
 
+import { isRecruitmentHoldActive } from "@/importer/recruitment-hold";
 import { JOURNEY_BY_PAGE } from "./journey-questions";
 
 export const EV_BANNER_HTML = `<aside class="ev-banner" role="note" data-ev-banner="true">
@@ -738,6 +739,18 @@ export function attractionPageKey(path: string): string {
 /** Single join-journey side-rail — use on every Attraction URL. Groups frozen; labels are practice language. */
 export const JOIN_ATTRACTION_NAV = (active: string, prefix = "../") => {
   const j = (path: string) => `${prefix}${path}`;
+  const hold = isRecruitmentHoldActive();
+  const onJoinHub = active === "join-our-team.html" && prefix === "";
+  const readinessHref = hold
+    ? onJoinHub
+      ? "#gp-readiness-portal"
+      : `${prefix}join-our-team.html#gp-readiness-portal`
+    : j("join-our-team/doctor-readiness.html");
+  const eoiHref = hold
+    ? onJoinHub
+      ? "#confidential-conversation"
+      : `${prefix}join-our-team.html#confidential-conversation`
+    : j("join-our-team/express-interest.html");
   const body = [
     joinNavLink(j("join-our-team.html"), "Join Our Team", active),
     `<div class="nav-group-title">Understand</div>`,
@@ -753,13 +766,13 @@ export const JOIN_ATTRACTION_NAV = (active: string, prefix = "../") => {
     joinNavLink(j("join-our-team/registrar-pathway.html"), "Registrar Pathway", active),
     `<div class="nav-group-title">Check readiness</div>`,
     joinNavLink(j("join-our-team/gp-faq.html"), "GP FAQ", active),
-    joinNavLink(j("join-our-team/doctor-readiness.html"), "Am I ready to talk?", active),
+    joinNavLink(readinessHref, "Am I ready to talk?", active),
     joinNavLink(j("join-our-team/provider-number-readiness.html"), "Provider numbers", active),
     joinNavLink(j("join-our-team/dpa-navigator.html"), "DPA &amp; 19AB", active),
     joinNavLink(j("join-our-team/session-planner.html"), "Preferred days", active),
     `<div class="nav-group-title">Next step</div>`,
     joinNavLink(j("join-our-team/opportunity-pack.html"), "Pages to keep", active),
-    joinNavLink(j("join-our-team/express-interest.html"), "Express Interest", active, {
+    joinNavLink(eoiHref, "Confidential conversation", active, {
       cta: true,
     }),
   ].join("");
@@ -784,10 +797,15 @@ export function attractionFooterNav(prefix = "../"): string {
 }
 
 export function attractionFooterVisit(prefix = "../"): string {
+  const hold = isRecruitmentHoldActive();
+  const nextStepHref = hold
+    ? `${prefix}join-our-team.html#confidential-conversation`
+    : `${prefix}join-our-team/express-interest.html`;
+  const nextStepLabel = hold ? "Confidential conversation" : "Express Interest";
   return `<div class="footer-nav footer-nav-visit"><h3>Visit &amp; next step</h3><div class="footer-accordion-content">
 ${attractionFooterContact(prefix)}
 <div aria-label="Practice opening hours" role="group" class="footer-hours"><strong>Opening hours</strong><span><b>Mon–Thu</b> 7:00 AM–7:00 PM</span><span><b>Friday</b> 8:00 AM–5:00 PM</span><span><b>Saturday</b> 9:00 AM–5:00 PM</span><span><b>Sunday</b> 9:00 AM–3:00 PM</span></div>
-<a href="${prefix}join-our-team/express-interest.html">Express Interest</a>
+<a href="${nextStepHref}">${nextStepLabel}</a>
 <a href="tel:+61732173344">Call about joining</a>
 </div></div>`;
 }
