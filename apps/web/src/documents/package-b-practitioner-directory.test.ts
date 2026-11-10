@@ -27,7 +27,9 @@ test("public UX injects practitioner directory card layout stylesheet", () => {
   assert.match(actual, /id="wmc-practitioner-directory-cards"/);
   assert.match(actual, /\.team-directory-grid\{[^}]*grid-auto-rows:auto/);
   assert.match(actual, /\.team-directory-grid \.practitioner[^{]*\{[^}]*height:auto/);
+  assert.match(actual, /body\.has-persistent-care-actions \.shell\.team-directory/);
   assert.match(actual, /padding-bottom:calc\(108px/);
+  assert.match(actual, /\.team-directory\.team-organisation\{[^}]*padding-bottom:0/);
   assert.equal(applyPublicUxRefinements(actual, "team.html"), actual);
 });
 

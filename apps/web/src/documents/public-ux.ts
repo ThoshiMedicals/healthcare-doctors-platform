@@ -769,11 +769,18 @@ body.has-persistent-care-actions .team-directory{
   overflow-y:visible!important;
   max-height:none!important;
 }
-body.has-persistent-care-actions .team-directory,
+/* Dock clearance belongs on the page shell / main only — not nested
+   .team-directory.team-organisation (that was leaving a large white gap
+   between the ecosystem nav and General Practitioners). */
+body.has-persistent-care-actions .shell.team-directory,
 body.has-persistent-care-actions.team-authority-subpage .page-main,
-body.has-action-dock .team-directory,
+body.has-action-dock .shell.team-directory,
 body.has-action-dock.team-authority-subpage .page-main{
   padding-bottom:calc(108px + env(safe-area-inset-bottom,0px))!important;
+}
+body.has-persistent-care-actions .team-directory.team-organisation,
+body.has-action-dock .team-directory.team-organisation{
+  padding-bottom:0!important;
 }
 @media (min-width:1025px){
   .team-authority-subpage .page-layout{
@@ -844,6 +851,12 @@ body.has-action-dock.team-authority-subpage .page-main{
   display:grid!important;
   grid-template-columns:1fr!important;
   gap:16px!important;
+}
+.shell.team-directory .team-ecosystem-nav{
+  margin-bottom:28px!important;
+}
+.shell.team-directory .team-directory-intro{
+  margin-bottom:28px!important;
 }
 body:has(.shell.team-directory) .page-hero .page-hero-inner,
 body.team-authority-subpage .page-hero .page-hero-inner{
