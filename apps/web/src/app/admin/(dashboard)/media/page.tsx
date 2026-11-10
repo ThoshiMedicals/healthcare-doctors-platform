@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { requireAction } from "@/cms/context";
-import { uploadMedia } from "@/cms/actions";
+import { refreshMediaLibrary, uploadMedia } from "@/cms/actions";
 import {
   MEDIA_LIBRARY_CATEGORIES,
   filterMediaLibrary,
   isMediaLibraryCategory,
+  listMediaLibrary,
   mediaLibraryDashboardStats,
   syncMediaLibrary,
   type MediaLibraryListFilters,
@@ -46,12 +47,18 @@ export default async function MediaLibraryPage({
     field?: string;
     error?: string;
     reason?: string;
+    synced?: string;
+    sync?: string;
   }>;
 }) {
   const query = await searchParams;
   const { clinic } = await requireAction("edit");
   const filters = parseFilters(query);
-  const catalog = await syncMediaLibrary(clinic.id);
+  let catalog = await listMediaLibrary(clinic.id);
+  // First visit / empty catalogue still needs one sync; later loads stay DB-only.
+  if (catalog.length === 0 || query.sync === "1") {
+    catalog = await syncMediaLibrary(clinic.id);
+  }
   const stats = mediaLibraryDashboardStats(catalog);
   const rows = filterMediaLibrary(catalog, filters);
 
@@ -66,14 +73,29 @@ export default async function MediaLibraryPage({
             layouts stay locked — this is an operations catalogue, not a redesign surface.
           </p>
         </div>
-        <Link
-          href="/admin/image-governance"
-          className="text-sm font-medium text-slate-800 underline underline-offset-2"
-        >
-          Image reviews →
-        </Link>
+        <div className="flex flex-wrap items-center gap-3">
+          <form action={refreshMediaLibrary}>
+            <button
+              type="submit"
+              className="rounded border border-slate-300 bg-white px-3 py-1.5 text-sm text-slate-800"
+            >
+              Refresh from site
+            </button>
+          </form>
+          <Link
+            href="/admin/image-governance"
+            className="text-sm font-medium text-slate-800 underline underline-offset-2"
+          >
+            Image reviews →
+          </Link>
+        </div>
       </div>
 
+      {query.synced ? (
+        <p className="mb-4 rounded border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm text-emerald-900">
+          Catalogue refreshed from published pages and disk assets.
+        </p>
+      ) : null}
       <GateNotice error={query.error} reason={query.reason} />
 
       {query.returnTo ? (

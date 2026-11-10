@@ -11,7 +11,6 @@ import {
   inferMediaCategory,
   isMediaLibraryCategory,
   mediaLibraryPreviewUrl,
-  syncMediaLibrary,
 } from "@/cms/media-library";
 import { roleAllows } from "@/auth/permissions";
 import { publicHref, publicPageName } from "@/cms/staff-labels";
@@ -31,7 +30,6 @@ export default async function MediaLibraryDetailPage({
   const { id } = await params;
   const query = await searchParams;
   const { clinic, role } = await requireAction("edit");
-  await syncMediaLibrary(clinic.id);
 
   const stored = await prisma.mediaAsset.findFirst({ where: { id, clinicId: clinic.id } });
   if (!stored) notFound();

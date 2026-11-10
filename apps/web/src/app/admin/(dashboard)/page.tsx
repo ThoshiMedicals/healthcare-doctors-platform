@@ -660,9 +660,6 @@ export default async function AdminCommandCentrePage({
     governanceFeedLabel = dataset.feedLabel;
   }
 
-  const careersStats = clinic ? await careerApplicationDashboardStats(clinic.id) : null;
-  const patientRequestStats = clinic ? await patientRequestDashboardStats(clinic.id) : null;
-  const mediaLibraryStats = clinic ? await mediaLibraryDashboardStatsForClinic(clinic.id) : null;
   let searchOpsKpis: {
     topSearches: number;
     risingSearches: number;
@@ -673,18 +670,28 @@ export default async function AdminCommandCentrePage({
     reviewsOverdue: number;
     pagesUpdatedThisMonth: number;
   } | null = null;
-  if (clinic) {
-    const [signals, reviews] = await Promise.all([
-      prisma.searchDemandSignal.findMany({
-        where: { clinicId: clinic.id },
-        orderBy: { occurredAt: "desc" },
-        take: 3000,
-      }),
-      prisma.clinicalReview.findMany({
-        where: { clinicId: clinic.id },
-        include: { page: { select: { path: true, title: true, updatedAt: true } } },
-      }),
-    ]);
+
+  const [careersStats, patientRequestStats, mediaLibraryStats, searchBundle] = clinic
+    ? await Promise.all([
+        careerApplicationDashboardStats(clinic.id),
+        patientRequestDashboardStats(clinic.id),
+        mediaLibraryDashboardStatsForClinic(clinic.id),
+        Promise.all([
+          prisma.searchDemandSignal.findMany({
+            where: { clinicId: clinic.id },
+            orderBy: { occurredAt: "desc" },
+            take: 800,
+          }),
+          prisma.clinicalReview.findMany({
+            where: { clinicId: clinic.id },
+            include: { page: { select: { path: true, title: true, updatedAt: true } } },
+          }),
+        ]),
+      ])
+    : [null, null, null, null];
+
+  if (clinic && searchBundle) {
+    const [signals, reviews] = searchBundle;
     const sco = buildSearchOpportunityDashboard({
       signals,
       events: loaded.events,

@@ -110,6 +110,15 @@ async function readFileMeta(storagePath: string): Promise<{
   }
 }
 
+/** Fast path: read MediaAsset rows only (no HTML scan / disk walk / sharp). */
+export async function listMediaLibrary(clinicId: string): Promise<MediaLibraryItem[]> {
+  const rows = await prisma.mediaAsset.findMany({
+    where: { clinicId },
+    orderBy: { filename: "asc" },
+  });
+  return rows.map((row) => toLibraryItem(row));
+}
+
 /** Sync disk assets + published usage into MediaAsset, then return library rows. */
 export async function syncMediaLibrary(clinicId: string): Promise<MediaLibraryItem[]> {
   const usageMap = await collectUsage(clinicId);

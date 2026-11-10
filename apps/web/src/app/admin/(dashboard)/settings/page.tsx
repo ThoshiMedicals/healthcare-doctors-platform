@@ -1,6 +1,7 @@
 import { saveClinicSettings } from "@/cms/actions";
 import { requireAction } from "@/cms/context";
 import { clinicEditorValues } from "@/cms/restore-sync";
+import { prisma } from "@/db/prisma";
 import { ErrorNotice, Field, GateNotice, Impact, SavedNotice, SaveBar, ViewPublicPage } from "../ui";
 import { WorkflowControls } from "../workflow-controls";
 
@@ -15,7 +16,11 @@ export default async function SettingsPage({
 }) {
   const { clinic, role } = await requireAction("manage_settings");
   const params = await searchParams;
-  const profile = clinic.profile;
+  const settingsClinic = await prisma.clinic.findUnique({
+    where: { id: clinic.id },
+    include: { profile: true, openingHours: { orderBy: { dayOfWeek: "asc" } } },
+  });
+  const profile = settingsClinic?.profile ?? null;
   const values = profile
     ? clinicEditorValues({
         contentStatus: profile.contentStatus,
@@ -27,7 +32,7 @@ export default async function SettingsPage({
         phoneDisplay: profile.phoneDisplay,
         email: profile.email,
         hotdocUrl: profile.hotdocUrl ?? "",
-        openingHours: clinic.openingHours.map((row) => ({
+        openingHours: (settingsClinic?.openingHours ?? []).map((row) => ({
           dayOfWeek: row.dayOfWeek,
           opens: row.opens,
           closes: row.closes,

@@ -21,6 +21,59 @@ export type RegisteredImage = {
   observedAlts: string[];
 };
 
+/** Fast path for list/detail: MediaAsset rows only (no published-HTML scan). */
+export async function listRegisteredImages(clinicId: string): Promise<RegisteredImage[]> {
+  const rows = await prisma.mediaAsset.findMany({
+    where: { clinicId },
+    orderBy: { filename: "asc" },
+  });
+  return rows.map((row) => ({
+    id: row.id,
+    storagePath: row.storagePath,
+    filename: row.filename,
+    assetType: row.assetType,
+    altText: row.altText,
+    uploadedBy: row.uploadedBy,
+    approvedAt: row.approvedAt,
+    photographer: row.photographer,
+    copyrightOwner: row.copyrightOwner,
+    expiresAt: row.expiresAt,
+    replacementStatus: row.replacementStatus,
+    reviewedBy: row.reviewedBy,
+    evidenceReference: row.evidenceReference,
+    contentSha256: row.contentSha256,
+    usage: [...row.usage].sort(),
+    observedAlts: row.altText ? [row.altText] : [],
+  }));
+}
+
+export async function getRegisteredImage(
+  clinicId: string,
+  id: string,
+): Promise<RegisteredImage | null> {
+  const row = await prisma.mediaAsset.findFirst({ where: { id, clinicId } });
+  if (!row) return null;
+  return {
+    id: row.id,
+    storagePath: row.storagePath,
+    filename: row.filename,
+    assetType: row.assetType,
+    altText: row.altText,
+    uploadedBy: row.uploadedBy,
+    approvedAt: row.approvedAt,
+    photographer: row.photographer,
+    copyrightOwner: row.copyrightOwner,
+    expiresAt: row.expiresAt,
+    replacementStatus: row.replacementStatus,
+    reviewedBy: row.reviewedBy,
+    evidenceReference: row.evidenceReference,
+    contentSha256: row.contentSha256,
+    usage: [...row.usage].sort(),
+    observedAlts: row.altText ? [row.altText] : [],
+  };
+}
+
+/** Expensive: rescan published HTML + upsert MediaAsset usage. Prefer listRegisteredImages for page loads. */
 export async function imageRegister(clinicId: string): Promise<RegisteredImage[]> {
   const [pages, practitioners] = await Promise.all([
     prisma.page.findMany({

@@ -4,9 +4,8 @@ import { saveImageGovernance } from "@/cms/actions";
 import { requireAction } from "@/cms/context";
 import { displayRecordDate, imageTitle, recordDate, recordDateStatus } from "@/cms/image-governance";
 import { replacementTarget } from "@/cms/image-replacement";
-import { imageRegister } from "@/cms/image-register";
+import { getRegisteredImage } from "@/cms/image-register";
 import { publicHref, publicPageName } from "@/cms/staff-labels";
-import { prisma } from "@/db/prisma";
 import { ImageProposalPanel } from "../../image-proposal-panel";
 import { Field, GateNotice, SavedNotice, SaveBar } from "../../ui";
 
@@ -22,15 +21,10 @@ export default async function ImageGovernanceEditPage({
   const { id } = await params;
   const query = await searchParams;
   const { clinic, role } = await requireAction("clinical_signoff");
-  const registered = (await imageRegister(clinic.id)).find((row) => row.id === id);
-  const stored =
-    registered ??
-    (await prisma.mediaAsset.findFirst({
-      where: { id, clinicId: clinic.id },
-    }));
+  const stored = await getRegisteredImage(clinic.id, id);
   if (!stored) notFound();
-  const usage = registered?.usage ?? stored.usage;
-  const observedAlts = registered?.observedAlts ?? [];
+  const usage = stored.usage;
+  const observedAlts = stored.observedAlts;
   const preview = stored.storagePath.startsWith("http") ? stored.storagePath : `/${stored.storagePath}`;
   const expiry = recordDateStatus(stored.expiresAt);
 

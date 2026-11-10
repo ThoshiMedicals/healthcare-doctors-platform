@@ -68,8 +68,13 @@ async function revise(options: {
 
 export async function saveClinicSettings(formData: FormData) {
   const { user, clinic } = await requireAction("manage_settings");
-  const profile = clinic.profile;
+  const settingsClinic = await prisma.clinic.findUnique({
+    where: { id: clinic.id },
+    include: { profile: true, openingHours: { orderBy: { dayOfWeek: "asc" } } },
+  });
+  const profile = settingsClinic?.profile;
   if (!profile) redirect("/admin/settings");
+  const openingHours = settingsClinic?.openingHours ?? [];
 
   const previous = {
     practiceName: clinic.practiceName,
@@ -84,7 +89,7 @@ export async function saveClinicSettings(formData: FormData) {
     agpalStatus: profile.agpalStatus,
     contentStatus: profile.contentStatus,
     publishedPayload: profile.publishedPayload ?? null,
-    openingHours: clinic.openingHours.map((hours) => ({
+    openingHours: openingHours.map((hours) => ({
       dayOfWeek: hours.dayOfWeek,
       opens: hours.opens,
       closes: hours.closes,
@@ -104,7 +109,7 @@ export async function saveClinicSettings(formData: FormData) {
     agpalStatus: profile.agpalStatus,
     contentStatus: "drafting" as const,
     publishedPayload: profile.publishedPayload ?? null,
-    openingHours: clinic.openingHours.map((hours) => ({
+    openingHours: openingHours.map((hours) => ({
       dayOfWeek: hours.dayOfWeek,
       opens: text(formData, `opens-${hours.dayOfWeek}`) || hours.opens,
       closes: text(formData, `closes-${hours.dayOfWeek}`) || hours.closes,
@@ -375,12 +380,18 @@ export async function saveVacancy(formData: FormData) {
   }
   const publishedRaw = text(formData, "publishedAt");
   const expiresRaw = text(formData, "expiresAt");
+  const locationFallback = text(formData, "location")
+    ? null
+    : await prisma.clinicProfile.findUnique({
+        where: { clinicId: clinic.id },
+        select: { suburb: true, state: true },
+      });
   const data = {
     title: text(formData, "title"),
     status: statusRaw,
     location:
       text(formData, "location") ||
-      [clinic.profile?.suburb, clinic.profile?.state].filter(Boolean).join(", ") ||
+      [locationFallback?.suburb, locationFallback?.state].filter(Boolean).join(", ") ||
       "Local clinic",
     employmentType: text(formData, "employmentType"),
     roleCategory: roleRaw,
@@ -631,6 +642,21 @@ export async function saveImageGovernance(formData: FormData) {
     await revise({ clinicId: clinic.id, authorId: user.id, entityType: "media_asset", entityId: id, previous, next });
   }
   redirect(`/admin/image-governance/${id}?saved=1`);
+}
+
+/** Expensive catalogue rebuild — only from explicit Refresh actions. */
+export async function refreshMediaLibrary() {
+  const { clinic } = await requireAction("edit");
+  const { syncMediaLibrary } = await import("@/cms/media-library");
+  await syncMediaLibrary(clinic.id);
+  redirect("/admin/media?synced=1");
+}
+
+export async function refreshImageGovernance() {
+  const { clinic } = await requireAction("clinical_signoff");
+  const { imageRegister } = await import("@/cms/image-register");
+  await imageRegister(clinic.id);
+  redirect("/admin/image-governance?synced=1");
 }
 
 export async function saveMedia(formData: FormData) {

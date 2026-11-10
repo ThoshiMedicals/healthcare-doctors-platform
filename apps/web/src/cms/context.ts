@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { redirect } from "next/navigation";
 import type { MembershipRole } from "@prisma/client";
 import { requireUser } from "@/auth/session";
@@ -9,7 +10,11 @@ import {
 } from "@/cms/active-clinic";
 import { prisma } from "@/db/prisma";
 
-export async function editorContext() {
+/**
+ * Request-scoped clinic shell context. Cached so layout + page do not double-query.
+ * Intentionally lean (no profile/hours) — settings loads those itself.
+ */
+export const editorContext = cache(async () => {
   const user = await requireUser();
   const memberships = await prisma.clinicMembership.findMany({
     where: { userId: user.id },
@@ -30,7 +35,12 @@ export async function editorContext() {
 
   const clinic = await prisma.clinic.findUnique({
     where: { slug },
-    include: { profile: true, openingHours: { orderBy: { dayOfWeek: "asc" } } },
+    select: {
+      id: true,
+      slug: true,
+      practiceName: true,
+      status: true,
+    },
   });
   const role = clinic ? highestRoleForClinic(memberships, clinic.id) : null;
   const allowed = clinic ? canAccessClinic(memberships, clinic.id) : false;
@@ -41,7 +51,7 @@ export async function editorContext() {
     role: allowed ? role : null,
     canSwitchClinic: canSwitchClinic(allowed ? role : provisionalRole),
   };
-}
+});
 
 export async function requireAction(action: CmsAction) {
   const context = await editorContext();
