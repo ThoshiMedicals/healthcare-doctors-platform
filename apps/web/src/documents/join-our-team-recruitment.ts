@@ -12,7 +12,7 @@ import {
 
 const EOI_HREF = "join-our-team/express-interest.html";
 const STYLE_BUST = "wmc-gp-recruit-20261106b";
-const PORTAL_SCRIPT_BUST = "wmc-gp-readiness-20261106a";
+const PORTAL_SCRIPT_BUST = "wmc-gp-readiness-20261110a";
 const READINESS_HASH = "#gp-readiness-portal";
 const OFFER = WMC_RECRUITMENT_OFFER;
 const HOURLY_MINIMUM = offerHourlyMinimumLine(OFFER);

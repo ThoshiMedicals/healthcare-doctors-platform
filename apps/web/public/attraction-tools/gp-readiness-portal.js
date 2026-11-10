@@ -851,7 +851,7 @@
             escapeHtml(name) +
             "</h3><p>" +
             escapeHtml((creds.length ? creds : quals).join(" · ") || "") +
-            "</p></div></div><p class="grp-full-bio">" +
+            '</p></div></div><p class="grp-full-bio">' +
             escapeHtml(bio.slice(0, 480)) +
             (bio.length > 480 ? "…" : "") +
             '</p><ul class="grp-full-meta"><li><strong>Languages</strong> ' +

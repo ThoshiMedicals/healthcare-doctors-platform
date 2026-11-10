@@ -151,7 +151,7 @@ test("Join Our Team becomes a GP recruitment prospectus without golden-master ed
   assert.match(result, /GP Readiness &amp; Onboarding Portal/);
   assert.match(result, /data-gp-readiness-open="true"/);
   assert.match(result, /Call About Joining/);
-  assert.match(result, /gp-readiness-portal\.js\?v=wmc-gp-readiness-20261106a/);
+  assert.match(result, /gp-readiness-portal\.js\?v=wmc-gp-readiness-20261110a/);
   assert.match(result, /id="gp-readiness-portal"/);
   assert.match(
     result,
