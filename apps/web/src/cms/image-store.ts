@@ -68,6 +68,17 @@ export function writeLive(relative: string, bytes: Buffer): string {
   const temporary = `${dest}.tmp`;
   fs.writeFileSync(temporary, bytes);
   fs.renameSync(temporary, dest);
+  // Keep public/ aligned for assets that are served without the managed-image rewrite
+  // (institution logo lockup). Ignore failures when the public tree is read-only.
+  try {
+    const publicDest = publicAssetPath(relative);
+    fs.mkdirSync(path.dirname(publicDest), { recursive: true });
+    const publicTemporary = `${publicDest}.tmp`;
+    fs.writeFileSync(publicTemporary, bytes);
+    fs.renameSync(publicTemporary, publicDest);
+  } catch {
+    // live store remains available for /api/managed-image consumers
+  }
   return sha;
 }
 

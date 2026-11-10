@@ -28,10 +28,9 @@ const nextConfig: NextConfig = {
         { source: "/index.html", destination: "/" },
         { source: "/styles.css", destination: "/styles.min.css" },
         { source: "/digital-reception-index.js", destination: "/api/reception-index" },
-        {
-          source: "/assets/brand/healthcare-doctors-woolloongabba-logo.png",
-          destination: "/api/managed-image/assets/brand/healthcare-doctors-woolloongabba-logo.png",
-        },
+        // Institution lockup stays on public/ (localhost authority). A stale
+        // storage/images/live override was serving a different PNG on Hostinger.
+        // CMS logo publish still updates public via writeLive sync.
         { source: "/assets/hero-final-desktop.webp", destination: "/api/managed-image/assets/hero-final-desktop.webp" },
         {
           source: "/assets/institutional-exterior-consistent.webp",
@@ -60,6 +59,10 @@ const nextConfig: NextConfig = {
       {
         source: "/site.js",
         headers: [{ key: "Cache-Control", value: "no-cache, max-age=0, must-revalidate" }],
+      },
+      {
+        source: "/assets/brand/healthcare-doctors-woolloongabba-logo.png",
+        headers: [{ key: "Cache-Control", value: "public, max-age=60, must-revalidate" }],
       },
     ];
   },

@@ -192,7 +192,7 @@ export function applyPublicUxRefinements(
   next = next.replace(/(?:\/wmc-cache\/)?(?:\.\.\/)*updates-data\.js(?:\?[^"]*)?(?=")/g, updatesDataHref);
   next = next.replace(/(?:\/wmc-cache\/)?(?:\.\.\/)*updates-ui\.js(?:\?[^"]*)?(?=")/g, updatesUiHref);
   // Institution lockup: keep localhost authority asset; bust Hostinger/CDN year-long cache.
-  const logoLockupBust = "wmc-logo-lockup-20261110a";
+  const logoLockupBust = "wmc-logo-lockup-20261110b";
   next = next.replace(
     /((?:\.\.\/)*)assets\/brand\/healthcare-doctors-woolloongabba-logo\.png(?:\?[^"]*)?/g,
     `$1assets/brand/healthcare-doctors-woolloongabba-logo.png?v=${logoLockupBust}`,
