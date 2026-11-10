@@ -33,3 +33,11 @@ test("Women's health does not also map to men's health", () => {
   assert.deepEqual(straight, ["services/womens-health.html"]);
   assert.deepEqual(curly, ["services/womens-health.html"]);
 });
+
+test("skin and chronic labels qualify both skin service paths and chronic medical conditions", () => {
+  assert.ok(matchingCareLabel(["Skin cancer care"], "services/skin-cancer-care.html"));
+  assert.ok(matchingCareLabel(["Skin checks"], "services/skin-checks.html"));
+  assert.ok(matchingCareLabel(["Chronic medical conditions"], "services/chronic-disease-care.html"));
+  const skin = servicesForCareAreas(["Skin cancer"]).map((s) => s.path).sort();
+  assert.deepEqual(skin, ["services/skin-cancer-care.html", "services/skin-checks.html"]);
+});

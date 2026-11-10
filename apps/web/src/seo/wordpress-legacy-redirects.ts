@@ -13,6 +13,21 @@ export const WORDPRESS_LEGACY_REDIRECTS: Readonly<Record<string, string>> = {
   "/doctors/dr-james.html": "/team-general-practitioners.html",
   "/doctors/dr-yamesha-ranatunga.html": "/team-general-practitioners.html",
 
+  // Active WordPress /doctor/* equity → live .html profiles (align middleware with nginx)
+  "/doctor/dr-anand-singh": "/doctors/dr-anand-singh.html",
+  "/doctor/dr-debra-larkins": "/doctors/dr-debra-larkins.html",
+  "/doctor/dr-gemunu-suresh-ranawake": "/doctors/dr-gemunu-suresh-ranawake.html",
+  "/doctor/dr-kooshyar-karimi": "/doctors/dr-kooshyar-karimi.html",
+  "/doctor/dr-mary-abadir": "/doctors/dr-mary-abadir.html",
+  "/doctor/dr-nirupa-sivathasan": "/doctors/dr-nirupa-sivathasan.html",
+  "/doctor/dr-sambo-luon": "/doctors/dr-sambo-luon.html",
+  "/doctor/dr-steven-chang-chiropractor": "/doctors/dr-steven-chang.html",
+  "/doctor/dr-sumita-singh": "/doctors/dr-sumita-singh.html",
+  "/doctor/dr-tanya-goodwill": "/doctors/dr-tanya-goodwill.html",
+  "/doctor/dr-usman-gul": "/doctors/dr-usman-gul.html",
+  "/doctor/dr-wasantha-hettiarchchi": "/doctors/dr-wasantha-hettiarchchi.html",
+  "/doctor/mr-samuel-stafford": "/doctors/mr-samuel-stafford.html",
+
   // P0 — telehealth cannibalisation: utility → canonical service page
   "/telehealth.html": "/services/telehealth.html",
 

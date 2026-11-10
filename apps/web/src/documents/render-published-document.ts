@@ -29,6 +29,7 @@ import {
   isRecruitmentHoldActive,
   mustNoIndexRecruitmentPath,
 } from "@/importer/recruitment-hold";
+import { applyAuthoritySeoRefinements } from "@/seo/authority-refinements";
 import { applyLaunchSeoRefinements } from "@/seo/launch-refinements";
 import { applyStagingNoIndexMeta } from "@/seo/staging-noindex";
 
@@ -328,11 +329,14 @@ export async function renderStoredPage(
         uxOptions,
       ),
     );
-    // Careers vacancy inject can reintroduce EOI hrefs — apply SEO/HOLD hygiene last.
+    // Careers vacancy inject can reintroduce EOI hrefs — apply SEO/HOLD + EEAT hygiene last.
     const withVacancies = await injectCareersVacancies(refined, document.path, clinicId);
-    const html = applyLaunchSeoRefinements(withVacancies, document.path, {
-      recruitmentHoldActive: isRecruitmentHoldActive(),
-    });
+    const html = applyAuthoritySeoRefinements(
+      applyLaunchSeoRefinements(withVacancies, document.path, {
+        recruitmentHoldActive: isRecruitmentHoldActive(),
+      }),
+      document.path,
+    );
     mark(timings, "ux", uxStarted);
     mark(timings, "total", renderStarted);
 

@@ -16,6 +16,21 @@ test("P0 retired practitioner WordPress slugs map to GP directory", () => {
   );
 });
 
+test("active WordPress doctor slugs map to live profile HTML", () => {
+  assert.equal(
+    resolveWordpressLegacyRedirect("/doctor/dr-tanya-goodwill/"),
+    "/doctors/dr-tanya-goodwill.html",
+  );
+  assert.equal(
+    resolveWordpressLegacyRedirect("/doctor/dr-kooshyar-karimi"),
+    "/doctors/dr-kooshyar-karimi.html",
+  );
+  assert.equal(
+    resolveWordpressLegacyRedirect("/doctor/dr-steven-chang-chiropractor/"),
+    "/doctors/dr-steven-chang.html",
+  );
+});
+
 test("P0 retired Next profiles and telehealth utility consolidate without chains", () => {
   assert.equal(
     resolveWordpressLegacyRedirect("/doctors/dr-golnar-mortezaei.html"),

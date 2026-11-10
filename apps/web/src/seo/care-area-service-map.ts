@@ -15,11 +15,17 @@ export const CARE_AREA_SERVICE_MAP: ReadonlyArray<{
   { match: /mental\s+health/i, servicePath: "services/mental-health.html", serviceLabel: "Mental Health" },
   { match: /family\s+(health|medicine)|general\s+practice/i, servicePath: "services/family-health.html", serviceLabel: "Family Health" },
   {
-    match: /chronic\s+disease|diabetes|heart\s+disease|copd|osteoarthritis|osteoporosis/i,
+    match: /chronic\s+(disease|medical\s+conditions?)|diabetes|heart\s+disease|copd|osteoarthritis|osteoporosis/i,
     servicePath: "services/chronic-disease-care.html",
     serviceLabel: "Chronic Disease Care",
   },
   { match: /skin\s+check|dermatology|skin\s+cancer/i, servicePath: "services/skin-checks.html", serviceLabel: "Skin Checks" },
+  // Same clinical skin signals also qualify practitioners for the skin-cancer-care service page.
+  {
+    match: /skin\s+check|dermatology|skin\s+cancer/i,
+    servicePath: "services/skin-cancer-care.html",
+    serviceLabel: "Skin Cancer Care",
+  },
   { match: /vaccin|immunis|travel\s+health/i, servicePath: "services/vaccinations.html", serviceLabel: "Vaccinations" },
   { match: /preventive|prevention/i, servicePath: "services/preventive-healthcare.html", serviceLabel: "Preventive Healthcare" },
   {
