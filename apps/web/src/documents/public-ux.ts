@@ -584,7 +584,7 @@ nav[aria-label="Breadcrumb"],
   align-content:start!important;
   height:auto!important;
   min-width:0!important;
-  overflow-x:clip!important;
+  overflow-x:hidden!important;
   overflow-y:visible!important;
   padding:18px!important;
   gap:10px 16px!important;
