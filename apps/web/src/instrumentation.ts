@@ -9,15 +9,25 @@
 export async function register(): Promise<void> {
   if (process.env.NEXT_RUNTIME !== "nodejs") return;
 
-  try {
-    const { prisma } = await import("@/db/prisma");
-    const started = Date.now();
-    await prisma.$connect();
-    console.info(`[wmc-warm] prisma connected in ${Date.now() - started}ms`);
-  } catch (error) {
-    console.error(
-      "[wmc-warm] prisma connect failed",
-      error instanceof Error ? error.message : error,
-    );
+  const { prisma } = await import("@/db/prisma");
+  const started = Date.now();
+  let lastError: unknown;
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    try {
+      await prisma.$connect();
+      console.info(`[wmc-warm] prisma connected in ${Date.now() - started}ms (attempt ${attempt})`);
+      return;
+    } catch (error) {
+      lastError = error;
+      console.error(
+        `[wmc-warm] prisma connect failed (attempt ${attempt}/3)`,
+        error instanceof Error ? error.message : error,
+      );
+      await new Promise((resolve) => setTimeout(resolve, attempt * 750));
+    }
   }
+  console.error(
+    "[wmc-warm] prisma connect abandoned after retries",
+    lastError instanceof Error ? lastError.message : lastError,
+  );
 }
