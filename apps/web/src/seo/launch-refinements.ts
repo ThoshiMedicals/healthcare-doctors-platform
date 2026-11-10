@@ -157,6 +157,12 @@ export function applyRecruitmentEoiHoldHygiene(html: string, pagePath: string, h
       return `${open} rel="nofollow"${close}`;
     },
   );
+  // Vacancy inject / DB HTML often keep "Express Interest" after href rewrite — align labels.
+  next = next.replace(
+    /(<a\b[^>]*href=["'][^"']*(?:#confidential-conversation|join-our-team\.html#confidential-conversation)[^"']*["'][^>]*>)\s*Express Interest\s*(<\/a>)/gi,
+    "$1Confidential conversation$2",
+  );
+  next = next.replace(/>Pack\s*(?:&amp;|&)\s*Express Interest</gi, ">Pack &amp; next step<");
   return next;
 }
 

@@ -299,7 +299,7 @@ ${renderRecommendedNextBand("join-our-team/gp-opportunities.html")}`;
     ],
     navOwner: "join-team",
     sideNavHtml: JOIN_ATTRACTION_NAV("gp-opportunities.html"),
-    onThisPageHtml: `<a href="#current-opportunities">Current opportunities</a><a href="#practice-fit-pillars">Why GPs choose WMC</a><a href="#decision-hero">Could you work here?</a><a href="#opportunity-next-steps">Pack &amp; Express Interest</a>`,
+    onThisPageHtml: `<a href="#current-opportunities">Current opportunities</a><a href="#practice-fit-pillars">Why GPs choose WMC</a><a href="#decision-hero">Could you work here?</a><a href="#opportunity-next-steps">Pack &amp; next step</a>`,
     articleHtml: article,
     bodyClass: "ev-opportunities-page",
     pageType: "conversion",

@@ -67,15 +67,19 @@ test("HOLD EOI hygiene rewrites form child routes to join hub anchors", () => {
   const held = applyRecruitmentEoiHoldHygiene(html, "join-our-team.html", true);
   assert.match(held, /href="#confidential-conversation"/);
   assert.match(held, /href="#gp-readiness-portal"/);
+  assert.match(held, />Confidential conversation</);
   assert.doesNotMatch(held, /express-interest\.html|doctor-readiness\.html/);
+  assert.doesNotMatch(held, />Express Interest</);
 
   const nested = applyRecruitmentEoiHoldHygiene(
-    '<a href="express-interest.html">EOI</a><a href="doctor-readiness.html">Ready</a>',
+    '<a href="express-interest.html">EOI</a><a href="doctor-readiness.html">Ready</a>' +
+      '<a href="#opportunity-next-steps">Pack &amp; Express Interest</a>',
     "join-our-team/gp-opportunities.html",
     true,
   );
   assert.match(nested, /href="\.\.\/join-our-team\.html#confidential-conversation"/);
   assert.match(nested, /href="\.\.\/join-our-team\.html#gp-readiness-portal"/);
+  assert.match(nested, />Pack &amp; next step</);
 });
 
 test("applyLaunchSeoRefinements is idempotent for allied H1", () => {

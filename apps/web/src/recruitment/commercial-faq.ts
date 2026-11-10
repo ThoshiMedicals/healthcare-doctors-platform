@@ -63,7 +63,7 @@ export function offerCommercialFaqItems(
     {
       id: "recruitment-contact",
       question: "Who responds to recruitment enquiries?",
-      answer: `${contact.name}, ${contact.role}, responds to confidential GP recruitment enquiries for ${offer.clinicDisplayName}. ${contact.note} Use Express Interest, email ${contact.email}, or call the practice — you will not be passed to an external recruitment agency for the first conversation.`,
+      answer: `${contact.name}, ${contact.role}, responds to confidential GP recruitment enquiries for ${offer.clinicDisplayName}. ${contact.note} Start a confidential conversation, email ${contact.email}, or call the practice — you will not be passed to an external recruitment agency for the first conversation.`,
     },
   ];
 }

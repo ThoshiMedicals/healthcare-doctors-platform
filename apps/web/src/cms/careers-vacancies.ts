@@ -11,6 +11,7 @@ import {
   resolvePublicRemunerationNote,
   sanitizeVacancyOfferHighlights,
 } from "@/recruitment/offer-config";
+import { isRecruitmentHoldActive } from "@/importer/recruitment-hold";
 
 function isGpVacancyRole(role: VacancyRoleCategory): boolean {
   return role === "general_practitioner" || role === "gp_registrar";
@@ -370,15 +371,21 @@ export async function injectCareersVacancies(html: string, pagePath: string, cli
   let grid = renderVacanciesMarkup(vacancies, { variant, pagePath });
 
   if (pagePath === "join-our-team/gp-opportunities.html") {
+    const hold = isRecruitmentHoldActive();
+    const eoiLabel = hold ? "Confidential conversation" : "Express Interest";
     grid = grid
       .replaceAll('href="#talent-community"', 'href="express-interest.html"')
       .replaceAll(
         "Apply via a confidential discussion with the practice.",
-        "Express interest with the practice, keep the pages that help you decide, or call about joining.",
+        hold
+          ? "Start a confidential conversation with the practice, keep the pages that help you decide, or call about joining."
+          : "Express interest with the practice, keep the pages that help you decide, or call about joining.",
       )
       .replaceAll(
         "Register your interest for this healthcare role.",
-        "Express interest with the practice about this role.",
+        hold
+          ? "Start a confidential conversation with the practice about this role."
+          : "Express interest with the practice about this role.",
       )
       .replace(
         /(<div class="careers-opportunity-actions">)\s*<a class="button" href="express-interest\.html"([^>]*)>Apply Confidentially<\/a>\s*(<\/div>)/g,
@@ -387,12 +394,12 @@ export async function injectCareersVacancies(html: string, pagePath: string, cli
           const typeMatch = attrs.match(/data-opportunity-type="([^"]+)"/);
           const oid = idMatch?.[1] ?? "";
           const otype = typeMatch?.[1] ?? "GP";
-          return `${open}<a class="button" href="express-interest.html"${attrs}>Express Interest</a>
+          return `${open}<a class="button" href="express-interest.html"${attrs}>${eoiLabel}</a>
 <a class="button-secondary" href="opportunity-pack.html" data-track-opportunity-cta="pack" data-opportunity-id="${oid}" data-opportunity-type="${otype}">Pages to keep</a>
 <a class="button-secondary" href="tel:+61732173344" data-track-opportunity-cta="contact" data-opportunity-id="${oid}" data-opportunity-type="${otype}">Call about joining</a>${close}`;
         },
       )
-      .replace(/Apply Confidentially/g, "Express Interest");
+      .replace(/Apply Confidentially/g, eoiLabel);
   }
 
   const markup = `<!--careers-vacancies:start-->${grid}<!--careers-vacancies:end-->`;
