@@ -923,14 +923,82 @@ body.team-authority-subpage .page-hero .lede.lede{
   max-width:none!important;
   width:100%!important;
 }
-body:has(.shell.team-directory) .on-this-page-shell,
+/* Keep on-this-page inside the normal shell gutters (do not full-bleed).
+   Title above links + wrapping chips reads calmer than one jammed strip. */
+body:has(.shell.team-directory) .shell.on-this-page-shell,
+body.team-authority-subpage .shell.on-this-page-shell{
+  width:min(calc(100% - 56px),var(--max,1320px))!important;
+  max-width:var(--max,1320px)!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+}
 body:has(.shell.team-directory) .on-this-page,
-body:has(.shell.team-directory) .on-this-page-links,
-body.team-authority-subpage .on-this-page-shell,
-body.team-authority-subpage .on-this-page,
-body.team-authority-subpage .on-this-page-links{
-  max-width:none!important;
+body.team-authority-subpage .on-this-page{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  gap:12px!important;
   width:100%!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+  overflow:visible!important;
+  padding-bottom:18px!important;
+}
+body:has(.shell.team-directory) .on-this-page-title,
+body.team-authority-subpage .on-this-page-title{
+  flex:0 0 auto!important;
+  min-width:max-content!important;
+  width:auto!important;
+  max-width:100%!important;
+  padding:0!important;
+  overflow:visible!important;
+  white-space:nowrap!important;
+}
+body:has(.shell.team-directory) .on-this-page-links,
+body.team-authority-subpage .on-this-page-links{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  align-items:center!important;
+  gap:8px 10px!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  overflow:visible!important;
+}
+body:has(.shell.team-directory) .on-this-page-links a,
+body.team-authority-subpage .on-this-page-links a{
+  flex:0 0 auto!important;
+  max-width:100%!important;
+  white-space:nowrap!important;
+  line-height:1.25!important;
+  min-height:42px!important;
+  box-sizing:border-box!important;
+}
+@media (max-width:900px){
+  body:has(.shell.team-directory) .shell.on-this-page-shell,
+  body.team-authority-subpage .shell.on-this-page-shell{
+    width:min(calc(100% - 28px),var(--max,1320px))!important;
+  }
+  body:has(.shell.team-directory) .on-this-page-links,
+  body.team-authority-subpage .on-this-page-links{
+    flex-wrap:nowrap!important;
+    overflow-x:auto!important;
+    gap:7px!important;
+    padding-bottom:5px!important;
+    -webkit-overflow-scrolling:touch!important;
+  }
+  body:has(.shell.team-directory) .on-this-page-links a,
+  body.team-authority-subpage .on-this-page-links a{
+    flex:0 0 auto!important;
+    white-space:nowrap!important;
+  }
+}
+@media (max-width:600px){
+  body:has(.shell.team-directory) .shell.on-this-page-shell,
+  body.team-authority-subpage .shell.on-this-page-shell{
+    width:min(calc(100% - 16px),var(--max,1320px))!important;
+  }
 }
 </style>
 <style id="wmc-digital-reception-mobile">
