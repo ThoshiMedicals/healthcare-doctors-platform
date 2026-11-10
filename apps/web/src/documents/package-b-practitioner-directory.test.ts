@@ -50,6 +50,8 @@ test("team pages receive full-width intro and hero copy rules", () => {
   assert.match(actual, /\.shell\.team-directory \.team-role-section \.team-role-copy\{[^}]*max-width:none/);
   assert.match(actual, /\.page-hero-inner\{[^}]*max-width:min\(100%,var\(--max/);
   assert.match(actual, /body:has\(\.shell\.team-directory\)[\s\S]*?\.page-hero \.lede[\s\S]*?max-width:none!important/);
+  assert.match(actual, /\.shell\.team-directory \.team-ecosystem-nav\{[^}]*grid-template-columns:repeat\(6,minmax\(0,1fr\)\)/);
+  assert.match(actual, /\.shell\.team-directory \.team-ecosystem-nav a\{[^}]*justify-content:center/);
   assert.equal(applyPublicUxRefinements(actual, "team.html"), actual);
 });
 

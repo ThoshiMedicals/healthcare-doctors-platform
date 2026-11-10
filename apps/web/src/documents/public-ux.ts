@@ -852,11 +852,51 @@ body.has-action-dock .team-directory.team-organisation{
   grid-template-columns:1fr!important;
   gap:16px!important;
 }
+.shell.team-directory .team-organisation,
 .shell.team-directory .team-ecosystem-nav{
-  margin-bottom:28px!important;
+  max-width:none!important;
+  width:100%!important;
+  box-sizing:border-box!important;
+}
+.shell.team-directory .team-ecosystem-nav{
+  display:grid!important;
+  grid-template-columns:repeat(6,minmax(0,1fr))!important;
+  align-items:stretch!important;
+  margin:0 0 28px!important;
+}
+.shell.team-directory .team-ecosystem-nav a{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  align-items:flex-start!important;
+  gap:6px!important;
+  min-width:0!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:96px!important;
+  padding:18px 16px!important;
+  box-sizing:border-box!important;
+}
+.shell.team-directory .team-ecosystem-nav strong,
+.shell.team-directory .team-ecosystem-nav span{
+  max-width:100%!important;
 }
 .shell.team-directory .team-directory-intro{
   margin-bottom:28px!important;
+}
+@media (max-width:1024px){
+  .shell.team-directory .team-ecosystem-nav{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+@media (max-width:700px){
+  .shell.team-directory .team-ecosystem-nav{
+    grid-template-columns:1fr!important;
+  }
+  .shell.team-directory .team-ecosystem-nav a{
+    min-height:0!important;
+    padding:16px 0!important;
+  }
 }
 body:has(.shell.team-directory) .page-hero .page-hero-inner,
 body.team-authority-subpage .page-hero .page-hero-inner{
