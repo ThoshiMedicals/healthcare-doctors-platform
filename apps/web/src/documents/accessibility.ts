@@ -49,6 +49,21 @@ export function applyAccessibilityClosure(html: string, pagePath: string): strin
       /(<span class="hero-trust-logo hero-trust-logo-bulk"><img )alt=""/,
       '$1alt="Medicare Bulk Billing Practice"',
     );
-  if (pagePath !== "404.html") return heroTrustAlts;
-  return heroTrustAlts.replace(/<footer\b[\s\S]*<\/footer>/i, (footer) => footer.replace(/<h3>/g, '<h3 aria-level="2">'));
+
+  // A11Y-001: image-only links without aria-label inherit an accessible name from the image alt.
+  const namedImageLinks = heroTrustAlts.replace(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi, (full, attrs: string, inner: string) => {
+    if (/\baria-label="/i.test(attrs) || /\baria-labelledby="/i.test(attrs)) return full;
+    const text = inner.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+    if (text) return full;
+    const alt = inner.match(/<img\b[^>]*\balt="([^"]+)"/i)?.[1]?.trim();
+    if (!alt) return full;
+    const safe = alt.replace(/"/g, "&quot;");
+    if (/\s>$/.test(attrs) || attrs.endsWith(" ")) {
+      return `<a${attrs}aria-label="${safe}">${inner}</a>`;
+    }
+    return `<a${attrs} aria-label="${safe}">${inner}</a>`;
+  });
+
+  if (pagePath !== "404.html") return namedImageLinks;
+  return namedImageLinks.replace(/<footer\b[\s\S]*<\/footer>/i, (footer) => footer.replace(/<h3>/g, '<h3 aria-level="2">'));
 }

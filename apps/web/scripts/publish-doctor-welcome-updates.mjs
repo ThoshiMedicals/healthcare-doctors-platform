@@ -22,8 +22,9 @@ const UPDATES = [
   {
     id: "welcome-dr-golnar-mortezaei",
     metaTitle: "Welcome Dr Golnar Mortezaei | Woolloongabba Medical Centre",
+    // S1-R1: Golnar is phone-only — do not seed online-booking claims.
     metaDescription:
-      "Now welcoming new patients. Learn more about Dr Golnar Mortezaei and book an appointment online with Woolloongabba Medical Centre.",
+      "Now welcoming new patients. Learn more about Dr Golnar Mortezaei and contact reception to arrange an appointment at Woolloongabba Medical Centre.",
   },
   {
     id: "welcome-dr-james-chanaka",
