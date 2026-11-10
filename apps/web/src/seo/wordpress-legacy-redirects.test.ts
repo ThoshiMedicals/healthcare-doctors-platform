@@ -14,6 +14,10 @@ test("P0 retired practitioner WordPress slugs map to GP directory", () => {
     resolveWordpressLegacyRedirect("/doctor/dr-james-general-practitioner"),
     "/team-general-practitioners.html",
   );
+  assert.equal(
+    resolveWordpressLegacyRedirect("/doctor/dr-gemunu-suresh-ranawake/"),
+    "/team-general-practitioners.html",
+  );
 });
 
 test("active WordPress doctor slugs map to live profile HTML", () => {
@@ -42,6 +46,10 @@ test("P0 retired Next profiles and telehealth utility consolidate without chains
   );
   assert.equal(
     resolveWordpressLegacyRedirect("/doctors/dr-yamesha-ranatunga.html"),
+    "/team-general-practitioners.html",
+  );
+  assert.equal(
+    resolveWordpressLegacyRedirect("/doctors/dr-gemunu-suresh-ranawake.html"),
     "/team-general-practitioners.html",
   );
   assert.equal(

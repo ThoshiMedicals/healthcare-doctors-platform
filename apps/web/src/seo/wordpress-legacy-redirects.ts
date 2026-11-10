@@ -7,16 +7,18 @@ export const WORDPRESS_LEGACY_REDIRECTS: Readonly<Record<string, string>> = {
   // P0 — retired CMS practitioner WordPress slugs → live GP directory (not 404 profiles)
   "/doctor/dr-golnar-mortezaei-gp-fracgp": "/team-general-practitioners.html",
   "/doctor/dr-james-general-practitioner": "/team-general-practitioners.html",
+  // Gemunu on_hold / intentionally unpublished — never 301 into a 404 profile
+  "/doctor/dr-gemunu-suresh-ranawake": "/team-general-practitioners.html",
 
-  // P0 — retired Next-native profile URLs (Golnar / James / Yamesha) → GP directory
+  // P0 — retired Next-native profile URLs (Golnar / James / Yamesha / Gemunu) → GP directory
   "/doctors/dr-golnar-mortezaei.html": "/team-general-practitioners.html",
   "/doctors/dr-james.html": "/team-general-practitioners.html",
   "/doctors/dr-yamesha-ranatunga.html": "/team-general-practitioners.html",
+  "/doctors/dr-gemunu-suresh-ranawake.html": "/team-general-practitioners.html",
 
   // Active WordPress /doctor/* equity → live .html profiles (align middleware with nginx)
   "/doctor/dr-anand-singh": "/doctors/dr-anand-singh.html",
   "/doctor/dr-debra-larkins": "/doctors/dr-debra-larkins.html",
-  "/doctor/dr-gemunu-suresh-ranawake": "/doctors/dr-gemunu-suresh-ranawake.html",
   "/doctor/dr-kooshyar-karimi": "/doctors/dr-kooshyar-karimi.html",
   "/doctor/dr-mary-abadir": "/doctors/dr-mary-abadir.html",
   "/doctor/dr-nirupa-sivathasan": "/doctors/dr-nirupa-sivathasan.html",
