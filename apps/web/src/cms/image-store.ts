@@ -60,6 +60,21 @@ export function servedSha(relative: string): string {
   return sha256(readServedBytes(relative));
 }
 
+const PUBLIC_SYNC_PATHS = new Set(["assets/brand/healthcare-doctors-woolloongabba-logo.png"]);
+
+function syncPublicAsset(relative: string, bytes: Buffer): void {
+  if (!PUBLIC_SYNC_PATHS.has(relative.replace(/\\/g, "/"))) return;
+  try {
+    const publicDest = publicAssetPath(relative);
+    fs.mkdirSync(path.dirname(publicDest), { recursive: true });
+    const publicTemporary = `${publicDest}.tmp`;
+    fs.writeFileSync(publicTemporary, bytes);
+    fs.renameSync(publicTemporary, publicDest);
+  } catch {
+    // public may be read-only on some hosts; live store remains for managed-image routes
+  }
+}
+
 export function writeLive(relative: string, bytes: Buffer): string {
   archiveBytes(readServedBytes(relative));
   const sha = archiveBytes(bytes);
@@ -68,25 +83,27 @@ export function writeLive(relative: string, bytes: Buffer): string {
   const temporary = `${dest}.tmp`;
   fs.writeFileSync(temporary, bytes);
   fs.renameSync(temporary, dest);
-  // Keep public/ aligned for assets that are served without the managed-image rewrite
-  // (institution logo lockup). Ignore failures when the public tree is read-only.
-  try {
-    const publicDest = publicAssetPath(relative);
-    fs.mkdirSync(path.dirname(publicDest), { recursive: true });
-    const publicTemporary = `${publicDest}.tmp`;
-    fs.writeFileSync(publicTemporary, bytes);
-    fs.renameSync(publicTemporary, publicDest);
-  } catch {
-    // live store remains available for /api/managed-image consumers
-  }
+  // Institution lockup is served from public/ (no managed-image rewrite), so keep it synced.
+  syncPublicAsset(relative, bytes);
   return sha;
 }
 
 export function restoreServed(relative: string, sha: string): void {
-  const original = fs.readFileSync(publicAssetPath(relative));
-  archiveBytes(original);
+  const normalized = relative.replace(/\\/g, "/");
+  const publicBytes = fs.readFileSync(publicAssetPath(relative));
+  archiveBytes(publicBytes);
   const live = contained(imageStoreRoot(), path.join("live", relative));
-  if (sha === sha256(original)) {
+
+  // Institution logo is served from public/; restore the archived bytes there and drop live.
+  if (PUBLIC_SYNC_PATHS.has(normalized)) {
+    const bytes = sha === sha256(publicBytes) ? publicBytes : readArchive(sha);
+    if (!bytes) throw new ImageArchiveError();
+    syncPublicAsset(relative, bytes);
+    if (fs.existsSync(live)) fs.rmSync(live);
+    return;
+  }
+
+  if (sha === sha256(publicBytes)) {
     if (fs.existsSync(live)) fs.rmSync(live);
     return;
   }

@@ -70,7 +70,7 @@ describe("replaceable images", () => {
     assert.equal(replacementInstruction(exteriorTarget).includes("1448 by 1086 pixels, aspect ratio 4:3"), true);
   });
 
-  it("keeps the published file off the original until publish, then rollback restores it", () => {
+  it("publishes the institution logo into live and public, then rollback restores both", () => {
     const relative = logo;
     const original = fs.readFileSync(path.join(publicRoot, relative));
     const originalSha = servedSha(relative);
@@ -79,10 +79,12 @@ describe("replaceable images", () => {
     assert.equal(fs.readFileSync(path.join(publicRoot, relative)).equals(original), true);
     const publishedSha = writeLive(relative, replacement);
     assert.equal(servedSha(relative), publishedSha);
-    assert.equal(fs.readFileSync(path.join(publicRoot, relative)).equals(original), true);
+    // Logo lockup is served from public/ (no managed-image rewrite), so publish syncs public.
+    assert.equal(fs.readFileSync(path.join(publicRoot, relative)).equals(replacement), true);
     assert.equal(readServedBytes(relative).equals(replacement), true);
     restoreServed(relative, originalSha);
     assert.equal(readServedBytes(relative).equals(original), true);
+    assert.equal(fs.readFileSync(path.join(publicRoot, relative)).equals(original), true);
     assert.equal(fs.existsSync(path.join(store, "live", relative)), false);
   });
 
