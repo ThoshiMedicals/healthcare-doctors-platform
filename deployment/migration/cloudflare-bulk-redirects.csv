@@ -1,4 +1,4 @@
-Source URL,Target URL,Status code,Preserve query string,Include subdomains,Subpath matching,Preserve path suffix
+﻿Source URL,Target URL,Status code,Preserve query string,Include subdomains,Subpath matching,Preserve path suffix
 https://gabbamedicalcentre.com.au/about-us/,https://gabbamedicalcentre.com.au/about-us.html,301,true,false,false,false
 https://gabbamedicalcentre.com.au/about-us,https://gabbamedicalcentre.com.au/about-us.html,301,true,false,false,false
 https://gabbamedicalcentre.com.au/allied-health-services/,https://gabbamedicalcentre.com.au/services/allied-health.html,301,true,false,false,false
@@ -89,10 +89,10 @@ https://gabbamedicalcentre.com.au/services/womens-health-doctors/,https://gabbam
 https://gabbamedicalcentre.com.au/services/womens-health-doctors,https://gabbamedicalcentre.com.au/services/womens-health.html,301,true,false,false,false
 https://gabbamedicalcentre.com.au/treatments/,https://gabbamedicalcentre.com.au/services.html,301,true,false,false,false
 https://gabbamedicalcentre.com.au/treatments,https://gabbamedicalcentre.com.au/services.html,301,true,false,false,false
-https://gabbamedicalcentre.com.au/doctor/dr-golnar-mortezaei-gp-fracgp/,https://gabbamedicalcentre.com.au/doctors/dr-golnar-mortezaei.html,301,true,false,false,false
-https://gabbamedicalcentre.com.au/doctor/dr-golnar-mortezaei-gp-fracgp,https://gabbamedicalcentre.com.au/doctors/dr-golnar-mortezaei.html,301,true,false,false,false
-https://gabbamedicalcentre.com.au/doctor/dr-james-general-practitioner/,https://gabbamedicalcentre.com.au/doctors/dr-james.html,301,true,false,false,false
-https://gabbamedicalcentre.com.au/doctor/dr-james-general-practitioner,https://gabbamedicalcentre.com.au/doctors/dr-james.html,301,true,false,false,false
+https://gabbamedicalcentre.com.au/doctor/dr-golnar-mortezaei-gp-fracgp/,https://gabbamedicalcentre.com.au/team-general-practitioners.html,301,true,false,false,false
+https://gabbamedicalcentre.com.au/doctor/dr-golnar-mortezaei-gp-fracgp,https://gabbamedicalcentre.com.au/team-general-practitioners.html,301,true,false,false,false
+https://gabbamedicalcentre.com.au/doctor/dr-james-general-practitioner/,https://gabbamedicalcentre.com.au/team-general-practitioners.html,301,true,false,false,false
+https://gabbamedicalcentre.com.au/doctor/dr-james-general-practitioner,https://gabbamedicalcentre.com.au/team-general-practitioners.html,301,true,false,false,false
 https://gabbamedicalcentre.com.au/bulk-billing-doctors-woolloongabba/,https://gabbamedicalcentre.com.au/bulk-billing.html,301,true,false,false,false
 https://gabbamedicalcentre.com.au/bulk-billing-doctors-woolloongabba,https://gabbamedicalcentre.com.au/bulk-billing.html,301,true,false,false,false
 https://gabbamedicalcentre.com.au/family-doctors-woolloongabba/,https://gabbamedicalcentre.com.au/services/family-health.html,301,true,false,false,false
@@ -113,3 +113,7 @@ https://gabbamedicalcentre.com.au/services/sexual-health-doctors/,https://gabbam
 https://gabbamedicalcentre.com.au/services/sexual-health-doctors,https://gabbamedicalcentre.com.au/services/family-health.html,301,true,false,false,false
 https://gabbamedicalcentre.com.au/services/travel-health-doctors/,https://gabbamedicalcentre.com.au/services/vaccinations.html,301,true,false,false,false
 https://gabbamedicalcentre.com.au/services/travel-health-doctors,https://gabbamedicalcentre.com.au/services/vaccinations.html,301,true,false,false,false
+https://gabbamedicalcentre.com.au/doctors/dr-golnar-mortezaei.html,https://gabbamedicalcentre.com.au/team-general-practitioners.html,301,true,false,false,false
+https://gabbamedicalcentre.com.au/doctors/dr-james.html,https://gabbamedicalcentre.com.au/team-general-practitioners.html,301,true,false,false,false
+https://gabbamedicalcentre.com.au/doctors/dr-yamesha-ranatunga.html,https://gabbamedicalcentre.com.au/team-general-practitioners.html,301,true,false,false,false
+https://gabbamedicalcentre.com.au/telehealth.html,https://gabbamedicalcentre.com.au/services/telehealth.html,301,true,false,false,false

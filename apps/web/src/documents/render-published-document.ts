@@ -26,8 +26,10 @@ import {
 import { Prisma } from "@prisma/client";
 import {
   canServeRecruitmentPathPublicly,
+  isRecruitmentHoldActive,
   mustNoIndexRecruitmentPath,
 } from "@/importer/recruitment-hold";
+import { applyLaunchSeoRefinements } from "@/seo/launch-refinements";
 import { applyStagingNoIndexMeta } from "@/seo/staging-noindex";
 
 export type PublishedDocument = {
@@ -326,7 +328,11 @@ export async function renderStoredPage(
         uxOptions,
       ),
     );
-    const html = await injectCareersVacancies(refined, document.path, clinicId);
+    // Careers vacancy inject can reintroduce EOI hrefs — apply SEO/HOLD hygiene last.
+    const withVacancies = await injectCareersVacancies(refined, document.path, clinicId);
+    const html = applyLaunchSeoRefinements(withVacancies, document.path, {
+      recruitmentHoldActive: isRecruitmentHoldActive(),
+    });
     mark(timings, "ux", uxStarted);
     mark(timings, "total", renderStarted);
 

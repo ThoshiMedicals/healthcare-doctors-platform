@@ -4,9 +4,17 @@
  * Middleware and cutover configs (nginx / Cloudflare) must stay aligned.
  */
 export const WORDPRESS_LEGACY_REDIRECTS: Readonly<Record<string, string>> = {
-  // P0 — retired CMS practitioner profiles → live GP directory (avoid sitemap orphans / 404 equity loss)
+  // P0 — retired CMS practitioner WordPress slugs → live GP directory (not 404 profiles)
   "/doctor/dr-golnar-mortezaei-gp-fracgp": "/team-general-practitioners.html",
   "/doctor/dr-james-general-practitioner": "/team-general-practitioners.html",
+
+  // P0 — retired Next-native profile URLs (Golnar / James / Yamesha) → GP directory
+  "/doctors/dr-golnar-mortezaei.html": "/team-general-practitioners.html",
+  "/doctors/dr-james.html": "/team-general-practitioners.html",
+  "/doctors/dr-yamesha-ranatunga.html": "/team-general-practitioners.html",
+
+  // P0 — telehealth cannibalisation: utility → canonical service page
+  "/telehealth.html": "/services/telehealth.html",
 
   // P0 — promote approved SEO landing reviews
   "/bulk-billing-doctors-woolloongabba": "/bulk-billing.html",

@@ -396,3 +396,52 @@ test("the direct static index also contains all release-critical links", () => {
   assert.match(content, /href="\/favicon\.ico\?v=hd-symbol-20261029b"/);
   assert.doesNotMatch(content, /<link\b[^>]*href="assets\/brand\/wmc-brand-mark\.webp"/);
 });
+
+test("wires Samuel Stafford directory portrait and keeps profile hero image", () => {
+  const directoryHtml =
+    '<html><head></head><body><article class="practitioner practitioner-directory-card practitioner-mr-samuel-stafford">' +
+    '<a aria-label="View Mr Samuel Stafford profile" class="portrait practitioner-no-photo" href="doctors/mr-samuel-stafford.html">' +
+    '<span class="practitioner-no-photo-text">Mr Samuel Stafford</span></a></article></body></html>';
+  const directory = applyPublicUxRefinements(directoryHtml, "team.html");
+  assert.match(directory, /assets\/team\/mr-samuel-stafford\.webp/);
+  assert.match(directory, /data-practitioner-image="true"/);
+  assert.doesNotMatch(directory, /practitioner-no-photo/);
+  assert.equal(applyPublicUxRefinements(directory, "team.html"), directory);
+
+  const profileHtml =
+    '<html><head><meta content="https://gabbamedicalcentre.com.au/assets/hero-final-desktop.webp" property="og:image"/>' +
+    '<meta content="https://gabbamedicalcentre.com.au/assets/hero-final-desktop.webp" name="twitter:image"/></head>' +
+    '<body><div class="shell doctor-profile-hero"><div class="doctor-profile-heading"><h1>Mr Samuel Stafford</h1></div></div></body></html>';
+  const profile = applyPublicUxRefinements(profileHtml, "doctors/mr-samuel-stafford.html");
+  assert.match(profile, /\.\.\/assets\/team\/mr-samuel-stafford\.webp/);
+  assert.match(profile, /doctor-profile-photo/);
+  assert.match(profile, /og:image"\/>/);
+  assert.match(profile, /content="https:\/\/gabbamedicalcentre\.com\.au\/assets\/team\/mr-samuel-stafford\.webp"/);
+  assert.equal(applyPublicUxRefinements(profile, "doctors/mr-samuel-stafford.html"), profile);
+});
+
+test("moves View all General Practitioners to the bottom-left of the GP section", () => {
+  const html =
+    '<html><head></head><body><div class="shell team-directory">' +
+    '<section class="team-role-section" id="general-practitioners">' +
+    "<h2>General Practitioners</h2>" +
+    '<p class="team-role-copy">Our GPs are usually the central clinical point for your care.</p>' +
+    '<p class="team-role-page-link"><a class="text-link" href="team-general-practitioners.html">View all General Practitioners →</a></p>' +
+    '<div class="team-directory-grid"><article class="practitioner"><div class="practitioner-meta"><h3>Dr Tanya</h3></div></article></div>' +
+    "</section></div></body></html>";
+  const actual = applyPublicUxRefinements(html, "team.html");
+  const section = actual.match(
+    /<section\b[^>]*id="general-practitioners"[^>]*>[\s\S]*?<\/section>/i,
+  )?.[0];
+  assert.ok(section);
+  assert.match(
+    section!,
+    /team-directory-grid[\s\S]*<\/div>\s*<p class="team-role-page-link"><a class="text-link" href="team-general-practitioners\.html">View all General Practitioners →<\/a><\/p>/i,
+  );
+  assert.doesNotMatch(
+    section!,
+    /team-role-copy[\s\S]*team-role-page-link[\s\S]*team-directory-grid/i,
+  );
+  assert.match(actual, /#general-practitioners > \.team-role-page-link\{[^}]*margin:28px 0 0/);
+  assert.equal(applyPublicUxRefinements(actual, "team.html"), actual);
+});

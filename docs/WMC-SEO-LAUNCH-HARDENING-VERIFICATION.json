@@ -1,0 +1,205 @@
+{
+  "generatedAt": "2026-11-10T08:37:54.575Z",
+  "base": "http://127.0.0.1:3012",
+  "redirects": [
+    {
+      "from": "/doctor/dr-golnar-mortezaei-gp-fracgp/",
+      "status": 301,
+      "location": "http://localhost:3012/team-general-practitioners.html",
+      "destinationStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/doctor/dr-james-general-practitioner/",
+      "status": 301,
+      "location": "http://localhost:3012/team-general-practitioners.html",
+      "destinationStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/doctors/dr-golnar-mortezaei.html",
+      "status": 301,
+      "location": "http://localhost:3012/team-general-practitioners.html",
+      "destinationStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/doctors/dr-james.html",
+      "status": 301,
+      "location": "http://localhost:3012/team-general-practitioners.html",
+      "destinationStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/doctors/dr-yamesha-ranatunga.html",
+      "status": 301,
+      "location": "http://localhost:3012/team-general-practitioners.html",
+      "destinationStatus": 200,
+      "chain": false,
+      "ok": true
+    },
+    {
+      "from": "/telehealth.html",
+      "status": 301,
+      "location": "http://localhost:3012/services/telehealth.html",
+      "destinationStatus": 200,
+      "chain": false,
+      "ok": true
+    }
+  ],
+  "redirectPass": true,
+  "metas": [
+    {
+      "path": "/join-our-team.html",
+      "title": "Join Our Team | Woolloongabba Medical Centre",
+      "titleLen": 44,
+      "meta": "Explore VR GP opportunities at Woolloongabba Medical Centre. Patient-centred culture, career pathways and confidential interest for Brisbane's inner south.",
+      "metaLen": 155,
+      "h1": "A Supported VR GP Role at an Established Inner-South Practice.",
+      "canonical": "https://gabbamedicalcentre.com.au/join-our-team.html"
+    },
+    {
+      "path": "/services/telehealth.html",
+      "title": "Telehealth | Woolloongabba Medical Centre",
+      "titleLen": 41,
+      "meta": "GP telehealth at Woolloongabba Medical Centre: when remote care suits follow-up or results, Medicare notes, and when an in-person visit is safer.",
+      "metaLen": 145,
+      "h1": "Telehealth With Woolloongabba Medical Centre",
+      "canonical": "https://gabbamedicalcentre.com.au/services/telehealth.html"
+    },
+    {
+      "path": "/knowledge/articles/back-pain-when-should-i-see-a-gp.html",
+      "title": "Back Pain: When to See a GP | Woolloongabba Medical",
+      "titleLen": 51,
+      "meta": "Most back pain settles with time, but persistent, severe or nerve-related symptoms may need a GP assessment at Woolloongabba Medical Centre.",
+      "metaLen": 140,
+      "h1": "Back Pain: When Should I See A GP?",
+      "canonical": "https://gabbamedicalcentre.com.au/knowledge/articles/back-pain-when-should-i-see-a-gp.html"
+    },
+    {
+      "path": "/knowledge/articles/why-won-t-my-cough-go-away.html",
+      "title": "Why Won’t My Cough Go Away? | Woolloongabba Medical Centre",
+      "titleLen": 58,
+      "meta": "A cough can linger after infection. Learn when ongoing cough needs GP review at Woolloongabba Medical Centre for infection, asthma or other causes.",
+      "metaLen": 147,
+      "h1": "Why Won’t My Cough Go Away?",
+      "canonical": "https://gabbamedicalcentre.com.au/knowledge/articles/why-won-t-my-cough-go-away.html"
+    },
+    {
+      "path": "/updates/open-seven-days.html",
+      "title": "Open 7 Days | Woolloongabba Medical Centre",
+      "titleLen": 42,
+      "meta": "Woolloongabba Medical Centre is open seven days, with Saturday and Sunday appointments available. Check current opening hours before you book.",
+      "metaLen": 142,
+      "h1": "Appointments available seven days a week",
+      "canonical": "https://gabbamedicalcentre.com.au/updates/open-seven-days.html"
+    },
+    {
+      "path": "/knowledge/articles/sleep-problems-explained.html",
+      "title": "Sleep Problems Explained | Woolloongabba Medical Centre",
+      "titleLen": 55,
+      "meta": "Sleep problems include more than trouble falling asleep. Learn common patterns and when to speak with a GP at Woolloongabba Medical Centre today.",
+      "metaLen": 145,
+      "h1": "Sleep Problems Explained",
+      "canonical": "https://gabbamedicalcentre.com.au/knowledge/articles/sleep-problems-explained.html"
+    },
+    {
+      "path": "/knowledge/articles/understanding-type-2-diabetes.html",
+      "title": "Understanding Type 2 Diabetes | Woolloongabba Medical Centre",
+      "titleLen": 60,
+      "meta": "A type 2 diabetes diagnosis raises many questions about ongoing care. Learn how your GP can help at Woolloongabba Medical Centre, Woolloongabba.",
+      "metaLen": 144,
+      "h1": "Understanding Type 2 Diabetes",
+      "canonical": "https://gabbamedicalcentre.com.au/knowledge/articles/understanding-type-2-diabetes.html"
+    },
+    {
+      "path": "/knowledge/articles/when-should-i-be-concerned-about-blood-pressure.html",
+      "title": "When Should I Be Concerned About Blood Pressure? | GP Guide",
+      "titleLen": 59,
+      "meta": "One unusual blood-pressure reading can be unsettling. Learn when repeat checks and a GP review can help at Woolloongabba Medical Centre today.",
+      "metaLen": 142,
+      "h1": "When Should I Be Concerned About Blood Pressure?",
+      "canonical": "https://gabbamedicalcentre.com.au/knowledge/articles/when-should-i-be-concerned-about-blood-pressure.html"
+    },
+    {
+      "path": "/knowledge/articles/when-should-i-seek-adhd-assessment.html",
+      "title": "When to Seek ADHD Assessment | Woolloongabba Medical",
+      "titleLen": 52,
+      "meta": "Distraction or restlessness is common. Learn when an ADHD assessment with your GP may help at Woolloongabba Medical Centre in Woolloongabba.",
+      "metaLen": 140,
+      "h1": "When Should I Seek ADHD Assessment?",
+      "canonical": "https://gabbamedicalcentre.com.au/knowledge/articles/when-should-i-seek-adhd-assessment.html"
+    },
+    {
+      "path": "/knowledge/articles/when-should-i-see-a-gp-about-headaches.html",
+      "title": "When Should I See A GP About Headaches? | GP Guide",
+      "titleLen": 50,
+      "meta": "Headaches are common, but pattern, severity and new warning signs matter. Learn when GP review helps at Woolloongabba Medical Centre, Brisbane.",
+      "metaLen": 143,
+      "h1": "When Should I See A GP About Headaches?",
+      "canonical": "https://gabbamedicalcentre.com.au/knowledge/articles/when-should-i-see-a-gp-about-headaches.html"
+    },
+    {
+      "path": "/knowledge/articles/when-should-i-speak-to-a-gp-about-sleep.html",
+      "title": "When Should I Speak To A GP About Sleep? | GP Guide",
+      "titleLen": 51,
+      "meta": "Not every restless night needs an appointment. Learn when sleep issues warrant a GP review at Woolloongabba Medical Centre in Woolloongabba today.",
+      "metaLen": 146,
+      "h1": "When Should I Speak To A GP About Sleep?",
+      "canonical": "https://gabbamedicalcentre.com.au/knowledge/articles/when-should-i-speak-to-a-gp-about-sleep.html"
+    },
+    {
+      "path": "/knowledge/articles/is-a-tummy-bug-the-same-as-gastro.html",
+      "title": "Tummy Bug or Gastro? | Woolloongabba Medical Centre",
+      "titleLen": 51,
+      "meta": "General information about vomiting or diarrhoea that people call a tummy bug, stomach bug, or gastroenteritis, and when a general practice appointment may help.",
+      "metaLen": 160,
+      "h1": "Is A Tummy Bug The Same As Gastro?",
+      "canonical": "https://gabbamedicalcentre.com.au/knowledge/articles/is-a-tummy-bug-the-same-as-gastro.html"
+    },
+    {
+      "path": "/knowledge/articles/is-a-water-infection-the-same-as-a-uti.html",
+      "title": "Water Infection or UTI? | Woolloongabba Medical Centre",
+      "titleLen": 54,
+      "meta": "General information about urinary symptoms that people sometimes call a water infection or a wee infection, and when a general practice appointment may help.",
+      "metaLen": 157,
+      "h1": "Is A Water Infection The Same As A UTI?",
+      "canonical": "https://gabbamedicalcentre.com.au/knowledge/articles/is-a-water-infection-the-same-as-a-uti.html"
+    },
+    {
+      "path": "/services/allied-health.html",
+      "title": "Allied Health | Woolloongabba Medical Centre",
+      "titleLen": 44,
+      "meta": "Discover physiotherapy and chiropractic care alongside general practice at Woolloongabba Medical Centre, with connected care pathways.",
+      "metaLen": 134,
+      "h1": "Allied Health Services",
+      "canonical": "https://gabbamedicalcentre.com.au/services/allied-health.html"
+    },
+    {
+      "path": "/team-allied-health.html",
+      "title": "Allied Health Team | Woolloongabba Medical Centre",
+      "titleLen": 49,
+      "meta": "Meet the allied health team at Woolloongabba Medical Centre, including physiotherapy, chiropractic care and connected GP pathways.",
+      "metaLen": 130,
+      "h1": "Allied Health Team",
+      "canonical": "https://gabbamedicalcentre.com.au/team-allied-health.html"
+    }
+  ],
+  "eoi": {
+    "brokenExpressInterestHref": false,
+    "hubStackHref": true
+  },
+  "sitemap": {
+    "telehealthUtility": false,
+    "telehealthService": true,
+    "golnar": false,
+    "james": false,
+    "yamesha": false,
+    "expressInterest": false
+  },
+  "notes": "telehealthUtility detector previously false-positive matched services/telehealth.html"
+}

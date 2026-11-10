@@ -16,6 +16,28 @@ test("P0 retired practitioner WordPress slugs map to GP directory", () => {
   );
 });
 
+test("P0 retired Next profiles and telehealth utility consolidate without chains", () => {
+  assert.equal(
+    resolveWordpressLegacyRedirect("/doctors/dr-golnar-mortezaei.html"),
+    "/team-general-practitioners.html",
+  );
+  assert.equal(
+    resolveWordpressLegacyRedirect("/doctors/dr-james.html"),
+    "/team-general-practitioners.html",
+  );
+  assert.equal(
+    resolveWordpressLegacyRedirect("/doctors/dr-yamesha-ranatunga.html"),
+    "/team-general-practitioners.html",
+  );
+  assert.equal(
+    resolveWordpressLegacyRedirect("/telehealth.html"),
+    "/services/telehealth.html",
+  );
+  // Destinations themselves must not redirect again.
+  assert.equal(resolveWordpressLegacyRedirect("/team-general-practitioners.html"), null);
+  assert.equal(resolveWordpressLegacyRedirect("/services/telehealth.html"), null);
+});
+
 test("P0 SEO landers never resolve to homepage", () => {
   const paths = [
     "/bulk-billing-doctors-woolloongabba/",

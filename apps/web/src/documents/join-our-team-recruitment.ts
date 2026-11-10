@@ -1,4 +1,5 @@
 import type { ClinicBranding } from "@/clinics/branding";
+import { isRecruitmentHoldActive } from "@/importer/recruitment-hold";
 import {
   WMC_RECRUITMENT_CONTACT,
   WMC_RECRUITMENT_OFFER,
@@ -11,7 +12,12 @@ import {
   resolveRecruitmentContact,
 } from "@/recruitment";
 
-const EOI_HREF = "join-our-team/express-interest.html";
+/** Under HOLD, keep CTAs on the join hub stack (avoids crawlable EOI 404). */
+function eoiHrefForHold(): string {
+  return isRecruitmentHoldActive()
+    ? "#express-interest"
+    : "join-our-team/express-interest.html";
+}
 const STYLE_BUST = "wmc-gp-recruit-20261110c";
 const PORTAL_SCRIPT_BUST = "wmc-gp-readiness-20261110a";
 const READINESS_HASH = "#gp-readiness-portal";
@@ -85,7 +91,7 @@ export function refineJoinOurTeamRecruitment(html: string, _branding: ClinicBran
   const hasLegacyHero = /class="[^"]*\bcareers-page-hero\b/i.test(html);
   if (!alreadyRefined && !hasLegacyHero) return html;
 
-  const eoiAttr = escapeHtmlAttr(EOI_HREF);
+  const eoiAttr = escapeHtmlAttr(eoiHrefForHold());
 
   let next = html;
 

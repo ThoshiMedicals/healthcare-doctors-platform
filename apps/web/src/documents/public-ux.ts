@@ -163,36 +163,119 @@ function refineContactPageSections(html: string, pagePath: string): string {
   return withoutNetwork.replace(findUsRe, `$1${network}`);
 }
 
-/** Wire the approved Samuel Stafford portrait into the no-photo allied profile hero. */
+function assetPrefixForPage(pagePath: string): string {
+  const normalized = pagePath.replace(/^\/+/, "").replace(/\\/g, "/");
+  const depth = Math.max(0, normalized.split("/").length - 1);
+  return depth > 0 ? "../".repeat(depth) : "";
+}
+
+/**
+ * Wire the approved Samuel Stafford portrait into the allied profile hero and
+ * any team-directory cards still using the no-photo placeholder.
+ */
 function ensureSamuelStaffordPortrait(html: string, pagePath: string): string {
   const normalized = pagePath.replace(/^\/+/, "").replace(/\\/g, "/");
-  if (normalized !== "doctors/mr-samuel-stafford.html") return html;
-  if (/data-practitioner-image="true"/i.test(html) && /mr-samuel-stafford\.webp/i.test(html)) {
-    return html;
+  const prefix = assetPrefixForPage(normalized);
+  const portraitRel = `${prefix}assets/team/mr-samuel-stafford.webp`;
+  const thumbRel = `${prefix}assets/team/mr-samuel-stafford-640.webp`;
+  let next = html;
+
+  // Team hub / directory cards: replace no-photo portrait with the approved image.
+  const directoryImg =
+    `<img alt="Mr Samuel Stafford" data-local-team-src="${portraitRel}" data-practitioner-image="true" decoding="async" height="1000" loading="lazy" src="${portraitRel}" width="800" srcset="${thumbRel} 640w, ${portraitRel} 1122w" sizes="(min-width: 1200px) 288px, (min-width: 701px) min(312px, 33vw), calc(50vw - 16px)"/>`;
+  next = next.replace(
+    /<a\b([^>]*\bclass="[^"]*\bportrait\b[^"]*\bpractitioner-no-photo\b[^"]*"|[^>]*\bclass="[^"]*\bpractitioner-no-photo\b[^"]*\bportrait\b[^"]*")([^>]*)>\s*<span class="practitioner-no-photo-text">Mr Samuel Stafford<\/span>\s*<\/a>/i,
+    (_m, classChunk: string, rest: string) => {
+      const attrs = `${classChunk}${rest}`
+        .replace(/\s*practitioner-no-photo\b/g, "")
+        .replace(/\s{2,}/g, " ")
+        .trim();
+      const withFallback = /\bdata-photo-fallback=/i.test(attrs)
+        ? attrs
+        : `${attrs} data-photo-fallback="Mr Samuel Stafford photo temporarily unavailable"`;
+      return `<a ${withFallback}>${directoryImg}</a>`;
+    },
+  );
+
+  if (normalized === "doctors/mr-samuel-stafford.html") {
+    if (!(/data-practitioner-image="true"/i.test(next) && /mr-samuel-stafford\.webp/i.test(next))) {
+      const photoBlock =
+        `<div class="doctor-profile-photo" data-photo-fallback="Mr Samuel Stafford photo temporarily unavailable">` +
+        `<img alt="Mr Samuel Stafford" data-local-team-src="${portraitRel}" data-practitioner-image="true" decoding="async" fetchpriority="high" height="1000" loading="eager" src="${portraitRel}" width="800" srcset="${thumbRel} 640w, ${portraitRel} 1122w" sizes="(min-width: 1025px) 420px, (min-width: 768px) 250px, 176px"/>` +
+        `</div>`;
+
+      next = next.replace(
+        /<div class="shell doctor-profile-hero"[^>]*>\s*<div class="doctor-profile-heading">/i,
+        `<div class="shell doctor-profile-hero">${photoBlock}<div class="doctor-profile-heading">`,
+      );
+    }
+
+    const absPortrait = "https://gabbamedicalcentre.com.au/assets/team/mr-samuel-stafford.webp";
+    next = next.replace(
+      /(<meta content=")https:\/\/gabbamedicalcentre\.com\.au\/assets\/hero-final-desktop\.webp(" property="og:image"\/>)/i,
+      `$1${absPortrait}$2`,
+    );
+    next = next.replace(
+      /(<meta content=")https:\/\/gabbamedicalcentre\.com\.au\/assets\/hero-final-desktop\.webp(" name="twitter:image"\/>)/i,
+      `$1${absPortrait}$2`,
+    );
   }
 
-  const portraitRel = "../assets/team/mr-samuel-stafford.webp";
-  const thumbRel = "../assets/team/mr-samuel-stafford-640.webp";
-  const photoBlock =
-    `<div class="doctor-profile-photo" data-photo-fallback="Mr Samuel Stafford photo temporarily unavailable">` +
-    `<img alt="Mr Samuel Stafford" data-local-team-src="${portraitRel}" data-practitioner-image="true" decoding="async" fetchpriority="high" height="1000" loading="eager" src="${portraitRel}" width="800" srcset="${thumbRel} 640w, ${portraitRel} 1122w" sizes="(min-width: 1025px) 420px, (min-width: 768px) 250px, 176px"/>` +
-    `</div>`;
-
-  let next = html.replace(
-    /<div class="shell doctor-profile-hero"[^>]*>\s*<div class="doctor-profile-heading">/i,
-    `<div class="shell doctor-profile-hero">${photoBlock}<div class="doctor-profile-heading">`,
-  );
-
-  const absPortrait = "https://gabbamedicalcentre.com.au/assets/team/mr-samuel-stafford.webp";
-  next = next.replace(
-    /(<meta content=")https:\/\/gabbamedicalcentre\.com\.au\/assets\/hero-final-desktop\.webp(" property="og:image"\/>)/i,
-    `$1${absPortrait}$2`,
-  );
-  next = next.replace(
-    /(<meta content=")https:\/\/gabbamedicalcentre\.com\.au\/assets\/hero-final-desktop\.webp(" name="twitter:image"\/>)/i,
-    `$1${absPortrait}$2`,
-  );
   return next;
+}
+
+/** Return end index (after `</div>`) of the first `.team-directory-grid`, or -1. */
+function endOfTeamDirectoryGrid(html: string): number {
+  const gridStart = html.search(/<div class="team-directory-grid">/i);
+  if (gridStart < 0) return -1;
+  let depth = 0;
+  let i = gridStart;
+  while (i < html.length) {
+    const nextOpen = html.indexOf("<div", i);
+    const nextClose = html.indexOf("</div>", i);
+    if (nextClose < 0) return -1;
+    if (nextOpen >= 0 && nextOpen < nextClose) {
+      depth += 1;
+      i = nextOpen + 4;
+      continue;
+    }
+    depth -= 1;
+    i = nextClose + 6;
+    if (depth === 0) return i;
+  }
+  return -1;
+}
+
+/**
+ * Move "View all General Practitioners" from above the GP grid to the bottom-left
+ * of #general-practitioners so the cards lead and the hub link trails.
+ */
+function moveGpViewAllLinkToSectionFooter(html: string): string {
+  const sectionRe =
+    /(<section\b[^>]*\bid="general-practitioners"[^>]*>)([\s\S]*?)(<\/section>)/i;
+  if (!sectionRe.test(html)) return html;
+
+  return html.replace(sectionRe, (_full, open: string, inner: string, close: string) => {
+    const linkRe =
+      /<p class="team-role-page-link"><a class="text-link" href="(?:\.\.\/)*team-general-practitioners\.html">View all General Practitioners →<\/a><\/p>/i;
+    const linkMatch = inner.match(linkRe);
+    if (!linkMatch || linkMatch.index == null) return `${open}${inner}${close}`;
+
+    const linkHtml = linkMatch[0];
+    const linkIndex = linkMatch.index;
+    const gridEnd = endOfTeamDirectoryGrid(inner);
+    if (gridEnd < 0) return `${open}${inner}${close}`;
+
+    // Already after the grid — leave alone (idempotent).
+    if (linkIndex >= gridEnd) return `${open}${inner}${close}`;
+
+    const withoutLink =
+      inner.slice(0, linkIndex) + inner.slice(linkIndex + linkHtml.length).replace(/^\s+/, "");
+    const gridEnd2 = endOfTeamDirectoryGrid(withoutLink);
+    if (gridEnd2 < 0) return `${open}${inner}${close}`;
+
+    return `${open}${withoutLink.slice(0, gridEnd2)}${linkHtml}${withoutLink.slice(gridEnd2)}${close}`;
+  });
 }
 
 export function applyPublicUxRefinements(
@@ -203,6 +286,7 @@ export function applyPublicUxRefinements(
   const branding = resolveBranding(clinicSlugOrOptions);
   const clinicSlug = branding.clinicSlug;
   let next = ensureSamuelStaffordPortrait(html, pagePath);
+  next = moveGpViewAllLinkToSectionFooter(next);
   // Topic cross-link bar under the hero (for example "Need ongoing diabetes care?").
   next = next.replace(/<nav\b[^>]*\bclass="topic-wayfinding"[^>]*>[\s\S]*?<\/nav>/gi, "");
   // Serve CSS/JS via /wmc-cache/* (Next route) so Hostinger cannot short-circuit
@@ -1111,6 +1195,15 @@ body.has-action-dock .team-directory.team-organisation{
 .shell.team-directory .team-directory-intro{
   margin-bottom:28px!important;
 }
+/* GP hub link: bottom-left under the directory grid (moved from above the list). */
+#general-practitioners > .team-role-page-link{
+  margin:28px 0 0!important;
+  text-align:left!important;
+}
+#general-practitioners > .team-role-page-link .text-link{
+  display:inline-flex!important;
+  align-items:center!important;
+}
 @media (max-width:1024px){
   .shell.team-directory .team-ecosystem-nav{
     grid-template-columns:repeat(2,minmax(0,1fr))!important;
@@ -1434,11 +1527,12 @@ body.ev-pe-page .pe-media--chapter img,body.pe-hub-page .pe-media--chapter img{
   }
   // Only rewrite when a sticky <nav> exists — avoid matching class names inside CSS on EOI.
   if (isRecruitmentSurface && !isExpressInterestPage && /<nav\b[^>]*persistent-care-actions/i.test(next)) {
-    const eoiHref = pagePath.startsWith("join-our-team/")
-      ? "express-interest.html"
-      : pagePath.startsWith("about-us/")
-        ? "../join-our-team/express-interest.html"
-        : "join-our-team/express-interest.html";
+    // HOLD-safe: keep Discuss on the join hub EOI stack until express-interest is publicly served.
+    const eoiHref = pagePath === "join-our-team.html"
+      ? "#express-interest"
+      : pagePath.startsWith("join-our-team/") || pagePath.startsWith("about-us/")
+        ? "../join-our-team.html#express-interest"
+        : "join-our-team.html#express-interest";
     const stickyEoiHref = eoiHref;
     const recruitContact = resolveRecruitmentContact(undefined, eoiHref);
     const isJoinLanding = pagePath === "join-our-team.html";
