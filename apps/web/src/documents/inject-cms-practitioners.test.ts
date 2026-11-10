@@ -4,6 +4,7 @@ import {
   buildReceptionIndexEntries,
   injectCmsPractitionersIntoTeamHtml,
   mergeImportedPractitionersIntoReceptionIndex,
+  renderCareAreaListItems,
   type CmsPractitionerCard,
 } from "./inject-cms-practitioners";
 
@@ -73,6 +74,21 @@ test("reception index merge appends imported doctor URLs without duplicating", (
     (twice.match(/doctors\/dr-golnar-mortezaei\.html/g) || []).length,
     1,
   );
+});
+
+test("care-area renderer keeps extras behind accessible disclosure", () => {
+  const html = renderCareAreaListItems([
+    "Women’s health",
+    "Mental health",
+    "Children’s health",
+    "Diabetes",
+    "Travel medicine",
+  ]);
+  assert.match(html, /Women’s health/);
+  assert.match(html, /gp-discovery-areas-disclosure/);
+  assert.match(html, /2 more clinical interests/);
+  assert.match(html, /Diabetes/);
+  assert.match(html, /Travel medicine/);
 });
 
 test("reception index entries keep practitioner category and profile URL", () => {

@@ -42,6 +42,29 @@ function resolveBranding(options?: PublicUxOptions | string): ClinicBranding {
   };
 }
 
+const GP_VISIBLE_CARE_AREA_COUNT = 3;
+
+/**
+ * Preserve every clinical-interest pill; collapse the 4th+ behind an accessible
+ * disclosure so unusually long lists do not dominate card height.
+ */
+export function wrapExcessGpDiscoveryAreas(html: string): string {
+  if (!/\bgp-discovery-areas\b/i.test(html)) return html;
+  return html.replace(
+    /(<ul\b[^>]*\bgp-discovery-areas\b[^>]*>)([\s\S]*?)(<\/ul>)/gi,
+    (full, open: string, inner: string, close: string) => {
+      if (/\bgp-discovery-areas-disclosure\b/i.test(inner)) return full;
+      const items = [...inner.matchAll(/<li\b[^>]*>[\s\S]*?<\/li>/gi)].map((m) => m[0]);
+      if (items.length <= GP_VISIBLE_CARE_AREA_COUNT) return full;
+      const visible = items.slice(0, GP_VISIBLE_CARE_AREA_COUNT).join("");
+      const rest = items.slice(GP_VISIBLE_CARE_AREA_COUNT);
+      const moreLabel =
+        rest.length === 1 ? "1 more clinical interest" : `${rest.length} more clinical interests`;
+      return `${open}${visible}<li class="gp-discovery-areas-more"><details class="gp-discovery-areas-disclosure"><summary>${moreLabel}</summary><ul class="gp-discovery-areas-extra">${rest.join("")}</ul></details></li>${close}`;
+    },
+  );
+}
+
 /**
  * Prevent sticky-dock CLS: first paint must already use the final has-action-dock
  * full-width layout, with the Digital Reception launcher in place. digital-reception.js
@@ -176,7 +199,9 @@ export function applyPublicUxRefinements(
   next = next.replace(/<style\b[^>]*id="wmc-update-article-header-fix"[\s\S]*?<\/style>\s*/i, "");
   next = next.replace(/<style\b[^>]*id="wmc-team-updates-laptop"[\s\S]*?<\/style>\s*/i, "");
   next = next.replace(/<style\b[^>]*id="wmc-team-updates-mobile"[\s\S]*?<\/style>\s*/i, "");
+  next = next.replace(/<style\b[^>]*id="wmc-practitioner-directory-cards"[\s\S]*?<\/style>\s*/i, "");
   next = next.replace(/<style\b[^>]*id="wmc-digital-reception-mobile"[\s\S]*?<\/style>\s*/i, "");
+  next = wrapExcessGpDiscoveryAreas(next);
   next = next.replace(
     /<\/head>/i,
     `<style id="wmc-agpal-mark-fix">
@@ -415,10 +440,10 @@ nav[aria-label="Breadcrumb"],
   }
 }
 @media (max-width:390px){
-  /* Keep photo + info side-by-side; reset explicit rows so CTAs stay under the body copy. */
+  /* Keep photo + info side-by-side; CTAs remain on the final row under body copy. */
   .team-authority-subpage .gp-discovery-card{
     grid-template-columns:80px minmax(0,1fr)!important;
-    grid-template-rows:auto auto!important;
+    grid-template-rows:auto auto auto!important;
     gap:10px 12px!important;
   }
   .team-authority-subpage .gp-discovery-card .team-authority-photo,
@@ -432,10 +457,348 @@ nav[aria-label="Breadcrumb"],
   }
   .team-authority-subpage .gp-discovery-actions{
     grid-column:1/-1!important;
-    grid-row:2!important;
+    grid-row:3!important;
     grid-template-columns:1fr 1fr!important;
     gap:7px!important;
   }
+}
+</style>
+<style id="wmc-practitioner-directory-cards">
+/* Package B: equal-height practitioner directory cards, stable photos, CTA footers,
+   subdued status badges, natural page scroll, no horizontal overflow. */
+.team-directory,
+.team-directory-grid,
+.gp-discovery-list,
+.gp-discovery-card,
+.practitioner-directory-card,
+.gp-discovery-info,
+.practitioner-meta{
+  min-width:0;
+  max-width:100%;
+  box-sizing:border-box;
+}
+.team-directory-grid{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  grid-auto-rows:1fr!important;
+  align-items:stretch!important;
+  gap:42px 28px!important;
+  overflow:visible!important;
+  max-height:none!important;
+}
+.team-directory-grid .practitioner,
+.team-directory-grid .practitioner-directory-card{
+  display:flex!important;
+  flex-direction:column!important;
+  height:100%!important;
+  min-width:0!important;
+  overflow:visible!important;
+}
+.team-directory-grid .portrait,
+.team-directory-grid a.portrait,
+.team-directory-grid .team-authority-photo-unavailable{
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  aspect-ratio:4/5!important;
+  overflow:hidden!important;
+  border-radius:var(--radius-md,16px)!important;
+  background:#edf1f3!important;
+  flex:0 0 auto!important;
+}
+.team-directory-grid .portrait img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  aspect-ratio:4/5!important;
+  object-fit:cover!important;
+  object-position:center 28%!important;
+}
+.team-directory-grid .practitioner-meta{
+  display:flex!important;
+  flex-direction:column!important;
+  flex:1 1 auto!important;
+  gap:0!important;
+  min-height:0!important;
+  padding-top:14px!important;
+  grid-template-rows:none!important;
+}
+.team-directory-grid .practitioner h3,
+.team-directory-grid .practitioner h3 a{
+  margin:0 0 .35rem!important;
+  min-height:0!important;
+  font-family:var(--font-display,"Libre Baskerville",Georgia,serif)!important;
+  font-size:clamp(1.05rem,1.15vw,1.25rem)!important;
+  line-height:1.28!important;
+  font-weight:400!important;
+  color:var(--ink,#173044)!important;
+}
+.team-directory-grid .credentials{
+  margin:0 0 .3rem!important;
+  min-height:0!important;
+  color:#4f6c82!important;
+  font-size:.75rem!important;
+  font-weight:600!important;
+  letter-spacing:.02em!important;
+  line-height:1.45!important;
+  overflow-wrap:anywhere!important;
+}
+.team-directory-grid .focus,
+.team-directory-grid .role{
+  margin:0 0 .35rem!important;
+  color:var(--ink-soft,#596b78)!important;
+  font-size:.8125rem!important;
+  line-height:1.5!important;
+  overflow-wrap:anywhere!important;
+}
+.team-directory-grid .practitioner-meta .text-link,
+.team-directory-grid .practitioner-meta .gp-discovery-actions,
+.team-directory-grid .practitioner-meta .button{
+  margin-top:auto!important;
+  padding-top:12px!important;
+}
+.team-directory-grid .practitioner-meta .text-link{
+  display:inline-flex!important;
+  align-items:center!important;
+  min-height:44px!important;
+}
+.team-authority-subpage .page-layout{
+  align-items:start!important;
+}
+.team-authority-subpage .gp-discovery-list{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-auto-rows:1fr!important;
+  align-items:stretch!important;
+  gap:18px!important;
+  overflow:visible!important;
+  max-height:none!important;
+}
+.team-authority-subpage .gp-discovery-card{
+  display:grid!important;
+  grid-template-columns:116px minmax(0,1fr)!important;
+  grid-template-rows:minmax(0,1fr) auto auto!important;
+  align-items:stretch!important;
+  height:100%!important;
+  min-width:0!important;
+  overflow-x:clip!important;
+  overflow-y:visible!important;
+  padding:19px!important;
+  gap:15px 17px!important;
+}
+/* Keep CTAs on the final row so notes cannot lift the action footer. */
+.team-authority-subpage .gp-discovery-card .gp-discovery-note{
+  grid-column:1/-1!important;
+  grid-row:2!important;
+  margin:0!important;
+}
+.team-authority-subpage .gp-discovery-card .gp-discovery-actions{
+  grid-row:3!important;
+}
+.team-authority-subpage .gp-discovery-card .team-authority-photo,
+.team-authority-subpage .gp-discovery-card .team-authority-photo-unavailable{
+  width:116px!important;
+  max-width:100%!important;
+  aspect-ratio:4/5!important;
+  border-radius:12px!important;
+  overflow:hidden!important;
+  background:#eef3f4!important;
+  grid-row:1!important;
+  align-self:start!important;
+}
+.team-authority-subpage .gp-discovery-card .team-authority-photo img{
+  width:100%!important;
+  height:100%!important;
+  aspect-ratio:4/5!important;
+  object-fit:cover!important;
+  object-position:center top!important;
+}
+.team-authority-subpage .gp-discovery-card .gp-discovery-info{
+  display:flex!important;
+  flex-direction:column!important;
+  min-width:0!important;
+  grid-row:1!important;
+  align-self:stretch!important;
+}
+.team-authority-subpage .gp-discovery-name{
+  margin:1px 0 .45rem!important;
+  font-size:clamp(1rem,1.05vw,1.125rem)!important;
+  line-height:1.3!important;
+  font-weight:400!important;
+}
+.team-authority-subpage .gp-discovery-card .gp-discovery-areas{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:5px!important;
+  margin:0 0 10px!important;
+  max-width:100%!important;
+}
+.team-authority-subpage .gp-discovery-card .gp-discovery-areas>li{
+  max-width:100%!important;
+  min-width:0!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  font-size:11px!important;
+  padding:4px 8px!important;
+}
+.team-authority-subpage .gp-discovery-areas-more{
+  list-style:none!important;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+  width:100%!important;
+  max-width:100%!important;
+}
+.team-authority-subpage .gp-discovery-areas-disclosure{
+  margin:0!important;
+  max-width:100%!important;
+}
+.team-authority-subpage .gp-discovery-areas-disclosure>summary{
+  cursor:pointer!important;
+  list-style:none!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  min-height:32px!important;
+  padding:4px 8px!important;
+  border:1px dashed #c5d4ce!important;
+  border-radius:8px!important;
+  background:#f7faf8!important;
+  color:#355247!important;
+  font-size:11px!important;
+  font-weight:600!important;
+}
+.team-authority-subpage .gp-discovery-areas-disclosure>summary::-webkit-details-marker{display:none}
+.team-authority-subpage .gp-discovery-areas-extra{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:5px!important;
+  list-style:none!important;
+  margin:.45rem 0 0!important;
+  padding:0!important;
+}
+.team-authority-subpage .gp-discovery-areas-extra>li{
+  display:inline-flex!important;
+  align-items:center!important;
+  max-width:100%!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:4px 8px!important;
+  border:1px solid #d9e8e6!important;
+  border-radius:8px!important;
+  color:#244e54!important;
+  background:#edf6f3!important;
+  font-size:11px!important;
+  line-height:1.35!important;
+  overflow-wrap:anywhere!important;
+}
+.team-authority-subpage .gp-discovery-card .gp-discovery-actions{
+  grid-column:1/-1!important;
+  grid-row:3!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  gap:10px!important;
+  align-self:end!important;
+  margin-top:0!important;
+  width:100%!important;
+  min-width:0!important;
+}
+.team-authority-subpage .gp-discovery-profile,
+.team-authority-subpage .gp-discovery-book{
+  min-width:0!important;
+  max-width:100%!important;
+  min-height:44px!important;
+  white-space:normal!important;
+  text-align:center!important;
+  justify-content:center!important;
+  overflow-wrap:anywhere!important;
+}
+/* Defeat .team-authority-person div{display:grid;…190px 180px} on status badge wrappers. */
+.team-authority-subpage .gp-discovery-card .wmc-practitioner-badges,
+.team-directory-grid .wmc-practitioner-badges{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  grid-template-columns:none!important;
+  grid-template-rows:none!important;
+  gap:.28rem .32rem!important;
+  max-width:100%!important;
+  min-width:0!important;
+  width:100%!important;
+}
+/* Directory scrolls with the document — keep nested overflow only on the sidebar nav. */
+.team-directory,
+.team-directory-grid,
+.team-authority-subpage .gp-discovery-list,
+.team-authority-subpage .article,
+body.team-authority-subpage .page-main,
+body.has-persistent-care-actions .team-directory{
+  overflow-x:visible!important;
+  overflow-y:visible!important;
+  max-height:none!important;
+}
+body.has-persistent-care-actions .team-directory,
+body.has-persistent-care-actions.team-authority-subpage .page-main,
+body.has-action-dock .team-directory,
+body.has-action-dock.team-authority-subpage .page-main{
+  padding-bottom:calc(108px + env(safe-area-inset-bottom,0px))!important;
+}
+@media (min-width:1025px){
+  .team-authority-subpage .page-layout{
+    grid-template-columns:216px minmax(0,1fr)!important;
+    gap:48px!important;
+  }
+}
+@media (min-width:1025px) and (max-width:1210px){
+  .team-authority-subpage .page-layout{
+    grid-template-columns:185px minmax(0,1fr)!important;
+    gap:36px!important;
+  }
+  .team-authority-subpage .gp-discovery-card{
+    grid-template-columns:90px minmax(0,1fr)!important;
+  }
+  .team-authority-subpage .gp-discovery-card .team-authority-photo,
+  .team-authority-subpage .gp-discovery-card .team-authority-photo-unavailable{width:90px!important}
+}
+@media (min-width:1025px) and (max-width:1440px){
+  .team-directory-grid{gap:36px 22px!important}
+}
+@media (max-width:1024px){
+  .team-directory-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+@media (min-width:701px) and (max-width:900px){
+  /* Single-column: size cards to content — do not stretch every card to the tallest in the list. */
+  .team-authority-subpage .gp-discovery-list{
+    grid-template-columns:1fr!important;
+    grid-auto-rows:auto!important;
+  }
+  .team-authority-subpage .gp-discovery-card{
+    height:auto!important;
+    grid-template-rows:auto auto auto!important;
+  }
+}
+@media (max-width:700px){
+  .team-directory-grid{
+    grid-template-columns:1fr!important;
+    grid-auto-rows:auto!important;
+    gap:28px!important;
+  }
+  .team-authority-subpage .gp-discovery-list{
+    grid-template-columns:1fr!important;
+    grid-auto-rows:auto!important;
+  }
+  .team-authority-subpage .gp-discovery-card{
+    height:auto!important;
+    grid-template-columns:96px minmax(0,1fr)!important;
+    grid-template-rows:auto auto auto!important;
+  }
+  .team-authority-subpage .gp-discovery-card .team-authority-photo,
+  .team-authority-subpage .gp-discovery-card .team-authority-photo-unavailable{width:96px!important}
+}
+@media (max-width:365px){
+  .team-authority-subpage .gp-discovery-card{
+    grid-template-columns:80px minmax(0,1fr)!important;
+  }
+  .team-authority-subpage .gp-discovery-card .team-authority-photo,
+  .team-authority-subpage .gp-discovery-card .team-authority-photo-unavailable{width:80px!important}
 }
 </style>
 <style id="wmc-digital-reception-mobile">

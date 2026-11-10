@@ -56,3 +56,6 @@ Thumbs.db
 __pycache__/
 *.pyc
 deployment/nginx/cloudflare-allow.conf
+
+qa-evidence/
+

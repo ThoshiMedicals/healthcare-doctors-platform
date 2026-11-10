@@ -290,12 +290,21 @@ export async function injectPractitionerGrowth(
 
 /** Lightweight CSS for badges + filters (public-ux companion; no layout redesign). */
 export const PRACTITIONER_GROWTH_STYLE = `<style id="wmc-practitioner-growth">
-.wmc-practitioner-badges{display:flex;flex-wrap:wrap;gap:.4rem;margin:.55rem 0 .35rem}
-.wmc-practitioner-badge{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.01em;line-height:1.2;padding:.28rem .55rem;border:1px solid #c5d4ce;border-radius:2px;background:#f4f8f6;color:#1f3d34}
-.wmc-practitioner-badge--new{border-color:#b7c9e8;background:#eef3fb;color:#1e3a5f}
-.wmc-practitioner-badge--accepting{border-color:#b7d4c4;background:#eef8f2;color:#1b4d38}
-.wmc-practitioner-badge--availability{border-color:#d6c7a8;background:#fbf6ea;color:#5c4a22}
+/* Override .team-authority-person div{display:grid;grid-template-columns:190px 180px…} which otherwise
+   forces status badges into a multi-column grid and overflows the card / document. */
+.team-authority-person .wmc-practitioner-badges,
+.gp-discovery-card .wmc-practitioner-badges,
+.practitioner-directory-card .wmc-practitioner-badges,
+.wmc-practitioner-badges{display:flex!important;flex-wrap:wrap!important;align-items:flex-start!important;grid-template-columns:none!important;grid-template-rows:none!important;gap:.28rem .32rem!important;margin:.4rem 0 .28rem!important;max-width:100%!important;min-width:0!important;width:100%!important;box-sizing:border-box!important}
+.team-authority-person .wmc-practitioner-badge,
+.gp-discovery-card .wmc-practitioner-badge,
+.practitioner-directory-card .wmc-practitioner-badge,
+.wmc-practitioner-badge{display:inline-flex!important;align-items:center!important;max-width:100%!important;box-sizing:border-box!important;font-size:.62rem!important;font-weight:600!important;letter-spacing:.01em!important;line-height:1.25!important;padding:.16rem .4rem!important;border:1px solid #d2ddd8!important;border-radius:999px!important;background:#f7faf8!important;color:#355247!important;white-space:normal!important;overflow-wrap:anywhere!important;word-break:normal!important}
+.wmc-practitioner-badge--new{border-color:#c9d6ea!important;background:#f5f8fc!important;color:#2a4466!important}
+.wmc-practitioner-badge--accepting{border-color:#c7dccf!important;background:#f4faf6!important;color:#27543d!important}
+.wmc-practitioner-badge--availability{border-color:#e0d4b8!important;background:#fbf8f0!important;color:#5a4a28!important}
 .wmc-practitioner-availability{margin:.75rem 0 .35rem;font-size:.92rem;color:#3d4f47}
+.gp-discovery-name+.wmc-practitioner-badges,.practitioner-meta h3+.wmc-practitioner-badges{margin-top:.28rem!important}
 .wmc-gp-filters{margin:0 0 1.1rem;padding:0}
 .wmc-gp-filters-label{margin:0 0 .45rem;font-size:.85rem;font-weight:600;color:#31443c}
 .wmc-gp-filters-row{display:flex;flex-wrap:wrap;gap:.4rem}
