@@ -15,6 +15,7 @@ import {
   getOpportunityPackQuotes,
   getPracticeExperienceQuotes,
 } from "@/story-capture/integration";
+import { repairAttractionJourneyLayout } from "@/documents/repair-attraction-journey-layout";
 import {
   EV_BANNER_STYLE,
   JOIN_ATTRACTION_NAV,
@@ -173,6 +174,8 @@ $1
     /content="index,follow[^"]*"/i,
     'content="noindex,nofollow"',
   );
+  // Keep journey rail inside .page-layout so article is not trapped in the 280px sidebar column.
+  next = repairAttractionJourneyLayout(next);
   return next;
 }
 

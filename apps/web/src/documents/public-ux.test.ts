@@ -146,7 +146,7 @@ test("Join Our Team becomes a GP recruitment prospectus without golden-master ed
   assert.doesNotMatch(result, /Why Demand Exists/);
   assert.match(result, /Demand Is Already On The Books/);
   assert.match(result, /id="wmc-gp-recruitment"/);
-  assert.match(result, /\/wmc-cache\/styles\.min\.css\?v=wmc-gp-recruit-20261110f/);
+  assert.match(result, /\/wmc-cache\/styles\.min\.css\?v=wmc-gp-recruit-20261111-map/);
   assert.match(result, /id="gp-joining-map"/);
   assert.ok(result.indexOf('id="gp-joining-map"') < result.indexOf('id="why-gps-choose"'));
   assert.match(result, /top:calc\(10rem \+ env\(safe-area-inset-top/);
@@ -258,8 +258,25 @@ test("Join Our Team becomes a GP recruitment prospectus without golden-master ed
     result,
     /class="[^"]*\bon-this-page-shell\b|data-ev-journey-nav="true"/i,
   );
+  assert.match(result, /id="gp-joining-map"/);
+  assert.match(result, /gp-recruit-card-grid-4/);
+  assert.match(result, /Explore Before You Call/);
   assert.match(result, /Am I ready to talk\?/);
   assert.equal(applyPublicUxRefinements(result, "join-our-team.html"), result);
+});
+
+test("attraction journey aside is restored into page-layout on joining-map destinations", () => {
+  const html = `<html><head></head><body class="has-persistent-care-actions">
+<div class="breadcrumb-bar"><div class="shell"><nav aria-label="Breadcrumb">Home</nav></div>
+<aside class="page-nav" id="related-pages" data-ev-journey-nav="true"><a href="practice-experience.html">Practice Experience</a><a href="gp-opportunities.html">GP Opportunities</a></aside></div>
+<section class="page-main"><div class="shell page-layout"><article class="article" data-ev-article="true"><h1>GP Opportunities</h1><p>All content stays.</p></article></div></section>
+</body></html>`;
+  const result = applyPublicUxRefinements(html, "join-our-team/gp-opportunities.html");
+  assert.match(result, /page-layout">\s*<aside[^>]*id="related-pages"/);
+  assert.match(result, /All content stays/);
+  assert.match(result, /id="wmc-attraction-layout-fix"/);
+  assert.doesNotMatch(result, /breadcrumb-bar"><div class="shell">[\s\S]*?<\/div>\s*<aside[^>]*id="related-pages"/);
+  assert.equal(applyPublicUxRefinements(result, "join-our-team/gp-opportunities.html"), result);
 });
 
 test("recruitment mobile polish styles shared contact channels on related pages", () => {

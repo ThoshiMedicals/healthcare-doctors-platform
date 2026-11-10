@@ -18,7 +18,7 @@ function eoiHrefForHold(): string {
     ? "#confidential-conversation"
     : "join-our-team/express-interest.html";
 }
-const STYLE_BUST = "wmc-gp-recruit-20261110f";
+const STYLE_BUST = "wmc-gp-recruit-20261111-map";
 const PORTAL_SCRIPT_BUST = "wmc-gp-readiness-20261110a";
 const READINESS_HASH = "#gp-readiness-portal";
 const OFFER = WMC_RECRUITMENT_OFFER;
@@ -421,7 +421,7 @@ ${renderCommercialFaqHtml()}
 <article class="gp-recruit-card" role="listitem"><h3>Understand</h3><ul class="gp-recruit-map-links"><li><a href="about-us/practice-experience.html">Practice Experience</a></li><li><a href="about-us/community-catchment.html">Community &amp; Catchment</a></li><li><a href="about-us/continuity-in-practice.html">Continuity in Practice</a></li><li><a href="about-us/clinical-interests.html">Clinical Interests</a></li></ul></article>
 <article class="gp-recruit-card" role="listitem"><h3>Explore</h3><ul class="gp-recruit-map-links"><li><a href="join-our-team/gp-opportunities.html">GP Opportunities</a></li><li><a href="join-our-team/practice-support.html">Practice Support</a></li><li><a href="join-our-team/registrar-pathway.html">Registrar Pathway</a></li><li><a href="join-our-team/opportunity-pack.html">Pages to keep</a></li></ul></article>
 <article class="gp-recruit-card" role="listitem"><h3>Check readiness</h3><ul class="gp-recruit-map-links"><li><a href="join-our-team/gp-faq.html">GP FAQ</a></li><li><a href="${READINESS_HASH}" data-gp-readiness-open="true">Am I ready to talk?</a></li><li><a href="join-our-team/provider-number-readiness.html">Provider numbers</a></li><li><a href="join-our-team/dpa-navigator.html">DPA &amp; 19AB</a></li><li><a href="join-our-team/session-planner.html">Preferred days</a></li></ul></article>
-<article class="gp-recruit-card" role="listitem"><h3>Next step</h3><ul class="gp-recruit-map-links"><li><a href="#confidential-conversation">Confidential conversation</a></li><li><a href="tel:${phoneTel}">Call ${escapeHtml(WMC_RECRUITMENT_CONTACT.name)}</a></li><li><a href="${READINESS_HASH}" data-gp-readiness-open="true">GP Readiness Portal</a></li></ul></article>
+<article class="gp-recruit-card" role="listitem"><h3>Next step</h3><ul class="gp-recruit-map-links"><li><a href="#confidential-conversation">Confidential conversation</a></li><li><a href="tel:${phoneTel}" aria-label="Call ${escapeHtmlAttr(WMC_RECRUITMENT_CONTACT.name)}">Call ${escapeHtml(WMC_RECRUITMENT_CONTACT.name)}</a></li><li><a href="${READINESS_HASH}" data-gp-readiness-open="true">GP Readiness Portal</a></li></ul></article>
 </div>
 </section>
 
@@ -927,9 +927,34 @@ body .gp-recruit-hero{
 .gp-recruit-card{
   padding:1.25rem 1.2rem;border:1px solid rgba(22,61,104,.1);border-radius:18px;
   background:linear-gradient(180deg,#fff,#f7fbfb);box-shadow:0 6px 20px rgba(22,61,104,.05);
+  box-sizing:border-box;min-width:0;
 }
 .gp-recruit-card h3{margin:0 0 .55rem;font-size:1.05rem;line-height:1.3}
 .gp-recruit-card p{margin:0;color:#4a5d6c;font-size:.95rem;line-height:1.55}
+/* Joining journey map — one panel, equal column padding, stable link rhythm */
+.gp-recruit-card-grid-4{
+  gap:0;border:1px solid rgba(22,61,104,.14);border-radius:18px;overflow:hidden;
+  background:linear-gradient(180deg,#f8fbfc,#f3f7f9);
+}
+.gp-recruit-card-grid-4>.gp-recruit-card{
+  margin:0;border:0;border-radius:0;box-shadow:none;background:transparent;
+  padding:1.15rem 1.2rem;
+}
+.gp-recruit-card-grid-4>.gp-recruit-card h3{
+  font-family:var(--font-display,"Libre Baskerville",Georgia,serif);
+  font-size:1.05rem;font-weight:700;color:var(--gp-navy,#163D68);margin:0 0 .5rem;
+}
+.gp-recruit-map-links{list-style:none;margin:.35rem 0 0;padding:0;display:grid;gap:.4rem}
+.gp-recruit-map-links li{min-width:0}
+.gp-recruit-map-links a{
+  font-weight:650;text-decoration:none;color:var(--gp-navy,#163D68);
+  line-height:1.35;overflow-wrap:anywhere;word-break:normal;
+}
+.gp-recruit-map-links a:hover{text-decoration:underline;text-underline-offset:3px}
+@media (max-width:700px){
+  .gp-recruit-card-grid-4>.gp-recruit-card{border-bottom:1px solid rgba(22,61,104,.12);padding:1.05rem 1.1rem}
+  .gp-recruit-card-grid-4>.gp-recruit-card:last-child{border-bottom:0}
+}
 .gp-recruit-icon-card .gp-recruit-icon{
   display:inline-flex;align-items:center;justify-content:center;width:2rem;height:2rem;
   margin-bottom:.65rem;border-radius:999px;background:rgba(0,122,135,.1);color:var(--gp-teal);font-size:.95rem;
@@ -1101,6 +1126,9 @@ body .footer-trust img{
 .gp-recruit-stat-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 .gp-recruit-card-grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
 .gp-recruit-card-grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+.gp-recruit-card-grid-4>.gp-recruit-card{border-right:1px solid rgba(22,61,104,.12);border-bottom:1px solid rgba(22,61,104,.12)}
+.gp-recruit-card-grid-4>.gp-recruit-card:nth-child(2n){border-right:0}
+.gp-recruit-card-grid-4>.gp-recruit-card:nth-last-child(-n+2){border-bottom:0}
 .gp-recruit-card-grid-5{grid-template-columns:repeat(2,minmax(0,1fr))}
 .gp-recruit-map-links{list-style:none;margin:.35rem 0 0;padding:0;display:grid;gap:.45rem}
 .gp-recruit-map-links a{font-weight:600;text-decoration:none;color:var(--gp-navy,#163D68)}
@@ -1169,6 +1197,12 @@ body .footer-trust img{
 }
 .gp-recruit-trust{grid-template-columns:1fr 1fr;max-width:34rem}
 .gp-recruit-card-grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.gp-recruit-card-grid-4>.gp-recruit-card{
+  border-right:1px solid rgba(22,61,104,.12);border-bottom:0;padding:1.2rem 1.25rem;
+}
+.gp-recruit-card-grid-4>.gp-recruit-card:nth-child(2n){border-right:1px solid rgba(22,61,104,.12)}
+.gp-recruit-card-grid-4>.gp-recruit-card:nth-last-child(-n+2){border-bottom:0}
+.gp-recruit-card-grid-4>.gp-recruit-card:last-child{border-right:0}
 .gp-recruit-card-grid-5{grid-template-columns:repeat(5,minmax(0,1fr))}
 .gp-recruit-team-grid{grid-template-columns:repeat(5,minmax(0,1fr));justify-content:center}
 .gp-recruit-section{padding:56px var(--gp-recruit-pad-x)}

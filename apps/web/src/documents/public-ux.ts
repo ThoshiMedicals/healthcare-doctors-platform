@@ -21,6 +21,7 @@ import {
 import { enrichRecruitmentAuthorityPages } from "@/documents/recruitment-authority-enrichment";
 import { injectGpRecruitmentDiscoverability } from "@/documents/gp-recruitment-discoverability";
 import { alignPhoneOnlyPractitionerChrome } from "@/documents/phone-only-booking";
+import { repairAttractionJourneyLayout } from "@/documents/repair-attraction-journey-layout";
 import {
   alignGolnarOnlineBookingChrome,
   GOLNAR_APPROVED_HOTDOC_URL,
@@ -1655,7 +1656,32 @@ body.ev-pe-page .pe-media--chapter img,body.pe-hub-page .pe-media--chapter img{
     );
   // Mark recruitment surfaces before sticky CSS so body attribute checks stay accurate.
   const isExpressInterestPage = /express-interest\.html$/i.test(pagePath);
+  if (isRecruitmentSurface && !isExpressInterestPage) {
+    // Restore journey aside into .page-layout when published HTML nested it under breadcrumbs.
+    next = repairAttractionJourneyLayout(next);
+  }
   if (isRecruitmentSurface) {
+    next = next.replace(/<style\b[^>]*id="wmc-attraction-layout-fix"[\s\S]*?<\/style>\s*/i, "");
+    next = next.replace(
+      /<\/head>/i,
+      `<style id="wmc-attraction-layout-fix">
+/* Joining-map destinations: if journey aside is still outside .page-layout, do not keep the 280px empty column. */
+body[data-attraction-surface] .page-layout:not(:has(>aside)),
+body[data-attraction-type] .page-layout:not(:has(>aside)),
+body[data-ev="true"] .page-layout:not(:has(>aside)),
+body.pe-hub-page .page-layout:not(:has(>aside)),
+body.ev-pe-page .page-layout:not(:has(>aside)){
+  grid-template-columns:minmax(0,1fr)!important;
+}
+body[data-attraction-surface] .page-layout>.article,
+body[data-attraction-type] .page-layout>.article,
+body[data-ev="true"] .page-layout>.article,
+body.pe-hub-page .page-layout>.article,
+body.ev-pe-page .page-layout>.article{
+  min-width:0!important;max-width:100%!important;
+}
+</style></head>`,
+    );
     if (!/<body\b[^>]*\bdata-attraction-surface=/i.test(next)) {
       next = next.replace(/<body\b/i, '<body data-attraction-surface="true"');
     }
