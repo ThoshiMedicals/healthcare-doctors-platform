@@ -92,3 +92,19 @@ test("hero trust logos receive informative alt text", () => {
   assert.match(result, /alt="Medicare Bulk Billing Practice"/);
   assert.equal(result.includes('alt=""'), false);
 });
+
+test("GP discovery cards get contextual accessible names without changing visible copy", () => {
+  const source =
+    '<li class="gp-discovery-card"><h3 class="gp-discovery-name">Dr Usman Gul</h3>' +
+    '<a class="gp-discovery-profile" href="doctors/dr-usman-gul.html" aria-label="View profile for Dr Usman Gul">View Profile</a>' +
+    '<a class="button gp-discovery-book" href="#" aria-label="Book Appointment">Book Appointment</a>' +
+    '<p class="gp-discovery-note">Booking conditions apply — please check the <a href="doctors/dr-usman-gul.html">practitioner profile</a> before booking.</p>' +
+    "</li>";
+  const result = applyAccessibilityClosure(source, "team-general-practitioners.html");
+  assert.match(result, /aria-label="View Dr Usman Gul practitioner profile"/);
+  assert.match(result, /aria-label="Book an appointment with Dr Usman Gul"/);
+  assert.match(result, /aria-label="View Dr Usman Gul practitioner profile">practitioner profile</);
+  assert.match(result, />View Profile</);
+  assert.match(result, />Book Appointment</);
+  assert.match(result, />practitioner profile</);
+});

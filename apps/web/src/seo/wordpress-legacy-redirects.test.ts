@@ -5,14 +5,14 @@ import {
   SITEMAP_CMS_PRACTITIONER_PATHS,
 } from "./wordpress-legacy-redirects";
 
-test("P0 practitioner WordPress slugs map in one hop", () => {
+test("P0 retired practitioner WordPress slugs map to GP directory", () => {
   assert.equal(
     resolveWordpressLegacyRedirect("/doctor/dr-golnar-mortezaei-gp-fracgp/"),
-    "/doctors/dr-golnar-mortezaei.html",
+    "/team-general-practitioners.html",
   );
   assert.equal(
     resolveWordpressLegacyRedirect("/doctor/dr-james-general-practitioner"),
-    "/doctors/dr-james.html",
+    "/team-general-practitioners.html",
   );
 });
 
@@ -37,10 +37,6 @@ test("P0 SEO landers never resolve to homepage", () => {
   }
 });
 
-test("sitemap CMS practitioner list covers Golnar, James, Yamesha", () => {
-  assert.deepEqual([...SITEMAP_CMS_PRACTITIONER_PATHS].sort(), [
-    "doctors/dr-golnar-mortezaei.html",
-    "doctors/dr-james.html",
-    "doctors/dr-yamesha-ranatunga.html",
-  ]);
+test("sitemap CMS practitioner extras stay empty after orphan retirement", () => {
+  assert.deepEqual([...SITEMAP_CMS_PRACTITIONER_PATHS], []);
 });

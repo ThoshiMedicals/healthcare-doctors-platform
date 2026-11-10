@@ -18,8 +18,8 @@ test("approved inventory lengths match B1 expectations", () => {
 test("buildContentReconciliationReport classifies golden vs approved without DB", () => {
   const report = buildContentReconciliationReport();
   assert.equal(report.goldenPageCount, 207);
-  assert.equal(report.approvedInventoryCount, 226);
-  assert.equal(report.classBCount, 19);
+  assert.equal(report.approvedInventoryCount, 223);
+  assert.equal(report.classBCount, 16);
   assert.equal(report.inventoryIntegrity.approvedListLengthOk, true);
   assert.equal(report.inventoryIntegrity.classBListLengthOk, true);
   assert.equal(report.inventoryIntegrity.classBSubsetOfApproved, true);

@@ -244,10 +244,154 @@ export function applyPublicUxRefinements(
   next = next.replace(/<style\b[^>]*id="wmc-practitioner-directory-cards"[\s\S]*?<\/style>\s*/i, "");
   next = next.replace(/<style\b[^>]*id="wmc-team-copy-fullwidth"[\s\S]*?<\/style>\s*/i, "");
   next = next.replace(/<style\b[^>]*id="wmc-digital-reception-mobile"[\s\S]*?<\/style>\s*/i, "");
+  next = next.replace(/<style\b[^>]*id="wmc-sitewide-visual-polish"[\s\S]*?<\/style>\s*/i, "");
   next = wrapExcessGpDiscoveryAreas(next);
   next = next.replace(
     /<\/head>/i,
-    `<style id="wmc-agpal-mark-fix">
+    `<style id="wmc-sitewide-visual-polish">
+/* Sitewide presentation polish — layout/spacing/a11y only. No content removal. */
+html{overflow-x:clip}
+img,svg,video{max-width:100%}
+h1,h2,h3,.page-hero h1,.doctor-profile-heading h1{
+  overflow-wrap:anywhere;
+  word-break:normal;
+}
+.shell,.page-main,.article,.service-page,.doctor-profile,.team-directory,
+.gp-discovery-list,.service-intelligent-booking,.service-lead-booking,
+.service-clinic-booking,.service-cta-actions,.journey-actions{
+  min-width:0;
+  max-width:100%;
+  box-sizing:border-box;
+}
+.service-cta-actions,.journey-actions,.doctor-profile-actions{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:12px;
+}
+.service-cta-actions .button,
+.service-cta-actions a.button,
+.journey-actions .button,
+.doctor-profile-actions .button{
+  max-width:100%;
+  box-sizing:border-box;
+}
+/* Tablet: stack intelligent booking columns — 2-col at 701px collapses the
+   clinic column off-canvas (women's health / antenatal overflow at 768). */
+@media (min-width:701px) and (max-width:1023px){
+  .service-intelligent-booking{
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:18px!important;
+  }
+  .service-clinic-booking{
+    padding-left:0!important;
+    border-left:0!important;
+    padding-top:18px!important;
+    border-top:1px solid rgba(15,61,62,.12)!important;
+  }
+}
+/* Readable measure on long clinical prose — preserve existing grids. */
+.doctor-profile .article-section>p,
+.doctor-profile .page-section>p,
+.service-page .article-section>p,
+.article .update-article-body>p{
+  max-width:42rem;
+}
+a:focus-visible,button:focus-visible,summary:focus-visible,
+input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:2px solid #1f5c99;
+  outline-offset:3px;
+}
+.gp-discovery-card,.practitioner-directory-card,.team-directory-grid .practitioner{
+  align-items:stretch;
+}
+.gp-discovery-card .gp-discovery-actions,
+.practitioner-directory-card .gp-discovery-actions{
+  margin-top:auto;
+}
+/* Defeat styles.css fixed meta floors (118px / minmax rows) — content-led only. */
+.team-directory-grid .practitioner-meta,
+.team-directory-grid .practitioner-directory-card .practitioner-meta,
+.gp-discovery-card .gp-discovery-info{
+  min-height:0!important;
+  height:auto!important;
+  grid-template-rows:none!important;
+}
+/* Knowledge sidebar: closed accordion groups must not keep link hit-targets
+   in layout (they overlap the next open group on desktop). */
+.knowledge-unified-nav .knowledge-nav-group:not([open]) > .knowledge-nav-links{
+  display:none!important;
+}
+.knowledge-unified-nav .knowledge-nav-group > summary,
+.knowledge-unified-nav .knowledge-nav-links > a{
+  position:relative;
+  z-index:1;
+}
+/* Service pages: CTA stack + dock clearance without nested padding fights. */
+:root{--wmc-care-dock-clearance:108px}
+body.has-action-dock .page-main,
+body.has-persistent-care-actions .page-main{
+  padding-bottom:var(--wmc-care-dock-clearance)!important;
+}
+.service-page .service-cta-actions,
+.service-lead-booking .service-cta-actions,
+.service-clinic-booking .service-cta-actions,
+.service-booking-cta .service-cta-actions{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  align-items:center!important;
+  gap:12px!important;
+  max-width:100%!important;
+}
+/* Doctor profiles: readable measure + action wrap on all widths. */
+.doctor-profile-hero,
+.doctor-profile-heading,
+.doctor-profile-actions{
+  min-width:0!important;
+  max-width:100%!important;
+}
+.doctor-profile-actions{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:12px!important;
+}
+.doctor-profile-heading h1{
+  overflow-wrap:anywhere!important;
+  max-width:36rem!important;
+}
+/* On-this-page title: allow wrap instead of stressing gutters. */
+.on-this-page-title,
+.on-this-page .on-this-page-title,
+.on-this-page > strong,
+.on-this-page > p:first-child{
+  white-space:normal!important;
+  min-width:0!important;
+  overflow-wrap:anywhere!important;
+}
+@media (max-width:900px){
+  .team-authority-subpage .gp-discovery-profile,
+  .team-authority-subpage .gp-discovery-book,
+  .team-authority-subpage .gp-discovery-card a.button.gp-discovery-book{
+    white-space:normal!important;
+    overflow-wrap:anywhere!important;
+    line-height:1.25!important;
+  }
+}
+@media (max-width:700px){
+  .service-cta-actions,.journey-actions,.doctor-profile-actions{
+    flex-direction:column!important;
+    align-items:stretch!important;
+  }
+  .service-cta-actions .button,
+  .service-cta-actions a.button,
+  .journey-actions .button,
+  .doctor-profile-actions .button{
+    width:100%!important;
+    justify-content:center!important;
+  }
+}
+</style>
+<style id="wmc-agpal-mark-fix">
 img[data-local-asset="agpal-mark"]{object-fit:contain!important;object-position:center!important}
 .footer-trust img[data-local-asset="agpal-mark"],
 .footer-trust a img[data-local-asset="agpal-mark"]{
@@ -814,11 +958,20 @@ nav[aria-label="Breadcrumb"],
   width:100%!important;
   box-sizing:border-box!important;
   min-height:44px!important;
-  white-space:nowrap!important;
+  white-space:normal!important;
   text-align:center!important;
   justify-content:center!important;
-  overflow-wrap:normal!important;
-  line-height:1.2!important;
+  overflow-wrap:anywhere!important;
+  line-height:1.25!important;
+}
+@media (min-width:901px){
+  .team-authority-subpage .gp-discovery-profile,
+  .team-authority-subpage .gp-discovery-book,
+  .team-authority-subpage .gp-discovery-card a.button.gp-discovery-book{
+    white-space:nowrap!important;
+    overflow-wrap:normal!important;
+    line-height:1.2!important;
+  }
 }
 /* Defeat .team-authority-person div{display:grid;…190px 180px} on status badge wrappers. */
 .team-authority-subpage .gp-discovery-card .wmc-practitioner-badges,

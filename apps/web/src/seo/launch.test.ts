@@ -41,8 +41,12 @@ test("approved sitemap and robots are served unchanged", () => {
   const extra = [...listed].filter((file) => !html.has(file) && !cmsExtras.has(file)).sort();
   assert.deepEqual(missing, ["updates/article.html"]);
   assert.deepEqual(extra, []);
-  for (const cmsPath of SITEMAP_CMS_PRACTITIONER_PATHS) {
-    assert.equal(listed.has(cmsPath), true, `sitemap must list ${cmsPath}`);
+  for (const retired of [
+    "doctors/dr-golnar-mortezaei.html",
+    "doctors/dr-james.html",
+    "doctors/dr-yamesha-ranatunga.html",
+  ]) {
+    assert.equal(listed.has(retired), false, `sitemap must not list retired orphan ${retired}`);
   }
 });
 

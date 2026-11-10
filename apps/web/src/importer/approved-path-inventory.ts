@@ -1,7 +1,8 @@
 /**
  * Approved public CMS path inventory for Phase 4 B1 reconciliation.
- * Authority: NEXT / Hostinger published set (226) vs golden file corpus (207).
+ * Authority: NEXT / Hostinger published set (223) vs golden file corpus (207).
  * Paths only — no private content.
+ * Retired unpublished CMS profiles (Golnar / James / Yamesha) removed 2026-11-10.
  */
 
 /** Approved published paths absent from frozen golden HTML (Class B). */
@@ -10,9 +11,6 @@ export const CLASS_B_NON_GOLDEN_PATHS = [
   "about-us/community-catchment.html",
   "about-us/continuity-in-practice.html",
   "about-us/practice-experience.html",
-  "doctors/dr-golnar-mortezaei.html",
-  "doctors/dr-james.html",
-  "doctors/dr-yamesha-ranatunga.html",
   "join-our-team/doctor-readiness.html",
   "join-our-team/dpa-navigator.html",
   "join-our-team/express-interest.html",
@@ -30,8 +28,8 @@ export const CLASS_B_NON_GOLDEN_PATHS = [
 export type ClassBPath = (typeof CLASS_B_NON_GOLDEN_PATHS)[number];
 
 /**
- * Full approved public CMS inventory (226), matching staging published pages /
- * NEXT inventory (224 crawlable + 404.html + updates/article.html).
+ * Full approved public CMS inventory (223), matching live indexable openings
+ * after retirement of three unpublished CMS doctor profiles.
  * Maintained as the B1 parity allowlist — update only with operator approval.
  */
 export const APPROVED_PUBLIC_PATHS: readonly string[] = [
@@ -53,8 +51,6 @@ export const APPROVED_PUBLIC_PATHS: readonly string[] = [
   "contact.html",
   "doctors/dr-anand-singh.html",
   "doctors/dr-debra-larkins.html",
-  "doctors/dr-golnar-mortezaei.html",
-  "doctors/dr-james.html",
   "doctors/dr-kooshyar-karimi.html",
   "doctors/dr-mary-abadir.html",
   "doctors/dr-nirupa-sivathasan.html",
@@ -64,7 +60,6 @@ export const APPROVED_PUBLIC_PATHS: readonly string[] = [
   "doctors/dr-tanya-goodwill.html",
   "doctors/dr-usman-gul.html",
   "doctors/dr-wasantha-hettiarchchi.html",
-  "doctors/dr-yamesha-ranatunga.html",
   "doctors/mr-samuel-stafford.html",
   "faqs.html",
   "feedback-concerns.html",
@@ -263,8 +258,8 @@ export const APPROVED_PUBLIC_PATHS: readonly string[] = [
   "why-team-based-care-matters.html",
 ];
 
-export const EXPECTED_APPROVED_PATH_COUNT = 226;
-export const EXPECTED_CLASS_B_COUNT = 19;
+export const EXPECTED_APPROVED_PATH_COUNT = 223;
+export const EXPECTED_CLASS_B_COUNT = 16;
 
 export function isClassBPath(path: string): boolean {
   return (CLASS_B_NON_GOLDEN_PATHS as readonly string[]).includes(path);

@@ -4,9 +4,9 @@
  * Middleware and cutover configs (nginx / Cloudflare) must stay aligned.
  */
 export const WORDPRESS_LEGACY_REDIRECTS: Readonly<Record<string, string>> = {
-  // P0 — new practitioner WordPress profiles
-  "/doctor/dr-golnar-mortezaei-gp-fracgp": "/doctors/dr-golnar-mortezaei.html",
-  "/doctor/dr-james-general-practitioner": "/doctors/dr-james.html",
+  // P0 — retired CMS practitioner profiles → live GP directory (avoid sitemap orphans / 404 equity loss)
+  "/doctor/dr-golnar-mortezaei-gp-fracgp": "/team-general-practitioners.html",
+  "/doctor/dr-james-general-practitioner": "/team-general-practitioners.html",
 
   // P0 — promote approved SEO landing reviews
   "/bulk-billing-doctors-woolloongabba": "/bulk-billing.html",
@@ -29,12 +29,11 @@ export const WORDPRESS_LEGACY_REDIRECTS: Readonly<Record<string, string>> = {
   "/services/travel-health-doctors": "/services/vaccinations.html",
 };
 
-/** CMS practitioners that must appear in the public sitemap (may not exist in old-html/). */
-export const SITEMAP_CMS_PRACTITIONER_PATHS = [
-  "doctors/dr-golnar-mortezaei.html",
-  "doctors/dr-james.html",
-  "doctors/dr-yamesha-ranatunga.html",
-] as const;
+/**
+ * Extra CMS practitioner paths forced into the public sitemap beyond golden HTML.
+ * Empty after retirement of Golnar / James / Yamesha (404 profiles — do not re-list).
+ */
+export const SITEMAP_CMS_PRACTITIONER_PATHS = [] as const;
 
 export function normalizeLegacyPathname(pathname: string): string {
   if (!pathname) return "/";

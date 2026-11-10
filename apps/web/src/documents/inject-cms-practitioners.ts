@@ -97,13 +97,13 @@ function discoveryCard(card: CmsPractitionerCard): string {
   const bookIsPhone = bookHref.startsWith("tel:");
   const bookAttrs = bookIsPhone
     ? `href="${escapeHtml(bookHref)}" aria-label="Call reception to book with ${escapeHtml(card.name)}"`
-    : `data-hotdoc-button="" data-hotdoc-widget="lightbox" href="${escapeHtml(bookHref)}" aria-label="Book Appointment" rel="noopener"`;
+    : `data-hotdoc-button="" data-hotdoc-widget="lightbox" href="${escapeHtml(bookHref)}" aria-label="Book an appointment with ${escapeHtml(card.name)}" rel="noopener"`;
   const bookLabel = bookIsPhone ? "Call Reception to Book" : "Book Appointment";
   const photo = card.portraitFile
     ? `<div class="team-authority-photo"><img alt="${escapeHtml(card.name)}" data-local-team-src="assets/team/${escapeHtml(card.portraitFile)}" data-practitioner-image="true" decoding="async" height="1000" loading="lazy" sizes="(min-width: 1211px) 116px, (min-width: 1025px) 90px, (min-width: 701px) 116px, (min-width: 366px) 96px, 80px" src="assets/team/${escapeHtml(card.portraitFile)}" srcset="assets/team/${escapeHtml(card.portraitFile.replace(/\.webp$/i, "-640.webp"))} 640w, assets/team/${escapeHtml(card.portraitFile)} 1122w" width="800"/></div>`
     : `<div role="img" aria-label="Portrait for ${escapeHtml(card.name)} is not currently published" class="team-authority-photo team-authority-photo-unavailable"><span>Photo to be published</span></div>`;
 
-  return `<li class="team-authority-person gp-discovery-card" data-cms-practitioner="${escapeHtml(card.slug)}">${photo}<div class="gp-discovery-info"><h3 class="gp-discovery-name">${escapeHtml(card.name)}</h3><p class="gp-discovery-care-label">Helping patients with:</p><ul class="gp-discovery-areas">${areas}</ul><p class="gp-discovery-qualifications"><span>Qualifications</span>${escapeHtml(quals)}</p></div><div class="gp-discovery-actions"><a class="gp-discovery-profile" href="${escapeHtml(profileHref)}" aria-label="View profile for ${escapeHtml(card.name)}">View Profile</a><a class="button wmc-book-appointment gp-discovery-book" ${bookAttrs}>${bookLabel}</a></div></li>`;
+  return `<li class="team-authority-person gp-discovery-card" data-cms-practitioner="${escapeHtml(card.slug)}">${photo}<div class="gp-discovery-info"><h3 class="gp-discovery-name">${escapeHtml(card.name)}</h3><p class="gp-discovery-care-label">Helping patients with:</p><ul class="gp-discovery-areas">${areas}</ul><p class="gp-discovery-qualifications"><span>Qualifications</span>${escapeHtml(quals)}</p></div><div class="gp-discovery-actions"><a class="gp-discovery-profile" href="${escapeHtml(profileHref)}" aria-label="View ${escapeHtml(card.name)} practitioner profile">View Profile</a><a class="button wmc-book-appointment gp-discovery-book" ${bookAttrs}>${bookLabel}</a></div></li>`;
 }
 
 /** Remove prior CMS directory/discovery injects (idempotent republish hygiene). */
