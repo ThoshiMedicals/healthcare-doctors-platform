@@ -482,8 +482,9 @@ nav[aria-label="Breadcrumb"],
 .team-directory-grid{
   display:grid!important;
   grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  /* Equal-height cards per row — content-led, not fixed px. */
   grid-auto-rows:auto!important;
-  align-items:start!important;
+  align-items:stretch!important;
   gap:42px 28px!important;
   overflow:visible!important;
   max-height:none!important;
@@ -492,7 +493,7 @@ nav[aria-label="Breadcrumb"],
 .team-directory-grid .practitioner-directory-card{
   display:flex!important;
   flex-direction:column!important;
-  height:auto!important;
+  height:100%!important;
   min-width:0!important;
   overflow:visible!important;
 }
@@ -519,7 +520,7 @@ nav[aria-label="Breadcrumb"],
 .team-directory-grid .practitioner-meta{
   display:flex!important;
   flex-direction:column!important;
-  flex:0 1 auto!important;
+  flex:1 1 auto!important;
   gap:.35rem!important;
   min-height:0!important;
   padding-top:14px!important;
@@ -534,6 +535,10 @@ nav[aria-label="Breadcrumb"],
   line-height:1.28!important;
   font-weight:400!important;
   color:var(--ink,#173044)!important;
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:2!important;
+  overflow:hidden!important;
 }
 .team-directory-grid .credentials{
   margin:0 0 .3rem!important;
@@ -544,8 +549,23 @@ nav[aria-label="Breadcrumb"],
   letter-spacing:.02em!important;
   line-height:1.45!important;
   overflow-wrap:anywhere!important;
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:1!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
 }
-.team-directory-grid .focus,
+.team-directory-grid .focus{
+  margin:0 0 .35rem!important;
+  color:var(--ink-soft,#596b78)!important;
+  font-size:.8125rem!important;
+  line-height:1.5!important;
+  overflow-wrap:anywhere!important;
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:2!important;
+  overflow:hidden!important;
+}
 .team-directory-grid .role{
   margin:0 0 .35rem!important;
   color:var(--ink-soft,#596b78)!important;
@@ -553,7 +573,6 @@ nav[aria-label="Breadcrumb"],
   line-height:1.5!important;
   overflow-wrap:anywhere!important;
 }
-.team-directory-grid .practitioner-meta .text-link,
 .team-directory-grid .practitioner-meta .gp-discovery-actions,
 .team-directory-grid .practitioner-meta .button{
   margin-top:.35rem!important;
@@ -563,6 +582,8 @@ nav[aria-label="Breadcrumb"],
   display:inline-flex!important;
   align-items:center!important;
   min-height:44px!important;
+  margin-top:auto!important;
+  padding-top:.55rem!important;
 }
 .team-authority-subpage .page-layout{
   align-items:start!important;

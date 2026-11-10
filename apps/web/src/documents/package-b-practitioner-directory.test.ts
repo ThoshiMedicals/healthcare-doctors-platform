@@ -25,8 +25,12 @@ test("public UX injects practitioner directory card layout stylesheet", () => {
     '<html><head><title>Team</title></head><body class="has-persistent-care-actions"><div class="team-directory-grid"><article class="practitioner practitioner-directory-card"><a class="portrait" href="#"><img alt="" width="800" height="1000" src="x.webp"/></a><div class="practitioner-meta"><h3>Dr Example</h3><p class="credentials">FRACGP</p><p class="focus">Family health</p><a class="text-link" href="#">View profile</a></div></article></div></body></html>';
   const actual = applyPublicUxRefinements(html, "team.html");
   assert.match(actual, /id="wmc-practitioner-directory-cards"/);
+  assert.match(actual, /\.team-directory-grid\{[^}]*align-items:stretch/);
   assert.match(actual, /\.team-directory-grid\{[^}]*grid-auto-rows:auto/);
-  assert.match(actual, /\.team-directory-grid \.practitioner[^{]*\{[^}]*height:auto/);
+  assert.match(actual, /\.team-directory-grid \.practitioner[^{]*\{[^}]*height:100%/);
+  assert.match(actual, /\.credentials\{[^}]*-webkit-line-clamp:1/);
+  assert.match(actual, /\.focus\{[^}]*-webkit-line-clamp:2/);
+  assert.match(actual, /\.practitioner-meta \.text-link\{[^}]*margin-top:auto/);
   assert.match(actual, /body\.has-persistent-care-actions \.shell\.team-directory/);
   assert.match(actual, /padding-bottom:calc\(108px/);
   assert.match(actual, /\.team-directory\.team-organisation\{[^}]*padding-bottom:0/);
