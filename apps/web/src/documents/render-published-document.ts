@@ -29,6 +29,7 @@ import {
   mustNoIndexRecruitmentPath,
 } from "@/importer/recruitment-hold";
 import { applyStagingNoIndexMeta } from "@/seo/staging-noindex";
+import { applyPageSeoToHtml } from "@/documents/page-seo";
 
 export type PublishedDocument = {
   path: string;
@@ -122,7 +123,17 @@ export async function getPublishedDocument(
     : await applyStoredRepeats(clinicId, withMedia);
   if (timings) mark(timings, "repeats", repeatsStarted);
 
-  const heldHtml = mustNoIndexRecruitmentPath(page.path) ? applyStagingNoIndexMeta(html) : html;
+  // Serve-time SEO from published Page columns (draft seoDraft is ignored until publish).
+  const withSeo = applyPageSeoToHtml(html, {
+    title: page.title,
+    description: page.description,
+    canonicalPath: page.canonicalPath,
+    robots: page.robots,
+    indexable: page.indexable,
+    openGraph: page.openGraph,
+  });
+
+  const heldHtml = mustNoIndexRecruitmentPath(page.path) ? applyStagingNoIndexMeta(withSeo) : withSeo;
 
   return {
     path: page.path,

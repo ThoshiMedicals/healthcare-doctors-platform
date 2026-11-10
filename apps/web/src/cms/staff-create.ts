@@ -23,5 +23,5 @@ export function staffCreateMessage(issue: StaffCreateIssue): string {
   if (issue === "short") return "The password must be at least 8 characters.";
   if (issue === "confirm") return "Enter the same password in both password fields.";
   if (issue === "duplicate") return "That username is already in use. Choose a different one.";
-  return "Choose Super Admin, Clinic Admin, or Content Editor.";
+  return "Choose Super Admin, Clinic Admin, Content Editor, Clinical Reviewer, Practice Approver, or Publisher.";
 }

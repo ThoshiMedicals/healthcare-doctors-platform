@@ -123,6 +123,19 @@ export async function moveWorkflow(entry: {
     (current === "clinical_review" && entry.to === "drafting");
   if (!allowed) return { ok: false, reasons: ["That workflow step is not available from the current status."] };
 
+  if (entry.to === "approved" && current === "clinical_review") {
+    const pageId = await pageIdOf(entry.entityType, entry.entityId, entry.clinicId);
+    if (pageId) {
+      const review = await prisma.clinicalReview.findUnique({ where: { pageId } });
+      if (!review?.reviewerSignedBy || !review.reviewerSignedAt) {
+        return {
+          ok: false,
+          reasons: ["Clinical sign-off is required before practice approval."],
+        };
+      }
+    }
+  }
+
   const previous = await workingSnapshot(entry.clinicId, entry.entityType, entry.entityId);
   await setStatus(entry.entityType, entry.entityId, entry.clinicId, entry.to);
   if (entry.to === "approved") {
@@ -134,16 +147,19 @@ export async function moveWorkflow(entry: {
           clinicId: entry.clinicId,
           pageId,
           reviewType: "clinical",
-          status: "under_review",
+          status: "approved",
           reviewedBy: entry.authorName,
           reviewerSignedBy: entry.authorName,
           reviewerSignedAt: new Date(),
+          approvedBy: entry.authorName,
+          approvedAt: new Date(),
+          approvalReference: `practice-approve:${entry.entityType}:${entry.entityId}`,
         },
         update: {
-          status: "under_review",
-          reviewedBy: entry.authorName,
-          reviewerSignedBy: entry.authorName,
-          reviewerSignedAt: new Date(),
+          status: "approved",
+          approvedBy: entry.authorName,
+          approvedAt: new Date(),
+          approvalReference: `practice-approve:${entry.entityType}:${entry.entityId}`,
         },
       });
     }
@@ -159,6 +175,77 @@ export async function moveWorkflow(entry: {
       next,
     });
   }
+  return { ok: true };
+}
+
+export async function entityHasClinicalSignOff(
+  clinicId: string,
+  entityType: ReleaseEntity,
+  entityId: string,
+): Promise<boolean> {
+  const pageId = await pageIdOf(entityType, entityId, clinicId);
+  if (!pageId) return false;
+  const review = await prisma.clinicalReview.findUnique({
+    where: { pageId },
+    select: { reviewerSignedBy: true, reviewerSignedAt: true },
+  });
+  return Boolean(review?.reviewerSignedBy && review.reviewerSignedAt);
+}
+
+/** Clinical content approval — records reviewer evidence without practice approval / publish. */
+export async function recordClinicalSignOff(entry: {
+  clinicId: string;
+  authorId: string;
+  authorName: string;
+  entityType: ReleaseEntity;
+  entityId: string;
+}): Promise<{ ok: true } | { ok: false; reasons: string[] }> {
+  const current = await statusOf(entry.clinicId, entry.entityType, entry.entityId);
+  if (!current) return { ok: false, reasons: ["That record could not be found."] };
+  if (current !== "clinical_review") {
+    return { ok: false, reasons: ["Clinical sign-off is only available during clinical review."] };
+  }
+  const pageId = await pageIdOf(entry.entityType, entry.entityId, entry.clinicId);
+  if (!pageId) {
+    // Entity without a page still records audit-only sign-off via revision snapshot marker.
+    await writeAuditLog({
+      clinicId: entry.clinicId,
+      actorId: entry.authorId,
+      action: "content.clinical_signoff",
+      entityType: entry.entityType,
+      entityId: entry.entityId,
+      metadata: { authorName: entry.authorName },
+    });
+    return { ok: true };
+  }
+  await prisma.clinicalReview.upsert({
+    where: { pageId },
+    create: {
+      clinicId: entry.clinicId,
+      pageId,
+      reviewType: "clinical",
+      status: "under_review",
+      reviewedBy: entry.authorName,
+      reviewerSignedBy: entry.authorName,
+      reviewerSignedAt: new Date(),
+      evidenceReference: `clinical-signoff:${entry.entityType}:${entry.entityId}`,
+    },
+    update: {
+      status: "under_review",
+      reviewedBy: entry.authorName,
+      reviewerSignedBy: entry.authorName,
+      reviewerSignedAt: new Date(),
+      evidenceReference: `clinical-signoff:${entry.entityType}:${entry.entityId}`,
+    },
+  });
+  await writeAuditLog({
+    clinicId: entry.clinicId,
+    actorId: entry.authorId,
+    action: "content.clinical_signoff",
+    entityType: entry.entityType,
+    entityId: entry.entityId,
+    metadata: { pageId, authorName: entry.authorName },
+  });
   return { ok: true };
 }
 

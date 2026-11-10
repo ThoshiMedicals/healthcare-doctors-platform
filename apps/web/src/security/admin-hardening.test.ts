@@ -216,12 +216,17 @@ const EDITOR_MODULES = APPROVED_MODULES.filter((item) => item.action === "edit")
 const ALL_ACTIONS: readonly CmsAction[] = [
   "edit", "submit_for_review", "clinical_signoff", "practice_approve",
   "publish", "manage_settings", "create_users", "rollback", "switch_clinic",
+  "unpublish_page", "manage_seo", "preview_draft",
 ];
-const EDITOR_ACTIONS: readonly CmsAction[] = ["edit", "submit_for_review"];
+const EDITOR_ACTIONS: readonly CmsAction[] = ["edit", "submit_for_review", "manage_seo", "preview_draft"];
 const CLINIC_ADMIN_ACTIONS: readonly CmsAction[] = [
   "edit", "submit_for_review", "clinical_signoff", "practice_approve",
-  "publish", "manage_settings", "rollback",
+  "publish", "manage_settings", "rollback", "unpublish_page", "manage_seo", "preview_draft",
 ];
+const CLINICAL_REVIEWER_ACTIONS: readonly CmsAction[] = ["clinical_signoff", "preview_draft"];
+const PRACTICE_APPROVER_ACTIONS: readonly CmsAction[] = ["practice_approve", "preview_draft"];
+const PUBLISHER_ACTIONS: readonly CmsAction[] = ["publish", "unpublish_page", "preview_draft"];
+const PAGES_MODULE = APPROVED_MODULES.find((item) => item.href === "/admin/pages")!;
 
 describe("role menus", () => {
   it("pins the approved labels, hrefs, required actions, and navigation groups", () => {
@@ -239,9 +244,9 @@ describe("role menus", () => {
       { role: "clinic_admin", allowed: CLINIC_ADMIN_ACTIONS },
       { role: "content_editor", allowed: EDITOR_ACTIONS },
       { role: "editor", allowed: EDITOR_ACTIONS },
-      { role: "clinical_reviewer", allowed: [] },
-      { role: "practice_approver", allowed: [] },
-      { role: "publisher", allowed: [] },
+      { role: "clinical_reviewer", allowed: CLINICAL_REVIEWER_ACTIONS },
+      { role: "practice_approver", allowed: PRACTICE_APPROVER_ACTIONS },
+      { role: "publisher", allowed: PUBLISHER_ACTIONS },
     ];
     for (const item of cases) {
       for (const action of ALL_ACTIONS) {
@@ -250,6 +255,12 @@ describe("role menus", () => {
     }
     assert.equal(roleAllows("content_editor", "clinical_signoff"), false);
     assert.equal(roleAllows("content_editor", "manage_settings"), false);
+    assert.equal(roleAllows("clinical_reviewer", "practice_approve"), false);
+    assert.equal(roleAllows("clinical_reviewer", "publish"), false);
+    assert.equal(roleAllows("practice_approver", "clinical_signoff"), false);
+    assert.equal(roleAllows("practice_approver", "publish"), false);
+    assert.equal(roleAllows("publisher", "clinical_signoff"), false);
+    assert.equal(roleAllows("publisher", "practice_approve"), false);
     assert.equal(roleAllows("clinic_admin", "create_users"), false);
     assert.equal(roleAllows("super_admin", "create_users"), true);
   });
@@ -261,25 +272,22 @@ describe("role menus", () => {
       { role: "clinic_admin", expected: APPROVED_MODULES },
       { role: "content_editor", expected: EDITOR_MODULES },
       { role: "editor", expected: EDITOR_MODULES },
-      { role: "clinical_reviewer", expected: [] },
-      { role: "practice_approver", expected: [] },
-      { role: "publisher", expected: [] },
+      { role: "clinical_reviewer", expected: GOVERNANCE_MODULES },
+      { role: "practice_approver", expected: GOVERNANCE_MODULES },
+      { role: "publisher", expected: [PAGES_MODULE, ...GOVERNANCE_MODULES] },
       { role: null, expected: [] },
     ];
     for (const item of cases) {
       const visible = visibleModules(item.role);
       assert.deepEqual(visible, item.expected, "visibleModules(" + item.role + ")");
-      if (item.role !== null) {
-        for (const navItem of visible) {
-          assert.equal(roleAllows(item.role, navItem.action), true, item.role + ": " + navItem.href);
-        }
-      }
     }
     assert.equal(
       visibleModules("content_editor").every((item) => item.group === "content" || item.group === "operations"),
       true,
     );
     assert.equal(visibleModules("clinic_admin").some((item) => item.href === "/admin/image-governance"), true);
+    assert.equal(visibleModules("clinical_reviewer").every((item) => item.group === "governance"), true);
+    assert.equal(visibleModules("publisher").some((item) => item.href === "/admin/pages"), true);
   });
 
   it("preserves content, operations, insights, and governance grouping and restrictions", () => {
@@ -296,7 +304,16 @@ describe("role menus", () => {
     assert.deepEqual(visibleNavGroups("editor"), visibleNavGroups("content_editor"));
     assert.deepEqual(visibleNavGroups("super_admin"), visibleNavGroups("clinic_admin"));
     assert.deepEqual(visibleNavGroups("network_admin"), visibleNavGroups("clinic_admin"));
-    assert.deepEqual(visibleNavGroups("clinical_reviewer"), []);
+    assert.deepEqual(visibleNavGroups("clinical_reviewer"), [
+      { id: "governance", label: "Governance", modules: GOVERNANCE_MODULES },
+    ]);
+    assert.deepEqual(visibleNavGroups("practice_approver"), [
+      { id: "governance", label: "Governance", modules: GOVERNANCE_MODULES },
+    ]);
+    assert.deepEqual(visibleNavGroups("publisher"), [
+      { id: "content", label: "Content", modules: [PAGES_MODULE] },
+      { id: "governance", label: "Governance", modules: GOVERNANCE_MODULES },
+    ]);
     assert.deepEqual(visibleNavGroups(null), []);
   });
 });

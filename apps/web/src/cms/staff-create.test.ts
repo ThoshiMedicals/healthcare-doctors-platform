@@ -19,15 +19,18 @@ describe("staff creation messages", () => {
     assert.equal(staffCreateProblems({ ...valid, confirmation: "other-value" }), "confirm");
     assert.equal(staffCreateProblems({ ...valid, roleAllowed: false }), "role");
     assert.equal(staffCreateProblems(valid), null);
-    assert.equal(staffCreateMessage("role"), "Choose Super Admin, Clinic Admin, or Content Editor.");
+    assert.match(staffCreateMessage("role"), /Clinical Reviewer/);
     assert.equal(isCreatableStaffRole("super_admin"), true);
     assert.equal(isCreatableStaffRole("network_admin"), false);
-    assert.equal(isCreatableStaffRole("clinical_reviewer"), false);
+    assert.equal(isCreatableStaffRole("clinical_reviewer"), true);
+    assert.equal(isCreatableStaffRole("practice_approver"), true);
+    assert.equal(isCreatableStaffRole("publisher"), true);
   });
 
   it("explains a duplicate username and the password length", () => {
     assert.match(staffCreateMessage("duplicate"), /already in use/);
     assert.match(staffCreateMessage("short"), /8 characters/);
     assert.match(staffCreateMessage("role"), /Clinic Admin/);
+    assert.match(staffCreateMessage("role"), /Publisher/);
   });
 });

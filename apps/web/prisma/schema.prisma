@@ -175,7 +175,10 @@ model Clinic {
   status           ClinicStatus       @default(draft)
   /** Optional per-clinic golden HTML corpus root. Null → GOLDEN_HTML_ROOT / old-html. */
   goldenHtmlRoot   String?            @map("golden_html_root")
+  /** Shared public HTML cache epoch for multi-instance invalidation consistency. */
+  publicCacheEpoch Int                @default(0) @map("public_cache_epoch")
   network          Network            @relation(fields: [networkId], references: [id], onDelete: Restrict)
+  draftPreviewTokens DraftPreviewToken[]
   domains          ClinicDomain[]
   profile          ClinicProfile?
   openingHours     OpeningHours[]
@@ -311,6 +314,7 @@ model User {
   gpReadinessPackageTasksAssigned GpReadinessPackageTask[] @relation("GpReadinessPackageTaskAssignee")
   gpReadinessPackageTasksCreated  GpReadinessPackageTask[] @relation("GpReadinessPackageTaskCreator")
   auditLogs            AuditLog[]
+  draftPreviewTokens   DraftPreviewToken[]
   assignedApplications CareerApplication[] @relation("CareerApplicationAssignee")
   assignedFormRequests FormRequest[]       @relation("FormRequestAssignee")
   assignedGpEnquiries  GpEnquiry[]         @relation("GpEnquiryAssignee")
@@ -395,6 +399,8 @@ model Page {
   canonicalPath        String              @map("canonical_path")
   robots               String              @default("index,follow,max-image-preview:large")
   openGraph            Json?               @map("open_graph")
+  /** Unpublished SEO draft. Live Page SEO columns stay until publishSeo is authorised. */
+  seoDraft             Json?               @map("seo_draft")
   breadcrumb           Json?
   status               PageStatus          @default(draft)
   publishedRevisionId  String?             @unique @map("published_revision_id")
@@ -411,12 +417,33 @@ model Page {
   practiceUpdate       PracticeUpdate?
   practicePage         PracticePage?
   editorialItems       EditorialItem[]
+  draftPreviewTokens   DraftPreviewToken[]
   createdAt            DateTime            @default(now()) @map("created_at")
   updatedAt            DateTime            @updatedAt @map("updated_at")
 
   @@unique([clinicId, path])
   @@index([clinicId, status])
   @@map("pages")
+}
+
+/** Expiring, revocable clinic-scoped draft preview access (never publicly indexed). */
+model DraftPreviewToken {
+  id          String    @id @default(cuid())
+  clinicId    String    @map("clinic_id")
+  pageId      String?   @map("page_id")
+  entityType  String?   @map("entity_type")
+  entityId    String?   @map("entity_id")
+  tokenHash   String    @unique @map("token_hash")
+  createdById String    @map("created_by_id")
+  expiresAt   DateTime  @map("expires_at")
+  revokedAt   DateTime? @map("revoked_at")
+  clinic      Clinic    @relation(fields: [clinicId], references: [id], onDelete: Cascade)
+  page        Page?     @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  createdBy   User      @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  @@index([clinicId, expiresAt])
+  @@map("draft_preview_tokens")
 }
 
 model PageRevision {

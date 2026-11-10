@@ -255,6 +255,48 @@ export function invalidatePublicHtmlCache(clinicId: string): void {
   }
 }
 
+/**
+ * Persist a shared cache epoch on Clinic so multiple Node instances can observe
+ * invalidations without Redis/Cloudflare changes. Memory generation still wins
+ * for same-process speed; callers should await this around take-downs/publishes.
+ */
+export async function bumpPublicCacheEpoch(clinicId: string): Promise<number> {
+  if (!clinicId) return clinicGeneration("");
+  try {
+    const { prisma } = await import("@/db/prisma");
+    const updated = await prisma.clinic.update({
+      where: { id: clinicId },
+      data: { publicCacheEpoch: { increment: 1 } },
+      select: { publicCacheEpoch: true },
+    });
+    generations.set(clinicId, Math.max(clinicGeneration(clinicId) + 1, updated.publicCacheEpoch));
+    return generations.get(clinicId) ?? updated.publicCacheEpoch;
+  } catch {
+    invalidatePublicHtmlCache(clinicId);
+    return clinicGeneration(clinicId);
+  }
+}
+
+/** Align in-memory generation with the durable Clinic epoch (multi-instance). */
+export async function syncPublicCacheEpochFromDb(clinicId: string): Promise<number> {
+  if (!clinicId) return 0;
+  try {
+    const { prisma } = await import("@/db/prisma");
+    const row = await prisma.clinic.findUnique({
+      where: { id: clinicId },
+      select: { publicCacheEpoch: true },
+    });
+    const epoch = row?.publicCacheEpoch ?? 0;
+    if (epoch > clinicGeneration(clinicId)) {
+      generations.set(clinicId, epoch);
+      deleteClinicDurable(clinicId);
+    }
+    return clinicGeneration(clinicId);
+  } catch {
+    return clinicGeneration(clinicId);
+  }
+}
+
 export function invalidateAllPublicHtmlCaches(): void {
   for (const clinicId of generations.keys()) {
     generations.set(clinicId, clinicGeneration(clinicId) + 1);
