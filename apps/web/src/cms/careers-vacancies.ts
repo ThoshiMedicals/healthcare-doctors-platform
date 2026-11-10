@@ -49,15 +49,27 @@ const EOI_HREF_NESTED = "express-interest.html";
 const EMPTY_STATE_CAREERS =
   '<p class="careers-opportunity-empty">We are not currently advertising a specific role. Expressions of interest are welcome.</p>';
 
-const EMPTY_STATE_RECRUIT = `<article class="gp-recruit-vacancy-empty" data-careers-vacancies-empty="true">
-<p class="gp-recruit-eyebrow">Current opportunities</p>
-<h3>Expressions of Interest Welcome</h3>
-<p>While a suitable role may not be advertised today, we welcome confidential enquiries from healthcare professionals interested in future opportunities.</p>
+/** Offer-sourced featured card when CMS has no live vacancies — keeps Join Our Team prospectus honest. */
+function renderOfferFeaturedVacancyCard(pagePath: string): string {
+  const applyHref = eoiHrefForPage(pagePath) || EOI_HREF_JOIN;
+  const offerPills = offerFeaturedHighlights()
+    .slice(0, 4)
+    .map((item) => `<li>${escapeHtml(item)}</li>`)
+    .join("");
+  return `<article class="gp-recruit-vacancy-card gp-recruit-vacancy-card--featured" role="listitem" data-opportunity-type="GP" data-featured="true" data-offer-featured="true">
+<p class="gp-recruit-vacancy-featured-label">Featured Opportunity</p>
+<div class="gp-recruit-vacancy-badges"><span class="gp-recruit-vacancy-badge">Open</span><span class="gp-recruit-vacancy-badge">General Practitioner</span></div>
+<h3>VR General Practitioner</h3>
+<p class="gp-recruit-vacancy-dept">General Practitioner · Flexible</p>
+<p class="gp-recruit-vacancy-location">${escapeHtml(WMC_RECRUITMENT_OFFER.locationLabel)}</p>
+<ul class="gp-recruit-vacancy-featured-points">${offerPills}</ul>
+<p class="gp-recruit-vacancy-summary">Join an established community-focused general practice focused on continuity of care, clinical excellence and long-term patient relationships.</p>
 <div class="gp-recruit-vacancy-actions">
-<a class="button gp-recruit-primary" href="${EOI_HREF_JOIN}">Register Interest</a>
-<a class="button button-secondary" href="#gp-readiness-portal" data-gp-readiness-open="true">Prepare Your Onboarding</a>
+<a class="button gp-recruit-primary gp-recruit-primary-on-dark" href="${escapeHtml(applyHref)}" data-track-opportunity-cta="eoi" data-opportunity-type="GP">View Opportunity</a>
+<a class="button button-secondary gp-recruit-primary-on-dark" href="#gp-readiness-portal" data-gp-readiness-open="true">GP Readiness Portal</a>
 </div>
 </article>`;
+}
 
 const VACANCY_TRUST_STRIP = `<ul class="gp-recruit-vacancy-trust" aria-label="Recruitment assurances">
 <li><span aria-hidden="true">✓</span>Confidential discussions available</li>
@@ -290,7 +302,7 @@ export function renderVacanciesMarkup(
   if (variant === "gp-recruit") {
     if (vacancies.length === 0) {
       return wrapRecruitVacanciesBlock(
-        `<div class="gp-recruit-vacancy-grid">${EMPTY_STATE_RECRUIT}</div>`,
+        `<div class="gp-recruit-vacancy-grid" role="list">${renderOfferFeaturedVacancyCard(pagePath)}</div>`,
         pagePath,
       );
     }
@@ -333,19 +345,19 @@ const VACANCY_INJECT_PATHS = new Set(["join-our-team.html", "join-our-team/gp-op
 export async function injectCareersVacancies(html: string, pagePath: string, clinicId: string): Promise<string> {
   if (!VACANCY_INJECT_PATHS.has(pagePath)) return html;
 
-  // Recruitment HOLD: do not inject public vacancy listings or enhance EOI forms.
+  // Recruitment HOLD: keep vacancy listing display on the join hub; block form enhancement only.
   const { canOperateRecruitmentPublicWorkflows } = await import("@/importer/recruitment-hold");
-  if (!canOperateRecruitmentPublicWorkflows()) return html;
+  const workflowsOpen = canOperateRecruitmentPublicWorkflows();
 
   const clinic = await prisma.clinic.findUnique({
     where: { id: clinicId },
     select: { slug: true, practiceName: true },
   });
-  const { enhanceTalentCommunityForm } = await import("@/cms/careers-applications");
-  let next =
-    pagePath === "join-our-team.html" && clinic?.slug
-      ? enhanceTalentCommunityForm(html, clinic.slug, clinic.practiceName)
-      : html;
+  let next = html;
+  if (workflowsOpen && pagePath === "join-our-team.html" && clinic?.slug) {
+    const { enhanceTalentCommunityForm } = await import("@/cms/careers-applications");
+    next = enhanceTalentCommunityForm(html, clinic.slug, clinic.practiceName);
+  }
 
   if (!next.includes('id="current-opportunities"') && !next.includes("data-careers-vacancies-root")) return next;
 

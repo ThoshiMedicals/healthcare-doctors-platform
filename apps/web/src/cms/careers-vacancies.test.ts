@@ -63,13 +63,16 @@ test("empty careers state avoids implying active recruitment", () => {
   assert.doesNotMatch(html, /General Practitioner \(VR GP\)/);
 });
 
-test("gp-recruit empty state invites confidential EOI", () => {
+test("gp-recruit empty state falls back to offer-featured VR GP card", () => {
   const html = renderVacanciesMarkup([], { variant: "gp-recruit" });
-  assert.match(html, /Expressions of Interest Welcome/);
-  assert.match(html, /Register Interest/);
-  assert.match(html, /Prepare Your Onboarding/);
+  assert.match(html, /Featured Opportunity/);
+  assert.match(html, /VR General Practitioner/);
+  assert.match(html, /View Opportunity/);
+  assert.match(html, /GP Readiness Portal/);
   assert.match(html, /data-gp-readiness-open="true"/);
+  assert.match(html, /data-offer-featured="true"/);
   assert.match(html, /data-gp-recruit-vacancies="true"/);
+  assert.doesNotMatch(html, /Expressions of Interest Welcome/);
 });
 
 test("gp-recruit featured card renders first with view CTA from offer facts", () => {

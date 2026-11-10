@@ -3,6 +3,7 @@ import {
   WMC_RECRUITMENT_CONTACT,
   WMC_RECRUITMENT_OFFER,
   offerCommercialFaqItems,
+  offerFeaturedHighlights,
   offerHourlyMinimumLine,
   renderConfidentialityPanelHtml,
   renderRecruitmentContactHtml,
@@ -11,7 +12,7 @@ import {
 } from "@/recruitment";
 
 const EOI_HREF = "join-our-team/express-interest.html";
-const STYLE_BUST = "wmc-gp-recruit-20261106b";
+const STYLE_BUST = "wmc-gp-recruit-20261110c";
 const PORTAL_SCRIPT_BUST = "wmc-gp-readiness-20261110a";
 const READINESS_HASH = "#gp-readiness-portal";
 const OFFER = WMC_RECRUITMENT_OFFER;
@@ -121,7 +122,10 @@ export function refineJoinOurTeamRecruitment(html: string, _branding: ClinicBran
 
   // Evidence panel replaces page-directory / journey / on-this-page chrome.
   next = next.replace(/<div\b[^>]*class="[^"]*\bbreadcrumb-bar\b[^"]*"[^>]*>[\s\S]*?<\/div>\s*/i, "");
-  next = next.replace(/<div\b[^>]*class="[^"]*\bon-this-page-shell\b[^"]*"[^>]*>[\s\S]*?<\/div>\s*/i, "");
+  next = next.replace(
+    /<div\b[^>]*class="[^"]*\bon-this-page-shell\b[^"]*"[^>]*>[\s\S]*?<\/nav>\s*<\/div>\s*/i,
+    "",
+  );
   next = next.replace(
     /<aside\b[^>]*(?:id="related-pages"|class="[^"]*\bpage-nav\b[^"]*"|data-ev-journey-nav="true")[^>]*>[\s\S]*?<\/aside>/gi,
     "",
@@ -287,7 +291,6 @@ function buildLandingHtml(eoi: string): string {
 <div class="gp-recruit-hero-copy">
 <p class="gp-recruit-eyebrow">GP Opportunities · Woolloongabba Medical Centre</p>
 <h1>A Supported VR GP Role at an Established Inner-South Practice.</h1>
-<p class="gp-recruit-lede">Join an ${OFFER.agpalAccredited ? "AGPAL-accredited" : "established"} Brisbane medical centre with HotDoc and phone booking already in place, nursing and reception support on session, and an established patient community at ${escapeHtml(OFFER.streetAddress)}.</p>
 <p class="gp-recruit-confidence">No CV required for an initial discussion. All enquiries remain strictly confidential.</p>
 <ul class="gp-recruit-trust" aria-label="Practice highlights">
 <li><span aria-hidden="true">✓</span>${OFFER.agpalAccredited ? "AGPAL Accredited" : "Accredited Practice"}</li>
@@ -313,7 +316,7 @@ ${OFFER.openSevenDays ? `<li><span aria-hidden="true">✓</span>Open 7 Days</li>
 
 <aside class="gp-recruit-hero-aside-card gp-recruit-opportunity-follow" aria-label="Hero opportunity summary">
 <div class="gp-recruit-opportunity-follow-copy">
-<p class="gp-recruit-eyebrow">Current opportunity</p>
+<p class="gp-recruit-eyebrow gp-recruit-eyebrow-on-accent">Now hiring</p>
 <p class="gp-recruit-hero-aside-title">VR General Practitioner</p>
 <ul class="gp-recruit-hero-aside-facts">
 <li>Flexible consulting sessions</li>
@@ -323,8 +326,8 @@ ${OFFER.openSevenDays ? `<li><span aria-hidden="true">✓</span>Open 7 Days</li>
 </ul>
 </div>
 <div class="gp-recruit-hero-aside-actions">
-<a class="button button-secondary gp-recruit-secondary" href="#current-opportunities">View Opportunity</a>
-<a class="text-link" href="${eoi}">Request callback →</a>
+<a class="button gp-recruit-primary gp-recruit-primary-on-dark" href="#current-opportunities">View Opportunity</a>
+<a class="text-link gp-recruit-link-on-accent" href="${eoi}">Request callback →</a>
 </div>
 </aside>
 </div>
@@ -351,19 +354,9 @@ ${HOURLY_MINIMUM ? `<div role="listitem"><p class="gp-recruit-stat-value">${esca
 <article class="gp-recruit-stat" role="listitem"><p class="gp-recruit-stat-value">${OFFER.consultRooms}</p><p class="gp-recruit-stat-label">Consult Rooms</p></article>
 <article class="gp-recruit-stat" role="listitem"><p class="gp-recruit-stat-value">${OFFER.gps}</p><p class="gp-recruit-stat-label">GPs on Roster</p></article>
 <article class="gp-recruit-stat" role="listitem"><p class="gp-recruit-stat-value">${OFFER.nurses}</p><p class="gp-recruit-stat-label">Nurses on Roster</p></article>
+${OFFER.openSevenDays ? `<article class="gp-recruit-stat" role="listitem"><p class="gp-recruit-stat-value">7</p><p class="gp-recruit-stat-label">Days Open</p></article>` : ""}
+${OFFER.agpalAccredited ? `<article class="gp-recruit-stat" role="listitem"><p class="gp-recruit-stat-value">AGPAL</p><p class="gp-recruit-stat-label">Accredited Practice</p></article>` : ""}
 </div>
-</section>
-
-<section class="gp-recruit-section gp-recruit-demand" id="why-demand-exists" aria-labelledby="demand-heading">
-<p class="gp-recruit-eyebrow">Evidence</p>
-<h2 id="demand-heading">Why Demand Exists</h2>
-<ul class="gp-recruit-evidence" role="list">
-<li role="listitem"><strong>${OFFER.activePatientFiles} active patient files</strong> — an established patient community already on the books.</li>
-<li role="listitem"><strong>Clinical mix in place</strong> — family medicine, chronic disease management, women’s health and men’s health.</li>
-<li role="listitem"><strong>${OFFER.gps} GPs currently consulting</strong> within the practice roster.</li>
-<li role="listitem"><strong>Appointment demand across the week</strong>${OFFER.openSevenDays ? " — including evenings and weekends (open 7 days)." : "."}</li>
-<li role="listitem"><strong>Sessions without starting from zero</strong> — join an existing patient base rather than building awareness first.</li>
-</ul>
 </section>
 
 <section class="gp-recruit-differentiator" id="why-different" aria-labelledby="different-heading">
@@ -390,14 +383,21 @@ ${trustPanel("dark")}
 <p class="gp-recruit-section-lede">Explore current opportunities at ${escapeHtml(OFFER.clinicDisplayName)}.<br/>If a suitable role is not listed today, we welcome confidential expressions of interest.</p>
 <!--careers-vacancies:start-->
 <div class="gp-recruit-vacancies-block" data-careers-vacancies-root="" data-gp-recruit-vacancies="true">
-<div class="gp-recruit-vacancy-grid">
-<article class="gp-recruit-vacancy-empty" data-careers-vacancies-empty="true">
-<p class="gp-recruit-eyebrow">Current opportunities</p>
-<h3>Expressions of Interest Welcome</h3>
-<p>While a suitable role may not be advertised today, we welcome confidential enquiries from healthcare professionals interested in future opportunities.</p>
+<div class="gp-recruit-vacancy-grid" role="list">
+<article class="gp-recruit-vacancy-card gp-recruit-vacancy-card--featured" role="listitem" data-opportunity-type="GP" data-featured="true" data-offer-featured="true">
+<p class="gp-recruit-vacancy-featured-label">Featured Opportunity</p>
+<div class="gp-recruit-vacancy-badges"><span class="gp-recruit-vacancy-badge">Open</span><span class="gp-recruit-vacancy-badge">General Practitioner</span></div>
+<h3>VR General Practitioner</h3>
+<p class="gp-recruit-vacancy-dept">General Practitioner · Flexible</p>
+<p class="gp-recruit-vacancy-location">${escapeHtml(OFFER.locationLabel)}</p>
+<ul class="gp-recruit-vacancy-featured-points">${offerFeaturedHighlights()
+  .slice(0, 4)
+  .map((item) => `<li>${escapeHtml(item)}</li>`)
+  .join("")}</ul>
+<p class="gp-recruit-vacancy-summary">Join an established community-focused general practice focused on continuity of care, clinical excellence and long-term patient relationships.</p>
 <div class="gp-recruit-vacancy-actions">
-<a class="button gp-recruit-primary" href="${eoi}">Register Interest</a>
-<a class="button button-secondary" href="${READINESS_HASH}" data-gp-readiness-open="true">Prepare Your Onboarding</a>
+<a class="button gp-recruit-primary gp-recruit-primary-on-dark" href="${eoi}" data-track-opportunity-cta="eoi" data-opportunity-type="GP">View Opportunity</a>
+<a class="button button-secondary gp-recruit-primary-on-dark" href="${READINESS_HASH}" data-gp-readiness-open="true">GP Readiness Portal</a>
 </div>
 </article>
 </div>
@@ -436,7 +436,7 @@ ${renderCommercialFaqHtml()}
 <section class="gp-recruit-section" id="location" aria-labelledby="location-heading">
 <div class="gp-recruit-location">
 <figure class="gp-recruit-location-visual">
-<img alt="Woolloongabba Medical Centre on Vulture Street" decoding="async" height="941" loading="lazy" src="assets/hero-final-desktop.webp" width="1672"/>
+<img alt="Aerial view of The Gabba stadium precinct with Brisbane CBD beyond" decoding="async" height="1013" loading="lazy" src="assets/community/gabba-stadium-precinct-aerial.webp" srcset="assets/performance/gabba-stadium-900.webp 900w, assets/community/gabba-stadium-precinct-aerial.webp 1800w" sizes="(max-width:900px) 100vw, 520px" width="1800"/>
 </figure>
 <div class="gp-recruit-location-copy">
 <p class="gp-recruit-eyebrow">Location</p>
@@ -471,8 +471,6 @@ ${OFFER.openSevenDays ? "<li>Open 7 Days</li>" : ""}
 <article class="gp-recruit-team-card" role="listitem"><img alt="" class="gp-recruit-team-photo" decoding="async" height="320" loading="lazy" src="assets/team/dr-anand-singh-640.webp" width="320"/><h3>Dr Anand Singh</h3><p class="gp-recruit-team-role">General Practitioner</p><p class="gp-recruit-team-focus">Children’s health · Women’s health</p><a class="gp-recruit-team-link" href="doctors/dr-anand-singh.html">View profile</a></article>
 <article class="gp-recruit-team-card" role="listitem"><img alt="" class="gp-recruit-team-photo" decoding="async" height="320" loading="lazy" src="assets/team/dr-sumita-singh-640.webp" width="320"/><h3>Dr Sumita Singh</h3><p class="gp-recruit-team-role">General Practitioner</p><p class="gp-recruit-team-focus">Women’s health · Mental health</p><a class="gp-recruit-team-link" href="doctors/dr-sumita-singh.html">View profile</a></article>
 <article class="gp-recruit-team-card" role="listitem"><img alt="" class="gp-recruit-team-photo" decoding="async" height="320" loading="lazy" src="assets/team/dr-wasantha-hettiarchchi-640.webp" width="320"/><h3>Dr Wasantha Hettiarchchi</h3><p class="gp-recruit-team-role">General Practitioner</p><p class="gp-recruit-team-focus">Diabetes · Men’s health · Women’s health</p><a class="gp-recruit-team-link" href="doctors/dr-wasantha-hettiarchchi.html">View profile</a></article>
-<article class="gp-recruit-team-card" role="listitem"><img alt="" class="gp-recruit-team-photo" decoding="async" height="320" loading="lazy" src="assets/team/dr-golnar-mortezaei-640.webp" width="320"/><h3>Dr Golnar Mortezaei</h3><p class="gp-recruit-team-role">General Practitioner</p><p class="gp-recruit-team-focus">Veterans’ health · Chronic disease</p><a class="gp-recruit-team-link" href="doctors/dr-golnar-mortezaei.html">View profile</a></article>
-<article class="gp-recruit-team-card" role="listitem"><img alt="" class="gp-recruit-team-photo" decoding="async" height="320" loading="lazy" src="assets/team/dr-james-640.webp" width="320"/><h3>Dr James Chanaka</h3><p class="gp-recruit-team-role">General Practitioner</p><p class="gp-recruit-team-focus">Children’s health · Mental health</p><a class="gp-recruit-team-link" href="doctors/dr-james.html">View profile</a></article>
 </div>
 <p class="gp-recruit-team-more"><a class="text-link" href="team.html">View the full team →</a></p>
 </section>
@@ -515,16 +513,17 @@ ${OFFER.openSevenDays ? "<li>Open 7 Days</li>" : ""}
 </section>
 
 <section class="gp-recruit-final" id="confidential-conversation" aria-labelledby="final-heading">
-<div class="gp-recruit-final-inner">
+<div class="gp-recruit-final-inner gp-recruit-final-inner--compact">
 <div class="gp-recruit-final-copy">
 <p class="gp-recruit-eyebrow gp-recruit-eyebrow-light">Private invitation</p>
 <h2 id="final-heading">Let’s Have a Confidential Conversation</h2>
-<p class="gp-recruit-final-sub">Whether you’re actively considering a change or simply exploring future opportunities, we’d welcome a confidential discussion about practising at ${escapeHtml(OFFER.clinicDisplayName)}.</p>
+<p class="gp-recruit-final-sub">Exploring a move, or simply curious about fit? Start with a private discussion about practising at ${escapeHtml(OFFER.clinicDisplayName)} — no CV, no obligation, and your current employer is never contacted.</p>
 <ul class="gp-recruit-final-trust" aria-label="Confidential discussion assurances">
 ${OFFER.agpalAccredited ? `<li><span aria-hidden="true">✓</span>AGPAL Accredited</li>` : ""}
 <li><span aria-hidden="true">✓</span>No CV required</li>
 <li><span aria-hidden="true">✓</span>Confidential discussion</li>
 </ul>
+<div class="gp-recruit-final-flow">
 <div class="gp-recruit-final-next">
 <p class="gp-recruit-final-next-label">What happens next</p>
 <ol class="gp-recruit-final-steps">
@@ -533,13 +532,12 @@ ${OFFER.agpalAccredited ? `<li><span aria-hidden="true">✓</span>AGPAL Accredit
 <li>Discuss sessions, commercial fit and start timing privately.</li>
 </ol>
 </div>
-</div>
-<div class="gp-recruit-final-aside">
 ${contact}
+</div>
 <div class="gp-recruit-actions gp-recruit-final-actions gp-recruit-actions--inline">
-<a class="button gp-recruit-primary gp-recruit-primary-on-dark" href="${READINESS_HASH}" data-gp-readiness-open="true">GP Readiness &amp; Onboarding Portal</a>
-<a class="button button-secondary gp-recruit-secondary-on-dark" href="${eoi}">Request a Confidential Discussion</a>
+<a class="button gp-recruit-primary gp-recruit-primary-on-dark" href="${eoi}">Request a Confidential Discussion</a>
 <a class="button button-secondary gp-recruit-secondary-on-dark" href="tel:${phoneTel}">Call ${escapeHtml(WMC_RECRUITMENT_CONTACT.name)}</a>
+<a class="button button-secondary gp-recruit-secondary-on-dark" href="${READINESS_HASH}" data-gp-readiness-open="true">GP Readiness &amp; Onboarding Portal</a>
 </div>
 ${trustPanel("dark")}
 </div>
@@ -655,10 +653,10 @@ body .gp-recruit-hero{
 }
 .gp-recruit-primary:hover{background:#066f7a!important;border-color:#066f7a!important}
 .gp-recruit-secondary{font-weight:650!important}
-.gp-recruit-hero-aside{display:grid;gap:10px;align-content:start;min-width:0}
+.gp-recruit-hero-aside{display:grid;gap:10px;align-content:start;justify-items:center;min-width:0}
 .gp-recruit-hero-visual{
   margin:0;overflow:hidden;border-radius:16px;box-shadow:0 12px 32px rgba(22,61,104,.14);
-  aspect-ratio:16 / 9;background:#d7e0e6;
+  aspect-ratio:16 / 9;background:#d7e0e6;width:100%;max-width:100%;
 }
 .gp-recruit-hero-visual img{
   display:block;width:100%;height:100%;object-fit:cover;object-position:50% 42%;
@@ -687,9 +685,18 @@ body .gp-recruit-hero{
 .gp-recruit-hero-aside-actions .button{padding:.45rem .85rem;font-size:.86rem}
 .gp-recruit-opportunity-follow{
   margin:12px var(--gp-recruit-pad-x) 0;display:grid;gap:.75rem;
+  padding:1rem 1.1rem;border:0;border-radius:18px;
+  background:linear-gradient(145deg,#0f4a55 0%,#007A87 48%,#163D68 100%);
+  color:#fff;box-shadow:0 16px 36px rgba(0,122,135,.28);
 }
 .gp-recruit-opportunity-follow-copy{display:grid;gap:.4rem;min-width:0}
 .gp-recruit-opportunity-follow-copy .gp-recruit-eyebrow{margin:0}
+.gp-recruit-eyebrow-on-accent{color:#b7ecef!important}
+.gp-recruit-opportunity-follow .gp-recruit-hero-aside-title{color:#fff;font-size:1.12rem}
+.gp-recruit-opportunity-follow .gp-recruit-hero-aside-facts li{color:rgba(255,255,255,.94)}
+.gp-recruit-opportunity-follow .gp-recruit-hero-aside-facts li::before{color:#9fd4d8}
+.gp-recruit-link-on-accent{color:#dff7f8!important;text-decoration-color:rgba(223,247,248,.55)}
+.gp-recruit-link-on-accent:hover{color:#fff!important}
 .gp-recruit-section{padding:56px var(--gp-recruit-pad-x)}
 .gp-recruit-section h2{
   margin:0 0 1rem;font-family:var(--font-display,Libre Baskerville,Georgia,serif);
@@ -1003,17 +1010,21 @@ body .gp-recruit-hero{
   box-sizing:border-box;min-width:0;max-width:100%;overflow:hidden;
 }
 .gp-recruit-final-inner{display:grid;gap:1.25rem;min-width:0;max-width:100%;width:100%;box-sizing:border-box}
+.gp-recruit-final-inner--compact{gap:1.1rem}
 .gp-recruit-final-copy,.gp-recruit-final-aside{
   min-width:0;max-width:100%;display:grid;gap:1rem;align-content:start;box-sizing:border-box;
 }
+.gp-recruit-final-flow{
+  display:grid;gap:12px;min-width:0;max-width:100%;
+}
 .gp-recruit-final .gp-recruit-eyebrow{margin-bottom:.15rem}
 .gp-recruit-final h2{
-  margin:0;color:#fff;max-width:18ch;text-wrap:balance;
+  margin:0;color:#fff;max-width:22ch;text-wrap:balance;
   font-family:var(--font-display,Libre Baskerville,Georgia,serif);
   font-size:clamp(1.55rem,2.8vw,2.15rem);line-height:1.2;letter-spacing:-.015em;
 }
 .gp-recruit-final-sub{
-  margin:0;color:rgba(255,255,255,.92);font-size:1rem;line-height:1.55;max-width:38rem;
+  margin:0;color:rgba(255,255,255,.92);font-size:1rem;line-height:1.55;max-width:42rem;
 }
 .gp-recruit-final-trust{
   display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none;
@@ -1082,7 +1093,9 @@ body .footer-trust img{
 .gp-recruit-evidence-panel{grid-template-columns:1fr 1fr;gap:10px}
 .gp-recruit-evidence-block--trust{grid-column:1 / -1}
 .gp-recruit-differentiator-card{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:1.75rem;align-items:start}
-.gp-recruit-final-inner{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:1.75rem;align-items:start}
+.gp-recruit-final-inner:not(.gp-recruit-final-inner--compact){grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:1.75rem;align-items:start}
+.gp-recruit-final-inner--compact{grid-template-columns:1fr;gap:1.15rem}
+.gp-recruit-final-flow{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:stretch}
 .gp-recruit-final-actions .button{width:100%}
 }
 @media (min-width:1025px){
@@ -1110,7 +1123,7 @@ body .footer-trust img{
 .gp-recruit-hero-inner{
   grid-template-columns:minmax(260px,1.05fr) minmax(0,.95fr);gap:20px;align-items:center;
 }
-.gp-recruit-hero-aside{gap:0}
+.gp-recruit-hero-aside{gap:0;justify-items:center}
 .gp-recruit-hero-visual{
   /* Keep 16:9 when max-height binds (short laptop viewports) so fascia is not side-cropped */
   width:min(100%,calc(min(320px,42vh) * 16 / 9));
@@ -1119,7 +1132,7 @@ body .footer-trust img{
   min-height:0;
   aspect-ratio:16 / 9;
   height:auto;
-  justify-self:end;
+  justify-self:center;
 }
 .gp-recruit-opportunity-follow{
   grid-template-columns:minmax(0,1.2fr) auto;gap:.75rem 1.25rem;align-items:center;margin-top:14px;
@@ -1133,7 +1146,7 @@ body .footer-trust img{
 }
 .gp-recruit-trust{grid-template-columns:1fr 1fr;max-width:34rem}
 .gp-recruit-card-grid-5{grid-template-columns:repeat(5,minmax(0,1fr))}
-.gp-recruit-team-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+.gp-recruit-team-grid{grid-template-columns:repeat(5,minmax(0,1fr));justify-content:center}
 .gp-recruit-section{padding:56px var(--gp-recruit-pad-x)}
 .gp-recruit-hero-convert{grid-template-columns:1fr;gap:10px}
 .gp-recruit-vacancy-trust{grid-template-columns:repeat(4,minmax(0,1fr))}

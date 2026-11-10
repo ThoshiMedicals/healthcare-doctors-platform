@@ -21,10 +21,12 @@ type SeedVacancy = {
   active: boolean;
 };
 
-const VACANCIES: SeedVacancy[] = [
+type SeedVacancyWithFeatured = SeedVacancy & { featured?: boolean };
+
+const VACANCIES: SeedVacancyWithFeatured[] = [
   {
     key: "gp-now-hiring",
-    title: "General Practitioner (GP)",
+    title: "VR General Practitioner",
     status: "now_hiring",
     location: WMC_RECRUITMENT_OFFER.locationLabel,
     employmentType: "Full-Time or Part-Time",
@@ -48,6 +50,7 @@ const VACANCIES: SeedVacancy[] = [
     ],
     displayOrder: 1,
     active: true,
+    featured: true,
   },
   {
     key: "practice-nurse-now-hiring",
@@ -126,6 +129,7 @@ async function main() {
       requirements: item.requirements,
       displayOrder: item.displayOrder,
       active: item.active,
+      featured: Boolean(item.featured),
     };
     if (existing) {
       await prisma.vacancy.update({ where: { id: existing.id }, data });

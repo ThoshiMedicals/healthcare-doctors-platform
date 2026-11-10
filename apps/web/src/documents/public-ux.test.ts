@@ -142,11 +142,11 @@ test("Join Our Team becomes a GP recruitment prospectus without golden-master ed
   assert.match(result, /id="commercial-opportunity"/);
   assert.match(result, /gp-recruit-stat-value--xl">75%/);
   assert.match(result, /Minimum Guarantee/);
-  assert.match(result, /id="why-demand-exists"/);
-  assert.match(result, /Why Demand Exists/);
+  assert.doesNotMatch(result, /id="why-demand-exists"/);
+  assert.doesNotMatch(result, /Why Demand Exists/);
   assert.match(result, /Demand Is Already On The Books/);
   assert.match(result, /id="wmc-gp-recruitment"/);
-  assert.match(result, /\/wmc-cache\/styles\.min\.css\?v=wmc-gp-recruit-20261106b/);
+  assert.match(result, /\/wmc-cache\/styles\.min\.css\?v=wmc-gp-recruit-20261110c/);
   assert.match(result, /top:calc\(10rem \+ env\(safe-area-inset-top/);
   assert.match(result, /GP Readiness &amp; Onboarding Portal/);
   assert.match(result, /data-gp-readiness-open="true"/);
@@ -215,10 +215,20 @@ test("Join Our Team becomes a GP recruitment prospectus without golden-master ed
   assert.match(result, /id="confidential-conversation"/);
   assert.match(result, /gp-recruit-final-actions/);
   assert.match(result, /Call Roshan Samarawickrema/);
-  assert.match(result, /exploring future opportunities/);
-  assert.match(result, /established patient community already on the books/);
+  assert.match(result, /curious about fit/);
+  assert.match(result, /current employer is never contacted/);
   assert.match(result, /id="at-a-glance"/);
   assert.match(result, /Practice scale/);
+  assert.match(result, /Days Open/);
+  assert.match(result, /Accredited Practice/);
+  assert.match(result, /gabba-stadium-precinct-aerial\.webp/);
+  assert.doesNotMatch(result, /Dr Golnar Mortezaei/);
+  assert.doesNotMatch(result, /Dr James Chanaka/);
+  assert.match(result, /Dr Wasantha Hettiarchchi/);
+  assert.match(result, /Featured Opportunity/);
+  assert.match(result, /data-offer-featured="true"/);
+  assert.match(result, /Now hiring/);
+  assert.doesNotMatch(result, /<p class="gp-recruit-lede"/);
   assert.doesNotMatch(result, /Supported by an established patient community/);
   assert.doesNotMatch(result, /Billing Split/);
   assert.match(result, /gp-recruit-final-copy/);
@@ -242,7 +252,10 @@ test("Join Our Team becomes a GP recruitment prospectus without golden-master ed
   assert.doesNotMatch(result, /careers-page-hero/);
   assert.doesNotMatch(result, /Designed for Long-Term GP Success/);
   assert.doesNotMatch(result, /We Are Looking For GPs Who/);
-  assert.doesNotMatch(result, /on-this-page-shell|data-ev-journey-nav|Am I ready to talk/i);
+  assert.doesNotMatch(
+    result,
+    /class="[^"]*\bon-this-page-shell\b|data-ev-journey-nav="true"|Am I ready to talk/i,
+  );
   assert.equal(applyPublicUxRefinements(result, "join-our-team.html"), result);
 });
 
