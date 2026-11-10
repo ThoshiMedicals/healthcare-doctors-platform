@@ -14,6 +14,7 @@ import {
   refineExpressInterestFriction,
   refineJoinOurTeamRecruitment,
 } from "@/documents/join-our-team-recruitment";
+import { enrichRecruitmentAuthorityPages } from "@/documents/recruitment-authority-enrichment";
 import { alignPhoneOnlyPractitionerChrome } from "@/documents/phone-only-booking";
 import {
   eoiHrefForPage,
@@ -329,6 +330,7 @@ export function applyPublicUxRefinements(
   next = next.replace(/<style\b[^>]*id="wmc-team-copy-fullwidth"[\s\S]*?<\/style>\s*/i, "");
   next = next.replace(/<style\b[^>]*id="wmc-digital-reception-mobile"[\s\S]*?<\/style>\s*/i, "");
   next = next.replace(/<style\b[^>]*id="wmc-sitewide-visual-polish"[\s\S]*?<\/style>\s*/i, "");
+  next = next.replace(/<style\b[^>]*id="wmc-recruitment-authority-enrich"[\s\S]*?<\/style>\s*/i, "");
   next = wrapExcessGpDiscoveryAreas(next);
   next = next.replace(
     /<\/head>/i,
@@ -1815,11 +1817,13 @@ min-height:44px;width:100%;max-width:100%;box-sizing:border-box
   if (/express-interest\.html$/i.test(pagePath)) {
     next = refineExpressInterestFriction(next, branding);
   }
+  // Authority proof + thin-page depth for Attraction / PE recruitment children.
+  next = enrichRecruitmentAuthorityPages(next, pagePath);
   // Shared recruitment contact + confidentiality — identical across attraction surfaces.
   // Place after page content (end of main), never above the hero.
   // Express Interest places both in the focus stack (contact → confidentiality → form).
   if (
-    /^(join-our-team\/)?(gp-opportunities|gp-faq|opportunity-pack|practice-support)\.html$/i.test(
+    /^(join-our-team\/)?(gp-opportunities|gp-faq|opportunity-pack|practice-support|registrar-pathway|provider-number-readiness|dpa-navigator|session-planner)\.html$/i.test(
       pagePath,
     ) &&
     !/data-recruitment-contact="true"/i.test(next)

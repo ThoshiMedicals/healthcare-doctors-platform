@@ -241,6 +241,7 @@ export function renderPracticeSupportHtml(): string {
     .join("");
   const article = `<section class="article-section">
 <p>${escapeHtml(ADVISORY)}</p>
+<p>${escapeHtml(WMC_RECRUITMENT_OFFER.activePatientFiles)} patient files, ${WMC_RECRUITMENT_OFFER.consultRooms} consulting rooms and ${escapeHtml(WMC_RECRUITMENT_OFFER.nurses)} nurses on roster shape what “support” means day to day — protecting consulting time while ${WMC_RECRUITMENT_OFFER.agpalAccredited ? "AGPAL-aligned" : "accredited"} systems stay in place.</p>
 <div class="attraction-tool-panel" data-tool="practice-support-matrix">
 <p><strong>Conversation checklist</strong> — tick topics to raise in a confidential discussion. Saved on this device only; nothing is sent until you choose to contact us.</p>
 <table class="attraction-matrix"><thead><tr><th scope="col">Support</th><th scope="col">What it means here</th><th scope="col">Ask about?</th></tr></thead><tbody>${table}</tbody></table>
@@ -279,7 +280,9 @@ export function renderRegistrarPathwayHtml(): string {
   ];
   const article = `<section class="article-section">
 <p>Registrar and early-career places depend on supervision and room capacity — they are not always open.</p>
+<p>${escapeHtml(WMC_RECRUITMENT_OFFER.clinicDisplayName)} is an established inner-south practice with ${escapeHtml(WMC_RECRUITMENT_OFFER.activePatientFiles)} patient files, ${WMC_RECRUITMENT_OFFER.consultRooms} consulting rooms and ${escapeHtml(WMC_RECRUITMENT_OFFER.gps)} GPs / ${escapeHtml(WMC_RECRUITMENT_OFFER.nurses)} nurses on roster. Early-career conversations are about whether supervision timing fits — not a public intake.</p>
 <ol>${stages.map((s) => `<li>${escapeHtml(s)}</li>`).join("")}</ol>
+<p>Related reading: <a href="../about-us/practice-experience.html">Practice Experience</a>, <a href="practice-support.html">Practice Support</a>, <a href="gp-faq.html">GP FAQ</a>.</p>
 ${renderRecommendedNextBand("join-our-team/registrar-pathway.html")}
 </section>`;
   return shellWithJourney("registrar-pathway.html", {
@@ -306,6 +309,7 @@ export function renderOpportunityPackHtml(_quotes: StorySurfaceQuote[] = []): st
 <p class="eyebrow">Would I like a few pages to keep?</p>
 <h2>Pages worth bookmarking</h2>
 <p>Short links about how this practice works — useful if you want to think it over, or share with a partner, before you talk with us. This is not a job offer.</p>
+<p><strong>Snapshot:</strong> ${escapeHtml(WMC_RECRUITMENT_OFFER.billingPercentage)} billings${WMC_RECRUITMENT_OFFER.negotiable ? " (negotiable)" : ""} · ${escapeHtml(WMC_RECRUITMENT_OFFER.activePatientFiles)} patient files · ${WMC_RECRUITMENT_OFFER.consultRooms} rooms · ${escapeHtml(WMC_RECRUITMENT_OFFER.gps)} GPs / ${escapeHtml(WMC_RECRUITMENT_OFFER.nurses)} nurses${WMC_RECRUITMENT_OFFER.agpalAccredited ? " · AGPAL accredited" : ""} · ${escapeHtml(WMC_RECRUITMENT_OFFER.streetAddress)}.</p>
 <div class="join-journey-grid join-journey-grid--2">
 <article class="join-journey-card"><h3><a href="../about-us/practice-experience.html">Practice Experience</a></h3><p>How the day runs — nursing, reception, continuity and session rhythm.</p></article>
 <article class="join-journey-card"><h3><a href="gp-opportunities.html">GP Opportunities</a></h3><p>Whether this practice is likely to fit you, and how a conversation usually starts.</p></article>

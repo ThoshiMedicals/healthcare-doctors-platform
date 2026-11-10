@@ -246,10 +246,11 @@ export function renderOpportunitiesHtml(
 <p>Roles are one signal. The lasting question is whether this way of practising suits you.</p>
 <ul class="attraction-fit-pillar-list">
 <li><strong>Clinical autonomy</strong> — judgement within ${WMC_RECRUITMENT_OFFER.agpalAccredited ? "AGPAL-aligned" : "accredited"} standards, not throughput theatre.</li>
-<li><strong>Community impact</strong> — continuity with people across ${escapeHtml(WMC_RECRUITMENT_OFFER.locationLabel)} and the inner south.</li>
-<li><strong>Team culture</strong> — nursing, reception and practice management that protect consulting time.</li>
+<li><strong>Community impact</strong> — continuity with people across ${escapeHtml(WMC_RECRUITMENT_OFFER.locationLabel)} and the inner south (${escapeHtml(WMC_RECRUITMENT_OFFER.activePatientFiles)} patient files).</li>
+<li><strong>Team culture</strong> — ${escapeHtml(WMC_RECRUITMENT_OFFER.nurses)} nurses, reception and practice management that protect consulting time.</li>
+<li><strong>Commercial clarity</strong> — ${escapeHtml(WMC_RECRUITMENT_OFFER.billingPercentage)} billings${WMC_RECRUITMENT_OFFER.negotiable ? " (negotiable)" : ""}${WMC_RECRUITMENT_OFFER.hourlyGuarantee ? `; ${escapeHtml(WMC_RECRUITMENT_OFFER.hourlyGuarantee)} minimum for ${escapeHtml(WMC_RECRUITMENT_OFFER.guaranteeDuration)} where offered` : ""} — detail confirmed privately.</li>
 <li><strong>Support pathways</strong> — orientation and paperwork help the practice can give; clear limits on what it cannot approve.</li>
-<li><strong>Practice facilities</strong> — rooms, treatment pathways and systems built for continuity care.</li>
+<li><strong>Practice facilities</strong> — ${WMC_RECRUITMENT_OFFER.consultRooms} rooms, treatment pathways and systems built for continuity care.</li>
 </ul>
 </section>`;
   const currentOpportunities = `<section class="article-section careers-opportunities" id="current-opportunities" data-gp-opportunities-section="open-roles">
