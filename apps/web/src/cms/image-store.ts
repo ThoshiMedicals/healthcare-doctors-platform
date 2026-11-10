@@ -60,7 +60,10 @@ export function servedSha(relative: string): string {
   return sha256(readServedBytes(relative));
 }
 
-const PUBLIC_SYNC_PATHS = new Set(["assets/brand/healthcare-doctors-woolloongabba-logo.png"]);
+const PUBLIC_SYNC_PATHS = new Set([
+  "assets/brand/healthcare-doctors-woolloongabba-logo.png",
+  "assets/brand/healthcare-doctors-woolloongabba-logo-v2.png",
+]);
 
 function syncPublicAsset(relative: string, bytes: Buffer): void {
   if (!PUBLIC_SYNC_PATHS.has(relative.replace(/\\/g, "/"))) return;

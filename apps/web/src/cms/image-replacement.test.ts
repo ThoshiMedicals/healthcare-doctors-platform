@@ -10,17 +10,30 @@ import { readServedBytes, restoreServed, servedSha, writeLive } from "./image-st
 const logo = "assets/brand/healthcare-doctors-woolloongabba-logo.png";
 const hero = "assets/hero-final-desktop.webp";
 const exterior = "assets/institutional-exterior-consistent.webp";
-const publicRoot = path.join(process.cwd(), "public");
+const repoPublic = path.join(process.cwd(), "public");
+let publicRoot = repoPublic;
 let store = "";
 
 before(() => {
   store = fs.mkdtempSync(path.join(os.tmpdir(), "wmc-images-"));
+  publicRoot = fs.mkdtempSync(path.join(os.tmpdir(), "wmc-public-"));
   process.env.IMAGE_STORE_DIR = store;
+  process.env.PUBLIC_ASSET_ROOT = publicRoot;
+  // Isolate logo publish/restore so tests never mutate apps/web/public.
+  for (const relative of [logo, hero, exterior, "assets/team/dr-tanya-goodwill.webp", "assets/team/dr-tanya-goodwill-640.webp"]) {
+    const from = path.join(repoPublic, relative);
+    const to = path.join(publicRoot, relative);
+    if (!fs.existsSync(from)) continue;
+    fs.mkdirSync(path.dirname(to), { recursive: true });
+    fs.copyFileSync(from, to);
+  }
 });
 
 after(() => {
   delete process.env.IMAGE_STORE_DIR;
+  delete process.env.PUBLIC_ASSET_ROOT;
   if (store) fs.rmSync(store, { recursive: true, force: true });
+  if (publicRoot && publicRoot !== repoPublic) fs.rmSync(publicRoot, { recursive: true, force: true });
 });
 
 describe("replaceable images", () => {

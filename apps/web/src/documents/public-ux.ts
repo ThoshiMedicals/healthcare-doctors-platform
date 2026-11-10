@@ -191,15 +191,15 @@ export function applyPublicUxRefinements(
   next = next.replace(/(?:\/wmc-cache\/)?(?:\.\.\/)*site\.js(?:\?[^"]*)?(?=")/g, siteJsHref);
   next = next.replace(/(?:\/wmc-cache\/)?(?:\.\.\/)*updates-data\.js(?:\?[^"]*)?(?=")/g, updatesDataHref);
   next = next.replace(/(?:\/wmc-cache\/)?(?:\.\.\/)*updates-ui\.js(?:\?[^"]*)?(?=")/g, updatesUiHref);
-  // Institution lockup: keep localhost authority asset; bust Hostinger/CDN year-long cache.
-  const logoLockupBust = "wmc-logo-lockup-20261110b";
+  // Institution lockup: serve the localhost-authority PNG under a new filename so
+  // Hostinger/CDN cannot keep serving a stale managed-image copy of the old path.
   next = next.replace(
-    /((?:\.\.\/)*)assets\/brand\/healthcare-doctors-woolloongabba-logo\.png(?:\?[^"]*)?/g,
-    `$1assets/brand/healthcare-doctors-woolloongabba-logo.png?v=${logoLockupBust}`,
+    /((?:\.\.\/)*)assets\/brand\/healthcare-doctors-woolloongabba-logo(?:-v2)?\.png(?:\?[^"]*)?/g,
+    `$1assets/brand/healthcare-doctors-woolloongabba-logo-v2.png`,
   );
   next = next.replace(
-    /((?:\.\.\/)*)assets\/healthcare-doctors-woolloongabba-logo\.png(?:\?[^"]*)?/g,
-    `$1assets/healthcare-doctors-woolloongabba-logo.png?v=${logoLockupBust}`,
+    /((?:\.\.\/)*)assets\/healthcare-doctors-woolloongabba-logo(?:-v2)?\.png(?:\?[^"]*)?/g,
+    `$1assets/healthcare-doctors-woolloongabba-logo-v2.png`,
   );
   // Circular AGPAL mark: keep transparent on light cards, restore white pad on dark footers.
   next = next.replace(/<style\b[^>]*id="wmc-agpal-mark-fix"[\s\S]*?<\/style>\s*/i, "");
