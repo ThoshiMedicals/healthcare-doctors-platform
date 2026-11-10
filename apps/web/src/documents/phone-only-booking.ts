@@ -5,6 +5,11 @@
 
 const ONLINE_BOOKING_PHRASES: Array<{ re: RegExp; phoneOnly: string }> = [
   {
+    // CMS/summary pattern: "…new patients and appointments can be booked online…"
+    re: /and\s+appointments can be booked online or by contacting our reception team/gi,
+    phoneOnly: ". To arrange an appointment, please contact our reception team",
+  },
+  {
     re: /Appointments can be booked online through HotDoc or by contacting our reception team on \(07\) 3217 3344\.?\s*Reception can also help you choose the most appropriate appointment type\.?/gi,
     phoneOnly:
       "To arrange an appointment, please contact our reception team on (07) 3217 3344. Reception can help you choose the most appropriate appointment type.",
@@ -27,6 +32,24 @@ const ONLINE_BOOKING_PHRASES: Array<{ re: RegExp; phoneOnly: string }> = [
   },
 ];
 
+const META_ONLINE_RE = /book(?:ing)?(?:\s+an)?\s+appointment online|book online/i;
+
+function rewriteOnlineBookingMetaContent(content: string): string {
+  return content
+    .replace(/and book an appointment online with/gi, "and contact reception to arrange an appointment at")
+    .replace(/book an appointment online with/gi, "contact reception to arrange an appointment at")
+    .replace(/book an appointment online/gi, "contact reception to arrange an appointment")
+    .replace(/book(?:ing)? online/gi, "contacting reception");
+}
+
+function rewriteMetaTagContent(tag: string): string {
+  if (!/\bcontent="/i.test(tag)) return tag;
+  return tag.replace(/\bcontent="([^"]*)"/i, (full, content: string) => {
+    if (!META_ONLINE_RE.test(content)) return full;
+    return `content="${rewriteOnlineBookingMetaContent(content)}"`;
+  });
+}
+
 export function isTelBookingHref(href: string | null | undefined): boolean {
   return typeof href === "string" && /^tel:/i.test(href.trim());
 }
@@ -48,8 +71,12 @@ export function htmlIndicatesPhoneOnlyPractitioner(html: string): boolean {
   return isTelBookingHref(primary[1]);
 }
 
+export function isGolnarWelcomePath(pagePath: string): boolean {
+  return /^updates\/welcome-dr-golnar-mortezaei\.html$/i.test(pagePath);
+}
+
 /**
- * Rewrite welcome/update prose that incorrectly advertises online booking
+ * Rewrite welcome/update prose and metadata that incorrectly advertise online booking
  * when the practitioner booking destination is phone-only.
  * Presentation-layer only — does not mutate stored page revisions.
  */
@@ -59,18 +86,33 @@ export function alignPhoneOnlyBookingProse(html: string, bookingHref: string | n
   for (const rule of ONLINE_BOOKING_PHRASES) {
     next = next.replace(rule.re, rule.phoneOnly);
   }
-  // Meta descriptions that still advertise online booking for phone-only doctors.
+
+  // Repair grammar artefacts from phrase replacement.
   next = next.replace(
-    /(<meta\b[^>]*\bname=["']description["'][^>]*\bcontent=["'])([^"']*)(["'][^>]*>)/gi,
-    (full, open: string, content: string, close: string) => {
-      if (!/book(?:ing)?(?:\s+an)?\s+appointment online|book online/i.test(content)) return full;
-      const rewritten = content
-        .replace(/and book an appointment online with/gi, "and contact reception to arrange an appointment at")
-        .replace(/book an appointment online with/gi, "contact reception to arrange an appointment at")
-        .replace(/book(?:ing)? online/gi, "contacting reception");
-      return `${open}${rewritten}${close}`;
-    },
+    /new patients\s+and\s+To arrange an appointment/gi,
+    "new patients. To arrange an appointment",
   );
+  next = next.replace(/new patients\s+\.\s*To arrange/gi, "new patients. To arrange");
+  next = next.replace(/\.\s*\.\s*To arrange/gi, ". To arrange");
+  next = next.replace(/\s+\./g, ".");
+
+  // Meta / OG / Twitter — content may appear before or after name/property.
+  next = next.replace(/<meta\b[^>]*>/gi, (tag) => {
+    const isDescription =
+      /\bname=["']description["']/i.test(tag) ||
+      /\bproperty=["']og:description["']/i.test(tag) ||
+      /\bname=["']twitter:description["']/i.test(tag);
+    if (!isDescription) return tag;
+    return rewriteMetaTagContent(tag);
+  });
+
+  // JSON-LD description fields that still claim online booking.
+  next = next.replace(
+    /("description"\s*:\s*")([^"]*book(?:ing)?(?:\s+an)?\s+appointment online[^"]*)(")/gi,
+    (_full, open: string, content: string, close: string) =>
+      `${open}${rewriteOnlineBookingMetaContent(content)}${close}`,
+  );
+
   // Convert leftover HotDoc "Book Appointment Online" CTAs on welcome pages to tel.
   next = next.replace(
     /<a\b([^>]*?\bhref="https?:\/\/(?:www\.)?hotdoc\.com\.au[^"]*"[^>]*)>\s*Book Appointment Online\s*<\/a>/gi,
@@ -104,23 +146,14 @@ function convertHotDocBookAnchor(tag: string): string {
   return next;
 }
 
-/**
- * On phone-only doctor profiles, keep page chrome from implying HotDoc availability
- * for that practitioner. Preserves Digital Reception and clinic Call controls.
- */
-export function alignPhoneOnlyPractitionerChrome(html: string, pagePath: string): string {
-  if (!/^doctors\/.+\.html$/i.test(pagePath)) return html;
-  if (!htmlIndicatesPhoneOnlyPractitioner(html)) return html;
-
+function alignPhoneOnlyBookingChrome(html: string): string {
   let next = html;
 
-  // On-this-page TOC often still says "Book Appointment" for #book.
   next = next.replace(
     /(<a\b[^>]*\bhref="#book"[^>]*>)\s*Book Appointment\s*(<\/a>)/gi,
     "$1Call Reception to Book$2",
   );
 
-  // Header + mobile chrome Book Appointment HotDoc → Call Reception.
   next = next.replace(
     /<a\b[^>]*(?:\bheader-cta\b|\bmobile-header-book\b)[^>]*>/gi,
     (tag) => convertHotDocBookAnchor(tag),
@@ -135,9 +168,9 @@ export function alignPhoneOnlyPractitionerChrome(html: string, pagePath: string)
     "$1Call Reception to Book$2",
   );
 
-  // Sticky dock Book action: force tel + Call Reception label; strip HotDoc attrs.
+  // Sticky dock Book → Call Reception (preserve Digital Reception launcher).
   next = next.replace(
-    /(<nav\b[^>]*\bpersistent-care-actions\b(?![^>]*recruitment)[^>]*>[\s\S]*?<a\b)([^>]*\bpersistent-care-book\b[^>]*)(>)([\s\S]*?)(<\/a>)/i,
+    /(<nav\b[^>]*\bpersistent-care-actions\b(?![^>]*recruitment)[^>]*>[\s\S]*?<a\b)([^>]*\b(?:persistent-care-book|wmc-book-appointment)\b[^>]*)(>)([\s\S]*?)(<\/a>)/i,
     (_full, open: string, attrs: string, gt: string, label: string, close: string) => {
       let nextAttrs = attrs
         .replace(/\sdata-hotdoc-button="[^"]*"/gi, "")
@@ -154,5 +187,30 @@ export function alignPhoneOnlyPractitionerChrome(html: string, pagePath: string)
     },
   );
 
+  // Service/article CTA rows: convert HotDoc "Book Appointment" to Call Reception.
+  next = next.replace(
+    /<a\b([^>]*\b(?:button|wmc-book-appointment)[^>]*href="https?:\/\/(?:www\.)?hotdoc\.com\.au[^"]*"[^>]*)>\s*Book(?:&nbsp;|\s)+Appointment(?:\s+Online)?\s*<\/a>/gi,
+    (_full, attrs: string) => {
+      const nextAttrs = attrs
+        .replace(/\sdata-hotdoc-button="[^"]*"/gi, "")
+        .replace(/\sdata-hotdoc-widget="[^"]*"/gi, "")
+        .replace(/\bhref="[^"]*"/i, 'href="tel:+61732173344"')
+        .replace(/\srel="noopener"/gi, "");
+      return `<a${nextAttrs}>Call Reception to Book</a>`;
+    },
+  );
+
   return next;
+}
+
+/**
+ * On phone-only doctor profiles and Golnar welcome update, keep page chrome from
+ * implying HotDoc availability for that practitioner. Preserves Digital Reception.
+ */
+export function alignPhoneOnlyPractitionerChrome(html: string, pagePath: string): string {
+  const welcome = isGolnarWelcomePath(pagePath);
+  const profile =
+    /^doctors\/.+\.html$/i.test(pagePath) && htmlIndicatesPhoneOnlyPractitioner(html);
+  if (!welcome && !profile) return html;
+  return alignPhoneOnlyBookingChrome(html);
 }
