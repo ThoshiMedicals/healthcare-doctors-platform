@@ -106,22 +106,19 @@ function discoveryCard(card: CmsPractitionerCard): string {
   return `<li class="team-authority-person gp-discovery-card" data-cms-practitioner="${escapeHtml(card.slug)}">${photo}<div class="gp-discovery-info"><h3 class="gp-discovery-name">${escapeHtml(card.name)}</h3><p class="gp-discovery-care-label">Helping patients with:</p><ul class="gp-discovery-areas">${areas}</ul><p class="gp-discovery-qualifications"><span>Qualifications</span>${escapeHtml(quals)}</p></div><div class="gp-discovery-actions"><a class="gp-discovery-profile" href="${escapeHtml(profileHref)}" aria-label="View profile for ${escapeHtml(card.name)}">View Profile</a><a class="button wmc-book-appointment gp-discovery-book" ${bookAttrs}>${bookLabel}</a></div></li>`;
 }
 
-function directoryCard(card: CmsPractitionerCard): string {
-  const profileHref = card.pagePath;
-  const quals = card.qualifications.join(", ") || "—";
-  const focus = (card.areasOfCare.length ? card.areasOfCare : ["General practice"])
-    .slice(0, 3)
-    .join(" · ");
-  const photo = card.portraitFile
-    ? `<a aria-label="View ${escapeHtml(card.name)} profile" class="portrait" data-photo-fallback="${escapeHtml(card.name)} photo temporarily unavailable" href="${escapeHtml(profileHref)}"><img alt="${escapeHtml(card.name)}" data-local-team-src="assets/team/${escapeHtml(card.portraitFile)}" data-practitioner-image="true" decoding="async" height="1000" loading="lazy" src="assets/team/${escapeHtml(card.portraitFile)}" width="800" srcset="assets/team/${escapeHtml(card.portraitFile.replace(/\.webp$/i, "-640.webp"))} 640w, assets/team/${escapeHtml(card.portraitFile)} 1122w" sizes="(min-width: 1200px) 288px, (min-width: 701px) min(312px, 33vw), calc(50vw - 16px)"/></a>`
-    : `<a aria-label="View ${escapeHtml(card.name)} profile" class="portrait team-authority-photo-unavailable" href="${escapeHtml(profileHref)}"><span>Photo to be published</span></a>`;
-
-  return `<article class="practitioner practitioner-directory-card practitioner-${escapeHtml(card.slug)}" data-cms-practitioner="${escapeHtml(card.slug)}">${photo}<div class="practitioner-meta"><h3><a href="${escapeHtml(profileHref)}">${escapeHtml(card.name)}</a></h3><p class="credentials">${escapeHtml(quals)}</p><p class="focus">${escapeHtml(focus)}</p><p class="role">${escapeHtml(card.role)}</p><a class="text-link" href="${escapeHtml(profileHref)}">View profile</a></div></article>`;
+/** Remove prior CMS directory/discovery injects (idempotent republish hygiene). */
+export function stripCmsPractitionerCards(html: string): string {
+  return html
+    .replace(/<li\b[^>]*\bdata-cms-practitioner="[^"]+"[\s\S]*?<\/li>/gi, "")
+    .replace(/<article\b[^>]*\bdata-cms-practitioner="[^"]+"[\s\S]*?<\/article>/gi, "");
 }
 
 /**
  * Injects CMS-imported practitioners into team directory surfaces without editing golden HTML.
  * Idempotent via data-cms-practitioner markers.
+ *
+ * team.html keeps the golden GP hub cards only (currently four). CMS imports still
+ * appear on team-general-practitioners.html.
  */
 export async function injectCmsPractitionersIntoTeamHtml(
   clinicId: string,
@@ -132,38 +129,25 @@ export async function injectCmsPractitionersIntoTeamHtml(
     return html;
   }
 
-  const imported = await listImportedPublishedPractitioners(clinicId);
-  if (!imported.length) return html;
+  // Always strip prior CMS cards — team hub must not keep leftover injects.
+  const next = stripCmsPractitionerCards(html);
+  if (pagePath === "team.html") {
+    return next;
+  }
 
-  let next = html;
-  // Drop previous inject markers so republish refreshes card content.
-  next = next.replace(/<li\b[^>]*\bdata-cms-practitioner="[^"]+"[\s\S]*?<\/li>/gi, "");
-  next = next.replace(/<article\b[^>]*\bdata-cms-practitioner="[^"]+"[\s\S]*?<\/article>/gi, "");
+  const imported = await listImportedPublishedPractitioners(clinicId);
+  if (!imported.length) return next;
 
   const missing = imported.filter((card) => !next.includes(card.pagePath));
   if (!missing.length) return next;
 
-  if (pagePath === "team-general-practitioners.html") {
-    const cards = missing.map(discoveryCard).join("");
-    // Require </ul></section> so nested gp-discovery-areas lists are not matched.
-    if (!/<ul\b[^>]*\bgp-discovery-list\b/i.test(next)) return next;
-    return next.replace(
-      /(<ul\b[^>]*\bgp-discovery-list\b[^>]*>)([\s\S]*?)(<\/ul>\s*<\/section>)/i,
-      (_full, open: string, inner: string, close: string) => `${open}${inner}${cards}${close}`,
-    );
-  }
-
-  // team.html — append into the GP directory grid when present.
-  // Require </div></section> so the first nested </div> inside a card (e.g. .practitioner-meta)
-  // is not treated as the end of .team-directory-grid.
-  const cards = missing.map(directoryCard).join("");
-  if (/id="general-practitioners"[\s\S]*?class="team-directory-grid"/i.test(next)) {
-    next = next.replace(
-      /(id="general-practitioners"[\s\S]*?<div class="team-directory-grid">)([\s\S]*?)(<\/div>\s*<\/section>)/i,
-      (_full, open: string, inner: string, close: string) => `${open}${inner}${cards}${close}`,
-    );
-  }
-  return next;
+  const cards = missing.map(discoveryCard).join("");
+  // Require </ul></section> so nested gp-discovery-areas lists are not matched.
+  if (!/<ul\b[^>]*\bgp-discovery-list\b/i.test(next)) return next;
+  return next.replace(
+    /(<ul\b[^>]*\bgp-discovery-list\b[^>]*>)([\s\S]*?)(<\/ul>\s*<\/section>)/i,
+    (_full, open: string, inner: string, close: string) => `${open}${inner}${cards}${close}`,
+  );
 }
 
 export function buildReceptionIndexEntries(

@@ -5,6 +5,7 @@ import {
   injectCmsPractitionersIntoTeamHtml,
   mergeImportedPractitionersIntoReceptionIndex,
   renderCareAreaListItems,
+  stripCmsPractitionerCards,
   type CmsPractitionerCard,
 } from "./inject-cms-practitioners";
 
@@ -44,24 +45,14 @@ test("GP discovery inject appends after existing cards, not inside nested area l
   assert.equal(typeof injectCmsPractitionersIntoTeamHtml, "function");
 });
 
-test("team.html directory inject appends after grid cards, not inside practitioner-meta", () => {
-  const html = `<section class="team-role-section" id="general-practitioners"><h2>General Practitioners</h2><div class="team-directory-grid"><article class="practitioner practitioner-directory-card practitioner-dr-tanya-goodwill"><a class="portrait" href="doctors/dr-tanya-goodwill.html"></a><div class="practitioner-meta"><h3>Dr Tanya Goodwill</h3><p class="credentials">MBBS, FRACGP</p><p class="focus">Women’s health</p></div></article></div></section>`;
-  const withCard = html.replace(
-    /(id="general-practitioners"[\s\S]*?<div class="team-directory-grid">)([\s\S]*?)(<\/div>\s*<\/section>)/i,
-    (_full, open: string, inner: string, close: string) =>
-      `${open}${inner}<article class="practitioner practitioner-directory-card" data-cms-practitioner="dr-golnar-mortezaei"></article>${close}`,
-  );
-  assert.match(
-    withCard,
-    /<\/article><article class="practitioner practitioner-directory-card" data-cms-practitioner="dr-golnar-mortezaei"><\/article><\/div>\s*<\/section>/,
-  );
-  // Must not inject inside Tanya's .practitioner-meta (before that card's </article>).
-  assert.equal(
-    withCard.includes(
-      'Women’s health</p><article class="practitioner practitioner-directory-card" data-cms-practitioner="dr-golnar-mortezaei"',
-    ),
-    false,
-  );
+test("team.html strips CMS GP cards and keeps golden hub cards only", () => {
+  const html = `<section class="team-role-section" id="general-practitioners"><h2>General Practitioners</h2><div class="team-directory-grid"><article class="practitioner practitioner-directory-card practitioner-dr-tanya-goodwill"><a class="portrait" href="doctors/dr-tanya-goodwill.html"></a><div class="practitioner-meta"><h3>Dr Tanya Goodwill</h3><p class="credentials">MBBS, FRACGP</p><p class="focus">Women’s health</p></div></article><article class="practitioner practitioner-directory-card practitioner-dr-golnar-mortezaei" data-cms-practitioner="dr-golnar-mortezaei"><a class="portrait" href="doctors/dr-golnar-mortezaei.html"></a><div class="practitioner-meta"><h3>Dr Golnar Mortezaei</h3></div></article><article class="practitioner practitioner-directory-card practitioner-dr-james" data-cms-practitioner="dr-james"><a href="doctors/dr-james.html"></a></article><article class="practitioner practitioner-directory-card practitioner-dr-yamesha-ranatunga" data-cms-practitioner="dr-yamesha-ranatunga"><a href="doctors/dr-yamesha-ranatunga.html"></a></article></div></section>`;
+  const stripped = stripCmsPractitionerCards(html);
+  assert.match(stripped, /practitioner-dr-tanya-goodwill/);
+  assert.doesNotMatch(stripped, /data-cms-practitioner/);
+  assert.doesNotMatch(stripped, /dr-golnar-mortezaei/);
+  assert.doesNotMatch(stripped, /dr-yamesha-ranatunga/);
+  assert.equal(typeof injectCmsPractitionersIntoTeamHtml, "function");
 });
 
 test("reception index merge appends imported doctor URLs without duplicating", () => {
