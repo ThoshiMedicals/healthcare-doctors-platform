@@ -200,6 +200,7 @@ export function applyPublicUxRefinements(
   next = next.replace(/<style\b[^>]*id="wmc-team-updates-laptop"[\s\S]*?<\/style>\s*/i, "");
   next = next.replace(/<style\b[^>]*id="wmc-team-updates-mobile"[\s\S]*?<\/style>\s*/i, "");
   next = next.replace(/<style\b[^>]*id="wmc-practitioner-directory-cards"[\s\S]*?<\/style>\s*/i, "");
+  next = next.replace(/<style\b[^>]*id="wmc-team-copy-fullwidth"[\s\S]*?<\/style>\s*/i, "");
   next = next.replace(/<style\b[^>]*id="wmc-digital-reception-mobile"[\s\S]*?<\/style>\s*/i, "");
   next = wrapExcessGpDiscoveryAreas(next);
   next = next.replace(
@@ -825,6 +826,47 @@ body.has-action-dock.team-authority-subpage .page-main{
   }
   .team-authority-subpage .gp-discovery-card .team-authority-photo,
   .team-authority-subpage .gp-discovery-card .team-authority-photo-unavailable{width:80px!important}
+}
+</style>
+<style id="wmc-team-copy-fullwidth">
+/* Team hub + team subpages: drop narrow measure so intro/hero copy uses the shell
+   width and shortens vertical scroll from early wrapping. */
+.shell.team-directory .team-directory-intro,
+.shell.team-directory .team-directory-intro p,
+.shell.team-directory .team-role-section,
+.shell.team-directory .team-role-copy,
+.shell.team-directory .team-role-section .team-role-copy{
+  max-width:none!important;
+  width:100%!important;
+}
+/* Operations rows were a narrow 2-col grid; stack so role copy can use the shell. */
+.shell.team-directory .team-role-operations{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:16px!important;
+}
+body:has(.shell.team-directory) .page-hero .page-hero-inner,
+body.team-authority-subpage .page-hero .page-hero-inner{
+  max-width:min(100%,var(--max,1320px))!important;
+  width:100%!important;
+}
+body:has(.shell.team-directory) .page-hero .lede,
+body:has(.shell.team-directory):not(.home-page) .page-hero .lede,
+body.team-authority-subpage .page-hero .lede,
+body.team-authority-subpage:not(.home-page) .page-hero .lede,
+body:has(.shell.team-directory) .page-hero .lede.lede,
+body.team-authority-subpage .page-hero .lede.lede{
+  max-width:none!important;
+  width:100%!important;
+}
+body:has(.shell.team-directory) .on-this-page-shell,
+body:has(.shell.team-directory) .on-this-page,
+body:has(.shell.team-directory) .on-this-page-links,
+body.team-authority-subpage .on-this-page-shell,
+body.team-authority-subpage .on-this-page,
+body.team-authority-subpage .on-this-page-links{
+  max-width:none!important;
+  width:100%!important;
 }
 </style>
 <style id="wmc-digital-reception-mobile">

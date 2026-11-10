@@ -40,6 +40,17 @@ test("growth badge stylesheet keeps subdued wrapping badges", () => {
   assert.match(PRACTITIONER_GROWTH_STYLE, /grid-template-columns:none!important/);
 });
 
+test("team pages receive full-width intro and hero copy rules", () => {
+  const html =
+    '<html><head></head><body class="wmc-long-page"><section class="page-hero"><div class="shell page-hero-inner"><h1>Team</h1><p class="lede">Lede</p></div></section><div class="shell on-this-page-shell"><nav class="on-this-page"><div class="on-this-page-links"></div></nav></div><div class="shell team-directory"><div class="team-directory-intro"><p>Intro</p></div><section class="team-role-section"><p class="team-role-copy">Copy</p></section></div></body></html>';
+  const actual = applyPublicUxRefinements(html, "team.html");
+  assert.match(actual, /id="wmc-team-copy-fullwidth"/);
+  assert.match(actual, /\.shell\.team-directory \.team-role-section \.team-role-copy\{[^}]*max-width:none/);
+  assert.match(actual, /\.page-hero-inner\{[^}]*max-width:min\(100%,var\(--max/);
+  assert.match(actual, /body:has\(\.shell\.team-directory\)[\s\S]*?\.page-hero \.lede[\s\S]*?max-width:none!important/);
+  assert.equal(applyPublicUxRefinements(actual, "team.html"), actual);
+});
+
 test("GP discovery pages receive content-hugging cards and sidebar spacing rules", () => {
   const html =
     '<html><head></head><body class="team-authority-subpage has-action-dock"><div class="page-layout"><aside class="page-nav"></aside><article class="article"><ul class="gp-discovery-list"><li class="gp-discovery-card"><div class="team-authority-photo"></div><div class="gp-discovery-info"><h3 class="gp-discovery-name">Dr Example</h3><ul class="gp-discovery-areas"><li>A</li><li>B</li><li>C</li><li>D</li></ul></div><div class="gp-discovery-actions"><a class="gp-discovery-profile" href="#">View Profile</a><a class="gp-discovery-book" href="#">Book</a></div></li></ul></article></div></body></html>';
