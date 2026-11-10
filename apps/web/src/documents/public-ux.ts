@@ -163,6 +163,38 @@ function refineContactPageSections(html: string, pagePath: string): string {
   return withoutNetwork.replace(findUsRe, `$1${network}`);
 }
 
+/** Wire the approved Samuel Stafford portrait into the no-photo allied profile hero. */
+function ensureSamuelStaffordPortrait(html: string, pagePath: string): string {
+  const normalized = pagePath.replace(/^\/+/, "").replace(/\\/g, "/");
+  if (normalized !== "doctors/mr-samuel-stafford.html") return html;
+  if (/data-practitioner-image="true"/i.test(html) && /mr-samuel-stafford\.webp/i.test(html)) {
+    return html;
+  }
+
+  const portraitRel = "../assets/team/mr-samuel-stafford.webp";
+  const thumbRel = "../assets/team/mr-samuel-stafford-640.webp";
+  const photoBlock =
+    `<div class="doctor-profile-photo" data-photo-fallback="Mr Samuel Stafford photo temporarily unavailable">` +
+    `<img alt="Mr Samuel Stafford" data-local-team-src="${portraitRel}" data-practitioner-image="true" decoding="async" fetchpriority="high" height="1000" loading="eager" src="${portraitRel}" width="800" srcset="${thumbRel} 640w, ${portraitRel} 1122w" sizes="(min-width: 1025px) 420px, (min-width: 768px) 250px, 176px"/>` +
+    `</div>`;
+
+  let next = html.replace(
+    /<div class="shell doctor-profile-hero"[^>]*>\s*<div class="doctor-profile-heading">/i,
+    `<div class="shell doctor-profile-hero">${photoBlock}<div class="doctor-profile-heading">`,
+  );
+
+  const absPortrait = "https://gabbamedicalcentre.com.au/assets/team/mr-samuel-stafford.webp";
+  next = next.replace(
+    /(<meta content=")https:\/\/gabbamedicalcentre\.com\.au\/assets\/hero-final-desktop\.webp(" property="og:image"\/>)/i,
+    `$1${absPortrait}$2`,
+  );
+  next = next.replace(
+    /(<meta content=")https:\/\/gabbamedicalcentre\.com\.au\/assets\/hero-final-desktop\.webp(" name="twitter:image"\/>)/i,
+    `$1${absPortrait}$2`,
+  );
+  return next;
+}
+
 export function applyPublicUxRefinements(
   html: string,
   pagePath: string,
@@ -170,7 +202,7 @@ export function applyPublicUxRefinements(
 ): string {
   const branding = resolveBranding(clinicSlugOrOptions);
   const clinicSlug = branding.clinicSlug;
-  let next = html;
+  let next = ensureSamuelStaffordPortrait(html, pagePath);
   // Topic cross-link bar under the hero (for example "Need ongoing diabetes care?").
   next = next.replace(/<nav\b[^>]*\bclass="topic-wayfinding"[^>]*>[\s\S]*?<\/nav>/gi, "");
   // Serve CSS/JS via /wmc-cache/* (Next route) so Hostinger cannot short-circuit
