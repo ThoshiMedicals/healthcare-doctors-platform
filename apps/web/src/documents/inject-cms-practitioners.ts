@@ -75,12 +75,23 @@ export async function listImportedPublishedPractitioners(
     });
 }
 
+const VISIBLE_CARE_AREA_COUNT = 3;
+
+/** Keep all clinical interests; collapse extras behind an accessible disclosure. */
+export function renderCareAreaListItems(areasOfCare: readonly string[]): string {
+  const areas = areasOfCare.length ? [...areasOfCare] : ["General practice"];
+  const visible = areas.slice(0, VISIBLE_CARE_AREA_COUNT);
+  const rest = areas.slice(VISIBLE_CARE_AREA_COUNT);
+  const visibleHtml = visible.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+  if (!rest.length) return visibleHtml;
+  const restHtml = rest.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+  const moreLabel = rest.length === 1 ? "1 more clinical interest" : `${rest.length} more clinical interests`;
+  return `${visibleHtml}<li class="gp-discovery-areas-more"><details class="gp-discovery-areas-disclosure"><summary>${escapeHtml(moreLabel)}</summary><ul class="gp-discovery-areas-extra">${restHtml}</ul></details></li>`;
+}
+
 function discoveryCard(card: CmsPractitionerCard): string {
   const profileHref = card.pagePath;
-  const areas = (card.areasOfCare.length ? card.areasOfCare : ["General practice"])
-    .slice(0, 3)
-    .map((item) => `<li>${escapeHtml(item)}</li>`)
-    .join("");
+  const areas = renderCareAreaListItems(card.areasOfCare);
   const quals = card.qualifications.join(", ") || "—";
   const bookHref = card.bookingUrl || "tel:+61732173344";
   const bookIsPhone = bookHref.startsWith("tel:");
