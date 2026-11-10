@@ -764,6 +764,7 @@ export const JOIN_ATTRACTION_NAV = (active: string, prefix = "../") => {
     }),
     joinNavLink(j("join-our-team/practice-support.html"), "Practice Support", active),
     joinNavLink(j("join-our-team/registrar-pathway.html"), "Registrar Pathway", active),
+    joinNavLink(j("join-our-team/opportunity-pack.html"), "Pages to keep", active),
     `<div class="nav-group-title">Check readiness</div>`,
     joinNavLink(j("join-our-team/gp-faq.html"), "GP FAQ", active),
     joinNavLink(readinessHref, "Am I ready to talk?", active),
@@ -771,7 +772,6 @@ export const JOIN_ATTRACTION_NAV = (active: string, prefix = "../") => {
     joinNavLink(j("join-our-team/dpa-navigator.html"), "DPA &amp; 19AB", active),
     joinNavLink(j("join-our-team/session-planner.html"), "Preferred days", active),
     `<div class="nav-group-title">Next step</div>`,
-    joinNavLink(j("join-our-team/opportunity-pack.html"), "Pages to keep", active),
     joinNavLink(eoiHref, "Confidential conversation", active, {
       cta: true,
     }),

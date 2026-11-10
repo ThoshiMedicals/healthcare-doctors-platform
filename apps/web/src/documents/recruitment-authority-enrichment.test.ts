@@ -38,4 +38,6 @@ test("enrichment surfaces commercial clarity on opportunities", () => {
   assert.match(result, /Opportunity clarity/);
   assert.match(result, /Clinical Interests/);
   assert.match(result, /\$250\/hr/);
+  assert.match(result, /recruitment-authority-compact/);
+  assert.doesNotMatch(result, /practice-authority-heading/);
 });

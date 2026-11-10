@@ -18,7 +18,7 @@ function eoiHrefForHold(): string {
     ? "#confidential-conversation"
     : "join-our-team/express-interest.html";
 }
-const STYLE_BUST = "wmc-gp-recruit-20261110e";
+const STYLE_BUST = "wmc-gp-recruit-20261110f";
 const PORTAL_SCRIPT_BUST = "wmc-gp-readiness-20261110a";
 const READINESS_HASH = "#gp-readiness-portal";
 const OFFER = WMC_RECRUITMENT_OFFER;
@@ -413,6 +413,18 @@ ${trustPanel("dark")}
 
 ${renderCommercialFaqHtml()}
 
+<section class="gp-recruit-section" id="gp-joining-map" aria-labelledby="joining-map-heading" data-gp-joining-map="true">
+<p class="gp-recruit-eyebrow">GP joining journey</p>
+<h2 id="joining-map-heading">Explore Before You Call</h2>
+<p class="gp-recruit-section-lede">Start anywhere below — the same journey runs through understand → explore → check readiness → confidential conversation. Use this map if you are casually browsing or comparing practices.</p>
+<div class="gp-recruit-card-grid gp-recruit-card-grid-4" role="list">
+<article class="gp-recruit-card" role="listitem"><h3>Understand</h3><ul class="gp-recruit-map-links"><li><a href="about-us/practice-experience.html">Practice Experience</a></li><li><a href="about-us/community-catchment.html">Community &amp; Catchment</a></li><li><a href="about-us/continuity-in-practice.html">Continuity in Practice</a></li><li><a href="about-us/clinical-interests.html">Clinical Interests</a></li></ul></article>
+<article class="gp-recruit-card" role="listitem"><h3>Explore</h3><ul class="gp-recruit-map-links"><li><a href="join-our-team/gp-opportunities.html">GP Opportunities</a></li><li><a href="join-our-team/practice-support.html">Practice Support</a></li><li><a href="join-our-team/registrar-pathway.html">Registrar Pathway</a></li><li><a href="join-our-team/opportunity-pack.html">Pages to keep</a></li></ul></article>
+<article class="gp-recruit-card" role="listitem"><h3>Check readiness</h3><ul class="gp-recruit-map-links"><li><a href="join-our-team/gp-faq.html">GP FAQ</a></li><li><a href="${READINESS_HASH}" data-gp-readiness-open="true">Am I ready to talk?</a></li><li><a href="join-our-team/provider-number-readiness.html">Provider numbers</a></li><li><a href="join-our-team/dpa-navigator.html">DPA &amp; 19AB</a></li><li><a href="join-our-team/session-planner.html">Preferred days</a></li></ul></article>
+<article class="gp-recruit-card" role="listitem"><h3>Next step</h3><ul class="gp-recruit-map-links"><li><a href="#confidential-conversation">Confidential conversation</a></li><li><a href="tel:${phoneTel}">Call ${escapeHtml(WMC_RECRUITMENT_CONTACT.name)}</a></li><li><a href="${READINESS_HASH}" data-gp-readiness-open="true">GP Readiness Portal</a></li></ul></article>
+</div>
+</section>
+
 <section class="gp-recruit-section" id="why-gps-choose" aria-labelledby="why-heading">
 <p class="gp-recruit-eyebrow">Practice fit</p>
 <h2 id="why-heading">Why GPs Choose Woolloongabba Medical Centre</h2>
@@ -516,18 +528,7 @@ ${OFFER.openSevenDays ? "<li>Open 7 Days</li>" : ""}
 <li><span aria-hidden="true">✓</span> Value clinical autonomy</li>
 <li><span aria-hidden="true">✓</span> Prefer a collaborative team environment</li>
 </ul>
-</section>
-
-<section class="gp-recruit-section" id="gp-joining-map" aria-labelledby="joining-map-heading" data-gp-joining-map="true">
-<p class="gp-recruit-eyebrow">GP joining journey</p>
-<h2 id="joining-map-heading">Explore Before You Call</h2>
-<p class="gp-recruit-section-lede">Every page below is part of the same recruitment journey — understand the practice, explore the opportunity, check readiness, then start a confidential conversation.</p>
-<div class="gp-recruit-card-grid gp-recruit-card-grid-4" role="list">
-<article class="gp-recruit-card" role="listitem"><h3>Understand</h3><ul class="gp-recruit-map-links"><li><a href="about-us/practice-experience.html">Practice Experience</a></li><li><a href="about-us/community-catchment.html">Community &amp; Catchment</a></li><li><a href="about-us/continuity-in-practice.html">Continuity in Practice</a></li><li><a href="about-us/clinical-interests.html">Clinical Interests</a></li></ul></article>
-<article class="gp-recruit-card" role="listitem"><h3>Explore</h3><ul class="gp-recruit-map-links"><li><a href="join-our-team/gp-opportunities.html">GP Opportunities</a></li><li><a href="join-our-team/practice-support.html">Practice Support</a></li><li><a href="join-our-team/registrar-pathway.html">Registrar Pathway</a></li><li><a href="join-our-team/opportunity-pack.html">Pages to keep</a></li></ul></article>
-<article class="gp-recruit-card" role="listitem"><h3>Check readiness</h3><ul class="gp-recruit-map-links"><li><a href="join-our-team/gp-faq.html">GP FAQ</a></li><li><a href="${READINESS_HASH}" data-gp-readiness-open="true">Am I ready to talk?</a></li><li><a href="join-our-team/provider-number-readiness.html">Provider numbers</a></li><li><a href="join-our-team/dpa-navigator.html">DPA &amp; 19AB</a></li><li><a href="join-our-team/session-planner.html">Preferred days</a></li></ul></article>
-<article class="gp-recruit-card" role="listitem"><h3>Next step</h3><ul class="gp-recruit-map-links"><li><a href="#confidential-conversation">Confidential conversation</a></li><li><a href="tel:${phoneTel}">Call ${escapeHtml(WMC_RECRUITMENT_CONTACT.name)}</a></li><li><a href="${READINESS_HASH}" data-gp-readiness-open="true">GP Readiness Portal</a></li></ul></article>
-</div>
+<p class="gp-recruit-section-more"><a class="text-link" href="#gp-joining-map">Back to the joining journey map →</a> · <a class="text-link" href="#confidential-conversation">Start a confidential conversation →</a></p>
 </section>
 
 <section class="gp-recruit-final" id="confidential-conversation" aria-labelledby="final-heading">

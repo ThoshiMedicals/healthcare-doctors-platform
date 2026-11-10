@@ -11,10 +11,15 @@ import {
 } from "@/clinics/branding";
 import { injectAttractionNavigation } from "@/attraction-cms/inject-nav";
 import {
+  ensureUnifiedRecruitmentJourneyNav,
+  rewriteStaleExpressInterestLabels,
+} from "@/attraction-cms/ensure-journey-nav";
+import {
   refineExpressInterestFriction,
   refineJoinOurTeamRecruitment,
 } from "@/documents/join-our-team-recruitment";
 import { enrichRecruitmentAuthorityPages } from "@/documents/recruitment-authority-enrichment";
+import { injectGpRecruitmentDiscoverability } from "@/documents/gp-recruitment-discoverability";
 import { alignPhoneOnlyPractitionerChrome } from "@/documents/phone-only-booking";
 import {
   eoiHrefForPage,
@@ -331,6 +336,7 @@ export function applyPublicUxRefinements(
   next = next.replace(/<style\b[^>]*id="wmc-digital-reception-mobile"[\s\S]*?<\/style>\s*/i, "");
   next = next.replace(/<style\b[^>]*id="wmc-sitewide-visual-polish"[\s\S]*?<\/style>\s*/i, "");
   next = next.replace(/<style\b[^>]*id="wmc-recruitment-authority-enrich"[\s\S]*?<\/style>\s*/i, "");
+  next = next.replace(/<style\b[^>]*id="wmc-gp-recruit-discover"[\s\S]*?<\/style>\s*/i, "");
   next = wrapExcessGpDiscoveryAreas(next);
   next = next.replace(
     /<\/head>/i,
@@ -1817,8 +1823,13 @@ min-height:44px;width:100%;max-width:100%;box-sizing:border-box
   if (/express-interest\.html$/i.test(pagePath)) {
     next = refineExpressInterestFriction(next, branding);
   }
+  // Canonical journey rail on recruit children (fixes stale DB labels / ordering).
+  next = ensureUnifiedRecruitmentJourneyNav(next, pagePath);
+  next = rewriteStaleExpressInterestLabels(next);
   // Authority proof + thin-page depth for Attraction / PE recruitment children.
   next = enrichRecruitmentAuthorityPages(next, pagePath);
+  // Patient entry points → Join Our Team / PE / Opportunities (no redesign).
+  next = injectGpRecruitmentDiscoverability(next, pagePath);
   // Shared recruitment contact + confidentiality — identical across attraction surfaces.
   // Place after page content (end of main), never above the hero.
   // Express Interest places both in the focus stack (contact → confidentiality → form).

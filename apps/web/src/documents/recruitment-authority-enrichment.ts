@@ -60,8 +60,26 @@ function hrefPrefix(pagePath: string): { join: string; about: string; hub: strin
   };
 }
 
+const RICH_PAGES = new Set([
+  "gp-opportunities.html",
+  "gp-faq.html",
+  "practice-experience.html",
+  "community-catchment.html",
+  "continuity-in-practice.html",
+  "clinical-interests.html",
+]);
+
 function authoritySnapshotHtml(pagePath: string): string {
   const h = hrefPrefix(pagePath);
+  const key = pagePath.split("/").pop() || pagePath;
+  // Rich story pages: compact strip only — full panel repeats the join hub prospectus.
+  if (RICH_PAGES.has(key)) {
+    return `<!--recruitment-authority-panel:start-->
+<aside class="recruitment-authority-compact" id="practice-authority-snapshot" data-recruitment-authority-panel="true" aria-label="Practice facts at a glance">
+<p><strong>At a glance:</strong> ${escapeHtml(OFFER.billingPercentage)} billings${OFFER.negotiable ? " (negotiable)" : ""}${HOURLY ? ` · ${escapeHtml(HOURLY)}` : ""} · ${escapeHtml(OFFER.activePatientFiles)} patient files · ${escapeHtml(String(OFFER.consultRooms))} rooms · ${escapeHtml(offerScaleLine(OFFER))}${OFFER.agpalAccredited ? " · AGPAL" : ""} — <a href="${h.hub}">Join Our Team</a> · <a href="${h.eoi}">Confidential conversation</a></p>
+</aside>
+<!--recruitment-authority-panel:end-->`;
+  }
   const agpal = OFFER.agpalAccredited
     ? `<li><strong>AGPAL accredited</strong> — governance and quality systems sit beside clinical judgement.</li>`
     : "";
@@ -288,6 +306,8 @@ export function enrichRecruitmentAuthorityPages(html: string, pagePath: string):
 .recruitment-authority-proof li{padding:.65rem .85rem;border:1px solid rgba(22,61,104,.14);border-radius:12px;background:#f7fafc;line-height:1.45}
 .recruitment-authority-links{margin:0;font-size:.95rem}
 .recruitment-authority-links a{font-weight:600}
+.recruitment-authority-compact{margin:1rem 0;padding:.75rem 1rem;border:1px solid rgba(22,61,104,.14);border-radius:12px;background:#f7fafc;font-size:.92rem;line-height:1.45}
+.recruitment-authority-compact a{font-weight:650}
 </style>`;
     next = next.includes("</head>") ? next.replace(/<\/head>/i, `${style}</head>`) : `${style}${next}`;
   }
