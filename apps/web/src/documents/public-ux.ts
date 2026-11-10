@@ -440,7 +440,7 @@ nav[aria-label="Breadcrumb"],
   }
 }
 @media (max-width:390px){
-  /* Keep photo + info side-by-side; CTAs remain on the final row under body copy. */
+  /* Keep photo + info side-by-side; CTAs stay under the info column. */
   .team-authority-subpage .gp-discovery-card{
     grid-template-columns:80px minmax(0,1fr)!important;
     grid-template-rows:auto auto auto!important;
@@ -449,14 +449,15 @@ nav[aria-label="Breadcrumb"],
   .team-authority-subpage .gp-discovery-card .team-authority-photo,
   .team-authority-subpage .gp-discovery-card .team-authority-photo-unavailable{
     width:80px!important;
-    grid-row:1!important;
+    grid-column:1!important;
+    grid-row:1/span 3!important;
   }
   .team-authority-subpage .gp-discovery-card .gp-discovery-info{
     grid-row:1!important;
     grid-column:2!important;
   }
-  .team-authority-subpage .gp-discovery-actions{
-    grid-column:1/-1!important;
+  .team-authority-subpage .gp-discovery-card .gp-discovery-actions{
+    grid-column:2!important;
     grid-row:3!important;
     grid-template-columns:1fr 1fr!important;
     gap:7px!important;
@@ -464,7 +465,7 @@ nav[aria-label="Breadcrumb"],
 }
 </style>
 <style id="wmc-practitioner-directory-cards">
-/* Package B: equal-height practitioner directory cards, stable photos, CTA footers,
+/* Package B: content-hugging practitioner directory cards, stable photos, CTA footers,
    subdued status badges, natural page scroll, no horizontal overflow. */
 .team-directory,
 .team-directory-grid,
@@ -480,8 +481,8 @@ nav[aria-label="Breadcrumb"],
 .team-directory-grid{
   display:grid!important;
   grid-template-columns:repeat(4,minmax(0,1fr))!important;
-  grid-auto-rows:1fr!important;
-  align-items:stretch!important;
+  grid-auto-rows:auto!important;
+  align-items:start!important;
   gap:42px 28px!important;
   overflow:visible!important;
   max-height:none!important;
@@ -490,7 +491,7 @@ nav[aria-label="Breadcrumb"],
 .team-directory-grid .practitioner-directory-card{
   display:flex!important;
   flex-direction:column!important;
-  height:100%!important;
+  height:auto!important;
   min-width:0!important;
   overflow:visible!important;
 }
@@ -517,8 +518,8 @@ nav[aria-label="Breadcrumb"],
 .team-directory-grid .practitioner-meta{
   display:flex!important;
   flex-direction:column!important;
-  flex:1 1 auto!important;
-  gap:0!important;
+  flex:0 1 auto!important;
+  gap:.35rem!important;
   min-height:0!important;
   padding-top:14px!important;
   grid-template-rows:none!important;
@@ -554,8 +555,8 @@ nav[aria-label="Breadcrumb"],
 .team-directory-grid .practitioner-meta .text-link,
 .team-directory-grid .practitioner-meta .gp-discovery-actions,
 .team-directory-grid .practitioner-meta .button{
-  margin-top:auto!important;
-  padding-top:12px!important;
+  margin-top:.35rem!important;
+  padding-top:0!important;
 }
 .team-directory-grid .practitioner-meta .text-link{
   display:inline-flex!important;
@@ -568,8 +569,9 @@ nav[aria-label="Breadcrumb"],
 .team-authority-subpage .gp-discovery-list{
   display:grid!important;
   grid-template-columns:repeat(2,minmax(0,1fr))!important;
-  grid-auto-rows:1fr!important;
-  align-items:stretch!important;
+  /* Content-sized rows: avoid 1fr stretch that leaves large voids above CTAs. */
+  grid-auto-rows:auto!important;
+  align-items:start!important;
   gap:18px!important;
   overflow:visible!important;
   max-height:none!important;
@@ -577,24 +579,18 @@ nav[aria-label="Breadcrumb"],
 .team-authority-subpage .gp-discovery-card{
   display:grid!important;
   grid-template-columns:116px minmax(0,1fr)!important;
-  grid-template-rows:minmax(0,1fr) auto auto!important;
-  align-items:stretch!important;
-  height:100%!important;
+  grid-template-rows:auto auto auto!important;
+  align-items:start!important;
+  align-content:start!important;
+  height:auto!important;
   min-width:0!important;
   overflow-x:clip!important;
   overflow-y:visible!important;
-  padding:19px!important;
-  gap:15px 17px!important;
+  padding:18px!important;
+  gap:10px 16px!important;
 }
-/* Keep CTAs on the final row so notes cannot lift the action footer. */
-.team-authority-subpage .gp-discovery-card .gp-discovery-note{
-  grid-column:1/-1!important;
-  grid-row:2!important;
-  margin:0!important;
-}
-.team-authority-subpage .gp-discovery-card .gp-discovery-actions{
-  grid-row:3!important;
-}
+/* Photo stays top-left; note + CTAs stack under the info column so short
+   bios do not leave a large void above full-width actions. */
 .team-authority-subpage .gp-discovery-card .team-authority-photo,
 .team-authority-subpage .gp-discovery-card .team-authority-photo-unavailable{
   width:116px!important;
@@ -603,7 +599,14 @@ nav[aria-label="Breadcrumb"],
   border-radius:12px!important;
   overflow:hidden!important;
   background:#eef3f4!important;
-  grid-row:1!important;
+  grid-column:1!important;
+  grid-row:1/span 3!important;
+  align-self:start!important;
+}
+.team-authority-subpage .gp-discovery-card .gp-discovery-note{
+  grid-column:2!important;
+  grid-row:2!important;
+  margin:0!important;
   align-self:start!important;
 }
 .team-authority-subpage .gp-discovery-card .team-authority-photo img{
@@ -613,33 +616,58 @@ nav[aria-label="Breadcrumb"],
   object-fit:cover!important;
   object-position:center top!important;
 }
+/* Defeat .team-authority-person div{display:grid;gap:22px;grid-template-columns:190px…}. */
 .team-authority-subpage .gp-discovery-card .gp-discovery-info{
   display:flex!important;
   flex-direction:column!important;
+  align-items:stretch!important;
+  justify-content:flex-start!important;
+  gap:.35rem!important;
   min-width:0!important;
+  width:100%!important;
   grid-row:1!important;
-  align-self:stretch!important;
+  grid-column:2!important;
+  align-self:start!important;
+  grid-template-columns:none!important;
+  grid-template-rows:none!important;
 }
 .team-authority-subpage .gp-discovery-name{
-  margin:1px 0 .45rem!important;
-  font-size:clamp(1rem,1.05vw,1.125rem)!important;
+  margin:0!important;
+  font-size:clamp(1.05rem,1.1vw,1.2rem)!important;
   line-height:1.3!important;
   font-weight:400!important;
+}
+.team-authority-subpage .gp-discovery-card .gp-discovery-care-label{
+  margin:0!important;
+  padding:0!important;
 }
 .team-authority-subpage .gp-discovery-card .gp-discovery-areas{
   display:flex!important;
   flex-wrap:wrap!important;
-  gap:5px!important;
-  margin:0 0 10px!important;
+  gap:6px!important;
+  margin:0!important;
   max-width:100%!important;
 }
 .team-authority-subpage .gp-discovery-card .gp-discovery-areas>li{
   max-width:100%!important;
   min-width:0!important;
+  flex:0 1 auto!important;
   white-space:normal!important;
-  overflow-wrap:anywhere!important;
+  overflow-wrap:break-word!important;
+  word-break:normal!important;
   font-size:11px!important;
   padding:4px 8px!important;
+}
+@media (min-width:901px){
+  .team-authority-subpage .gp-discovery-card .gp-discovery-areas>li{
+    white-space:nowrap!important;
+    overflow-wrap:normal!important;
+  }
+}
+.team-authority-subpage .gp-discovery-card .gp-discovery-qualifications{
+  margin:.15rem 0 0!important;
+  font-size:12.5px!important;
+  line-height:1.5!important;
 }
 .team-authority-subpage .gp-discovery-areas-more{
   list-style:none!important;
@@ -692,25 +720,30 @@ nav[aria-label="Breadcrumb"],
   overflow-wrap:anywhere!important;
 }
 .team-authority-subpage .gp-discovery-card .gp-discovery-actions{
-  grid-column:1/-1!important;
+  grid-column:2!important;
   grid-row:3!important;
   display:grid!important;
   grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
   gap:10px!important;
-  align-self:end!important;
+  align-self:start!important;
+  justify-self:stretch!important;
   margin-top:0!important;
   width:100%!important;
   min-width:0!important;
 }
 .team-authority-subpage .gp-discovery-profile,
-.team-authority-subpage .gp-discovery-book{
+.team-authority-subpage .gp-discovery-book,
+.team-authority-subpage .gp-discovery-card a.button.gp-discovery-book{
   min-width:0!important;
   max-width:100%!important;
+  width:100%!important;
+  box-sizing:border-box!important;
   min-height:44px!important;
-  white-space:normal!important;
+  white-space:nowrap!important;
   text-align:center!important;
   justify-content:center!important;
-  overflow-wrap:anywhere!important;
+  overflow-wrap:normal!important;
+  line-height:1.2!important;
 }
 /* Defeat .team-authority-person div{display:grid;…190px 180px} on status badge wrappers. */
 .team-authority-subpage .gp-discovery-card .wmc-practitioner-badges,
@@ -765,15 +798,7 @@ body.has-action-dock.team-authority-subpage .page-main{
   .team-directory-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
 }
 @media (min-width:701px) and (max-width:900px){
-  /* Single-column: size cards to content — do not stretch every card to the tallest in the list. */
-  .team-authority-subpage .gp-discovery-list{
-    grid-template-columns:1fr!important;
-    grid-auto-rows:auto!important;
-  }
-  .team-authority-subpage .gp-discovery-card{
-    height:auto!important;
-    grid-template-rows:auto auto auto!important;
-  }
+  .team-authority-subpage .gp-discovery-list{grid-template-columns:1fr!important}
 }
 @media (max-width:700px){
   .team-directory-grid{
@@ -781,17 +806,18 @@ body.has-action-dock.team-authority-subpage .page-main{
     grid-auto-rows:auto!important;
     gap:28px!important;
   }
-  .team-authority-subpage .gp-discovery-list{
-    grid-template-columns:1fr!important;
-    grid-auto-rows:auto!important;
-  }
+  .team-authority-subpage .gp-discovery-list{grid-template-columns:1fr!important}
   .team-authority-subpage .gp-discovery-card{
-    height:auto!important;
     grid-template-columns:96px minmax(0,1fr)!important;
-    grid-template-rows:auto auto auto!important;
   }
   .team-authority-subpage .gp-discovery-card .team-authority-photo,
   .team-authority-subpage .gp-discovery-card .team-authority-photo-unavailable{width:96px!important}
+  .team-authority-subpage .gp-discovery-card .gp-discovery-areas>li{
+    white-space:normal!important;
+    overflow-wrap:break-word!important;
+  }
+  .team-authority-subpage .gp-discovery-profile,
+  .team-authority-subpage .gp-discovery-book{white-space:normal!important}
 }
 @media (max-width:365px){
   .team-authority-subpage .gp-discovery-card{

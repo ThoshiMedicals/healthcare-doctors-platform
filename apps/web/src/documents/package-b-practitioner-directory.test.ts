@@ -25,8 +25,8 @@ test("public UX injects practitioner directory card layout stylesheet", () => {
     '<html><head><title>Team</title></head><body class="has-persistent-care-actions"><div class="team-directory-grid"><article class="practitioner practitioner-directory-card"><a class="portrait" href="#"><img alt="" width="800" height="1000" src="x.webp"/></a><div class="practitioner-meta"><h3>Dr Example</h3><p class="credentials">FRACGP</p><p class="focus">Family health</p><a class="text-link" href="#">View profile</a></div></article></div></body></html>';
   const actual = applyPublicUxRefinements(html, "team.html");
   assert.match(actual, /id="wmc-practitioner-directory-cards"/);
-  assert.match(actual, /grid-auto-rows:1fr/);
-  assert.match(actual, /margin-top:auto/);
+  assert.match(actual, /\.team-directory-grid\{[^}]*grid-auto-rows:auto/);
+  assert.match(actual, /\.team-directory-grid \.practitioner[^{]*\{[^}]*height:auto/);
   assert.match(actual, /padding-bottom:calc\(108px/);
   assert.equal(applyPublicUxRefinements(actual, "team.html"), actual);
 });
@@ -40,7 +40,7 @@ test("growth badge stylesheet keeps subdued wrapping badges", () => {
   assert.match(PRACTITIONER_GROWTH_STYLE, /grid-template-columns:none!important/);
 });
 
-test("GP discovery pages receive equal-height and sidebar spacing rules", () => {
+test("GP discovery pages receive content-hugging cards and sidebar spacing rules", () => {
   const html =
     '<html><head></head><body class="team-authority-subpage has-action-dock"><div class="page-layout"><aside class="page-nav"></aside><article class="article"><ul class="gp-discovery-list"><li class="gp-discovery-card"><div class="team-authority-photo"></div><div class="gp-discovery-info"><h3 class="gp-discovery-name">Dr Example</h3><ul class="gp-discovery-areas"><li>A</li><li>B</li><li>C</li><li>D</li></ul></div><div class="gp-discovery-actions"><a class="gp-discovery-profile" href="#">View Profile</a><a class="gp-discovery-book" href="#">Book</a></div></li></ul></article></div></body></html>';
   const actual = applyPublicUxRefinements(html, "team-general-practitioners.html");
@@ -48,4 +48,9 @@ test("GP discovery pages receive equal-height and sidebar spacing rules", () => 
   assert.match(actual, /gp-discovery-areas-disclosure/);
   assert.match(actual, /\.team-authority-subpage \.page-layout\{[^}]*gap:48px/);
   assert.match(actual, /1 more clinical interest/);
+  assert.match(actual, /\.gp-discovery-list\{[^}]*grid-auto-rows:auto/);
+  assert.match(actual, /\.gp-discovery-info\{[^}]*gap:\.35rem/);
+  assert.match(actual, /grid-template-columns:none!important/);
+  assert.match(actual, /grid-row:1\/span 3!important/);
+  assert.match(actual, /\.gp-discovery-actions\{[^}]*grid-column:2!important/);
 });
