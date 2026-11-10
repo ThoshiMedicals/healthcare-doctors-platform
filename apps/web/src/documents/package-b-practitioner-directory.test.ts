@@ -55,7 +55,7 @@ test("team pages receive full-width intro and hero copy rules", () => {
   assert.equal(applyPublicUxRefinements(actual, "team.html"), actual);
 });
 
-test("GP discovery pages receive content-hugging cards and sidebar spacing rules", () => {
+test("GP discovery pages receive equal-row cards with clamped copy and pinned CTAs", () => {
   const html =
     '<html><head></head><body class="team-authority-subpage has-action-dock"><div class="page-layout"><aside class="page-nav"></aside><article class="article"><ul class="gp-discovery-list"><li class="gp-discovery-card"><div class="team-authority-photo"></div><div class="gp-discovery-info"><h3 class="gp-discovery-name">Dr Example</h3><ul class="gp-discovery-areas"><li>A</li><li>B</li><li>C</li><li>D</li></ul></div><div class="gp-discovery-actions"><a class="gp-discovery-profile" href="#">View Profile</a><a class="gp-discovery-book" href="#">Book</a></div></li></ul></article></div></body></html>';
   const actual = applyPublicUxRefinements(html, "team-general-practitioners.html");
@@ -63,9 +63,10 @@ test("GP discovery pages receive content-hugging cards and sidebar spacing rules
   assert.match(actual, /gp-discovery-areas-disclosure/);
   assert.match(actual, /\.team-authority-subpage \.page-layout\{[^}]*gap:48px/);
   assert.match(actual, /1 more clinical interest/);
-  assert.match(actual, /\.gp-discovery-list\{[^}]*grid-auto-rows:auto/);
-  assert.match(actual, /\.gp-discovery-info\{[^}]*gap:\.35rem/);
-  assert.match(actual, /grid-template-columns:none!important/);
-  assert.match(actual, /grid-row:1\/span 3!important/);
-  assert.match(actual, /\.gp-discovery-actions\{[^}]*grid-column:2!important/);
+  assert.match(actual, /\.gp-discovery-list\{[^}]*align-items:stretch/);
+  assert.match(actual, /\.gp-discovery-card\{[^}]*height:100%/);
+  assert.match(actual, /\.gp-discovery-card\{[^}]*grid-template-rows:auto 1fr auto/);
+  assert.match(actual, /\.gp-discovery-qualifications\{[^}]*-webkit-line-clamp:1/);
+  assert.match(actual, /\.gp-discovery-actions\{[^}]*grid-column:1\/-1!important/);
+  assert.match(actual, /\.gp-discovery-actions\{[^}]*margin-top:auto/);
 });

@@ -45,8 +45,8 @@ function resolveBranding(options?: PublicUxOptions | string): ClinicBranding {
 const GP_VISIBLE_CARE_AREA_COUNT = 3;
 
 /**
- * Preserve every clinical-interest pill; collapse the 4th+ behind an accessible
- * disclosure so unusually long lists do not dominate card height.
+ * Preserve every clinical-interest pill; show at most 3 chips and collapse the
+ * rest behind an accessible disclosure so tag count does not dominate card height.
  */
 export function wrapExcessGpDiscoveryAreas(html: string): string {
   if (!/\bgp-discovery-areas\b/i.test(html)) return html;
@@ -441,24 +441,24 @@ nav[aria-label="Breadcrumb"],
   }
 }
 @media (max-width:390px){
-  /* Keep photo + info side-by-side; CTAs stay under the info column. */
+  /* Keep photo + info side-by-side; CTAs stay pinned on the final row. */
   .team-authority-subpage .gp-discovery-card{
     grid-template-columns:80px minmax(0,1fr)!important;
-    grid-template-rows:auto auto auto!important;
+    grid-template-rows:auto 1fr auto!important;
     gap:10px 12px!important;
   }
   .team-authority-subpage .gp-discovery-card .team-authority-photo,
   .team-authority-subpage .gp-discovery-card .team-authority-photo-unavailable{
     width:80px!important;
     grid-column:1!important;
-    grid-row:1/span 3!important;
+    grid-row:1!important;
   }
   .team-authority-subpage .gp-discovery-card .gp-discovery-info{
     grid-row:1!important;
     grid-column:2!important;
   }
   .team-authority-subpage .gp-discovery-card .gp-discovery-actions{
-    grid-column:2!important;
+    grid-column:1/-1!important;
     grid-row:3!important;
     grid-template-columns:1fr 1fr!important;
     gap:7px!important;
@@ -570,9 +570,9 @@ nav[aria-label="Breadcrumb"],
 .team-authority-subpage .gp-discovery-list{
   display:grid!important;
   grid-template-columns:repeat(2,minmax(0,1fr))!important;
-  /* Content-sized rows: avoid 1fr stretch that leaves large voids above CTAs. */
+  /* Per-row equal height (not a page-wide fixed card height). */
   grid-auto-rows:auto!important;
-  align-items:start!important;
+  align-items:stretch!important;
   gap:18px!important;
   overflow:visible!important;
   max-height:none!important;
@@ -580,18 +580,19 @@ nav[aria-label="Breadcrumb"],
 .team-authority-subpage .gp-discovery-card{
   display:grid!important;
   grid-template-columns:116px minmax(0,1fr)!important;
-  grid-template-rows:auto auto auto!important;
+  /* Photo+info | flexible spacer/note | pinned actions */
+  grid-template-rows:auto 1fr auto!important;
   align-items:start!important;
-  align-content:start!important;
-  height:auto!important;
+  align-content:stretch!important;
+  height:100%!important;
+  min-height:0!important;
   min-width:0!important;
   overflow-x:hidden!important;
   overflow-y:visible!important;
   padding:18px!important;
   gap:10px 16px!important;
 }
-/* Photo stays top-left; note + CTAs stack under the info column so short
-   bios do not leave a large void above full-width actions. */
+/* Editorial equal-row cards: fixed 4:5 photo, clamped copy, CTAs pinned to foot. */
 .team-authority-subpage .gp-discovery-card .team-authority-photo,
 .team-authority-subpage .gp-discovery-card .team-authority-photo-unavailable{
   width:116px!important;
@@ -601,11 +602,11 @@ nav[aria-label="Breadcrumb"],
   overflow:hidden!important;
   background:#eef3f4!important;
   grid-column:1!important;
-  grid-row:1/span 3!important;
+  grid-row:1!important;
   align-self:start!important;
 }
 .team-authority-subpage .gp-discovery-card .gp-discovery-note{
-  grid-column:2!important;
+  grid-column:1/-1!important;
   grid-row:2!important;
   margin:0!important;
   align-self:start!important;
@@ -637,6 +638,10 @@ nav[aria-label="Breadcrumb"],
   font-size:clamp(1.05rem,1.1vw,1.2rem)!important;
   line-height:1.3!important;
   font-weight:400!important;
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:2!important;
+  overflow:hidden!important;
 }
 .team-authority-subpage .gp-discovery-card .gp-discovery-care-label{
   margin:0!important;
@@ -668,7 +673,13 @@ nav[aria-label="Breadcrumb"],
 .team-authority-subpage .gp-discovery-card .gp-discovery-qualifications{
   margin:.15rem 0 0!important;
   font-size:12.5px!important;
-  line-height:1.5!important;
+  line-height:1.45!important;
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:1!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  max-width:100%!important;
 }
 .team-authority-subpage .gp-discovery-areas-more{
   list-style:none!important;
@@ -721,14 +732,14 @@ nav[aria-label="Breadcrumb"],
   overflow-wrap:anywhere!important;
 }
 .team-authority-subpage .gp-discovery-card .gp-discovery-actions{
-  grid-column:2!important;
+  grid-column:1/-1!important;
   grid-row:3!important;
   display:grid!important;
   grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
   gap:10px!important;
-  align-self:start!important;
+  align-self:end!important;
   justify-self:stretch!important;
-  margin-top:0!important;
+  margin-top:auto!important;
   width:100%!important;
   min-width:0!important;
 }
