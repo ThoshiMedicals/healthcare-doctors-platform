@@ -350,6 +350,19 @@ Prompt note that “V4 Hostinger deployment not established” is **superseded b
 
 Admin route list: `apps/web/.tmp-qa-continuous/inventory/admin-routes.txt`
 
+### B2. Agent B specialist completion (integrated)
+
+| Item | Result |
+|------|--------|
+| Specialist commit | `0ee2bf0` on `qa/wmc-agent-b-journeys` |
+| Integrated as | `b636b97` (docs-only cherry-pick) |
+| Report | `docs/WMC-AGENT-B-QA-REPORT.md` |
+| Practitioners | **15/15 HTTP 200**; Gemunu **301 → GP directory** (intentional) |
+| Booking matrix | Golnar HotDoc, Mary `tel:`, Tanya insurance notice, James/Yamesha HotDoc — **PASS** |
+| PWA | `offline.html`/`sw.js` OK; Hostinger `manifest.webmanifest` still `text/plain` until redeploy of local MIME fix |
+| Admin | 33 dashboard groups code-inspected; unauthenticated → login **307**; deep CMS still credential-blocked |
+| Ownership tests | **79/79 PASS**; no production code changes from Agent B |
+
 ### K2. Dependency security
 
 | Item | Result |
@@ -381,7 +394,7 @@ Admin route list: `apps/web/.tmp-qa-continuous/inventory/admin-routes.txt`
 
 | Metric | Value |
 |--------|-------|
-| Final tip (pre-docs commit) | `ee18adbed1debb79307dd22909477a528aad0dc8` |
+| Final tip | `b636b97` (+ Agent B report; prior code tip `ee18adb` / docs `eea189f`) |
 | V4 branding on Hostinger | **CONFIRMED LIVE** |
 | Practitioner / booking | **15/15** + matrix PASS (Golnar label improved locally, not live until deploy) |
 | Admin | Login verified; 67 routes inventoried; deep CMS **BLOCKED** without credentials |
