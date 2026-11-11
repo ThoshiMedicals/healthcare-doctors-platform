@@ -418,7 +418,7 @@ test("the real homepage opening-hours block includes both links", () => {
 });
 
 test("the direct static index also contains all release-critical links", () => {
-  const content = readFileSync(path.resolve(process.cwd(), "public/index.html"), "utf8");
+  const content = readFileSync(path.resolve(process.cwd(), "public/seo-approved/static-homepage-seed.html"), "utf8");
   assert.match(content, /data-nav-key="updates"[\s\S]*?data-nav-key="join-team"[\s\S]*?data-nav-key="contact"/);
   assert.match(content, /href="after-hours-care\.html">After Hours Care/);
   assert.match(content, /href="\/favicon\.ico\?v=hd-tm-caring-short-20261111b"/);

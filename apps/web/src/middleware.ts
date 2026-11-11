@@ -49,12 +49,14 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const host = request.headers.get("x-forwarded-host") ?? request.headers.get("host");
 
-  // Staging: prefer / over /index.html so static public/index.html (production robots meta)
-  // is less likely to be hit when the request reaches Node. CDN may still shadow this path.
-  if (isStagingNoIndexHost(host) && (pathname === "/index.html" || pathname === "/index")) {
+  // Prefer / over /index.html. Hostinger Passenger serves static public/ files
+  // before Node; public/index.html was removed so this path should reach middleware
+  // and permanently redirect (avoids a duplicate indexable homepage URL).
+  if (pathname === "/index.html" || pathname === "/index") {
     const dest = new URL("/", request.nextUrl.origin);
     dest.search = request.nextUrl.search;
-    return keepOutOfIndex(NextResponse.redirect(dest, 302), pathname, host);
+    const status = isStagingNoIndexHost(host) ? 302 : 301;
+    return keepOutOfIndex(NextResponse.redirect(dest, status), pathname, host);
   }
 
   // Staging must not serve production robots/sitemap from public/ static files.

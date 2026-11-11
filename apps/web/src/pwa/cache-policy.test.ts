@@ -149,7 +149,7 @@ test("NEVER_CACHE_PATTERNS cover the full clinic gp-pipeline family and are anch
  * existing yet, but enforces the contract the moment it lands.
  */
 test("manifest.webmanifest (if present) stays same-origin and does not redeclare a different canonical host", () => {
-  const manifestPath = path.join(publicDir, "manifest.webmanifest");
+  const manifestPath = path.join(publicDir, "seo-approved", "manifest.webmanifest");
   if (!existsSync(manifestPath)) return; // platform agent has not landed it yet
   const manifest = JSON.parse(readFileSync(manifestPath, "utf8")) as Record<string, unknown>;
   for (const key of ["start_url", "scope", "id"] as const) {

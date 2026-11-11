@@ -19,50 +19,33 @@ import { goldenHtmlRoot, webRoot } from "@/importer/golden-root";
 import { applyStagingNoIndexMeta, isStagingNoIndexHost, stagingRobotsTxt, stagingSitemapXml } from "@/seo/staging-noindex";
 import { toStoragePath } from "@/documents/paths";
 
-// ─── 1. CDN SHADOW RISK: public/index.html ────────────────────────────────────
+// ─── 1. PASSENGER STATIC SHORT-CIRCUIT: public/index.html removed ─────────────
 
 /**
- * P1 DOCUMENTED RISK: Hostinger CDN serves public/index.html as a static file,
- * bypassing the Next.js route handler that applies staging noindex.
- *
- * The static file at public/index.html contains production meta robots
- * (index,follow) and production canonical. When deployed to staging, requests
- * for /index.html are answered directly by the CDN without invoking the
- * (public)/[[...path]]/route.ts handler or middleware — so applyStagingNoIndexMeta
- * is never called and X-Robots-Tag: noindex is never set.
- *
- * FIX (LEAD): Remove public/index.html from the deployment artifact, or add
- * an explicit /index.html intercept to middleware.ts for staging hosts.
- *
- * This test documents the presence of the file and asserts its current
- * content so that a future change is caught.
+ * Hostinger Passenger serves files under public/ before Node middleware.
+ * public/index.html was moved to public/seo-approved/static-homepage-seed.html
+ * so /index.html reaches Next (middleware 301/302 → /). Seed retained for
+ * applyStagingNoIndexMeta coverage only — not deployed as a static route.
  */
-test("public/index.html exists and contains production indexing meta (CDN shadow risk documented)", () => {
+test("public/index.html is not statically deployable (Passenger short-circuit removed)", () => {
   const webDir = webRoot();
-  const indexPath = path.join(webDir, "public", "index.html");
-  assert.equal(fs.existsSync(indexPath), true,
-    "public/index.html must exist — if removed, update this test and verify /index.html now routes through Next.js on staging");
-
-  const html = fs.readFileSync(indexPath, "utf8");
-
-  // The static file has production robots — NOT staging noindex
-  assert.match(html, /content="index,follow/i,
-    "public/index.html has production meta robots (index,follow); staging CDN serves this without noindex override");
-
-  // Production canonical must point to production host (not staging)
-  assert.match(html, /href="https:\/\/gabbamedicalcentre\.com\.au\//,
-    "public/index.html canonical must reference production host, not staging");
-
-  // The file should NOT have the staging directive inline
-  assert.equal(html.includes("noindex, nofollow, noarchive"), false,
-    "public/index.html lacks staging noindex — CDN bypass confirmed; LEAD must intercept /index.html in middleware or remove static file");
+  assert.equal(
+    fs.existsSync(path.join(webDir, "public", "index.html")),
+    false,
+    "public/index.html must not exist at public root — Hostinger would serve it with production index,follow",
+  );
+  const seedPath = path.join(webDir, "public", "seo-approved", "static-homepage-seed.html");
+  assert.ok(fs.existsSync(seedPath), "seo-approved static homepage seed must remain for meta rewrite tests");
+  const html = fs.readFileSync(seedPath, "utf8");
+  assert.match(html, /content="index,follow/i);
+  assert.match(html, /href="https:\/\/gabbamedicalcentre\.com\.au\//);
 });
 
-// ─── 2. STAGING NOINDEX: applyStagingNoIndexMeta handles public/index.html content ──
+// ─── 2. STAGING NOINDEX: applyStagingNoIndexMeta handles seed homepage content ──
 
 test("applyStagingNoIndexMeta correctly rewrites public/index.html style robots meta", () => {
   const webDir = webRoot();
-  const indexPath = path.join(webDir, "public", "index.html");
+  const indexPath = path.join(webDir, "public", "seo-approved", "static-homepage-seed.html");
   const html = fs.readFileSync(indexPath, "utf8");
 
   const result = applyStagingNoIndexMeta(html);
@@ -212,38 +195,27 @@ test("isStagingNoIndexHost correctly identifies all expected staging patterns", 
 // ─── 6. WEBMANIFEST MIME TYPE ─────────────────────────────────────────────────
 
 /**
- * P1 DOCUMENTED DEPLOY GAP: Hostinger CDN serves public/manifest.webmanifest
- * as text/plain, bypassing the next.config.ts header rule that sets
- * Content-Type: application/manifest+json.  The code is correct; the CDN
- * intercepts the static file before Next.js response headers are applied.
- *
- * LEAD FIX: Configure Hostinger hPanel to set the MIME type for *.webmanifest,
- * or move the file out of public/ so it is always served via a Next.js route
- * that can set headers.
- *
- * This test asserts:
- *   (a) next.config.ts contains the correct Content-Type header rule for the file, and
- *   (b) the manifest itself is valid JSON with required PWA fields.
+ * Manifest is served by apps/web/src/app/manifest.webmanifest/route.ts from
+ * public/seo-approved/manifest.webmanifest so Passenger cannot MIME it as text/plain.
  */
-test("next.config.ts declares correct Content-Type for manifest.webmanifest (CDN deploy gap documented)", () => {
+test("manifest is route-served from seo-approved (not a public-root static file)", () => {
   const webDir = webRoot();
-  const configSrc = fs.readFileSync(path.join(webDir, "next.config.ts"), "utf8");
-
-  assert.ok(
-    configSrc.includes("application/manifest+json"),
-    "next.config.ts must declare application/manifest+json for /manifest.webmanifest — " +
-    "DEPLOY GAP: Hostinger CDN currently serves text/plain (static file intercept bypasses Next.js headers); " +
-    "LEAD must configure CDN MIME override or route the file through a Next.js handler",
+  assert.equal(
+    fs.existsSync(path.join(webDir, "public", "manifest.webmanifest")),
+    false,
+    "public/manifest.webmanifest must not exist at public root (Passenger text/plain short-circuit)",
   );
   assert.ok(
-    configSrc.includes("/manifest.webmanifest"),
-    "next.config.ts must reference /manifest.webmanifest in its headers() block",
+    fs.existsSync(path.join(webDir, "src", "app", "manifest.webmanifest", "route.ts")),
+    "Next.js route handler must serve /manifest.webmanifest with application/manifest+json",
   );
+  const routeSrc = fs.readFileSync(path.join(webDir, "src", "app", "manifest.webmanifest", "route.ts"), "utf8");
+  assert.match(routeSrc, /application\/manifest\+json/);
 });
 
-test("public/manifest.webmanifest is valid JSON with required PWA fields", () => {
+test("seo-approved manifest.webmanifest is valid JSON with required PWA fields", () => {
   const webDir = webRoot();
-  const raw = fs.readFileSync(path.join(webDir, "public", "manifest.webmanifest"), "utf8");
+  const raw = fs.readFileSync(path.join(webDir, "public", "seo-approved", "manifest.webmanifest"), "utf8");
 
   let manifest: Record<string, unknown>;
   assert.doesNotThrow(() => { manifest = JSON.parse(raw); }, "manifest.webmanifest must be valid JSON");
