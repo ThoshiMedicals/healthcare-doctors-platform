@@ -13047,3 +13047,29 @@ header .patient-tasks{
    These selectors only activate if the offline page is served with the main
    styles.css (unlikely by design but harmless when included). Actual fix is
    the inline style in offline.html itself (brand navy #163f62 already applied). */
+
+/* P2-B QA Cycle 2 — touch-target compliance (Agent A, 2026-11-11)
+   WCAG 2.5.8 requires interactive targets ≥ 24×24 CSS px (AA).
+   The three rules below bring sub-24px targets into compliance without
+   altering layout, colour or copy. Frozen hero/practitioner sections are
+   excluded by selector scope. */
+
+/* P2-B1: Update-card non-first-child h3 titles (≈20px rendered height).
+   .latest-health-updates:not(:first-child) sets h3 font-size:16.1px,
+   producing a link touch-target of ~20px — 4px below the minimum. */
+.latest-health-updates .health-update-card:not(:first-child) .health-update-copy h3 a{
+  display:inline-flex;
+  align-items:center;
+  min-height:24px;
+}
+
+/* P2-B2: Footer contact direct email/tel links (≈19px rendered height).
+   A later rule overrides the generic `footer .footer-contact a{min-height:34px}`
+   back to min-height:0, leaving 19px touch targets. Restore to 24px minimum. */
+footer .footer-contact > a[href^="mailto:"],
+footer .footer-contact > a[href^="tel:"]{
+  min-height:24px!important;
+  display:flex!important;
+  align-items:center!important;
+  padding:2px 0!important;
+}
