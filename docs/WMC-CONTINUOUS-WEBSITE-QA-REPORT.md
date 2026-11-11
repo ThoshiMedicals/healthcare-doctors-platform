@@ -363,6 +363,18 @@ Admin route list: `apps/web/.tmp-qa-continuous/inventory/admin-routes.txt`
 | Admin | 33 dashboard groups code-inspected; unauthenticated → login **307**; deep CMS still credential-blocked |
 | Ownership tests | **79/79 PASS**; no production code changes from Agent B |
 
+### A2b. Agent A specialist completion (integrated)
+
+| Item | Result |
+|------|--------|
+| Specialist commit | `364adc7` on `qa/wmc-agent-a-visual` |
+| Integrated as | `9a25f70` |
+| Report / screenshots | `apps/web/.tmp-qa-agent-a/` (local evidence; not required in git tip beyond CSS) |
+| P2-B1 | Update-card secondary h3 links → `min-height:24px` (WCAG 2.5.8) |
+| P2-B2 | Footer mailto/tel links → restore `min-height:24px` despite specificity conflict |
+| Scope | `apps/web/public/styles.css` only; hero freeze untouched |
+| Handoff (not fixed) | Frozen `.hero-trust-badge` / `.hero-practitioner-more` sizes — leave unless owner lifts hero freeze |
+
 ### C2. Agent C specialist completion (integrated)
 
 | Item | Result |
