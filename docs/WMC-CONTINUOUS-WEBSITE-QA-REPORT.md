@@ -241,7 +241,7 @@ f9461e7 fix(wmc): restore attraction journey layout and joining map
 
 Recorded at report commit time on branch `qa/wmc-continuous-website` (this document’s commit becomes the tip).
 
-Pre-report tip: `eb5860230b0899348181aab921f39f70ba676bca` (report commit becomes tip below).
+Final tip: `69d73c1d752569f218a7d9cf42afde26afa4895b`.
 
 ---
 
