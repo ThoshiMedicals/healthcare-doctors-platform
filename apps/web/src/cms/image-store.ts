@@ -63,6 +63,7 @@ export function servedSha(relative: string): string {
 const PUBLIC_SYNC_PATHS = new Set([
   "assets/brand/healthcare-doctors-woolloongabba-logo.png",
   "assets/brand/healthcare-doctors-woolloongabba-logo-v2.png",
+  "assets/brand/healthcare-doctors-woolloongabba-logo-v3.png",
 ]);
 
 function syncPublicAsset(relative: string, bytes: Buffer): void {

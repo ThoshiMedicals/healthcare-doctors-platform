@@ -10,7 +10,7 @@ const approved = [
 ].join("\n");
 
 test("serve exactly the requested standard favicon links", () => {
-  assert.equal(FAVICON_VERSION, "hd-lockup-tm-caring-20261111a");
+  assert.equal(FAVICON_VERSION, "hd-tm-caring-short-20261111b");
   assert.equal(FAVICON_TAGS, approved);
   const html = [
     "<!DOCTYPE html><html><head>",

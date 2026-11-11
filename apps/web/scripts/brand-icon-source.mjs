@@ -1,10 +1,10 @@
 /**
- * Shared Healthcare Doctors icon source: owner lockup with ™ + "Caring for you".
+ * Shared Healthcare Doctors™ icon source (owner short lockup with ™ + Caring for you).
  *
- * Uses assets/brand/healthcare-doctors-lockup-tm-caring.png (horizontal lockup).
- * Extracts only the left brand block (before the red clinic divider) so the
- * full horizontal artwork is never squeezed into a square — callers place that
- * crop with fit:"contain" on a square canvas.
+ * Source: assets/brand/healthcare-doctors-lockup-tm-caring.png
+ * - Prefer the short wordmark (no clinic divider).
+ * - If a full clinic lockup with red divider is supplied, crop the left brand block only.
+ * - Tiny favicons use a compact left crop so type stays recognisable.
  */
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -14,7 +14,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 export const publicRoot = path.join(root, "public");
 export const iconsRoot = path.join(publicRoot, "icons");
 
-/** Canonical owner-supplied source (do not substitute the prior symbol-only mark). */
+/** Canonical owner-supplied Healthcare Doctors™ short lockup. */
 export const LOCKUP_SOURCE = path.join(
   publicRoot,
   "assets",
@@ -22,34 +22,16 @@ export const LOCKUP_SOURCE = path.join(
   "healthcare-doctors-lockup-tm-caring.png",
 );
 
-/** Navy / teal brand canvas for opaque PWA icons. */
+/** White canvas for opaque PWA icons. */
 export const ICON_BACKGROUND = { r: 255, g: 255, b: 255, alpha: 1 };
 
-/**
- * Extract the left Healthcare Doctors™ + Caring for you block (exclude red
- * divider and Woolloongabba Medical Centre wordmark).
- */
-export async function extractBrandLockupCrop() {
-  const meta = await sharp(LOCKUP_SOURCE).metadata();
-  if (!meta.width || !meta.height) {
-    throw new Error("Healthcare Doctors lockup source is unreadable.");
-  }
-  if (meta.width < 400 || meta.height < 50) {
-    throw new Error(
-      `Unexpected lockup dimensions ${meta.width}x${meta.height}; refuse automatic crop.`,
-    );
-  }
-
-  const { data, info } = await sharp(LOCKUP_SOURCE)
-    .ensureAlpha()
-    .raw()
-    .toBuffer({ resolveWithObject: true });
-
-  const redCols = [];
+async function loadInkBounds(sourcePath) {
+  const { data, info } = await sharp(sourcePath).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
   let x0 = info.width;
   let x1 = -1;
   let y0 = info.height;
   let y1 = -1;
+  const redCols = [];
 
   for (let x = 0; x < info.width; x++) {
     let redHits = 0;
@@ -70,26 +52,86 @@ export async function extractBrandLockupCrop() {
     if (redHits > info.height * 0.35) redCols.push(x);
   }
 
-  if (redCols.length === 0) {
-    throw new Error("Cannot locate red clinic divider in Healthcare Doctors lockup.");
+  if (x1 < x0 || y1 < y0) {
+    throw new Error("Healthcare Doctors lockup has no detectable ink.");
   }
 
-  const divider = redCols[0];
-  // Leave a small gap before the divider; keep tagline fully inside the crop.
-  const leftEnd = Math.max(x0 + 40, divider - 6);
-  if (leftEnd - x0 < 120 || y1 - y0 < 40) {
+  return {
+    info,
+    redCols,
+    bounds: {
+      left: x0,
+      top: y0,
+      width: x1 - x0 + 1,
+      height: y1 - y0 + 1,
+    },
+  };
+}
+
+/**
+ * Extract Healthcare Doctors™ + Caring for you artwork for square icons.
+ * Short owner mark: trimmed full wordmark. Full clinic lockup: left of red divider.
+ */
+export async function extractBrandLockupCrop() {
+  const meta = await sharp(LOCKUP_SOURCE).metadata();
+  if (!meta.width || !meta.height) {
+    throw new Error("Healthcare Doctors lockup source is unreadable.");
+  }
+  if (meta.width < 200 || meta.height < 50) {
+    throw new Error(
+      `Unexpected lockup dimensions ${meta.width}x${meta.height}; refuse automatic crop.`,
+    );
+  }
+
+  const { info, redCols, bounds } = await loadInkBounds(LOCKUP_SOURCE);
+
+  let crop;
+  if (redCols.length > 0) {
+    const divider = redCols[0];
+    const leftEnd = Math.max(bounds.left + 40, divider - 6);
+    crop = {
+      left: bounds.left,
+      top: Math.max(0, bounds.top - 2),
+      width: leftEnd - bounds.left,
+      height: Math.min(info.height - Math.max(0, bounds.top - 2), bounds.height + 5),
+    };
+  } else {
+    // Short lockup (no clinic divider): pad ink bounds slightly.
+    crop = {
+      left: Math.max(0, bounds.left - 4),
+      top: Math.max(0, bounds.top - 4),
+      width: Math.min(info.width - Math.max(0, bounds.left - 4), bounds.width + 8),
+      height: Math.min(info.height - Math.max(0, bounds.top - 4), bounds.height + 8),
+    };
+  }
+
+  if (crop.width < 80 || crop.height < 40) {
     throw new Error("Healthcare Doctors brand crop is too small; refuse generation.");
   }
 
-  const crop = {
-    left: x0,
-    top: Math.max(0, y0 - 2),
-    width: leftEnd - x0,
-    height: Math.min(info.height - Math.max(0, y0 - 2), y1 - y0 + 5),
-  };
-
   const png = await sharp(LOCKUP_SOURCE).extract(crop).png().toBuffer();
   return { png, crop, sourceWidth: info.width, sourceHeight: info.height };
+}
+
+/**
+ * Compact left crop for 16/32 favicons — keeps a recognisable HD mark, not a
+ * microscopic full wordmark.
+ */
+export async function extractCompactFaviconMark() {
+  const { png, crop } = await extractBrandLockupCrop();
+  const meta = await sharp(png).metadata();
+  const width = meta.width || crop.width;
+  const height = meta.height || crop.height;
+  // Keep left stacked letters (HEALTHCARE / DOCTORS) — roughly square.
+  const compactWidth = Math.max(48, Math.round(Math.min(width * 0.42, height * 1.15)));
+  const compact = {
+    left: 0,
+    top: 0,
+    width: Math.min(width, compactWidth),
+    height,
+  };
+  const mark = await sharp(png).extract(compact).png().toBuffer();
+  return { png: mark, crop: { ...crop, compact }, sourceWidth: width, sourceHeight: height };
 }
 
 /** Place lockup crop centred on a square canvas without distortion. */

@@ -434,12 +434,12 @@ export function applyPublicUxRefinements(
   // Institution lockup: serve the localhost-authority PNG under a new filename so
   // Hostinger/CDN cannot keep serving a stale managed-image copy of the old path.
   next = next.replace(
-    /((?:\.\.\/)*)assets\/brand\/healthcare-doctors-woolloongabba-logo(?:-v2)?\.png(?:\?[^"]*)?/g,
-    `$1assets/brand/healthcare-doctors-woolloongabba-logo-v2.png`,
+    /((?:\.\.\/)*)assets\/brand\/healthcare-doctors-woolloongabba-logo(?:-v2|-v3)?\.png(?:\?[^"]*)?/g,
+    `$1assets/brand/healthcare-doctors-woolloongabba-logo-v3.png`,
   );
   next = next.replace(
-    /((?:\.\.\/)*)assets\/healthcare-doctors-woolloongabba-logo(?:-v2)?\.png(?:\?[^"]*)?/g,
-    `$1assets/healthcare-doctors-woolloongabba-logo-v2.png`,
+    /((?:\.\.\/)*)assets\/healthcare-doctors-woolloongabba-logo(?:-v2|-v3)?\.png(?:\?[^"]*)?/g,
+    `$1assets/healthcare-doctors-woolloongabba-logo-v3.png`,
   );
   // Circular AGPAL mark: keep transparent on light cards, restore white pad on dark footers.
   next = next.replace(/<style\b[^>]*id="wmc-agpal-mark-fix"[\s\S]*?<\/style>\s*/i, "");

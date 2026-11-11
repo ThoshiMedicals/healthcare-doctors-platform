@@ -81,6 +81,10 @@ const nextConfig: NextConfig = {
         source: "/assets/brand/healthcare-doctors-woolloongabba-logo-v2.png",
         headers: [{ key: "Cache-Control", value: "public, max-age=60, must-revalidate" }],
       },
+      {
+        source: "/assets/brand/healthcare-doctors-woolloongabba-logo-v3.png",
+        headers: [{ key: "Cache-Control", value: "public, max-age=60, must-revalidate" }],
+      },
     ];
   },
 };

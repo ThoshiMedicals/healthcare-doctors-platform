@@ -1,7 +1,7 @@
 /**
- * Favicon generator from the owner-supplied Healthcare Doctors lockup
- * (™ + "Caring for you"). Square icons use a contain-fit of the left brand
- * block only — the full horizontal clinic lockup is never distorted.
+ * Favicon generator from the owner-supplied Healthcare Doctors™ short lockup
+ * (™ + "Caring for you"). Tiny tiles use a compact left crop; larger tiles use
+ * the full short wordmark contain-fit — never distorted.
  */
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
@@ -9,24 +9,23 @@ import {
   composeSquareIcon,
   encodeIco,
   extractBrandLockupCrop,
+  extractCompactFaviconMark,
   publicRoot,
 } from "./brand-icon-source.mjs";
 
 const { png: lockup, crop } = await extractBrandLockupCrop();
+const { png: compact, crop: compactMeta } = await extractCompactFaviconMark();
 
-async function renderTransparent(size) {
-  // Slightly larger fill on tiny tiles so teal/navy type remains visible.
-  const markFraction = size <= 32 ? 0.92 : 0.82;
-  const output = await composeSquareIcon(lockup, size, {
+async function renderTransparent(size, sourcePng, markFraction) {
+  return composeSquareIcon(sourcePng, size, {
     opaque: false,
     markFraction,
   });
-  return output;
 }
 
-const png16 = await renderTransparent(16);
-const png32 = await renderTransparent(32);
-const png180 = await renderTransparent(180);
+const png16 = await renderTransparent(16, compact, 0.94);
+const png32 = await renderTransparent(32, compact, 0.92);
+const png180 = await renderTransparent(180, lockup, 0.84);
 
 await mkdir(publicRoot, { recursive: true });
 await Promise.all([
@@ -43,6 +42,7 @@ await Promise.all([
 ]);
 
 console.log(
-  "Healthcare Doctors lockup favicons generated (™ + Caring for you left block, contain-fit).",
+  "Healthcare Doctors™ short-lockup favicons generated (compact 16/32, full 180).",
 );
 console.log("Brand crop:", JSON.stringify(crop));
+console.log("Compact crop:", JSON.stringify(compactMeta));

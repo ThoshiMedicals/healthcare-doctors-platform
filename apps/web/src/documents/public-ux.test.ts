@@ -396,7 +396,7 @@ test("the direct static index also contains all release-critical links", () => {
   const content = readFileSync(path.resolve(process.cwd(), "public/index.html"), "utf8");
   assert.match(content, /data-nav-key="updates"[\s\S]*?data-nav-key="join-team"[\s\S]*?data-nav-key="contact"/);
   assert.match(content, /href="after-hours-care\.html">After Hours Care/);
-  assert.match(content, /href="\/favicon\.ico\?v=hd-lockup-tm-caring-20261111a"/);
+  assert.match(content, /href="\/favicon\.ico\?v=hd-tm-caring-short-20261111b"/);
   assert.doesNotMatch(content, /<link\b[^>]*href="assets\/brand\/wmc-brand-mark\.webp"/);
 });
 

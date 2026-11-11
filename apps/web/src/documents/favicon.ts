@@ -1,8 +1,8 @@
 /** Replace legacy favicon links in served public HTML; leave golden pages unchanged. */
 const ICON_LINK = /<link\b(?=[^>]*\brel\s*=\s*(["'])(?:icon|shortcut\s+icon|apple-touch-icon(?:-precomposed)?)\1)[^>]*\/?>\s*/gi;
 
-/** Cache-bust token for Healthcare Doctors™ + Caring for you lockup icons. */
-export const FAVICON_VERSION = "hd-lockup-tm-caring-20261111a";
+/** Cache-bust token for Healthcare Doctors™ + Caring for you short-lockup icons. */
+export const FAVICON_VERSION = "hd-tm-caring-short-20261111b";
 
 export const FAVICON_TAGS = [
   `<link rel="icon" href="/favicon.ico?v=${FAVICON_VERSION}" sizes="any">`,
