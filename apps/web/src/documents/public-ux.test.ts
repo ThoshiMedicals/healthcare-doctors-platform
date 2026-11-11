@@ -359,6 +359,14 @@ test("the real homepage opening-hours block includes both links", () => {
   assert.match(result, /#story a\.trust-line[\s\S]*?border-top:0!important/);
   assert.match(result, /info-trust-logos[\s\S]*?agpal-mark\.webp(?:\?[^"]*)?" width="192"/);
   assert.match(result, /info-trust-logos[\s\S]*?bulk-billing-practice\.png" width="256"/);
+  assert.match(
+    result,
+    /info-trust-logos[\s\S]*?<a href="agpal-accreditation\.html" aria-label="AGPAL accreditation — Accredited General Practice"/,
+  );
+  assert.match(
+    result,
+    /info-trust-logos[\s\S]*?<a href="bulk-billing\.html" aria-label="Medicare bulk billing practice information"/,
+  );
   assert.match(result, /#patient-information \.info-trust-logos img[\s\S]*?object-fit:contain!important/);
   assert.match(result, /#hotdoc-app \.hotdoc-benefits a\{[\s\S]*?text-decoration:none!important/);
   assert.match(result, /\.hero-visual\{[\s\S]*?order:1!important/);

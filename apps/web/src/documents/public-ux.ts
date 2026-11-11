@@ -2093,8 +2093,8 @@ min-height:44px;width:100%;max-width:100%;box-sizing:border-box
 function refineHomepageInfoTrustLogos(html: string): string {
   const logos =
     '<div class="info-trust-logos">' +
-    '<a href="agpal-accreditation.html"><img alt="Accredited General Practice" data-local-asset="agpal-mark" decoding="async" height="192" loading="lazy" src="assets/brand/agpal-mark.webp?v=20261106a" width="192"/></a>' +
-    '<a href="bulk-billing.html"><img alt="Medicare Bulk Billing Practice" decoding="async" height="256" loading="lazy" src="assets/brand/bulk-billing-practice.png" width="256"/></a>' +
+    '<a href="agpal-accreditation.html" aria-label="AGPAL accreditation — Accredited General Practice"><img alt="Accredited General Practice" data-local-asset="agpal-mark" decoding="async" height="192" loading="lazy" src="assets/brand/agpal-mark.webp?v=20261106a" width="192"/></a>' +
+    '<a href="bulk-billing.html" aria-label="Medicare bulk billing practice information"><img alt="Medicare Bulk Billing Practice" decoding="async" height="256" loading="lazy" src="assets/brand/bulk-billing-practice.png" width="256"/></a>' +
     "</div>";
   if (!/<div class="info-trust-logos">/i.test(html)) return html;
   return html.replace(/<div class="info-trust-logos">[\s\S]*?<\/div>/i, logos);
