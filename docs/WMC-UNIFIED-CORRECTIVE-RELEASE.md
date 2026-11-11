@@ -13,15 +13,17 @@ a8a3cb8  feat(wmc): Golnar HotDoc online booking + post-PWA sitemap hardening
 a7ff4b0  docs(wmc): record post-PWA HotDoc release archive checksum
 18f1f86  feat(wmc): refresh favicon and PWA icons from HD lockup with tagline
 4eb991a  test(wmc): add published practitioner route inventory regressions
-<TIP>   fix(wmc): align Golnar online booking prose + unified corrective release notes
+2d616c1  fix(wmc): align Golnar online booking prose for unified corrective RC
 ```
+
+**Unified tip SHA:** `2d616c1ce51765bd3275322f2634ccf8630b24eb`
 
 All of `a8309db`, `a8a3cb8`, and `18f1f86` are ancestors of the tip. Icon-refresh commit was not rewritten.
 
 ## Commits in this finalisation
 
 1. `4eb991a` — practitioner route inventory + default/`test:p0` wiring (separate, as required)
-2. Tip commit — Golnar phone-only prose correction + release documentation
+2. `2d616c1` — Golnar phone-only prose correction + release documentation
 
 ## Changed files (tip)
 
@@ -43,6 +45,15 @@ All of `a8309db`, `a8a3cb8`, and `18f1f86` are ancestors of the tip. Icon-refres
 - Mary remains PHONE_ONLY
 - Gemunu remains 301 → GP directory
 - `test:practitioner-routes` PASS; production `next build` PASS
+
+## Release archive
+
+| Field | Value |
+| --- | --- |
+| Tip | `2d616c1ce51765bd3275322f2634ccf8630b24eb` |
+| Archive | `C:\Users\RoshanSamarawickrema\Desktop\WMC-release-archives\WMC-unified-corrective-rc-2d616c1ce517.zip` |
+| SHA-256 | `DFB1E7238C9D883C57D0A4762C0FCD7BC183D28476CD1BAFA6D658B8701FCC0D` |
+| Staging baseline | `a8309db` (Hostinger build `01a1c862-5c31-71eb-9f64-9a014901a683`) — **rollback target until approved cutover** |
 
 ## Outstanding blocker
 
