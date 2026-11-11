@@ -22,6 +22,10 @@ import { enrichRecruitmentAuthorityPages } from "@/documents/recruitment-authori
 import { injectGpRecruitmentDiscoverability } from "@/documents/gp-recruitment-discoverability";
 import { alignPhoneOnlyPractitionerChrome } from "@/documents/phone-only-booking";
 import {
+  alignGolnarOnlineBookingChrome,
+  GOLNAR_APPROVED_HOTDOC_URL,
+} from "@/documents/practitioner-booking";
+import {
   eoiHrefForPage,
   renderConfidentialityPanelHtml,
   renderRecruitmentContactHtml,
@@ -412,8 +416,8 @@ export function applyPublicUxRefinements(
   // Serve CSS/JS via /wmc-cache/* (Next route) so Hostinger cannot short-circuit
   // public/*.css/*.js without Cache-Control. Absolute paths work from nested pages.
   const styleHref = "/wmc-cache/styles.min.css?v=wmc-updates-dr-mobile-20261106e";
-  const siteJsHref = "/wmc-cache/site.js?v=wmc-phone-only-chrome-20261109a";
-  const updatesDataHref = "/wmc-cache/updates-data.js?v=wmc-golnar-phone-only-20261109a";
+  const siteJsHref = "/wmc-cache/site.js?v=wmc-golnar-hotdoc-online-20261111a";
+  const updatesDataHref = "/wmc-cache/updates-data.js?v=wmc-golnar-hotdoc-online-20261111a";
   const updatesUiHref = "/wmc-cache/updates-ui.js?v=wmc-doctor-welcome-20261106a";
   // Include optional existing /wmc-cache/ prefix so re-application is idempotent.
   next = next.replace(/(?:\/wmc-cache\/)?(?:\.\.\/)*styles(?:\.min)?\.css(?:\?[^"]*)?(?=")/g, styleHref);
@@ -1970,7 +1974,12 @@ min-height:44px;width:100%;max-width:100%;box-sizing:border-box
   // CLS: paint sticky booking dock in final has-action-dock geometry (with DR launcher).
   next = stabilisePersistentCareDock(next);
 
-  // Phone-only doctor profiles: TOC / header / dock must not imply HotDoc for that GP.
+  // Golnar ONLINE HotDoc: upgrade tel:/clinic-level chrome before phone-only align.
+  // Uses approved fallback when CMS bookingUrl is not yet republished (render path
+  // prefers CMS via resolvePractitionerBookingHref when available).
+  next = alignGolnarOnlineBookingChrome(next, pagePath, GOLNAR_APPROVED_HOTDOC_URL);
+
+  // Phone-only doctor profiles (e.g. Mary): TOC / header / dock must not imply HotDoc.
   next = alignPhoneOnlyPractitionerChrome(next, pagePath);
 
   // Add Join Our Team in every public primary navigation using the Updates

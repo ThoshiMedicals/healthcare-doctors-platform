@@ -1,7 +1,13 @@
 /**
  * Phone-only practitioner booking presentation helpers.
  * Derives CTAs from existing tel:/HotDoc hrefs — no new booking-mode schema.
+ *
+ * Golnar welcome is no longer forced phone-only (owner policy: ONLINE HotDoc).
+ * Phone-only chrome applies only when a doctor profile primary CTA is tel:
+ * (e.g. Dr Mary Abadir).
  */
+
+export { isGolnarWelcomePath } from "@/documents/practitioner-booking";
 
 const ONLINE_BOOKING_PHRASES: Array<{ re: RegExp; phoneOnly: string }> = [
   {
@@ -69,10 +75,6 @@ export function htmlIndicatesPhoneOnlyPractitioner(html: string): boolean {
   );
   if (!primary) return false;
   return isTelBookingHref(primary[1]);
-}
-
-export function isGolnarWelcomePath(pagePath: string): boolean {
-  return /^updates\/welcome-dr-golnar-mortezaei\.html$/i.test(pagePath);
 }
 
 /**
@@ -204,13 +206,14 @@ function alignPhoneOnlyBookingChrome(html: string): string {
 }
 
 /**
- * On phone-only doctor profiles and Golnar welcome update, keep page chrome from
+ * On phone-only doctor profiles (primary CTA is tel:), keep page chrome from
  * implying HotDoc availability for that practitioner. Preserves Digital Reception.
+ * Does not special-case Golnar welcome — online HotDoc policy uses
+ * alignGolnarOnlineBookingChrome instead.
  */
 export function alignPhoneOnlyPractitionerChrome(html: string, pagePath: string): string {
-  const welcome = isGolnarWelcomePath(pagePath);
   const profile =
     /^doctors\/.+\.html$/i.test(pagePath) && htmlIndicatesPhoneOnlyPractitioner(html);
-  if (!welcome && !profile) return html;
+  if (!profile) return html;
   return alignPhoneOnlyBookingChrome(html);
 }

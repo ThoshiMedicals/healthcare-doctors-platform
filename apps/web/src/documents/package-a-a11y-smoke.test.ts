@@ -5,7 +5,6 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 import { applyAccessibilityClosure } from "./accessibility";
 import { applyPublicUxRefinements } from "./public-ux";
-import { alignPhoneOnlyBookingProse, alignPhoneOnlyPractitionerChrome } from "./phone-only-booking";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../../../old-html");
 
@@ -37,7 +36,7 @@ test("A11Y-001: homepage image-only links gain accessible names after closure", 
   assert.equal(empty.length, 0, empty.slice(0, 5).join("\n"));
 });
 
-test("S1-R4: Golnar welcome + profile CTAs expose keyboard-operable named controls", () => {
+test("S1-R4: Golnar welcome + profile CTAs expose keyboard-operable named HotDoc controls", () => {
   const welcomeSeed = `<!DOCTYPE html><html lang="en-AU"><head>
 <meta content="Learn more about Dr Golnar Mortezaei and book an appointment online with Woolloongabba Medical Centre." name="description"/>
 </head><body>
@@ -46,17 +45,13 @@ test("S1-R4: Golnar welcome + profile CTAs expose keyboard-operable named contro
 <nav class="persistent-care-actions"><a class="persistent-care-book" data-hotdoc-button="" href="https://www.hotdoc.com.au/clinic">Book Appointment</a>
 <button type="button" class="digital-reception-launcher" aria-expanded="false" aria-controls="digital-reception-panel">Digital Reception</button></nav>
 </body></html>`;
-  const welcome = applyPublicUxRefinements(
-    alignPhoneOnlyPractitionerChrome(
-      alignPhoneOnlyBookingProse(welcomeSeed, null),
-      "updates/welcome-dr-golnar-mortezaei.html",
-    ),
-    "updates/welcome-dr-golnar-mortezaei.html",
-  );
-  assert.doesNotMatch(welcome, /book an appointment online/i);
-  assert.match(welcome, /aria-label="Call Reception to Book"|Call Reception to Book/);
+  // Online policy: prose rewrite is skipped when bookingHref is HotDoc; chrome upgrades via public-ux.
+  const welcome = applyPublicUxRefinements(welcomeSeed, "updates/welcome-dr-golnar-mortezaei.html");
+  assert.match(welcome, /dr-golnar-mortezaei-5\?wp=w_lightbox/);
+  assert.match(welcome, /data-hotdoc-widget="lightbox"/);
+  assert.match(welcome, /Book Appointment/);
   assert.match(welcome, /digital-reception-launcher[^>]*aria-expanded="false"/);
-  assert.match(welcome, /href="tel:\+61732173344"/);
+  assert.doesNotMatch(welcome, /Call Reception to Book/);
 
   const profile = applyPublicUxRefinements(
     `<div class="doctor-profile-actions"><a class="button wmc-book-appointment" href="tel:+61732173344">Call Reception to Book</a></div>
@@ -65,16 +60,14 @@ test("S1-R4: Golnar welcome + profile CTAs expose keyboard-operable named contro
     "doctors/dr-golnar-mortezaei.html",
   );
   assert.match(profile, /menu-toggle[^>]*aria-expanded="false"/);
-  assert.match(profile, /href="tel:\+61732173344"[^>]*>Call Reception to Book</);
+  assert.match(profile, /dr-golnar-mortezaei-5\?wp=w_lightbox/);
+  assert.match(profile, /Book Appointment/);
 });
 
-test("S1-R4: phone CTAs are activatable links (no positive tabindex traps on primary CTAs)", () => {
+test("S1-R4: Golnar HotDoc CTAs are activatable links (no positive tabindex traps on primary CTAs)", () => {
   const html = applyPublicUxRefinements(
-    alignPhoneOnlyPractitionerChrome(
-      `<a class="button wmc-book-appointment" href="tel:+61732173344">Call Reception to Book</a>
-       <a class="header-cta wmc-book-appointment" data-hotdoc-button="" href="https://www.hotdoc.com.au/x">Book Appointment</a>`,
-      "updates/welcome-dr-golnar-mortezaei.html",
-    ),
+    `<a class="button wmc-book-appointment" href="tel:+61732173344">Call Reception to Book</a>
+     <a class="header-cta wmc-book-appointment" data-hotdoc-button="" href="https://www.hotdoc.com.au/x">Book Appointment</a>`,
     "updates/welcome-dr-golnar-mortezaei.html",
   );
   for (const m of html.matchAll(/<a\b([^>]*)>/gi)) {

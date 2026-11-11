@@ -17,6 +17,9 @@ const prisma = new PrismaClient();
 
 const PHONE_TEL = "tel:+61732173344";
 const PHONE_DISPLAY = "(07) 3217 3344";
+/** Owner-authorised Golnar practitioner HotDoc (ONLINE — not phone-only). */
+const GOLNAR_HOTDOC_URL =
+  "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-golnar-mortezaei-5?wp=w_lightbox";
 const JAMES_HOTDOC_URL =
   "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-james-chanaka-1?wp=w_lightbox";
 
@@ -57,7 +60,7 @@ const DOCTORS = [
       "Experienced GP (MD, FRACGP) with interests in veterans' health and chronic disease management.",
     yearsPractising: "25+",
     memberships: [],
-    bookingUrl: null,
+    bookingUrl: GOLNAR_HOTDOC_URL,
     portraitFile: "dr-golnar-mortezaei.webp",
     sourceImageUrl: "https://gabbamedicalcentre.com.au/wp-content/uploads/2026/11/dr-golnar-wordpress.webp",
     sourceProfileUrl: "https://gabbamedicalcentre.com.au/doctor/dr-golnar-mortezaei-gp-fracgp/",

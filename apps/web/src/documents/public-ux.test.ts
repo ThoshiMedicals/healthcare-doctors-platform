@@ -334,7 +334,7 @@ test("the real homepage opening-hours block includes both links", () => {
   assert.match(result, /href="contact\.html">View all hours/);
   assert.match(result, /href="after-hours-care\.html">After Hours Care/);
   assert.match(result, /\/wmc-cache\/styles\.min\.css\?v=wmc-updates-dr-mobile-20261106e/);
-  assert.match(result, /\/wmc-cache\/site\.js\?v=wmc-phone-only-chrome-20261109a/);
+  assert.match(result, /\/wmc-cache\/site\.js\?v=wmc-golnar-hotdoc-online-20261111a/);
   assert.match(result, /class="brand"[^>]*href="\/"/);
   assert.doesNotMatch(result, /class="brand"[^>]*href="index\.html"/);
   assert.match(result, /#patient-information \.info-trust-logos a\{[\s\S]*?width:136px!important/);

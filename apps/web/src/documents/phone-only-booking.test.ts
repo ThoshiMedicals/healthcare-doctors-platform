@@ -43,8 +43,12 @@ test("S1-R1/R2: meta content-before-name and summary grammar are corrected", () 
   assert.equal(alignPhoneOnlyBookingProse(html, "https://www.hotdoc.com.au/x"), html);
 });
 
-test("S1-R3: Golnar welcome chrome converts HotDoc Book to Call Reception", () => {
+test("Golnar welcome path helper still recognises the welcome article", () => {
   assert.equal(isGolnarWelcomePath("updates/welcome-dr-golnar-mortezaei.html"), true);
+  assert.equal(isGolnarWelcomePath("doctors/dr-golnar-mortezaei.html"), false);
+});
+
+test("alignPhoneOnlyPractitionerChrome no longer forces Golnar welcome to phone-only", () => {
   const html = `<html><body>
   <header><div class="header-cta"><a class="wmc-book-appointment header-cta" data-hotdoc-button="" data-hotdoc-widget="lightbox" href="https://www.hotdoc.com.au/clinic">Book Appointment</a></div></header>
   <a class="button wmc-book-appointment" data-hotdoc-button="" href="https://www.hotdoc.com.au/clinic">Book Appointment</a>
@@ -53,12 +57,10 @@ test("S1-R3: Golnar welcome chrome converts HotDoc Book to Call Reception", () =
     <button type="button" class="digital-reception-launcher">Digital Reception</button>
   </nav>
   </body></html>`;
-  const next = alignPhoneOnlyPractitionerChrome(html, "updates/welcome-dr-golnar-mortezaei.html");
-  assert.match(next, /header-cta[^>]*href="tel:\+61732173344"/);
-  assert.match(next, /persistent-care-book[^>]*href="tel:\+61732173344"/);
-  assert.doesNotMatch(next, /persistent-care-book[^>]*data-hotdoc-button/);
-  assert.match(next, /digital-reception-launcher/);
-  assert.match(next, /Call Reception to Book/);
+  assert.equal(
+    alignPhoneOnlyPractitionerChrome(html, "updates/welcome-dr-golnar-mortezaei.html"),
+    html,
+  );
 });
 
 test("alignPhoneOnlyPractitionerChrome updates TOC header and dock on phone-only profiles", () => {
@@ -71,7 +73,7 @@ test("alignPhoneOnlyPractitionerChrome updates TOC header and dock on phone-only
     <a class="persistent-care-call" href="tel:+61732173344">Call</a>
   </nav>
   </body></html>`;
-  const next = alignPhoneOnlyPractitionerChrome(html, "doctors/dr-golnar-mortezaei.html");
+  const next = alignPhoneOnlyPractitionerChrome(html, "doctors/dr-mary-abadir.html");
   assert.match(next, /href="#book">Call Reception to Book</);
   assert.match(next, /persistent-care-book[^>]*href="tel:\+61732173344"/);
   assert.doesNotMatch(next, /persistent-care-book[^>]*data-hotdoc-button/);
@@ -80,4 +82,7 @@ test("alignPhoneOnlyPractitionerChrome updates TOC header and dock on phone-only
     alignPhoneOnlyPractitionerChrome(onlineHtml, "doctors/dr-james.html"),
     onlineHtml,
   );
+  // Golnar profile with tel primary still gets phone-only chrome until online rewrite upgrades CTA.
+  const golnarPhone = alignPhoneOnlyPractitionerChrome(html, "doctors/dr-golnar-mortezaei.html");
+  assert.match(golnarPhone, /persistent-care-book[^>]*href="tel:\+61732173344"/);
 });

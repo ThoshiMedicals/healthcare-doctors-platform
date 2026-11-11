@@ -4,21 +4,15 @@
  * Middleware and cutover configs (nginx / Cloudflare) must stay aligned.
  */
 export const WORDPRESS_LEGACY_REDIRECTS: Readonly<Record<string, string>> = {
-  // P0 — retired CMS practitioner WordPress slugs → live GP directory (not 404 profiles)
-  "/doctor/dr-golnar-mortezaei-gp-fracgp": "/team-general-practitioners.html",
-  "/doctor/dr-james-general-practitioner": "/team-general-practitioners.html",
   // Gemunu on_hold / intentionally unpublished — never 301 into a 404 profile
   "/doctor/dr-gemunu-suresh-ranawake": "/team-general-practitioners.html",
-
-  // P0 — retired Next-native profile URLs (Golnar / James / Yamesha / Gemunu) → GP directory
-  "/doctors/dr-golnar-mortezaei.html": "/team-general-practitioners.html",
-  "/doctors/dr-james.html": "/team-general-practitioners.html",
-  "/doctors/dr-yamesha-ranatunga.html": "/team-general-practitioners.html",
   "/doctors/dr-gemunu-suresh-ranawake.html": "/team-general-practitioners.html",
 
   // Active WordPress /doctor/* equity → live .html profiles (align middleware with nginx)
   "/doctor/dr-anand-singh": "/doctors/dr-anand-singh.html",
   "/doctor/dr-debra-larkins": "/doctors/dr-debra-larkins.html",
+  "/doctor/dr-golnar-mortezaei-gp-fracgp": "/doctors/dr-golnar-mortezaei.html",
+  "/doctor/dr-james-general-practitioner": "/doctors/dr-james.html",
   "/doctor/dr-kooshyar-karimi": "/doctors/dr-kooshyar-karimi.html",
   "/doctor/dr-mary-abadir": "/doctors/dr-mary-abadir.html",
   "/doctor/dr-nirupa-sivathasan": "/doctors/dr-nirupa-sivathasan.html",
@@ -29,7 +23,8 @@ export const WORDPRESS_LEGACY_REDIRECTS: Readonly<Record<string, string>> = {
   "/doctor/dr-usman-gul": "/doctors/dr-usman-gul.html",
   "/doctor/dr-wasantha-hettiarchchi": "/doctors/dr-wasantha-hettiarchchi.html",
   "/doctor/mr-samuel-stafford": "/doctors/mr-samuel-stafford.html",
-
+  // Note: Next-native /doctors/dr-golnar-mortezaei.html, /doctors/dr-james.html,
+  // and /doctors/dr-yamesha-ranatunga.html are published CMS pages — do not 301 them away.
   // P0 — telehealth cannibalisation: utility → canonical service page
   "/telehealth.html": "/services/telehealth.html",
 
@@ -55,11 +50,12 @@ export const WORDPRESS_LEGACY_REDIRECTS: Readonly<Record<string, string>> = {
 };
 
 /**
- * Extra CMS practitioner paths forced into the public sitemap beyond golden HTML.
- * Empty after retirement of Golnar / James / Yamesha (404 profiles — do not re-list).
+ * Extra CMS practitioner paths that may appear in a future production sitemap merge
+ * beyond golden HTML. Served sitemap today is still the static seo-approved file
+ * (no dynamic merge) — keep empty until golden/seo-approved sitemap is authorised
+ * to list these published CMS profiles.
  */
 export const SITEMAP_CMS_PRACTITIONER_PATHS = [] as const;
-
 export function normalizeLegacyPathname(pathname: string): string {
   if (!pathname) return "/";
   const trimmed = pathname.replace(/\/+$/, "");

@@ -1,4 +1,5 @@
 import { prisma } from "@/db/prisma";
+import { GOLNAR_APPROVED_HOTDOC_URL } from "@/documents/practitioner-booking";
 import { servicesForCareAreas } from "@/seo/care-area-service-map";
 import { Prisma } from "@prisma/client";
 
@@ -136,7 +137,9 @@ const WELCOME_PROFILE: Record<string, { profile: string; areas: string[]; bookin
   "updates/welcome-dr-golnar-mortezaei.html": {
     profile: "doctors/dr-golnar-mortezaei.html",
     areas: ["Veterans' health", "Chronic disease management", "Diabetes"],
-    bookingHref: "tel:+61732173344",
+    // CMS override preferred via injectWelcomeUpdateAuthorityLinks(bookingHrefOverride).
+    // Approved practitioner HotDoc fallback when CMS not yet republished.
+    bookingHref: GOLNAR_APPROVED_HOTDOC_URL,
   },
   "updates/welcome-dr-james-chanaka.html": {
     profile: "doctors/dr-james.html",
@@ -172,7 +175,7 @@ export function injectWelcomeUpdateAuthorityLinks(
   const bookLabel = bookHref.startsWith("tel:") ? "Call reception to book" : "Book appointment";
   const bookAttrs = bookHref.startsWith("tel:")
     ? `href="${escapeHtml(bookHref)}"`
-    : `data-hotdoc-button="" data-hotdoc-widget="lightbox" href="${escapeHtml(bookHref)}" rel="noopener"`;
+    : `data-hotdoc-button="" data-hotdoc-widget="lightbox" href="${escapeHtml(bookHref)}" target="_blank" rel="noopener noreferrer"`;
   links.push(
     `<a class="resource-link" ${bookAttrs}><span>${escapeHtml(bookLabel)}</span><span aria-hidden="true">→</span></a>`,
   );

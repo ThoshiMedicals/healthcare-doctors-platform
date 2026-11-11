@@ -5,17 +5,13 @@ import {
   SITEMAP_CMS_PRACTITIONER_PATHS,
 } from "./wordpress-legacy-redirects";
 
-test("P0 retired practitioner WordPress slugs map to GP directory", () => {
-  assert.equal(
-    resolveWordpressLegacyRedirect("/doctor/dr-golnar-mortezaei-gp-fracgp/"),
-    "/team-general-practitioners.html",
-  );
-  assert.equal(
-    resolveWordpressLegacyRedirect("/doctor/dr-james-general-practitioner"),
-    "/team-general-practitioners.html",
-  );
+test("unpublished Gemunu WordPress and Next paths map to GP directory", () => {
   assert.equal(
     resolveWordpressLegacyRedirect("/doctor/dr-gemunu-suresh-ranawake/"),
+    "/team-general-practitioners.html",
+  );
+  assert.equal(
+    resolveWordpressLegacyRedirect("/doctors/dr-gemunu-suresh-ranawake.html"),
     "/team-general-practitioners.html",
   );
 });
@@ -33,25 +29,23 @@ test("active WordPress doctor slugs map to live profile HTML", () => {
     resolveWordpressLegacyRedirect("/doctor/dr-steven-chang-chiropractor/"),
     "/doctors/dr-steven-chang.html",
   );
+  assert.equal(
+    resolveWordpressLegacyRedirect("/doctor/dr-golnar-mortezaei-gp-fracgp/"),
+    "/doctors/dr-golnar-mortezaei.html",
+  );
+  assert.equal(
+    resolveWordpressLegacyRedirect("/doctor/dr-james-general-practitioner"),
+    "/doctors/dr-james.html",
+  );
 });
 
-test("P0 retired Next profiles and telehealth utility consolidate without chains", () => {
-  assert.equal(
-    resolveWordpressLegacyRedirect("/doctors/dr-golnar-mortezaei.html"),
-    "/team-general-practitioners.html",
-  );
-  assert.equal(
-    resolveWordpressLegacyRedirect("/doctors/dr-james.html"),
-    "/team-general-practitioners.html",
-  );
-  assert.equal(
-    resolveWordpressLegacyRedirect("/doctors/dr-yamesha-ranatunga.html"),
-    "/team-general-practitioners.html",
-  );
-  assert.equal(
-    resolveWordpressLegacyRedirect("/doctors/dr-gemunu-suresh-ranawake.html"),
-    "/team-general-practitioners.html",
-  );
+test("published Next-native Golnar/James/Yamesha profiles are not redirected away", () => {
+  assert.equal(resolveWordpressLegacyRedirect("/doctors/dr-golnar-mortezaei.html"), null);
+  assert.equal(resolveWordpressLegacyRedirect("/doctors/dr-james.html"), null);
+  assert.equal(resolveWordpressLegacyRedirect("/doctors/dr-yamesha-ranatunga.html"), null);
+});
+
+test("telehealth utility consolidates without chains", () => {
   assert.equal(
     resolveWordpressLegacyRedirect("/telehealth.html"),
     "/services/telehealth.html",
@@ -59,6 +53,7 @@ test("P0 retired Next profiles and telehealth utility consolidate without chains
   // Destinations themselves must not redirect again.
   assert.equal(resolveWordpressLegacyRedirect("/team-general-practitioners.html"), null);
   assert.equal(resolveWordpressLegacyRedirect("/services/telehealth.html"), null);
+  assert.equal(resolveWordpressLegacyRedirect("/doctors/dr-golnar-mortezaei.html"), null);
 });
 
 test("P0 SEO landers never resolve to homepage", () => {
@@ -82,6 +77,6 @@ test("P0 SEO landers never resolve to homepage", () => {
   }
 });
 
-test("sitemap CMS practitioner extras stay empty after orphan retirement", () => {
+test("sitemap CMS practitioner extras stay empty until authorised static sitemap merge", () => {
   assert.deepEqual([...SITEMAP_CMS_PRACTITIONER_PATHS], []);
 });

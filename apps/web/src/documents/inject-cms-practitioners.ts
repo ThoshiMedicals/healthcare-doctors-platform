@@ -2,6 +2,7 @@ import { prisma } from "@/db/prisma";
 import { portraitBasename } from "@/cms/practitioner-media";
 import { practitionerFromPayload } from "@/cms/overlay";
 import { growthFromPayload, growthSearchKeywords } from "@/cms/practitioner-growth";
+import { resolvePractitionerBookingHref } from "@/documents/practitioner-booking";
 import { Prisma } from "@prisma/client";
 
 export type CmsPractitionerCard = {
@@ -68,7 +69,10 @@ export async function listImportedPublishedPractitioners(
           : row.qualifications,
         areasOfCare: payload?.areasOfCare?.length ? payload.areasOfCare : row.areasOfCare,
         portraitFile,
-        bookingUrl: payload?.bookingUrl || row.bookingUrl,
+        bookingUrl: resolvePractitionerBookingHref(
+          row.slug,
+          payload?.bookingUrl || row.bookingUrl,
+        ),
         pagePath: row.page?.path || `doctors/${row.slug}.html`,
         growthKeywords: growthSearchKeywords(growth),
       } satisfies CmsPractitionerCard;
@@ -97,7 +101,7 @@ function discoveryCard(card: CmsPractitionerCard): string {
   const bookIsPhone = bookHref.startsWith("tel:");
   const bookAttrs = bookIsPhone
     ? `href="${escapeHtml(bookHref)}" aria-label="Call reception to book with ${escapeHtml(card.name)}"`
-    : `data-hotdoc-button="" data-hotdoc-widget="lightbox" href="${escapeHtml(bookHref)}" aria-label="Book an appointment with ${escapeHtml(card.name)}" rel="noopener"`;
+    : `data-hotdoc-button="" data-hotdoc-widget="lightbox" href="${escapeHtml(bookHref)}" aria-label="Book an appointment with ${escapeHtml(card.name)}" target="_blank" rel="noopener noreferrer"`;
   const bookLabel = bookIsPhone ? "Call Reception to Book" : "Book Appointment";
   const photo = card.portraitFile
     ? `<div class="team-authority-photo"><img alt="${escapeHtml(card.name)}" data-local-team-src="assets/team/${escapeHtml(card.portraitFile)}" data-practitioner-image="true" decoding="async" height="1000" loading="lazy" sizes="(min-width: 1211px) 116px, (min-width: 1025px) 90px, (min-width: 701px) 116px, (min-width: 366px) 96px, 80px" src="assets/team/${escapeHtml(card.portraitFile)}" srcset="assets/team/${escapeHtml(card.portraitFile.replace(/\.webp$/i, "-640.webp"))} 640w, assets/team/${escapeHtml(card.portraitFile)} 1122w" width="800"/></div>`

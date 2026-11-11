@@ -21,6 +21,11 @@ import {
 } from "@/documents/inject-cms-updates";
 import { alignPhoneOnlyBookingProse } from "@/documents/phone-only-booking";
 import {
+  alignGolnarOnlineBookingChrome,
+  isGolnarBookingSurfacePath,
+  resolvePractitionerBookingHref,
+} from "@/documents/practitioner-booking";
+import {
   injectPractitionerGrowth,
   withPractitionerGrowthStyle,
 } from "@/documents/inject-practitioner-growth";
@@ -234,9 +239,9 @@ async function welcomeBookingHref(clinicId: string, pagePath: string): Promise<s
     where: { clinicId, slug },
     select: { bookingUrl: true, publishedPayload: true },
   });
-  if (!row) return null;
-  const fromPayload = practitionerFromPayload(row.publishedPayload)?.bookingUrl;
-  return fromPayload || row.bookingUrl || null;
+  const fromPayload = row ? practitionerFromPayload(row.publishedPayload)?.bookingUrl : null;
+  const cms = fromPayload || row?.bookingUrl || null;
+  return resolvePractitionerBookingHref(slug, cms);
 }
 
 function mark(timings: Record<string, number>, key: string, started: number): void {
@@ -328,8 +333,20 @@ export async function renderStoredPage(
       withWelcomeLinks,
       PROFILE_WELCOME_UPDATE[document.path] ?? null,
     );
+    const golnarBooking =
+      isGolnarBookingSurfacePath(document.path)
+        ? welcomeBooking ||
+          resolvePractitionerBookingHref(
+            "dr-golnar-mortezaei",
+            null,
+          )
+        : null;
+    const withGolnarOnline =
+      golnarBooking != null
+        ? alignGolnarOnlineBookingChrome(withProfileWelcome, document.path, golnarBooking)
+        : withProfileWelcome;
     const withGrowth = withPractitionerGrowthStyle(
-      await injectPractitionerGrowth(clinicId, document.path, withProfileWelcome),
+      await injectPractitionerGrowth(clinicId, document.path, withGolnarOnline),
     );
     mark(timings, "inject", injectStarted);
 

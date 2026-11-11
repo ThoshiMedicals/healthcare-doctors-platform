@@ -5,7 +5,7 @@ import {
   injectWelcomeUpdateAuthorityLinks,
 } from "./inject-cms-updates";
 
-test("welcome Golnar article gains profile, chronic service, and phone booking links", () => {
+test("welcome Golnar article gains profile, chronic service, and HotDoc booking links", () => {
   const html = `<main><article><h1>Welcome</h1></article></main>`;
   const next = injectWelcomeUpdateAuthorityLinks(
     "updates/welcome-dr-golnar-mortezaei.html",
@@ -14,9 +14,12 @@ test("welcome Golnar article gains profile, chronic service, and phone booking l
   );
   assert.match(next, /doctors\/dr-golnar-mortezaei\.html/);
   assert.match(next, /services\/chronic-disease-care\.html/);
-  assert.match(next, /tel:\+61732173344/);
+  assert.match(next, /dr-golnar-mortezaei-5\?wp=w_lightbox/);
+  assert.match(next, /data-hotdoc-widget="lightbox"/);
+  assert.match(next, /Book appointment/);
   assert.match(next, /data-cms-welcome-links="true"/);
   assert.doesNotMatch(next, /womens-health/);
+  assert.doesNotMatch(next, /tel:\+61732173344/);
 });
 
 test("welcome James article uses HotDoc override when provided", () => {

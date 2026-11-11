@@ -41,12 +41,18 @@ test("approved sitemap and robots are served unchanged", () => {
   const extra = [...listed].filter((file) => !html.has(file) && !cmsExtras.has(file)).sort();
   assert.deepEqual(missing, ["updates/article.html"]);
   assert.deepEqual(extra, []);
-  for (const retired of [
+  // Published CMS profiles (Golnar / James / Yamesha) are served from DB but are not yet
+  // listed in the static golden/seo-approved sitemap (no dynamic merge). Documented gap.
+  for (const cmsProfile of [
     "doctors/dr-golnar-mortezaei.html",
     "doctors/dr-james.html",
     "doctors/dr-yamesha-ranatunga.html",
   ]) {
-    assert.equal(listed.has(retired), false, `sitemap must not list retired orphan ${retired}`);
+    assert.equal(
+      listed.has(cmsProfile),
+      false,
+      `static sitemap still omits CMS-only profile ${cmsProfile} until authorised merge`,
+    );
   }
 });
 
