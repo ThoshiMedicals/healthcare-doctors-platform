@@ -7,11 +7,11 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
   icons: {
     icon: [
-      { url: "/favicon.ico?v=hd-symbol-20261029b", sizes: "any" },
-      { url: "/favicon-32x32.png?v=hd-symbol-20261029b", sizes: "32x32", type: "image/png" },
-      { url: "/favicon-16x16.png?v=hd-symbol-20261029b", sizes: "16x16", type: "image/png" },
+      { url: "/favicon.ico?v=hd-lockup-tm-caring-20261111a", sizes: "any" },
+      { url: "/favicon-32x32.png?v=hd-lockup-tm-caring-20261111a", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png?v=hd-lockup-tm-caring-20261111a", sizes: "16x16", type: "image/png" },
     ],
-    apple: "/apple-touch-icon.png?v=hd-symbol-20261029b",
+    apple: "/apple-touch-icon.png?v=hd-lockup-tm-caring-20261111a",
   },
 };
 

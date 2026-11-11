@@ -12,7 +12,7 @@
  */
 
 const THEME_COLOR = "#163f62"; // brand navy/blue (see public/styles.css --navy / --blue); not purple.
-const MANIFEST_VERSION = "wmc-pwa-v1-20261111";
+const MANIFEST_VERSION = "wmc-pwa-icons-lockup-20261111a";
 
 // --- 1) <head> link/meta tags -------------------------------------------------
 
