@@ -3,8 +3,8 @@
 **Date:** 2026-11-11  
 **Integration branch:** `qa/wmc-continuous-website`  
 **Worktree:** `C:\Users\RoshanSamarawickrema\Desktop\WMC-qa-continuous`  
-**Final integrated commit (pre-report):** see Section T (updated after report commit)  
-**Hostinger staging:** https://mediumslateblue-eagle-960503.hostingersite.com  
+**Final release-candidate tip:** see **§ Final Closure** (code tip `80bdbee` + this docs commit)  
+**Hostinger staging (accepted baseline — not yet this RC):** https://mediumslateblue-eagle-960503.hostingersite.com · build `01a1c934-77d0-7395-ac90-9017db7f6e8b` · archive `wmc-logo-v4-699f1de39e7e.zip` · tip `699f1de`  
 **Do not push / do not deploy without owner approval.**
 
 ---
@@ -421,11 +421,143 @@ Admin route list: `apps/web/.tmp-qa-continuous/inventory/admin-routes.txt`
 
 | Metric | Value |
 |--------|-------|
-| Final tip | see Section T after Agent C integrate + safe audit fix |
-| V4 branding on Hostinger | **CONFIRMED LIVE** |
-| Practitioner / booking | **15/15** + matrix PASS (Golnar label improved locally, not live until deploy) |
-| Admin | Login verified; 67 routes inventoried; deep CMS **BLOCKED** without credentials |
-| Security | Critical Auth.js cleared; remaining force-upgrade highs **BLOCKED** |
-| SEO CDN robots | **BLOCKED** |
+| Code tip for release archive | `80bdbee4d94c7e12a7b90a39e7b1cc74197e34d2` |
+| V4 branding on Hostinger | **CONFIRMED LIVE** (accepted baseline `699f1de`) |
+| Practitioner / booking | **15/15** + matrix PASS (Golnar CTA improved **locally only**) |
+| Admin | Login verified; deep CMS **BLOCKED** without credentials |
+| Security | **0 critical** after Auth.js beta.32; remaining force-upgrade highs **accepted risk / BLOCKED** |
+| SEO CDN robots / manifest MIME | Hosting-layer **BLOCKED** until post-deploy hPanel checks |
 | GitHub / Hostinger deploy | **NOT DONE** |
-| Verdict | **MASTER QA PARTIAL — APPROVALS OR EXTERNAL BLOCKERS REMAIN** |
+| Verdict | superseded by **§ Final Closure** |
+
+---
+
+## Final Closure — Master QA release candidate (11 Nov 2026 evening)
+
+### 1. Integrated Git tip and ancestry
+
+| Item | Status |
+|------|--------|
+| Branch | `qa/wmc-continuous-website` (clean; no force-reset) |
+| Prior recorded tip | `755d0ad` — **superseded** by later specialist + Lead commits |
+| Code tip (release archive source) | **`80bdbee`** |
+| Agent A CSS | `364adc7` cherry-picked as **`9a25f70`** (WCAG 2.5.8 touch targets) — **complete** |
+| Agent B report | `0ee2bf0` → **`b636b97`** |
+| Agent C SEO/security tests | `6acfa17` → **`88e6107`** |
+| Auth.js | `next-auth@5.0.0-beta.32` / `@auth/core@0.41.3` — **`93037b7`** |
+| Dep patches | Next **15.5.29**, Playwright **1.65.0** — **`b46faf9`** |
+| Golnar CTA | **`ee18adb`** (local only until deploy) |
+| PEERS + search-index | **`cd6dfad`**, **`e3553cf`** (+ tests `ac31c2f`) |
+| PWA manifest header | **`3bac035`** (local `next.config`; Hostinger still `text/plain`) |
+| Staging `/index.html` mitigation | **`eb58602`** |
+| V4 / Phase 1 / Phase 2 / corrective | `699f1de`, `6f1b0b2`, `8af1698`, `c2a5571` — **all ancestors** |
+| Specialist SHAs `364adc7`/`0ee2bf0`/`6acfa17` | Content integrated via cherry-pick (new SHAs above) |
+
+No approved work lost. `.env`, `.next`, `node_modules`, `.pgdata`, and `styles.min.css` (build artefact) are not committed.
+
+### 2. Full regression verification
+
+| Gate | Result |
+|------|--------|
+| `npm test` (maintained suite) | **514 tests · 513 pass · 1 fail** |
+| Sole failure | `golden-master` HTML region compare — **207 published pages missing** in fresh local DB |
+| Why blocked | `import:golden` correctly **refuses localhost** (production DB target guard). No DB writes to staging/production performed. |
+| Byte compares | `site.js` golden equality **PASS**; `styles.css` intentional QA CSS via approved-runtime exception **PASS** |
+| `test:practitioner-routes` | **34/34 PASS** |
+| Phase 1 care-area + Phase 2 authority + Agent C SEO | **25/25 PASS** (subset re-run) |
+| Auth / password / admin-hardening / super-admin | **PASS** after local seed with process env (Auth.js beta.32 — no login/middleware regressions observed in unit suite) |
+| Lint | **PASS** (existing warnings only; no errors) |
+| Production `npm run build` | **PASS** (Next **15.5.29**, Node 22-compatible settings) |
+| vs historical 512/512 | Suite now **514** tests; **513** green. Net +2 tests from QA; 1 env-blocked DB HTML compare |
+
+### 3. Dependency security gate (final)
+
+Installed: `next@15.5.29`, `next-auth@5.0.0-beta.32`, `@auth/core@0.41.3`, `zod@3.25.76`, `prisma@6.19.3`, `playwright@1.65.0`.
+
+| Advisory | Chain | Prod exposure | Reachability | Fix | Classification |
+|----------|-------|---------------|--------------|-----|----------------|
+| Auth.js criticals | cleared by beta.32 | n/a | n/a | done | **RESOLVED** |
+| `postcss` ≤8.5.22 (high) | bundled under `next` | build-time CSS stringify / source map path issues | Not a public request handler; exploit needs attacker-controlled PostCSS input during build | Next **16** via `--force` | **Accepted risk** for this RC (no `--force`) |
+| `zod` &lt;4.6.6 (high) | direct dep 3.25.76 | memory exhaustion on oversized constrained collections (advisory targets zod **v4** paths; project on **v3**) | Low for current Zod 3 usage; no evidence of attacker-controlled unbounded collection schemas in public routes | zod **4** major | **Accepted risk / false-positive posture for v3**; major upgrade BLOCKED |
+| `deepmerge-ts` (high) | `prisma` → `@prisma/config` | stack exhaustion on recursive merge | Prisma config/ORM internal; not a public HTTP handler | Prisma **7** major | **Accepted risk** (low runtime exploitability) |
+| Dev: `minimatch` (mod) via typescript-eslint | devOnly | CI lint tooling | Not shipped to Hostinger runtime | eslint stack bump | Non-blocking |
+| `npm audit --omit=dev` | **0 critical**, 5 high, 1 moderate | — | — | no `--force` | Gate: **criticals cleared** |
+
+### 4. Hostinger SEO / CDN outstanding (operator)
+
+Live checks **still show** (accepted V4 deploy, not this RC):
+
+| Path | Live behaviour | Local app status | Operator action |
+|------|----------------|------------------|-----------------|
+| `/robots.txt` | 58-byte CDN body: Googlebot `Disallow: /`; `*` `Allow: /` | Route handler + staging noindex code **correct** | hPanel/CDN: stop static short-circuit of `/robots.txt`; after RC deploy expect staging all-disallow (or confirm CF/hcdn bypass removed). **Do not** drop production canonicals. |
+| `/manifest.webmanifest` | `Content-Type: text/plain` | `next.config` sets `application/manifest+json` | After RC deploy: confirm response header is `application/manifest+json`. If still `text/plain`, set Hostinger MIME for `*.webmanifest`. |
+| `/index.html` | 200 DYNAMIC (CDN may serve static) | Middleware redirect/mitigation **`eb58602`** | After deploy: `curl -sI /index.html` should follow app redirect or serve staging-noindex HTML — not production `index,follow` static file. |
+
+**These are not fixed on live Hostinger until an authorised redeploy + hPanel verification.**
+
+### 5. Content / clinical safeguards
+
+| Check | Result |
+|-------|--------|
+| 15 practitioner profiles | Hostinger **15/15 HTTP 200**; Gemunu intentional 301 |
+| Booking matrix | Golnar HotDoc, Mary phone-only, Tanya insurance notice, James/Yamesha HotDoc — **PASS** |
+| V4 branding | Live on staging; preserved on QA tip |
+| Recruitment HOLD | Tests **PASS**; HOLD preserved |
+| PWA cache policy | Admin/auth/network-only — **PASS** |
+| Approval-held | Yamesha FAQ vs URL; Usman notice wording; missing photos — **unchanged / not invented** |
+
+### 6. Release preparation artefacts
+
+| Artefact | Path / value |
+|----------|--------------|
+| Release archive | `C:\Users\RoshanSamarawickrema\Desktop\backups\WMC-release-archives\wmc-master-qa-rc-80bdbee.zip` |
+| Archive SHA-256 | `6C6B69DFCDFDDD4F1CB4C7E55BB3D63BA9329711C2CE37C0CEC7EAEFD13D7390` |
+| Git SHA archived | `80bdbee4d94c7e12a7b90a39e7b1cc74197e34d2` |
+| Rollback archive (accepted V4) | `...\wmc-logo-v4-699f1de39e7e.zip` (build `01a1c934-…`) |
+| DB migrations required for this RC | **None new** beyond already-deployed schema lineage |
+| Hostinger Node | **22** (confirmed on current staging build settings) |
+| Independent off-server DB backup | **OUTSTANDING** — required before treating staging DB risk as closed |
+| GitHub push | **NOT performed** |
+| Hostinger deploy | **NOT performed** |
+
+#### Post-deploy smoke (owner)
+
+1. Health `{"ok":true,"database":"up"}`  
+2. Homepage V4 logo + Golnar CTA “Book with Dr Golnar”  
+3. 15 practitioner 200 + Gemunu 301  
+4. Mary `tel:` / Tanya insurance notice  
+5. `/robots.txt`, `/manifest.webmanifest` MIME, `/index.html` behaviour per table above  
+6. Admin login page 200; dashboard still redirects when logged out  
+7. Rollback = re-upload `wmc-logo-v4-699f1de39e7e.zip` (do **not** hard-reset local git branches)
+
+### 7. Issue register (remaining)
+
+| ID | Pri | Status |
+|----|-----|--------|
+| CDN `/robots.txt` shadow | P0 cutover/ops | **BLOCKED** — hPanel |
+| Manifest MIME on Hostinger | P1 | **BLOCKED** until redeploy + MIME confirm |
+| Golden HTML DB region test locally | P2 env | **BLOCKED** — localhost import correctly refused |
+| Remaining npm highs (Next16/zod4/Prisma7) | P2 security debt | **Accepted risk** / separate approval |
+| Yamesha FAQ / Usman copy / photos | P2 clinical | **BLOCKED** — owner/clinical |
+| Authenticated CMS deep CRUD | P2 | **BLOCKED** — credentials |
+| Off-box DB backup | P0 ops for DB-risk deploy | **OUTSTANDING** |
+
+### Executive quality summary (closure)
+
+| Metric | Value |
+|--------|-------|
+| Final code SHA | `80bdbee4d94c7e12a7b90a39e7b1cc74197e34d2` |
+| Full suite | **513/514 PASS** (1 DB-import env block) |
+| Production build | **PASS** |
+| Security | **0 critical**; highs documented accepted/BLOCKED |
+| Practitioners / booking | **PASS** |
+| Content preservation | **PASS** |
+| Agent A/B/C | **All integrated** |
+| Hostinger live = this RC? | **No** — still `699f1de` / `01a1c934` |
+| Push / deploy | **Not done** |
+
+### Verdict
+
+**MASTER QA RELEASE CANDIDATE VERIFIED — READY FOR OWNER REVIEW**
+
+Local RC is verified for controlled staging upload **after** owner confirms: (1) staging DB backup exception or off-box backup, (2) post-deploy CDN/robots/manifest checks, (3) no GitHub push until separately authorised.
