@@ -1,0 +1,321 @@
+# WMC Continuous Website QA Report
+
+**Date:** 2026-11-11  
+**Integration branch:** `qa/wmc-continuous-website`  
+**Worktree:** `C:\Users\RoshanSamarawickrema\Desktop\WMC-qa-continuous`  
+**Final integrated commit (pre-report):** see Section T (updated after report commit)  
+**Hostinger staging:** https://mediumslateblue-eagle-960503.hostingersite.com  
+**Do not push / do not deploy without owner approval.**
+
+---
+
+## A. Initial Hostinger deployment identity and source comparison
+
+| Item | Value |
+|------|-------|
+| Hostinger domain | `mediumslateblue-eagle-960503.hostingersite.com` |
+| Latest build UUID | `01a1c934-77d0-7395-ac90-9017db7f6e8b` |
+| Build state | `completed` (2026-11-11T06:06:21Z) |
+| Source | Archive `wmc-logo-v4-699f1de39e7e.zip` (not Git auto-deploy) |
+| Deployed code tip | **`699f1de`** (logo-v4 branding docs tip) |
+| `gitAutoDeployment` | `null` |
+| Health | `{"ok":true,"phase":"golden-import","database":"up"}` |
+| Local Master Project tip (pre-QA) | `745d45b` on `release/wmc-hostinger-rc1` (dirty WIP preserved) |
+| Strategic Recovery Phase 1 | `6f1b0b2` — **ancestor of Hostinger tip** via logo-v4 line |
+| Corrective RC | `c2a5571` — **ancestor of Hostinger tip** |
+| Phase 2 practitioner authority | `8af1698` — **ancestor of Hostinger tip** |
+| RC1 attraction layout fix | `745d45b` — **not** on Hostinger; cherry-picked into QA as `f9461e7` |
+
+**Classification rule used:** Hostinger live code = logo-v4 / Phase 2 line (`699f1de`). Local RC1 tip (`745d45b`) diverged without Phase 2/logo. QA baseline = `699f1de` + attraction cherry-pick → `f9461e7`, then continuous fixes.
+
+Master Project uncommitted WIP was **left untouched** on `WMC-Master-Project`.
+
+---
+
+## B. Complete published URL inventory
+
+| Source | Count / note |
+|--------|----------------|
+| Agent C / golden HTML files | **207** |
+| Production sitemap (`seo-approved/sitemap.xml`) | **205** `<loc>` |
+| CMS documented historical | **226** (+ orphans `404.html`, `updates/article.html`) |
+| Search-index manifest after QA fix | **208** routes |
+| Published practitioners with profiles | **15** |
+| Services (sitemap/category) | **29** |
+| Knowledge (sitemap/category) | **109** |
+| Lead Hostinger hub crawl (unique hrefs) | **114** discovered → **118** probed |
+
+**Lead probe summary (Hostinger):** 97 HTTP 200 of 118 absolute paths. Remaining 21 “404” rows were **false positives** from resolving knowledge-hub relative links (`womens-health.html`) to site root; correct `/knowledge/…` paths return 200.
+
+Artefacts (local, not committed):  
+`apps/web/.tmp-qa-continuous/inventory/`  
+`apps/web/.tmp-qa-continuous/inventory/agent-c-urls.json`
+
+---
+
+## C–D. Visual and responsive audit
+
+| Scope | Result |
+|-------|--------|
+| Hostinger homepage desktop | Logo-v4 lockup present; hero authority card + sticky Book/Call/Digital Reception visible |
+| GP directory | 12 GPs including Golnar/James/Yamesha; Usman booking-conditions chip present |
+| Agent A specialist | Worktree created; **no specialist visual commits** before report cut-off |
+| Unique templates visually inspected (Lead) | Home, Join Our Team (tabs open), About, GP directory — **not** all 200+ pages |
+| Hero freeze | Preserved (no hero redesign) |
+
+Known content gaps visible on staging: “Photo to be published” for **Dr Nirupa Sivathasan** and **Dr Yamesha Ranatunga** (asset/approval BLOCKED).
+
+Screenshots: `apps/web/.tmp-qa-continuous/screenshots/` (gitignored).
+
+---
+
+## E–H. Patient journeys, practitioners, booking, navigation
+
+### Practitioner routes (15/15 Hostinger)
+
+All inventory paths in `published-practitioner-routes.ts` return **HTTP 200**.  
+Gemunu unpublished paths redirect to `/team-general-practitioners.html` (intentional).  
+Wrong slug `/doctors/dr-james-chanaka.html` → **404** (canonical is `/doctors/dr-james.html`).
+
+### Booking policies (Agent B + Lead)
+
+| Practitioner | Policy | Staging | Status |
+|--------------|--------|---------|--------|
+| Golnar | ONLINE HotDoc `dr-golnar-mortezaei-5` | Present | PASS |
+| Mary | PHONE_ONLY `tel:` | Present | PASS |
+| Tanya | ONLINE + insurance slug | Notice + slug | PASS |
+| James | ONLINE `dr-james-chanaka-1` | Present | PASS |
+| Yamesha | ONLINE `dr-yamesha-ranatunga-2` | Present | PASS* |
+| Usman | Special restriction slug | Preserved | PASS |
+
+\*Yamesha JSON-LD FAQ claims insurance non–bulk-bill while HotDoc URL lacks insurance slug — **BLOCKED** for clinical/CMS approval (LEAD-B1). No invented notice injected.
+
+Recruitment HOLD: EOI/readiness form children 404; join hub informational — PASS.
+
+---
+
+## I. SEO and structured data
+
+| Check | Hostinger | Local code |
+|-------|-----------|------------|
+| HTML robots meta on `/` | `noindex, nofollow, noarchive` | OK |
+| `X-Robots-Tag` on `/` | present | OK |
+| `/sitemap.xml` | empty urlset | OK |
+| `/robots.txt` | CDN body: Googlebot Disallow:/ ; `*` Allow:/ | **BLOCKED** — CDN shadow (app staging robots correct in code) |
+| `/index.html` static | production `index,follow` without X-Robots-Tag | **P1** — CDN/static shadow; middleware now 302→`/` when Node handles staging |
+| Canonical identity | Production host in content model | Unchanged |
+
+---
+
+## J. Accessibility findings
+
+- Skip link, named booking controls, sticky care bar present on sampled pages.  
+- Join map phone CTA gained `aria-label` via attraction cherry-pick.  
+- Full axe/keyboard matrix across all templates: **not completed** (Agent A incomplete).  
+- Touch targets / contrast: no new P0 found in sampled views.
+
+---
+
+## K. Performance measurements
+
+Representative Hostinger timings (curl `time_total`, not Lighthouse):
+
+| Path | Notes |
+|------|-------|
+| `/` | Cold ~9s observed once; warm ~0.5–1s in Agent C samples |
+| `/team.html` | ~0.5–5s depending on cold start |
+| Doctor profiles | typically ~0.5–0.7s warm |
+| Static `/site.js`, CSS | ~0.1–0.35s |
+
+No speculative perf refactors. Durable-cache / cold-start remediation remains historically PASS; residual cold spikes on Hostinger are ops/runtime.
+
+---
+
+## L. Content-preservation comparison
+
+- No CMS/database writes performed.  
+- Golden `old-html/` only updated where required to keep runtime search-index / `site.js` byte-aligned with `apps/web/public` (peer graph + doctors shard).  
+- Attraction joining-map + HOLD EOI behaviour preserved in cherry-pick resolution.  
+- Homepage hero authority v6 not redesigned.
+
+---
+
+## M. Issue register (P0–P3)
+
+| ID | Sev | Issue | Status |
+|----|-----|-------|--------|
+| H-CDN-ROBOTS | P1/P0-at-cutover | Hostinger CDN shadows `/robots.txt` | **BLOCKED** (ops) |
+| H-INDEX-HTML | P1 | `/index.html` static serves production robots on staging | **Partial fix** — middleware redirect when Node sees path; CDN may still shadow |
+| PEERS-STALE | P1 | PEERS omitted James/Yamesha/Golnar | **FIXED** locally (`cd6dfad`) |
+| SEARCH-INDEX-GPS | P1 | doctors.json missing 3 GPs + null stub | **FIXED** locally (`e3553cf`) |
+| YAMESHA-JSONLD | P1 | FAQ/JSON-LD vs HotDoc insurance inconsistency | **BLOCKED** clinical/CMS |
+| MANIFEST-MIME | P2 | `manifest.webmanifest` as `text/plain` | **FIXED** locally (`3bac035`) — needs redeploy |
+| PHOTO-GAPS | P2 | Nirupa/Yamesha “Photo to be published” | **BLOCKED** assets |
+| USMAN-NOTICE | P1 clinical UX | Clearer OHO wording | **BLOCKED** clinical approval (Phase 2 backlog F1) |
+| ATTR-LOCAL-404 | P2 env | Local `:3100` attraction pages 404 without CMS DB | Environment — not Hostinger defect |
+| REL-CRAWL-FP | P3 | Inventory false 404s from relative knowledge links | Documented only |
+
+**P0 patient-functionality:** none open on staging practitioner/booking matrix after verification.
+
+---
+
+## N. Local repairs completed
+
+1. QA baseline rebase onto Hostinger tip + attraction layout cherry-pick (`f9461e7`).  
+2. Regenerate practitioner PEERS for all 15 published profiles (`cd6dfad`).  
+3. Restore James/Yamesha/Golnar in search-index; drop null doctor stub (`e3553cf`).  
+4. Agent B regression tests for insurance-notice boundaries + Usman matrix exclusion (`ac31c2f`).  
+5. PWA manifest Content-Type header (`3bac035`).  
+6. Staging `/index.html` → `/` middleware redirect + Agent C SEO lock tests (`eb58602`).
+
+---
+
+## O. Before/after evidence
+
+| Issue | Evidence |
+|-------|----------|
+| PEERS missing new GPs | Before: peer keys=12, no james/yamesha/golnar in `site.js`. After: 15 keys; coverage tests pass. |
+| Search index | Before: doctors.json=13 incl. null row; manifest 206. After: 15 doctors; manifest 208. |
+| Manifest MIME | Code header set; live Hostinger still `text/plain` until redeploy. |
+| Screenshots | `.tmp-qa-continuous/screenshots/hostinger-home-desktop.png` |
+
+---
+
+## P. Correction cycles performed
+
+| Round | Activity |
+|-------|----------|
+| 1 | Baseline discovery, Hostinger identity, worktrees, inventory |
+| 2 | PEERS + search-index repairs; Agent B/C integrations |
+| 3 | Focused regressions (61 pass) |
+| 4 | Visual spot-check Hostinger home + GP directory |
+| 5 | Report + build verification (see Q) |
+
+---
+
+## Q. Test and build results
+
+**Focused suite (61 tests):** PASS — practitioners, booking, HOLD, peers, search-index, staging noindex, Agent C SEO.
+
+**Production build:** PASS (`npm run build` in `apps/web`, exit 0; log `apps/web/.tmp-qa-continuous/build-log.txt`).
+
+---
+
+## R. Changed-file manifest (integration tip vs `699f1de`)
+
+Primary paths:
+
+- `apps/web/public/site.js`, `old-html/site.js`
+- `apps/web/public/search-index/{practitioner-peers,doctors,manifest}.json` (+ old-html mirrors)
+- `apps/web/scripts/regenerate-practitioner-peers.mjs`
+- `apps/web/scripts/patch-search-index-missing-gps.mjs`
+- `apps/web/src/seo/practitioner-peers-coverage.test.ts`
+- `apps/web/src/seo/search-index-doctors-coverage.test.ts`
+- `apps/web/src/seo/agent-c-qa.test.ts`
+- `apps/web/src/documents/booking-restriction-notice.test.ts`
+- `apps/web/src/documents/practitioner-booking.test.ts`
+- `apps/web/src/documents/join-our-team-recruitment.ts` (cherry-pick merge)
+- `apps/web/src/documents/public-ux.ts` / tests / attraction repair modules (cherry-pick)
+- `apps/web/next.config.ts`
+- `apps/web/src/middleware.ts`
+- `apps/web/package.json`
+- `docs/WMC-CONTINUOUS-WEBSITE-QA-REPORT.md`
+
+---
+
+## S. Local Git commit history (`qa/wmc-continuous-website`)
+
+```
+eb58602 fix(wmc): redirect staging /index.html and lock CDN-shadow SEO regressions
+3bac035 fix(wmc): serve PWA manifest with application/manifest+json content type
+ac31c2f fix(wmc): add regression tests for non-insurance HotDoc URLs and Usman matrix exclusion
+e3553cf fix(wmc): restore James Yamesha Golnar in public search index
+cd6dfad fix(wmc): regenerate practitioner peer graph for James Yamesha Golnar
+f9461e7 fix(wmc): restore attraction journey layout and joining map
+699f1de docs(wmc): record logo-v4 branding commit SHA in acceptance note
+```
+
+---
+
+## T. Final integrated commit SHA
+
+Recorded at report commit time on branch `qa/wmc-continuous-website` (this document’s commit becomes the tip).
+
+Pre-report tip: `eb5860230b0899348181aab921f39f70ba676bca` (report commit becomes tip below).
+
+---
+
+## U. Outstanding approval-dependent items
+
+1. Hostinger CDN `/robots.txt` override  
+2. Confirm CDN behaviour for `/index.html` after redeploy of middleware redirect  
+3. Yamesha insurance FAQ vs HotDoc slug clinical decision  
+4. Practitioner photo assets (Nirupa, Yamesha)  
+5. Usman plain-language booking notice (clinical principal)  
+6. Independent staging DB backup attestation (unchanged / unresolved in this run)  
+7. GitHub push + Hostinger archive/Git deploy authorisation  
+8. Merge QA tip into `release/wmc-hostinger-rc1` (lineage differs from pre-QA RC1 tip)
+
+---
+
+## V. GitHub and Hostinger deployment readiness
+
+| Action | Status |
+|--------|--------|
+| Local RC branch | Ready for review |
+| GitHub push | **NOT DONE** |
+| Hostinger redeploy | **NOT DONE** — staging still on archive `699f1de` |
+| Production DNS | **NO-GO** |
+
+Suggested deploy path (after approval): push `qa/wmc-continuous-website` (or merge to release branch) → Hostinger Node rebuild from known SHA/archive → bust public cache → re-smoke `/`, `/team-general-practitioners.html`, 15 doctors, `/robots.txt`, `/sitemap.xml`, Mary/Golnar/Tanya booking.
+
+---
+
+## W. Rollback instructions
+
+1. Local: `git checkout qa/wmc-continuous-website` then `git reset --hard 699f1de` (Hostinger-matching tip) or `f9461e7` (post cherry-pick only).  
+2. Hostinger: redeploy previous archive `wmc-logo-v4-699f1de39e7e.zip` / build `01a1c934-…`.  
+3. Do not revert CMS DB (no DB writes in this QA).  
+4. Master Project WIP remains on `release/wmc-hostinger-rc1` working tree — untouched.
+
+---
+
+## X. Remaining strategic improvements
+
+- Full Agent A multi-viewport visual pass + a11y keyboard matrix  
+- Regenerate search-index from CMS publish pipeline (avoid manual shard patches)  
+- Align `release/wmc-hostinger-rc1` with Phase 2 + logo-v4 ancestry  
+- Enable Hostinger Git auto-deploy with attested SHA  
+- Attraction authenticity / Index Gate (recruitment HOLD)  
+- Production cutover ops checklist (`docs/WMC-HOSTINGER-PRODUCTION-READINESS.md`)
+
+---
+
+## Executive release summary
+
+| Metric | Value |
+|--------|-------|
+| Published pages (sitemap / CMS docs) | 205 / ~226 |
+| Pages automatically checked (Lead probe) | 118 (97 true 200; 21 relative false 404s) |
+| Unique templates visually inspected | 4+ (home, join, about, GP directory) |
+| Issues identified | 10 tracked |
+| P0 | 0 open patient-function P0; CDN robots remains cutover blocker |
+| P1 | 4 (2 fixed locally, 2 blocked) |
+| P2 | 3 (1 fixed locally, 2 blocked/env) |
+| Issues fixed locally | 5 code commits after baseline |
+| Issues remaining / blocked | CDN robots, photos, Yamesha FAQ, Usman copy, DB backup |
+| Repair rounds | 5 |
+| Practitioner routes | **15/15 PASS** on Hostinger |
+| Booking tests | **PASS** (61 focused tests) |
+| Content preservation | PASS (no unapproved content loss) |
+| Phase 1/2 regression | Phase 1+2 present on QA baseline ancestry; RC1 tip not overwritten |
+| Production build | **PASS** |
+| Local Git | Clean commits on `qa/wmc-continuous-website` |
+| GitHub push | Not performed |
+| Hostinger deploy | Not updated |
+
+### Verdict
+
+**QA PARTIAL — APPROVALS OR EXTERNAL BLOCKERS REMAIN**
+
+Local release candidate is ready for **controlled staging redeploy review**, but must not be declared Hostinger-complete until CDN robots/`/index.html` behaviour is re-verified post-deploy and blocked clinical/content items are decided.
