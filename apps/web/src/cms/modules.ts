@@ -119,7 +119,21 @@ export const CMS_MODULES: ReadonlyArray<CmsModule> = [
 
 export function visibleModules(role: MembershipRole | null) {
   if (!role) return [];
-  return CMS_MODULES.filter((module) => roleAllows(role, module.action));
+  return CMS_MODULES.filter((module) => {
+    if (roleAllows(role, module.action)) return true;
+    // Shared governance board for clinical reviewers, practice approvers, and publishers.
+    if (
+      module.group === "governance" &&
+      (roleAllows(role, "clinical_signoff") ||
+        roleAllows(role, "practice_approve") ||
+        roleAllows(role, "publish"))
+    ) {
+      return true;
+    }
+    // Publishers need the Pages hub for take-down / restore / SEO publish.
+    if (module.href === "/admin/pages" && roleAllows(role, "unpublish_page")) return true;
+    return false;
+  });
 }
 
 export function visibleNavGroups(role: MembershipRole | null) {

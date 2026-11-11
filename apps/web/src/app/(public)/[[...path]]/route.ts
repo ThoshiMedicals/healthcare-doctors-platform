@@ -7,6 +7,7 @@ import {
   getPublicHtmlCache,
   peekPublicHtmlGeneration,
   setPublicHtmlCacheIfGeneration,
+  syncPublicCacheEpochFromDb,
 } from "@/documents/public-html-cache";
 import { canServeRecruitmentPathPublicly } from "@/importer/recruitment-hold";
 import {
@@ -147,6 +148,9 @@ export async function GET(
       request,
     );
   }
+
+  // Multi-instance: align memory generation with Clinic.publicCacheEpoch before HIT.
+  await syncPublicCacheEpochFromDb(clinic.id);
 
   const cached = getPublicHtmlCache(clinic.id, storagePath);
   if (cached) {

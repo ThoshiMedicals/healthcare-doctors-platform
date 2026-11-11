@@ -93,7 +93,19 @@ describe("staff account lifecycle", () => {
       }),
       "forbidden",
     );
-    for (const nextRole of ["clinical_reviewer", "practice_approver", "publisher", "editor", "super_admin"] as const) {
+    for (const nextRole of ["clinical_reviewer", "practice_approver", "publisher"] as const) {
+      assert.equal(
+        staffRoleDecision({
+          actorId: "super",
+          targetId: "editor",
+          currentRole: "content_editor",
+          nextRole,
+          enabledSuperAdminCount: 2,
+        }),
+        "ok",
+      );
+    }
+    for (const nextRole of ["editor", "super_admin"] as const) {
       assert.equal(
         staffRoleDecision({
           actorId: "super",

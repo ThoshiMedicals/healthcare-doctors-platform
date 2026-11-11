@@ -1,7 +1,16 @@
 import type { MembershipRole } from "@prisma/client";
 
 const SUPER_ADMIN_ROLES = new Set<MembershipRole>(["super_admin", "network_admin"]);
-const ROLE_STEP = new Set<MembershipRole>(["content_editor", "clinic_admin"]);
+/** Roles that may be stepped via setOtherStaffRole (not Super Admin grant path). */
+const ROLE_STEP = new Set<MembershipRole>([
+  "content_editor",
+  "clinic_admin",
+  "clinical_reviewer",
+  "practice_approver",
+  "publisher",
+]);
+/** Only clinic ops roles may be elevated to Super Admin via grant path. */
+const SUPER_GRANT_FROM = new Set<MembershipRole>(["content_editor", "clinic_admin"]);
 
 export function staffDisableDecision(input: {
   actorId: string;
@@ -39,6 +48,6 @@ export function staffGrantDecision(input: {
 }): "ok" | "self" | "unchanged" | "forbidden" {
   if (input.actorId === input.targetId) return "self";
   if (SUPER_ADMIN_ROLES.has(input.currentRole)) return "unchanged";
-  if (!ROLE_STEP.has(input.currentRole)) return "forbidden";
+  if (!SUPER_GRANT_FROM.has(input.currentRole)) return "forbidden";
   return "ok";
 }

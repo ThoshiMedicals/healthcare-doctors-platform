@@ -24,7 +24,16 @@ import {
   type GovernanceStatus,
 } from "@/governance/status";
 import { writePublishedGovernanceRegistry } from "@/governance/write-published-registry";
-import { moveWorkflow, publishEntity, renderedContentFingerprint, type ReleaseEntity } from "@/cms/release";
+import { moveWorkflow, publishEntity, recordClinicalSignOff, renderedContentFingerprint, type ReleaseEntity } from "@/cms/release";
+import { archivePage, restorePublishedPage, unpublishPage } from "@/cms/page-lifecycle";
+import { createDraftPreviewToken, revokeDraftPreviewToken } from "@/cms/draft-preview";
+import {
+  mergeSeoDraftOntoPage,
+  parseSeoDraft,
+  validateSeoDraft,
+  type PageSeoDraft,
+} from "@/documents/page-seo";
+import { bumpPublicCacheEpoch, invalidatePublicHtmlCache } from "@/documents/public-html-cache";
 import { prisma } from "@/db/prisma";
 
 function text(formData: FormData, key: string): string {
@@ -868,8 +877,26 @@ export async function submitContent(formData: FormData) {
   await runWorkflow(formData, clinic.id, user.id, user.name || user.email || "Staff", "clinical_review");
 }
 
-export async function approveContent(formData: FormData) {
+/** Clinical content approval — distinct from practice approval. */
+export async function signOffClinicalContent(formData: FormData) {
   const { user, clinic } = await requireAction("clinical_signoff");
+  const entityType = text(formData, "entityType") as ReleaseEntity;
+  const entityId = text(formData, "entityId");
+  const returnTo = text(formData, "returnTo") || "/admin";
+  const result = await recordClinicalSignOff({
+    clinicId: clinic.id,
+    authorId: user.id,
+    authorName: user.name || user.email || "Staff",
+    entityType,
+    entityId,
+  });
+  if (!result.ok) redirect(`${returnTo}?error=gate&reason=${encodeURIComponent(result.reasons.join(" "))}`);
+  redirect(`${returnTo}?saved=1`);
+}
+
+/** Operational / practice approval after clinical sign-off. */
+export async function approveContent(formData: FormData) {
+  const { user, clinic } = await requireAction("practice_approve");
   await runWorkflow(formData, clinic.id, user.id, user.name || user.email || "Staff", "approved");
 }
 
@@ -887,6 +914,151 @@ export async function publishContent(formData: FormData) {
   });
   if (!result.ok) redirect(`${returnTo}?error=gate&reason=${encodeURIComponent(result.reasons.join(" "))}`);
   redirect(`${returnTo}?published=1`);
+}
+
+export async function unpublishPublicPage(formData: FormData) {
+  const { user, clinic } = await requireAction("unpublish_page");
+  const pageId = text(formData, "pageId");
+  const returnTo = text(formData, "returnTo") || `/admin/pages/${pageId}`;
+  const result = await unpublishPage({ clinicId: clinic.id, pageId, actorId: user.id });
+  if (!result.ok) redirect(`${returnTo}?error=lifecycle&reason=${encodeURIComponent(result.reason)}`);
+  redirect(`${returnTo}?unpublished=1`);
+}
+
+export async function archivePublicPage(formData: FormData) {
+  const { user, clinic } = await requireAction("unpublish_page");
+  const pageId = text(formData, "pageId");
+  const returnTo = text(formData, "returnTo") || `/admin/pages/${pageId}`;
+  const result = await archivePage({ clinicId: clinic.id, pageId, actorId: user.id });
+  if (!result.ok) redirect(`${returnTo}?error=lifecycle&reason=${encodeURIComponent(result.reason)}`);
+  redirect(`${returnTo}?archived=1`);
+}
+
+export async function restorePublicPage(formData: FormData) {
+  const { user, clinic } = await requireAction("publish");
+  const pageId = text(formData, "pageId");
+  const returnTo = text(formData, "returnTo") || `/admin/pages/${pageId}`;
+  const result = await restorePublishedPage({ clinicId: clinic.id, pageId, actorId: user.id });
+  if (!result.ok) redirect(`${returnTo}?error=lifecycle&reason=${encodeURIComponent(result.reason)}`);
+  redirect(`${returnTo}?restored=1`);
+}
+
+export async function savePageSeoDraft(formData: FormData) {
+  const { user, clinic } = await requireAction("manage_seo");
+  const pageId = text(formData, "pageId");
+  const returnTo = text(formData, "returnTo") || `/admin/pages/${pageId}`;
+  const page = await prisma.page.findFirst({ where: { id: pageId, clinicId: clinic.id } });
+  if (!page) redirect("/admin/pages");
+  const draft: PageSeoDraft = {
+    title: text(formData, "title"),
+    description: text(formData, "description"),
+    canonicalPath: text(formData, "canonicalPath"),
+    robots: text(formData, "robots"),
+    indexable: text(formData, "indexable") === "true",
+    ogTitle: text(formData, "ogTitle"),
+    ogDescription: text(formData, "ogDescription"),
+  };
+  const problems = validateSeoDraft(draft, page.path);
+  if (problems.length > 0) {
+    redirect(`${returnTo}?error=seo&reason=${encodeURIComponent(problems.join(" "))}`);
+  }
+  await prisma.page.update({
+    where: { id: page.id },
+    data: { seoDraft: draft as Prisma.InputJsonValue },
+  });
+  await writeAuditLog({
+    clinicId: clinic.id,
+    actorId: user.id,
+    action: "page.seo_draft_save",
+    entityType: "page",
+    entityId: page.id,
+    metadata: { path: page.path },
+  });
+  redirect(`${returnTo}?seoDraft=1`);
+}
+
+export async function publishPageSeo(formData: FormData) {
+  const { user, clinic } = await requireAction("publish");
+  const pageId = text(formData, "pageId");
+  const returnTo = text(formData, "returnTo") || `/admin/pages/${pageId}`;
+  const page = await prisma.page.findFirst({ where: { id: pageId, clinicId: clinic.id } });
+  if (!page) redirect("/admin/pages");
+  const draft = parseSeoDraft(page.seoDraft) ?? {
+    title: page.title,
+    description: page.description,
+    canonicalPath: page.canonicalPath,
+    robots: page.robots,
+    indexable: page.indexable,
+  };
+  const problems = validateSeoDraft(draft, page.path);
+  if (problems.length > 0) {
+    redirect(`${returnTo}?error=seo&reason=${encodeURIComponent(problems.join(" "))}`);
+  }
+  const next = mergeSeoDraftOntoPage(
+    {
+      title: page.title,
+      description: page.description,
+      canonicalPath: page.canonicalPath,
+      robots: page.robots,
+      indexable: page.indexable,
+      openGraph: page.openGraph,
+    },
+    draft,
+  );
+  await prisma.page.update({
+    where: { id: page.id },
+    data: {
+      title: next.title,
+      description: next.description,
+      canonicalPath: next.canonicalPath,
+      robots: next.robots,
+      indexable: next.indexable,
+      openGraph: next.openGraph as Prisma.InputJsonValue,
+      seoDraft: Prisma.DbNull,
+    },
+  });
+  await writeAuditLog({
+    clinicId: clinic.id,
+    actorId: user.id,
+    action: "page.seo_publish",
+    entityType: "page",
+    entityId: page.id,
+    metadata: { path: page.path, title: next.title },
+  });
+  await bumpPublicCacheEpoch(clinic.id);
+  invalidatePublicHtmlCache(clinic.id);
+  redirect(`${returnTo}?seoPublished=1`);
+}
+
+export async function createPageDraftPreview(formData: FormData) {
+  const { user, clinic } = await requireAction("preview_draft");
+  const pageId = text(formData, "pageId");
+  const returnTo = text(formData, "returnTo") || `/admin/pages/${pageId}`;
+  let minted: { token: string } | null = null;
+  let reason = "Preview failed.";
+  try {
+    minted = await createDraftPreviewToken({
+      clinicId: clinic.id,
+      createdById: user.id,
+      pageId,
+    });
+  } catch (error) {
+    reason = error instanceof Error ? error.message : "Preview failed.";
+  }
+  // Keep redirect outside try/catch — Next.js redirect() throws a control-flow error.
+  if (!minted) {
+    redirect(`${returnTo}?error=preview&reason=${encodeURIComponent(reason)}`);
+  }
+  redirect(`/admin/preview/${minted.token}`);
+}
+
+export async function revokePageDraftPreview(formData: FormData) {
+  const { user, clinic } = await requireAction("preview_draft");
+  const tokenId = text(formData, "tokenId");
+  const pageId = text(formData, "pageId");
+  const returnTo = text(formData, "returnTo") || `/admin/pages/${pageId}`;
+  await revokeDraftPreviewToken({ clinicId: clinic.id, tokenId, actorId: user.id });
+  redirect(`${returnTo}?previewRevoked=1`);
 }
 
 async function runWorkflow(
