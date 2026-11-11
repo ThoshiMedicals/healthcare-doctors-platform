@@ -9,6 +9,7 @@ import { brandingFromClinic } from "@/clinics/branding";
 import { applyAccessibilityClosure } from "@/documents/accessibility";
 import { optimiseHomepageDelivery } from "@/documents/performance";
 import { applyFaviconLinks } from "@/documents/favicon";
+import { applyPwaMeta } from "@/documents/pwa-meta";
 import { applyPublicUxRefinements } from "@/documents/public-ux";
 import { injectCmsPractitionersIntoTeamHtml } from "@/documents/inject-cms-practitioners";
 import { injectCmsPractitionersIntoServiceHtml } from "@/documents/inject-cms-service-practitioners";
@@ -333,11 +334,13 @@ export async function renderStoredPage(
     mark(timings, "inject", injectStarted);
 
     const uxStarted = Date.now();
-    const refined = applyFaviconLinks(
-      applyPublicUxRefinements(
-        optimiseHomepageDelivery(applyAccessibilityClosure(withGrowth, document.path), document.path),
-        document.path,
-        uxOptions,
+    const refined = applyPwaMeta(
+      applyFaviconLinks(
+        applyPublicUxRefinements(
+          optimiseHomepageDelivery(applyAccessibilityClosure(withGrowth, document.path), document.path),
+          document.path,
+          uxOptions,
+        ),
       ),
     );
     // Careers vacancy inject can reintroduce EOI hrefs — apply SEO/HOLD + EEAT hygiene last.
@@ -367,8 +370,10 @@ export async function renderStoredPage(
   mark(timings, "total", renderStarted);
   return {
     status: 404,
-    html: applyFaviconLinks(
-      applyPublicUxRefinements(applyAccessibilityClosure(notFound.html, "404.html"), "404.html", uxOptions),
+    html: applyPwaMeta(
+      applyFaviconLinks(
+        applyPublicUxRefinements(applyAccessibilityClosure(notFound.html, "404.html"), "404.html", uxOptions),
+      ),
     ),
     path: "404.html",
     timings,

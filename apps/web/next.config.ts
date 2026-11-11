@@ -60,6 +60,19 @@ const nextConfig: NextConfig = {
         source: "/site.js",
         headers: [{ key: "Cache-Control", value: "no-cache, max-age=0, must-revalidate" }],
       },
+      // PWA manifest + SW: revalidate promptly so icon/shell edits reach installed users.
+      {
+        source: "/manifest.webmanifest",
+        headers: [{ key: "Cache-Control", value: "no-cache, max-age=0, must-revalidate" }],
+      },
+      {
+        source: "/sw.js",
+        headers: [{ key: "Cache-Control", value: "no-cache, max-age=0, must-revalidate" }],
+      },
+      {
+        source: "/offline.html",
+        headers: [{ key: "Cache-Control", value: "no-cache, max-age=0, must-revalidate" }],
+      },
       {
         source: "/assets/brand/healthcare-doctors-woolloongabba-logo.png",
         headers: [{ key: "Cache-Control", value: "public, max-age=60, must-revalidate" }],

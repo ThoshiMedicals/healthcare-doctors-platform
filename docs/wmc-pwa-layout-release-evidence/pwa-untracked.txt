@@ -1,0 +1,17 @@
+﻿apps/web/public/manifest.webmanifest
+apps/web/public/offline.html
+apps/web/public/patient-pwa-nav.js
+apps/web/public/sw.js
+apps/web/scripts/generate-pwa-icons.mjs
+apps/web/scripts/patient-pwa-cold-warm-probe.mjs
+apps/web/src/documents/patient-pwa-nav.test.ts
+apps/web/src/documents/pwa-meta.test.ts
+apps/web/src/documents/pwa-meta.ts
+apps/web/src/pwa/cache-policy.test.ts
+apps/web/src/pwa/cache-policy.ts
+apps/web/src/pwa/offline-shell.test.ts
+apps/web/src/pwa/sw-contract.test.ts
+docs/WMC-PWA-BASELINE-STAGING-TIMINGS.txt
+docs/WMC-PWA-BUILD-LOG.txt
+docs/WMC-PWA-INTEGRATED-PHASE3-REPORT.md
+docs/WMC-PWA-PHASE0-BASELINE.md

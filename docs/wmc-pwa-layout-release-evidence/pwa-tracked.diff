@@ -1,0 +1,262 @@
+﻿diff --git a/apps/web/.gitignore b/apps/web/.gitignore
+index 58e3afa..4cab264 100644
+--- a/apps/web/.gitignore
++++ b/apps/web/.gitignore
+@@ -7,6 +7,7 @@ node_modules/
+ /public/favicon-16x16.png
+ /public/favicon-32x32.png
+ /public/apple-touch-icon.png
++/public/icons/
+ /public/assets/performance/
+ .next/
+ .next-uat/
+diff --git a/apps/web/next.config.ts b/apps/web/next.config.ts
+index 5cd61c2..048059a 100644
+--- a/apps/web/next.config.ts
++++ b/apps/web/next.config.ts
+@@ -60,6 +60,19 @@ const nextConfig: NextConfig = {
+         source: "/site.js",
+         headers: [{ key: "Cache-Control", value: "no-cache, max-age=0, must-revalidate" }],
+       },
++      // PWA manifest + SW: revalidate promptly so icon/shell edits reach installed users.
++      {
++        source: "/manifest.webmanifest",
++        headers: [{ key: "Cache-Control", value: "no-cache, max-age=0, must-revalidate" }],
++      },
++      {
++        source: "/sw.js",
++        headers: [{ key: "Cache-Control", value: "no-cache, max-age=0, must-revalidate" }],
++      },
++      {
++        source: "/offline.html",
++        headers: [{ key: "Cache-Control", value: "no-cache, max-age=0, must-revalidate" }],
++      },
+       {
+         source: "/assets/brand/healthcare-doctors-woolloongabba-logo.png",
+         headers: [{ key: "Cache-Control", value: "public, max-age=60, must-revalidate" }],
+diff --git a/apps/web/package.json b/apps/web/package.json
+index dd41492..4b6b404 100644
+--- a/apps/web/package.json
++++ b/apps/web/package.json
+@@ -5,8 +5,9 @@
+   "description": "Next.js infrastructure for the approved Woolloongabba Medical Centre website. Does not migrate or redesign pages.",
+   "scripts": {
+     "dev": "next dev",
+-    "build": "prisma generate && node scripts/optimize-css.mjs && node scripts/optimize-images.mjs && node scripts/generate-favicons.mjs && node scripts/verify-favicons.mjs && next build",
++    "build": "prisma generate && node scripts/optimize-css.mjs && node scripts/optimize-images.mjs && node scripts/generate-favicons.mjs && node scripts/verify-favicons.mjs && node scripts/generate-pwa-icons.mjs && next build",
+     "favicon:generate": "node scripts/generate-favicons.mjs",
++    "pwa-icons:generate": "node scripts/generate-pwa-icons.mjs",
+     "start": "next start",
+     "uat:build": "node scripts/uat.mjs build",
+     "uat": "node scripts/uat.mjs start",
+@@ -27,7 +28,7 @@
+     "publish:practice-experience": "tsx scripts/publish-practice-experience.ts",
+     "seed:attraction-content": "tsx scripts/seed-attraction-publish-ready.ts",
+     "exercise:draft-clinic": "tsx scripts/draft-second-clinic-exercise.ts",
+-    "test": "tsx --test src/cms/active-clinic.test.ts src/importer/golden-root.test.ts src/importer/runtime-copy.test.ts src/importer/content-reconciliation.test.ts src/importer/recruitment-hold.test.ts src/importer/approved-content-manifest.test.ts src/db/assert-db-target.test.ts src/measurement/clinic-filter.test.ts src/clinics/resolve-clinic.admin.test.ts src/regression/golden-master.test.ts src/regression/digital-reception.runtime.test.ts src/regression/team-opening.test.ts src/regression/production-opening-audit.test.ts src/cms/publish-render.test.ts src/cms/publish-gates.test.ts src/cms/usability.test.ts src/cms/image-governance.test.ts src/cms/image-replacement.test.ts src/cms/page-lifecycle.logic.test.ts src/cms/page-lifecycle.db.test.ts src/cms/draft-preview.test.ts src/documents/page-seo.test.ts src/seo/launch.test.ts src/seo/staging-noindex.test.ts src/documents/favicon.test.ts src/documents/public-ux.test.ts src/documents/booking-restriction-notice.test.ts src/documents/phone-only-booking.test.ts src/documents/recruitment-hold-route.test.ts src/documents/package-a-a11y-smoke.test.ts src/documents/package-a-navigation.test.ts src/practice-experience/schema-guards.test.ts src/attraction-cms/validate-schema.test.ts src/attraction-cms/validate-publish-ready.test.ts src/story-capture/reuse.test.ts src/security/admin-hardening.test.ts src/auth/password.test.ts src/cms/user-lifecycle.test.ts src/cms/staff-create.test.ts src/cms/super-admin-grant.test.ts src/clinics/host.test.ts src/governance/expiry-report.test.ts src/governance/management-report.test.ts src/governance/publish-registry.test.ts src/governance/remediation.test.ts src/measurement/dashboard.test.ts src/measurement/executive-report.test.ts src/measurement/digital-reception-report.test.ts src/measurement/practitioner-authority-report.test.ts src/measurement/service-authority-report.test.ts src/measurement/conversion-intelligence-report.test.ts src/measurement/management-exports.test.ts src/measurement/authority-tier-investigation.test.ts src/measurement/platform-health-investigation.test.ts src/measurement/platform-health-score.test.ts \"src/app/admin/(dashboard)/dashboard-ui/filter-policy.test.ts\" \"src/app/admin/(dashboard)/dashboard-ui/resolve-insights-filter-state.test.ts\" \"src/app/admin/(dashboard)/dashboard-ui/insights-preferences.test.ts\" \"src/app/admin/(dashboard)/dashboard-ui/insights-filters.test.ts\" \"src/app/admin/(dashboard)/dashboard-ui/clear-insights-filter.test.ts\" \"src/app/admin/(dashboard)/dashboard-ui/fp03-dashboard-integration.test.ts\" \"src/app/admin/(dashboard)/dashboard-ui/links.test.ts\" \"src/app/admin/(dashboard)/dashboard-ui/platform-health-actions.test.ts\" \"src/app/admin/(dashboard)/dashboard-ui/chart-navigation.test.ts\" \"src/app/admin/(dashboard)/dashboard-ui/kpi-actions.test.ts\" \"src/app/admin/(dashboard)/dashboard-ui/investigation.test.ts\" src/readiness/platform-readiness.test.ts src/readiness/visual-ux-maturity.test.ts src/readiness/admin-dashboard-maturity.test.ts src/readiness/insights-actionability-audit.test.ts src/readiness/homepage-qa-audit.test.ts src/readiness/practitioner-qa-audit.test.ts src/readiness/service-qa-audit.test.ts src/readiness/knowledge-qa-audit.test.ts src/readiness/search-reception-qa-audit.test.ts src/readiness/booking-funnel-qa-audit.test.ts src/readiness/trust-authority-qa-audit.test.ts src/readiness/command-centre-qa-audit.test.ts src/readiness/executive-dashboard-qa-audit.test.ts src/readiness/digital-reception-qa-audit.test.ts src/readiness/authority-dashboard-qa-audit.test.ts",
++    "test": "tsx --test src/cms/active-clinic.test.ts src/importer/golden-root.test.ts src/importer/runtime-copy.test.ts src/importer/content-reconciliation.test.ts src/importer/recruitment-hold.test.ts src/importer/approved-content-manifest.test.ts src/db/assert-db-target.test.ts src/measurement/clinic-filter.test.ts src/clinics/resolve-clinic.admin.test.ts src/regression/golden-master.test.ts src/regression/digital-reception.runtime.test.ts src/regression/team-opening.test.ts src/regression/production-opening-audit.test.ts src/cms/publish-render.test.ts src/cms/publish-gates.test.ts src/cms/usability.test.ts src/cms/image-governance.test.ts src/cms/image-replacement.test.ts src/cms/page-lifecycle.logic.test.ts src/cms/page-lifecycle.db.test.ts src/cms/draft-preview.test.ts src/documents/page-seo.test.ts src/seo/launch.test.ts src/seo/staging-noindex.test.ts src/documents/favicon.test.ts src/documents/public-ux.test.ts src/documents/patient-pwa-nav.test.ts src/documents/pwa-meta.test.ts src/pwa/cache-policy.test.ts src/pwa/sw-contract.test.ts src/pwa/offline-shell.test.ts src/documents/booking-restriction-notice.test.ts src/documents/phone-only-booking.test.ts src/documents/recruitment-hold-route.test.ts src/documents/package-a-a11y-smoke.test.ts src/documents/package-a-navigation.test.ts src/practice-experience/schema-guards.test.ts src/attraction-cms/validate-schema.test.ts src/attraction-cms/validate-publish-ready.test.ts src/story-capture/reuse.test.ts src/security/admin-hardening.test.ts src/auth/password.test.ts src/cms/user-lifecycle.test.ts src/cms/staff-create.test.ts src/cms/super-admin-grant.test.ts src/clinics/host.test.ts src/governance/expiry-report.test.ts src/governance/management-report.test.ts src/governance/publish-registry.test.ts src/governance/remediation.test.ts src/measurement/dashboard.test.ts src/measurement/executive-report.test.ts src/measurement/digital-reception-report.test.ts src/measurement/practitioner-authority-report.test.ts src/measurement/service-authority-report.test.ts src/measurement/conversion-intelligence-report.test.ts src/measurement/management-exports.test.ts src/measurement/authority-tier-investigation.test.ts src/measurement/platform-health-investigation.test.ts src/measurement/platform-health-score.test.ts \"src/app/admin/(dashboard)/dashboard-ui/filter-policy.test.ts\" \"src/app/admin/(dashboard)/dashboard-ui/resolve-insights-filter-state.test.ts\" \"src/app/admin/(dashboard)/dashboard-ui/insights-preferences.test.ts\" \"src/app/admin/(dashboard)/dashboard-ui/insights-filters.test.ts\" \"src/app/admin/(dashboard)/dashboard-ui/clear-insights-filter.test.ts\" \"src/app/admin/(dashboard)/dashboard-ui/fp03-dashboard-integration.test.ts\" \"src/app/admin/(dashboard)/dashboard-ui/links.test.ts\" \"src/app/admin/(dashboard)/dashboard-ui/platform-health-actions.test.ts\" \"src/app/admin/(dashboard)/dashboard-ui/chart-navigation.test.ts\" \"src/app/admin/(dashboard)/dashboard-ui/kpi-actions.test.ts\" \"src/app/admin/(dashboard)/dashboard-ui/investigation.test.ts\" src/readiness/platform-readiness.test.ts src/readiness/visual-ux-maturity.test.ts src/readiness/admin-dashboard-maturity.test.ts src/readiness/insights-actionability-audit.test.ts src/readiness/homepage-qa-audit.test.ts src/readiness/practitioner-qa-audit.test.ts src/readiness/service-qa-audit.test.ts src/readiness/knowledge-qa-audit.test.ts src/readiness/search-reception-qa-audit.test.ts src/readiness/booking-funnel-qa-audit.test.ts src/readiness/trust-authority-qa-audit.test.ts src/readiness/command-centre-qa-audit.test.ts src/readiness/executive-dashboard-qa-audit.test.ts src/readiness/digital-reception-qa-audit.test.ts src/readiness/authority-dashboard-qa-audit.test.ts",
+     "test:p0": "tsx --test src/cms/page-lifecycle.logic.test.ts src/cms/page-lifecycle.db.test.ts src/cms/draft-preview.test.ts src/documents/page-seo.test.ts src/security/admin-hardening.test.ts src/cms/staff-create.test.ts src/importer/recruitment-hold.test.ts src/documents/phone-only-booking.test.ts src/documents/booking-restriction-notice.test.ts src/documents/recruitment-hold-route.test.ts",
+     "governance:sync": "tsx scripts/sync-governance-eligibility.ts",
+     "governance:publish": "tsx scripts/publish-governance-registry.ts",
+diff --git a/apps/web/scripts/uat.mjs b/apps/web/scripts/uat.mjs
+index f4bee95..3dc7e24 100644
+--- a/apps/web/scripts/uat.mjs
++++ b/apps/web/scripts/uat.mjs
+@@ -54,6 +54,13 @@ if (mode === "build") {
+     stdio: "inherit",
+   });
+   if (verifiedIcons.status !== 0) process.exit(verifiedIcons.status ?? 1);
++
++  const pwaIcons = spawnSync(process.execPath, [path.join(root, "scripts", "generate-pwa-icons.mjs")], {
++    cwd: root,
++    env,
++    stdio: "inherit",
++  });
++  if (pwaIcons.status !== 0) process.exit(pwaIcons.status ?? 1);
+ }
+ 
+ const nextBin = path.join(root, "node_modules", "next", "dist", "bin", "next");
+diff --git a/apps/web/src/documents/public-ux.ts b/apps/web/src/documents/public-ux.ts
+index 3163692..8a6d585 100644
+--- a/apps/web/src/documents/public-ux.ts
++++ b/apps/web/src/documents/public-ux.ts
+@@ -284,6 +284,120 @@ function moveGpViewAllLinkToSectionFooter(html: string): string {
+   });
+ }
+ 
++const PATIENT_PWA_QUICKNAV_SCRIPT_HREF =
++  "/wmc-cache/patient-pwa-nav.js?v=wmc-patient-pwa-nav-20261111a";
++
++/**
++ * Standalone-only (installed PWA) patient quick-access strip. Hidden in every
++ * ordinary browser tab via `@media (display-mode: standalone)` — zero visual
++ * change to the approved public pages. Shown only where the page already has
++ * the approved `.persistent-care-actions` booking dock, and mirrors that dock's
++ * existing Book/Call link verbatim (never invents a HotDoc or phone path).
++ * Recruitment/Express-Interest/EV surfaces are excluded — this is a patient
++ * journey aid, not a GP-attraction surface, and must not touch HOLD pages.
++ */
++const PATIENT_PWA_QUICKNAV_STYLE = `<style id="wmc-patient-pwa-quicknav">
++.patient-pwa-quicknav{display:none}
++@media (display-mode:standalone){
++.patient-pwa-quicknav{
++display:block;background:rgba(255,255,255,.98);
++border-bottom:1px solid rgba(219,228,233,.76);
++padding:6px max(10px,env(safe-area-inset-right)) 6px max(10px,env(safe-area-inset-left))
++}
++}
++.patient-pwa-quicknav-inner{display:flex;align-items:stretch;gap:4px;max-width:720px;margin:0 auto}
++.patient-pwa-quicknav-link{flex:1 1 0;display:flex;flex-direction:column;align-items:center;justify-content:center;
++gap:2px;min-height:44px;padding:6px 2px;border-radius:10px;border:0;background:transparent;
++color:var(--navy);font:600 10.5px/1.1 "Inter",sans-serif;text-decoration:none;text-align:center;cursor:pointer}
++.patient-pwa-quicknav-link:hover,.patient-pwa-quicknav-link:focus-visible{background:rgba(23,48,68,.07)}
++.patient-pwa-quicknav-link:focus-visible{outline:2px solid #174f75;outline-offset:2px}
++.patient-pwa-quicknav-label{white-space:nowrap}
++.patient-pwa-quicknav-book{color:#fff;background:var(--navy)}
++.patient-pwa-quicknav-book:hover,.patient-pwa-quicknav-book:focus-visible{background:#123d5e;color:#fff}
++.patient-pwa-nav-progress{position:fixed;top:0;left:0;right:0;height:3px;background:var(--navy);
++transform:scaleX(0);transform-origin:0 50%;z-index:9999;pointer-events:none}
++body.pwa-nav-loading .patient-pwa-nav-progress{transform:scaleX(.72);transition:transform 6s cubic-bezier(.1,.6,.2,1)}
++@media(prefers-reduced-motion:reduce){.patient-pwa-nav-progress{transition:none!important}}
++</style>`;
++
++function patientPwaQuickNavHtml(bookAnchor: string, pagePath: string): string {
++  const bookHref = bookAnchor.match(/\bhref="([^"]*)"/i)?.[1] ?? "";
++  const isTel = /^tel:/i.test(bookHref);
++  const hotdocMarkers = isTel
++    ? ""
++    : [
++        /\bdata-hotdoc-button="[^"]*"/i.test(bookAnchor) ? 'data-hotdoc-button=""' : "",
++        bookAnchor.match(/\bdata-hotdoc-widget="[^"]*"/i)?.[0] ?? "",
++      ]
++        .filter(Boolean)
++        .join(" ");
++  const existingAriaLabel = bookAnchor.match(/\baria-label="([^"]*)"/i)?.[1];
++  const bookAriaLabel = existingAriaLabel
++    ? escapeHtmlAttr(existingAriaLabel)
++    : isTel
++      ? "Call to book an appointment"
++      : "Book an appointment";
++  const bookLabel = isTel ? "Call" : "Book";
++  const prefix = assetPrefixForPage(pagePath);
++
++  return (
++    `<nav aria-label="Patient quick access" class="patient-pwa-quicknav" data-pwa-standalone-nav="true">` +
++    `<div class="patient-pwa-quicknav-inner">` +
++    `<a class="patient-pwa-quicknav-link patient-pwa-quicknav-book"${hotdocMarkers ? ` ${hotdocMarkers}` : ""} aria-label="${bookAriaLabel}" href="${escapeHtmlAttr(bookHref)}"><span class="patient-pwa-quicknav-label">${bookLabel}</span></a>` +
++    `<a class="patient-pwa-quicknav-link patient-pwa-quicknav-doctors" aria-label="View our doctors" href="${prefix}team-general-practitioners.html"><span class="patient-pwa-quicknav-label">Doctors</span></a>` +
++    `<a class="patient-pwa-quicknav-link patient-pwa-quicknav-services" aria-label="View our services" href="${prefix}services.html"><span class="patient-pwa-quicknav-label">Services</span></a>` +
++    `<button aria-label="Open Digital Reception — ask for information" class="patient-pwa-quicknav-link patient-pwa-quicknav-reception" data-open-digital-reception="" type="button"><span class="patient-pwa-quicknav-label">Reception</span></button>` +
++    `<a class="patient-pwa-quicknav-link patient-pwa-quicknav-contact" aria-label="Contact us" href="${prefix}contact.html"><span class="patient-pwa-quicknav-label">Contact</span></a>` +
++    `</div></nav>`
++  );
++}
++
++/**
++ * Insert (or refresh) the standalone-only patient quick-access strip right
++ * after the shared header, before hero/main content — never a floating
++ * overlay. `skip` excludes recruitment/EV/HOLD surfaces entirely (any stale
++ * inject from a prior apply is stripped so the result stays clean/idempotent).
++ */
++function injectPatientPwaStandaloneNav(html: string, pagePath: string, skip: boolean): string {
++  let next = html;
++  next = next.replace(
++    /(?:\/wmc-cache\/)?(?:\.\.\/)*patient-pwa-nav\.js(?:\?[^"]*)?(?=")/g,
++    PATIENT_PWA_QUICKNAV_SCRIPT_HREF,
++  );
++
++  const dockMatch = skip
++    ? null
++    : next.match(
++        /<nav\b(?=[^>]*\bclass="[^"]*\bpersistent-care-actions\b)(?![^>]*\bpersistent-care-actions--recruitment\b)[^>]*>[\s\S]*?<\/nav>/i,
++      );
++  const bookAnchor = dockMatch?.[0].match(/<a\b[^>]*\bpersistent-care-book\b[^>]*>[\s\S]*?<\/a>/i)?.[0];
++
++  if (skip || !bookAnchor || !/\bhref="[^"]+"/i.test(bookAnchor)) {
++    // No approved dock to mirror (or an excluded surface) — remove any stale inject.
++    next = next.replace(/<style\b[^>]*id="wmc-patient-pwa-quicknav"[\s\S]*?<\/style>\s*/i, "");
++    next = next.replace(/<nav\b[^>]*\bdata-pwa-standalone-nav="true"[^>]*>[\s\S]*?<\/nav>\s*/i, "");
++    next = next.replace(/<script\b[^>]*\bsrc="[^"]*patient-pwa-nav\.js[^"]*"[^>]*><\/script>\s*/i, "");
++    return next;
++  }
++
++  const quicknavHtml = patientPwaQuickNavHtml(bookAnchor, pagePath);
++  next = /<nav\b[^>]*\bdata-pwa-standalone-nav="true"[^>]*>[\s\S]*?<\/nav>/i.test(next)
++    ? next.replace(/<nav\b[^>]*\bdata-pwa-standalone-nav="true"[^>]*>[\s\S]*?<\/nav>/i, quicknavHtml)
++    : next.replace(/<\/header>/i, `</header>${quicknavHtml}`);
++
++  next = next.replace(/<style\b[^>]*id="wmc-patient-pwa-quicknav"[\s\S]*?<\/style>\s*/i, "");
++  next = next.replace(/<\/head>/i, `${PATIENT_PWA_QUICKNAV_STYLE}</head>`);
++
++  if (!/<script\b[^>]*\bsrc="[^"]*patient-pwa-nav\.js[^"]*"/i.test(next)) {
++    next = next.replace(
++      /<\/body>/i,
++      `<script defer="" src="${PATIENT_PWA_QUICKNAV_SCRIPT_HREF}"></script></body>`,
++    );
++  }
++
++  return next;
++}
++
+ export function applyPublicUxRefinements(
+   html: string,
+   pagePath: string,
+@@ -1889,6 +2003,14 @@ min-height:44px;width:100%;max-width:100%;box-sizing:border-box
+     return updatedNav;
+   });
+ 
++  // Standalone-only (installed PWA) patient quick-access strip — hidden in every
++  // ordinary browser tab; excluded from recruitment/EV/HOLD surfaces entirely.
++  next = injectPatientPwaStandaloneNav(
++    next,
++    pagePath,
++    isRecruitmentSurface || isExpressInterestPage,
++  );
++
+   if (pagePath !== "index.html") return next;
+ 
+   // Keep After Hours Care beside View all hours when the golden hours block is present.
+diff --git a/apps/web/src/documents/render-published-document.ts b/apps/web/src/documents/render-published-document.ts
+index 0f2f0c5..61b5b17 100644
+--- a/apps/web/src/documents/render-published-document.ts
++++ b/apps/web/src/documents/render-published-document.ts
+@@ -9,6 +9,7 @@ import { brandingFromClinic } from "@/clinics/branding";
+ import { applyAccessibilityClosure } from "@/documents/accessibility";
+ import { optimiseHomepageDelivery } from "@/documents/performance";
+ import { applyFaviconLinks } from "@/documents/favicon";
++import { applyPwaMeta } from "@/documents/pwa-meta";
+ import { applyPublicUxRefinements } from "@/documents/public-ux";
+ import { injectCmsPractitionersIntoTeamHtml } from "@/documents/inject-cms-practitioners";
+ import { injectCmsPractitionersIntoServiceHtml } from "@/documents/inject-cms-service-practitioners";
+@@ -333,11 +334,13 @@ export async function renderStoredPage(
+     mark(timings, "inject", injectStarted);
+ 
+     const uxStarted = Date.now();
+-    const refined = applyFaviconLinks(
+-      applyPublicUxRefinements(
+-        optimiseHomepageDelivery(applyAccessibilityClosure(withGrowth, document.path), document.path),
+-        document.path,
+-        uxOptions,
++    const refined = applyPwaMeta(
++      applyFaviconLinks(
++        applyPublicUxRefinements(
++          optimiseHomepageDelivery(applyAccessibilityClosure(withGrowth, document.path), document.path),
++          document.path,
++          uxOptions,
++        ),
+       ),
+     );
+     // Careers vacancy inject can reintroduce EOI hrefs — apply SEO/HOLD + EEAT hygiene last.
+@@ -367,8 +370,10 @@ export async function renderStoredPage(
+   mark(timings, "total", renderStarted);
+   return {
+     status: 404,
+-    html: applyFaviconLinks(
+-      applyPublicUxRefinements(applyAccessibilityClosure(notFound.html, "404.html"), "404.html", uxOptions),
++    html: applyPwaMeta(
++      applyFaviconLinks(
++        applyPublicUxRefinements(applyAccessibilityClosure(notFound.html, "404.html"), "404.html", uxOptions),
++      ),
+     ),
+     path: "404.html",
+     timings,

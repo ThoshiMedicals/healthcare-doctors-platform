@@ -218,6 +218,18 @@ body[data-attraction-type="tool"] details.attraction-tool-panel summary{
   display:block;min-height:44px;padding:.35rem 0;line-height:1.35;font-size:1rem;font-weight:650;
 }
 .page-nav .nav-group-title,.page-nav .nav-title{margin:1rem 0 .35rem;font-size:.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--attr-muted)}
+/* Failsafe: if journey rail is missing from the grid, article must not sit in the 280px track. */
+body[data-ev="true"] .page-layout:not(:has(> .page-nav)):not(:has(> [data-ev-journey-nav="true"])),
+body[data-attraction-surface="true"] .page-layout:not(:has(> .page-nav)):not(:has(> [data-ev-journey-nav="true"])),
+body[data-attraction-type] .page-layout:not(:has(> .page-nav)):not(:has(> [data-ev-journey-nav="true"])){
+grid-template-columns:minmax(0,1fr)!important
+}
+body[data-ev="true"] .page-layout > .article,
+body[data-attraction-surface="true"] .page-layout > .article,
+body[data-attraction-type] .page-layout > .article,
+body[data-ev="true"] .page-layout > article,
+body[data-attraction-surface="true"] .page-layout > article,
+body[data-attraction-type] .page-layout > article{min-width:0;max-width:100%}
 body[data-attraction-type] .page-hero .eyebrow,
 .attraction-next-step .eyebrow,
 .attraction-fit-pillars .eyebrow,

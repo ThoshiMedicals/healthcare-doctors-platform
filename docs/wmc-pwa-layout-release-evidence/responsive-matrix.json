@@ -1,0 +1,1425 @@
+{
+  "results": [
+    {
+      "path": "about-us/practice-experience.html",
+      "width": 320,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 304,
+        "railW": 304,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 320,
+        "clientW": 320
+      },
+      "staging": null
+    },
+    {
+      "path": "about-us/practice-experience.html",
+      "width": 375,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 347,
+        "railW": 347,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 375,
+        "clientW": 375
+      },
+      "staging": {
+        "label": "staging",
+        "articleW": 347,
+        "railW": 375,
+        "railParent": "breadcrumb-bar",
+        "overflowX": false,
+        "scrollW": 375,
+        "clientW": 375
+      }
+    },
+    {
+      "path": "about-us/practice-experience.html",
+      "width": 390,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 362,
+        "railW": 362,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 390,
+        "clientW": 390
+      },
+      "staging": null
+    },
+    {
+      "path": "about-us/practice-experience.html",
+      "width": 768,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 712,
+        "railW": 712,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 768,
+        "clientW": 768
+      },
+      "staging": null
+    },
+    {
+      "path": "about-us/practice-experience.html",
+      "width": 1024,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 968,
+        "railW": 968,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1024,
+        "clientW": 1024
+      },
+      "staging": null
+    },
+    {
+      "path": "about-us/practice-experience.html",
+      "width": 1280,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 880,
+        "railW": 280,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1280,
+        "clientW": 1280
+      },
+      "staging": {
+        "label": "staging",
+        "articleW": 280,
+        "railW": 1280,
+        "railParent": "breadcrumb-bar",
+        "overflowX": false,
+        "scrollW": 1280,
+        "clientW": 1280
+      }
+    },
+    {
+      "path": "about-us/practice-experience.html",
+      "width": 1440,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 976,
+        "railW": 280,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1440,
+        "clientW": 1440
+      },
+      "staging": null
+    },
+    {
+      "path": "about-us/community-catchment.html",
+      "width": 320,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 304,
+        "railW": 304,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 320,
+        "clientW": 320
+      },
+      "staging": null
+    },
+    {
+      "path": "about-us/community-catchment.html",
+      "width": 375,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 347,
+        "railW": 347,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 375,
+        "clientW": 375
+      },
+      "staging": {
+        "label": "staging",
+        "articleW": 347,
+        "railW": 375,
+        "railParent": "breadcrumb-bar",
+        "overflowX": false,
+        "scrollW": 375,
+        "clientW": 375
+      }
+    },
+    {
+      "path": "about-us/community-catchment.html",
+      "width": 390,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 362,
+        "railW": 362,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 390,
+        "clientW": 390
+      },
+      "staging": null
+    },
+    {
+      "path": "about-us/community-catchment.html",
+      "width": 768,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 712,
+        "railW": 712,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 768,
+        "clientW": 768
+      },
+      "staging": null
+    },
+    {
+      "path": "about-us/community-catchment.html",
+      "width": 1024,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 968,
+        "railW": 968,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1024,
+        "clientW": 1024
+      },
+      "staging": null
+    },
+    {
+      "path": "about-us/community-catchment.html",
+      "width": 1280,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 880,
+        "railW": 280,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1280,
+        "clientW": 1280
+      },
+      "staging": {
+        "label": "staging",
+        "articleW": 280,
+        "railW": 1280,
+        "railParent": "breadcrumb-bar",
+        "overflowX": false,
+        "scrollW": 1280,
+        "clientW": 1280
+      }
+    },
+    {
+      "path": "about-us/community-catchment.html",
+      "width": 1440,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 976,
+        "railW": 280,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1440,
+        "clientW": 1440
+      },
+      "staging": null
+    },
+    {
+      "path": "about-us/continuity-in-practice.html",
+      "width": 320,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 304,
+        "railW": 304,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 320,
+        "clientW": 320
+      },
+      "staging": null
+    },
+    {
+      "path": "about-us/continuity-in-practice.html",
+      "width": 375,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 347,
+        "railW": 347,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 375,
+        "clientW": 375
+      },
+      "staging": {
+        "label": "staging",
+        "articleW": 347,
+        "railW": 375,
+        "railParent": "breadcrumb-bar",
+        "overflowX": false,
+        "scrollW": 375,
+        "clientW": 375
+      }
+    },
+    {
+      "path": "about-us/continuity-in-practice.html",
+      "width": 390,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 362,
+        "railW": 362,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 390,
+        "clientW": 390
+      },
+      "staging": null
+    },
+    {
+      "path": "about-us/continuity-in-practice.html",
+      "width": 768,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 712,
+        "railW": 712,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 768,
+        "clientW": 768
+      },
+      "staging": null
+    },
+    {
+      "path": "about-us/continuity-in-practice.html",
+      "width": 1024,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 968,
+        "railW": 968,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1024,
+        "clientW": 1024
+      },
+      "staging": null
+    },
+    {
+      "path": "about-us/continuity-in-practice.html",
+      "width": 1280,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 880,
+        "railW": 280,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1280,
+        "clientW": 1280
+      },
+      "staging": {
+        "label": "staging",
+        "articleW": 280,
+        "railW": 1280,
+        "railParent": "breadcrumb-bar",
+        "overflowX": false,
+        "scrollW": 1280,
+        "clientW": 1280
+      }
+    },
+    {
+      "path": "about-us/continuity-in-practice.html",
+      "width": 1440,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 976,
+        "railW": 280,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1440,
+        "clientW": 1440
+      },
+      "staging": null
+    },
+    {
+      "path": "about-us/clinical-interests.html",
+      "width": 320,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 304,
+        "railW": 304,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 320,
+        "clientW": 320
+      },
+      "staging": null
+    },
+    {
+      "path": "about-us/clinical-interests.html",
+      "width": 375,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 347,
+        "railW": 347,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 375,
+        "clientW": 375
+      },
+      "staging": {
+        "label": "staging",
+        "articleW": 347,
+        "railW": 375,
+        "railParent": "breadcrumb-bar",
+        "overflowX": false,
+        "scrollW": 375,
+        "clientW": 375
+      }
+    },
+    {
+      "path": "about-us/clinical-interests.html",
+      "width": 390,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 362,
+        "railW": 362,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 390,
+        "clientW": 390
+      },
+      "staging": null
+    },
+    {
+      "path": "about-us/clinical-interests.html",
+      "width": 768,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 712,
+        "railW": 712,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 768,
+        "clientW": 768
+      },
+      "staging": null
+    },
+    {
+      "path": "about-us/clinical-interests.html",
+      "width": 1024,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 968,
+        "railW": 968,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1024,
+        "clientW": 1024
+      },
+      "staging": null
+    },
+    {
+      "path": "about-us/clinical-interests.html",
+      "width": 1280,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 880,
+        "railW": 280,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1280,
+        "clientW": 1280
+      },
+      "staging": {
+        "label": "staging",
+        "articleW": 280,
+        "railW": 1280,
+        "railParent": "breadcrumb-bar",
+        "overflowX": false,
+        "scrollW": 1280,
+        "clientW": 1280
+      }
+    },
+    {
+      "path": "about-us/clinical-interests.html",
+      "width": 1440,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 976,
+        "railW": 280,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1440,
+        "clientW": 1440
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/gp-opportunities.html",
+      "width": 320,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 304,
+        "railW": 304,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 320,
+        "clientW": 320
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/gp-opportunities.html",
+      "width": 375,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 347,
+        "railW": 347,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 375,
+        "clientW": 375
+      },
+      "staging": {
+        "label": "staging",
+        "articleW": 347,
+        "railW": 375,
+        "railParent": "breadcrumb-bar",
+        "overflowX": false,
+        "scrollW": 375,
+        "clientW": 375
+      }
+    },
+    {
+      "path": "join-our-team/gp-opportunities.html",
+      "width": 390,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 362,
+        "railW": 362,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 390,
+        "clientW": 390
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/gp-opportunities.html",
+      "width": 768,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 712,
+        "railW": 712,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 768,
+        "clientW": 768
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/gp-opportunities.html",
+      "width": 1024,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 968,
+        "railW": 968,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1024,
+        "clientW": 1024
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/gp-opportunities.html",
+      "width": 1280,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 880,
+        "railW": 280,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1280,
+        "clientW": 1280
+      },
+      "staging": {
+        "label": "staging",
+        "articleW": 280,
+        "railW": 1280,
+        "railParent": "breadcrumb-bar",
+        "overflowX": false,
+        "scrollW": 1280,
+        "clientW": 1280
+      }
+    },
+    {
+      "path": "join-our-team/gp-opportunities.html",
+      "width": 1440,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 976,
+        "railW": 280,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1440,
+        "clientW": 1440
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/practice-support.html",
+      "width": 320,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 304,
+        "railW": 304,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 320,
+        "clientW": 320
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/practice-support.html",
+      "width": 375,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 347,
+        "railW": 347,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 375,
+        "clientW": 375
+      },
+      "staging": {
+        "label": "staging",
+        "articleW": 347,
+        "railW": 375,
+        "railParent": "breadcrumb-bar",
+        "overflowX": false,
+        "scrollW": 375,
+        "clientW": 375
+      }
+    },
+    {
+      "path": "join-our-team/practice-support.html",
+      "width": 390,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 362,
+        "railW": 362,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 390,
+        "clientW": 390
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/practice-support.html",
+      "width": 768,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 712,
+        "railW": 712,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 768,
+        "clientW": 768
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/practice-support.html",
+      "width": 1024,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 968,
+        "railW": 968,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1024,
+        "clientW": 1024
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/practice-support.html",
+      "width": 1280,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 880,
+        "railW": 280,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1280,
+        "clientW": 1280
+      },
+      "staging": {
+        "label": "staging",
+        "articleW": 280,
+        "railW": 1280,
+        "railParent": "breadcrumb-bar",
+        "overflowX": false,
+        "scrollW": 1280,
+        "clientW": 1280
+      }
+    },
+    {
+      "path": "join-our-team/practice-support.html",
+      "width": 1440,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 976,
+        "railW": 280,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1440,
+        "clientW": 1440
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/registrar-pathway.html",
+      "width": 320,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 304,
+        "railW": 304,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 320,
+        "clientW": 320
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/registrar-pathway.html",
+      "width": 375,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 347,
+        "railW": 347,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 375,
+        "clientW": 375
+      },
+      "staging": {
+        "label": "staging",
+        "articleW": 347,
+        "railW": 375,
+        "railParent": "breadcrumb-bar",
+        "overflowX": false,
+        "scrollW": 375,
+        "clientW": 375
+      }
+    },
+    {
+      "path": "join-our-team/registrar-pathway.html",
+      "width": 390,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 362,
+        "railW": 362,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 390,
+        "clientW": 390
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/registrar-pathway.html",
+      "width": 768,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 712,
+        "railW": 712,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 768,
+        "clientW": 768
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/registrar-pathway.html",
+      "width": 1024,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 968,
+        "railW": 968,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1024,
+        "clientW": 1024
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/registrar-pathway.html",
+      "width": 1280,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 880,
+        "railW": 280,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1280,
+        "clientW": 1280
+      },
+      "staging": {
+        "label": "staging",
+        "articleW": 280,
+        "railW": 1280,
+        "railParent": "breadcrumb-bar",
+        "overflowX": false,
+        "scrollW": 1280,
+        "clientW": 1280
+      }
+    },
+    {
+      "path": "join-our-team/registrar-pathway.html",
+      "width": 1440,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 976,
+        "railW": 280,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1440,
+        "clientW": 1440
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/opportunity-pack.html",
+      "width": 320,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 304,
+        "railW": 304,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 320,
+        "clientW": 320
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/opportunity-pack.html",
+      "width": 375,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 347,
+        "railW": 347,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 375,
+        "clientW": 375
+      },
+      "staging": {
+        "label": "staging",
+        "articleW": 347,
+        "railW": 375,
+        "railParent": "breadcrumb-bar",
+        "overflowX": false,
+        "scrollW": 375,
+        "clientW": 375
+      }
+    },
+    {
+      "path": "join-our-team/opportunity-pack.html",
+      "width": 390,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 362,
+        "railW": 362,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 390,
+        "clientW": 390
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/opportunity-pack.html",
+      "width": 768,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 712,
+        "railW": 712,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 768,
+        "clientW": 768
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/opportunity-pack.html",
+      "width": 1024,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 968,
+        "railW": 968,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1024,
+        "clientW": 1024
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/opportunity-pack.html",
+      "width": 1280,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 880,
+        "railW": 280,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1280,
+        "clientW": 1280
+      },
+      "staging": {
+        "label": "staging",
+        "articleW": 280,
+        "railW": 1280,
+        "railParent": "breadcrumb-bar",
+        "overflowX": false,
+        "scrollW": 1280,
+        "clientW": 1280
+      }
+    },
+    {
+      "path": "join-our-team/opportunity-pack.html",
+      "width": 1440,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 976,
+        "railW": 280,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1440,
+        "clientW": 1440
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/gp-faq.html",
+      "width": 320,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 304,
+        "railW": 304,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 320,
+        "clientW": 320
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/gp-faq.html",
+      "width": 375,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 347,
+        "railW": 347,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 375,
+        "clientW": 375
+      },
+      "staging": {
+        "label": "staging",
+        "articleW": 347,
+        "railW": 375,
+        "railParent": "breadcrumb-bar",
+        "overflowX": false,
+        "scrollW": 375,
+        "clientW": 375
+      }
+    },
+    {
+      "path": "join-our-team/gp-faq.html",
+      "width": 390,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 362,
+        "railW": 362,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 390,
+        "clientW": 390
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/gp-faq.html",
+      "width": 768,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 712,
+        "railW": 712,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 768,
+        "clientW": 768
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/gp-faq.html",
+      "width": 1024,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 968,
+        "railW": 968,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1024,
+        "clientW": 1024
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/gp-faq.html",
+      "width": 1280,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 880,
+        "railW": 280,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1280,
+        "clientW": 1280
+      },
+      "staging": {
+        "label": "staging",
+        "articleW": 280,
+        "railW": 1280,
+        "railParent": "breadcrumb-bar",
+        "overflowX": false,
+        "scrollW": 1280,
+        "clientW": 1280
+      }
+    },
+    {
+      "path": "join-our-team/gp-faq.html",
+      "width": 1440,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 976,
+        "railW": 280,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1440,
+        "clientW": 1440
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/provider-number-readiness.html",
+      "width": 320,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 304,
+        "railW": 304,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 320,
+        "clientW": 320
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/provider-number-readiness.html",
+      "width": 375,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 347,
+        "railW": 347,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 375,
+        "clientW": 375
+      },
+      "staging": {
+        "label": "staging",
+        "articleW": 347,
+        "railW": 375,
+        "railParent": "breadcrumb-bar",
+        "overflowX": false,
+        "scrollW": 375,
+        "clientW": 375
+      }
+    },
+    {
+      "path": "join-our-team/provider-number-readiness.html",
+      "width": 390,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 362,
+        "railW": 362,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 390,
+        "clientW": 390
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/provider-number-readiness.html",
+      "width": 768,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 712,
+        "railW": 712,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 768,
+        "clientW": 768
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/provider-number-readiness.html",
+      "width": 1024,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 968,
+        "railW": 968,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1024,
+        "clientW": 1024
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/provider-number-readiness.html",
+      "width": 1280,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 880,
+        "railW": 280,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1280,
+        "clientW": 1280
+      },
+      "staging": {
+        "label": "staging",
+        "articleW": 280,
+        "railW": 1280,
+        "railParent": "breadcrumb-bar",
+        "overflowX": false,
+        "scrollW": 1280,
+        "clientW": 1280
+      }
+    },
+    {
+      "path": "join-our-team/provider-number-readiness.html",
+      "width": 1440,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 976,
+        "railW": 280,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1440,
+        "clientW": 1440
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/dpa-navigator.html",
+      "width": 320,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 304,
+        "railW": 304,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 320,
+        "clientW": 320
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/dpa-navigator.html",
+      "width": 375,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 347,
+        "railW": 347,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 375,
+        "clientW": 375
+      },
+      "staging": {
+        "label": "staging",
+        "articleW": 347,
+        "railW": 375,
+        "railParent": "breadcrumb-bar",
+        "overflowX": false,
+        "scrollW": 375,
+        "clientW": 375
+      }
+    },
+    {
+      "path": "join-our-team/dpa-navigator.html",
+      "width": 390,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 362,
+        "railW": 362,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 390,
+        "clientW": 390
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/dpa-navigator.html",
+      "width": 768,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 712,
+        "railW": 712,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 768,
+        "clientW": 768
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/dpa-navigator.html",
+      "width": 1024,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 968,
+        "railW": 968,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1024,
+        "clientW": 1024
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/dpa-navigator.html",
+      "width": 1280,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 880,
+        "railW": 280,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1280,
+        "clientW": 1280
+      },
+      "staging": {
+        "label": "staging",
+        "articleW": 280,
+        "railW": 1280,
+        "railParent": "breadcrumb-bar",
+        "overflowX": false,
+        "scrollW": 1280,
+        "clientW": 1280
+      }
+    },
+    {
+      "path": "join-our-team/dpa-navigator.html",
+      "width": 1440,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 976,
+        "railW": 280,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1440,
+        "clientW": 1440
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/session-planner.html",
+      "width": 320,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 304,
+        "railW": 304,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 320,
+        "clientW": 320
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/session-planner.html",
+      "width": 375,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 347,
+        "railW": 347,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 375,
+        "clientW": 375
+      },
+      "staging": {
+        "label": "staging",
+        "articleW": 347,
+        "railW": 375,
+        "railParent": "breadcrumb-bar",
+        "overflowX": false,
+        "scrollW": 375,
+        "clientW": 375
+      }
+    },
+    {
+      "path": "join-our-team/session-planner.html",
+      "width": 390,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 362,
+        "railW": 362,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 390,
+        "clientW": 390
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/session-planner.html",
+      "width": 768,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 712,
+        "railW": 712,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 768,
+        "clientW": 768
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/session-planner.html",
+      "width": 1024,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 968,
+        "railW": 968,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1024,
+        "clientW": 1024
+      },
+      "staging": null
+    },
+    {
+      "path": "join-our-team/session-planner.html",
+      "width": 1280,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 880,
+        "railW": 280,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1280,
+        "clientW": 1280
+      },
+      "staging": {
+        "label": "staging",
+        "articleW": 280,
+        "railW": 1280,
+        "railParent": "breadcrumb-bar",
+        "overflowX": false,
+        "scrollW": 1280,
+        "clientW": 1280
+      }
+    },
+    {
+      "path": "join-our-team/session-planner.html",
+      "width": 1440,
+      "fixed": {
+        "label": "fixed",
+        "articleW": 976,
+        "railW": 280,
+        "railParent": "shell page-layout",
+        "overflowX": false,
+        "scrollW": 1440,
+        "clientW": 1440
+      },
+      "staging": null
+    },
+    {
+      "path": "standalone-recruit-quicknav",
+      "width": 390,
+      "recruitQn": {
+        "present": false
+      }
+    }
+  ],
+  "assetResults": [
+    {
+      "path": "/manifest.webmanifest",
+      "status": 200,
+      "type": "application/manifest+json",
+      "len": 0
+    },
+    {
+      "path": "/sw.js",
+      "status": 200,
+      "type": "application/javascript",
+      "len": 0
+    },
+    {
+      "path": "/offline.html",
+      "status": 200,
+      "type": "text/html",
+      "len": 0
+    },
+    {
+      "path": "/icons/icon-192.png",
+      "status": 200,
+      "type": "image/png",
+      "len": 0
+    },
+    {
+      "path": "/icons/icon-512.png",
+      "status": 200,
+      "type": "image/png",
+      "len": 0
+    }
+  ],
+  "hold": [
+    {
+      "path": "join-our-team/express-interest.html",
+      "status": 404
+    },
+    {
+      "path": "join-our-team/gp-readiness.html",
+      "status": 404
+    },
+    {
+      "path": "join-our-team/gp-opportunities.html",
+      "status": 200
+    }
+  ]
+}

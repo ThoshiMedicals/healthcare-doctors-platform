@@ -7,6 +7,7 @@ node_modules/
 /public/favicon-16x16.png
 /public/favicon-32x32.png
 /public/apple-touch-icon.png
+/public/icons/
 /public/assets/performance/
 .next/
 .next-uat/

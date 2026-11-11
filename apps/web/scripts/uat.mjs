@@ -54,6 +54,13 @@ if (mode === "build") {
     stdio: "inherit",
   });
   if (verifiedIcons.status !== 0) process.exit(verifiedIcons.status ?? 1);
+
+  const pwaIcons = spawnSync(process.execPath, [path.join(root, "scripts", "generate-pwa-icons.mjs")], {
+    cwd: root,
+    env,
+    stdio: "inherit",
+  });
+  if (pwaIcons.status !== 0) process.exit(pwaIcons.status ?? 1);
 }
 
 const nextBin = path.join(root, "node_modules", "next", "dist", "bin", "next");

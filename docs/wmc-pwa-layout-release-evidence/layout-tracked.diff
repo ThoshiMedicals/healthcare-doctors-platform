@@ -1,0 +1,162 @@
+﻿diff --git a/apps/web/src/attraction-cms/ensure-journey-nav.test.ts b/apps/web/src/attraction-cms/ensure-journey-nav.test.ts
+index 8e48f6e..15b97e3 100644
+--- a/apps/web/src/attraction-cms/ensure-journey-nav.test.ts
++++ b/apps/web/src/attraction-cms/ensure-journey-nav.test.ts
+@@ -15,6 +15,42 @@ test("replaces stale Express Interest CTA with Confidential conversation + Explo
+   assert.equal(ensureUnifiedRecruitmentJourneyNav(next, "join-our-team/gp-opportunities.html"), next);
+ });
+ 
++test("restores journey rail as first child of page-layout (not breadcrumb-bar)", () => {
++  const html = `<main><div class="breadcrumb-bar"><nav class="breadcrumb">Home</nav></div><section class="page-main"><div class="shell page-layout"><aside class="page-nav" id="related-pages">stale</aside><article class="article pe-article"><p>Body</p></article></div></section></main>`;
++  const next = ensureUnifiedRecruitmentJourneyNav(html, "about-us/practice-experience.html");
++  assert.match(
++    next,
++    /class="[^"]*\bpage-layout\b[^"]*"[^>]*>\s*<aside[^>]*data-ev-journey-nav="true"/i,
++  );
++  assert.doesNotMatch(next, /breadcrumb-bar[\s\S]*data-ev-journey-nav="true"[\s\S]*page-layout/i);
++  assert.match(next, /data-ev-journey-nav="true"[\s\S]*<article class="article pe-article"/i);
++  assert.equal((next.match(/data-ev-journey-nav="true"/g) || []).length, 1);
++});
++
++const TWELVE_LAYOUT_PATHS = [
++  "about-us/practice-experience.html",
++  "about-us/community-catchment.html",
++  "about-us/continuity-in-practice.html",
++  "about-us/clinical-interests.html",
++  "join-our-team/gp-opportunities.html",
++  "join-our-team/practice-support.html",
++  "join-our-team/registrar-pathway.html",
++  "join-our-team/opportunity-pack.html",
++  "join-our-team/gp-faq.html",
++  "join-our-team/provider-number-readiness.html",
++  "join-our-team/dpa-navigator.html",
++  "join-our-team/session-planner.html",
++] as const;
++
++for (const path of TWELVE_LAYOUT_PATHS) {
++  test(`page-layout rail contract: ${path}`, () => {
++    const html = `<div class="shell page-layout"><aside class="page-nav" id="related-pages">old</aside><article class="article"><h1>x</h1></article></div>`;
++    const next = ensureUnifiedRecruitmentJourneyNav(html, path);
++    assert.match(next, /page-layout[^>]*>\s*<aside[^>]*data-ev-journey-nav="true"/i);
++    assert.match(next, /data-ev-journey-nav="true"[\s\S]*<article class="article"/i);
++  });
++}
++
+ test("rewrites Express Interest labels already pointed at confidential stack", () => {
+   const html =
+     '<a href="../join-our-team.html#confidential-conversation">Express Interest</a>';
+diff --git a/apps/web/src/attraction-cms/ensure-journey-nav.ts b/apps/web/src/attraction-cms/ensure-journey-nav.ts
+index 7c56971..07655aa 100644
+--- a/apps/web/src/attraction-cms/ensure-journey-nav.ts
++++ b/apps/web/src/attraction-cms/ensure-journey-nav.ts
+@@ -1,6 +1,11 @@
+ /**
+  * Force a single, current JOIN_ATTRACTION_NAV side-rail on every recruitment surface.
+  * DB-stored EV HTML can lag code (stale "Express Interest" labels / ordering).
++ *
++ * Critical layout contract: the rail MUST be the first child of `.page-layout`
++ * (alongside `.article`). Inserting it into `.breadcrumb-bar` or before `<main>`
++ * leaves `.page-layout` with a single child that collapses into the 280px grid
++ * track — content renders ~280px wide with a broken full-bleed nav strip.
+  */
+ 
+ import {
+@@ -18,6 +23,39 @@ function navPrefixFor(pagePath: string): string {
+   return pagePath.includes("/") ? "../" : "";
+ }
+ 
++function insertJourneyNav(html: string, nav: string): string {
++  // Primary: restore rail as first child of the content grid.
++  if (/class="[^"]*\bpage-layout\b/i.test(html)) {
++    const intoLayout = html.replace(
++      /(<div\b[^>]*class="[^"]*\bpage-layout\b[^"]*"[^>]*>)/i,
++      `$1${nav}`,
++    );
++    if (intoLayout !== html && /data-ev-journey-nav="true"/i.test(intoLayout)) {
++      return intoLayout;
++    }
++  }
++
++  // Fallbacks keep pages from losing the rail entirely if markup drifts.
++  if (/breadcrumb-explore-link/i.test(html)) {
++    const afterExplore = html.replace(/(<\/div>\s*<\/div>\s*)(<main\b)/i, `$1${nav}$2`);
++    if (afterExplore.includes('data-ev-journey-nav="true"')) return afterExplore;
++  }
++
++  if (/class="[^"]*\bbreadcrumb-bar\b/i.test(html)) {
++    const afterCrumb = html.replace(
++      /(<div\b[^>]*class="[^"]*\bbreadcrumb-bar\b[^"]*"[^>]*>[\s\S]*?<\/div>\s*)/i,
++      `$1${nav}`,
++    );
++    if (afterCrumb !== html) return afterCrumb;
++  }
++
++  if (/<main\b[^>]*>/i.test(html)) {
++    return html.replace(/(<main\b[^>]*>)/i, `$1${nav}`);
++  }
++
++  return `${nav}${html}`;
++}
++
+ /**
+  * Replace any related-pages / journey aside with the canonical rail.
+  * Join hub keeps a compact in-page journey map (no side-rail) to preserve prospectus layout.
+@@ -32,33 +70,12 @@ export function ensureUnifiedRecruitmentJourneyNav(html: string, pagePath: strin
+   const active = attractionPageKey(normalized);
+   const nav = JOIN_ATTRACTION_NAV(active, navPrefixFor(normalized));
+ 
+-  let next = html.replace(
++  const withoutRails = html.replace(
+     /<aside\b[^>]*(?:id="related-pages"|data-ev-journey-nav="true"|class="[^"]*\bpage-nav\b[^"]*")[^>]*>[\s\S]*?<\/aside>/gi,
+     "",
+   );
+ 
+-  // Prefer original aside slot: after breadcrumb explore link, else after breadcrumb bar, else start of main.
+-  if (/breadcrumb-explore-link/i.test(next)) {
+-    next = next.replace(
+-      /(<\/div>\s*<\/div>\s*)(<main\b)/i,
+-      `$1${nav}$2`,
+-    );
+-    if (next.includes('data-ev-journey-nav="true"')) return next;
+-  }
+-
+-  if (/class="[^"]*\bbreadcrumb-bar\b/i.test(next)) {
+-    const replaced = next.replace(
+-      /(<div\b[^>]*class="[^"]*\bbreadcrumb-bar\b[^"]*"[^>]*>[\s\S]*?<\/div>\s*)/i,
+-      `$1${nav}`,
+-    );
+-    if (replaced !== next) return replaced;
+-  }
+-
+-  if (/<main\b[^>]*>/i.test(next)) {
+-    return next.replace(/(<main\b[^>]*>)/i, `$1${nav}`);
+-  }
+-
+-  return `${nav}${next}`;
++  return insertJourneyNav(withoutRails, nav);
+ }
+ 
+ /** HOLD hygiene: any remaining Express Interest labels that already point at the hub stack. */
+diff --git a/apps/web/src/attraction-cms/ev-shell.ts b/apps/web/src/attraction-cms/ev-shell.ts
+index 7dacb27..9feca50 100644
+--- a/apps/web/src/attraction-cms/ev-shell.ts
++++ b/apps/web/src/attraction-cms/ev-shell.ts
+@@ -218,6 +218,18 @@ body[data-attraction-type="tool"] details.attraction-tool-panel summary{
+   display:block;min-height:44px;padding:.35rem 0;line-height:1.35;font-size:1rem;font-weight:650;
+ }
+ .page-nav .nav-group-title,.page-nav .nav-title{margin:1rem 0 .35rem;font-size:.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--attr-muted)}
++/* Failsafe: if journey rail is missing from the grid, article must not sit in the 280px track. */
++body[data-ev="true"] .page-layout:not(:has(> .page-nav)):not(:has(> [data-ev-journey-nav="true"])),
++body[data-attraction-surface="true"] .page-layout:not(:has(> .page-nav)):not(:has(> [data-ev-journey-nav="true"])),
++body[data-attraction-type] .page-layout:not(:has(> .page-nav)):not(:has(> [data-ev-journey-nav="true"])){
++grid-template-columns:minmax(0,1fr)!important
++}
++body[data-ev="true"] .page-layout > .article,
++body[data-attraction-surface="true"] .page-layout > .article,
++body[data-attraction-type] .page-layout > .article,
++body[data-ev="true"] .page-layout > article,
++body[data-attraction-surface="true"] .page-layout > article,
++body[data-attraction-type] .page-layout > article{min-width:0;max-width:100%}
+ body[data-attraction-type] .page-hero .eyebrow,
+ .attraction-next-step .eyebrow,
+ .attraction-fit-pillars .eyebrow,

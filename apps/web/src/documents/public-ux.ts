@@ -284,6 +284,120 @@ function moveGpViewAllLinkToSectionFooter(html: string): string {
   });
 }
 
+const PATIENT_PWA_QUICKNAV_SCRIPT_HREF =
+  "/wmc-cache/patient-pwa-nav.js?v=wmc-patient-pwa-nav-20261111a";
+
+/**
+ * Standalone-only (installed PWA) patient quick-access strip. Hidden in every
+ * ordinary browser tab via `@media (display-mode: standalone)` — zero visual
+ * change to the approved public pages. Shown only where the page already has
+ * the approved `.persistent-care-actions` booking dock, and mirrors that dock's
+ * existing Book/Call link verbatim (never invents a HotDoc or phone path).
+ * Recruitment/Express-Interest/EV surfaces are excluded — this is a patient
+ * journey aid, not a GP-attraction surface, and must not touch HOLD pages.
+ */
+const PATIENT_PWA_QUICKNAV_STYLE = `<style id="wmc-patient-pwa-quicknav">
+.patient-pwa-quicknav{display:none}
+@media (display-mode:standalone){
+.patient-pwa-quicknav{
+display:block;background:rgba(255,255,255,.98);
+border-bottom:1px solid rgba(219,228,233,.76);
+padding:6px max(10px,env(safe-area-inset-right)) 6px max(10px,env(safe-area-inset-left))
+}
+}
+.patient-pwa-quicknav-inner{display:flex;align-items:stretch;gap:4px;max-width:720px;margin:0 auto}
+.patient-pwa-quicknav-link{flex:1 1 0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+gap:2px;min-height:44px;padding:6px 2px;border-radius:10px;border:0;background:transparent;
+color:var(--navy);font:600 10.5px/1.1 "Inter",sans-serif;text-decoration:none;text-align:center;cursor:pointer}
+.patient-pwa-quicknav-link:hover,.patient-pwa-quicknav-link:focus-visible{background:rgba(23,48,68,.07)}
+.patient-pwa-quicknav-link:focus-visible{outline:2px solid #174f75;outline-offset:2px}
+.patient-pwa-quicknav-label{white-space:nowrap}
+.patient-pwa-quicknav-book{color:#fff;background:var(--navy)}
+.patient-pwa-quicknav-book:hover,.patient-pwa-quicknav-book:focus-visible{background:#123d5e;color:#fff}
+.patient-pwa-nav-progress{position:fixed;top:0;left:0;right:0;height:3px;background:var(--navy);
+transform:scaleX(0);transform-origin:0 50%;z-index:9999;pointer-events:none}
+body.pwa-nav-loading .patient-pwa-nav-progress{transform:scaleX(.72);transition:transform 6s cubic-bezier(.1,.6,.2,1)}
+@media(prefers-reduced-motion:reduce){.patient-pwa-nav-progress{transition:none!important}}
+</style>`;
+
+function patientPwaQuickNavHtml(bookAnchor: string, pagePath: string): string {
+  const bookHref = bookAnchor.match(/\bhref="([^"]*)"/i)?.[1] ?? "";
+  const isTel = /^tel:/i.test(bookHref);
+  const hotdocMarkers = isTel
+    ? ""
+    : [
+        /\bdata-hotdoc-button="[^"]*"/i.test(bookAnchor) ? 'data-hotdoc-button=""' : "",
+        bookAnchor.match(/\bdata-hotdoc-widget="[^"]*"/i)?.[0] ?? "",
+      ]
+        .filter(Boolean)
+        .join(" ");
+  const existingAriaLabel = bookAnchor.match(/\baria-label="([^"]*)"/i)?.[1];
+  const bookAriaLabel = existingAriaLabel
+    ? escapeHtmlAttr(existingAriaLabel)
+    : isTel
+      ? "Call to book an appointment"
+      : "Book an appointment";
+  const bookLabel = isTel ? "Call" : "Book";
+  const prefix = assetPrefixForPage(pagePath);
+
+  return (
+    `<nav aria-label="Patient quick access" class="patient-pwa-quicknav" data-pwa-standalone-nav="true">` +
+    `<div class="patient-pwa-quicknav-inner">` +
+    `<a class="patient-pwa-quicknav-link patient-pwa-quicknav-book"${hotdocMarkers ? ` ${hotdocMarkers}` : ""} aria-label="${bookAriaLabel}" href="${escapeHtmlAttr(bookHref)}"><span class="patient-pwa-quicknav-label">${bookLabel}</span></a>` +
+    `<a class="patient-pwa-quicknav-link patient-pwa-quicknav-doctors" aria-label="View our doctors" href="${prefix}team-general-practitioners.html"><span class="patient-pwa-quicknav-label">Doctors</span></a>` +
+    `<a class="patient-pwa-quicknav-link patient-pwa-quicknav-services" aria-label="View our services" href="${prefix}services.html"><span class="patient-pwa-quicknav-label">Services</span></a>` +
+    `<button aria-label="Open Digital Reception — ask for information" class="patient-pwa-quicknav-link patient-pwa-quicknav-reception" data-open-digital-reception="" type="button"><span class="patient-pwa-quicknav-label">Reception</span></button>` +
+    `<a class="patient-pwa-quicknav-link patient-pwa-quicknav-contact" aria-label="Contact us" href="${prefix}contact.html"><span class="patient-pwa-quicknav-label">Contact</span></a>` +
+    `</div></nav>`
+  );
+}
+
+/**
+ * Insert (or refresh) the standalone-only patient quick-access strip right
+ * after the shared header, before hero/main content — never a floating
+ * overlay. `skip` excludes recruitment/EV/HOLD surfaces entirely (any stale
+ * inject from a prior apply is stripped so the result stays clean/idempotent).
+ */
+function injectPatientPwaStandaloneNav(html: string, pagePath: string, skip: boolean): string {
+  let next = html;
+  next = next.replace(
+    /(?:\/wmc-cache\/)?(?:\.\.\/)*patient-pwa-nav\.js(?:\?[^"]*)?(?=")/g,
+    PATIENT_PWA_QUICKNAV_SCRIPT_HREF,
+  );
+
+  const dockMatch = skip
+    ? null
+    : next.match(
+        /<nav\b(?=[^>]*\bclass="[^"]*\bpersistent-care-actions\b)(?![^>]*\bpersistent-care-actions--recruitment\b)[^>]*>[\s\S]*?<\/nav>/i,
+      );
+  const bookAnchor = dockMatch?.[0].match(/<a\b[^>]*\bpersistent-care-book\b[^>]*>[\s\S]*?<\/a>/i)?.[0];
+
+  if (skip || !bookAnchor || !/\bhref="[^"]+"/i.test(bookAnchor)) {
+    // No approved dock to mirror (or an excluded surface) — remove any stale inject.
+    next = next.replace(/<style\b[^>]*id="wmc-patient-pwa-quicknav"[\s\S]*?<\/style>\s*/i, "");
+    next = next.replace(/<nav\b[^>]*\bdata-pwa-standalone-nav="true"[^>]*>[\s\S]*?<\/nav>\s*/i, "");
+    next = next.replace(/<script\b[^>]*\bsrc="[^"]*patient-pwa-nav\.js[^"]*"[^>]*><\/script>\s*/i, "");
+    return next;
+  }
+
+  const quicknavHtml = patientPwaQuickNavHtml(bookAnchor, pagePath);
+  next = /<nav\b[^>]*\bdata-pwa-standalone-nav="true"[^>]*>[\s\S]*?<\/nav>/i.test(next)
+    ? next.replace(/<nav\b[^>]*\bdata-pwa-standalone-nav="true"[^>]*>[\s\S]*?<\/nav>/i, quicknavHtml)
+    : next.replace(/<\/header>/i, `</header>${quicknavHtml}`);
+
+  next = next.replace(/<style\b[^>]*id="wmc-patient-pwa-quicknav"[\s\S]*?<\/style>\s*/i, "");
+  next = next.replace(/<\/head>/i, `${PATIENT_PWA_QUICKNAV_STYLE}</head>`);
+
+  if (!/<script\b[^>]*\bsrc="[^"]*patient-pwa-nav\.js[^"]*"/i.test(next)) {
+    next = next.replace(
+      /<\/body>/i,
+      `<script defer="" src="${PATIENT_PWA_QUICKNAV_SCRIPT_HREF}"></script></body>`,
+    );
+  }
+
+  return next;
+}
+
 export function applyPublicUxRefinements(
   html: string,
   pagePath: string,
@@ -1888,6 +2002,14 @@ min-height:44px;width:100%;max-width:100%;box-sizing:border-box
     }
     return updatedNav;
   });
+
+  // Standalone-only (installed PWA) patient quick-access strip — hidden in every
+  // ordinary browser tab; excluded from recruitment/EV/HOLD surfaces entirely.
+  next = injectPatientPwaStandaloneNav(
+    next,
+    pagePath,
+    isRecruitmentSurface || isExpressInterestPage,
+  );
 
   if (pagePath !== "index.html") return next;
 

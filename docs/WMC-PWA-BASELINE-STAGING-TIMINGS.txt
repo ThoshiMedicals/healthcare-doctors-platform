@@ -1,0 +1,5 @@
+/ cold=8.379133 cache=MISS warm=2.373969
+/services.html cold=0.709318 cache=HIT warm=0.452751
+/contact.html cold=0.512134 cache=HIT warm=0.488843
+/team-general-practitioners.html cold=5.025101 cache=MISS warm=0.529863
+/admin/login cold=0.273057 cache= warm=0.205884

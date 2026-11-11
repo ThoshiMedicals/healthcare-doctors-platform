@@ -1,0 +1,122 @@
+[
+  {
+    "path": "about-us/practice-experience.html",
+    "status": 200,
+    "railFirst": true,
+    "articleAfter": true,
+    "hasManifest": true,
+    "hasSw": true,
+    "hasQuickNav": false,
+    "bytes": 121016
+  },
+  {
+    "path": "about-us/community-catchment.html",
+    "status": 200,
+    "railFirst": true,
+    "articleAfter": true,
+    "hasManifest": true,
+    "hasSw": true,
+    "hasQuickNav": false,
+    "bytes": 113502
+  },
+  {
+    "path": "about-us/continuity-in-practice.html",
+    "status": 200,
+    "railFirst": true,
+    "articleAfter": true,
+    "hasManifest": true,
+    "hasSw": true,
+    "hasQuickNav": false,
+    "bytes": 113108
+  },
+  {
+    "path": "about-us/clinical-interests.html",
+    "status": 200,
+    "railFirst": true,
+    "articleAfter": true,
+    "hasManifest": true,
+    "hasSw": true,
+    "hasQuickNav": false,
+    "bytes": 115330
+  },
+  {
+    "path": "join-our-team/gp-opportunities.html",
+    "status": 200,
+    "railFirst": true,
+    "articleAfter": true,
+    "hasManifest": true,
+    "hasSw": true,
+    "hasQuickNav": false,
+    "bytes": 129984
+  },
+  {
+    "path": "join-our-team/practice-support.html",
+    "status": 200,
+    "railFirst": true,
+    "articleAfter": true,
+    "hasManifest": true,
+    "hasSw": true,
+    "hasQuickNav": false,
+    "bytes": 116822
+  },
+  {
+    "path": "join-our-team/registrar-pathway.html",
+    "status": 200,
+    "railFirst": true,
+    "articleAfter": true,
+    "hasManifest": true,
+    "hasSw": true,
+    "hasQuickNav": false,
+    "bytes": 114427
+  },
+  {
+    "path": "join-our-team/opportunity-pack.html",
+    "status": 200,
+    "railFirst": true,
+    "articleAfter": true,
+    "hasManifest": true,
+    "hasSw": true,
+    "hasQuickNav": false,
+    "bytes": 114930
+  },
+  {
+    "path": "join-our-team/gp-faq.html",
+    "status": 200,
+    "railFirst": true,
+    "articleAfter": true,
+    "hasManifest": true,
+    "hasSw": true,
+    "hasQuickNav": false,
+    "bytes": 118366
+  },
+  {
+    "path": "join-our-team/provider-number-readiness.html",
+    "status": 200,
+    "railFirst": true,
+    "articleAfter": true,
+    "hasManifest": true,
+    "hasSw": true,
+    "hasQuickNav": false,
+    "bytes": 115028
+  },
+  {
+    "path": "join-our-team/dpa-navigator.html",
+    "status": 200,
+    "railFirst": true,
+    "articleAfter": true,
+    "hasManifest": true,
+    "hasSw": true,
+    "hasQuickNav": false,
+    "bytes": 114547
+  },
+  {
+    "path": "join-our-team/session-planner.html",
+    "status": 200,
+    "railFirst": true,
+    "articleAfter": true,
+    "hasManifest": true,
+    "hasSw": true,
+    "hasQuickNav": false,
+    "bytes": 114805
+  }
+]
