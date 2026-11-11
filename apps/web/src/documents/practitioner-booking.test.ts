@@ -140,3 +140,25 @@ test("Golnar online prose rewrite does not alter Mary phone-only copy", () => {
   </body></html>`;
   assert.equal(alignGolnarOnlineBookingChrome(html, "doctors/dr-mary-abadir.html"), html);
 });
+
+test("Usman is intentionally excluded from the 5-practitioner booking matrix (special-restriction path)", () => {
+  // Dr Usman Gul uses the strictly-seeing-male-patients-only HotDoc slug — a distinct
+  // restriction category. He must never appear in PRACTITIONER_BOOKING_MATRIX and
+  // GOLNAR fallback must not apply to him.
+  const matrixSlugs = PRACTITIONER_BOOKING_MATRIX.map((r) => r.slug);
+  assert.ok(!matrixSlugs.includes("dr-usman-gul"), "Usman must not be in the 5-practitioner matrix");
+
+  // Usman's CMS booking URL should be preserved as-is (special restriction).
+  const usmanCmsUrl =
+    "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-usman-gul-strictly-seeing-male-patients-only?wp=w_lightbox";
+  assert.equal(
+    resolvePractitionerBookingHref("dr-usman-gul", usmanCmsUrl),
+    usmanCmsUrl,
+    "resolvePractitionerBookingHref must not override Usman CMS URL",
+  );
+  assert.notEqual(
+    resolvePractitionerBookingHref("dr-usman-gul", usmanCmsUrl),
+    GOLNAR_APPROVED_HOTDOC_URL,
+    "Golnar fallback must never apply to Usman",
+  );
+});

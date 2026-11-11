@@ -117,3 +117,27 @@ test("Mary and Usman golden profiles stay free of insurance notices", () => {
   assert.match(usman, /Current booking restrictions apply/);
   assert.match(usman, /strictly-seeing-male-patients-only/);
 });
+
+test("standard (non-insurance-slug) HotDoc URLs do not trigger insurance notice injection", () => {
+  // Yamesha uses dr-yamesha-ranatunga-2 (no insurance slug) — no visible notice must be injected.
+  // NOTE: If JSON-LD on the profile claims she does not bulk bill, that is a CMS content
+  // inconsistency (LEAD-owned) and not an injection-layer issue.
+  const yameshaUrl =
+    "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-yamesha-ranatunga-2?wp=w_lightbox";
+  const actions = `<div class="doctor-profile-actions"><a class="button wmc-book-appointment" href="${yameshaUrl}">Book Appointment</a></div>`;
+  const html = `<main>${actions}</main>`;
+  assert.equal(ensureInsuranceBookingNoticesInHtml(html), html, "Yamesha non-insurance slug must not inject notice");
+
+  // James uses dr-james-chanaka-1 (no insurance slug) — same rule.
+  const jamesUrl =
+    "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-james-chanaka-1?wp=w_lightbox";
+  const jamesActions = `<div class="doctor-profile-actions"><a class="button wmc-book-appointment" href="${jamesUrl}">Book Appointment</a></div>`;
+  const jamesHtml = `<main>${jamesActions}</main>`;
+  assert.equal(ensureInsuranceBookingNoticesInHtml(jamesHtml), jamesHtml, "James non-insurance slug must not inject notice");
+
+  // Kooshyar and Nirupa also use standard slugs — guard regression.
+  for (const slug of ["dr-kooshyar-karimi-2", "dr-nirupa-sivathasan"]) {
+    const url = `https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/${slug}?wp=w_lightbox`;
+    assert.equal(hotdocPathHasInsuranceRestriction(url), false, `${slug} must not have insurance restriction`);
+  }
+});
