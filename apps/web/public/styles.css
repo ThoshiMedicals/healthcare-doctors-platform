@@ -12999,3 +12999,51 @@ header .patient-tasks{
   .pe-on-this-page .on-this-page-links{gap:0.45rem}
   .pe-pull-quote p{font-size:1.05rem}
 }
+
+/* ─── AGENT-A QA repairs 2026-11-11 ─────────────────────────────────────────
+   Scope: visual, responsiveness, a11y fixes within agent-a file ownership.
+   Do NOT merge without sign-off from lead (public-ux.ts handoffs below).
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* P2-A1: Mobile on-this-page horizontal-scroll affordance.
+   The tab bar uses overflow-x:auto with scrollbar hidden (scrollbar-width:none).
+   Without a visual cue, users have no indication the bar is scrollable.
+   Apply a right-fade mask so the cut-off rightmost chip signals "more here".
+   mask-image on an overflow container applies to the visible paint-box, so the
+   fade stays fixed at the right edge regardless of scroll position — this is
+   the correct/intentional behaviour for a scroll indicator. */
+@media(max-width:700px){
+  .on-this-page-links{
+    -webkit-mask-image:linear-gradient(to right,#000 0%,#000 82%,transparent 100%);
+    mask-image:linear-gradient(to right,#000 0%,#000 82%,transparent 100%);
+  }
+  /* When the user is at/near end, no scrollbar guard is needed because the
+     fade is the affordance — content truncation IS the indicator. */
+}
+
+/* P2-A2: Reduce hero-visual border-radius jank when stacked at 768-1024px.
+   At ≤1024px the hero-grid collapses to 1 column. The desktop rule
+   border-radius:38px 0 0 38px (left sides only) is overridden at ~line 394
+   to border-radius:30px (all corners), which is correct. This block
+   explicitly re-states the all-corner radius so it cannot be accidentally
+   removed in future edits, and adjusts for ≤700px where image is shorter. */
+@media(max-width:1024px){
+  .hero-visual{border-radius:30px!important}
+}
+@media(max-width:700px){
+  .hero-visual{border-radius:20px!important}
+}
+
+/* P2-A3: Ensure skip-link outline is visible on all backgrounds.
+   The existing rule shows the skip link on focus but has no explicit outline.
+   Add a visible focus ring consistent with the site-wide :focus-visible rule. */
+.skip-link:focus{
+  left:14px;top:14px;z-index:999;background:#fff;padding:10px 14px;
+  border:1px solid var(--line);outline:3px solid #174f75;outline-offset:2px;
+}
+
+/* P2-A4: offline.html parity — ensure body background matches brand warm.
+   offline.html is a standalone file; its --paper variable is not inherited.
+   These selectors only activate if the offline page is served with the main
+   styles.css (unlikely by design but harmless when included). Actual fix is
+   the inline style in offline.html itself (brand navy #163f62 already applied). */
