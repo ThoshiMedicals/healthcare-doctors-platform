@@ -12,9 +12,10 @@ import {
 
 test("Digital Reception R1 exception is documented and excludes byte-equality", () => {
   assert.equal(isApprovedRuntimeException("digital-reception.js"), true);
-  assert.equal(APPROVED_RUNTIME_EXCEPTIONS.length, 1);
-  assert.equal(APPROVED_RUNTIME_EXCEPTIONS[0].goldenByteEqualityRequired, false);
-  assert.match(APPROVED_RUNTIME_EXCEPTIONS[0].reason, /Phase 5C/i);
+  const dr = APPROVED_RUNTIME_EXCEPTIONS.find((entry) => entry.relativePath === "digital-reception.js");
+  assert.ok(dr, "Digital Reception approved-runtime exception must be registered");
+  assert.equal(dr.goldenByteEqualityRequired, false);
+  assert.match(dr.reason, /Phase 5C/i);
 });
 
 test("approved public digital-reception.js has integrity checksum and required contracts", () => {

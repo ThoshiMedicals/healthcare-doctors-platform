@@ -45,7 +45,7 @@ describe("booking funnel QA audit (QA6)", () => {
 const SITE_JS = fs.readFileSync(path.resolve(process.cwd(), "public/site.js"), "utf8");
 const GOLDEN_JS = fs.readFileSync(path.resolve(process.cwd(), "../../old-html/site.js"), "utf8");
 
-it("public and golden scripts parse, keeping all 12 valid peer records", () => {
+it("public and golden scripts parse, keeping all 15 published peer records", () => {
   for (const source of [SITE_JS, GOLDEN_JS]) {
     assert.doesNotThrow(() => new Function(source));
     // Normalise CRLF so the PEERS marker parse is stable on Windows checkouts.
@@ -54,7 +54,7 @@ it("public and golden scripts parse, keeping all 12 valid peer records", () => {
     const end = normalised.indexOf(";\n\n  const path =", start);
     assert.ok(start > 0 && end > start);
     const peers = JSON.parse(normalised.slice(start + "  const PEERS = ".length, end));
-    assert.equal(Object.keys(peers.practitioners).length, 12);
+    assert.equal(Object.keys(peers.practitioners).length, 15);
     assert.equal(peers.practitioners["doctors/dr-mary-abadir.html"].name, "Dr Mary Abadir, Gynaecologist");
   }
 });

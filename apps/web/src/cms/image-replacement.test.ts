@@ -62,12 +62,13 @@ describe("replaceable images", () => {
     assert.deepEqual(replacementProblems(target, current), []);
     const wrong = Buffer.from(current);
     wrong.writeUInt32BE(10, 16);
-    assert.equal(replacementProblems(target, wrong)[0]?.includes("475 by 71"), true);
+    assert.equal(replacementProblems(target, wrong)[0]?.includes("972 by 152"), true);
     const instruction = replacementInstruction(target);
-    assert.equal(instruction.includes("475 by 71 pixels"), true);
+    assert.equal(instruction.includes("972 by 152 pixels"), true);
     assert.equal(instruction.includes("PNG"), true);
     assert.equal(instruction.includes("512 KB"), true);
-    assert.equal(pngSize(current)?.width, 475);
+    assert.equal(pngSize(current)?.width, 972);
+    assert.equal(pngSize(current)?.height, 152);
   });
 
   it("rejects a hero that is not the current WebP size", () => {

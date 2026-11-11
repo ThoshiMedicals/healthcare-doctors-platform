@@ -36,6 +36,14 @@ export const APPROVED_RUNTIME_EXCEPTIONS: readonly ApprovedRuntimeException[] = 
     goldenByteEqualityRequired: false,
     integrityProtection: "sha256_public_file",
   },
+  {
+    relativePath: "styles.css",
+    reason:
+      "Master QA 2026-11-11 presentation/a11y CSS (touch targets, skip-link, offline navy, scroll affordance) lives in apps/web/public/styles.css and is minified at build. Golden old-html/styles.css remains frozen corpus; do not overwrite it to force byte-equality.",
+    authority: "phase_5c_public_runtime",
+    goldenByteEqualityRequired: false,
+    integrityProtection: "sha256_public_file",
+  },
 ] as const;
 
 export function isApprovedRuntimeException(relativePath: string): boolean {
