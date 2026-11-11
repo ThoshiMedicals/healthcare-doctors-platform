@@ -121,7 +121,7 @@ async function main() {
       bookingPagePath: "book-appointment.html",
       hotdocUrl:
         "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors?wp=w_lightbox",
-      logoPath: "/assets/brand/healthcare-doctors-woolloongabba-logo.png",
+      logoPath: "/assets/brand/healthcare-doctors-woolloongabba-logo-v4.png",
       locale: "en-AU",
       canonicalBaseUrl: "https://gabbamedicalcentre.com.au",
     },

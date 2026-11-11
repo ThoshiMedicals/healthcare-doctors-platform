@@ -1,48 +1,51 @@
 {
-  "schema": "wmc.brand-asset-governance.v1",
-  "origin": "approved production ZIP",
-  "transformation": "none; unmodified copies of source asset bytes",
-  "retained_legacy_copies": true,
-  "assets": [
-    {
-      "name": "wmc-brand-mark.webp",
-      "sha256": "29b397d384564e53dd6bddbf199385489270b45709338978998a152422460915",
-      "bytes": 39650,
-      "original_legacy_path": "assets/wmc-brand-mark.webp",
-      "new_path": "assets/brand/wmc-brand-mark.webp",
-      "byte_identical": true
-    },
-    {
-      "name": "healthcare-doctors-woolloongabba-logo.png",
-      "sha256": "866621be81f15eddba01106833086d5b11ec54e60cbc87a325e41b5edfe04fb8",
-      "bytes": 16257,
-      "original_legacy_path": "assets/healthcare-doctors-woolloongabba-logo.png",
-      "new_path": "assets/brand/healthcare-doctors-woolloongabba-logo.png",
-      "byte_identical": true
-    },
-    {
-      "name": "agpal-mark.webp",
-      "sha256": "5f0d184767285222f577b2d7304dd8d395350239d24ebcd0f998f00c2be0ab6d",
-      "bytes": 26704,
-      "original_legacy_path": "assets/agpal-mark.webp",
-      "new_path": "assets/brand/agpal-mark.webp",
-      "byte_identical": true
-    },
-    {
-      "name": "agpal-accredited-general-practice.webp",
-      "sha256": "c21955045fc739ac2aee7d10a0fdb9453438576c74d95bca3dd13cc488622f7d",
-      "bytes": 10056,
-      "original_legacy_path": "assets/agpal-accredited-general-practice.webp",
-      "new_path": "assets/brand/agpal-accredited-general-practice.webp",
-      "byte_identical": true
-    },
-    {
-      "name": "bulk-billing-practice.png",
-      "sha256": "bb04050a7bcb9a361e6589b80e567e6e26d97a6642742e3b77bfa7df431208cf",
-      "bytes": 48497,
-      "original_legacy_path": "assets/bulk-billing-practice.png",
-      "new_path": "assets/brand/bulk-billing-practice.png",
-      "byte_identical": true
-    }
-  ]
+    "assets":  [
+                   {
+                       "name":  "healthcare-doctors-woolloongabba-logo-v4.png",
+                       "bytes":  219390,
+                       "width":  972,
+                       "sha256":  "db4714327b74ca119ad08ec3bc6b6ff4b59ce16491f76a9d7da58b03b203c130",
+                       "path":  "assets/brand/healthcare-doctors-woolloongabba-logo-v4.png",
+                       "role":  "canonical_website_lockup",
+                       "height":  152
+                   },
+                   {
+                       "path":  "assets/brand/healthcare-doctors-woolloongabba-logo.png",
+                       "sha256":  "db4714327b74ca119ad08ec3bc6b6ff4b59ce16491f76a9d7da58b03b203c130",
+                       "name":  "healthcare-doctors-woolloongabba-logo.png",
+                       "bytes":  219390,
+                       "note":  "alias of v4 for golden HTML paths"
+                   },
+                   {
+                       "path":  "assets/brand/healthcare-doctors-woolloongabba-logo-v3.png",
+                       "name":  "healthcare-doctors-woolloongabba-logo-v3.png",
+                       "note":  "rollback retained"
+                   },
+                   {
+                       "path":  "assets/brand/healthcare-doctors-woolloongabba-logo-v2.png",
+                       "name":  "healthcare-doctors-woolloongabba-logo-v2.png",
+                       "note":  "rollback retained"
+                   },
+                   {
+                       "path":  "assets/brand/owner-compact-healthcare-doctors-medical-centre-logo-source.jpg",
+                       "name":  "owner-compact-healthcare-doctors-medical-centre-logo-source.jpg",
+                       "note":  "owner source retained"
+                   },
+                   {
+                       "path":  "assets/brand/healthcare-doctors-lockup-tm-caring.png",
+                       "name":  "healthcare-doctors-lockup-tm-caring.png",
+                       "note":  "favicon/PWA short lockup source — unchanged"
+                   },
+                   {
+                       "path":  "assets/brand/wmc-brand-mark.webp",
+                       "name":  "wmc-brand-mark.webp",
+                       "note":  "apple-touch / legacy mark — unchanged"
+                   }
+               ],
+    "canonical_public_lockup":  "assets/brand/healthcare-doctors-woolloongabba-logo-v4.png",
+    "favicon_pwa_source":  "assets/brand/healthcare-doctors-lockup-tm-caring.png",
+    "schema":  "wmc.brand-asset-governance.v1",
+    "retained_legacy_copies":  true,
+    "transformation":  "trim external whitespace only; no stretch/recolor/retype; aspect preserved 972x152",
+    "origin":  "owner Compact Healthcare Doctors Medical Centre Logo (approved 2026-11-11)"
 }

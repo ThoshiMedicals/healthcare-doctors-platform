@@ -431,15 +431,19 @@ export function applyPublicUxRefinements(
   next = next.replace(/(?:\/wmc-cache\/)?(?:\.\.\/)*site\.js(?:\?[^"]*)?(?=")/g, siteJsHref);
   next = next.replace(/(?:\/wmc-cache\/)?(?:\.\.\/)*updates-data\.js(?:\?[^"]*)?(?=")/g, updatesDataHref);
   next = next.replace(/(?:\/wmc-cache\/)?(?:\.\.\/)*updates-ui\.js(?:\?[^"]*)?(?=")/g, updatesUiHref);
-  // Institution lockup: serve the localhost-authority PNG under a new filename so
-  // Hostinger/CDN cannot keep serving a stale managed-image copy of the old path.
+  // Institution lockup: owner Compact Healthcare Doctors Medical Centre logo (v4).
+  // Keep prior v2/v3 files for rollback; rewrite all public lockup refs to v4.
   next = next.replace(
-    /((?:\.\.\/)*)assets\/brand\/healthcare-doctors-woolloongabba-logo(?:-v2|-v3)?\.png(?:\?[^"]*)?/g,
-    `$1assets/brand/healthcare-doctors-woolloongabba-logo-v3.png`,
+    /((?:\.\.\/)*)assets\/brand\/healthcare-doctors-woolloongabba-logo(?:-v2|-v3|-v4)?\.png(?:\?[^"]*)?/g,
+    `$1assets/brand/healthcare-doctors-woolloongabba-logo-v4.png`,
   );
   next = next.replace(
-    /((?:\.\.\/)*)assets\/healthcare-doctors-woolloongabba-logo(?:-v2|-v3)?\.png(?:\?[^"]*)?/g,
-    `$1assets/healthcare-doctors-woolloongabba-logo-v3.png`,
+    /((?:\.\.\/)*)assets\/healthcare-doctors-woolloongabba-logo(?:-v2|-v3|-v4)?\.png(?:\?[^"]*)?/g,
+    `$1assets/healthcare-doctors-woolloongabba-logo-v4.png`,
+  );
+  next = next.replace(
+    /https:\/\/gabbamedicalcentre\.com\.au\/assets\/brand\/healthcare-doctors-woolloongabba-logo(?:-v2|-v3|-v4)?\.png/g,
+    "https://gabbamedicalcentre.com.au/assets/brand/healthcare-doctors-woolloongabba-logo-v4.png",
   );
   // Circular AGPAL mark: keep transparent on light cards, restore white pad on dark footers.
   next = next.replace(/<style\b[^>]*id="wmc-agpal-mark-fix"[\s\S]*?<\/style>\s*/i, "");
@@ -461,6 +465,21 @@ export function applyPublicUxRefinements(
     `<style id="wmc-sitewide-visual-polish">
 /* Sitewide presentation polish — layout/spacing/a11y only. No content removal. */
 html{overflow-x:clip}
+/* Compact logo v4 — preserve aspect; readable mobile/tablet header widths */
+.brand .institution-logo-lockup,.footer-brand .institution-logo-lockup-footer{height:auto!important;object-fit:contain!important}
+@media (max-width:1024px){
+  .brand .institution-logo-lockup{width:min(300px,62vw)!important;max-width:min(300px,62vw)!important}
+}
+@media (max-width:767px){
+  .brand .institution-logo-lockup{width:min(248px,70vw)!important;max-width:min(248px,70vw)!important}
+  .header-inner>.brand{min-width:0!important;flex:1 1 auto!important}
+}
+@media (max-width:390px){
+  .brand .institution-logo-lockup{width:min(228px,72vw)!important;max-width:min(228px,72vw)!important}
+}
+@media (max-width:340px){
+  .brand .institution-logo-lockup{width:min(200px,74vw)!important;max-width:min(200px,74vw)!important}
+}
 img,svg,video{max-width:100%}
 h1,h2,h3,.page-hero h1,.doctor-profile-heading h1{
   overflow-wrap:anywhere;
