@@ -68,11 +68,11 @@ Focused suite including PWA + HOLD: **PASS**. No HOLD or SW policy changes.
 
 | Field | Value |
 | --- | --- |
-| Commit | `05b0d19de5dcfd78be5cbdea06f97f2bdfa7c5f4` |
+| Feature commit | `a8a3cb806c51b3637ce91a6bd78f024f874af7aa` |
 | Message | `feat(wmc): Golnar HotDoc online booking + post-PWA sitemap hardening` |
-| Archive | `C:\Users\RoshanSamarawickrema\Desktop\wmc-post-pwa-hotdoc-05b0d19.zip` |
-| Archive SHA-256 | `83998268B495EBBB85450AF024EE67CD2ED752928065743F4429FEC99AFC871E` |
-| Method | `git archive` of exact commit |
+| Release archive | `wmc-post-pwa-hotdoc-a8a3cb8.zip` |
+| Archive SHA-256 | `ACC342868C5B02F754F6DA4689EE74BF5AE636D8F2FC73EF03E514447D6BC3D0` |
+| Method | `git archive` of `a8a3cb8` (sidecar on Desktop is authoritative) |
 | Rollback | `wmc-pwa-layout-a8309db.zip` / `6808FECD1266A92B17A37098995D4392FD8327D4DD20FE9C6CA6B0C2F56B0488` |
 
 ## I — Database backup readiness
