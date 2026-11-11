@@ -100,51 +100,72 @@
     "url": "doctors/dr-debra-larkins.html"
   },
   {
-    "title": null,
-    "h1": null,
+    "title": "Dr Golnar Mortezaei",
+    "h1": "Dr Golnar Mortezaei",
     "category": "Doctor",
-    "description": null,
+    "description": "Meet Dr Golnar Mortezaei at Woolloongabba Medical Centre. Explore family health, mental health, chronic disease care, telehealth and booking options.",
     "headings": [
-      "Qualifications",
-      "Languages",
-      "Professional Interests",
+      "How Dr Golnar Mortezaei helps patients",
+      "About Dr Golnar Mortezaei",
       "Related Services",
-      "Patient guides relevant to this practitioner’s care.",
-      "Frequently Asked Questions",
-      "Practical information before you book."
+      "Frequently Asked Questions"
     ],
     "keywords": [
       "doctor",
       "dr",
       "gp",
       "practitioner",
-      "clinician",
-      "healthcare professional",
-      "book with doctor"
+      "dr golnar mortezaei",
+      "book with Dr Golnar Mortezaei"
+    ],
+    "related": [
+      "services/family-health.html",
+      "services/mental-health.html",
+      "services/chronic-disease-care.html",
+      "services/preventive-healthcare.html",
+      "services/telehealth.html",
+      "team-general-practitioners.html",
+      "knowledge/index.html",
+      "new-patients.html",
+      "practice-information.html",
+      "faqs.html"
+    ],
+    "text": "Dr Golnar Mortezaei General Practitioner Family health Mental health Chronic disease care Preventive healthcare Telehealth Book with Dr Golnar Mortezaei",
+    "url": "doctors/dr-golnar-mortezaei.html"
+  },
+  {
+    "title": "Dr James Chanaka",
+    "h1": "Dr James Chanaka",
+    "category": "Doctor",
+    "description": "Meet Dr James Chanaka at Woolloongabba Medical Centre. Explore family health, children’s health, mental health, telehealth and booking options.",
+    "headings": [
+      "How Dr James Chanaka helps patients",
+      "About Dr James Chanaka",
+      "Related Services",
+      "Frequently Asked Questions"
+    ],
+    "keywords": [
+      "doctor",
+      "dr",
+      "gp",
+      "practitioner",
+      "dr james chanaka",
+      "book with Dr James Chanaka"
     ],
     "related": [
       "services/family-health.html",
       "services/childrens-health.html",
       "services/mental-health.html",
-      "services/chronic-disease-care.html",
-      "services/allied-health.html",
-      "services/mens-health.html",
+      "services/preventive-healthcare.html",
       "services/telehealth.html",
-      "knowledge/articles/anxiety-vs-stress-what-is-the-difference.html",
-      "knowledge/articles/blood-pressure-explained.html",
-      "knowledge/articles/childhood-vaccinations-explained.html",
-      "knowledge/articles/childrens-preventive-healthcare.html",
-      "knowledge/articles/common-childhood-illnesses.html",
-      "knowledge/articles/health-checks-every-man-should-consider.html",
-      "knowledge/articles/healthy-ageing-for-men.html",
+      "team-general-practitioners.html",
       "knowledge/index.html",
       "new-patients.html",
       "practice-information.html",
-      "faqs.html",
-      "team-general-practitioners.html"
+      "faqs.html"
     ],
-    "text": null,
-    "url": null
+    "text": "Dr James Chanaka General Practitioner Family health Children’s health Mental health Preventive healthcare Telehealth Book with Dr James Chanaka",
+    "url": "doctors/dr-james.html"
   },
   {
     "title": "Dr Kooshyar Karimi",
@@ -604,6 +625,40 @@
     ],
     "text": "Meet Our Team Dr Wasantha Hettiarchchi General Practitioner Helping patients with Diabetes management Men’s health Pregnancy care Book with Dr Wasantha Hettiarchchi Call (07) 3217 3344 Helping patients with How Dr Wasantha Hettiarchchi helps patients General practice Diabetes management Men’s health Occupational health Pregnancy care Skin Travel medicine Women’s health Professional background About Dr Wasantha Hettiarchchi Dr Wasantha Hettiarchchi graduated from the University of Colombo, Sri Lanka, in 1982 and has long-standing experience in general practice. His public profile identifies diabetes management as a particular interest and lists a broad range of other areas of care. Qualifications Qualifications MBBS, FRACGP Languages Languages English, Sinhala Professional interests Professional Interests Diabetes management Men’s health Occupational health Pregnancy care Skin Travel medicine Women’s health Related services Related Services Men’s Health Women’s Health Skin Checks Chronic Disease Care Preventive Healthcare Skin Cancer Care Antenatal & Postnatal Care Vaccinations & Travel Health Healthcare Knowledge Centre Patient guides relevant to this practitioner’s care. These general health guides may help you prepare questions for an appointment. They do not indicate a diagnosis, treatment promise or current availability. Diabetes Care Plans Explained Diabetes Monitoring Explained Health Checks Every Man Should Consider Heart Health For Men Living With Diabetes Living With Diabetes: GP Monitoring & Long-Term Management Preventing Diabetes Complications All patient guides → Patient questions Frequently Asked Questions What are Dr Wasantha Hettiarchchi’s qualifications? MBBS and FRACGP What languages does Dr Wasantha Hettiarchchi speak? English and Sinhala What areas of care are listed for Dr Wasantha Hettiarchchi? General practice, Diabetes management, Men’s health, Occupational health, Pregnancy care, Skin, Travel medicine and Women’s health What are Dr Wasantha Hettiarchchi’s professional interests? Diabetes management, Men’s health, Occupational health, Pregnancy care, Skin, Travel medicine and Women’s health How do I book an appointment with Dr Wasantha Hettiarchchi? Use the Book with Dr Wasantha Hettiarchchi button to open the practitioner’s current online booking destination, or call Woolloongabba Medical Centre on (07) 3217 3344 if you need help choosing an appointment type. Planning your visit Practical information before you book. New Patients → Practice Information → Patient FAQs → General Practitioners",
     "url": "doctors/dr-wasantha-hettiarchchi.html"
+  },
+  {
+    "title": "Dr Yamesha Ranatunga",
+    "h1": "Dr Yamesha Ranatunga",
+    "category": "Doctor",
+    "description": "Meet Dr Yamesha Ranatunga at Woolloongabba Medical Centre. Explore women’s health, chronic disease care, family health, telehealth and booking options.",
+    "headings": [
+      "How Dr Yamesha Ranatunga helps patients",
+      "About Dr Yamesha Ranatunga",
+      "Related Services",
+      "Frequently Asked Questions"
+    ],
+    "keywords": [
+      "doctor",
+      "dr",
+      "gp",
+      "practitioner",
+      "dr yamesha ranatunga",
+      "book with Dr Yamesha Ranatunga"
+    ],
+    "related": [
+      "services/womens-health.html",
+      "services/chronic-disease-care.html",
+      "services/family-health.html",
+      "services/preventive-healthcare.html",
+      "services/telehealth.html",
+      "team-general-practitioners.html",
+      "knowledge/index.html",
+      "new-patients.html",
+      "practice-information.html",
+      "faqs.html"
+    ],
+    "text": "Dr Yamesha Ranatunga General Practitioner Women’s health Chronic disease care Family health Preventive healthcare Telehealth Book with Dr Yamesha Ranatunga",
+    "url": "doctors/dr-yamesha-ranatunga.html"
   },
   {
     "title": "Samuel Stafford, Physio",
