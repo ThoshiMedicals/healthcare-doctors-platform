@@ -49,6 +49,14 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const host = request.headers.get("x-forwarded-host") ?? request.headers.get("host");
 
+  // Staging: prefer / over /index.html so static public/index.html (production robots meta)
+  // is less likely to be hit when the request reaches Node. CDN may still shadow this path.
+  if (isStagingNoIndexHost(host) && (pathname === "/index.html" || pathname === "/index")) {
+    const dest = new URL("/", request.nextUrl.origin);
+    dest.search = request.nextUrl.search;
+    return keepOutOfIndex(NextResponse.redirect(dest, 302), pathname, host);
+  }
+
   // Staging must not serve production robots/sitemap from public/ static files.
   if (isStagingNoIndexHost(host) && pathname === "/robots.txt") {
     return new NextResponse(stagingRobotsTxt(), {
