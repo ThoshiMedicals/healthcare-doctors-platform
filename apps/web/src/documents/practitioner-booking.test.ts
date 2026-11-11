@@ -117,3 +117,26 @@ test("Golnar welcome is not forced phone-only by alignPhoneOnlyPractitionerChrom
     html,
   );
 });
+
+test("Golnar profile prose no longer claims telephone-only booking", () => {
+  const html = `<html><body>
+  <script type="application/ld+json">{"acceptedAnswer":{"@type":"Answer","text":"Appointments with Dr Golnar Mortezaei are booked by telephone. Please call reception on (07) 3217 3344."}}</script>
+  <h2>Book with Dr Golnar Mortezaei.</h2>
+  <p>Please call our reception team on (07) 3217 3344 to book with Dr Golnar Mortezaei. Online booking is not yet linked for this practitioner.</p>
+  <div class="doctor-profile-actions"><a class="button wmc-book-appointment" href="tel:+61732173344">Call Reception to Book</a></div>
+  </body></html>`;
+  const next = alignGolnarOnlineBookingChrome(html, "doctors/dr-golnar-mortezaei.html");
+  assert.doesNotMatch(next, /booked by telephone/i);
+  assert.doesNotMatch(next, /Online booking is not yet linked/i);
+  assert.match(next, /HotDoc booking page/);
+  assert.match(next, /dr-golnar-mortezaei-5\?wp=w_lightbox/);
+  assert.match(next, /Book Appointment/);
+});
+
+test("Golnar online prose rewrite does not alter Mary phone-only copy", () => {
+  const html = `<html><body>
+  <p>Please call our reception team on (07) 3217 3344 to book with Dr Mary Abadir. Online booking is not yet linked for this practitioner.</p>
+  <div class="doctor-profile-actions"><a class="button wmc-book-appointment" href="tel:+61732173344">Call Reception to Book</a></div>
+  </body></html>`;
+  assert.equal(alignGolnarOnlineBookingChrome(html, "doctors/dr-mary-abadir.html"), html);
+});

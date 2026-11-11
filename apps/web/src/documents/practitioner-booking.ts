@@ -167,6 +167,43 @@ function rewriteBookLabel(open: string, label: string, close: string): string {
 }
 
 /**
+ * Rewrite stale phone-only booking copy on Golnar surfaces after ONLINE HotDoc policy.
+ * Presentation-only — does not mutate stored CMS revisions.
+ */
+export function alignGolnarOnlineBookingProse(
+  html: string,
+  pagePath: string,
+  bookingHref: string = GOLNAR_APPROVED_HOTDOC_URL,
+): string {
+  if (!isGolnarBookingSurfacePath(pagePath)) return html;
+  if (!bookingHref || isPhoneOnlyHref(bookingHref)) return html;
+
+  let next = html;
+
+  // Appointment section body (legacy CMS import copy).
+  next = next.replace(
+    /Please call our reception team on \(07\) 3217 3344 to book with Dr Golnar Mortezaei\.\s*Online booking is not yet linked for this practitioner\./gi,
+    "Use the Book Appointment button to open Dr Golnar Mortezaei’s HotDoc booking page, or call reception on (07) 3217 3344 if you need help choosing an appointment type.",
+  );
+  next = next.replace(
+    /Online booking is not yet linked for this practitioner\./gi,
+    "Appointments can be booked online through HotDoc, or by contacting our reception team on (07) 3217 3344.",
+  );
+
+  // Visible FAQ answers and JSON-LD acceptedAnswer text.
+  next = next.replace(
+    /Appointments with Dr Golnar Mortezaei are booked by telephone\.\s*Please call reception on \(07\) 3217 3344\./gi,
+    "Use the Book Appointment button to open Dr Golnar Mortezaei’s HotDoc booking page, or call reception on (07) 3217 3344.",
+  );
+  next = next.replace(
+    /Appointments with Dr Golnar Mortezaei are booked by telephone\./gi,
+    "Appointments with Dr Golnar Mortezaei can be booked online through HotDoc.",
+  );
+
+  return next;
+}
+
+/**
  * On Golnar profile / welcome surfaces, upgrade tel: or clinic-level HotDoc chrome
  * to the resolved practitioner HotDoc URL with standard lightbox widget attrs.
  * Presentation-only — does not mutate stored revisions.
@@ -179,7 +216,7 @@ export function alignGolnarOnlineBookingChrome(
   if (!isGolnarBookingSurfacePath(pagePath)) return html;
   if (!bookingHref || isPhoneOnlyHref(bookingHref)) return html;
 
-  let next = html;
+  let next = alignGolnarOnlineBookingProse(html, pagePath, bookingHref);
 
   // Primary profile / discovery / header / dock / resource booking anchors.
   next = next.replace(/<a\b[^>]*>/gi, (tag) => {
