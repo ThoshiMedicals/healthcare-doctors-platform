@@ -7,6 +7,8 @@
  *   3. Sitemap + robots content integrity checks
  *   4. Gemunu / unpublished practitioner redirect expectations (no sitemap leak)
  *   5. Production canonical host integrity across golden master
+ *   6. PWA manifest.webmanifest Content-Type configuration (CDN deploy gap documented)
+ *   7. Production robots.txt is never shadowed by a public/ static copy
  */
 
 import assert from "node:assert/strict";
@@ -205,4 +207,72 @@ test("isStagingNoIndexHost correctly identifies all expected staging patterns", 
     "STAGING_NOINDEX=true must override production host detection");
   if (prev === undefined) delete process.env.STAGING_NOINDEX;
   else process.env.STAGING_NOINDEX = prev;
+});
+
+// ─── 6. WEBMANIFEST MIME TYPE ─────────────────────────────────────────────────
+
+/**
+ * P1 DOCUMENTED DEPLOY GAP: Hostinger CDN serves public/manifest.webmanifest
+ * as text/plain, bypassing the next.config.ts header rule that sets
+ * Content-Type: application/manifest+json.  The code is correct; the CDN
+ * intercepts the static file before Next.js response headers are applied.
+ *
+ * LEAD FIX: Configure Hostinger hPanel to set the MIME type for *.webmanifest,
+ * or move the file out of public/ so it is always served via a Next.js route
+ * that can set headers.
+ *
+ * This test asserts:
+ *   (a) next.config.ts contains the correct Content-Type header rule for the file, and
+ *   (b) the manifest itself is valid JSON with required PWA fields.
+ */
+test("next.config.ts declares correct Content-Type for manifest.webmanifest (CDN deploy gap documented)", () => {
+  const webDir = webRoot();
+  const configSrc = fs.readFileSync(path.join(webDir, "next.config.ts"), "utf8");
+
+  assert.ok(
+    configSrc.includes("application/manifest+json"),
+    "next.config.ts must declare application/manifest+json for /manifest.webmanifest — " +
+    "DEPLOY GAP: Hostinger CDN currently serves text/plain (static file intercept bypasses Next.js headers); " +
+    "LEAD must configure CDN MIME override or route the file through a Next.js handler",
+  );
+  assert.ok(
+    configSrc.includes("/manifest.webmanifest"),
+    "next.config.ts must reference /manifest.webmanifest in its headers() block",
+  );
+});
+
+test("public/manifest.webmanifest is valid JSON with required PWA fields", () => {
+  const webDir = webRoot();
+  const raw = fs.readFileSync(path.join(webDir, "public", "manifest.webmanifest"), "utf8");
+
+  let manifest: Record<string, unknown>;
+  assert.doesNotThrow(() => { manifest = JSON.parse(raw); }, "manifest.webmanifest must be valid JSON");
+  manifest = JSON.parse(raw);
+
+  for (const field of ["name", "short_name", "start_url", "display", "icons"]) {
+    assert.ok(Object.prototype.hasOwnProperty.call(manifest, field),
+      `manifest.webmanifest must contain required field: ${field}`);
+  }
+
+  const icons = manifest.icons as Array<{ src: string; sizes: string }>;
+  assert.ok(Array.isArray(icons) && icons.length >= 2,
+    "manifest must declare at least two icons (192 and 512 required for installability)");
+});
+
+// ─── 7. NO STATIC robots.txt IN public/ ──────────────────────────────────────
+
+/**
+ * Confirm there is no public/robots.txt static file that would allow Hostinger CDN
+ * to serve a production-style robots.txt on staging, bypassing the route handler.
+ * The production robots.txt is intentionally kept under public/seo-approved/robots.txt
+ * (served via the route handler, not as a CDN static asset).
+ */
+test("public/robots.txt does not exist as a static file (only route handler serves it)", () => {
+  const webDir = webRoot();
+  assert.equal(
+    fs.existsSync(path.join(webDir, "public", "robots.txt")),
+    false,
+    "public/robots.txt must not exist — the CDN would serve it directly, bypassing staging noindex logic; " +
+    "only public/seo-approved/robots.txt (served via route handler) is permitted",
+  );
 });
