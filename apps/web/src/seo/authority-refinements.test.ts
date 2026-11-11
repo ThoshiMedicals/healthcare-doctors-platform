@@ -6,6 +6,7 @@ import {
   enrichPractitionerPersonSchema,
   ensureKnowledgeHubAuthorityRails,
   ensureServiceTrustLinks,
+  ensureSupportServiceNextSteps,
 } from "./authority-refinements";
 
 test("dedupes empty telehealth related-practitioners section", () => {
@@ -47,6 +48,7 @@ test("injects knowledge hub practitioner rails once", () => {
   assert.match(once, /id="related-practitioners"/);
   assert.match(once, /dr-tanya-goodwill\.html/);
   assert.match(once, /dr-wasantha-hettiarchchi\.html/);
+  assert.match(once, /dr-james\.html/);
   assert.equal(ensureKnowledgeHubAuthorityRails(once, "knowledge/family-health.html"), once);
 });
 
@@ -57,6 +59,24 @@ test("adds AGPAL and continuity trust links on family health service", () => {
   assert.match(next, /agpal-accreditation\.html/);
   assert.match(next, /philosophy-of-care\.html/);
   assert.equal(ensureServiceTrustLinks(next, "services/family-health.html"), next);
+});
+
+test("adds GP next-step links on pathology without inventing practitioners", () => {
+  const html =
+    '<main><section id="practical-information"><div class="resource-links"><a class="resource-link" href="../faqs.html">FAQs</a></div></section></main>';
+  const next = ensureSupportServiceNextSteps(html, "services/pathology.html");
+  assert.match(next, /team-general-practitioners\.html/);
+  assert.match(next, /data-seo-support-next="gp-directory"/);
+  assert.doesNotMatch(next, /id="related-practitioners"/);
+  assert.equal(ensureSupportServiceNextSteps(next, "services/pathology.html"), next);
+});
+
+test("adds GP next-step links on allied-health when practitioner rail is empty", () => {
+  const html =
+    '<main><section id="related-services"><div class="resource-links"><a class="resource-link" href="../services/family-health.html">Family</a></div></section></main>';
+  const next = ensureSupportServiceNextSteps(html, "services/allied-health.html");
+  assert.match(next, /team-general-practitioners\.html/);
+  assert.match(next, /contact\.html/);
 });
 
 test("applyAuthoritySeoRefinements is idempotent on telehealth", () => {

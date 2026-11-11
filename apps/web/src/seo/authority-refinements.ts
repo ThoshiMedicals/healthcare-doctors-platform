@@ -23,17 +23,23 @@ const KNOWLEDGE_HUB_PRACTITIONER_RAILS: Readonly<Record<string, readonly HubPrac
     { href: "../doctors/dr-wasantha-hettiarchchi.html", name: "Dr Wasantha Hettiarchchi", label: "Family health" },
     { href: "../doctors/dr-sumita-singh.html", name: "Dr Sumita Singh", label: "Family health" },
     { href: "../doctors/dr-anand-singh.html", name: "Dr Anand Singh", label: "Family health" },
+    // CMS-published; approved interest: Family medicine
+    { href: "../doctors/dr-james.html", name: "Dr James Chanaka", label: "Family medicine" },
   ],
   "knowledge/preventive-healthcare.html": [
     { href: "../doctors/dr-tanya-goodwill.html", name: "Dr Tanya Goodwill", label: "Preventive care" },
     { href: "../doctors/dr-wasantha-hettiarchchi.html", name: "Dr Wasantha Hettiarchchi", label: "Preventive care" },
     { href: "../doctors/dr-sumita-singh.html", name: "Dr Sumita Singh", label: "Preventive care" },
+    // Golden interest: Preventive medicine
+    { href: "../doctors/dr-sambo-luon.html", name: "Dr Sambo Luon", label: "Preventive medicine" },
   ],
   "knowledge/pregnancy.html": [
     { href: "../doctors/dr-tanya-goodwill.html", name: "Dr Tanya Goodwill", label: "Women’s health" },
     { href: "../doctors/dr-sumita-singh.html", name: "Dr Sumita Singh", label: "Women’s health" },
     { href: "../doctors/dr-debra-larkins.html", name: "Dr Debra Larkins", label: "Shared antenatal care" },
     { href: "../doctors/dr-mary-abadir.html", name: "Dr Mary Abadir", label: "Obstetrics & gynaecology" },
+    // CMS-published; approved interest: Women's health
+    { href: "../doctors/dr-yamesha-ranatunga.html", name: "Dr Yamesha Ranatunga", label: "Women's health" },
   ],
 };
 
@@ -41,6 +47,19 @@ const SERVICE_TRUST_PAGES = new Set([
   "services/family-health.html",
   "services/chronic-disease-care.html",
   "services/womens-health.html",
+  "services/mens-health.html",
+  "services/mental-health.html",
+  "services/childrens-health.html",
+  "services/preventive-healthcare.html",
+]);
+
+/** Support services with no practitioner rail — keep patients moving toward GP care without inventing expertise. */
+const SUPPORT_SERVICE_NEXT_STEP_PAGES = new Set([
+  "services/pathology.html",
+  "services/pharmacy.html",
+  "services/radiology.html",
+  // Golden rail present but empty — keep patients moving without inventing allied roster claims.
+  "services/allied-health.html",
 ]);
 
 function escapeHtml(value: string): string {
@@ -200,11 +219,45 @@ export function ensureServiceTrustLinks(html: string, pagePath: string): string 
   return html;
 }
 
+/**
+ * Pathology / pharmacy / radiology have no practitioner expertise claims in CMS.
+ * Keep patients moving to GP discovery + contact without inventing who “does” these services.
+ */
+export function ensureSupportServiceNextSteps(html: string, pagePath: string): string {
+  if (!SUPPORT_SERVICE_NEXT_STEP_PAGES.has(pagePath)) return html;
+  if (/data-seo-support-next="gp-directory"/i.test(html)) return html;
+
+  const nextStepLinks =
+    `<a class="resource-link" href="../team-general-practitioners.html" data-seo-support-next="gp-directory"><span>Talk with a General Practitioner</span><span aria-hidden="true">→</span></a>` +
+    `<a class="resource-link" href="../contact.html" data-seo-support-next="contact"><span>Contact the clinic</span><span aria-hidden="true">→</span></a>`;
+
+  if (/id="practical-information"[\s\S]*?<div class="resource-links">/i.test(html)) {
+    return html.replace(
+      /(id="practical-information"[\s\S]*?<div class="resource-links">)/i,
+      `$1${nextStepLinks}`,
+    );
+  }
+  if (/id="related-services"[\s\S]*?<div class="resource-links">/i.test(html)) {
+    return html.replace(
+      /(id="related-services"[\s\S]*?<div class="resource-links">)/i,
+      `$1${nextStepLinks}`,
+    );
+  }
+  if (/<\/main>/i.test(html)) {
+    return html.replace(
+      /<\/main>/i,
+      `<section class="article-section" id="practical-next-steps" data-seo-support-next="section"><p class="eyebrow">Next steps</p><h2>Need help arranging this care?</h2><p>Our reception team can guide you to a suitable General Practitioner appointment.</p><div class="resource-links">${nextStepLinks}</div></section></main>`,
+    );
+  }
+  return html;
+}
+
 export function applyAuthoritySeoRefinements(html: string, pagePath: string): string {
   const normalized = pagePath.replace(/^\/+/, "").replace(/\\/g, "/");
   let next = dedupeTelehealthRelatedPractitioners(html, normalized);
   next = enrichPractitionerPersonSchema(next, normalized);
   next = ensureKnowledgeHubAuthorityRails(next, normalized);
   next = ensureServiceTrustLinks(next, normalized);
+  next = ensureSupportServiceNextSteps(next, normalized);
   return next;
 }

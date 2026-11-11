@@ -12,8 +12,14 @@ export const CARE_AREA_SERVICE_MAP: ReadonlyArray<{
   // Do not match the "men's" substring inside "women's health".
   { match: /(^|[^a-z])men[''\u2019]?s\s+health/i, servicePath: "services/mens-health.html", serviceLabel: "Men's Health" },
   { match: /child(ren)?([''\u2019]?s)?\s+health|child\s+health/i, servicePath: "services/childrens-health.html", serviceLabel: "Children's Health" },
+  // Approved “adolescent and youth health” interests map to the existing children’s health service (no invented page).
+  {
+    match: /adolescent|youth\s+health/i,
+    servicePath: "services/childrens-health.html",
+    serviceLabel: "Children's Health",
+  },
   { match: /mental\s+health/i, servicePath: "services/mental-health.html", serviceLabel: "Mental Health" },
-  { match: /family\s+(health|medicine)|general\s+practice/i, servicePath: "services/family-health.html", serviceLabel: "Family Health" },
+  { match: /family\s+(health|medicine)|general\s+practice|primary\s+care/i, servicePath: "services/family-health.html", serviceLabel: "Family Health" },
   {
     match: /chronic\s+(disease|medical\s+conditions?)|diabetes|heart\s+disease|copd|osteoarthritis|osteoporosis/i,
     servicePath: "services/chronic-disease-care.html",
@@ -29,9 +35,36 @@ export const CARE_AREA_SERVICE_MAP: ReadonlyArray<{
   { match: /vaccin|immunis|travel\s+health/i, servicePath: "services/vaccinations.html", serviceLabel: "Vaccinations" },
   { match: /preventive|prevention/i, servicePath: "services/preventive-healthcare.html", serviceLabel: "Preventive Healthcare" },
   {
-    match: /antenatal|postnatal|maternity|pregnancy|pre-pregnancy/i,
+    match: /antenatal|postnatal|maternity|pregnancy|pre-pregnancy|shared\s+antenatal/i,
     servicePath: "services/antenatal-postnatal-care.html",
     serviceLabel: "Antenatal & Postnatal Care",
+  },
+  // Specialist O&G / women’s procedural interests already listed on women’s health and pre-pregnancy rails in golden HTML.
+  {
+    match: /pre-pregnancy|recurrent\s+miscarriage|obstetric|gynaecolog/i,
+    servicePath: "services/womens-health.html",
+    serviceLabel: "Women's Health",
+  },
+  {
+    match: /pre-pregnancy|recurrent\s+miscarriage/i,
+    servicePath: "services/pre-pregnancy-care.html",
+    serviceLabel: "Pre-Pregnancy Care",
+  },
+  // Golden profiles already link these interests to existing service pages.
+  {
+    match: /sports\s+injur|chiropractic|manual\s+adjustment/i,
+    servicePath: "services/allied-health.html",
+    serviceLabel: "Allied Health",
+  },
+  {
+    match: /medical\s+procedure|cosmetic|excision|injectable|procedural\s+medicine|pre-employment|work-related\s+medical/i,
+    servicePath: "services/medical-procedures.html",
+    serviceLabel: "Medical Procedures",
+  },
+  {
+    match: /menopause|menstrual|endometriosis|pcos|infertility|family\s+planning|gynaecolog/i,
+    servicePath: "services/womens-health.html",
+    serviceLabel: "Women's Health",
   },
 ];
 

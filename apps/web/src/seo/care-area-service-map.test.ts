@@ -41,3 +41,16 @@ test("skin and chronic labels qualify both skin service paths and chronic medica
   const skin = servicesForCareAreas(["Skin cancer"]).map((s) => s.path).sort();
   assert.deepEqual(skin, ["services/skin-cancer-care.html", "services/skin-checks.html"]);
 });
+
+test("maps adolescent and youth health to children's health service", () => {
+  const services = servicesForCareAreas(["Adolescent and youth health"]).map((s) => s.path);
+  assert.deepEqual(services, ["services/childrens-health.html"]);
+});
+
+test("maps shared antenatal care and pre-pregnancy interests without inventing services", () => {
+  const antenatal = servicesForCareAreas(["Shared antenatal care"]).map((s) => s.path);
+  assert.ok(antenatal.includes("services/antenatal-postnatal-care.html"));
+  const pre = servicesForCareAreas(["Pre-pregnancy counselling", "Recurrent miscarriage"]).map((s) => s.path).sort();
+  assert.ok(pre.includes("services/pre-pregnancy-care.html"));
+  assert.ok(pre.includes("services/womens-health.html"));
+});
