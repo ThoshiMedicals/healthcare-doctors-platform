@@ -363,6 +363,21 @@ Admin route list: `apps/web/.tmp-qa-continuous/inventory/admin-routes.txt`
 | Admin | 33 dashboard groups code-inspected; unauthenticated → login **307**; deep CMS still credential-blocked |
 | Ownership tests | **79/79 PASS**; no production code changes from Agent B |
 
+### C2. Agent C specialist completion (integrated)
+
+| Item | Result |
+|------|--------|
+| Specialist commit | `6acfa17` on `qa/wmc-agent-c-tech` |
+| Integrated as | `88e6107` |
+| Report | `apps/web/.tmp-qa-agent-c/AGENT-C-REPORT.md` |
+| New tests | +3 in `agent-c-qa.test.ts` (manifest MIME config, manifest JSON, no static `public/robots.txt`) — **12/12 PASS** after integrate |
+| Auth.js critical | Agent C escalated next-auth beta.32 — **already applied** on tip (`93037b7`) |
+| Remaining prod highs | postcss→Next 16, zod→4, prisma→7 via `--force` — **BLOCKED** |
+| Safe `npm audit fix` | Applied (no `--force`): Next **15.5.28→15.5.29**, Playwright **1.49.1→1.65.0**; postcss/zod/prisma highs still need `--force` majors — **BLOCKED** |
+| CDN robots / manifest MIME | Confirmed Hostinger shadow — **BLOCKED** pending hPanel / redeploy |
+| Staging noindex meta | **PASS** on dynamic pages |
+| Cold TTFB sample | `/` 623ms, `/team.html` 451ms; service pages 3–5s cold — noted, not local-code P0 |
+
 ### K2. Dependency security
 
 | Item | Result |
@@ -394,7 +409,7 @@ Admin route list: `apps/web/.tmp-qa-continuous/inventory/admin-routes.txt`
 
 | Metric | Value |
 |--------|-------|
-| Final tip | `b636b97` (+ Agent B report; prior code tip `ee18adb` / docs `eea189f`) |
+| Final tip | see Section T after Agent C integrate + safe audit fix |
 | V4 branding on Hostinger | **CONFIRMED LIVE** |
 | Practitioner / booking | **15/15** + matrix PASS (Golnar label improved locally, not live until deploy) |
 | Admin | Login verified; 67 routes inventoried; deep CMS **BLOCKED** without credentials |
