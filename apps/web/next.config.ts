@@ -63,7 +63,10 @@ const nextConfig: NextConfig = {
       // PWA manifest + SW: revalidate promptly so icon/shell edits reach installed users.
       {
         source: "/manifest.webmanifest",
-        headers: [{ key: "Cache-Control", value: "no-cache, max-age=0, must-revalidate" }],
+        headers: [
+          { key: "Cache-Control", value: "no-cache, max-age=0, must-revalidate" },
+          { key: "Content-Type", value: "application/manifest+json; charset=utf-8" },
+        ],
       },
       {
         source: "/sw.js",
