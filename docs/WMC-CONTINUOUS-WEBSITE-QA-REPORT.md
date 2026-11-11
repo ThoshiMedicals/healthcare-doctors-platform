@@ -3,7 +3,7 @@
 **Date:** 2026-11-11  
 **Integration branch:** `qa/wmc-continuous-website`  
 **Worktree:** `C:\Users\RoshanSamarawickrema\Desktop\WMC-qa-continuous`  
-**Final release-candidate tip:** see **§ Final Closure** (code tip `80bdbee` + this docs commit)  
+**Final release-candidate tip:** `qa/wmc-continuous-website` HEAD (closure pin). Code gate tip `80bdbee`. Exact zip + SHA-256: Desktop `backups/WMC-release-archives/WMC-MASTER-QA-RC-*-OWNER-PACKET.md`.  
 **Hostinger staging (accepted baseline — not yet this RC):** https://mediumslateblue-eagle-960503.hostingersite.com · build `01a1c934-77d0-7395-ac90-9017db7f6e8b` · archive `wmc-logo-v4-699f1de39e7e.zip` · tip `699f1de`  
 **Do not push / do not deploy without owner approval.**
 
@@ -421,7 +421,7 @@ Admin route list: `apps/web/.tmp-qa-continuous/inventory/admin-routes.txt`
 
 | Metric | Value |
 |--------|-------|
-| Code tip for release archive | `80bdbee4d94c7e12a7b90a39e7b1cc74197e34d2` |
+| Final tip / archive SHA | see owner packet beside release zip (avoids self-referential docs SHA drift) |
 | V4 branding on Hostinger | **CONFIRMED LIVE** (accepted baseline `699f1de`) |
 | Practitioner / booking | **15/15** + matrix PASS (Golnar CTA improved **locally only**) |
 | Admin | Login verified; deep CMS **BLOCKED** without credentials |
@@ -510,9 +510,9 @@ Live checks **still show** (accepted V4 deploy, not this RC):
 
 | Artefact | Path / value |
 |----------|--------------|
-| Release archive | `C:\Users\RoshanSamarawickrema\Desktop\backups\WMC-release-archives\wmc-master-qa-rc-80bdbee.zip` |
-| Archive SHA-256 | `6C6B69DFCDFDDD4F1CB4C7E55BB3D63BA9329711C2CE37C0CEC7EAEFD13D7390` |
-| Git SHA archived | `80bdbee4d94c7e12a7b90a39e7b1cc74197e34d2` |
+| Release archive | `C:\Users\RoshanSamarawickrema\Desktop\backups\WMC-release-archives\wmc-master-qa-rc-<HEAD>.zip` (see owner packet) |
+| Archive SHA-256 | recorded in matching `*.sha256.txt` + owner packet |
+| Git SHA archived | branch HEAD after this closure pin; code gate `80bdbee` also kept as `wmc-master-qa-rc-80bdbee.zip` |
 | Rollback archive (accepted V4) | `...\wmc-logo-v4-699f1de39e7e.zip` (build `01a1c934-…`) |
 | DB migrations required for this RC | **None new** beyond already-deployed schema lineage |
 | Hostinger Node | **22** (confirmed on current staging build settings) |
@@ -546,7 +546,7 @@ Live checks **still show** (accepted V4 deploy, not this RC):
 
 | Metric | Value |
 |--------|-------|
-| Final code SHA | `80bdbee4d94c7e12a7b90a39e7b1cc74197e34d2` |
+| Final Git SHA | branch HEAD (owner packet) |
 | Full suite | **513/514 PASS** (1 DB-import env block) |
 | Production build | **PASS** |
 | Security | **0 critical**; highs documented accepted/BLOCKED |
