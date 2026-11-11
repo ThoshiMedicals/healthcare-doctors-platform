@@ -5,6 +5,7 @@
 **WMC GLOBAL BRANDING COMPLETE — READY FOR CONTROLLED STAGING UPDATE**
 
 Branch: `branding/wmc-logo-compact-v4`  
+Commit: `de7da0d62d1d241608f939fa82b702e36c82a5ef`  
 Baseline: `9c928de5fc1d0138a1f699a994db1b03d94a21c6`  
 Worktree: `Desktop/WMC-branding-logo-v4`  
 Hostinger staging tip (untouched): build `01a1c90b-d814-7061-bd0e-3eab3d5f93ea`
