@@ -49,7 +49,7 @@ test("S1-R4: Golnar welcome + profile CTAs expose keyboard-operable named HotDoc
   const welcome = applyPublicUxRefinements(welcomeSeed, "updates/welcome-dr-golnar-mortezaei.html");
   assert.match(welcome, /dr-golnar-mortezaei-5\?wp=w_lightbox/);
   assert.match(welcome, /data-hotdoc-widget="lightbox"/);
-  assert.match(welcome, /Book Appointment/);
+  assert.match(welcome, /Book with Dr Golnar/);
   assert.match(welcome, /digital-reception-launcher[^>]*aria-expanded="false"/);
   assert.doesNotMatch(welcome, /Call Reception to Book/);
 
@@ -61,7 +61,7 @@ test("S1-R4: Golnar welcome + profile CTAs expose keyboard-operable named HotDoc
   );
   assert.match(profile, /menu-toggle[^>]*aria-expanded="false"/);
   assert.match(profile, /dr-golnar-mortezaei-5\?wp=w_lightbox/);
-  assert.match(profile, /Book Appointment/);
+  assert.match(profile, /Book with Dr Golnar/);
 });
 
 test("S1-R4: Golnar HotDoc CTAs are activatable links (no positive tabindex traps on primary CTAs)", () => {

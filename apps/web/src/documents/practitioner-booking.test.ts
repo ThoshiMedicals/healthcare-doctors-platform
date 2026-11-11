@@ -82,13 +82,14 @@ test("Golnar welcome/profile chrome upgrades clinic HotDoc and tel to authorised
   assert.match(welcome, /data-hotdoc-widget="lightbox"/);
   assert.match(welcome, /target="_blank"/);
   assert.match(welcome, /rel="noopener noreferrer"/);
-  assert.match(welcome, /Book Appointment/);
+  assert.match(welcome, /Book with Dr Golnar/);
+  assert.match(welcome, /aria-label="Book with Dr Golnar Mortezaei"/);
   assert.doesNotMatch(welcome, /Call Reception to Book/);
   assert.match(welcome, /digital-reception-launcher/);
 
   const profile = alignGolnarOnlineBookingChrome(html, "doctors/dr-golnar-mortezaei.html");
   assert.match(profile, /dr-golnar-mortezaei-5\?wp=w_lightbox/);
-  assert.match(profile, /doctor-profile-actions[\s\S]*Book Appointment/);
+  assert.match(profile, /doctor-profile-actions[\s\S]*Book with Dr Golnar/);
 });
 
 test("Mary phone-only chrome remains intact after Golnar online policy", () => {
@@ -130,7 +131,7 @@ test("Golnar profile prose no longer claims telephone-only booking", () => {
   assert.doesNotMatch(next, /Online booking is not yet linked/i);
   assert.match(next, /HotDoc booking page/);
   assert.match(next, /dr-golnar-mortezaei-5\?wp=w_lightbox/);
-  assert.match(next, /Book Appointment/);
+  assert.match(next, /Book with Dr Golnar/);
 });
 
 test("Golnar online prose rewrite does not alter Mary phone-only copy", () => {

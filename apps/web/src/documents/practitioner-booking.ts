@@ -146,11 +146,19 @@ function rewriteBookOpeningTag(tag: string, bookingHref: string): string {
     next = next.replace(/>$/, ` href="${bookingHref}">`);
   }
   next = ensureHotdocWidgetAttrs(next);
-  if (/\baria-label="[^"]*Call Reception/i.test(next) || /\baria-label="[^"]*book with/i.test(next)) {
-    next = next.replace(/\baria-label="[^"]*"/i, 'aria-label="Book Appointment"');
+  if (
+    /\baria-label="[^"]*Call Reception/i.test(next) ||
+    /\baria-label="[^"]*book with/i.test(next) ||
+    /\baria-label="[^"]*Book Appointment"/i.test(next)
+  ) {
+    next = next.replace(/\baria-label="[^"]*"/i, 'aria-label="Book with Dr Golnar Mortezaei"');
+  } else if (!/\baria-label=/i.test(next)) {
+    next = next.replace(/>$/, ' aria-label="Book with Dr Golnar Mortezaei">');
   }
   return next;
 }
+
+const GOLNAR_BOOK_LABEL = "Book with Dr Golnar";
 
 function rewriteBookLabel(open: string, label: string, close: string): string {
   const trimmed = label.replace(/\s+/g, " ").trim();
@@ -159,9 +167,10 @@ function rewriteBookLabel(open: string, label: string, close: string): string {
     /^Call Reception to Book$/i.test(trimmed) ||
     /^Book Appointment Online$/i.test(trimmed) ||
     /^Book(?:&nbsp;|\s)+Appointment$/i.test(trimmed) ||
+    /^Book with Dr Golnar(?:\s+Mortezaei)?$/i.test(trimmed) ||
     /^Call reception to book$/i.test(trimmed)
   ) {
-    return `${open}Book Appointment${close}`;
+    return `${open}${GOLNAR_BOOK_LABEL}${close}`;
   }
   return `${open}${label}${close}`;
 }
@@ -183,7 +192,7 @@ export function alignGolnarOnlineBookingProse(
   // Appointment section body (legacy CMS import copy).
   next = next.replace(
     /Please call our reception team on \(07\) 3217 3344 to book with Dr Golnar Mortezaei\.\s*Online booking is not yet linked for this practitioner\./gi,
-    "Use the Book Appointment button to open Dr Golnar Mortezaei’s HotDoc booking page, or call reception on (07) 3217 3344 if you need help choosing an appointment type.",
+    "Use the Book with Dr Golnar button to open Dr Golnar Mortezaei’s HotDoc booking page, or call reception on (07) 3217 3344 if you need help choosing an appointment type.",
   );
   next = next.replace(
     /Online booking is not yet linked for this practitioner\./gi,
@@ -193,7 +202,7 @@ export function alignGolnarOnlineBookingProse(
   // Visible FAQ answers and JSON-LD acceptedAnswer text.
   next = next.replace(
     /Appointments with Dr Golnar Mortezaei are booked by telephone\.\s*Please call reception on \(07\) 3217 3344\./gi,
-    "Use the Book Appointment button to open Dr Golnar Mortezaei’s HotDoc booking page, or call reception on (07) 3217 3344.",
+    "Use the Book with Dr Golnar button to open Dr Golnar Mortezaei’s HotDoc booking page, or call reception on (07) 3217 3344.",
   );
   next = next.replace(
     /Appointments with Dr Golnar Mortezaei are booked by telephone\./gi,
