@@ -4,6 +4,8 @@
  * trust pages. No invented credentials, social profiles, or redesign.
  */
 
+import { applyApprovedPractitionerLanguages } from "@/documents/practitioner-authority-languages";
+
 const CLINIC_AREA_SERVED = [
   "Woolloongabba",
   "East Brisbane",
@@ -256,6 +258,7 @@ export function applyAuthoritySeoRefinements(html: string, pagePath: string): st
   const normalized = pagePath.replace(/^\/+/, "").replace(/\\/g, "/");
   let next = dedupeTelehealthRelatedPractitioners(html, normalized);
   next = enrichPractitionerPersonSchema(next, normalized);
+  next = applyApprovedPractitionerLanguages(next, normalized);
   next = ensureKnowledgeHubAuthorityRails(next, normalized);
   next = ensureServiceTrustLinks(next, normalized);
   next = ensureSupportServiceNextSteps(next, normalized);
