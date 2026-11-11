@@ -316,6 +316,76 @@ Suggested deploy path (after approval): push `qa/wmc-continuous-website` (or mer
 
 ### Verdict
 
-**QA PARTIAL — APPROVALS OR EXTERNAL BLOCKERS REMAIN**
+**MASTER QA PARTIAL — APPROVALS OR EXTERNAL BLOCKERS REMAIN**
 
 Local release candidate is ready for **controlled staging redeploy review**, but must not be declared Hostinger-complete until CDN robots/`/index.html` behaviour is re-verified post-deploy and blocked clinical/content items are decided.
+
+---
+
+## Master QA continuation — 11 Nov 2026 (evening)
+
+### A2. Re-verified Hostinger / V4
+
+| Check | Result |
+|-------|--------|
+| Health | `database: up`, phase `golden-import` |
+| Homepage logo src | **`assets/brand/healthcare-doctors-woolloongabba-logo-v4.png` LIVE** |
+| V4 asset HTTP | 200, `image/png`, ~197KB |
+| Favicon / PWA icons | 200 |
+| `manifest.webmanifest` MIME on Hostinger | still `text/plain` (local `next.config` MIME fix not yet deployed) |
+| `/robots.txt` | still 58-byte CDN shadow (`*` Allow:/) — **BLOCKED** |
+| Hostinger MCP this session | auth required / unavailable — evidence via curl |
+
+Prompt note that “V4 Hostinger deployment not established” is **superseded by live evidence**: V4 is on staging homepage.
+
+### I2. Admin capability assessment (non-destructive)
+
+| Item | Result |
+|------|--------|
+| Filesystem admin `page.tsx` routes | **67** under `apps/web/src/app/admin` |
+| Staging `/admin/login` | **200** — Clinic CMS login with password field |
+| Staging `/admin`, `/admin/pages`, `/admin/practitioners` | redirect to `/admin/login` (auth boundary OK) |
+| Logged-in CRUD browser verification | **BLOCKED** — credentials not used in this QA |
+| Classification | Login + route surface **implemented**; deep module behaviour **not fully browser-tested** without authorised session |
+
+Admin route list: `apps/web/.tmp-qa-continuous/inventory/admin-routes.txt`
+
+### K2. Dependency security
+
+| Item | Result |
+|------|--------|
+| Before | prod audit: 2 critical, 5 high, 1 moderate (8 total) |
+| Applied | `next-auth` **5.0.0-beta.29 → 5.0.0-beta.32** (`@auth/core` 0.41.3) — commit `93037b7` |
+| After (omit=dev) | **0 critical**, 5 high, 1 moderate (6 total) |
+| Remaining high | Next-bundled `postcss`, `zod`&lt;4, Prisma `deepmerge-ts` — fixes want **Next 16 / zod 4 / Prisma 7** via `--force` → **BLOCKED** separate approval |
+| Evidence | `.tmp-qa-continuous/SECURITY-NPM-AUDIT.md`, audit JSON |
+
+### O2. Additional local repairs this continuation
+
+| Commit | Change |
+|--------|--------|
+| `93037b7` | next-auth security patch |
+| `ee18adb` | Golnar CTA label → **Book with Dr Golnar** (+ aria-label); HotDoc URL preserved |
+| Prior tip `069977b`… | PEERS, search-index, SEO middleware, Agent A CSS, trust-logo aria-labels (see history above) |
+
+### Q2. Tests / build (continuation)
+
+| Suite | Result |
+|-------|--------|
+| `test:practitioner-routes` | **34/34 PASS** |
+| `test:p0` | **75/75 PASS** |
+| Golnar booking + a11y smoke | **14/14 PASS** |
+| Production `npm run build` | **PASS** (log `.tmp-qa-continuous/build-log-cycle2.txt`) |
+
+### Executive summary (updated tip)
+
+| Metric | Value |
+|--------|-------|
+| Final tip (pre-docs commit) | `ee18adbed1debb79307dd22909477a528aad0dc8` |
+| V4 branding on Hostinger | **CONFIRMED LIVE** |
+| Practitioner / booking | **15/15** + matrix PASS (Golnar label improved locally, not live until deploy) |
+| Admin | Login verified; 67 routes inventoried; deep CMS **BLOCKED** without credentials |
+| Security | Critical Auth.js cleared; remaining force-upgrade highs **BLOCKED** |
+| SEO CDN robots | **BLOCKED** |
+| GitHub / Hostinger deploy | **NOT DONE** |
+| Verdict | **MASTER QA PARTIAL — APPROVALS OR EXTERNAL BLOCKERS REMAIN** |
