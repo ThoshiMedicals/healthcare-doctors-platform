@@ -58,6 +58,20 @@ test("ensurePatientShareRuntime is idempotent and injects script + live region",
   assert.match(once, /id="wmc-patient-share"/);
 });
 
+test("page-level share toolbar CSS hides at desktop (≥768px) without affecting preferred-GP class", () => {
+  const once = ensurePatientShareRuntime("<html><head></head><body></body></html>");
+  assert.match(
+    once,
+    /@media \(min-width:768px\)\{\s*\.wmc-patient-share--toolbar\{display:none!important\}/,
+  );
+  assert.match(once, /\.doctor-profile-actions \.wmc-patient-share\{margin-left:0\}/);
+  assert.doesNotMatch(once, /\.wmc-preferred-gp-share\{[^}]*display:\s*none/);
+  assert.doesNotMatch(
+    once,
+    /@media \(min-width:768px\)\{[^}]*\.doctor-profile-actions/,
+  );
+});
+
 test("injectPatientShareExperience no-ops on non-target minimal HTML", () => {
   const html = "<html><body><main>ok</main></body></html>";
   assert.equal(injectPatientShareExperience(html, "patient-forms.html"), html);

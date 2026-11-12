@@ -36,6 +36,10 @@ const PATIENT_SHARE_STYLE = `<style id="${PATIENT_SHARE_STYLE_ID}">
 .wmc-patient-share__btn[aria-busy="true"]{opacity:.72}
 .doctor-profile-actions .wmc-patient-share{margin-left:0}
 .wmc-patient-share--toolbar{margin:12px 0 0}
+/* Page-level "Share this page" toolbar: mobile only (<768px). Keeps preferred-GP / doctor-profile shares. */
+@media (min-width:768px){
+  .wmc-patient-share--toolbar{display:none!important}
+}
 .wmc-patient-share-live{
   position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
   clip:rect(0,0,0,0);white-space:nowrap;border:0
