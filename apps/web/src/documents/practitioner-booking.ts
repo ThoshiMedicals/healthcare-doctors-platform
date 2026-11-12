@@ -21,12 +21,13 @@ export const GOLNAR_APPROVED_HOTDOC_URL =
   "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors/dr-golnar-mortezaei-5?wp=w_lightbox";
 
 export const GOLNAR_SLUG = "dr-golnar-mortezaei";
+export const MARY_SLUG = "dr-mary-abadir";
 export const GOLNAR_PROFILE_PATH = "doctors/dr-golnar-mortezaei.html";
 export const GOLNAR_WELCOME_PATH = "updates/welcome-dr-golnar-mortezaei.html";
 
 export type PractitionerBookingMode = "ONLINE_HOTDOC" | "PHONE_ONLY";
 
-/** Five-practitioner booking matrix (owner-authorised policy). */
+/** Owner-authorised booking modes (patient hub + profile chrome). */
 export const PRACTITIONER_BOOKING_MATRIX = [
   {
     slug: GOLNAR_SLUG,
@@ -36,7 +37,7 @@ export const PRACTITIONER_BOOKING_MATRIX = [
     approvedHotdocUrl: GOLNAR_APPROVED_HOTDOC_URL,
   },
   {
-    slug: "dr-mary-abadir",
+    slug: MARY_SLUG,
     name: "Dr Mary Abadir",
     mode: "PHONE_ONLY" as const,
     profilePath: "doctors/dr-mary-abadir.html",
@@ -90,15 +91,23 @@ export function isClinicLevelHotdocUrl(href: string | null | undefined): boolean
   }
 }
 
+export function practitionerBookingModeForSlug(slug: string): PractitionerBookingMode | null {
+  return PRACTITIONER_BOOKING_MATRIX.find((row) => row.slug === slug)?.mode ?? null;
+}
+
 /**
  * Prefer CMS practitioner HotDoc when present; otherwise Golnar approved fallback.
  * Non-Golnar slugs pass through CMS (including null → caller decides tel/default).
+ * Mary is always phone-only — never return a HotDoc href for her slug.
  */
 export function resolvePractitionerBookingHref(
   slug: string,
   cmsBookingUrl: string | null | undefined,
 ): string | null {
   const cms = typeof cmsBookingUrl === "string" ? cmsBookingUrl.trim() : "";
+  if (slug === MARY_SLUG) {
+    return null;
+  }
   if (slug !== GOLNAR_SLUG) {
     return cms || null;
   }

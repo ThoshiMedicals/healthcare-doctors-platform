@@ -63,20 +63,21 @@ function signManifest(decisions: ApprovedContentPathDecision[]): ApprovedContent
   };
 }
 
-test("B1C count model: 179 ordinary MATCH + recruitment hub = 180; 180+27+16=223", () => {
-  assert.equal(EXPECTED_APPROVED_PATH_COUNT, 223);
-  assert.equal(180 + 27 + 16, 223);
+test("B1C count model: 179 ordinary MATCH + recruitment hub = 180; 180+27+19=226", () => {
+  assert.equal(EXPECTED_APPROVED_PATH_COUNT, 226);
+  assert.equal(180 + 27 + 19, 226);
   assert.equal(179 + 1, 180);
   assert.ok(APPROVED_PUBLIC_PATHS.includes("join-our-team.html"));
+  assert.ok(APPROVED_PUBLIC_PATHS.includes("patient-hub.html"));
   const hold = recruitmentHoldForPath("join-our-team.html");
   assert.ok(hold?.holdActive);
   assert.equal(hold?.mayIndex, false);
 });
 
-test("draft decisions cover all 223 paths without duplicates", () => {
+test("draft decisions cover all 226 paths without duplicates", () => {
   const decisions = buildDraftDecisionsFromReconciliation(buildFullDraftRows());
-  assert.equal(decisions.length, 223);
-  assert.equal(new Set(decisions.map((d) => d.path)).size, 223);
+  assert.equal(decisions.length, 226);
+  assert.equal(new Set(decisions.map((d) => d.path)).size, 226);
   const hub = decisions.find((d) => d.path === "join-our-team.html");
   assert.equal(hub?.recruitmentHold, true);
   assert.equal(hub?.importAction, "import_under_hold");

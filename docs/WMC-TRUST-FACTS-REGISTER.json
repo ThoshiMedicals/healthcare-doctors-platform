@@ -1,0 +1,175 @@
+{
+  "document": "docs/WMC-TRUST-FACTS-REGISTER.md",
+  "auditDate": "2026-11-11",
+  "clinicSlug": "woolloongabba",
+  "practiceName": "Woolloongabba Medical Centre",
+  "authorityHierarchy": [
+    "GM:old-html",
+    "SEED:apps/web/prisma/seed.ts",
+    "SSR:apps/web/src/documents/public-ux.ts",
+    "RT:apps/web/public/site.js",
+    "UPD:updates-data.js",
+    "FALLBACK:apps/web/src/clinics/branding.ts",
+    "RECRUIT:apps/web/src/recruitment"
+  ],
+  "canonicalContact": {
+    "practiceName": "Woolloongabba Medical Centre",
+    "phoneDisplay": "(07) 3217 3344",
+    "phoneTel": "+61732173344",
+    "faxDisplay": "(07) 3189 4808",
+    "email": "reception@gabbamedicalcentre.com.au",
+    "streetAddress": "468 Vulture Street",
+    "suburb": "Woolloongabba",
+    "state": "QLD",
+    "postcode": "4102",
+    "country": "AU",
+    "fullAddressLine": "468 Vulture Street, Woolloongabba QLD 4102",
+    "canonicalBaseUrl": "https://gabbamedicalcentre.com.au",
+    "hotdocUrl": "https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors?wp=w_lightbox",
+    "afterHoursProvider": "Hello Home Doctor",
+    "afterHoursPhone": "134 100",
+    "afterHoursPagePath": "after-hours-care.html",
+    "bookingPagePath": "book-appointment.html"
+  },
+  "openingHours": [
+    { "dayOfWeek": "monday", "opens": "07:00", "closes": "19:00" },
+    { "dayOfWeek": "tuesday", "opens": "07:00", "closes": "19:00" },
+    { "dayOfWeek": "wednesday", "opens": "07:00", "closes": "19:00" },
+    { "dayOfWeek": "thursday", "opens": "07:00", "closes": "19:00" },
+    { "dayOfWeek": "friday", "opens": "08:00", "closes": "17:00" },
+    { "dayOfWeek": "saturday", "opens": "09:00", "closes": "17:00" },
+    { "dayOfWeek": "sunday", "opens": "09:00", "closes": "15:00" }
+  ],
+  "billing": {
+    "standardBulkBillingStatement": "100% Medicare bulk billing for standard Medicare-eligible general practice consultations for patients with a valid Medicare card",
+    "feesMayApplyTo": [
+      "procedures",
+      "reports",
+      "employment or occupational medicals",
+      "other non-Medicare services"
+    ],
+    "heroMarketingBadge": "Bulk Billing Available",
+    "telehealthPrivateFeesPublishedOn": "telehealth.html",
+    "telehealthPrivateFees": {
+      "weekdayConsultAud": 65,
+      "weekendConsultAud": 80,
+      "medicareRebateAud": 42.85,
+      "note": "As published on telehealth.html at audit date; verify against current reception schedule before changing"
+    },
+    "cancellationFeeAmountPublished": false,
+    "cancellationPolicySummary": "Contact as early as possible; ask reception about any current non-attendance or cancellation fee"
+  },
+  "practitionerBooking": {
+    "phoneOnly": [
+      {
+        "name": "Dr Mary Abadir",
+        "page": "doctors/dr-mary-abadir.html",
+        "method": "tel:+61732173344"
+      }
+    ],
+    "restricted": [
+      {
+        "name": "Dr Usman Gul",
+        "page": "doctors/dr-usman-gul.html",
+        "hotdocSlugContains": "strictly-seeing-male-patients-only"
+      }
+    ],
+    "insuranceNonBulkBillSlug": "does-not-bulk-bill-for-insurance-patients",
+    "insuranceNoticeTemplate": "Booking note: {Name} does not bulk bill for insurance patients.",
+    "insuranceSlugPractitioners": [
+      "Dr Anand Singh",
+      "Dr Debra Larkins",
+      "Dr Sambo Luon",
+      "Dr Sumita Singh",
+      "Dr Tanya Goodwill"
+    ]
+  },
+  "recruitmentOnly": {
+    "phoneDisplay": "0481 706 474",
+    "email": "roshan@tmedicals.com.au",
+    "note": "Not patient reception facts"
+  },
+  "contradictions": [
+    {
+      "id": "CX-01",
+      "severity": "critical",
+      "status": "mitigated_in_fallback_2026-11-11",
+      "topic": "streetAddress fallback was 31 Annerley Road"
+    },
+    {
+      "id": "CX-02",
+      "severity": "critical",
+      "status": "mitigated_in_fallback_2026-11-11",
+      "topic": "email fallback was admin@gabbamedicalcentre.com.au"
+    },
+    {
+      "id": "CX-03",
+      "severity": "medium",
+      "status": "mitigated_in_fallback_2026-11-11",
+      "topic": "phoneTel format fallback"
+    },
+    {
+      "id": "CX-04",
+      "severity": "low",
+      "status": "open_cosmetic",
+      "topic": "hours meridian casing variants"
+    },
+    {
+      "id": "CX-05",
+      "severity": "low",
+      "status": "open_wording_tier",
+      "topic": "Bulk Billing Available vs 100% standard Medicare sentence"
+    },
+    {
+      "id": "CX-06",
+      "severity": "medium",
+      "status": "open_discoverability",
+      "topic": "telehealth dollar fees only on telehealth.html"
+    },
+    {
+      "id": "CX-07",
+      "severity": "info",
+      "status": "audience_scoped",
+      "topic": "patient vs recruitment phone"
+    },
+    {
+      "id": "CX-08",
+      "severity": "low",
+      "status": "open",
+      "topic": "careers sticky mixed clinic vs recruitment phone"
+    },
+    {
+      "id": "CX-09",
+      "severity": "info",
+      "status": "maintenance_risk",
+      "topic": "insurance notices triple path GM+SSR+RT"
+    },
+    {
+      "id": "CX-10",
+      "severity": "info",
+      "status": "punctuation_only",
+      "topic": "Hello Home Doctor hours punctuation variants"
+    }
+  ],
+  "implementedFixes": [
+    {
+      "id": "FIX-01",
+      "file": "apps/web/src/clinics/branding.ts",
+      "change": "DEFAULT_CLINIC_BRANDING aligned to seed/golden master"
+    },
+    {
+      "id": "FIX-02",
+      "file": "apps/web/src/documents/public-ux.ts",
+      "change": "hero tel fallback uses DEFAULT_CLINIC_BRANDING.phoneTel"
+    }
+  ],
+  "outOfScope": [
+    "invent cancellation fee amounts",
+    "new policies",
+    "HotDoc for Mary",
+    "invent insurance notices",
+    "change Usman HotDoc slug",
+    "hero authority v6 redesign",
+    "deployment"
+  ]
+}

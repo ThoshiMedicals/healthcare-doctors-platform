@@ -44,8 +44,9 @@ test("resolvePractitionerBookingHref falls back when CMS is null, tel, or clinic
 });
 
 test("resolvePractitionerBookingHref does not invent URLs for other slugs", () => {
+  // Mary is always phone-only — never surface HotDoc or pass-through booking hrefs.
   assert.equal(resolvePractitionerBookingHref("dr-mary-abadir", null), null);
-  assert.equal(resolvePractitionerBookingHref("dr-mary-abadir", "tel:+61732173344"), "tel:+61732173344");
+  assert.equal(resolvePractitionerBookingHref("dr-mary-abadir", "tel:+61732173344"), null);
   assert.equal(resolvePractitionerBookingHref("dr-james", null), null);
 });
 

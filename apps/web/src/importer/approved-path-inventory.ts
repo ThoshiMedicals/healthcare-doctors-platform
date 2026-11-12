@@ -1,8 +1,9 @@
 /**
  * Approved public CMS path inventory for Phase 4 B1 reconciliation.
- * Authority: NEXT / Hostinger published set (223) vs golden file corpus (207).
+ * Authority: NEXT / Hostinger published set (226) vs golden file corpus (207).
  * Paths only — no private content.
  * Retired unpublished CMS profiles (Golnar / James / Yamesha) removed 2026-11-10.
+ * Patient App Class B openings (hub / practice info hub / install) added 2026-11-12.
  */
 
 /** Approved published paths absent from frozen golden HTML (Class B). */
@@ -11,6 +12,7 @@ export const CLASS_B_NON_GOLDEN_PATHS = [
   "about-us/community-catchment.html",
   "about-us/continuity-in-practice.html",
   "about-us/practice-experience.html",
+  "install-wmc-app.html",
   "join-our-team/doctor-readiness.html",
   "join-our-team/dpa-navigator.html",
   "join-our-team/express-interest.html",
@@ -21,6 +23,8 @@ export const CLASS_B_NON_GOLDEN_PATHS = [
   "join-our-team/provider-number-readiness.html",
   "join-our-team/registrar-pathway.html",
   "join-our-team/session-planner.html",
+  "patient-hub.html",
+  "practice-information-hub.html",
   "updates/welcome-dr-golnar-mortezaei.html",
   "updates/welcome-dr-james-chanaka.html",
 ] as const;
@@ -28,8 +32,8 @@ export const CLASS_B_NON_GOLDEN_PATHS = [
 export type ClassBPath = (typeof CLASS_B_NON_GOLDEN_PATHS)[number];
 
 /**
- * Full approved public CMS inventory (223), matching live indexable openings
- * after retirement of three unpublished CMS doctor profiles.
+ * Full approved public CMS inventory (226), matching live indexable openings
+ * after retirement of three unpublished CMS doctor profiles + Patient App Class B.
  * Maintained as the B1 parity allowlist — update only with operator approval.
  */
 export const APPROVED_PUBLIC_PATHS: readonly string[] = [
@@ -67,6 +71,7 @@ export const APPROVED_PUBLIC_PATHS: readonly string[] = [
   "identifying-hotdoc-scam-messages.html",
   "index.html",
   "infection-prevention-control.html",
+  "install-wmc-app.html",
   "join-our-team.html",
   "join-our-team/doctor-readiness.html",
   "join-our-team/dpa-navigator.html",
@@ -196,9 +201,11 @@ export const APPROVED_PUBLIC_PATHS: readonly string[] = [
   "new-patients.html",
   "patient-code-of-conduct.html",
   "patient-forms.html",
+  "patient-hub.html",
   "patient-information.html",
   "patient-rights-responsibilities.html",
   "philosophy-of-care.html",
+  "practice-information-hub.html",
   "practice-information.html",
   "practice-policies.html",
   "privacy-confidentiality.html",
@@ -258,8 +265,8 @@ export const APPROVED_PUBLIC_PATHS: readonly string[] = [
   "why-team-based-care-matters.html",
 ];
 
-export const EXPECTED_APPROVED_PATH_COUNT = 223;
-export const EXPECTED_CLASS_B_COUNT = 16;
+export const EXPECTED_APPROVED_PATH_COUNT = 226;
+export const EXPECTED_CLASS_B_COUNT = 19;
 
 export function isClassBPath(path: string): boolean {
   return (CLASS_B_NON_GOLDEN_PATHS as readonly string[]).includes(path);

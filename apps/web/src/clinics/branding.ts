@@ -16,13 +16,14 @@ export type ClinicBranding = {
   logoPath: string;
 };
 
+/** Fallback only — must match seed / Trust Facts Register when ClinicProfile is absent. */
 export const DEFAULT_CLINIC_BRANDING: ClinicBranding = {
   clinicSlug: "woolloongabba",
   practiceName: "Woolloongabba Medical Centre",
   phoneDisplay: "(07) 3217 3344",
-  phoneTel: "0732173344",
-  email: "admin@gabbamedicalcentre.com.au",
-  streetAddress: "31 Annerley Road",
+  phoneTel: "+61732173344",
+  email: "reception@gabbamedicalcentre.com.au",
+  streetAddress: "468 Vulture Street",
   suburb: "Woolloongabba",
   state: "QLD",
   postcode: "4102",

@@ -33,6 +33,11 @@ import {
   resolveRecruitmentContact,
 } from "@/recruitment";
 import { injectPracticeExperienceAboutLinks } from "@/practice-experience/inject-about";
+import { applyPatientHubDigitalReception } from "@/documents/patient-hub-digital-reception";
+import { injectPatientInstallAndroid } from "@/documents/patient-install-android";
+import { injectPatientInstallIos } from "@/documents/patient-install-ios";
+import { injectPatientPracticeInfoHub } from "@/documents/patient-practice-info-hub";
+import { injectPatientShareExperience } from "@/documents/patient-share";
 
 export type PublicUxOptions = {
   clinicSlug?: string;
@@ -52,6 +57,121 @@ function resolveBranding(options?: PublicUxOptions | string): ClinicBranding {
     clinicSlug: slug,
   };
 }
+
+function practiceTelHref(phoneTel: string): string {
+  const normalized = phoneTel.trim();
+  if (/^tel:/i.test(normalized)) return normalized;
+  if (normalized.startsWith("+")) return `tel:${normalized.replace(/\s/g, "")}`;
+  const digits = normalized.replace(/\D/g, "");
+  if (digits.startsWith("61")) return `tel:+${digits}`;
+  if (digits.startsWith("0")) return `tel:+61${digits.slice(1)}`;
+  return `tel:+61${digits}`;
+}
+
+const PATIENT_INSTALL_QR_SCRIPT_HREF =
+  "/wmc-cache/patient-install-qr.js?v=wmc-patient-install-qr-20261112a";
+
+/** Phase 3B — platform install guides + desktop QR cache path (hub / install landing). */
+function injectPatientInstallExperience(html: string, pagePath: string): string {
+  let next = injectPatientInstallAndroid(html, pagePath);
+  next = injectPatientInstallIos(next, pagePath);
+  if (pagePath === "install-wmc-app.html") {
+    next = next.replace(
+      /(?:\/wmc-cache\/)?(?:\.\.\/)*patient-install-qr\.js(?:\?[^"]*)?(?=")/g,
+      PATIENT_INSTALL_QR_SCRIPT_HREF,
+    );
+    if (!/<script\b[^>]*\bsrc="[^"]*patient-install-qr\.js[^"]*"/i.test(next)) {
+      next = next.replace(
+        /<\/body>/i,
+        `<script defer="" src="${PATIENT_INSTALL_QR_SCRIPT_HREF}"></script></body>`,
+      );
+    }
+  }
+  return next;
+}
+
+
+const PATIENT_DASHBOARD_STYLE = `<style id="wmc-patient-dashboard">
+.patient-dashboard-reception-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.patient-dashboard-reception-row .button{flex:1 1 140px;min-height:48px;text-align:center}
+.patient-dashboard-preferred-gp-mount{
+  margin-top:14px;padding:14px 16px;border:1px dashed rgba(22,61,104,.22);border-radius:12px;background:#f8fafb
+}
+.patient-dashboard-preferred-gp-mount:empty{min-height:72px}
+.patient-preferred-gp-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.patient-preferred-gp-actions .text-link,
+.patient-preferred-gp-actions a.text-link,
+.patient-preferred-gp-actions button.text-link{
+  min-height:44px;min-width:44px;display:inline-flex;align-items:center;box-sizing:border-box;padding:.35rem .5rem
+}
+.patient-dashboard-practice-grid{display:grid;gap:12px}
+@media(min-width:640px){.patient-dashboard-practice-grid{grid-template-columns:1fr 1fr}}
+.patient-dashboard-practice-grid address{font-style:normal;margin:.35rem 0 0}
+</style>`;
+function patientHubPracticeStripHtml(branding: ClinicBranding): string {
+  const address = `${branding.streetAddress}, ${branding.suburb} ${branding.state} ${branding.postcode}`;
+  const telHref = practiceTelHref(branding.phoneTel);
+  return (
+    `<section class="article-section patient-dashboard-practice" id="practice-info-strip" aria-label="Practice details">` +
+    `<div class="patient-dashboard-practice-grid">` +
+    `<div>` +
+    `<p class="eyebrow">Your practice</p>` +
+    `<p><strong>${escapeHtmlAttr(branding.practiceName)}</strong></p>` +
+    `<address>${escapeHtmlAttr(address)}</address>` +
+    `<p><a class="text-link" href="contact.html">Contact &amp; location →</a></p>` +
+    `</div>` +
+    `<div class="contact-hours-detail" aria-label="Opening hours summary">` +
+    `<strong>Hours</strong>` +
+    `<span><b>Mon–Thu</b> 7:00 AM–7:00 PM</span>` +
+    `<span><b>Friday</b> 8:00 AM–5:00 PM</span>` +
+    `<span><b>Saturday</b> 9:00 AM–5:00 PM</span>` +
+    `<span><b>Sunday</b> 9:00 AM–3:00 PM</span>` +
+    `</div>` +
+    `<div>` +
+    `<p><strong>Phone</strong><br/><a href="${escapeHtmlAttr(telHref)}">${escapeHtmlAttr(branding.phoneDisplay)}</a></p>` +
+    `<p><strong>Email</strong><br/><a href="mailto:${escapeHtmlAttr(branding.email)}">${escapeHtmlAttr(branding.email)}</a></p>` +
+    `<p><strong>After hours</strong><br/><a href="after-hours-care.html">Hello Home Doctor <strong>134 100</strong></a></p>` +
+    `</div>` +
+    `</div></section>`
+  );
+}
+
+const PATIENT_PREFERRED_GP_SCRIPT_HREF =
+  "/wmc-cache/patient-preferred-gp.js?v=wmc-preferred-gp-20261112a";
+
+/** Phase 3A patient dashboard — trust-facts practice strip + Preferred GP mount script. */
+function refinePatientHubDashboard(html: string, pagePath: string, branding: ClinicBranding): string {
+  if (pagePath !== "patient-hub.html") return html;
+  let next = html;
+  next = next.replace(/<style\b[^>]*id="wmc-patient-dashboard"[\s\S]*?<\/style>\s*/i, "");
+  next = next.replace(/<\/head>/i, `${PATIENT_DASHBOARD_STYLE}</head>`);
+  const stripMount =
+    /<section\b[^>]*\bid="practice-info-strip"[^>]*>[\s\S]*?<\/section>/i;
+  const strip = patientHubPracticeStripHtml(branding);
+  next = stripMount.test(next)
+    ? next.replace(stripMount, strip)
+    : next.replace(/<\/article>/i, `${strip}</article>`);
+
+  // Align Agent 1 mount contract with Agent 2 storage key (localStorage only).
+  next = next.replace(
+    /data-preferred-gp-storage-hook="[^"]*"/gi,
+    'data-preferred-gp-storage-hook="wmc.preferredGp.v1"',
+  );
+
+  next = next.replace(
+    /(?:\/wmc-cache\/)?(?:\.\.\/)*patient-preferred-gp\.js(?:\?[^"]*)?(?=")/g,
+    PATIENT_PREFERRED_GP_SCRIPT_HREF,
+  );
+  if (!/<script\b[^>]*\bsrc="[^"]*patient-preferred-gp\.js[^"]*"/i.test(next)) {
+    next = next.replace(
+      /<\/body>/i,
+      `<script defer="" src="${PATIENT_PREFERRED_GP_SCRIPT_HREF}"></script></body>`,
+    );
+  }
+  return next;
+}
+
+
 
 const GP_VISIBLE_CARE_AREA_COUNT = 3;
 
@@ -457,6 +577,8 @@ export function applyPublicUxRefinements(
   next = next.replace(/<style\b[^>]*id="wmc-practitioner-directory-cards"[\s\S]*?<\/style>\s*/i, "");
   next = next.replace(/<style\b[^>]*id="wmc-team-copy-fullwidth"[\s\S]*?<\/style>\s*/i, "");
   next = next.replace(/<style\b[^>]*id="wmc-digital-reception-mobile"[\s\S]*?<\/style>\s*/i, "");
+  // Phase 3D share: strip so re-apply keeps stable head order (runtime re-injected by share mounts).
+  next = next.replace(/<style\b[^>]*id="wmc-patient-share"[\s\S]*?<\/style>\s*/i, "");
   next = next.replace(/<style\b[^>]*id="wmc-sitewide-visual-polish"[\s\S]*?<\/style>\s*/i, "");
   next = next.replace(/<style\b[^>]*id="wmc-recruitment-authority-enrich"[\s\S]*?<\/style>\s*/i, "");
   next = next.replace(/<style\b[^>]*id="wmc-gp-recruit-discover"[\s\S]*?<\/style>\s*/i, "");
@@ -2064,6 +2186,11 @@ min-height:44px;width:100%;max-width:100%;box-sizing:border-box
     pagePath,
     isRecruitmentSurface || isExpressInterestPage,
   );
+  next = refinePatientHubDashboard(next, pagePath, branding);
+  next = applyPatientHubDigitalReception(next, pagePath);
+  next = injectPatientInstallExperience(next, pagePath);
+  next = injectPatientPracticeInfoHub(next, pagePath, branding);
+  next = injectPatientShareExperience(next, pagePath);
 
   if (pagePath !== "index.html") return next;
 
