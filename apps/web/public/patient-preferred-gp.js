@@ -174,10 +174,12 @@
       summary.appendChild(actions);
       wrap.appendChild(summary);
     } else {
-      var empty = document.createElement("p");
-      empty.className = "patient-preferred-gp-empty";
-      empty.textContent = "Choose a GP you usually see — we will remember it on this device.";
-      wrap.appendChild(empty);
+      var intro = document.createElement("div");
+      intro.className = "patient-preferred-gp-intro";
+      intro.innerHTML =
+        '<p class="patient-preferred-gp-label">My preferred GP</p>' +
+        '<p class="patient-preferred-gp-empty">Choose a GP you usually see — we will remember it on this device.</p>';
+      wrap.appendChild(intro);
       renderPicker(wrap, "", true);
     }
 
@@ -199,6 +201,7 @@
 
     var select = document.createElement("select");
     select.id = "wmc-preferred-gp-select";
+    select.className = "patient-preferred-gp-select";
     select.name = "preferredGp";
     select.required = true;
 
@@ -222,12 +225,24 @@
 
     var save = document.createElement("button");
     save.type = "submit";
-    save.className = "button";
+    save.className = "button patient-preferred-gp-save";
     save.textContent = "Save on this device";
 
-    picker.appendChild(label);
-    picker.appendChild(select);
-    picker.appendChild(save);
+    var labelRow = document.createElement("div");
+    labelRow.className = "patient-preferred-gp-picker-row patient-preferred-gp-picker-row--label";
+    labelRow.appendChild(label);
+
+    var selectRow = document.createElement("div");
+    selectRow.className = "patient-preferred-gp-picker-row patient-preferred-gp-picker-row--select";
+    selectRow.appendChild(select);
+
+    var saveRow = document.createElement("div");
+    saveRow.className = "patient-preferred-gp-picker-row patient-preferred-gp-picker-row--save";
+    saveRow.appendChild(save);
+
+    picker.appendChild(labelRow);
+    picker.appendChild(selectRow);
+    picker.appendChild(saveRow);
 
     picker.addEventListener("submit", function (event) {
       event.preventDefault();

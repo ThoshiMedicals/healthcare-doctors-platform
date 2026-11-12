@@ -25,12 +25,18 @@ test("refinePatientHubMobileDashboard: approved section order and copy", () => {
   assert.match(once, /id="preferred-gp-panel"/);
   assert.match(once, /Book Appointment/);
   assert.match(once, /href="book-appointment\.html"/);
+  assert.match(once, /data-hub-action="book"/);
+  assert.match(once, /data-hub-action="reception"/);
+  assert.match(once, /data-hub-action="find"/);
+  assert.match(once, /data-hub-action="health"/);
   assert.match(once, /patient-hub-dr-primary/);
   assert.match(once, /Find a Doctor/);
   assert.match(once, /Health Information/);
   assert.match(once, /data-wmc-hub-install-card/);
   assert.match(once, /patient-hub-practice-details/);
   assert.match(once, /Practice information/);
+  assert.match(once, /\.patient-hub-install-card\{[^}]*border:1px solid/i);
+  assert.doesNotMatch(once, /patient-hub-install-card\{[^}]*border:1px dashed/i);
   assert.doesNotMatch(once, /id="patient-dashboard-secondary"/);
   assert.doesNotMatch(once, /medical records|prescriptions|pathology/i);
   // HotDoc widget hides .wmc-book-appointment nodes — keep card as plain link.

@@ -1,4 +1,6 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import test from "node:test";
 import {
   APPROVED_GP_CATALOG,
@@ -58,4 +60,16 @@ test("resolvePreferredGpBookingCta respects booking policy hints", () => {
   assert.equal(resolvePreferredGpBookingCta(golnar).href, GOLNAR_APPROVED_HOTDOC_URL);
   assert.equal(resolvePreferredGpBookingCta(golnar).external, true);
   assert.equal(resolvePreferredGpBookingCta(tanya).href, tanya.profilePath);
+});
+
+test('patient-preferred-gp.js: empty-state heading and stacked picker rows', () => {
+  const source = readFileSync(
+    path.join(path.dirname(import.meta.dirname), '..', 'public', 'patient-preferred-gp.js'),
+    'utf8',
+  );
+  assert.match(source, /My preferred GP/);
+  assert.match(source, /patient-preferred-gp-picker-row--label/);
+  assert.match(source, /patient-preferred-gp-picker-row--select/);
+  assert.match(source, /patient-preferred-gp-picker-row--save/);
+  assert.match(source, /patient-preferred-gp-select/);
 });

@@ -139,7 +139,7 @@ function patientHubPracticeStripHtml(branding: ClinicBranding): string {
 }
 
 const PATIENT_PREFERRED_GP_SCRIPT_HREF =
-  "/wmc-cache/patient-preferred-gp.js?v=wmc-preferred-gp-20261112a";
+  "/wmc-cache/patient-preferred-gp.js?v=wmc-preferred-gp-20261113a";
 
 /** Phase 3A patient dashboard — trust-facts practice strip + Preferred GP mount script. */
 function refinePatientHubDashboard(html: string, pagePath: string, branding: ClinicBranding): string {
