@@ -15,7 +15,7 @@
 | Share-control status at baseline | **Already deployed** (mobile-only toolbar) |
 | Worktree | `WMC-patient-app-hostinger-integration` |
 | Integration branch | `release/wmc-patient-app-visual-excellence` |
-| Ancestry | `fdd9bf2` ← `5056f59` (discovery + in-flow iOS) ← `3e9521d` (suppress global tip) |
+| Ancestry | `fdd9bf2` ← `5056f59` (discovery + in-flow iOS) ← `3e9521d` (suppress global tip) ← `6f08dde` (dock padding) |
 | Rollback archive preserved | `wmc-share-control-staging-fdd9bf2.zip` / build `01a1ce64-…` |
 
 No DB writes. No production/DNS/Auth.js changes. Env keys unchanged.
@@ -139,7 +139,7 @@ No real appointments submitted.
 | --- | --- |
 | 1 | Baseline `fdd9bf2`; confirm share already live; reproduce D2; plan code-only discovery |
 | 2 | Implement discovery + in-flow iOS; deploy `5056f59` / `01a1ce74-…` |
-| 3 | Find residual global tip covering guide; suppress tip; deploy `3e9521d` / `01a1ce7b-…`; re-verify PASS |
+| 3 | Find residual global tip covering guide; suppress tip; pad guide above sticky dock; deploy `6f08dde` / `01a1ce83-…`; re-verify PASS |
 
 | ID | Severity | Issue | Status |
 | --- | --- | --- | --- |
@@ -187,10 +187,10 @@ Both `staging.gabbamedicalcentre.com.au` and `mediumslateblue-eagle-960503.hosti
 
 | Item | Value |
 | --- | --- |
-| **Final deployed Git SHA** | `3e9521d74e94a6a5ba6bae5e5848a1065e0931ee` |
-| **Hostinger build UUID** | `01a1ce7b-fead-7067-8e5f-460242fe1727` |
-| Release ZIP | `wmc-patient-app-visual-excellence-3e9521d.zip` |
-| ZIP SHA-256 | `AB397FA2BCBC47CA905EE79C7AB41FF611F23630F36F3F477A3314A179E39F68` |
+| **Final deployed Git SHA** | `6f08dde498dbc7e9b2b00daf0159b85dd865be49` |
+| **Hostinger build UUID** | `01a1ce83-2522-717d-9567-eacf58419836` |
+| Release ZIP | `wmc-patient-app-visual-excellence-6f08dde.zip` |
+| ZIP SHA-256 | `EF8A0F052D246C0EC776CB69F8747E794BDE62E2298BB0E25442606C21D047E5` |
 
 ---
 
@@ -221,7 +221,7 @@ Both `staging.gabbamedicalcentre.com.au` and `mediumslateblue-eagle-960503.hosti
 
 ## X. Audit/fix/deployment cycles completed
 
-**3** (baseline audit → excellence deploy → D2 tip residual fix redeploy)
+**4** (baseline audit → excellence deploy → D2 tip residual fix → dock-padding polish redeploy)
 
 ---
 
@@ -257,9 +257,9 @@ Per `docs/WMC-HOSTINGER-PRODUCTION-READINESS.md` / cutover checklist: production
 
 | Field | Value |
 | --- | --- |
-| Final deployed SHA | `3e9521d74e94a6a5ba6bae5e5848a1065e0931ee` |
-| Hostinger build UUID | `01a1ce7b-fead-7067-8e5f-460242fe1727` |
-| Cycles | 3 |
+| Final deployed SHA | `6f08dde498dbc7e9b2b00daf0159b85dd865be49` |
+| Hostinger build UUID | `01a1ce83-2522-717d-9567-eacf58419836` |
+| Cycles | 4 |
 | Tests | Unit PASS · Build PASS · Playwright PASS · Smoke PASS |
 | Patient App | Preserved + discoverable |
 | Visual QA | PASS (D2 corrected) |
