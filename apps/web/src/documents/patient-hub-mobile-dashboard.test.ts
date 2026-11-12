@@ -24,6 +24,7 @@ test("refinePatientHubMobileDashboard: approved section order and copy", () => {
   assert.match(once, /data-wmc-hub-dashboard="1"/);
   assert.match(once, /id="preferred-gp-panel"/);
   assert.match(once, /Book Appointment/);
+  assert.match(once, /href="book-appointment\.html"/);
   assert.match(once, /patient-hub-dr-primary/);
   assert.match(once, /Find a Doctor/);
   assert.match(once, /Health Information/);
@@ -32,6 +33,13 @@ test("refinePatientHubMobileDashboard: approved section order and copy", () => {
   assert.match(once, /Practice information/);
   assert.doesNotMatch(once, /id="patient-dashboard-secondary"/);
   assert.doesNotMatch(once, /medical records|prescriptions|pathology/i);
+  // HotDoc widget hides .wmc-book-appointment nodes — keep card as plain link.
+  const actionsBlock = once.match(
+    /class="patient-hub-task-grid patient-hub-dashboard-actions">([\s\S]*?)<\/div>\s*<aside/i,
+  );
+  assert.ok(actionsBlock);
+  assert.match(actionsBlock[1], /Book Appointment/);
+  assert.doesNotMatch(actionsBlock[1], /wmc-book-appointment|data-hotdoc-button/);
 
   const bodyStart = once.indexOf("<body");
   const gp = once.indexOf('id="preferred-gp-panel"', bodyStart);

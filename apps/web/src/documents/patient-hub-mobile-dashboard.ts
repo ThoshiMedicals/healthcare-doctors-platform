@@ -109,8 +109,8 @@ body.patient-hub-page .patient-hub-practice-details .patient-dashboard-practice-
 /* Compact hub footer: keep required links, cut repeated hours/contact on small screens */
 @media (max-width:767px){
   body.patient-hub-page footer .footer-hours,
-  body.patient-hub-page footer .footer-contact{display:none}
-  body.patient-hub-page footer .footer-identity>p{display:none}
+  body.patient-hub-page footer .footer-contact{display:none!important}
+  body.patient-hub-page footer .footer-identity>p{display:none!important}
   body.patient-hub-page footer .footer-grid{gap:1rem}
   body.patient-hub-page footer .footer-accordion-native{border-top:1px solid rgba(18,59,93,.08)}
   body.patient-hub-page .persistent-care-actions{
@@ -152,7 +152,9 @@ function dashboardPrimaryHtml(): string {
     `<div id="preferred-gp-panel" class="patient-dashboard-preferred-gp-mount" data-preferred-gp-panel="" data-preferred-gp-slot="summary" data-preferred-gp-storage-hook="wmc.preferredGp.v1" role="region" aria-label="My preferred GP" aria-live="polite"></div>` +
     `<h2 id="patient-dashboard-primary-title" class="patient-hub-dashboard-actions-title">Quick actions</h2>` +
     `<div class="patient-hub-task-grid patient-hub-dashboard-actions">` +
-    `<a class="wmc-book-appointment" data-hotdoc-button="" data-hotdoc-widget="lightbox" href="https://www.hotdoc.com.au/medical-centres/woolloongabba-QLD-4102/t-medicals-woolloongabba-medical-centre/doctors?wp=w_lightbox"><strong>Book Appointment</strong><span>Book online with HotDoc.</span></a>` +
+    // Do not use data-hotdoc-button / wmc-book-appointment here: HotDoc hides those
+    // nodes (display:none). Dock + header retain the lightbox booking pathway.
+    `<a href="book-appointment.html"><strong>Book Appointment</strong><span>Book online with HotDoc.</span></a>` +
     `<a class="patient-hub-dr-primary" data-open-digital-reception="" href="#digital-reception" id="digital-reception" aria-label="${drLabel}"><strong>Digital Reception</strong><span>Ask for the next step.</span></a>` +
     `<a href="team.html"><strong>Find a Doctor</strong><span>Meet our GPs and team.</span></a>` +
     `<a href="knowledge/index.html"><strong>Health Information</strong><span>Trusted health advice.</span></a>` +
