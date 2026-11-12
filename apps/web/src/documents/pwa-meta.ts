@@ -161,6 +161,15 @@ window.addEventListener("appinstalled",hide);
 export function applyPwaInstallTip(html: string): string {
   if (!/<\/body>/i.test(html)) return html;
   const withoutExisting = html.replace(INSTALL_TIP_PATTERN, "");
+  // Patient Hub / install landing already inject dedicated Phase 3B guides.
+  // Skip the global fixed tip there so it cannot cover hero or in-flow install copy (D2).
+  if (
+    /id=["']wmc-ios-install["']/i.test(withoutExisting) ||
+    /id=["']wmc-android-install["']/i.test(withoutExisting) ||
+    /data-patient-install-ios\b/i.test(withoutExisting)
+  ) {
+    return withoutExisting;
+  }
   return withoutExisting.replace(/<\/body>/i, `${INSTALL_TIP_BLOCK}</body>`);
 }
 

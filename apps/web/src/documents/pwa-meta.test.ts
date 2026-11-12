@@ -88,6 +88,17 @@ test("applyPwaInstallTip: inserts dismissible tip once with sessionStorage-only 
   assert.equal((twice.match(/id="wmc-pwa-install-tip"/g) || []).length, 1);
 });
 
+test("applyPwaInstallTip: skips global tip when dedicated iOS install guide is present (D2)", () => {
+  const withIos =
+    basePage().replace(
+      "</body>",
+      '<section id="wmc-ios-install" data-patient-install-ios="" hidden></section></body>',
+    );
+  const output = applyPwaInstallTip(withIos);
+  assert.ok(!output.includes('id="wmc-pwa-install-tip"'));
+  assert.ok(output.includes('id="wmc-ios-install"'));
+});
+
 test("applyPwaInstallTip: respects reduced motion (transition only added for no-preference)", () => {
   const output = applyPwaInstallTip(basePage());
   assert.ok(output.includes("prefers-reduced-motion:no-preference"));
