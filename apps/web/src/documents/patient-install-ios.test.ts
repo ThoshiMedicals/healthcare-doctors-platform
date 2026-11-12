@@ -40,15 +40,28 @@ test("injectPatientInstallIos: patient-hub only, idempotent panel + script", () 
   assert.equal((twice.match(/wmc-ios-install-guide:start/g) || []).length, 1);
 });
 
-test("injectPatientInstallIos: places panel after patient-hub-hero (D2)", () => {
+test("injectPatientInstallIos: places panel after install card when dashboard present", () => {
+  const withDashboard = `<html><head></head><body>
+<section class="page-hero patient-hub-hero"><h1>Your care, made easier.</h1></section>
+<section id="patient-dashboard-primary"><aside data-wmc-hub-install-card="">Install</aside></section>
+</body></html>`;
+  const once = injectPatientInstallIos(withDashboard, "patient-hub.html");
+  const installCard = once.indexOf("data-wmc-hub-install-card");
+  const panel = once.indexOf(`id="${IOS_INSTALL_PANEL_ID}"`);
+  const hero = once.indexOf("patient-hub-hero");
+  assert.ok(panel > installCard);
+  assert.ok(installCard > hero);
+});
+
+test("injectPatientInstallIos: places panel after patient-hub-hero when no dashboard (D2)", () => {
   const withHero = `<html><head></head><body>
 <section class="page-hero patient-hub-hero"><h1>Your care dashboard.</h1></section>
-<main id="patient-dashboard-primary">Tasks</main>
+<main>Tasks</main>
 </body></html>`;
   const once = injectPatientInstallIos(withHero, "patient-hub.html");
   const heroEnd = once.indexOf("</section>");
   const panel = once.indexOf(`id="${IOS_INSTALL_PANEL_ID}"`);
-  const tasks = once.indexOf("patient-dashboard-primary");
+  const tasks = once.indexOf("<main>");
   assert.ok(panel > heroEnd);
   assert.ok(panel < tasks);
 });

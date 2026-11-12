@@ -37,6 +37,7 @@ import { applyPatientHubDigitalReception } from "@/documents/patient-hub-digital
 import { injectHomepagePatientAppDiscovery } from "@/documents/homepage-patient-app-discovery";
 import { injectPatientInstallAndroid } from "@/documents/patient-install-android";
 import { injectPatientInstallIos } from "@/documents/patient-install-ios";
+import { refinePatientHubMobileDashboard } from "@/documents/patient-hub-mobile-dashboard";
 import { injectPatientPracticeInfoHub } from "@/documents/patient-practice-info-hub";
 import { injectPatientShareExperience } from "@/documents/patient-share";
 
@@ -2199,6 +2200,8 @@ min-height:44px;width:100%;max-width:100%;box-sizing:border-box
     isRecruitmentSurface || isExpressInterestPage,
   );
   next = refinePatientHubDashboard(next, pagePath, branding);
+  // Owner-approved mobile dashboard (Preferred GP first, four actions, install card).
+  next = refinePatientHubMobileDashboard(next, pagePath);
   next = applyPatientHubDigitalReception(next, pagePath);
   next = injectPatientInstallExperience(next, pagePath);
   next = injectPatientPracticeInfoHub(next, pagePath, branding);

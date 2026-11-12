@@ -143,11 +143,24 @@ const IOS_INSTALL_BLOCK = `<!-- ${IOS_INSTALL_BLOCK_MARKER}:start -->
 
 /**
  * SSR helper for `patient-hub.html`. Idempotent; no-op on other paths.
- * Places the guide after `.patient-hub-hero` so it never covers the H1.
+ * Prefers after the compact install card / primary dashboard so the hero and
+ * Preferred GP stay unobstructed; falls back to after `.patient-hub-hero`.
  */
 export function injectPatientInstallIos(html: string, pagePath: string): string {
   if (!/^patient-hub\.html$/i.test(pagePath)) return html;
   const withoutExisting = html.replace(INSTALL_BLOCK_PATTERN, "");
+  if (/data-wmc-hub-install-card/i.test(withoutExisting)) {
+    return withoutExisting.replace(
+      /(<aside\b[^>]*\bdata-wmc-hub-install-card\b[^>]*>[\s\S]*?<\/aside>)/i,
+      `$1${IOS_INSTALL_BLOCK}`,
+    );
+  }
+  if (/id=["']patient-dashboard-primary["']/i.test(withoutExisting)) {
+    return withoutExisting.replace(
+      /(<section\b[^>]*\bid=["']patient-dashboard-primary["'][^>]*>[\s\S]*?<\/section>)/i,
+      `$1${IOS_INSTALL_BLOCK}`,
+    );
+  }
   if (/<section\b[^>]*\bpatient-hub-hero\b[^>]*>[\s\S]*?<\/section>/i.test(withoutExisting)) {
     return withoutExisting.replace(
       /(<section\b[^>]*\bpatient-hub-hero\b[^>]*>[\s\S]*?<\/section>)/i,
