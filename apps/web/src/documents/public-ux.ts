@@ -34,6 +34,7 @@ import {
 } from "@/recruitment";
 import { injectPracticeExperienceAboutLinks } from "@/practice-experience/inject-about";
 import { applyPatientHubDigitalReception } from "@/documents/patient-hub-digital-reception";
+import { injectHomepagePatientAppDiscovery } from "@/documents/homepage-patient-app-discovery";
 import { injectPatientInstallAndroid } from "@/documents/patient-install-android";
 import { injectPatientInstallIos } from "@/documents/patient-install-ios";
 import { injectPatientPracticeInfoHub } from "@/documents/patient-practice-info-hub";
@@ -151,6 +152,17 @@ function refinePatientHubDashboard(html: string, pagePath: string, branding: Cli
   next = stripMount.test(next)
     ? next.replace(stripMount, strip)
     : next.replace(/<\/article>/i, `${strip}</article>`);
+
+  // Clarify working benefits without implying clinical records access.
+  if (
+    /<section\b[^>]*\bpatient-hub-hero\b[^>]*>[\s\S]*?<p class="lede">/i.test(next) &&
+    !/data-wmc-hub-lede-refined="1"/i.test(next)
+  ) {
+    next = next.replace(
+      /(<section\b[^>]*\bpatient-hub-hero\b[^>]*>[\s\S]*?<p class="lede")([^>]*)(>)([\s\S]*?)(<\/p>)/i,
+      `$1$2 data-wmc-hub-lede-refined="1"$3Book appointments, open Digital Reception, save a preferred GP on this device, install a Home Screen shortcut, and find practice information — without digging through the full website.$5`,
+    );
+  }
 
   // Align Agent 1 mount contract with Agent 2 storage key (localStorage only).
   next = next.replace(
@@ -2212,6 +2224,8 @@ min-height:44px;width:100%;max-width:100%;box-sizing:border-box
   // Trust strip under the hero replaces the large homepage Our Team carousel.
   next = next.replace(/<section\b[^>]*\bid="team"[^>]*>[\s\S]*?<\/section>/i, "");
   next = refineHomepageInfoTrustLogos(next);
+  // Patient App discovery — after HotDoc / before #patient-information (not inside frozen #home).
+  next = injectHomepagePatientAppDiscovery(next, pagePath);
 
   return next;
 }

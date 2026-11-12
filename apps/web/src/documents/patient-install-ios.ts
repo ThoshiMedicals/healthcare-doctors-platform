@@ -3,8 +3,10 @@
  *
  * Injects a dismissible, patient-friendly panel on `patient-hub.html` only.
  * Runtime visibility is handled by `patient-install-ios.js` (iOS Safari +
- * not already standalone + dismiss/cooldown gates). Does not modify PWA meta,
- * global install tips, or public-ux wiring (Lead merges later).
+ * not already standalone + dismiss/cooldown gates).
+ *
+ * D2 (2026-11-12): in-flow under the hub hero — never a fixed overlay that
+ * covers H1 / Preferred GP / booking actions.
  */
 
 export const IOS_INSTALL_PANEL_ID = "wmc-ios-install";
@@ -18,7 +20,7 @@ export const PATIENT_INSTALL_STORAGE_IOS_GUIDE_DISMISSED =
 /** Canonical cooldown — aligned with Agent 4 `DEFAULT_INSTALL_PROMPT_COOLDOWN_MS`. */
 export const PATIENT_INSTALL_IOS_DISMISS_COOLDOWN_MS = 14 * 24 * 60 * 60 * 1000;
 
-export const PATIENT_INSTALL_IOS_SCRIPT_VERSION = "wmc-ios-install-v1-20261112";
+export const PATIENT_INSTALL_IOS_SCRIPT_VERSION = "wmc-ios-install-v2-20261112";
 
 const INSTALL_BLOCK_PATTERN = new RegExp(
   `<!--\\s*${IOS_INSTALL_BLOCK_MARKER}:start\\s*-->[\\s\\S]*?<!--\\s*${IOS_INSTALL_BLOCK_MARKER}:end\\s*-->\\s*`,
@@ -28,56 +30,69 @@ const INSTALL_BLOCK_PATTERN = new RegExp(
 const IOS_INSTALL_BLOCK = `<!-- ${IOS_INSTALL_BLOCK_MARKER}:start -->
 <style id="${IOS_INSTALL_PANEL_ID}-style">
 #${IOS_INSTALL_PANEL_ID}{
-  position:fixed;
-  left:14px;
-  right:14px;
-  bottom:calc(14px + env(safe-area-inset-bottom,0px) + var(--action-dock-height,0px));
-  z-index:125;
-  max-width:420px;
-  margin:0 auto;
-  padding:16px 16px 14px;
-  border-radius:16px;
-  background:#163f62;
-  color:#fff;
-  box-shadow:0 16px 40px rgba(16,38,58,.32);
+  position:static;
+  display:block;
+  margin:0;
+  padding:0;
+  z-index:auto;
+  max-width:none;
+  background:#eef6f8;
+  color:#163f62;
+  border-bottom:1px solid rgba(22,63,98,.12);
+  box-shadow:none;
   font-size:14px;
   line-height:1.45;
 }
 #${IOS_INSTALL_PANEL_ID}[hidden]{display:none!important}
+#${IOS_INSTALL_PANEL_ID} .wmc-ios-install-inner{
+  max-width:72rem;
+  margin:0 auto;
+  padding:14px 1.25rem 16px;
+}
 #${IOS_INSTALL_PANEL_ID} h2{
   margin:0 0 6px;
   font-size:16px;
   font-weight:700;
   line-height:1.25;
+  color:#163d68;
 }
-#${IOS_INSTALL_PANEL_ID} p{margin:0 0 10px}
+#${IOS_INSTALL_PANEL_ID} p{margin:0 0 10px;color:#2a4050}
 #${IOS_INSTALL_PANEL_ID} ol{
   margin:0 0 12px 1.1em;
   padding:0;
+  color:#2a4050;
 }
 #${IOS_INSTALL_PANEL_ID} li{margin:0 0 6px}
 #${IOS_INSTALL_PANEL_ID} ul{
   margin:0 0 12px 1.1em;
   padding:0;
+  color:#2a4050;
 }
 #${IOS_INSTALL_PANEL_ID} .wmc-ios-install-actions{
   display:flex;
   flex-wrap:wrap;
   gap:8px;
-  justify-content:flex-end;
+  align-items:center;
 }
-#${IOS_INSTALL_PANEL_ID} .button{margin:0}
+#${IOS_INSTALL_PANEL_ID} .button{margin:0;min-height:44px}
 #${IOS_INSTALL_PANEL_ID} .button-secondary{
-  background:rgba(255,255,255,.14);
-  color:#fff;
-  border-color:rgba(255,255,255,.35);
+  background:#fff;
+  color:#163d68;
+  border:1px solid rgba(22,61,104,.22);
 }
 #${IOS_INSTALL_PANEL_ID} .button-secondary:hover,
 #${IOS_INSTALL_PANEL_ID} .button-secondary:focus-visible{
-  background:rgba(255,255,255,.22);
+  background:#f5f8fc;
+}
+#${IOS_INSTALL_PANEL_ID} a.text-link{
+  font-weight:650;
+  color:#007a87;
+  min-height:44px;
+  display:inline-flex;
+  align-items:center;
 }
 @media (prefers-reduced-motion:no-preference){
-  #${IOS_INSTALL_PANEL_ID}{transition:opacity .25s ease,transform .25s ease}
+  #${IOS_INSTALL_PANEL_ID}{transition:opacity .25s ease}
 }
 </style>
 <section
@@ -88,11 +103,13 @@ const IOS_INSTALL_BLOCK = `<!-- ${IOS_INSTALL_BLOCK_MARKER}:start -->
   aria-labelledby="${IOS_INSTALL_PANEL_ID}-title"
   aria-live="polite"
   data-patient-install-ios=""
+  data-wmc-ios-install-inline="1"
 >
+  <div class="wmc-ios-install-inner">
   <h2 id="${IOS_INSTALL_PANEL_ID}-title">Save the Patient Hub on your iPhone</h2>
   <p>
-    Safari does not show an automatic install button. You add this page yourself —
-    it only takes a moment.
+    Safari does not show an automatic install button. Add this page to your Home Screen —
+    it only takes a moment. This guide sits below the page heading so your dashboard stays visible.
   </p>
   <ol>
     <li>Stay in <strong>Safari</strong> on this page.</li>
@@ -113,9 +130,11 @@ const IOS_INSTALL_BLOCK = `<!-- ${IOS_INSTALL_BLOCK_MARKER}:start -->
     <li>Practice information</li>
   </ul>
   <div class="wmc-ios-install-actions">
+    <a class="text-link" href="install-wmc-app.html">Full installation guide</a>
     <button type="button" class="button button-secondary" data-wmc-ios-install-dismiss="" aria-label="Not now, hide install guide">
       Not now
     </button>
+  </div>
   </div>
 </section>
 <script defer src="/patient-install-ios.js?v=${PATIENT_INSTALL_IOS_SCRIPT_VERSION}"></script>
@@ -124,10 +143,17 @@ const IOS_INSTALL_BLOCK = `<!-- ${IOS_INSTALL_BLOCK_MARKER}:start -->
 
 /**
  * SSR helper for `patient-hub.html`. Idempotent; no-op on other paths.
+ * Places the guide after `.patient-hub-hero` so it never covers the H1.
  */
 export function injectPatientInstallIos(html: string, pagePath: string): string {
   if (!/^patient-hub\.html$/i.test(pagePath)) return html;
-  if (!/<\/body>/i.test(html)) return html;
   const withoutExisting = html.replace(INSTALL_BLOCK_PATTERN, "");
+  if (/<section\b[^>]*\bpatient-hub-hero\b[^>]*>[\s\S]*?<\/section>/i.test(withoutExisting)) {
+    return withoutExisting.replace(
+      /(<section\b[^>]*\bpatient-hub-hero\b[^>]*>[\s\S]*?<\/section>)/i,
+      `$1${IOS_INSTALL_BLOCK}`,
+    );
+  }
+  if (!/<\/body>/i.test(withoutExisting)) return withoutExisting;
   return withoutExisting.replace(/<\/body>/i, `${IOS_INSTALL_BLOCK}</body>`);
 }
