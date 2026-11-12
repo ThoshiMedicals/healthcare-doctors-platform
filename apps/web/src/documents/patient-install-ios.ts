@@ -47,7 +47,7 @@ const IOS_INSTALL_BLOCK = `<!-- ${IOS_INSTALL_BLOCK_MARKER}:start -->
 #${IOS_INSTALL_PANEL_ID} .wmc-ios-install-inner{
   max-width:72rem;
   margin:0 auto;
-  padding:14px 1.25rem 16px;
+  padding:14px 1.25rem calc(20px + env(safe-area-inset-bottom,0px) + var(--action-dock-height,72px));
 }
 #${IOS_INSTALL_PANEL_ID} h2{
   margin:0 0 6px;
