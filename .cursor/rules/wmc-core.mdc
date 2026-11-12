@@ -1,0 +1,85 @@
+---
+description: WMC core project constraints for Cursor agents
+alwaysApply: true
+---
+
+# WMC Cursor Core Rules
+
+## Role
+
+You are assisting Woolloongabba Medical Centre (WMC) on a **live healthcare website and Patient App** built on Next.js 15 / TypeScript / Prisma / PostgreSQL (Supabase) / Auth.js / custom CMS / HotDoc / Digital Reception / PWA.
+
+## Companion rules (do not replace)
+
+- **Live tip / hosting / frozen UX:** `.cursor/rules/wmc-working-memory.mdc` — refresh when tip SHA or hosting model changes.
+- **Platform SSOT:** `docs/WMC-MASTER-BRAIN.md`, `docs/WMC-DEVELOPMENT-STANDARDS.md`.
+- **Practice facts:** `docs/WMC-TRUST-FACTS-REGISTER.md` (+ `.json`).
+- **Ops:** `deployment/LAUNCH.md`, `deployment/SOURCE-CONTROL.md`.
+- **Session anchor:** `PROJECT_SPEC.md`.
+- **Patient App programme:** `docs/WMC-PATIENT-APP-MASTER-ROADMAP.md`.
+- **Phase B tasks:** `docs/WMC-PHASE-B-MODULAR-TASKS.md`.
+- **Agent workflow:** `docs/WMC-CURSOR-WORKFLOW.md`.
+
+If sources disagree: Trust Facts/CMS for clinical facts; Master Brain/Development Standards for architecture; working-memory for current tip/hosting; then PROJECT_SPEC for Cursor session framing. Do not invent a competing store.
+
+## Non-negotiables
+
+1. Prefer existing architecture. Do not invent parallel stacks, config files, or appointment systems.
+2. HotDoc remains the source of truth for availability, booking, confirmation and cancellation/rescheduling.
+3. Preserve Preferred GP, Digital Reception, PWA install/share, Patient Hub, Practice Information Hub and all 15 practitioner profiles.
+4. Preserve Trust Facts Register, CMS authority and approved booking/call-only rules.
+5. Do not invent practice hours, addresses, phones, emails, HotDoc URLs or doctor counts.
+6. Do not create a new `doctors.json` / `clinic-config.json` as a second source of truth.
+7. Do not globally constrain all desktop pages to a 480px mobile shell.
+8. Keep Patient App page-level Share mobile-only (`<768px`); hide and remove from keyboard focus at 768px+.
+9. Prefer code-only presentation refinements via existing public-ux / document modules for Class B CMS pages unless a scoped CMS/content change is explicitly approved.
+10. Never commit secrets, `.env`, tokens, passwords or personal health data.
+11. Never deploy to production or change DNS/Cloudflare/Auth callbacks without explicit owner approval.
+12. Staging database changes require written scope approval, verified backup/recovery and rollback. Prior one-time waivers do not automatically apply.
+13. Treat reports as claims until verified against Git/build/live evidence.
+14. Do not start a later roadmap phase unless the current task explicitly authorises it.
+15. Golden master `old-html/` is frozen unless a written exception names the file.
+16. Homepage hero + landing presentation remains frozen (`hero--authority-v6` / related public-ux authority) unless the operator explicitly asks to change it.
+
+## Before coding
+
+1. Read `PROJECT_SPEC.md` and `docs/WMC-PATIENT-APP-MASTER-ROADMAP.md`.
+2. Inventory relevant existing files, tests, docs and deployment scripts.
+3. Confirm current Git SHA / branch / dirty state and concurrent agent risk.
+4. Prefer an isolated worktree for non-trivial implementation.
+5. Produce a short change manifest and wait for approval when the task is scoped as plan-first.
+6. Prefer small reversible diffs over broad rewrites.
+
+## Implementation style
+
+- Match existing naming, modules, tests and patterns.
+- Prefer additive changes and feature flags where risk is high.
+- Keep accessibility: focus order, labels, contrast, reduced motion, keyboard/VoiceOver/TalkBack.
+- Keep SEO and published CMS content intact unless the task explicitly includes content changes.
+- Update docs/evidence when behaviour, SHA, screenshots or acceptance status change.
+- For public-ux / `site.js` / `next.config` changes that affect live `next.`: rebuild UAT and verify local origin and tunnel when that environment is in scope.
+
+## Hostinger / GitHub safety
+
+- Hostinger staging app root is `apps/web`.
+- Node.js 22 Web App; not static-only.
+- GitHub is the durable remote backup; Hostinger archive/TUS deploy is the staging publish path unless Git auto-deploy is separately configured and verified.
+- After any authorised staging deploy: verify SHA, both staging hosts, screenshots, rollback and report.
+- Production cutover remains **NO-GO** until signed checklist completion (`deployment/LAUNCH.md` / cutover docs).
+
+## Reporting format
+
+For every substantial task, report:
+
+- Goal
+- Files inspected
+- Files changed
+- Tests run / results
+- Build result
+- Deployed SHA (if any)
+- Screenshots / evidence paths
+- Risks / limitations
+- Rollback
+- Exact next step
+
+End with a clear verdict line when requested by the task.

@@ -1,0 +1,17 @@
+﻿{
+    "https://staging.gabbamedicalcentre.com.au/api/health":  "database=up ok=True",
+    "https://staging.gabbamedicalcentre.com.au/":  "status=200 robots=noindex, nofollow, noarchive",
+    "https://staging.gabbamedicalcentre.com.au/patient-hub.html":  "status=200 robots=noindex, nofollow, noarchive",
+    "https://staging.gabbamedicalcentre.com.au/practice-information-hub.html":  "status=200 robots=noindex, nofollow, noarchive",
+    "https://staging.gabbamedicalcentre.com.au/install-wmc-app.html":  "status=200 robots=noindex, nofollow, noarchive",
+    "https://staging.gabbamedicalcentre.com.au/manifest.webmanifest":  "status=200 robots=noindex, nofollow, noarchive",
+    "https://staging.gabbamedicalcentre.com.au/sw.js":  "status=200 robots=",
+    "https://mediumslateblue-eagle-960503.hostingersite.com/api/health":  "database=up ok=True",
+    "https://mediumslateblue-eagle-960503.hostingersite.com/":  "status=200 robots=noindex, nofollow, noarchive",
+    "https://mediumslateblue-eagle-960503.hostingersite.com/patient-hub.html":  "status=200 robots=noindex, nofollow, noarchive",
+    "https://mediumslateblue-eagle-960503.hostingersite.com/practice-information-hub.html":  "status=200 robots=noindex, nofollow, noarchive",
+    "https://mediumslateblue-eagle-960503.hostingersite.com/install-wmc-app.html":  "status=200 robots=noindex, nofollow, noarchive",
+    "https://mediumslateblue-eagle-960503.hostingersite.com/manifest.webmanifest":  "status=200 robots=noindex, nofollow, noarchive",
+    "https://mediumslateblue-eagle-960503.hostingersite.com/sw.js":  "status=200 robots=",
+    "practitioners_ok":  "15 fail="
+}

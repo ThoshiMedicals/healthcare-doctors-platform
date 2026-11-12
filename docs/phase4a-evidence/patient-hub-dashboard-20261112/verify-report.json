@@ -1,0 +1,85 @@
+{
+  "base": "https://staging.gabbamedicalcentre.com.au",
+  "capturedAt": "2026-11-12T12:56:18.885Z",
+  "widths": {
+    "320": {
+      "h1": "Your care, made easier.",
+      "hasGp": true,
+      "actionCount": 4,
+      "hasInstall": true,
+      "hasPracticeDetails": true,
+      "dockVisible": true,
+      "stripBottom": 1731.703125,
+      "dockTop": 779
+    },
+    "390": {
+      "h1": "Your care, made easier.",
+      "hasGp": true,
+      "actionCount": 4,
+      "hasInstall": true,
+      "hasPracticeDetails": true,
+      "dockVisible": true,
+      "stripBottom": 1594.375,
+      "dockTop": 779
+    },
+    "430": {
+      "h1": "Your care, made easier.",
+      "hasGp": true,
+      "actionCount": 4,
+      "hasInstall": true,
+      "hasPracticeDetails": true,
+      "dockVisible": true,
+      "stripBottom": 1526.59375,
+      "dockTop": 779
+    },
+    "768": {
+      "h1": "Your care, made easier.",
+      "hasGp": true,
+      "actionCount": 4,
+      "hasInstall": true,
+      "hasPracticeDetails": true,
+      "dockVisible": true,
+      "stripBottom": 878.5625,
+      "dockTop": 835
+    },
+    "1024": {
+      "h1": "Your care, made easier.",
+      "hasGp": true,
+      "actionCount": 4,
+      "hasInstall": true,
+      "hasPracticeDetails": true,
+      "dockVisible": true,
+      "stripBottom": 878.5625,
+      "dockTop": 835
+    },
+    "1440": {
+      "h1": "Your care, made easier.",
+      "hasGp": true,
+      "actionCount": 4,
+      "hasInstall": true,
+      "hasPracticeDetails": true,
+      "dockVisible": true,
+      "stripBottom": 886.5625,
+      "dockTop": 835
+    }
+  },
+  "status": 200,
+  "checks": {
+    "welcome_h1": true,
+    "preferred_gp_mount": true,
+    "book_action": true,
+    "dr_primary": true,
+    "find_doctor": true,
+    "health_info": true,
+    "install_card": true,
+    "practice_details": true,
+    "dashboard_marker": true,
+    "patient_hub_page": true,
+    "care_dock": true,
+    "dr_dock_launcher": true,
+    "no_secondary_band": true,
+    "preferred_gp_script": true,
+    "share_preferred_gp": true
+  },
+  "title": "Patient Hub | Woolloongabba Medical Centre"
+}

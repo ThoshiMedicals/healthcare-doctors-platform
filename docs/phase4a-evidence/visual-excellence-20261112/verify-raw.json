@@ -1,0 +1,102 @@
+{
+  "base": "https://staging.gabbamedicalcentre.com.au",
+  "checks": {
+    "homeDiscovery_390": {
+      "hasSection": true,
+      "cta": true
+    },
+    "homeDiscovery_1440": {
+      "hasSection": true,
+      "cta": true
+    },
+    "share_320": {
+      "present": true,
+      "display": "block",
+      "height": 44,
+      "width": 304,
+      "expectVisible": true,
+      "pass": true
+    },
+    "share_390": {
+      "present": true,
+      "display": "block",
+      "height": 44,
+      "width": 362,
+      "expectVisible": true,
+      "pass": true
+    },
+    "share_430": {
+      "present": true,
+      "display": "block",
+      "height": 44,
+      "width": 402,
+      "expectVisible": true,
+      "pass": true
+    },
+    "share_768": {
+      "present": true,
+      "display": "none",
+      "height": 0,
+      "width": 0,
+      "expectVisible": false,
+      "pass": true
+    },
+    "share_1024": {
+      "present": true,
+      "display": "none",
+      "height": 0,
+      "width": 0,
+      "expectVisible": false,
+      "pass": true
+    },
+    "share_1440": {
+      "present": true,
+      "display": "none",
+      "height": 0,
+      "width": 0,
+      "expectVisible": false,
+      "pass": true
+    },
+    "d2IosOverlay": {
+      "ok": true,
+      "position": "static",
+      "inline": "1",
+      "heroTop": 145.390625,
+      "heroBottom": 231.765625,
+      "panelTop": 430.640625,
+      "panelBottom": 988.984375,
+      "heroCovered": false,
+      "heroVisibleInViewport": true,
+      "globalTip": {
+        "present": false,
+        "visible": false
+      },
+      "pass": true
+    },
+    "preferredGp": {
+      "hasPanel": true,
+      "persistOk": true
+    },
+    "digitalReception": {
+      "receptionOk": true
+    },
+    "source": {
+      "homeHasPatientApp": true,
+      "homeExploreCta": true,
+      "iosInline": true,
+      "iosNotFixed": true,
+      "shareDesktopHide": false
+    }
+  },
+  "screenshots": [
+    "C:\\Users\\RoshanSamarawickrema\\Desktop\\WMC-patient-app-hostinger-integration\\docs\\phase4a-evidence\\visual-excellence-20261112\\home-patient-app-390.png",
+    "C:\\Users\\RoshanSamarawickrema\\Desktop\\WMC-patient-app-hostinger-integration\\docs\\phase4a-evidence\\visual-excellence-20261112\\home-patient-app-1440.png",
+    "C:\\Users\\RoshanSamarawickrema\\Desktop\\WMC-patient-app-hostinger-integration\\docs\\phase4a-evidence\\visual-excellence-20261112\\share-practice-hub-320.png",
+    "C:\\Users\\RoshanSamarawickrema\\Desktop\\WMC-patient-app-hostinger-integration\\docs\\phase4a-evidence\\visual-excellence-20261112\\share-practice-hub-390.png",
+    "C:\\Users\\RoshanSamarawickrema\\Desktop\\WMC-patient-app-hostinger-integration\\docs\\phase4a-evidence\\visual-excellence-20261112\\share-practice-hub-430.png",
+    "C:\\Users\\RoshanSamarawickrema\\Desktop\\WMC-patient-app-hostinger-integration\\docs\\phase4a-evidence\\visual-excellence-20261112\\share-practice-hub-768.png",
+    "C:\\Users\\RoshanSamarawickrema\\Desktop\\WMC-patient-app-hostinger-integration\\docs\\phase4a-evidence\\visual-excellence-20261112\\share-practice-hub-1024.png",
+    "C:\\Users\\RoshanSamarawickrema\\Desktop\\WMC-patient-app-hostinger-integration\\docs\\phase4a-evidence\\visual-excellence-20261112\\share-practice-hub-1440.png",
+    "C:\\Users\\RoshanSamarawickrema\\Desktop\\WMC-patient-app-hostinger-integration\\docs\\phase4a-evidence\\visual-excellence-20261112\\patient-hub-ios-guide-390.png"
+  ]
+}

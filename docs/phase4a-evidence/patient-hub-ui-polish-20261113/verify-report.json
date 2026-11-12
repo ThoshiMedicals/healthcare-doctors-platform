@@ -1,0 +1,121 @@
+{
+  "base": "https://staging.gabbamedicalcentre.com.au",
+  "capturedAt": "2026-11-12T22:56:58.206Z",
+  "widths": {
+    "320": {
+      "statusOk": true,
+      "h1": "Your care, made easier.",
+      "gpHeading": "My preferred GP",
+      "gpEmpty": "Choose a GP you usually see — we will remember it on this device.",
+      "pickerRows": 3,
+      "selectWidth": 270,
+      "selectFullWidth": true,
+      "actionCount": 4,
+      "icons": true,
+      "installBorder": "solid 1px",
+      "bodyPaddingBottom": 76,
+      "dockHeight": 73,
+      "dockMinTargets": [
+        44,
+        48,
+        48
+      ],
+      "footerBottom": 2162,
+      "docHeight": 2238,
+      "excessAfterFooter": 76,
+      "http": 200
+    },
+    "390": {
+      "statusOk": true,
+      "h1": "Your care, made easier.",
+      "gpHeading": "My preferred GP",
+      "gpEmpty": "Choose a GP you usually see — we will remember it on this device.",
+      "pickerRows": 3,
+      "selectWidth": 328,
+      "selectFullWidth": true,
+      "actionCount": 4,
+      "icons": true,
+      "installBorder": "solid 1px",
+      "bodyPaddingBottom": 76,
+      "dockHeight": 73,
+      "dockMinTargets": [
+        44,
+        48,
+        48
+      ],
+      "footerBottom": 2064,
+      "docHeight": 2140,
+      "excessAfterFooter": 76,
+      "http": 200
+    },
+    "430": {
+      "statusOk": true,
+      "h1": "Your care, made easier.",
+      "gpHeading": "My preferred GP",
+      "gpEmpty": "Choose a GP you usually see — we will remember it on this device.",
+      "pickerRows": 3,
+      "selectWidth": 368,
+      "selectFullWidth": true,
+      "actionCount": 4,
+      "icons": true,
+      "installBorder": "solid 1px",
+      "bodyPaddingBottom": 76,
+      "dockHeight": 73,
+      "dockMinTargets": [
+        44,
+        48,
+        48
+      ],
+      "footerBottom": 1994,
+      "docHeight": 2070,
+      "excessAfterFooter": 76,
+      "http": 200
+    },
+    "768": {
+      "statusOk": true,
+      "h1": "Your care, made easier.",
+      "gpHeading": "My preferred GP",
+      "gpEmpty": "Choose a GP you usually see — we will remember it on this device.",
+      "pickerRows": 3,
+      "selectWidth": 678,
+      "selectFullWidth": true,
+      "actionCount": 4,
+      "icons": true,
+      "installBorder": "solid 1px",
+      "bodyPaddingBottom": 88,
+      "dockHeight": 69,
+      "dockMinTargets": [
+        44,
+        44,
+        44
+      ],
+      "footerBottom": 1926,
+      "docHeight": 2014,
+      "excessAfterFooter": 88,
+      "http": 200
+    },
+    "1440": {
+      "statusOk": true,
+      "h1": "Your care, made easier.",
+      "gpHeading": "My preferred GP",
+      "gpEmpty": "Choose a GP you usually see — we will remember it on this device.",
+      "pickerRows": 3,
+      "selectWidth": 1286,
+      "selectFullWidth": true,
+      "actionCount": 4,
+      "icons": true,
+      "installBorder": "solid 1px",
+      "bodyPaddingBottom": 88,
+      "dockHeight": 69,
+      "dockMinTargets": [
+        44,
+        44,
+        44
+      ],
+      "footerBottom": 1525,
+      "docHeight": 1613,
+      "excessAfterFooter": 88,
+      "http": 200
+    }
+  }
+}

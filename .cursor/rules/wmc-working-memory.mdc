@@ -13,14 +13,27 @@ alwaysApply: true
 - **Homepage hero + landing presentation FROZEN (2026-11-05):** authority v6 in `apps/web/src/documents/public-ux.ts` (`hero--authority-v6`, practitioner strip, linked stats, HotDoc benefit cards, `#team` carousel removed). Do not iterate hero/landing layout, copy hierarchy, or those homepage sections unless the operator explicitly asks. Cache bust token currently `wmc-hero-authority-v6f-20261105`.
 - Production deploy guide is `deployment/LAUNCH.md` (Phase 3: Hostinger Web App + Supabase Postgres; historical VPS/Docker in Appendix H only). Cloudflare Pages remains a fail path.
 
-## Repo and release tip (as of 2026-11-07)
+## Governance companions (always-on pack + SSOT)
 
-- Repo: `ThoshiMedicals/healthcare-doctors-platform` (local folder `WMC-Master-Project`).
-- Hostinger RC branch: `release/wmc-hostinger-rc1` tip **`ae202f2`** (durable-cache race guard + staging public-cache-bust; deployed via archive build `01a1b48c-…` after Git auto-deploy disconnect). Ancestors: cold-start `767d844`/`b7ad2e8`; nav `/wmc-cache` `30d2441`/`8735373`; parity `fedafac`. Staging: `mediumslateblue-eagle-960503.hostingersite.com`. Durable acceptance: `docs/WMC-DURABLE-CACHE-ACCEPTANCE.md` — **PASS** (stop perf rem; proceed ops readiness). Cold: `docs/WMC-COLD-START-PERFORMANCE-REPAIR.md` PASS. Nav: `docs/WMC-FINAL-NAVIGATION-PERFORMANCE.md`.
-- Older ship-tip notes for `rg01-release-gate-repairs` / `3875dc3` / hero freeze `6874998` / live `767d844` remain historical for that line — do not confuse with Hostinger RC tip.
-- Cutover status: **NO-GO** for DNS/production; **GO FOR CUTOVER PLANNING** / ops readiness next. See `docs/WMC-FINAL-RELEASE-CANDIDATE-GATE.md`, `docs/WMC-PRODUCTION-READINESS-EVIDENCE.md`, `deployment/DNS-CUTOVER-CHECKLIST.md`, `deployment/LAUNCH.md`. Reconnect Hostinger Git auto-deploy (`gitAutoDeployment` was null during acceptance).
-- **NEXT vs Hostinger visual/content certification (2026-11-07):** authority = live `next.gabbamedicalcentre.com.au` (not localhost). Inventory **224** public pages (+2 published orphans `404.html`, `updates/article.html` → **226** CMS); **1,120** viewport pairs. Baseline was **NOT MATCHED**; after Hostinger repair tip **`fedafac`** → **MATCH WITH DOCUMENTED EXCEPTIONS** (home CSS via `styles.min.css`, Tanya/Debra areas + heading, women’s≠men’s care-area regex, hours meridian). Reports: `docs/WMC-NEXT-VS-HOSTINGER-PARITY-REPORT.md`, `docs/WMC-FINAL-THREE-PAGE-REPAIR.md`. Dashboard/artifacts under `apps/web/.tmp-next-hostinger-audit/` (gitignored).
+- Cursor session anchor: `PROJECT_SPEC.md`
+- Core agent rules: `.cursor/rules/wmc-core.mdc` (this file stays the live tip/hosting SSOT)
+- Patient App programme (canonical): `docs/WMC-PATIENT-APP-MASTER-ROADMAP.md`
+- Phase B modular tasks: `docs/WMC-PHASE-B-MODULAR-TASKS.md`
+- Workflow: `docs/WMC-CURSOR-WORKFLOW.md`
+- Merge record: `docs/WMC-PROJECT-GOVERNANCE-INTEGRATION.md`
+- Platform SSOT: `docs/WMC-MASTER-BRAIN.md`, `docs/WMC-DEVELOPMENT-STANDARDS.md`
+- Practice facts: `docs/WMC-TRUST-FACTS-REGISTER.md` (+ `.json`)
+
+## Repo and release tip (as of 2026-11-13)
+
+- Repo: `ThoshiMedicals/healthcare-doctors-platform` (worktree often `WMC-patient-app-hostinger-integration`; local folder also `WMC-Master-Project`).
+- **Patient App Phase A tip (Hostinger staging + GitHub):** branch `release/wmc-patient-app-visual-excellence`, SHA **`2634ca2`** — Patient Hub mobile dashboard + final UI polish. Build **`01a1d1f7-c5c2-736a-9772-1449b28a20e8`**. Status: **STAGING VERIFIED**. Evidence: `docs/WMC-PATIENT-HUB-*-STAGING-REPORT.md`, `docs/phase4a-evidence/patient-hub-*`. Rollback lineage: polish → `c08e91e` / dashboard → `42121c3`; earlier visual excellence share baseline `fdd9bf2` / `6f08dde`.
+- Staging: `mediumslateblue-eagle-960503.hostingersite.com` (+ `staging.gabbamedicalcentre.com.au`) → Supabase `wmc-hostinger-staging` (`thwcxuhrzgkufvdrvzzt`) only — **no production Supabase project yet**. Architecture: archive → Hostinger Node Web App → Supabase → Cloudflare → apex.
+- Cutover: **GO FOR CUTOVER PLANNING** · **NO-GO** DNS/production. Authority docs: `deployment/LAUNCH.md`, `docs/WMC-HOSTINGER-PRODUCTION-READINESS.md`, `docs/WMC-PRODUCTION-CUTOVER-CHECKLIST.md`. Live apex remains WordPress until signed cutover.
+- Historical Hostinger RC tip `ae202f2` / parity `fedafac` / cold-start `767d844` remain historical for that line — do not confuse with Patient App Phase A tip.
+- **NEXT vs Hostinger visual/content certification (2026-11-07):** authority = live `next.gabbamedicalcentre.com.au` (not localhost). Inventory **224** public pages (+2 published orphans → **226** CMS); baseline after repair tip **`fedafac`** → **MATCH WITH DOCUMENTED EXCEPTIONS**. Reports: `docs/WMC-NEXT-VS-HOSTINGER-PARITY-REPORT.md`, `docs/WMC-FINAL-THREE-PAGE-REPAIR.md`.
 - Commit style in practice often uses `fix(wmc): …` / `merge(wmc): …` / `docs(wmc): …`.
+- **Phase B:** planning docs ready; **do not implement** until an owner prompt names a B-task.
 
 ## How `next.` is hosted (critical)
 
@@ -37,12 +50,17 @@ alwaysApply: true
 
 | Concern | Where |
 | --- | --- |
+| Public trust facts SSOT (contact, hours, billing, booking) | `docs/WMC-TRUST-FACTS-REGISTER.md` (+ `.json`); structured contact also `apps/web/prisma/seed.ts` / `ClinicProfile` |
+| Patient Hub mobile dashboard (Phase A) | `apps/web/src/documents/patient-hub-mobile-dashboard.ts` via `public-ux.ts` |
+| Preferred GP (device-local) | `patient-preferred-gp.js` / `wmc.preferredGp.v1` |
+| Clinic branding fallback (must match seed/GM) | `apps/web/src/clinics/branding.ts` `DEFAULT_CLINIC_BRANDING` |
 | Mobile nav / PEERS / insurance client inject | `apps/web/public/site.js` (keep `old-html/site.js` in sync when changing shared runtime) |
 | Cache-bust + Join Our Team + insurance SSR/HTML | `apps/web/src/documents/public-ux.ts` |
 | Insurance slug → notice | `apps/web/src/documents/booking-restriction-notice.ts` (+ `.test.ts`) |
 | `/site.js` no-cache header | `apps/web/next.config.ts` |
 | Host / quick-tunnel clinic resolve | `apps/web/src/clinics/host.ts` |
-| Backup / smoke / cutover | `deployment/backup-database.sh`, `smoke-test.sh`, `LAUNCH.md` |
+| Backup / smoke / cutover | `deployment/LAUNCH.md` (Hostinger+Supabase); readiness `docs/WMC-HOSTINGER-PRODUCTION-READINESS.md`; VPS scripts = Appendix H only |
+| Staging public-cache-bust | `apps/web/src/app/api/staging/public-cache-bust/route.ts` (host allowlist — not `STAGING_NOINDEX` alone) |
 | Branch/tag policy | `deployment/SOURCE-CONTROL.md`, `RELEASE-WORKFLOW.md` |
 
 ## Booking / practitioner facts
@@ -52,27 +70,29 @@ alwaysApply: true
 - Usman: other restriction path — leave alone.
 - Gemunu: removed / 404 expected on staging recovery.
 - Sticky care bar / `placeRestriction` interact with booking UX; insurance notices use `.practitioner-booking-notice`.
+- HotDoc hides `.wmc-book-appointment` on some paths — Patient Hub Book card must remain a plain link to `book-appointment.html` where applicable.
 
 ## Closed recovery (do not reopen without live regression)
 
 - Authority hubs and recovered public openings were validated PASS on staging after recovery work.
 - Menu fix: `stopImmediatePropagation` / emergency listener; cache-bust when “still broken” after JS fix.
 - Insurance notices + `02c` bust verified live on `next.` after UAT rebuild from `09b7d78` (Tanya notice present).
+- Phase A Patient Hub dashboard + polish staging verified at `2634ca2` — do not reopen hub layout without owner ask.
 
 ## Audit / gate posture
 
-- Audits are evidence-based against live `next.` + git tip; do not claim GO if deploy ≠ commit, ops unverified, or DB down.
+- Audits are evidence-based against live staging/`next.` + git tip; do not claim GO if deploy ≠ commit, ops unverified, or DB down.
 - npm audit: safe patch OK (e.g. Next 15.5.28); **do not** `npm audit fix --force` (Next 16 / zod 4) on cutover day.
-- Remaining GO blockers for real production cutover: VPS backup off-box, formal smoke logged, env (`AUTH_*`, Postgres not public), Cloudflare Full (strict), and clean CF cache policy — many are VPS/`LAUNCH.md` ops, separate from laptop tunnel UAT.
+- Remaining GO blockers for real production cutover: backups, formal smoke logged, env (`AUTH_*`, Postgres not public), Cloudflare Full (strict), and clean CF cache policy — see `LAUNCH.md` / cutover docs.
 - DNS cutover to apex must not happen until a clean release artifact + ops checklist; leave public DNS on current site until then.
 
 ## Agent operating habits for this project
 
 - Prefer absolute paths; PowerShell (no bash `&&` / heredoc assumptions).
-- After public-ux / `site.js` / `next.config` changes: rebuild UAT and verify both `127.0.0.1:3100` and `https://next.gabbamedicalcentre.com.au`.
+- After public-ux / `site.js` / `next.config` changes: rebuild UAT and verify both `127.0.0.1:3100` and `https://next.gabbamedicalcentre.com.au` when that environment is in scope.
 - Do not commit secrets, `.env`, or dirty laptop-only deploys; ship from a known git SHA.
 - `uat:build` may rewrite `apps/web/next-env.d.ts` to `.next-uat/types` — restore to `.next/types` before commit if dirty.
-- Chat history for this long thread lives under agent-transcripts `f1dfa081-c08c-4b6b-a553-0e86b1c6e2ec` (compaction segments 000–007).
+- Never start Phase B implementation unless the user prompt explicitly names a B-task.
 ---
 
 Refresh this rule when tip SHA, hosting model, or release blockers change.

@@ -267,3 +267,55 @@ Per `docs/WMC-HOSTINGER-PRODUCTION-READINESS.md` / cutover checklist: production
 | Staging parity | PASS (known Auth.js exception documented) |
 | Remaining blockers | Production cutover / Auth.js hostname / physical device |
 | Production launch readiness | **Not ready for DNS cutover** — staging excellence complete only |
+
+---
+
+## Re-audit addendum — 2026-11-12 (acceptance pass against live tip)
+
+**Purpose:** Prompt still cited baseline `fdd9bf2` / `01a1ce64`. Re-confirm Hostinger still serves the completed excellence tip and re-run dual-host smoke + Playwright without re-implementing discovery/D2.
+
+### Live tip confirmation
+
+| Item | Value |
+| --- | --- |
+| Hostinger archive | `wmc-patient-app-visual-excellence-6f08dde.zip` |
+| Hostinger build UUID | `01a1ce83-2522-717d-9567-eacf58419836` (completed) |
+| Deployed app SHA | `6f08dde498dbc7e9b2b00daf0159b85dd865be49` |
+| Local docs tip | `b21242a` (report pin only; app = `6f08dde`) |
+| Env keys (masked; unchanged; no replace) | `DATABASE_URL`, `AUTH_SECRET`, `AUTH_URL`, `AUTH_TRUST_HOST`, `DEFAULT_CLINIC_SLUG`, `STAGING_NOINDEX`, `PRIVATE_OBJECT_STORE` |
+| Rollback archive preserved | `wmc-share-control-staging-fdd9bf2.zip` / `01a1ce64-…` |
+
+### Dual-host smoke
+
+Evidence: `docs/phase4a-evidence/visual-excellence-reaudit-20261112/dual-host-smoke.json`
+
+| Check | staging.gabbamedicalcentre.com.au | mediumslateblue-eagle…hostingersite.com |
+| --- | --- | --- |
+| `/api/health` | database up | database up |
+| `/`, Patient Hub, Practice Hub, Install | 200 + noindex | 200 + noindex |
+| `manifest.webmanifest` / `sw.js` | 200 | 200 |
+| 15 practitioner profiles | **15/15** | (sampled via primary) |
+
+### Playwright visual re-audit
+
+Evidence: `docs/phase4a-evidence/visual-excellence-reaudit-20261112/` (`verify-raw.json`, screenshots)
+
+| Gate | Result |
+| --- | --- |
+| Homepage `#patient-app` + Explore CTA (390 / 1440) | **PASS** |
+| Share toolbar visible &lt;768; hidden ≥768 (320–1440) | **PASS** |
+| D2 iOS guide `position:static`, hero not covered, no global tip | **PASS** |
+| Preferred GP persist | **PASS** |
+| Digital Reception | **PASS** |
+
+`VERIFY=PASS share=true home=true d2=true`
+
+### Code / deploy
+
+No new in-scope P0–P2 found. **No code fix and no Hostinger redeploy** in this re-audit cycle.
+
+### Re-audit verdict
+
+**VISUAL & PATIENT APP REVIEW COMPLETE — HOSTINGER STAGING VERIFIED**
+
+Tip remains **`6f08dde` / `01a1ce83-…`**. Production remains untouched. Owner blockers unchanged (Auth.js hostname, physical device install, DNS cutover).

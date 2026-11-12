@@ -1,0 +1,163 @@
+{
+  "base": "https://staging.gabbamedicalcentre.com.au",
+  "checks": [
+    {
+      "page": "practice-information-hub",
+      "viewport": 390,
+      "expectVisible": true,
+      "metrics": {
+        "present": true,
+        "display": "block",
+        "visibility": "visible",
+        "width": 362,
+        "height": 44,
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "tabIndex": 0,
+            "ariaHidden": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "tabIndex": 0,
+            "ariaHidden": null,
+            "disabled": false
+          }
+        ]
+      },
+      "toolbarFocused": false,
+      "pass": true
+    },
+    {
+      "page": "practice-information-hub",
+      "viewport": 430,
+      "expectVisible": true,
+      "metrics": {
+        "present": true,
+        "display": "block",
+        "visibility": "visible",
+        "width": 402,
+        "height": 44,
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "tabIndex": 0,
+            "ariaHidden": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "tabIndex": 0,
+            "ariaHidden": null,
+            "disabled": false
+          }
+        ]
+      },
+      "toolbarFocused": false,
+      "pass": true
+    },
+    {
+      "page": "practice-information-hub",
+      "viewport": 768,
+      "expectVisible": false,
+      "metrics": {
+        "present": true,
+        "display": "none",
+        "visibility": "visible",
+        "width": 0,
+        "height": 0,
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "tabIndex": 0,
+            "ariaHidden": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "tabIndex": 0,
+            "ariaHidden": null,
+            "disabled": false
+          }
+        ]
+      },
+      "toolbarFocused": false,
+      "pass": true
+    },
+    {
+      "page": "practice-information-hub",
+      "viewport": 1024,
+      "expectVisible": false,
+      "metrics": {
+        "present": true,
+        "display": "none",
+        "visibility": "visible",
+        "width": 0,
+        "height": 0,
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "tabIndex": 0,
+            "ariaHidden": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "tabIndex": 0,
+            "ariaHidden": null,
+            "disabled": false
+          }
+        ]
+      },
+      "toolbarFocused": false,
+      "pass": true
+    },
+    {
+      "page": "practice-information-hub",
+      "viewport": 1440,
+      "expectVisible": false,
+      "metrics": {
+        "present": true,
+        "display": "none",
+        "visibility": "visible",
+        "width": 0,
+        "height": 0,
+        "buttons": [
+          {
+            "tag": "BUTTON",
+            "tabIndex": 0,
+            "ariaHidden": null,
+            "disabled": false
+          },
+          {
+            "tag": "BUTTON",
+            "tabIndex": 0,
+            "ariaHidden": null,
+            "disabled": false
+          }
+        ]
+      },
+      "toolbarFocused": false,
+      "pass": true
+    }
+  ],
+  "screenshots": [
+    "C:\\Users\\RoshanSamarawickrema\\Desktop\\WMC-patient-app-hostinger-integration\\docs\\phase4a-evidence\\share-control-staging-20261112\\practice-hub-390.png",
+    "C:\\Users\\RoshanSamarawickrema\\Desktop\\WMC-patient-app-hostinger-integration\\docs\\phase4a-evidence\\share-control-staging-20261112\\practice-hub-430.png",
+    "C:\\Users\\RoshanSamarawickrema\\Desktop\\WMC-patient-app-hostinger-integration\\docs\\phase4a-evidence\\share-control-staging-20261112\\practice-hub-768.png",
+    "C:\\Users\\RoshanSamarawickrema\\Desktop\\WMC-patient-app-hostinger-integration\\docs\\phase4a-evidence\\share-control-staging-20261112\\practice-hub-1024.png",
+    "C:\\Users\\RoshanSamarawickrema\\Desktop\\WMC-patient-app-hostinger-integration\\docs\\phase4a-evidence\\share-control-staging-20261112\\practice-hub-1440.png",
+    "C:\\Users\\RoshanSamarawickrema\\Desktop\\WMC-patient-app-hostinger-integration\\docs\\phase4a-evidence\\share-control-staging-20261112\\patient-hub-390-preferred-gp.png",
+    "C:\\Users\\RoshanSamarawickrema\\Desktop\\WMC-patient-app-hostinger-integration\\docs\\phase4a-evidence\\share-control-staging-20261112\\patient-hub-390-digital-reception.png"
+  ],
+  "preferredGp": {
+    "hasPanel": true,
+    "persistOk": true
+  },
+  "digitalReception": {
+    "receptionOk": true
+  },
+  "cssInjected": true,
+  "noindexMeta": true
+}
