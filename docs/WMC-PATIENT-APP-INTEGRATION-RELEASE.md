@@ -10,7 +10,7 @@
 | Historical recovery RC | `269df5a` |
 | Common ancestor | `ec71759` |
 | Integration commit (code) | `aa4188b00f7e3b13d3e4e7d8c0298e2cfc9b87db` |
-| Integration tip (docs pin) | `e75a5130d00337d3978c34f99c13d725b762a086` |
+| Integration tip (docs pin) | `9ee5e8ea9ef117ee32406a6332349d26a51111ba` |
 | Production | **NO-GO** |
 | Staging website verified | **NO** — Class B hubs still 404 on Hostinger staging until controlled publish + deploy |
 
@@ -29,7 +29,7 @@ Code integration, unit/regression suite, and production build are complete on th
 | Hostinger / Master QA V4 source | `59b5278c2098b95a7d54922037320b44811ef2a9` |
 | Patient App acceptance tip | `f55b294` (branch `feat/wmc-patient-app-phase4ab`) |
 | Merge-base | `ec71759` |
-| Integration tip | `e75a5130d00337d3978c34f99c13d725b762a086` (code `aa4188b`) |
+| Integration tip | `9ee5e8ea9ef117ee32406a6332349d26a51111ba` (code `aa4188b`) |
 
 **Method:** selective checkout of Patient App fixtures, public scripts, document modules, Trust Facts, and phase release docs from `f55b294` onto `59b5278`. Shared files (`public-ux.ts`, `practitioner-booking.ts`, `approved-path-inventory.ts`, `branding.ts`, `package.json`) were surgically patched — **no** wholesale merge of the ~71 divergent commits.
 
@@ -182,7 +182,7 @@ These gaps do **not** block local integration verdict; they block “Patient App
 | Artifact | Path / note |
 | --- | --- |
 | Integration git tip | Local branch only — **not pushed** |
-| Release archive | `Desktop/backups/WMC-release-archives/wmc-patient-app-hostinger-integration-e75a513.zip` |
+| Release archive | `Desktop/backups/WMC-release-archives/wmc-patient-app-hostinger-integration-FINAL.zip` |
 | Release SHA-256 | `PLACEHOLDER_SHA` |
 | Rollback Hostinger accepted archive | `Desktop/backups/WMC-release-archives/wmc-static-cdn-repair-59b5278.zip` |
 | Rollback SHA-256 | `7D0478D67D2C393B1C53DD5B5E868853EF0F792C578DDE5AAC45CA934FF5DF00` |
