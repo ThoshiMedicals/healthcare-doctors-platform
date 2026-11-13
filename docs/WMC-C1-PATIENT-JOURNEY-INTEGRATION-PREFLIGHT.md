@@ -5,8 +5,8 @@
 | Date | 2026-11-13 |
 | Verdict | **WMC C1 + PATIENT JOURNEYS — INTEGRATION READY** |
 | Integration branch | `integration/wmc-c1-patient-journey` |
-| Final integrated SHA | **`83c4e09427f879b142a2ed744435e1f53bbf92d1`** (`83c4e09`) |
-| Code tip (PJ + C1, pre-docs) | `b3a5c3f27dd32c24305ebe8932d5186a5ad46d1e` |
+| Final integrated SHA | **`1cd3fba9524351c1b7fb8f9e992924c36e156a41`** (`1cd3fba`) — tip after preflight pin; code feature at `b3a5c3f` |
+| Code tip (PJ + C1 feature) | `b3a5c3f27dd32c24305ebe8932d5186a5ad46d1e` |
 | Staging baseline (preserved ancestor) | `f6bba5ca0deea4ef70ebed64c64f35a9ca8d78dd` |
 | C1 base | `1a12bf98b0d940bb3ff41a6c7813e3f7427190e3` |
 | Deploy | **Not deployed** (preflight only) |
@@ -19,7 +19,8 @@ f6bba5c (Hostinger staging B1)
   └─ 0f86795 (Phase C1 Engagement UI foundation)
        └─ 1a12bf9 (C1 report pin)
             └─ b3a5c3f (PJ-01/02 + mockup docs)
-                 └─ 83c4e09 (preflight pack)  ← integration tip
+                 └─ 83c4e09 (preflight pack)
+                      └─ 1cd3fba (preflight pin + delta ZIP)  ← integration tip
 ```
 
 - `merge-base --is-ancestor f6bba5c HEAD` → **PASS** (no staging commits lost)
@@ -62,8 +63,8 @@ f6bba5c (Hostinger staging B1)
 | --- | --- |
 | Changed-file manifest vs staging | `docs/phase-c1-journey-preflight/2026-11-13/changed-files-vs-f6bba5c.txt` |
 | Diffstat | `…/changed-stat-vs-f6bba5c.txt` |
-| **Preferred release ZIP (delta)** | `docs/phase-c1-journey-preflight/wmc-c1-patient-journey-delta-83c4e09.zip` |
-| Delta SHA256 | `C55E18F13719A97278799C87685D61363453E0B8B79904A2FCA6A99E905A7633` |
+| **Preferred release ZIP (delta)** | `docs/phase-c1-journey-preflight/wmc-c1-patient-journey-delta-1cd3fba.zip` |
+| Delta SHA256 | `2B66AFABA389270822ACDD73640C12651A332FB647CEAB666CE2D6FD22AEA8F2` |
 | Full git-archive ZIP (local, ~116 MB, gitignored) | `…/wmc-c1-patient-journey-integration-b3a5c3f.zip` (tree at code tip; regenerate with `git archive` at `83c4e09` if needed) |
 | Full ZIP SHA256 (code tip archive) | `D5A76923F1841AEE383E5F3AD179BD69206BFACE2DC71CFAA03C3C6C8CEADD8F` |
 
