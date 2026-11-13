@@ -226,7 +226,7 @@ Production release remains **NO-GO** pending independent database backup/restore
 | HotDoc widget and PWA booking | B0 strategy complete; no parallel book | Keep lightbox + phone-only exceptions |
 | Phase C0 notification architecture | **ARCHITECTURE READY** — implementation approval required | Sign-off packs in `docs/WMC-PHASE-C0-*.md` |
 | Phase C1 Patient Engagement UI (dummy) | **READY FOR REVIEW** (+ present in staging ancestry via C1+PJ / M1+M2 tips) | Privacy/security before live C2 |
-| Phase C2 live announcements readiness | **BLOCKED — SPECIFIC PREREQUISITES** | `docs/WMC-PHASE-C2-IMPLEMENTATION-READINESS.md` |
+| Phase C2 live announcements readiness | **GATE RESOLUTION READY FOR OWNER APPROVAL** (execution gates still BLOCKED until evidence/signatures) | `docs/WMC-PHASE-C2-IMPLEMENTATION-READINESS.md` + C2 backup/Auth/privacy/clinical packs |
 | Notifications, general announcement inbox and consent | Designed (C0); C1 lab demo only; **not authorised for database deployment** | Clear C2 checklist then C2+ modules |
 | Patient Engagement Admin Panel | Spec’d in C0; C1 lab shell; Phase D build later | Auth.js roles, campaigns, inbox, consents, reports |
 | Anonymous delivery/read/adoption analytics and estimated SMS savings | Spec’d in C0/E | Honest device-level metrics + SMS baseline |

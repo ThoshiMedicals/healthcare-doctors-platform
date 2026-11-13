@@ -1,130 +1,83 @@
 # WMC — Phase C2 implementation readiness
 
-**Date:** 2026-11-13  
-**Scope:** Documentation / verification only — **no** migrations, subscriptions, push sending, Hostinger env changes, DNS or HotDoc changes.  
-**Authority:** `PROJECT_SPEC.md`, `docs/WMC-PATIENT-APP-MASTER-ROADMAP.md`, `docs/WMC-PHASE-C0-*.md`, Cursor rules.  
-**Staging code tip (live):** `fdcb9c4e6f3977fed26b68ac569def825443a23e` (M1+M2 verified)  
-**C0 architecture status:** READY — IMPLEMENTATION APPROVAL REQUIRED (unchanged; still not authorising build)
+**Updated:** 2026-11-13 (blocker resolution pack)  
+**Scope:** Documentation / diagnosis only — **no** migrations, subscriptions, push send, unapproved env/auth changes, DNS or HotDoc changes.  
+**Staging code tip:** `fdcb9c4e6f3977fed26b68ac569def825443a23e` · build `01a1d286-…`  
+**C0 architecture:** READY — IMPLEMENTATION APPROVAL REQUIRED (design intact)
 
 ---
 
 ## Final verdict
 
-### **PHASE C2 BLOCKED — SPECIFIC PREREQUISITES**
+### **C2 GATE RESOLUTION — READY FOR OWNER APPROVAL**
 
-The C0 design pack is sufficient to **request** implementation approval, but Phase C2 (live schema + wiring toward general-practice announcements) must **not** start until the BLOCKED items below are cleared by the owner. Code-only prep tasks may proceed only where listed as PASS under “code-only without separate approval.”
+Technical unknowns for the five primary blockers are resolved into **actionable owner requests** and evidence criteria.  
+**No gate is marked PASS solely because a draft exists.** Execution gates (backup taken, Auth env fixed, signatures collected, implementation authorised) remain **BLOCKED** until the owner completes the listed actions.
 
 ---
 
-## 1. M1/M2 closeout (context for C2)
+## 1. M1/M2 baseline (unchanged)
 
 | Check | Status | Evidence |
 | --- | --- | --- |
-| Hostinger archive matches intended SHA | **PASS** | Build `01a1d286-…` from `wmc-patient-journey-m1-m2-fdcb9c4.zip` |
-| Live Patient Hub shows M1 Care Hub | **PASS** | `Prepare for Your Visit` + `#wmc-care-hub` on staging |
-| Branch + evidence on GitHub | **PASS** | `origin/feat/wmc-patient-journey-m1-m2` @ `cfafefc` (contains `fdcb9c4`) |
-| Release ZIP preserved | **PASS** | `backups/WMC-release-archives/wmc-patient-journey-m1-m2-fdcb9c4.zip` (+ `.sha256`) |
-| Rollback ZIP preserved | **PASS** | `backups/WMC-release-archives/wmc-c1-patient-journey-fc73b11.zip` |
-| M3–M5 / 17-concept register | **PASS** | Deferred/conditional rows unchanged; decisions intact |
+| Hostinger = `fdcb9c4` | **PASS** | Archive + build `01a1d286-…` |
+| GitHub branch pushed | **PASS** | `feat/wmc-patient-journey-m1-m2` |
+| Release / rollback archives | **PASS** | `Desktop/backups/WMC-release-archives/` |
 
 ---
 
-## 2. Prerequisites checklist (live announcements)
+## 2. Final readiness matrix
 
-| # | Prerequisite | Status | Notes |
-| --- | --- | --- | --- |
-| C2-P01 | Verified staging DB **backup** procedure documented and exercised | **BLOCKED** | Staging historically proceeded under a temporary backup-risk exception (`WMC-MASTER-QA-HOSTINGER-STAGING-DEPLOYMENT-ACCEPTANCE.md`). Independent off-box Supabase dump + restore drill still **outstanding**. |
-| C2-P02 | Staging DB **restore** drill proven (restore to throwaway DB / branch) | **BLOCKED** | Required before any Prisma migrate on `wmc-hostinger-staging` (`thwcxuhrzgkufvdrvzzt`). |
-| C2-P03 | Proposed schema migrations + rollback plan signed | **PASS (design)** / **BLOCKED (execute)** | Design in `WMC-PHASE-C0-DATABASE-SCHEMA.md`. Additive migrate only; rollback = restore dump + `prisma migrate resolve` procedure (must be written into runbook before apply). |
-| C2-P04 | Staff authentication / Auth.js on staging hostnames | **BLOCKED** | Known custom-hostname callback defect; must be fixed before Engagement Admin staff UAT (`WMC-PHASE-C0-PRIVACY-SECURITY-APPROVALS.md` §3). |
-| C2-P05 | Staff permissions + approval workflow (draft → approve → publish → retract) | **PASS (spec)** / **BLOCKED (implement)** | Roles/`CmsAction` map in C0 schema §4; two-person rule for promo. Needs implementation approval. |
-| C2-P06 | Notification consent + unsubscribe records (APP7 / Spam Act) | **BLOCKED** | Privacy/legal PIA + public notice text not signed (`WMC-PHASE-C0-PRIVACY-SECURITY-APPROVALS.md` §2, §5). |
-| C2-P07 | Secure subscription storage + retention | **PASS (design)** / **BLOCKED (implement)** | Endpoint hashing, status lifecycle, retention table in C0 schema §5 — confirm with privacy adviser before migrate. |
-| C2-P08 | Web Push infrastructure + SW compatibility plan | **PASS (design)** / **BLOCKED (implement)** | Extend existing `/sw.js`; VAPID in env only; feature flag default **off**. No keys generated in this task. |
-| C2-P09 | Staff sending limits + duplicate prevention | **PASS (design)** / **BLOCKED (implement)** | One `DeliveryJob` per subscription per announcement; rate limits on public subscribe APIs (C0 modular C4/C7). |
-| C2-P10 | Privacy, marketing and clinical governance approvals | **BLOCKED** | Clinical lead / privacy / security / principal / implementation gates all ☐ in C0 pack. |
-| C2-P11 | Physical iPhone + Android test plan for push + inbox | **PASS (plan)** / **BLOCKED (execute)** | Roadmap §7 + C0 C8; execute only after staging flag-on pilot approval. |
-| C2-P12 | Operational costs + monitoring baseline | **PASS (estimate)** / **BLOCKED (accept)** | `WMC-PHASE-C0-INFRASTRUCTURE-COST-ESTIMATES.md` — owner must accept incremental Hostinger/Supabase/ops cost before go-live. |
-| C2-P13 | Written **implementation approval** for C2 start | **BLOCKED** | Owner signature required; this document does not authorise build. |
-| C2-P14 | Production / DNS / apex cutover | **BLOCKED (out of scope)** | Remains NO-GO; C2 staging only even after approval. |
-
----
-
-## 3. Proposed schema migration & rollback (design — do not execute)
-
-**Forward (after C2-P01/P02/P13 PASS):**
-
-1. Take verified Supabase logical backup (e.g. `pg_dump` / dashboard backup) of `wmc-hostinger-staging`; store **off-box**; record SHA-256 + timestamp.  
-2. Optional: create Supabase preview branch or restore dump to a scratch DB and dry-run migrate.  
-3. Apply **additive** Prisma migration from `WMC-PHASE-C0-DATABASE-SCHEMA.md` (DeviceInstallation, PushSubscription, ConsentRecord, Announcement*, DeliveryJob, EngagementEvent, PreferenceTopic, StaffApproval fields / CmsAction extensions).  
-4. Seed preference topics only; **no** patient PHI; feature flag `engagementPushEnabled=false`.  
-5. Smoke: `/api/health`, Patient Hub, C1 lab routes, admin login.
-
-**Rollback:**
-
-1. Stop workers / keep flag off.  
-2. Restore database from the pre-migrate dump (preferred) **or** reverse migration only if explicitly reviewed and data-safe.  
-3. Redeploy prior app archive if schema/app mismatch (`wmc-patient-journey-m1-m2-fdcb9c4.zip` or earlier).  
-4. Confirm health + hub + no orphan push registration calls.
+| Blocker | Evidence now | Status | Exact corrective action | Owner-controlled approval | Remaining technical work (after approval) |
+| --- | --- | --- | --- | --- | --- |
+| **C2-P01 Staging DB backup** | Project `thwcxuhrzgkufvdrvzzt` ACTIVE_HEALTHY; prior backup **exception** still on record; runbook written | **BLOCKED** | Execute off-box `pg_dump` + hash + `pg_restore --list` per `WMC-PHASE-C2-STAGING-DB-BACKUP-RESTORE.md` | Approve taking staging logical dump | Attach evidence pack to flip PASS |
+| **C2-P02 Isolated restore drill** | Procedure Option A/B/C documented; **not executed** (no throwaway DB created — cost/safety) | **BLOCKED** | Restore dump into **non-staging** target only; record logs; tear down | Approve throwaway project / paid branch / local Docker drill | Prove restore; never restore into live staging |
+| **C2-P04 Auth.js staging hostname** | Live re-verify: custom `/api/auth/signin` → `callbackUrl` **hostingersite**; root cause = pinned `AUTH_URL` + production origin helper null | **BLOCKED** (diagnosis **PASS**) | Prefer **remove `AUTH_URL`**, keep `AUTH_TRUST_HOST=true`; smoke T1–T7 | Approve Hostinger env full-replace **excluding** `AUTH_URL` (no masked copy) | Owner login smoke on both hosts; optional later code allowlist |
+| **C2-P06 Privacy / consent / Spam** | Approval pack drafted | **BLOCKED** | Adviser + principal review/sign `WMC-PHASE-C2-PRIVACY-CONSENT-APPROVAL-PACK.md` | Privacy/legal + principal signatures | Then implement consent APIs (C3) under C2-P13 |
+| **C2-P10 Clinical + security governance** | Clinical/security pack drafted | **BLOCKED** | Clinical lead + security + principal sign `WMC-PHASE-C2-CLINICAL-SECURITY-APPROVAL-PACK.md` | Clinical / security / principal signatures | Then roles, VAPID env, worker (still flag-off until pilot) |
+| C2-P03 Schema migrate plan | C0 schema + backup/rollback runbook | **PASS (design)** / **BLOCKED (execute)** | Additive migrate only after P01/P02/P13 | Implementation approval | Prisma migrate staging |
+| C2-P05 Staff workflow | C0 admin UI + CmsAction map | **PASS (spec)** / **BLOCKED (implement)** | Build after Auth + P13 | Implementation approval | Engagement Admin |
+| C2-P07 Subscription storage | C0 retention design | **PASS (design)** / **BLOCKED (implement)** | Confirm retention with privacy pack | Privacy sign-off | Subscribe APIs |
+| C2-P08 Web Push / SW | C0 architecture | **PASS (design)** / **BLOCKED (implement)** | Extend SW; VAPID in env; flag off | Security + P13 | C4/C7 modules |
+| C2-P09 Send limits / dedupe | C0 modular C4/C7 | **PASS (design)** / **BLOCKED (implement)** | One job per sub; rate limits | Implementation approval | Worker |
+| C2-P11 Device tests | Roadmap + C0 C8 | **PASS (plan)** / **BLOCKED (execute)** | Physical iPhone/Android matrix | Pilot approval | After flag-on |
+| C2-P12 Costs | C0 cost estimates | **PASS (estimate)** / **BLOCKED (accept)** | Owner accept incremental cost | Owner | Monitoring |
+| **C2-P13 Implementation approval** | Readiness + packs | **BLOCKED** | Written “start C2 engineering” | **Owner** | Unlock code/migrate |
+| C2-P14 Production / DNS | Cutover NO-GO | **BLOCKED (N/A for C2 staging)** | Separate cutover programme | Owner + clinical | Not in C2 |
 
 ---
 
-## 4. Code-only vs approval-gated
+## 3. Specific approval requests (owner action list)
 
-| Work | Allowed now (docs / inert code after separate “code-only C2 prep” approval)? | Requires separate approval |
-| --- | --- | --- |
-| Update roadmap / readiness docs | **Yes** (this task) | — |
-| C1 lab UI polish (still dummy, no DB) | Code-only if owner asks | Not live push |
-| Prisma schema **files** in repo without migrate | Only with explicit owner “schema draft” approval | Applying migrate = C2-P13 |
-| Feature-flag stubs that never call `pushManager.subscribe` | Possible behind flag after approval | Enabling flag / VAPID in Hostinger |
-| Live subscribe API, ConsentRecord writes | **No** | C2-P06 + C2-P13 |
-| Delivery worker / Web Push send | **No** | C2-P08–P11 + pilot approval |
-| CMS publish of real announcements | **No** | Clinical + C2-P05 |
-| Hostinger env VAPID keys | **No** | Security + C2-P13 |
-| Production enablement | **No** | Full C0 §5 production gate |
+1. **Backup:** Authorise and perform staging logical dump + integrity checks; file evidence → C2-P01.  
+2. **Restore drill:** Authorise isolated restore (throwaway project / local Docker); file evidence → C2-P02.  
+3. **Auth.js:** Authorise Hostinger env change — remove `AUTH_URL`, keep `AUTH_TRUST_HOST=true`; complete smoke including staff login → C2-P04.  
+4. **Privacy:** Send privacy pack to qualified adviser; principal accepts patient-facing copy → C2-P06.  
+5. **Clinical/security:** Clinical lead + security reviewer sign clinical/security pack → C2-P10.  
+6. **Implementation:** Only then sign C2-P13 to start additive schema / inert wiring (still **no** live push until pilot approval).
 
 ---
 
-## 5. Exact owner-controlled approvals required
+## 4. Artefacts produced this pass
 
-| Gate | Owner | Required before |
-| --- | --- | --- |
-| Staging backup + restore drill complete | Ops / owner | Any migrate |
-| Privacy / legal (APP7, Spam Act, notice text, retention) | Adviser + principal | Consent schema + patient UI |
-| Clinical lead — content classes & HotDoc boundary | Clinical lead | Any announcement copy / publish path |
-| Security — VAPID, Auth.js hostname, API abuse | Tech + adviser | Subscribe / admin UAT |
-| Implementation approval — start C2 engineering | Owner | First C2 code/migrate |
-| Staging pilot (flag-on, limited devices) | Practice manager | Physical device push tests |
-| Production enablement | Owner + clinical | Apex / prod project (later) |
+| Doc | Purpose |
+| --- | --- |
+| `docs/WMC-PHASE-C2-STAGING-DB-BACKUP-RESTORE.md` | Backup, integrity, isolated restore, recovery checklist |
+| `docs/WMC-PHASE-C2-AUTHJS-STAGING-HOSTNAME-REPAIR.md` | Cause, Approach A/B, tests, env discipline |
+| `docs/WMC-PHASE-C2-PRIVACY-CONSENT-APPROVAL-PACK.md` | APP / Spam / consent / retention / draft patient copy |
+| `docs/WMC-PHASE-C2-CLINICAL-SECURITY-APPROVAL-PACK.md` | HotDoc boundary, permitted/prohibited, VAPID, roles, abuse |
+| This file | Matrix + verdict |
 
 ---
 
-## 6. Small implementation tasks (next authorised stage only)
+## 5. Explicit non-actions (honoured)
 
-Execute **only after** C2-P01, C2-P02, C2-P04 (or accepted workaround), C2-P06/P10 gates, and **C2-P13** are signed.
-
-1. **C2-A** — Write staging backup/restore runbook + complete one restore drill; attach evidence.  
-2. **C2-B** — Add Prisma models (additive) + empty migrate on staging; seed topics; flag off.  
-3. **C2-C** — Wire empty/honest Engagement Admin + patient preference shells to empty tables (replace C1 dummy metrics gradually).  
-4. **C2-D** — Consent append-only API + unsubscribe (no push yet).  
-5. **C2-E** — Subscription lifecycle behind flag; rate limits; endpoint hashing.  
-6. **C2-F** — Delivery queue (still dry-run / no send until pilot).  
-7. **C2-G** — Physical Android + iPhone matrix when flag-on pilot approved.
-
-Sequence aligns with `docs/WMC-PHASE-C0-MODULAR-TASKS.md` modules C2→C8.
+No database writes/migrations · no Web Push · no subscriptions · no notification send · no Hostinger env replace · no DNS/production · no HotDoc changes · no Supabase branch create (cost).
 
 ---
 
-## 7. References
+## 6. What “done” looks like for engineering start
 
-- `docs/WMC-PHASE-C0-NOTIFICATION-ARCHITECTURE.md`  
-- `docs/WMC-PHASE-C0-DATABASE-SCHEMA.md`  
-- `docs/WMC-PHASE-C0-PRIVACY-SECURITY-APPROVALS.md`  
-- `docs/WMC-PHASE-C0-ENGAGEMENT-ADMIN-UI.md`  
-- `docs/WMC-PHASE-C0-PATIENT-NOTIFICATION-UI.md`  
-- `docs/WMC-PHASE-C0-INFRASTRUCTURE-COST-ESTIMATES.md`  
-- `docs/WMC-PHASE-C0-MODULAR-TASKS.md`  
-- `docs/WMC-PHASE-C1-UI-FOUNDATION-REPORT.md`  
-- `docs/WMC-PATIENT-JOURNEY-M1-M2-STAGING-REPORT.md`  
+All of: **C2-P01 PASS · C2-P02 PASS · C2-P04 PASS · C2-P06 signed · C2-P10 signed · C2-P13 signed**, with feature flag default **off**. Then follow `WMC-PHASE-C0-MODULAR-TASKS.md` C2→C8.
 
-**Verdict recorded: PHASE C2 BLOCKED — SPECIFIC PREREQUISITES**
+**Verdict: C2 GATE RESOLUTION — READY FOR OWNER APPROVAL**
