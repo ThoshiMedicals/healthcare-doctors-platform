@@ -9,10 +9,12 @@
 
 ## Final verdict
 
-### **C2 GATE RESOLUTION — READY FOR OWNER APPROVAL**
+### **C2 TECHNICAL GATES BLOCKED — EXACT REMAINING ISSUE**
 
-Technical unknowns for the five primary blockers are resolved into **actionable owner requests** and evidence criteria.  
-**No gate is marked PASS solely because a draft exists.** Execution gates (backup taken, Auth env fixed, signatures collected, implementation authorised) remain **BLOCKED** until the owner completes the listed actions.
+**2026-11-13 execution attempt:** P01/P02/P04 could not be completed.  
+**Exact remaining issue:** Staging Direct Postgres credentials and `pg_dump`/Docker tooling are unavailable to the agent; Hostinger env values remain masked. See `docs/WMC-PHASE-C2-TECHNICAL-GATES-P01-P02-P04-ATTEMPT.md`.
+
+Governance packs remain ready for signature; **no gate is PASS without evidence.**
 
 ---
 
@@ -30,9 +32,9 @@ Technical unknowns for the five primary blockers are resolved into **actionable 
 
 | Blocker | Evidence now | Status | Exact corrective action | Owner-controlled approval | Remaining technical work (after approval) |
 | --- | --- | --- | --- | --- | --- |
-| **C2-P01 Staging DB backup** | Project `thwcxuhrzgkufvdrvzzt` ACTIVE_HEALTHY; prior backup **exception** still on record; runbook written | **BLOCKED** | Execute off-box `pg_dump` + hash + `pg_restore --list` per `WMC-PHASE-C2-STAGING-DB-BACKUP-RESTORE.md` | Approve taking staging logical dump | Attach evidence pack to flip PASS |
-| **C2-P02 Isolated restore drill** | Procedure Option A/B/C documented; **not executed** (no throwaway DB created — cost/safety) | **BLOCKED** | Restore dump into **non-staging** target only; record logs; tear down | Approve throwaway project / paid branch / local Docker drill | Prove restore; never restore into live staging |
-| **C2-P04 Auth.js staging hostname** | Live re-verify: custom `/api/auth/signin` → `callbackUrl` **hostingersite**; root cause = pinned `AUTH_URL` + production origin helper null | **BLOCKED** (diagnosis **PASS**) | Prefer **remove `AUTH_URL`**, keep `AUTH_TRUST_HOST=true`; smoke T1–T7 | Approve Hostinger env full-replace **excluding** `AUTH_URL` (no masked copy) | Owner login smoke on both hosts; optional later code allowlist |
+| **C2-P01 Staging DB backup** | Identity PASS (`thwcxuhrzgkufvdrvzzt`); inventory 230 pages / 15 practitioners / 29 migrations; **no dump file** — credential + tooling gap | **BLOCKED** | Operator: private-shell Direct URL + `pg_dump`/`supabase db dump` + SHA-256 per runbook / `STAGING-OFFBOX-BACKUP-OPERATOR-STEPS.md` | Provide staging DB URL in private shell only (not chat) | Attach path + sizes + checksums |
+| **C2-P02 Isolated restore drill** | Not started (blocked by P01); no disposable DB | **BLOCKED** | After P01: restore to local disposable Postgres or throwaway project; verify counts; dispose | Approve disposable target | Never restore into live staging |
+| **C2-P04 Auth.js staging hostname** | Diagnosis PASS; **repair not applied** (gated behind P01+P02); defect still live | **BLOCKED** | After P01+P02: remove `AUTH_URL`, keep `AUTH_TRUST_HOST=true`; smoke both hosts | Approve Hostinger env full-replace with real secrets | Staff login verification |
 | **C2-P06 Privacy / consent / Spam** | Approval pack drafted | **BLOCKED** | Adviser + principal review/sign `WMC-PHASE-C2-PRIVACY-CONSENT-APPROVAL-PACK.md` | Privacy/legal + principal signatures | Then implement consent APIs (C3) under C2-P13 |
 | **C2-P10 Clinical + security governance** | Clinical/security pack drafted | **BLOCKED** | Clinical lead + security + principal sign `WMC-PHASE-C2-CLINICAL-SECURITY-APPROVAL-PACK.md` | Clinical / security / principal signatures | Then roles, VAPID env, worker (still flag-off until pilot) |
 | C2-P03 Schema migrate plan | C0 schema + backup/rollback runbook | **PASS (design)** / **BLOCKED (execute)** | Additive migrate only after P01/P02/P13 | Implementation approval | Prisma migrate staging |
