@@ -5,7 +5,7 @@
 | Date | 2026-11-13 |
 | Verdict | **WMC C1 + PATIENT JOURNEYS — INTEGRATION READY** |
 | Integration branch | `integration/wmc-c1-patient-journey` |
-| Final integrated SHA | **`71bbc6012763d29385ab1f11fe5aba039cafd5b4`** (`71bbc60`) |
+| Final integrated SHA | **`284638706b41b2fdc7e7242506963f25d4e9dd13`** (`2846387`) |
 | Code tip (PJ + C1 feature) | `b3a5c3f27dd32c24305ebe8932d5186a5ad46d1e` |
 | Staging baseline (preserved ancestor) | `f6bba5ca0deea4ef70ebed64c64f35a9ca8d78dd` |
 | C1 base | `1a12bf98b0d940bb3ff41a6c7813e3f7427190e3` |
