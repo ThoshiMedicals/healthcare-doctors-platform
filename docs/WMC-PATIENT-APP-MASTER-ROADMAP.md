@@ -210,7 +210,7 @@ Production release remains **NO-GO** pending independent database backup/restore
 - Preserve all phase history. Append decisions/change logs; never overwrite completed work or silently drop backlog items. Keep future notification and HotDoc work separate from completed Phase A UI work.
 - Phase B modular prompts live in `docs/WMC-PHASE-B-MODULAR-TASKS.md`. Do not start Phase B implementation until an owner prompt explicitly authorises a B-task.
 
-**Current immediate next step (13 November 2026, close of day):** Phase B1 is **STAGING VERIFIED & CLOSED** at Hostinger tip `f6bba5c` (pushed on `release/wmc-patient-app-visual-excellence`). Phase C0 notification architecture pack is **READY — IMPLEMENTATION APPROVAL REQUIRED**. Do **not** start push coding, Prisma migrations, messaging vendors, DNS or production changes without separate written approval and privacy/security sign-off. Production QR promo pack is prepared under `docs/phase-b1-qr-promo/` and marked **NOT FOR DISTRIBUTION** until apex cutover + live QR verification.
+**Current immediate next step (13 November 2026):** Phase B1 remains **STAGING VERIFIED & CLOSED** at Hostinger tip `f6bba5c`. Phase C0 notification architecture pack is **READY — IMPLEMENTATION APPROVAL REQUIRED**. Phase C1 Engagement UI foundation remains on `feat/wmc-patient-engagement-c1-ui` (**READY FOR REVIEW**, no Hostinger deploy). Patient Journey mockup integration (Care Hub + visit prep) is on **`feat/wmc-patient-journey-mockup-integration`** — code-only, **not** staging-deployed. Do **not** start live push coding, Prisma migrations, messaging vendors, DNS or production changes without separate written approval and privacy/security sign-off. Production QR promo pack is prepared under `docs/phase-b1-qr-promo/` and marked **NOT FOR DISTRIBUTION** until apex cutover + live QR verification.
 
 
 ## 10. Status and decision log (added 13 November 2026; updated same day for Phase A gate; updated again for B1 closeout + C0 architecture)
@@ -225,14 +225,56 @@ Production release remains **NO-GO** pending independent database backup/restore
 | Phase B1 install QR / cooldown / guidance | **STAGING VERIFIED & CLOSED** at `f6bba5c` / build `01a1d23c-…` | Preserve; promo QR pack pre-cutover only |
 | HotDoc widget and PWA booking | B0 strategy complete; no parallel book | Keep lightbox + phone-only exceptions |
 | Phase C0 notification architecture | **ARCHITECTURE READY** — implementation approval required | Sign-off packs in `docs/WMC-PHASE-C0-*.md` |
-| Notifications, general announcement inbox and consent | Designed (C0); **not authorised for database deployment** | Privacy/security sign-off then C1+ modules |
-| Patient Engagement Admin Panel | Spec’d in C0 (Phase D build later) | Auth.js roles, campaigns, inbox, consents, reports |
+| Phase C1 Patient Engagement UI (dummy) | **READY FOR REVIEW** on `feat/wmc-patient-engagement-c1-ui` (`1a12bf9`) | No Hostinger deploy; privacy sign-off before C2 |
+| Notifications, general announcement inbox and consent | Designed (C0); C1 lab demo only; **not authorised for database deployment** | Privacy/security sign-off then C2+ modules |
+| Patient Engagement Admin Panel | Spec’d in C0; C1 lab shell; Phase D build later | Auth.js roles, campaigns, inbox, consents, reports |
 | Anonymous delivery/read/adoption analytics and estimated SMS savings | Spec’d in C0/E | Honest device-level metrics + SMS baseline |
 | Verified patient identity and personalised messaging | **Conditional future phase** | Separate verified identity, clinical/legal/security approval and safe fallback |
+| Mockup concept integration (17) | **REGISTERED + code-only PJ-01/02** — see §12 | Staging deploy requires separate approval |
+| HotDoc routine-request shortcuts | **Conditional future** | HotDoc account verification + clinical |
+| Household GP preferences | **Deferred** (privacy / UX) | No anonymous named family health storage |
+| Clinic open-now indicator | **Conditional future** | Verified hours engine only — no hard-coded open/closed |
+| Personal clinical results in PWA | **Rejected** | Clinical systems / HotDoc only |
 | Production cutover | **NO-GO** | Independent backups/restore, Auth.js fix, security/clinical sign-off, real-device evidence, owner DNS approval |
 | Cursor Project Pack v1.2 governance | **Integrated** (see `docs/WMC-PROJECT-GOVERNANCE-INTEGRATION.md`) | Follow modular approval gates |
 
 **Continuity rule:** All existing Phase A-G requirements and checklists above remain in force. Additive updates must not delete earlier requirements.
+
+
+## 12. Mockup concept integration (added 13 November 2026)
+
+Owner-reviewed conceptual PWA screens were mapped into this roadmap **without** a second competing plan. Authority artefacts:
+
+| Artefact | Path |
+| --- | --- |
+| 17-image decision register | `docs/WMC-PWA-MOCKUP-CONCEPT-DECISION-REGISTER.md` |
+| Existing vs missing matrix | `docs/WMC-PWA-MOCKUP-EXISTING-VS-MISSING-MATRIX.md` |
+| Modular Journey plan | `docs/WMC-PATIENT-JOURNEY-ENHANCEMENT-PLAN.md` |
+| Code (Care Hub + visit prep) | `apps/web/src/documents/patient-journey-enhancements.ts` (wired from `public-ux.ts`) |
+| Named audit file | `WMC_PWA_Mockup_Concept_Audit_2026-11-13.md` — **not found on disk** this session; reconcile when supplied |
+
+### Already implemented (preserve)
+
+Patient Hub mobile dashboard; Preferred GP (`wmc.preferredGp.v1`); practitioner directory (`team.html`); Digital Reception; HotDoc booking lightbox pathway; PWA install (B1); Practice Information Hub; Trust Facts–backed public pages (billing, telehealth, after-hours, new patients, knowledge index).
+
+### Approved enhancements (this cycle — code-only)
+
+- **PJ-01 Care Hub** — discovery links to approved pages + Preferred GP / DR / practice anchors.  
+- **PJ-02 Visit preparation checklist** — non-clinical booleans in `wmc.visitPrep.v1` only.
+
+### Remain in notification phases (do not implement outside C0–E)
+
+Notification preferences/categories; Patient Updates feed; Inbox; Engagement Admin; push delivery.
+
+### Future conditional (plan only)
+
+HotDoc routine requests; household GP preferences; open-now indicator; CMS publication of new announcement content.
+
+### Rejected / unsafe
+
+Personal clinical results; medical notes / named family health in anonymous browser storage; unverified mockup clinical copy or portraits; global five-tab nav without UX approval.
+
+**Implementation status:** Code-only Journey enhancements on branch `feat/wmc-patient-journey-mockup-integration` (based on C1 tip). **Not** Hostinger-deployed. C1 lab routes undisturbed.
 
 
 ## 11. Version 1.2 - AI-assisted development guide adoption (13 November 2026)
@@ -244,8 +286,8 @@ The user provided an external ChatGPT-to-Cursor/PWA guide. Its **workflow** is u
 - **Keep:** ChatGPT product-architecture role, Cursor implementation role, persistent project context, smaller modular prompts, real build/regression/device checks, safe-area mobile standards, patient-data privacy, HotDoc as the booking system.
 - **Change:** Use current Cursor `.cursor/rules/*.mdc` rather than legacy `.cursorrules` for a new rule; Next.js/Node Hostinger Web App rather than static hosting; existing WMC palette rather than sample colours; 15 published practitioners rather than 10 example names; canonical CMS/Trust Facts rather than a duplicate `doctors.json`; approved current HotDoc lightbox and links instead of blindly forcing all new tabs.
 - **Do not recreate:** Existing manifest, service worker, mobile dashboard, three-action bottom dock, Preferred GP storage and PWA install logic. Audit/extend incrementally only.
-- **Deferred pending separate design/privacy approval:** Five-household-profile LocalStorage manager (`wmc_family_gps`), five-tab global bottom bar, open-now indicator with unverified hard-coded hours, and new offline caching that could show stale medical/after-hours advice. These are *not authorised features*.
-- **Current next work:** Phase B1 closed at `f6bba5c`. Obtain implementation approval for Phase C0→C modules only after privacy/security/clinical gates; keep HotDoc as clinical SoT; do not distribute production QR materials until apex cutover verification.
+- **Deferred pending separate design/privacy approval:** Five-household-profile LocalStorage manager (`wmc_family_gps`), five-tab global bottom bar, open-now indicator with unverified hard-coded hours, and new offline caching that could show stale medical/after-hours advice. These are *not authorised features*. Confirmed again in the 2026-11-13 mockup decision register (§12).
+- **Current next work:** Phase B1 closed at `f6bba5c`. Keep C1 Engagement UI review separate from Journey PJ code. Obtain implementation approval for Phase C0→C2+ only after privacy/security/clinical gates; keep HotDoc as clinical SoT; do not distribute production QR materials until apex cutover verification.
 
 ### Record preservation
 
