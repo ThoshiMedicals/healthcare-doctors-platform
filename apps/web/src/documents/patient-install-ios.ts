@@ -1,5 +1,5 @@
 /**
- * Patient Hub — iPhone Safari "Add to Home Screen" guide (Phase 3B).
+ * Patient Hub — iPhone Safari "Add to Home Screen" guide (Phase 3B / B1).
  *
  * Injects a dismissible, patient-friendly panel on `patient-hub.html` only.
  * Runtime visibility is handled by `patient-install-ios.js` (iOS Safari +
@@ -9,18 +9,22 @@
  * covers H1 / Preferred GP / booking actions.
  */
 
+import {
+  PATIENT_INSTALL_COOLDOWN_MS,
+  PATIENT_INSTALL_DISMISS_STORAGE_KEY,
+  PATIENT_INSTALL_IOS_GUIDE_DISMISS_KEY,
+} from "@/documents/patient-install-dismiss";
+
 export const IOS_INSTALL_PANEL_ID = "wmc-ios-install";
 export const IOS_INSTALL_BLOCK_MARKER = "wmc-ios-install-guide";
 
-export const PATIENT_INSTALL_STORAGE_DISMISSED = "wmc.patientInstall.v1.dismissedAt";
-export const PATIENT_INSTALL_STORAGE_IOS_GUIDE_DISMISSED =
-  "wmc.patientInstall.v1.iosGuideDismissedAt";
+export const PATIENT_INSTALL_STORAGE_DISMISSED = PATIENT_INSTALL_DISMISS_STORAGE_KEY;
+export const PATIENT_INSTALL_STORAGE_IOS_GUIDE_DISMISSED = PATIENT_INSTALL_IOS_GUIDE_DISMISS_KEY;
 
-/** Shared with Agent 4 prompt intelligence — honour dismiss for 7 days. */
-/** Canonical cooldown — aligned with Agent 4 `DEFAULT_INSTALL_PROMPT_COOLDOWN_MS`. */
-export const PATIENT_INSTALL_IOS_DISMISS_COOLDOWN_MS = 14 * 24 * 60 * 60 * 1000;
+/** Canonical cooldown — aligned with install tip / Android. */
+export const PATIENT_INSTALL_IOS_DISMISS_COOLDOWN_MS = PATIENT_INSTALL_COOLDOWN_MS;
 
-export const PATIENT_INSTALL_IOS_SCRIPT_VERSION = "wmc-ios-install-v2-20261112";
+export const PATIENT_INSTALL_IOS_SCRIPT_VERSION = "wmc-ios-install-v3-20261113b";
 
 const INSTALL_BLOCK_PATTERN = new RegExp(
   `<!--\\s*${IOS_INSTALL_BLOCK_MARKER}:start\\s*-->[\\s\\S]*?<!--\\s*${IOS_INSTALL_BLOCK_MARKER}:end\\s*-->\\s*`,
@@ -40,41 +44,45 @@ const IOS_INSTALL_BLOCK = `<!-- ${IOS_INSTALL_BLOCK_MARKER}:start -->
   color:#163f62;
   border-bottom:1px solid rgba(22,63,98,.12);
   box-shadow:none;
-  font-size:14px;
-  line-height:1.45;
+  font-size:1.05rem;
+  line-height:1.55;
 }
 #${IOS_INSTALL_PANEL_ID}[hidden]{display:none!important}
 #${IOS_INSTALL_PANEL_ID} .wmc-ios-install-inner{
   max-width:72rem;
   margin:0 auto;
-  padding:14px 1.25rem calc(20px + env(safe-area-inset-bottom,0px) + var(--action-dock-height,72px));
+  padding:16px 1.25rem calc(22px + env(safe-area-inset-bottom,0px) + var(--action-dock-height,72px));
 }
 #${IOS_INSTALL_PANEL_ID} h2{
-  margin:0 0 6px;
-  font-size:16px;
+  margin:0 0 8px;
+  font-size:1.25rem;
   font-weight:700;
-  line-height:1.25;
+  line-height:1.3;
   color:#163d68;
 }
-#${IOS_INSTALL_PANEL_ID} p{margin:0 0 10px;color:#2a4050}
+#${IOS_INSTALL_PANEL_ID} p{margin:0 0 12px;color:#2a4050}
 #${IOS_INSTALL_PANEL_ID} ol{
-  margin:0 0 12px 1.1em;
+  margin:0 0 14px 1.15em;
   padding:0;
   color:#2a4050;
 }
-#${IOS_INSTALL_PANEL_ID} li{margin:0 0 6px}
+#${IOS_INSTALL_PANEL_ID} li{margin:0 0 10px}
 #${IOS_INSTALL_PANEL_ID} ul{
-  margin:0 0 12px 1.1em;
+  margin:0 0 14px 1.15em;
   padding:0;
   color:#2a4050;
+}
+#${IOS_INSTALL_PANEL_ID} .wmc-ios-install-help{
+  margin:0 0 14px;padding:12px 14px;border-radius:12px;background:#fff;
+  border:1px solid rgba(22,61,104,.14);font-size:1.05rem
 }
 #${IOS_INSTALL_PANEL_ID} .wmc-ios-install-actions{
   display:flex;
   flex-wrap:wrap;
-  gap:8px;
+  gap:10px;
   align-items:center;
 }
-#${IOS_INSTALL_PANEL_ID} .button{margin:0;min-height:44px}
+#${IOS_INSTALL_PANEL_ID} .button{margin:0;min-height:48px;font-size:1rem}
 #${IOS_INSTALL_PANEL_ID} .button-secondary{
   background:#fff;
   color:#163d68;
@@ -87,7 +95,7 @@ const IOS_INSTALL_BLOCK = `<!-- ${IOS_INSTALL_BLOCK_MARKER}:start -->
 #${IOS_INSTALL_PANEL_ID} a.text-link{
   font-weight:650;
   color:#007a87;
-  min-height:44px;
+  min-height:48px;
   display:inline-flex;
   align-items:center;
 }
@@ -106,26 +114,28 @@ const IOS_INSTALL_BLOCK = `<!-- ${IOS_INSTALL_BLOCK_MARKER}:start -->
   data-wmc-ios-install-inline="1"
 >
   <div class="wmc-ios-install-inner">
-  <h2 id="${IOS_INSTALL_PANEL_ID}-title">Save the Patient Hub on your iPhone</h2>
+  <h2 id="${IOS_INSTALL_PANEL_ID}-title">Save this page on your iPhone</h2>
   <p>
-    Safari does not show an automatic install button. Add this page to your Home Screen —
-    it only takes a moment. This guide sits below the page heading so your dashboard stays visible.
+    Apple does not show an automatic Install button in Safari. Follow these three steps.
+    Your dashboard stays visible above this guide.
   </p>
   <ol>
-    <li>Stay in <strong>Safari</strong> on this page.</li>
-    <li>Tap <strong>Share</strong> (the square with an arrow pointing up).</li>
-    <li>Scroll the menu and tap <strong>Add to Home Screen</strong>.</li>
-    <li>Tap <strong>Add</strong>, then open the new icon on your Home Screen.</li>
-    <li>
-      If you see <strong>Open as Web App</strong> when adding, turn it on for a fuller
-      screen experience (not on every iPhone).
-    </li>
+    <li>Stay in the <strong>Safari</strong> app (not Chrome or another browser).</li>
+    <li>Tap <strong>Share</strong> — the square with an arrow pointing up.</li>
+    <li>Tap <strong>Add to Home Screen</strong>, then tap <strong>Add</strong>.</li>
   </ol>
+  <p>
+    Optional: if you see <strong>Open as Web App</strong>, turn it on for a fuller screen.
+  </p>
+  <p class="wmc-ios-install-help">
+    Prefer help in person? Ask reception, or call
+    <a href="tel:+61732173344">(07) 3217 3344</a>.
+  </p>
   <p><strong>Why save it?</strong></p>
   <ul>
-    <li>Book appointments</li>
-    <li>Your Preferred GP</li>
-    <li>Digital Reception</li>
+    <li>Book appointments (HotDoc)</li>
+    <li>Your Preferred GP on this phone</li>
+    <li>Digital Reception for common practice questions</li>
     <li>Call the clinic</li>
     <li>Practice information</li>
   </ul>

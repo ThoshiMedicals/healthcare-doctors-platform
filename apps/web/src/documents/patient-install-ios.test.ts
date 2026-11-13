@@ -17,12 +17,15 @@ test("injectPatientInstallIos: patient-hub only, idempotent panel + script", () 
   const twice = injectPatientInstallIos(once, "patient-hub.html");
 
   assert.match(once, new RegExp(`id="${IOS_INSTALL_PANEL_ID}"`));
-  assert.match(once, /Safari does not show an automatic install button/);
+  assert.match(once, /Apple does not show an automatic Install button/);
   assert.match(once, /Add to Home Screen/);
   assert.match(once, /Open as Web App/);
+  assert.match(once, /three steps/i);
+  assert.match(once, /Ask reception|Prefer help in person/i);
+  assert.match(once, /tel:\+61732173344/);
   assert.match(once, /Book appointments/);
   assert.match(once, /Preferred GP/);
-  assert.match(once, /Digital Reception/);
+  assert.match(once, /Digital Reception for common practice questions/);
   assert.match(once, /Call the clinic/);
   assert.match(once, /Practice information/);
   assert.match(once, /data-wmc-ios-install-inline="1"/);

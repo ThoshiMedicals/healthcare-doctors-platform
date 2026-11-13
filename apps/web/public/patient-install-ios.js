@@ -46,12 +46,21 @@
     }
   }
 
+  /** Accept epoch millis or ISO (shared with tip / Android). */
+  function parseDismissedRaw(raw) {
+    if (raw == null || raw === "") return null;
+    var trimmed = String(raw).trim();
+    if (/^\d+$/.test(trimmed)) {
+      var epoch = Number(trimmed);
+      return Number.isFinite(epoch) && epoch > 0 ? epoch : null;
+    }
+    var parsed = Date.parse(trimmed);
+    return Number.isFinite(parsed) ? parsed : null;
+  }
+
   function parseDismissedAt(key) {
     try {
-      var raw = window.localStorage.getItem(key);
-      if (!raw) return null;
-      var ts = Number(raw);
-      return Number.isFinite(ts) && ts > 0 ? ts : null;
+      return parseDismissedRaw(window.localStorage.getItem(key));
     } catch (e) {
       return null;
     }
@@ -67,10 +76,10 @@
   }
 
   function recordDismiss() {
-    var now = String(Date.now());
+    var iso = new Date().toISOString();
     try {
-      window.localStorage.setItem(KEYS.dismissedAt, now);
-      window.localStorage.setItem(KEYS.iosGuideDismissedAt, now);
+      window.localStorage.setItem(KEYS.dismissedAt, iso);
+      window.localStorage.setItem(KEYS.iosGuideDismissedAt, iso);
     } catch (e) {
       /* ignore quota / private mode */
     }

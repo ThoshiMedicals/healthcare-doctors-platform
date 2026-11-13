@@ -17,8 +17,8 @@
   var TIP_ID = "wmc-pwa-install-tip";
   var COPY = {
     default:
-      "Install Gabba Medical for quick access: book appointments, your Preferred GP, Digital Reception, and call reception.",
-    ios: 'Install Gabba Medical: tap Share, then "Add to Home Screen" for booking, Preferred GP, Digital Reception, and call.',
+      "Install Gabba Medical for quick access: book appointments, your Preferred GP, Digital Reception (practice questions), and call reception.",
+    ios: 'Install Gabba Medical: tap Share, then "Add to Home Screen" for booking, Preferred GP, Digital Reception, and call. Need help? Call reception.',
   };
 
   function nowMs() {

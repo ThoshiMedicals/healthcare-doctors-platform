@@ -5,24 +5,31 @@
  * Runtime behaviour lives in `apps/web/public/patient-install-android.js`.
  */
 
-export const PATIENT_INSTALL_DISMISSED_AT_KEY = "wmc.patientInstall.v1.dismissedAt";
-export const PATIENT_INSTALL_INSTALLED_KEY = "wmc.patientInstall.v1.installed";
+import {
+  PATIENT_INSTALL_COOLDOWN_MS,
+  PATIENT_INSTALL_DISMISS_STORAGE_KEY,
+  PATIENT_INSTALL_INSTALLED_STORAGE_KEY,
+  isInstallDismissCooldownActive,
+  parseInstallDismissedAt,
+} from "@/documents/patient-install-dismiss";
 
-/** Honour dismiss across sessions; align with Phase 3B prompt intelligence (Agent 4). */
-/** Canonical cooldown — aligned with Agent 4 `DEFAULT_INSTALL_PROMPT_COOLDOWN_MS`. */
-export const PATIENT_INSTALL_DISMISS_COOLDOWN_MS = 14 * 24 * 60 * 60 * 1000;
+export const PATIENT_INSTALL_DISMISSED_AT_KEY = PATIENT_INSTALL_DISMISS_STORAGE_KEY;
+export const PATIENT_INSTALL_INSTALLED_KEY = PATIENT_INSTALL_INSTALLED_STORAGE_KEY;
+
+/** Canonical cooldown — aligned with install tip / iOS guide. */
+export const PATIENT_INSTALL_DISMISS_COOLDOWN_MS = PATIENT_INSTALL_COOLDOWN_MS;
 
 export const ANDROID_INSTALL_MOUNT_ID = "wmc-android-install";
 export const ANDROID_INSTALL_BLOCK_ID = "wmc-android-install";
-export const ANDROID_INSTALL_SCRIPT_VERSION = "wmc-patient-install-android-20261112a";
+export const ANDROID_INSTALL_SCRIPT_VERSION = "wmc-patient-install-android-20261113b";
 
 export const ANDROID_INSTALL_SCRIPT_HREF = `/wmc-cache/patient-install-android.js?v=${ANDROID_INSTALL_SCRIPT_VERSION}`;
 
-/** Phase 3A patient-app benefits only — no invented Medicare/records/push. */
+/** Patient-app benefits only — no invented Medicare/records/push/messaging. */
 export const PHASE3A_ANDROID_INSTALL_BENEFITS = [
   "Faster booking from your home screen",
   "Preferred GP saved on this device",
-  "Digital Reception for common questions",
+  "Digital Reception answers for common practice questions",
   "One-tap call clinic",
   "Practice info in the Patient Hub",
 ] as const;
@@ -80,9 +87,7 @@ export function shouldInjectPatientInstallAndroid(pagePath: string): boolean {
 }
 
 export function parsePatientInstallDismissedAt(raw: string | null | undefined): number | null {
-  if (raw == null || raw === "") return null;
-  const ms = Number(raw);
-  return Number.isFinite(ms) && ms > 0 ? ms : null;
+  return parseInstallDismissedAt(raw);
 }
 
 export function isPatientInstallDismissCooldownActive(
@@ -90,8 +95,7 @@ export function isPatientInstallDismissCooldownActive(
   nowMs: number,
   cooldownMs: number = PATIENT_INSTALL_DISMISS_COOLDOWN_MS,
 ): boolean {
-  if (dismissedAtMs == null) return false;
-  return nowMs - dismissedAtMs < cooldownMs;
+  return isInstallDismissCooldownActive(dismissedAtMs, nowMs, cooldownMs);
 }
 
 const ANDROID_INSTALL_BLOCK_PATTERN = new RegExp(
@@ -108,13 +112,13 @@ function buildAndroidInstallBlock(): string {
   return `<!-- ${ANDROID_INSTALL_BLOCK_ID}:start -->
 <style id="${ANDROID_INSTALL_MOUNT_ID}-style">
 #${ANDROID_INSTALL_MOUNT_ID}[hidden]{display:none!important}
-#${ANDROID_INSTALL_MOUNT_ID}{position:fixed;left:14px;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px) + var(--action-dock-height,0px));z-index:125;max-width:440px;margin:0 auto;padding:14px 16px;border-radius:16px;background:#163f62;color:#fff;font:13px/1.45 inherit;box-shadow:0 16px 36px rgba(16,38,58,.26)}
-#${ANDROID_INSTALL_MOUNT_ID} .wmc-android-install-title{margin:0 0 6px;font-size:15px;font-weight:700}
+#${ANDROID_INSTALL_MOUNT_ID}{position:fixed;left:14px;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px) + var(--action-dock-height,0px));z-index:125;max-width:440px;margin:0 auto;padding:16px 18px;border-radius:16px;background:#163f62;color:#fff;font:16px/1.5 inherit;box-shadow:0 16px 36px rgba(16,38,58,.26)}
+#${ANDROID_INSTALL_MOUNT_ID} .wmc-android-install-title{margin:0 0 6px;font-size:1.1rem;font-weight:700}
 #${ANDROID_INSTALL_MOUNT_ID} .wmc-android-install-lead{margin:0 0 8px;opacity:.95}
 #${ANDROID_INSTALL_MOUNT_ID} ul{margin:0 0 10px;padding-left:18px}
-#${ANDROID_INSTALL_MOUNT_ID} li{margin:2px 0}
+#${ANDROID_INSTALL_MOUNT_ID} li{margin:4px 0}
 #${ANDROID_INSTALL_MOUNT_ID} .wmc-android-install-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-#${ANDROID_INSTALL_MOUNT_ID} button{border:0;border-radius:999px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer}
+#${ANDROID_INSTALL_MOUNT_ID} button{border:0;border-radius:999px;padding:10px 16px;font-size:15px;font-weight:600;cursor:pointer;min-height:44px}
 #${ANDROID_INSTALL_MOUNT_ID} .wmc-android-install-cta{background:#fff;color:#163f62}
 #${ANDROID_INSTALL_MOUNT_ID} .wmc-android-install-dismiss{background:rgba(255,255,255,.14);color:#fff}
 @media (prefers-reduced-motion:no-preference){#${ANDROID_INSTALL_MOUNT_ID}{transition:opacity .22s ease}}

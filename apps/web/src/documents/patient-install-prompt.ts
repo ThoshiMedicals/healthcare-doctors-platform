@@ -1,29 +1,37 @@
 /**
- * Patient PWA install prompt — shared intelligence (Phase 3B).
+ * Patient PWA install prompt — shared intelligence (Phase 3B / B1).
  *
  * Pure helpers are tested in Node; runtime behaviour lives in
  * `apps/web/public/patient-install-prompt.js` (loaded from the SSR tip block).
  */
 
+import {
+  PATIENT_INSTALL_COOLDOWN_MS,
+  PATIENT_INSTALL_DISMISS_STORAGE_KEY,
+  PATIENT_INSTALL_INSTALLED_STORAGE_KEY,
+  parseInstallDismissedAt,
+  serializeInstallDismissedAt,
+} from "@/documents/patient-install-dismiss";
+
 export const PATIENT_INSTALL_STORAGE = {
-  dismissedAt: "wmc.patientInstall.v1.dismissedAt",
-  installed: "wmc.patientInstall.v1.installed",
+  dismissedAt: PATIENT_INSTALL_DISMISS_STORAGE_KEY,
+  installed: PATIENT_INSTALL_INSTALLED_STORAGE_KEY,
 } as const;
 
 /** Legacy Phase 3A session dismiss — read once, then cleared client-side. */
 export const LEGACY_SESSION_DISMISS_KEY = "wmcPwaInstallTipDismissed";
 
 /** Honour "Not now" for 14 days before offering again. */
-export const DEFAULT_INSTALL_PROMPT_COOLDOWN_MS = 14 * 24 * 60 * 60 * 1000;
+export const DEFAULT_INSTALL_PROMPT_COOLDOWN_MS = PATIENT_INSTALL_COOLDOWN_MS;
 
-export const INSTALL_TIP_SCRIPT_VERSION = "wmc-patient-install-prompt-20261112a";
+export const INSTALL_TIP_SCRIPT_VERSION = "wmc-patient-install-prompt-20261113b";
 
 export const INSTALL_TIP_ID = "wmc-pwa-install-tip";
 
 export const INSTALL_TIP_COPY = {
   default:
-    "Install Gabba Medical for quick access: book appointments, your Preferred GP, Digital Reception, and call reception.",
-  ios: 'Install Gabba Medical: tap Share, then "Add to Home Screen" for booking, Preferred GP, Digital Reception, and call.',
+    "Install Gabba Medical for quick access: book appointments, your Preferred GP, Digital Reception (practice questions), and call reception.",
+  ios: 'Install Gabba Medical: tap Share, then "Add to Home Screen" for booking, Preferred GP, Digital Reception, and call. Need help? Call reception.',
 } as const;
 
 export type ShouldShowInstallPromptInput = {
@@ -41,14 +49,7 @@ export type StandaloneHints = {
 
 /** Parse ISO or epoch millis from localStorage. */
 export function parseDismissedAt(raw: string | null | undefined): number | null {
-  if (raw == null || raw === "") return null;
-  const trimmed = String(raw).trim();
-  if (/^\d+$/.test(trimmed)) {
-    const epoch = Number(trimmed);
-    return Number.isFinite(epoch) && epoch > 0 ? epoch : null;
-  }
-  const parsed = Date.parse(trimmed);
-  return Number.isFinite(parsed) ? parsed : null;
+  return parseInstallDismissedAt(raw);
 }
 
 export function isWithinInstallPromptCooldown(
@@ -78,7 +79,7 @@ export function isStandaloneDisplay(hints: StandaloneHints = {}): boolean {
 }
 
 export function serializeDismissedAt(now: number): string {
-  return new Date(now).toISOString();
+  return serializeInstallDismissedAt(now);
 }
 
 const INSTALL_TIP_PATTERN = new RegExp(

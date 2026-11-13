@@ -29,10 +29,20 @@
     } catch (e) {}
   }
 
+  /** Accept epoch millis or ISO (shared with tip / iOS guide). */
   function parseDismissedAt(raw) {
-    if (!raw) return null;
-    var ms = Number(raw);
-    return isFinite(ms) && ms > 0 ? ms : null;
+    if (raw == null || raw === "") return null;
+    var trimmed = String(raw).trim();
+    if (/^\d+$/.test(trimmed)) {
+      var epoch = Number(trimmed);
+      return isFinite(epoch) && epoch > 0 ? epoch : null;
+    }
+    var parsed = Date.parse(trimmed);
+    return isFinite(parsed) ? parsed : null;
+  }
+
+  function serializeDismissedAt() {
+    return new Date().toISOString();
   }
 
   function isStandalone() {
@@ -85,7 +95,7 @@
   }
 
   function dismiss(root) {
-    storageSet(DISMISSED_KEY, String(Date.now()));
+    storageSet(DISMISSED_KEY, serializeDismissedAt());
     hideRoot(root);
   }
 

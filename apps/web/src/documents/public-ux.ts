@@ -37,6 +37,7 @@ import { applyPatientHubDigitalReception } from "@/documents/patient-hub-digital
 import { injectHomepagePatientAppDiscovery } from "@/documents/homepage-patient-app-discovery";
 import { injectPatientInstallAndroid } from "@/documents/patient-install-android";
 import { injectPatientInstallIos } from "@/documents/patient-install-ios";
+import { refineInstallWmcAppLanding } from "@/documents/patient-install-landing";
 import { refinePatientHubMobileDashboard } from "@/documents/patient-hub-mobile-dashboard";
 import { injectPatientPracticeInfoHub } from "@/documents/patient-practice-info-hub";
 import { injectPatientShareExperience } from "@/documents/patient-share";
@@ -71,12 +72,13 @@ function practiceTelHref(phoneTel: string): string {
 }
 
 const PATIENT_INSTALL_QR_SCRIPT_HREF =
-  "/wmc-cache/patient-install-qr.js?v=wmc-patient-install-qr-20261112a";
+  "/wmc-cache/patient-install-qr.js?v=wmc-patient-install-qr-20261113b";
 
-/** Phase 3B — platform install guides + desktop QR cache path (hub / install landing). */
+/** Phase 3B / B1 — platform install guides + host-aware desktop QR. */
 function injectPatientInstallExperience(html: string, pagePath: string): string {
   let next = injectPatientInstallAndroid(html, pagePath);
   next = injectPatientInstallIos(next, pagePath);
+  next = refineInstallWmcAppLanding(next, pagePath);
   if (pagePath === "install-wmc-app.html") {
     next = next.replace(
       /(?:\/wmc-cache\/)?(?:\.\.\/)*patient-install-qr\.js(?:\?[^"]*)?(?=")/g,

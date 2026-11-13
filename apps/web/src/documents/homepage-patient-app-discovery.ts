@@ -43,7 +43,7 @@ const SECTION = `<!--${HOMEPAGE_PATIENT_APP_MARKER}:start-->
 <li>Save a preferred GP on this device and return quickly</li>
 <li>Open Digital Reception and approved booking options</li>
 <li>Find hours, parking, billing and practice information</li>
-<li>Install on your phone for a Home Screen shortcut</li>
+<li>Install on your phone for a Home Screen shortcut (separate from the HotDoc app store apps)</li>
 </ul>
 <div class="wmc-home-patient-app-actions">
 <a class="button" href="patient-hub.html">Explore the Patient App</a>
