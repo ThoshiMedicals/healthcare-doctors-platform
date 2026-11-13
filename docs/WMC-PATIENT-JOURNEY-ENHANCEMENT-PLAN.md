@@ -2,22 +2,22 @@
 
 | Field | Value |
 | --- | --- |
-| Branch | `feat/wmc-patient-journey-mockup-integration` |
-| Base | C1 tip `1a12bf9` (preserves engagement lab) |
-| Staging tip | Do **not** deploy without separate Hostinger approval |
+| Branch (shipped) | `feat/wmc-patient-journey-m1-m2` |
+| Staging tip | **`fdcb9c4`** — M1+M2 **STAGING VERIFIED** (build `01a1d286-…`) |
+| Earlier design branch | `feat/wmc-patient-journey-mockup-integration` (superseded for M1/M2 ship) |
 | Design | Existing navy / teal / aqua / white; hub layout retained |
 
 ## Modules
 
 | ID | Module | Type | Status |
 | --- | --- | --- | --- |
-| PJ-01 | Care Hub shortcuts strip | Code-only inject on Patient Hub | **Implement** |
-| PJ-02 | Visit preparation checklist (non-clinical) | Code-only + localStorage booleans | **Implement** |
-| PJ-03 | Preferred GP / directory access cues | Code-only links | **Implement** (minimal) |
-| PJ-04 | Clinic opening-status indicator | Plan | **Deferred** — needs verified hours engine |
-| PJ-05 | HotDoc routine request shortcuts | Plan | **Deferred** — HotDoc verification |
-| PJ-06 | Household GP preferences | Plan | **Deferred** — privacy / UX approval |
-| PJ-07 | Notification prefs / Updates feed / Inbox | C0–E | **Do not implement here** — C1 demo already queued |
+| PJ-01 | Care Hub (M1) | Code-only inject on Patient Hub | **STAGING VERIFIED** |
+| PJ-02 | Visit preparation checklist (non-clinical) (M1) | Code-only + localStorage booleans + Clear | **STAGING VERIFIED** |
+| PJ-03 | Preferred GP / directory save (M2) | Code-only + `wmc.preferredGp.v1` | **STAGING VERIFIED** |
+| PJ-04 | Clinic opening-status indicator (M3+) | Plan | **Deferred** — needs verified hours engine |
+| PJ-05 | HotDoc routine request shortcuts (M3+) | Plan | **Deferred** — HotDoc verification |
+| PJ-06 | Household GP preferences (M3+) | Plan | **Deferred** — privacy / UX approval |
+| PJ-07 | Notification prefs / Updates feed / Inbox | C0–E | **Do not implement here** — C2 readiness blocked |
 | PJ-08 | CMS article / announcement publishing | Ops | **Plan only** — no demo as live clinical content |
 
 ## PJ-01 destinations (approved pages only)

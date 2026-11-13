@@ -3,8 +3,9 @@
 | Field | Value |
 | --- | --- |
 | Date | 2026-11-13 |
-| Staging baseline | `f6bba5ca0deea4ef70ebed64c64f35a9ca8d78dd` |
+| Staging baseline | `fdcb9c4e6f3977fed26b68ac569def825443a23e` (M1+M2 verified; prior B1 `f6bba5c` in ancestry) |
 | C1 tip retained | `1a12bf98b0d940bb3ff41a6c7813e3f7427190e3` |
+| Register integrity | Decisions and M3–M5 conditional/rejected rows **unchanged**; status notes only for shipped M1/M2 |
 | Named source | `WMC_PWA_Mockup_Concept_Audit_2026-11-13.md` |
 | Owner-approved brief used | Preflight 2026-11-13 owner Task list: notification prefs/categories; Updates feed; Care Hub; visit prep; new-patient guidance; bulk-billing (Trust Facts); visit/after-hours; telehealth prep; GP directory + Preferred GP; health education discovery; Digital Reception nav; HotDoc routine shortcuts (conditional); household GP (optional); open-status (optional); **no** clinical-results; notifications stay in future phases; no five-tab nav without UX approval |
 | Source availability | Named audit markdown **still not found on disk** (Desktop/Downloads/repos). Register rows map 1:1 to that owner brief + prior Task 2 list. **Uncertainty:** exact 17-image filenames/order and any per-image clinical caveats in the missing audit file are unknown — do not invent; re-reconcile when the file is supplied. |
@@ -21,13 +22,13 @@
 | 2 | Notification preferences & categories | **Approve (future + C1 demo)** | **Partial** — C1 lab demo; live persist = C2–C3 | C0→C | No live push in C1 |
 | 3 | Patient Updates / public announcement feed | **Approve (future + C1 demo)** | **Partial** — C1 inbox demo; live feed = C5/D | C0→D | Not CMS-published demo content |
 | 4 | Notification Inbox | **Approve (future + C1 demo)** | **Partial** | C1 / C5 | Isolated `/dev/patient-engagement` |
-| 5 | Self-Service Care Hub shortcuts | **Approve enhance** | **Partial** → **code enhance** | Journey PJ-01 | Link existing approved pages only |
-| 6 | Visit preparation checklist | **Approve (non-clinical)** | **Missing** → **code enhance** | Journey PJ-02 | Checkboxes only; no free-text clinical notes |
+| 5 | Self-Service Care Hub shortcuts | **Approve enhance** | **STAGING VERIFIED (M1)** | Journey PJ-01 / M1 | Link existing approved pages only |
+| 6 | Visit preparation checklist | **Approve (non-clinical)** | **STAGING VERIFIED (M1)** | Journey PJ-02 / M1 | Checkboxes only; no free-text clinical notes |
 | 7 | New-patient onboarding guidance | **Approve enhance** | **Partial** (`new-patients.html`) | Journey PJ-01 | Deep-link + Trust Facts; no invented copy |
 | 8 | Bulk-billing information | **Approve enhance** | **Partial** (TF-BILL pages) | Journey PJ-01 | Link `bulk-billing.html` / `fees-billing.html` only |
 | 9 | Visit information & after-hours | **Approve enhance** | **Partial** | Journey PJ-01 | `book-appointment.html`, `after-hours-care.html` |
 | 10 | Telehealth preparation | **Approve enhance** | **Partial** | Journey PJ-01/02 | Link `telehealth.html`; prep tips non-clinical |
-| 11 | GP directory + Preferred GP shortcuts | **Approve enhance** | **Mostly implemented** | Journey PJ-03 | Prefer existing Preferred GP + `team.html` |
+| 11 | GP directory + Preferred GP shortcuts | **Approve enhance** | **STAGING VERIFIED (M2)** | Journey PJ-03 / M2 | Existing Preferred GP + directory Save (`wmc.preferredGp.v1`) |
 | 12 | Health education discovery | **Approve enhance** | **Partial** | Journey PJ-01 | Keep `knowledge/index.html` card; no fabricated articles |
 | 13 | Digital Reception navigation | **Keep existing** | **Implemented** | Phase A / DR | Do not duplicate |
 | 14 | HotDoc routine request shortcuts | **Conditional future** | **Missing** | HotDoc gate | Needs verified HotDoc account capability — **plan only** |
