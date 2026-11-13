@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <title>WMC Patient App — Waiting-room poster (NOT FOR DISTRIBUTION)</title>
+  <style>
+    @page { size: A3 portrait; margin: 12mm; }
+    :root {
+      --navy: #0b2545;
+      --teal: #1f6f78;
+      --ink: #173044;
+      --soft: #eef5f6;
+      --warn: #8a1c1c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      color: var(--ink);
+      background: #cfd7de;
+    }
+    .poster {
+      width: 297mm;
+      min-height: 420mm;
+      margin: 12px auto;
+      background:
+        radial-gradient(circle at 85% 12%, rgba(31,111,120,.18), transparent 40%),
+        linear-gradient(180deg, #ffffff 0%, var(--soft) 55%, #ffffff 100%);
+      border: 3px solid var(--navy);
+      padding: 18mm 16mm 14mm;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .stamp {
+      align-self: flex-start;
+      background: #fff4f4;
+      color: var(--warn);
+      border: 2px solid var(--warn);
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 13px;
+      padding: 6px 12px;
+    }
+    .brand {
+      color: var(--teal);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
+      font-size: 48px;
+      line-height: 1.1;
+      color: var(--navy);
+      max-width: 18ch;
+    }
+    .lede { margin: 0; font-size: 20px; line-height: 1.4; max-width: 36ch; }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 18px;
+      align-items: stretch;
+      flex: 1;
+    }
+    .qr-box {
+      background: #fff;
+      border: 1px solid rgba(11,37,69,.16);
+      border-radius: 16px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(11,37,69,.08);
+    }
+    .qr-box img { width: 95mm; height: 95mm; }
+    .qr-box p { margin: 12px 0 0; font-size: 14px; color: #4f6c82; }
+    .howto {
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(11,37,69,.12);
+      border-radius: 16px;
+      padding: 18px 20px;
+    }
+    .howto h2 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      color: var(--navy);
+      font-family: Georgia, serif;
+      font-weight: 400;
+    }
+    .howto h3 { margin: 14px 0 6px; font-size: 14px; color: var(--teal); text-transform: uppercase; letter-spacing: 0.06em; }
+    .howto ol { margin: 0; padding-left: 20px; font-size: 16px; line-height: 1.45; }
+    .howto li { margin: 0 0 8px; }
+    .note {
+      margin-top: auto;
+      font-size: 14px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(11,37,69,.25);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .note .warn { color: var(--warn); font-weight: 700; }
+    @media print {
+      body { background: #fff; }
+      .poster { margin: 0; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <article class="poster" aria-label="Waiting room Patient App poster">
+    <div class="stamp">NOT FOR DISTRIBUTION — pre-production cutover</div>
+    <p class="brand">Woolloongabba Medical Centre</p>
+    <h1>Install the WMC Patient App while you wait</h1>
+    <p class="lede">Scan the code with your phone camera. It is a Home Screen shortcut — separate from the HotDoc app in the App Store or Google Play.</p>
+    <div class="grid">
+      <div class="qr-box">
+        <img src="wmc-install-qr-production-waiting-room.png" width="520" height="520" alt="Large QR code to install the WMC Patient App" />
+        <p>Scan to open the install guide</p>
+      </div>
+      <div class="howto">
+        <h2>Simple steps</h2>
+        <h3>Android</h3>
+        <ol>
+          <li>Scan the QR code and open the link.</li>
+          <li>When your browser offers <strong>Install</strong> or <strong>Add to Home screen</strong>, tap it.</li>
+          <li>Confirm. Look for the WMC icon on your home screen.</li>
+        </ol>
+        <h3>iPhone</h3>
+        <ol>
+          <li>Scan the QR code and open the link in <strong>Safari</strong>.</li>
+          <li>Tap <strong>Share</strong> (square with an arrow up).</li>
+          <li>Tap <strong>Add to Home Screen</strong>, then <strong>Add</strong>.</li>
+        </ol>
+        <p style="margin:14px 0 0;font-size:15px;">Reception can help, or call <strong>(07) 3217 3344</strong>.</p>
+      </div>
+    </div>
+    <div class="note">
+      <span>Booking stays with HotDoc. This app helps you reach practice tools faster.</span>
+      <span class="warn">Do not display until live apex QR is verified</span>
+    </div>
+  </article>
+</body>
+</html>

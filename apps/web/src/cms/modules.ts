@@ -1,5 +1,6 @@
 import type { MembershipRole } from "@prisma/client";
 import { roleAllows, type CmsAction } from "@/auth/permissions";
+import { isEngagementC1PrototypeBuildEnabled } from "@/engagement-c1/prototype-gate";
 
 export type CmsNavGroup = "content" | "operations" | "insights" | "governance";
 
@@ -69,6 +70,17 @@ export const CMS_MODULES: ReadonlyArray<CmsModule> = [
     action: "edit",
     group: "operations",
   },
+  // Phase C1 UI lab — gated; not live messaging operations
+  ...(isEngagementC1PrototypeBuildEnabled()
+    ? [
+        {
+          href: "/admin/engagement-lab",
+          label: "Engagement lab (demo)",
+          action: "edit" as CmsAction,
+          group: "operations" as CmsNavGroup,
+        },
+      ]
+    : []),
 
   // Insights — practice-friendly labels (C10); analytics stay separate from editing
   { href: "/admin", label: "Practice briefing", action: "manage_settings", group: "insights" },

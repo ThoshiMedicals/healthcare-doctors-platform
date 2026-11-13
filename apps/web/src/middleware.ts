@@ -24,7 +24,8 @@ function keepOutOfIndex(response: NextResponse, pathname: string, hostHeader: st
   if (
     isStagingNoIndexHost(hostHeader) ||
     pathname.startsWith("/admin") ||
-    pathname.startsWith("/api/")
+    pathname.startsWith("/api/") ||
+    pathname.startsWith("/dev/")
   ) {
     response.headers.set("X-Robots-Tag", STAGING_ROBOTS_DIRECTIVE);
   }

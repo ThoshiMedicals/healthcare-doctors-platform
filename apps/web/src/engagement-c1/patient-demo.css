@@ -1,0 +1,309 @@
+/* Phase C1 patient engagement prototype — WMC brand tokens, demo only */
+.wmc-c1 {
+  --c1-navy: #0b2545;
+  --c1-teal: #1f6f78;
+  --c1-ink: #173044;
+  --c1-soft: #f4f8f9;
+  --c1-warn: #8a1c1c;
+  --c1-border: rgba(11, 37, 69, 0.14);
+  --c1-font: "Inter", "Segoe UI", system-ui, sans-serif;
+  --c1-display: "Libre Baskerville", Georgia, serif;
+  color: var(--c1-ink);
+  font-family: var(--c1-font);
+  background: linear-gradient(180deg, #ffffff 0%, var(--c1-soft) 48%, #ffffff 100%);
+  min-height: 100vh;
+}
+
+.wmc-c1 * {
+  box-sizing: border-box;
+}
+
+.wmc-c1 a {
+  color: var(--c1-teal);
+}
+
+.wmc-c1-banner {
+  background: #fff4f4;
+  color: var(--c1-warn);
+  border-bottom: 2px solid var(--c1-warn);
+  padding: 10px 16px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.wmc-c1-shell {
+  width: min(720px, calc(100% - 24px));
+  margin: 0 auto;
+  padding: 20px 0 96px;
+}
+
+.wmc-c1-eyebrow {
+  margin: 0 0 6px;
+  color: var(--c1-teal);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wmc-c1 h1 {
+  margin: 0 0 8px;
+  font-family: var(--c1-display);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 4vw, 2rem);
+  color: var(--c1-navy);
+  line-height: 1.15;
+}
+
+.wmc-c1-lede {
+  margin: 0 0 18px;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: #4f6c82;
+}
+
+.wmc-c1-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 18px;
+}
+
+.wmc-c1-nav a,
+.wmc-c1-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--c1-border);
+  background: #fff;
+  color: var(--c1-navy);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.wmc-c1-btn-primary {
+  background: var(--c1-navy);
+  color: #fff;
+  border-color: var(--c1-navy);
+}
+
+.wmc-c1-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.wmc-c1-filters {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.wmc-c1-chip {
+  flex: 0 0 auto;
+  min-height: 40px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid var(--c1-border);
+  background: #fff;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--c1-navy);
+  cursor: pointer;
+}
+
+.wmc-c1-chip[aria-pressed="true"] {
+  background: var(--c1-navy);
+  color: #fff;
+  border-color: var(--c1-navy);
+}
+
+.wmc-c1-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.wmc-c1-row {
+  display: grid;
+  grid-template-columns: 10px 1fr;
+  gap: 12px;
+  align-items: start;
+  width: 100%;
+  text-align: left;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid var(--c1-border);
+  background: #fff;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  text-decoration: none;
+}
+
+.wmc-c1-row:visited,
+.wmc-c1-row:hover,
+.wmc-c1-row:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wmc-c1-row:focus-visible {
+  outline: 2px solid #1f5c99;
+  outline-offset: 2px;
+}
+
+.wmc-c1-dot {
+  width: 10px;
+  height: 10px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.wmc-c1-row[data-unread="true"] .wmc-c1-dot {
+  background: var(--c1-teal);
+}
+
+.wmc-c1-row[data-unread="true"] {
+  box-shadow: inset 3px 0 0 var(--c1-teal);
+}
+
+.wmc-c1-row h2 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+  font-weight: 650;
+  color: var(--c1-navy);
+  line-height: 1.3;
+}
+
+.wmc-c1-meta {
+  margin: 0 0 6px;
+  font-size: 0.75rem;
+  color: #5b7386;
+}
+
+.wmc-c1-summary {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: #425868;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.wmc-c1-empty {
+  padding: 28px 18px;
+  border-radius: 12px;
+  border: 1px dashed var(--c1-border);
+  background: rgba(255, 255, 255, 0.8);
+  text-align: center;
+}
+
+.wmc-c1-panel {
+  border: 1px solid var(--c1-border);
+  border-radius: 14px;
+  background: #fff;
+  padding: 16px;
+  margin-bottom: 14px;
+}
+
+.wmc-c1-panel h2 {
+  margin: 0 0 8px;
+  font-family: var(--c1-display);
+  font-weight: 400;
+  font-size: 1.25rem;
+  color: var(--c1-navy);
+}
+
+.wmc-c1-switch-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 0;
+  border-top: 1px solid var(--c1-border);
+}
+
+.wmc-c1-switch-row:first-of-type {
+  border-top: 0;
+}
+
+.wmc-c1-switch-row p {
+  margin: 4px 0 0;
+  font-size: 0.8125rem;
+  color: #5b7386;
+  line-height: 1.4;
+}
+
+.wmc-c1-switch {
+  width: 48px;
+  height: 28px;
+  border-radius: 999px;
+  border: 0;
+  background: #c5d0d8;
+  position: relative;
+  cursor: pointer;
+}
+
+.wmc-c1-switch[aria-checked="true"] {
+  background: var(--c1-teal);
+}
+
+.wmc-c1-switch::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.15s ease;
+}
+
+.wmc-c1-switch[aria-checked="true"]::after {
+  transform: translateX(20px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wmc-c1-switch::after {
+    transition: none;
+  }
+}
+
+.wmc-c1-live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.wmc-c1-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.wmc-c1-footer-note {
+  margin-top: 20px;
+  font-size: 0.8125rem;
+  color: #5b7386;
+  line-height: 1.45;
+}

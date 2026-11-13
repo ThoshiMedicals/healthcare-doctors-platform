@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <title>WMC Patient App — Reception counter card (NOT FOR DISTRIBUTION)</title>
+  <style>
+    @page { size: A5 landscape; margin: 10mm; }
+    :root {
+      --navy: #0b2545;
+      --teal: #1f6f78;
+      --ink: #173044;
+      --soft: #f4f8f9;
+      --warn: #8a1c1c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      color: var(--ink);
+      background: #dde3e8;
+    }
+    .sheet {
+      width: 210mm;
+      min-height: 148mm;
+      margin: 12px auto;
+      background: linear-gradient(160deg, #ffffff 0%, var(--soft) 100%);
+      border: 2px solid var(--navy);
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 0;
+      overflow: hidden;
+    }
+    .banner {
+      grid-column: 1 / -1;
+      background: var(--navy);
+      color: #fff;
+      padding: 8px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .banner strong { color: #ffd7d7; letter-spacing: 0.08em; }
+    .copy { padding: 16px 18px 14px; }
+    .eyebrow { color: var(--teal); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 6px; }
+    h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.15; color: var(--navy); font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
+    .lede { margin: 0 0 12px; font-size: 14px; line-height: 1.45; }
+    .steps { margin: 0; padding: 0; list-style: none; font-size: 13px; line-height: 1.4; }
+    .steps li { margin: 0 0 8px; padding-left: 28px; position: relative; }
+    .steps span {
+      position: absolute; left: 0; top: 0;
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--navy); color: #fff; font-size: 11px; font-weight: 700;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .platforms { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+    .plat { background: #fff; border: 1px solid rgba(11,37,69,.16); border-radius: 8px; padding: 8px 10px; font-size: 12px; }
+    .plat strong { display: block; color: var(--navy); margin-bottom: 2px; }
+    .qr-pane {
+      background: #fff;
+      border-left: 1px solid rgba(11,37,69,.12);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 14px; text-align: center;
+    }
+    .qr-pane img { width: 48mm; height: 48mm; image-rendering: pixelated; }
+    .qr-pane .cap { margin: 8px 0 0; font-size: 11px; color: #4f6c82; max-width: 52mm; }
+    .footer {
+      grid-column: 1 / -1;
+      border-top: 1px dashed rgba(11,37,69,.25);
+      padding: 8px 14px;
+      font-size: 11px;
+      display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      background: rgba(11,37,69,.03);
+    }
+    .warn { color: var(--warn); font-weight: 700; }
+    @media print {
+      body { background: #fff; }
+      .sheet { margin: 0; border-width: 1.5px; }
+    }
+  </style>
+</head>
+<body>
+  <article class="sheet" aria-label="Reception counter Patient App card">
+    <div class="banner">
+      <span>Woolloongabba Medical Centre · Patient App</span>
+      <strong>NOT FOR DISTRIBUTION</strong>
+    </div>
+    <div class="copy">
+      <p class="eyebrow">Scan at reception</p>
+      <h1>Add our Patient App to your phone</h1>
+      <p class="lede">Quick home-screen access to booking (HotDoc), your preferred GP, Digital Reception and practice information.</p>
+      <ol class="steps">
+        <li><span>1</span> Open your phone camera and point it at the QR code.</li>
+        <li><span>2</span> Tap the link that appears.</li>
+        <li><span>3</span> Follow the short steps for Android or iPhone.</li>
+      </ol>
+      <div class="platforms">
+        <div class="plat"><strong>Android</strong> Use <em>Install app</em> / Add to Home screen when offered.</div>
+        <div class="plat"><strong>iPhone</strong> Safari → Share → <em>Add to Home Screen</em>.</div>
+      </div>
+    </div>
+    <div class="qr-pane">
+      <img src="wmc-install-qr-production-reception.png" width="360" height="360" alt="QR code to install the WMC Patient App" />
+      <p class="cap">Opens the official install page after production cutover.</p>
+    </div>
+    <div class="footer">
+      <span>Need help? Ask reception or call <strong>(07) 3217 3344</strong></span>
+      <span class="warn">Pre-cutover draft · production QR not verified on live apex</span>
+    </div>
+  </article>
+</body>
+</html>
