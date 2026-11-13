@@ -3,6 +3,7 @@
 **Date:** 2026-11-13  
 **Baseline:** `f6bba5ca0deea4ef70ebed64c64f35a9ca8d78dd`  
 **Branch:** `feat/wmc-patient-engagement-c1-ui` (local only — not pushed)  
+**Local commit:** `0f867951b01c9b5eb246c2c17134bef847c7188d` (`0f86795`)  
 **Verdict:** **PHASE C1 UI FOUNDATION READY FOR REVIEW**
 
 ## Scope delivered
