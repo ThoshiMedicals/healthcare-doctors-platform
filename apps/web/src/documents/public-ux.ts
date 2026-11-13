@@ -39,6 +39,7 @@ import { injectPatientInstallAndroid } from "@/documents/patient-install-android
 import { injectPatientInstallIos } from "@/documents/patient-install-ios";
 import { refineInstallWmcAppLanding } from "@/documents/patient-install-landing";
 import { refinePatientHubMobileDashboard } from "@/documents/patient-hub-mobile-dashboard";
+import { injectDirectoryPreferredGpSave } from "@/documents/patient-directory-preferred-gp";
 import { refinePatientJourneyEnhancements } from "@/documents/patient-journey-enhancements";
 import { injectPatientPracticeInfoHub } from "@/documents/patient-practice-info-hub";
 import { injectPatientShareExperience } from "@/documents/patient-share";
@@ -142,7 +143,7 @@ function patientHubPracticeStripHtml(branding: ClinicBranding): string {
 }
 
 const PATIENT_PREFERRED_GP_SCRIPT_HREF =
-  "/wmc-cache/patient-preferred-gp.js?v=wmc-preferred-gp-20261113a";
+  "/wmc-cache/patient-preferred-gp.js?v=wmc-preferred-gp-20261113m2";
 
 /** Phase 3A patient dashboard — trust-facts practice strip + Preferred GP mount script. */
 function refinePatientHubDashboard(html: string, pagePath: string, branding: ClinicBranding): string {
@@ -229,7 +230,7 @@ function stabilisePersistentCareDock(html: string): string {
   });
 
   const launcherHtml =
-    '<button type="button" class="digital-reception-launcher digital-reception-dock-action" aria-expanded="false" aria-controls="digital-reception-panel" aria-haspopup="dialog" aria-label="Open Digital Reception — ask for information"><span class="digital-reception-launcher-full">Digital Reception</span><span class="digital-reception-launcher-compact">Ask us</span></button>';
+    '<button type="button" class="digital-reception-launcher digital-reception-dock-action" aria-expanded="false" aria-controls="digital-reception-panel" aria-haspopup="dialog" aria-label="Open Digital Reception — ask for the next step"><span class="digital-reception-launcher-full">Digital Reception</span><span class="digital-reception-launcher-compact">Ask us</span></button>';
 
   if (!/\bdigital-reception-launcher\b/.test(next)) {
     next = next.replace(
@@ -487,7 +488,7 @@ function patientPwaQuickNavHtml(bookAnchor: string, pagePath: string): string {
     `<a class="patient-pwa-quicknav-link patient-pwa-quicknav-book"${hotdocMarkers ? ` ${hotdocMarkers}` : ""} aria-label="${bookAriaLabel}" href="${escapeHtmlAttr(bookHref)}"><span class="patient-pwa-quicknav-label">${bookLabel}</span></a>` +
     `<a class="patient-pwa-quicknav-link patient-pwa-quicknav-doctors" aria-label="View our doctors" href="${prefix}team-general-practitioners.html"><span class="patient-pwa-quicknav-label">Doctors</span></a>` +
     `<a class="patient-pwa-quicknav-link patient-pwa-quicknav-services" aria-label="View our services" href="${prefix}services.html"><span class="patient-pwa-quicknav-label">Services</span></a>` +
-    `<button aria-label="Open Digital Reception — ask for information" class="patient-pwa-quicknav-link patient-pwa-quicknav-reception" data-open-digital-reception="" type="button"><span class="patient-pwa-quicknav-label">Reception</span></button>` +
+    `<button aria-label="Open Digital Reception — ask for the next step" class="patient-pwa-quicknav-link patient-pwa-quicknav-reception" data-open-digital-reception="" type="button"><span class="patient-pwa-quicknav-label">Reception</span></button>` +
     `<a class="patient-pwa-quicknav-link patient-pwa-quicknav-contact" aria-label="Contact us" href="${prefix}contact.html"><span class="patient-pwa-quicknav-label">Contact</span></a>` +
     `</div></nav>`
   );
@@ -595,6 +596,8 @@ export function applyPublicUxRefinements(
   next = next.replace(/<style\b[^>]*id="wmc-digital-reception-mobile"[\s\S]*?<\/style>\s*/i, "");
   // Phase 3D share: strip so re-apply keeps stable head order (runtime re-injected by share mounts).
   next = next.replace(/<style\b[^>]*id="wmc-patient-share"[\s\S]*?<\/style>\s*/i, "");
+  // M2 directory Preferred GP: strip so late re-inject stays after the sitewide batch (idempotent order).
+  next = next.replace(/<style\b[^>]*id="wmc-directory-preferred-gp"[\s\S]*?<\/style>\s*/i, "");
   next = next.replace(/<style\b[^>]*id="wmc-sitewide-visual-polish"[\s\S]*?<\/style>\s*/i, "");
   next = next.replace(/<style\b[^>]*id="wmc-recruitment-authority-enrich"[\s\S]*?<\/style>\s*/i, "");
   next = next.replace(/<style\b[^>]*id="wmc-gp-recruit-discover"[\s\S]*?<\/style>\s*/i, "");
@@ -2205,8 +2208,10 @@ min-height:44px;width:100%;max-width:100%;box-sizing:border-box
   next = refinePatientHubDashboard(next, pagePath, branding);
   // Owner-approved mobile dashboard (Preferred GP first, four actions, install card).
   next = refinePatientHubMobileDashboard(next, pagePath);
-  // Mockup-inspired Care Hub shortcuts + non-clinical visit prep (Patient Hub only).
+  // M1 Care Hub entry + grid + visit prep (Patient Hub only).
   next = refinePatientJourneyEnhancements(next, pagePath);
+  // M2 Save Preferred GP on directory / profiles (existing wmc.preferredGp.v1).
+  next = injectDirectoryPreferredGpSave(next, pagePath);
   next = applyPatientHubDigitalReception(next, pagePath);
   next = injectPatientInstallExperience(next, pagePath);
   next = injectPatientPracticeInfoHub(next, pagePath, branding);

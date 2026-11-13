@@ -45,12 +45,12 @@ test("patient hub: injected task grid contains data-open-digital-reception prima
 test("A11Y-002: ensureDigitalReceptionOpenAriaLabels fills missing dock aria-label on hubs only", () => {
   const html =
     '<html><body><button type="button" data-open-digital-reception="">Digital Reception</button>' +
-    '<button type="button" data-open-digital-reception="" aria-label="Open Digital Reception — ask for information">Already</button></body></html>';
+    '<button type="button" data-open-digital-reception="" aria-label="Open Digital Reception — ask for the next step">Already</button></body></html>';
   const once = ensureDigitalReceptionOpenAriaLabels(html, "patient-hub.html");
   const twice = ensureDigitalReceptionOpenAriaLabels(once, "patient-hub.html");
   assert.equal(once, twice);
   assert.equal(
-    (once.match(/aria-label="Open Digital Reception — ask for information"/g) || []).length,
+    (once.match(/aria-label="Open Digital Reception — ask for the next step"/g) || []).length,
     2,
   );
   const homepage = ensureDigitalReceptionOpenAriaLabels(html, "index.html");

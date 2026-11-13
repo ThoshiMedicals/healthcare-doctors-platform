@@ -59,7 +59,7 @@ test("injectPatientPracticeInfoHub: hub path only, strip + DR delegate + idempot
   assert.match(once, /mailto:reception@gabbamedicalcentre\.com\.au/);
   assert.match(once, /Woolloongabba Medical Centre/);
   assert.match(once, /wmc-digital-reception-open-delegate/);
-  assert.match(once, /aria-label="Open Digital Reception — ask for information"/);
+  assert.match(once, /aria-label="Open Digital Reception — ask for the next step"/);
   assert.match(once, /href="fees-billing\.html"/);
   assert.match(once, /href="after-hours-care\.html"/);
   assert.doesNotMatch(once, /<a href="x">Old<\/a>/);
@@ -76,7 +76,7 @@ test("injectPatientPracticeInfoHub: other paths unchanged", () => {
 test("fixture: quick actions and section grid present before SSR", () => {
   const raw = readFileSync(fixturePath, "utf8");
   assert.match(raw, /data-open-digital-reception/);
-  assert.match(raw, /aria-label="Open Digital Reception — ask for information"/);
+  assert.match(raw, /aria-label="Open Digital Reception — ask for the next step"/);
   assert.match(raw, /href="patient-hub\.html"/);
   assert.match(raw, /data-wmc-practice-info-sections="grid"/);
   assert.match(raw, /id="practice-info-strip"/);

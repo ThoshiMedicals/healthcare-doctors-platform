@@ -10,7 +10,7 @@ export const DIGITAL_RECEPTION_OPEN_DELEGATE_SCRIPT_ID = "wmc-digital-reception-
 
 /** Matches care-dock / PWA quicknav accessible name (A11Y-002). */
 export const DIGITAL_RECEPTION_OPEN_ARIA_LABEL =
-  "Open Digital Reception — ask for information";
+  "Open Digital Reception — ask for the next step";
 
 const DELEGATE_INNER = `document.addEventListener("click",function(event){
   var trigger=event.target&&event.target.closest&&event.target.closest("[data-open-digital-reception]");

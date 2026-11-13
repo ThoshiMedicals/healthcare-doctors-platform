@@ -186,13 +186,13 @@
     launcher.setAttribute('aria-expanded','false');
     launcher.setAttribute('aria-controls','digital-reception-panel');
     launcher.setAttribute('aria-haspopup','dialog');
-    launcher.setAttribute('aria-label','Open Digital Reception — ask for information');
+    launcher.setAttribute('aria-label','Open Digital Reception — ask for the next step');
     launcher.innerHTML='<span class="digital-reception-launcher-full">Digital Reception</span><span class="digital-reception-launcher-compact">Ask us</span>';
   }else{
     launcher.setAttribute('aria-expanded', launcher.getAttribute('aria-expanded')||'false');
     launcher.setAttribute('aria-controls','digital-reception-panel');
     launcher.setAttribute('aria-haspopup','dialog');
-    if(!launcher.getAttribute('aria-label')) launcher.setAttribute('aria-label','Open Digital Reception — ask for information');
+    if(!launcher.getAttribute('aria-label')) launcher.setAttribute('aria-label','Open Digital Reception — ask for the next step');
   }
   let panel=document.getElementById('digital-reception-panel');
   if(!panel){
